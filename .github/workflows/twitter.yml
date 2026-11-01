@@ -1,0 +1,33 @@
+name: Gold prices to X
+
+on:
+  schedule:
+    - cron: "0 5 * * *"     # 9 صباحًا بتوقيت الإمارات
+    - cron: "0 11 * * *"    # 3 مساءً بتوقيت الإمارات
+    - cron: "0 16 * * *"    # 8 مساءً بتوقيت الإمارات
+  workflow_dispatch:
+    inputs:
+      only:
+        description: "كود دولة أو أكتر للتجربة (مثال: SAR,AED) أو سيبه فاضي للكل"
+        required: false
+      dry_run:
+        description: "تجربة بدون نشر (اكتب 1)"
+        required: false
+
+jobs:
+  tweet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm i --no-save twitter-api-v2
+      - run: node twitter.cjs
+        env:
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
+          ONLY: ${{ github.event.inputs.only }}
+          DRY_RUN: ${{ github.event.inputs.dry_run }}
