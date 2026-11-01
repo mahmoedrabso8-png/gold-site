@@ -77,6 +77,9 @@ async function getPrice(){
 // data-p: سعر قابل للتحديث. data-m="ag" للفضة (data-f = النقاء)، غير كده ذهب (data-k = العيار)
 // data-cur: aed (افتراضي) | usd | inr | pkr ...
 G.ag=+(window.__AG||0)||null; G.fx=window.__FX||{};
+// عملات مربوطة بالدولار بسعر ثابت (رسمي). الدينار الكويتي مش مربوط فبييجي من سعر الصرف اليومي
+const PEG={USD:1,AED:3.6725,SAR:3.75,QAR:3.64,OMR:0.3845,BHD:0.376};
+const rate=c=>PEG[c.toUpperCase()]||G.fx[c.toUpperCase()]||null;
 function paint(){
   $$('[data-p]').forEach(el=>{
     const ag=el.dataset.m==='ag';
@@ -84,7 +87,7 @@ function paint(){
     if(!base) return;
     const cur=el.dataset.cur||'aed';
     let v=(base+(+(el.dataset.mc||0)))*(+(el.dataset.w||1));
-    if(cur!=='aed'){v/=AED;if(cur!=='usd'){if(!G.fx[cur.toUpperCase()])return;v*=G.fx[cur.toUpperCase()];}}
+    if(cur!=='aed'){const r=rate(cur);if(!r)return;v=v/AED*r;}
     const d=el.dataset.d!=null?+el.dataset.d:(v>=100000?0:2);
     el.textContent=fmt(v,d);
   });
@@ -105,10 +108,10 @@ async function loadSilver(){
   }catch(e){}
 }
 async function loadFX(){
-  if(!$('[data-cur]:not([data-cur="usd"]):not([data-cur="aed"])')) return;
+  if(![...$$('[data-cur]'),...$$('#c-cur option')].some(el=>!PEG[(el.dataset.cur||el.value||'').toUpperCase()])) return;
   try{
     const d=await (await fetch('https://open.er-api.com/v6/latest/USD')).json();
-    if(d.rates){G.fx=d.rates;paint();$$('[data-fx]').forEach(el=>{const v=d.rates[el.dataset.fx];if(v) el.textContent=fmt(v/AED,4);});}
+    if(d.rates){G.fx=d.rates;paint();calc();$$('[data-fx]').forEach(el=>{const v=d.rates[el.dataset.fx];if(v) el.textContent=fmt(v/AED,4);});}
   }catch(e){}
 }
 
@@ -168,10 +171,17 @@ async function spark(){
 function setText(id,v){const el=document.getElementById(id);if(el) el.textContent=v;}
 function calc(){
   if(!$('#calc')||!G.g24) return;
-  const w=num('c-w'),k=+$('#c-k').value,mc=num('c-mc'),vat=$('#c-vat')&&$('#c-vat').checked;
-  const pg=G.g24*k/24,gold=pg*w,make=mc*w,sub=gold+make,tax=vat?sub*0.05:0,total=sub+tax;
-  setText('c-pg',fmt(pg));setText('c-gold',fmt(gold));setText('c-make',fmt(make));
-  setText('c-tax',fmt(tax));setText('c-total',fmt(total));setText('c-usd',fmt(total/AED));
+  // العملة والضريبة حسب البلد (من اختيار العملة)
+  const sel=$('#c-cur'),opt=sel?sel.options[sel.selectedIndex]:null;
+  const cur=opt?opt.value:'AED',vr=opt?+opt.dataset.vat:5,dp=opt?+(opt.dataset.d||2):2,r=rate(cur);
+  $$('.c-curl').forEach(el=>el.textContent=cur);
+  setText('c-vatp',vr);
+  const vbox=$('#c-vat');if(vbox){vbox.disabled=!vr;if(!vr)vbox.checked=false;}
+  if(!r){['c-pg','c-gold','c-make','c-tax','c-total','c-usd'].forEach(id=>setText(id,'—'));return;}
+  const w=num('c-w'),k=+$('#c-k').value,mc=num('c-mc'),vat=vbox&&vbox.checked;
+  const pg=G.g24*k/24/AED*r,gold=pg*w,make=mc*w,sub=gold+make,tax=vat?sub*vr/100:0,total=sub+tax;
+  setText('c-pg',fmt(pg,dp));setText('c-gold',fmt(gold,dp));setText('c-make',fmt(make,dp));
+  setText('c-tax',fmt(tax,dp));setText('c-total',fmt(total,dp));setText('c-usd',fmt(total/r));
 }
 
 /* ── Zakat calculator ── */

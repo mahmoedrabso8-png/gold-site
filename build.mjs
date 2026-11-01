@@ -81,12 +81,13 @@ export const fmt = (v, d = 2) => v == null || !isFinite(v) ? '—' : new Intl.Nu
 
 function makeCtx(price, daily, extra = {}) {
   const g = price.g24, ag = extra.ag ?? null, fx = extra.fx || {};
+  // عملات مربوطة بالدولار بسعر ثابت رسمي؛ غيرها (زي الدينار الكويتي والروبية) من سعر الصرف اليومي
+  const PEG = { USD: 1, AED, SAR: 3.75, QAR: 3.64, OMR: 0.3845, BHD: 0.376 };
+  const rateOf = c => PEG[c.toUpperCase()] || fx[c.toUpperCase()] || null;
   const conv = (v, cur) => {
     if (v == null || cur === 'aed') return v;
-    v /= AED;
-    if (cur === 'usd') return v;
-    const r = fx[cur.toUpperCase()];
-    return r ? v * r : null;
+    const r = rateOf(cur);
+    return r ? v / AED * r : null;
   };
   const span = (attrs, v, d) => `<span ${attrs}${d != null ? ` data-d="${d}"` : ''}>${fmt(v, d != null ? d : v >= 100000 ? 0 : 2)}</span>`;
   // سعر ذهب قابل للتحديث: الرقم مكتوب في الـ HTML والـ JS بيحدّثه
@@ -108,7 +109,7 @@ function makeCtx(price, daily, extra = {}) {
     const dir = pct > 0.005 ? 'up' : pct < -0.005 ? 'dn' : 'fl';
     chg = `<span class="chg ${dir}" data-chg>${dir === 'up' ? '▲' : dir === 'dn' ? '▼' : '●'} ${Math.abs(pct).toFixed(2)}%</span>`;
   } else chg = '<span class="chg fl" data-chg hidden></span>';
-  return { g24: g, ag, fx, P, S, FX, updated, chg, daily, fmt, AED, TROY, SITE, TODAY, url, AD };
+  return { g24: g, ag, fx, PEG, rateOf, P, S, FX, updated, chg, daily, fmt, AED, TROY, SITE, TODAY, url, AD };
 }
 
 // ── Layout ────────────────────────────────────────────────────
@@ -116,8 +117,8 @@ export const url = (lang, slug) => (lang === 'en' ? '/en/' : '/') + (slug ? slug
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 
 const NAV = {
-  ar: [['', 'الرئيسية'], ['gold-21k', 'عيار 21'], ['gold-24k', 'عيار 24'], ['gold-22k', 'عيار 22'], ['gold-18k', 'عيار 18'], ['gold-price-usd', 'السعر العالمي'], ['silver', 'الفضة'], ['gold-bars', 'السبائك'], ['gold-calculator', 'حاسبة الذهب'], ['zakat-calculator', 'زكاة الذهب'], ['gold-price-yesterday', 'سعر أمس'], ['gold-forecast', 'توقعات الذهب'], ['history', 'الأرشيف']],
-  en: [['', 'Home'], ['gold-22k', '22K'], ['gold-24k', '24K'], ['gold-18k', '18K'], ['gold-21k', '21K'], ['gold-price-usd', 'Gold in USD'], ['silver', 'Silver'], ['gold-rate-inr', 'In INR'], ['gold-rate-pkr', 'In PKR'], ['gold-bars', 'Gold Bars'], ['gold-calculator', 'Calculator'], ['gold-price-yesterday', 'Last 10 days'], ['zakat-calculator', 'Zakat']]
+  ar: [['', 'الرئيسية'], ['gold-21k', 'عيار 21'], ['gold-24k', 'عيار 24'], ['gold-22k', 'عيار 22'], ['gold-18k', 'عيار 18'], ['gcc', 'دول الخليج'], ['saudi', 'السعودية'], ['kuwait', 'الكويت'], ['qatar', 'قطر'], ['oman', 'عُمان'], ['bahrain', 'البحرين'], ['gold-price-usd', 'السعر العالمي'], ['silver', 'الفضة'], ['gold-bars', 'السبائك'], ['gold-calculator', 'حاسبة الذهب'], ['zakat-calculator', 'زكاة الذهب'], ['gold-price-yesterday', 'سعر أمس'], ['gold-forecast', 'توقعات الذهب'], ['history', 'الأرشيف']],
+  en: [['', 'Home'], ['gold-22k', '22K'], ['gold-24k', '24K'], ['gold-18k', '18K'], ['gold-21k', '21K'], ['gcc', 'Gulf'], ['saudi', 'Saudi'], ['kuwait', 'Kuwait'], ['qatar', 'Qatar'], ['oman', 'Oman'], ['bahrain', 'Bahrain'], ['gold-price-usd', 'Gold in USD'], ['silver', 'Silver'], ['gold-rate-inr', 'In INR'], ['gold-rate-pkr', 'In PKR'], ['gold-bars', 'Gold Bars'], ['gold-calculator', 'Calculator'], ['gold-price-yesterday', 'Last 10 days'], ['zakat-calculator', 'Zakat']]
 };
 
 // كود الإعلان كما أرسله صاحب الموقع (بدون تعديل)
@@ -161,7 +162,7 @@ function layout(p, ctx) {
     ? `<div class="footer-links"><a href="/en/">Gold price UAE</a><a href="/en/gold-calculator/">Gold calculator</a><a href="/en/gold-bars/">Gold bars</a><a href="/about/">About us (Arabic)</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy policy</a></div>
 <p>Spot price data: Gold-API.com · USD/AED fixed peg 3.6725 · Updated every 5 minutes.</p>
 <p>Prices exclude making charges and VAT. For information only — not investment advice. © ${TODAY.slice(0, 4)} maelumatii.com</p>`
-    : `<div class="footer-links"><a href="/">سعر الذهب اليوم</a><a href="/history/">أرشيف الأسعار</a><a href="/about/">من نحن</a><a href="/contact/">اتصل بنا</a><a href="/privacy/">سياسة الخصوصية</a><a href="/en/">English</a></div>
+    : `<div class="footer-links"><a href="/">سعر الذهب اليوم</a><a href="/history/">أرشيف الأسعار</a><a href="/gcc/">أسعار الذهب في الخليج</a><a href="/about/">من نحن</a><a href="/contact/">اتصل بنا</a><a href="/privacy/">سياسة الخصوصية</a><a href="/en/">English</a></div>
 <p>مصدر السعر العالمي: Gold-API.com · سعر الدولار مقابل الدرهم ثابت رسمياً 3.6725 · تحديث كل 5 دقائق.</p>
 <p>الأسعار لا تشمل المصنعية أو ضريبة القيمة المضافة، وهي للاطلاع فقط ولا تمثّل نصيحة استثمارية. © ${TODAY.slice(0, 4)} maelumatii.com</p>`;
 
@@ -199,7 +200,7 @@ function layout(p, ctx) {
 </head>
 <body>
 <header class="site-header"><div class="container"><div class="header-inner">
-  <a href="${url(L, '')}" class="logo"><img src="/icons/icon-72x72.png" alt="" width="28" height="28" /><span>${en ? 'UAE Gold Prices' : 'أسعار الذهب — الإمارات'}</span></a>
+  <a href="${url(L, '')}" class="logo"><img src="/icons/icon-72x72.png" alt="" width="28" height="28" /><span>${en ? 'Gulf Gold Prices' : 'أسعار الذهب اليوم'}</span></a>
   <div class="header-side"><span class="header-time" id="live-time"></span>${langLink}</div>
 </div></div></header>
 <nav class="site-nav" aria-label="${en ? 'Main menu' : 'القائمة الرئيسية'}"><div class="container"><ul class="nav-list">${nav}</ul></div></nav>
@@ -210,7 +211,7 @@ ${p.faq ? `<section class="card-section" id="faq"><h2>${en ? 'Frequently asked q
 ${p.noAds ? '' : AD}
 </div></main>
 <footer class="site-footer"><div class="container">${footer}</div></footer>
-<script>window.__G=${ctx.g24 ? ctx.g24.toFixed(4) : 'null'};${p.usesAg ? `window.__AG=${ctx.ag ? ctx.ag.toFixed(4) : 'null'};` : ''}${p.usesFx ? `window.__FX=${JSON.stringify({ INR: ctx.fx.INR, PKR: ctx.fx.PKR })};` : ''}</script>
+<script>window.__G=${ctx.g24 ? ctx.g24.toFixed(4) : 'null'};${p.usesAg ? `window.__AG=${ctx.ag ? ctx.ag.toFixed(4) : 'null'};` : ''}${p.usesFx ? `window.__FX=${JSON.stringify({ INR: ctx.fx.INR, PKR: ctx.fx.PKR, KWD: ctx.fx.KWD })};` : ''}</script>
 <script src="/assets/app.js?v=${TODAY}" defer></script>
 </body>
 </html>`;
@@ -243,7 +244,7 @@ async function loadFX() {
 const price = await loadPrice();
 const daily = process.env.FAKE_HISTORY ? JSON.parse(await fs.readFile(process.env.FAKE_HISTORY, 'utf8')) : await loadDaily();
 let ag = await loadSilver(), fx = await loadFX();
-if (process.env.FAKE_PRICE) { price.g24 = +process.env.FAKE_PRICE; price.at = new Date().toISOString(); ag = 49.25 * AED / TROY; fx = { INR: 88.1, PKR: 281.5, AED: 3.6725 }; }
+if (process.env.FAKE_PRICE) { price.g24 = +process.env.FAKE_PRICE; price.at = new Date().toISOString(); ag = 49.25 * AED / TROY; fx = { INR: 95.0, PKR: 281.5, AED: 3.6725, KWD: 0.3065 }; }
 const ctx = makeCtx(price, daily, { ag, fx });
 console.log('price 24k:', price.g24 ? price.g24.toFixed(2) : 'n/a', '| days in archive:', daily.length);
 
