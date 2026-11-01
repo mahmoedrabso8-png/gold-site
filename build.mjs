@@ -248,8 +248,21 @@ const ctx = makeCtx(price, daily, { ag, fx });
 console.log('price 24k:', price.g24 ? price.g24.toFixed(2) : 'n/a', '| days in archive:', daily.length);
 
 await fs.rm(OUT, { recursive: true, force: true });
-await copyDir('static', OUT);
-await copyDir('assets', path.join(OUT, 'assets'));
+// الملفات ممكن تكون جوه فولدرات (static/ و assets/) أو كلها جنب بعض (لو اترفعت من المتصفح)
+const exists = async p => !!(await fs.stat(p).catch(() => null));
+async function place(name, dirs, dest) {
+  for (const d of dirs) {
+    const src = path.join(d, name);
+    if (await exists(src)) { await fs.mkdir(path.dirname(dest), { recursive: true }); await fs.copyFile(src, dest); return; }
+  }
+  throw new Error('missing file: ' + name);
+}
+for (const f of ['style.css', 'app.js']) await place(f, ['assets', '.'], path.join(OUT, 'assets', f));
+for (const f of ['sw.js', 'manifest.json', 'ads.txt', '_headers']) await place(f, ['static', '.'], path.join(OUT, f));
+for (const s of [72, 96, 128, 144, 152, 192, 384, 512]) {
+  const f = `icon-${s}x${s}.png`;
+  await place(f, ['static/icons', 'icons', '.'], path.join(OUT, 'icons', f));
+}
 
 const list = pages(ctx);
 const sitemap = [];
