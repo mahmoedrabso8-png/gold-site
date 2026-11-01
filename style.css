@@ -156,3 +156,5 @@ details.faq p{padding:0 16px 13px;font-size:.84rem;color:var(--t2)}
 #install-banner .x{background:none;border:none;color:#777;font-size:1.1rem}
 .error-box{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.25);color:#fca5a5;border-radius:var(--rmd);padding:10px 14px;text-align:center;margin:10px 0;font-size:.82rem}
 [hidden]{display:none!important}
+.ctry{background:var(--bc2);color:var(--t1);border:1px solid rgba(233,184,0,.35);border-radius:6px;padding:3px 6px;font-family:inherit;font-size:.78rem;font-weight:700;cursor:pointer;max-width:120px}
+.ctry:focus{outline:none;border-color:var(--g5)}

@@ -2,7 +2,7 @@
 // الصفحات: الشبكة أولاً ثم آخر نسخة محفوظة (عشان الأسعار تكون جديدة)
 // الملفات الثابتة: من الكاش مع تحديث في الخلفية
 // طلبات الأسعار: الشبكة أولاً ثم آخر رد محفوظ
-const V='gold-uae-v7';
+const V='gold-uae-v9';
 const PRECACHE=['/','/en/','/assets/style.css','/assets/app.js','/manifest.json','/icons/icon-192x192.png','/offline.html'];
 const API=['api.gold-api.com','supabase.co'];
 

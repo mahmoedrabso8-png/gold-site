@@ -80,15 +80,56 @@ G.ag=+(window.__AG||0)||null; G.fx=window.__FX||{};
 // عملات مربوطة بالدولار بسعر ثابت (رسمي). الدينار الكويتي مش مربوط فبييجي من سعر الصرف اليومي
 const PEG={USD:1,AED:3.6725,SAR:3.75,QAR:3.64,OMR:0.3845,BHD:0.376};
 const rate=c=>PEG[c.toUpperCase()]||G.fx[c.toUpperCase()]||null;
+
+/* ── الدولة المختارة من القائمة اللي فوق ── */
+const CTRY={AED:'',SAR:'saudi',KWD:'kuwait',QAR:'qatar',OMR:'oman',BHD:'bahrain'};
+const DEC={AED:2,SAR:2,QAR:2,KWD:3,OMR:3,BHD:3};
+const NAME={AED:'درهم',SAR:'ريال',KWD:'دينار',QAR:'ريال',OMR:'ريال',BHD:'دينار'};
+const BD=document.body.dataset;
+// صفحة خاصة بدولة (الرئيسية وعيار 21 و24 لكل دولة): عملتها ثابتة
+const PAGE_CUR=BD.ctry?(BD.ctry==='uae'?'AED':Object.keys(CTRY).find(k=>CTRY[k]===BD.ctry)):null;
+// صفحات عملتها ثابتة: صفحات الدول + صفحات فيها أرقام ثابتة (الأرشيف، المقارنة، الروبية...)
+const FIXED=!!PAGE_CUR||BD.fixed==='1';
+let SAVED=null;try{SAVED=localStorage.getItem('cur');}catch(e){}
+let SEL=PAGE_CUR||(CTRY.hasOwnProperty(SAVED)?SAVED:'AED');
+const pageFor=c=>(EN?'/en/':'/')+(CTRY[c]?CTRY[c]+'/':'')+(BD.sub?BD.sub+'/':'');
+// صفحة إماراتية ليها نسخة لكل دولة، والزائر اختار دولة تانية قبل كده: نوديه لصفحة دولته
+if(BD.ctry==='uae'&&SAVED&&SAVED!=='AED'&&CTRY[SAVED]) location.replace(pageFor(SAVED));
+// معامل التحويل من الدرهم للعملة المختارة (null لو سعر الصرف لسه ما وصلش)
+function conv(){if(FIXED||SEL==='AED')return 1;const r=rate(SEL);return r?r/AED:null;}
+const effCur=()=>FIXED?'AED':(conv()==null?'AED':SEL);
+function labels(){
+  if(FIXED) return;
+  const c=effCur();
+  $$('[data-cl]').forEach(el=>el.textContent=el.dataset.cl==='n'&&!EN?NAME[c]:c);
+}
+function nisab(){if(G.g24) $$('[data-nisab]').forEach(el=>el.textContent=fmt(G.g24*NISAB_G*(conv()||1),DEC[effCur()]));}
+const csel=$('#country');
+if(csel){
+  csel.value=SEL;
+  csel.addEventListener('change',()=>{
+    const c=csel.value;try{localStorage.setItem('cur',c);}catch(e){}
+    if(PAGE_CUR){location.href=pageFor(c);return;}
+    SEL=c;
+    if(c==='KWD'&&!G.fx.KWD) loadFX(true);
+    syncCalcCur();paint();labels();calc();zakat();nisab();
+  });
+}
+function syncCalcCur(){const cs=$('#c-cur');if(cs&&!FIXED&&[...cs.options].some(o=>o.value===SEL)) cs.value=SEL;}
+syncCalcCur();
 function paint(){
   $$('[data-p]').forEach(el=>{
     const ag=el.dataset.m==='ag';
     const base=ag?G.ag*(+(el.dataset.f||1)):G.g24&&G.g24*(+(el.dataset.k||24))/24;
     if(!base) return;
-    const cur=el.dataset.cur||'aed';
+    let cur=el.dataset.cur||'aed';
+    // الأسعار بالدرهم في الصفحات العامة تتحوّل لعملة الدولة المختارة
+    const auto=cur==='aed'&&!FIXED&&SEL!=='AED';
+    if(auto) cur=SEL.toLowerCase();
     let v=(base+(+(el.dataset.mc||0)))*(+(el.dataset.w||1));
-    if(cur!=='aed'){const r=rate(cur);if(!r)return;v=v/AED*r;}
-    const d=el.dataset.d!=null?+el.dataset.d:(v>=100000?0:2);
+    let ok=true;
+    if(cur!=='aed'){const r=rate(cur);if(r) v=v/AED*r; else if(auto) ok=false; else return;}
+    const d=el.dataset.d!=null?+el.dataset.d:(v>=100000?0:(auto&&ok?DEC[SEL]:2));
     el.textContent=fmt(v,d);
   });
 }
@@ -96,7 +137,7 @@ function render(p){
   G.g24=p.g24;
   paint();
   $$('[data-upd]').forEach(el=>el.textContent=dubaiTime(p.at));
-  $$('[data-nisab]').forEach(el=>el.textContent=fmt(p.g24*NISAB_G));
+  nisab();labels();
   calc();zakat();
 }
 async function loadSilver(){
@@ -107,11 +148,11 @@ async function loadSilver(){
     if(d.price>1){G.ag=d.price*AED/TROY;paint();$$('[data-upd-ag]').forEach(el=>el.textContent=dubaiTime(d.updatedAt||Date.now()));}
   }catch(e){}
 }
-async function loadFX(){
-  if(![...$$('[data-cur]'),...$$('#c-cur option')].some(el=>!PEG[(el.dataset.cur||el.value||'').toUpperCase()])) return;
+async function loadFX(force){
+  if(!force&&!(SEL==='KWD'&&!FIXED)&&![...$$('[data-cur]'),...$$('#c-cur option')].some(el=>!PEG[(el.dataset.cur||el.value||'').toUpperCase()])) return;
   try{
     const d=await (await fetch('https://open.er-api.com/v6/latest/USD')).json();
-    if(d.rates){G.fx=d.rates;paint();calc();$$('[data-fx]').forEach(el=>{const v=d.rates[el.dataset.fx];if(v) el.textContent=fmt(v/AED,4);});}
+    if(d.rates){G.fx=d.rates;paint();labels();nisab();calc();zakat();$$('[data-fx]').forEach(el=>{const v=d.rates[el.dataset.fx];if(v) el.textContent=fmt(v/AED,4);});}
   }catch(e){}
 }
 
@@ -135,7 +176,7 @@ async function load(){
     try{const old=await rowBefore(24*3600*1000);if(old) renderChange((p.g24-old.price_24k)/old.price_24k*100);}catch(e){}
   }catch(e){
     if(err){err.hidden=false;err.textContent=T.fail;}
-    if(G.g24){calc();zakat();}
+    if(G.g24){paint();labels();nisab();calc();zakat();}
   }finally{
     if(btn){btn.disabled=false;btn.textContent='🔄 '+T.refresh;}
   }
@@ -188,9 +229,9 @@ function calc(){
 function zakat(){
   if(!$('#zakat')||!G.g24) return;
   const pure=num('z-24')+num('z-22')*22/24+num('z-21')*21/24+num('z-18')*18/24;
-  const value=pure*G.g24,due=pure>=NISAB_G;
-  setText('z-pure',fmt(pure));setText('z-val',fmt(value));
-  setText('z-amt',fmt(due?value*0.025:0));
+  const dp=DEC[effCur()],value=pure*G.g24*(conv()||1),due=pure>=NISAB_G;
+  setText('z-pure',fmt(pure));setText('z-val',fmt(value,dp));
+  setText('z-amt',fmt(due?value*0.025:0,dp));
   const msg=$('#z-msg');
   if(msg){
     if(!pure){msg.textContent='';return;}
@@ -203,6 +244,8 @@ document.addEventListener('change',e=>{if(e.target.closest('#calc'))calc();if(e.
 
 const rb=$('#refresh');if(rb) rb.addEventListener('click',load);
 
+// نعرض الأسعار المكتوبة في الصفحة بعملة الدولة المختارة فوراً، قبل ما السعر المباشر يوصل
+paint();labels();nisab();
 load();spark();loadSilver();loadFX();
 setInterval(()=>{load();loadSilver();},CACHE_MS);
 
