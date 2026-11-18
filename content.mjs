@@ -2,6 +2,7 @@
 export function pages(ctx) {
   const { P, updated, chg, daily, fmt, url, AD, TODAY } = ctx;
   const out = [];
+  const px = k => ctx.g24 ? fmt(ctx.g24 * k / 24) : null;   // سعر الغرام لإدراجه في العناوين
 
   // ── معلومات العيارات ─────────────────────────────────────
   const K = {
@@ -98,11 +99,13 @@ export function pages(ctx) {
     ? `<section class="card-section"><h2>Why is the shop price higher than this price?</h2><div class="prose">
 <p>This site shows the <strong>raw gold price</strong> calculated from the global spot price (ounce in USD × 3.6725 ÷ 31.1035 g). Dubai jewellers announce their own daily rate per karat, which closely follows the spot price with a small difference. On top of that, a shop invoice adds:</p>
 <ul><li><strong>Making charges</strong> — usually a few dirhams up to 15+ AED per gram depending on the design.</li><li><strong>5% VAT</strong> on jewellery (investment bars of 99%+ purity are generally zero-rated).</li></ul>
-<p>Use the <a href="/en/gold-calculator/">gold calculator</a> to add making charges and VAT and see the final price.</p></div></section>`
+<p>Use the <a href="/en/gold-calculator/">gold calculator</a> to add making charges and VAT and see the final price.</p>
+<p>Related: <a href="/en/gold-24k/">24K gold rate</a> · <a href="/en/gold-22k/">22K gold rate</a> · <a href="/en/gold-18k/">18K gold rate</a> · <a href="/en/gold-bars/">gold bar prices</a> · <a href="/en/silver/">silver price</a> · <a href="/en/saudi/">gold price in Saudi Arabia</a> · <a href="/en/gcc/">Gulf gold prices</a>.</p></div></section>`
     : `<section class="card-section"><h2>لماذا يختلف سعر المحل عن السعر المعروض هنا؟</h2><div class="prose">
 <p>نعرض هنا <strong>سعر الذهب الخام</strong> محسوباً من السعر العالمي (سعر الأونصة بالدولار × 3.6725 ÷ 31.1035 غرام). محلات الذهب في دبي تعلن سعراً يومياً لكل عيار يتبع السعر العالمي مع فرق بسيط، ثم تُضاف إلى الفاتورة:</p>
 <ul><li><strong>المصنعية (أجرة الصياغة)</strong> — من بضعة دراهم حتى 15 درهماً أو أكثر للغرام حسب التصميم.</li><li><strong>ضريبة القيمة المضافة 5%</strong> على المشغولات الذهبية (السبائك الاستثمارية بنقاء 99% فأكثر معفاة عادةً).</li></ul>
-<p>استخدم <a href="/gold-calculator/">حاسبة الذهب</a> لإضافة المصنعية والضريبة ومعرفة السعر النهائي.</p></div></section>`;
+<p>استخدم <a href="/gold-calculator/">حاسبة الذهب</a> لإضافة المصنعية والضريبة ومعرفة السعر النهائي.</p>
+<p>مواضيع ذات صلة: <a href="/gold-24k/">سعر عيار 24</a> · <a href="/gold-bars/">سبائك الذهب</a> · <a href="/silver/">سعر الفضة</a> · <a href="/gcc/">أسعار الذهب في الخليج</a> · <a href="/zakat-calculator/">حاسبة الزكاة</a> · <a href="/gold-price-yesterday/">سعر الذهب أمس</a>.</p></div></section>`;
   const sources = L => L === 'en'
     ? `<section class="card-section"><h2>Data source & method</h2><div class="trust-grid">
 <div class="trust-item"><strong>Spot price</strong>Gold-API.com, based on international market prices.</div>
@@ -122,8 +125,8 @@ export function pages(ctx) {
 
   // ── الصفحة الرئيسية ────────────────────────────────────
   out.push({ lang: 'ar', slug: '', alt: true,
-    title: 'سعر الذهب اليوم في الإمارات بالدرهم | عيار 24 و22 و21 و18',
-    desc: 'سعر الذهب اليوم في الإمارات ودبي بالدرهم الإماراتي، محدَّث كل 5 دقائق: عيار 24 و22 و21 و18، سعر الأونصة والتولة والسبائك، مع حاسبة الذهب بالمصنعية وحاسبة الزكاة.',
+    title: px(21) ? `سعر الذهب اليوم في الإمارات | عيار 21: ${px(21)} درهم` : 'سعر الذهب اليوم في الإمارات بالدرهم | عيار 24 و22 و21 و18',
+    desc: (px(21) ? `سعر الذهب اليوم في الإمارات: عيار 21 بـ ${px(21)} درهم، عيار 24 بـ ${px(24)}، عيار 22 بـ ${px(22)}، عيار 18 بـ ${px(18)} للغرام. ` : 'سعر الذهب اليوم في الإمارات ودبي بالدرهم. ') + 'تحديث كل 5 دقائق، مع سعر الأونصة والسبائك وحاسبة الذهب بالمصنعية والزكاة.',
     body: `${hero('سعر الذهب اليوم في الإمارات بالدرهم', 'سعر غرام الذهب الخام لعيار 24 و22 و21 و18 بالدرهم الإماراتي والدولار', 'ar')}
 ${errBox}${karatCards('ar')}${metaRow('ar')}
 ${AD}
@@ -148,7 +151,7 @@ ${sources('ar')}`,
     ] });
 
   out.push({ lang: 'en', slug: '', alt: true,
-    title: 'Gold Rate in UAE Today (AED) — 24K, 22K, 21K, 18K Live Price',
+    title: px(24) ? `Gold Rate in UAE Today: 24K ${px(24)} AED, 22K ${px(22)} AED` : 'Gold Rate in UAE Today (AED) — 24K, 22K, 21K, 18K Live Price',
     desc: 'Today\'s gold rate in the UAE and Dubai in AED, updated every 5 minutes: 24K, 22K, 21K and 18K per gram, per tola and per ounce, plus gold bar prices and a gold calculator with making charges and VAT.',
     body: `${hero('Gold Rate in UAE Today', '24K, 22K, 21K and 18K gold price per gram in UAE dirhams (AED) and US dollars', 'en')}
 ${errBox}${karatCards('en')}${metaRow('en')}
@@ -180,7 +183,7 @@ ${sources('en')}`,
     const table = k === 24
       ? `<thead><tr><th>${en ? 'Weight' : 'الوزن'}</th><th>${en ? 'Price (AED)' : 'السعر (درهم)'}</th><th>${en ? 'Price (USD)' : 'السعر (دولار)'}</th></tr></thead><tbody>${rows.map(([n, w]) => `<tr><td>${n}</td><td class="n">${P(k, w)}</td><td class="n">$${P(k, w, { cur: 'usd' })}</td></tr>`).join('')}</tbody>`
       : `<thead><tr><th>${en ? 'Weight' : 'الوزن'}</th><th>${en ? 'Gold price (AED)' : 'سعر الذهب (درهم)'}</th><th>${en ? '+ making 3 AED/g' : '+ مصنعية 3 د/غ'}</th><th>${en ? '+ making 15 AED/g' : '+ مصنعية 15 د/غ'}</th></tr></thead><tbody>${rows.map(([n, w]) => `<tr><td>${n}</td><td class="n">${P(k, w)}</td><td class="n">${P(k, w, { mc: 3 })}</td><td class="n">${P(k, w, { mc: 15 })}</td></tr>`).join('')}</tbody>`;
-    const title = en ? `${k}K Gold Rate in UAE Today — Price per Gram in AED` : `سعر الذهب عيار ${k} اليوم في الإمارات بالدرهم`;
+    const title = px(k) ? (en ? `${k}K Gold Rate in UAE Today: ${px(k)} AED per Gram` : `سعر الذهب عيار ${k} اليوم في الإمارات: ${px(k)} درهم للغرام`) : (en ? `${k}K Gold Rate in UAE Today — Price per Gram in AED` : `سعر الذهب عيار ${k} اليوم في الإمارات بالدرهم`);
     out.push({ lang: L, slug: `gold-${k}k`, alt: true,
       crumbs: [[en ? `${k}K gold rate` : `سعر عيار ${k}`, url(L, `gold-${k}k`)]],
       title,
@@ -213,9 +216,9 @@ ${links(L, `gold-${k}k`)}`,
     const opt = [24, 22, 21, 18, 14].map(k => `<option value="${k}"${k === (en ? 22 : 21) ? ' selected' : ''}>${en ? `${k}K (${k === 14 ? '58.3%' : K[k].purity})` : `عيار ${k} (${k === 14 ? '58.3%' : K[k].purity})`}</option>`).join('');
     out.push({ lang: L, slug: 'gold-calculator', alt: true, usesFx: true,
       crumbs: [[en ? 'Gold calculator' : 'حاسبة الذهب', url(L, 'gold-calculator')]],
-      title: en ? 'Gold Price Calculator UAE — With Making Charges & VAT (AED)' : 'حاسبة سعر الذهب في الإمارات بالمصنعية والضريبة | بالدرهم',
-      desc: en ? 'Calculate the price of gold in the UAE by weight and karat using today\'s live rate, then add making charges and 5% VAT to get the final shop price in AED and USD.'
-        : 'احسب سعر الذهب في الإمارات حسب الوزن والعيار بسعر اليوم المباشر، وأضف المصنعية وضريبة القيمة المضافة 5% لمعرفة السعر النهائي في المحل بالدرهم والدولار.',
+      title: en ? 'Gold Calculator UAE — Price with Making Charges & 5% VAT' : 'حاسبة الذهب في الإمارات بالمصنعية والضريبة | احسب سعر مشترياتك',
+      desc: en ? 'Free gold calculator: enter weight and karat, add making charges per gram and 5% VAT, and see the final shop price in AED and USD at today\'s live UAE rate.'
+        : 'حاسبة ذهب مجانية: أدخل الوزن والعيار وأضف المصنعية للغرام وضريبة 5% لتعرف السعر النهائي في المحل بالدرهم والدولار حسب سعر اليوم المباشر.',
       schema: [{ '@context': 'https://schema.org', '@type': 'WebApplication', name: en ? 'UAE Gold Price Calculator' : 'حاسبة سعر الذهب الإمارات', applicationCategory: 'FinanceApplication', operatingSystem: 'Any', inLanguage: L, url: ctx.SITE + url(L, 'gold-calculator'), offers: { '@type': 'Offer', price: '0', priceCurrency: 'AED' } }],
       body: `${hero(en ? 'Gold Price Calculator (UAE)' : 'حاسبة سعر الذهب بالمصنعية والضريبة', en ? 'Today\'s live rate × weight + making charges + VAT' : 'سعر اليوم المباشر × الوزن + المصنعية + الضريبة', L)}
 ${errBox}
@@ -298,7 +301,7 @@ ${links(L, 'zakat-calculator')}`,
     const en = L === 'en';
     out.push({ lang: L, slug: 'gold-bars', alt: true,
       crumbs: [[en ? 'Gold bar prices' : 'أسعار السبائك', url(L, 'gold-bars')]],
-      title: en ? 'Gold Bar Price in UAE Today — 1g, 10g, 100g, 10 Tola, 1kg (AED)' : 'سعر سبيكة الذهب اليوم في الإمارات | 10 غرام و100 غرام و10 تولة',
+      title: en ? `Gold Bar Price in UAE Today: 100g${px(24) ? ' = ' + fmt(ctx.g24 * 100) + ' AED' : ''}, 1kg, 10 Tola` : `سعر سبيكة الذهب اليوم في الإمارات${px(24) ? ': 100 غرام = ' + fmt(ctx.g24 * 100) + ' درهم' : ''}`,
       desc: en ? 'Today\'s 24K gold bar prices in the UAE in AED and USD: 1 g, 5 g, 10 g, 1 ounce, 100 g, 10 tola and 1 kg, updated every 5 minutes, with tips on premiums and VAT.'
         : 'أسعار سبائك الذهب عيار 24 اليوم في الإمارات بالدرهم والدولار: 1 و5 و10 غرام، الأونصة، 100 غرام، 10 تولة، والكيلو، محدَّثة كل 5 دقائق مع نصائح الشراء.',
       body: `${hero(en ? 'Gold Bar Prices in UAE Today' : 'أسعار سبائك الذهب اليوم في الإمارات', en ? '24K (999.9) bars by weight — raw gold value' : 'سبائك عيار 24 حسب الوزن — قيمة الذهب الخام', L)}
@@ -313,15 +316,34 @@ ${en ? `<p>Gold bars are the simplest way to invest in physical gold: you pay cl
 <ul><li><strong>Premium:</strong> every bar is priced a little above the spot value. The premium per gram is highest on 1–5 g bars and lowest on 100 g and 1 kg bars.</li><li><strong>VAT:</strong> investment gold of 99% purity or higher is generally zero-rated in the UAE — check your invoice.</li><li><strong>Authenticity:</strong> buy sealed bars from recognised refiners with a serial number and assay certificate.</li><li><strong>Resale:</strong> sealed, undamaged bars sell back more easily and closer to the spot price.</li></ul>`
         : `<p>السبائك أبسط طريقة للاستثمار في الذهب الفعلي، لأنك تدفع سعراً قريباً من قيمة الذهب الخام بمصنعية بسيطة أو بدونها. تُباع في الإمارات لدى محلات الذهب وتجار السبائك وبعض البنوك بأوزان من 1 غرام حتى 1 كيلوغرام، وتشتهر محلياً <strong>سبيكة 10 تولة</strong> (116.64 غرام).</p>
 <ul><li><strong>العلاوة:</strong> كل سبيكة تُباع أعلى قليلاً من قيمة الذهب الخام، والعلاوة للغرام أعلى في السبائك الصغيرة (1–5 غرام) وأقل في سبائك 100 غرام والكيلو.</li><li><strong>الضريبة:</strong> الذهب الاستثماري بنقاء 99% فأكثر يُعامل عادةً بنسبة صفر في الإمارات، تأكد من الفاتورة.</li><li><strong>الأصالة:</strong> اشترِ سبائك مغلّفة من مصافٍ معروفة تحمل رقماً تسلسلياً وشهادة فحص.</li><li><strong>إعادة البيع:</strong> السبيكة المغلّفة السليمة تُباع بسهولة أكبر وبسعر أقرب للسعر العالمي.</li></ul>`}</div></section>
+<section class="card-section"><h2>${en ? 'Popular gold bar sizes — quick prices' : 'أشهر أوزان السبائك — الأسعار باختصار'}</h2><div class="prose">
+${en ? `<ul><li><strong>1 gram gold bar:</strong> about <bdi>${P(24, 1)} AED</bdi> raw value — the smallest bar, highest premium per gram.</li>
+<li><strong>10 gram gold bar:</strong> about <bdi>${P(24, 10)} AED</bdi>.</li>
+<li><strong>100 gram gold bar:</strong> about <bdi>${P(24, 100)} AED</bdi> — the most searched size, with a much lower premium.</li>
+<li><strong>10 tola gold bar (116.64 g):</strong> about <bdi>${P(24, TOLA * 10)} AED</bdi>.</li>
+<li><strong>1 kg gold bar:</strong> about <bdi>${P(24, 1000)} AED</bdi> — the lowest premium, used by investors and dealers.</li></ul>
+<p>Want to price a piece with a different weight? Use the <a href="/en/gold-calculator/">gold calculator</a>, or see today's <a href="/en/gold-24k/">24K gold rate per gram</a>.</p>`
+ : `<ul><li><strong>سبيكة ذهب 1 غرام:</strong> قيمتها الخام نحو <bdi>${P(24, 1)} درهم</bdi>، وهي أصغر سبيكة وعلاوتها للغرام الأعلى.</li>
+<li><strong>سبيكة 10 غرام:</strong> نحو <bdi>${P(24, 10)} درهم</bdi>.</li>
+<li><strong>سبيكة ذهب 100 غرام:</strong> نحو <bdi>${P(24, 100)} درهم</bdi>، وهي الأكثر بحثاً وعلاوتها أقل بكثير.</li>
+<li><strong>سبيكة 10 تولة (116.64 غرام):</strong> نحو <bdi>${P(24, TOLA * 10)} درهم</bdi>.</li>
+<li><strong>سبيكة كيلو ذهب:</strong> نحو <bdi>${P(24, 1000)} درهم</bdi>، وعلاوتها الأقل، ويشتريها المستثمرون والتجار.</li></ul>
+<p>تريد حساب وزن مختلف؟ استخدم <a href="/gold-calculator/">حاسبة الذهب</a> أو اطلع على <a href="/gold-24k/">سعر غرام عيار 24 اليوم</a>.</p>`}</div></section>
 ${links(L, 'gold-bars')}`,
       faq: en ? [
         ['What is the price of a 10 gram gold bar in the UAE today?', 'The live raw value of a 10 g 24K bar is shown in the table above. Dealers add a small premium, so the shop price is slightly higher.'],
         ['What is a 10 tola gold bar?', 'A 10 tola bar weighs about 116.64 grams of 24K gold and is one of the most traded bar sizes in the UAE.'],
-        ['Is there VAT on gold bars in the UAE?', 'Investment gold of 99% purity or higher is generally zero-rated for VAT in the UAE.']
+        ['Is there VAT on gold bars in the UAE?', 'Investment gold of 99% purity or higher is generally zero-rated for VAT in the UAE.'],
+        ['How much is a 100 gram gold bar in the UAE?', 'The live raw value of a 100 g 24K bar is in the table above (100 g row) and in the quick-price list. Dealers add a premium, usually lower per gram than on small bars.'],
+        ['How much is a 1 kg gold bar in the UAE?', 'The 1 kg row in the table shows the live raw value. 1 kg bars carry the lowest premium per gram.'],
+        ['Where can I buy a gold bar in Dubai?', 'Licensed bullion dealers, jewellers in the Gold Souk and some banks sell gold bars. Buy sealed bars from recognised refiners with a serial number and certificate.']
       ] : [
         ['كم سعر سبيكة 10 غرام في الإمارات اليوم؟', 'تظهر قيمة سبيكة 10 غرام عيار 24 محدَّثة في الجدول أعلاه، ويضيف التاجر علاوة بسيطة فيكون سعر المحل أعلى قليلاً.'],
         ['ما هي سبيكة 10 تولة؟', 'سبيكة وزنها نحو 116.64 غرام من الذهب عيار 24، وهي من أكثر أوزان السبائك تداولاً في الإمارات.'],
-        ['هل توجد ضريبة على سبائك الذهب في الإمارات؟', 'الذهب الاستثماري بنقاء 99% فأكثر يُعامل عادةً بنسبة صفر في ضريبة القيمة المضافة.']
+        ['هل توجد ضريبة على سبائك الذهب في الإمارات؟', 'الذهب الاستثماري بنقاء 99% فأكثر يُعامل عادةً بنسبة صفر في ضريبة القيمة المضافة.'],
+        ['كم سعر سبيكة الذهب 100 غرام في الإمارات اليوم؟', 'تظهر القيمة الخام لسبيكة 100 غرام عيار 24 محدَّثة في الجدول أعلاه وفي قائمة الأسعار السريعة، ويضيف التاجر علاوة تكون أقل للغرام من السبائك الصغيرة.'],
+        ['كم سعر كيلو الذهب اليوم في الإمارات؟', 'يظهر سعر سبيكة الكيلو في الجدول أعلاه، وعلاوتها هي الأقل للغرام بين كل الأوزان.'],
+        ['أين أشتري سبيكة ذهب في دبي؟', 'تبيعها شركات تجارة السبائك المرخصة ومحلات سوق الذهب وبعض البنوك. اشترِ سبائك مغلّفة من مصافٍ معروفة برقم تسلسلي وشهادة.']
       ] });
   }
 
@@ -427,7 +449,7 @@ ${links('ar', '')}` });
     const en = L === 'en';
     out.push({ lang: L, slug: 'silver', alt: true, usesAg: true,
       crumbs: [[en ? 'Silver price' : 'سعر الفضة', url(L, 'silver')]],
-      title: en ? 'Silver Price in UAE Today — per Gram, Ounce & Kg in AED' : 'سعر الفضة اليوم في الإمارات بالدرهم | الغرام والأونصة والكيلو',
+      title: en ? `Silver Price in Dubai & UAE Today${ctx.ag ? ': ' + fmt(ctx.ag, 2) + ' AED per Gram' : ''}` : `سعر الفضة اليوم في دبي والإمارات${ctx.ag ? ': ' + fmt(ctx.ag, 2) + ' درهم للغرام' : ''}`,
       desc: en ? 'Live silver price in the UAE and Dubai in AED and USD: price per gram for 999 and 925 sterling silver, per ounce, per tola and per kilo, updated every 5 minutes.'
         : 'سعر الفضة اليوم في الإمارات ودبي بالدرهم والدولار: سعر غرام الفضة عيار 999 و925، وسعر الأونصة والتولة والكيلو، محدَّث كل 5 دقائق.',
       body: `${hero(en ? 'Silver Price in UAE Today' : 'سعر الفضة اليوم في الإمارات', en ? 'Price per gram, ounce and kilo in UAE dirhams and US dollars' : 'سعر الغرام والأونصة والكيلو بالدرهم الإماراتي والدولار', L)}
@@ -450,15 +472,26 @@ ${en ? `<p>The silver price in the UAE follows the global spot price of silver i
         : `<p>يتبع سعر الفضة في الإمارات السعر العالمي لأونصة الفضة بالدولار، محوَّلاً بسعر الربط الثابت 3.6725 درهم للدولار. والفضة أكثر تقلباً من الذهب، فتغيّر 2–3% في يوم واحد أمر شائع.</p>
 <p>تُستخدم <strong>الفضة الخالصة 999</strong> في السبائك والعملات، أما <strong>الفضة الاسترليني 925</strong> (92.5% فضة) فهي المعيار في المجوهرات، وسعر المشغولات يعتمد على التصميم والمصنعية أكثر من قيمة المعدن.</p>
 <p><strong>نسبة الذهب إلى الفضة</strong> تعني كم أونصة فضة تساوي أونصة ذهب واحدة، ويتابعها المستثمرون لمعرفة هل الفضة رخيصة أم غالية مقارنة بالذهب.</p>`}</div></section>
+<section class="card-section"><h2>${en ? 'Silver bullion, bars & coins in Dubai' : 'سبائك وعملات الفضة في دبي'}</h2><div class="prose">
+${en ? `<p>Searching for the <strong>silver bullion price</strong> or <strong>silver coin prices</strong> in Dubai? Bars and coins are priced from the spot value above plus a dealer premium that is higher on small coins and lower on large bars.</p>
+<ul><li><strong>1 oz silver coin / bar:</strong> spot value about <bdi>${S(1, ctx.TROY)} AED</bdi>.</li><li><strong>100 g silver bar:</strong> about <bdi>${S(1, 100)} AED</bdi>.</li><li><strong>1 kg silver bar:</strong> about <bdi>${S(1, 1000)} AED</bdi>.</li></ul>
+<p>Compare with gold: see today's <a href="/en/gold-bars/">gold bar prices</a> and the <a href="/en/gold-price-usd/">global gold price in USD</a>.</p>`
+ : `<p>تبحث عن <strong>سعر سبائك الفضة</strong> أو <strong>عملات الفضة</strong> في دبي؟ تُسعَّر السبائك والعملات من القيمة الخام أعلاه مع علاوة للتاجر، وهي أعلى في العملات الصغيرة وأقل في السبائك الكبيرة.</p>
+<ul><li><strong>أونصة فضة (عملة أو سبيكة):</strong> القيمة الخام نحو <bdi>${S(1, ctx.TROY)} درهم</bdi>.</li><li><strong>سبيكة فضة 100 غرام:</strong> نحو <bdi>${S(1, 100)} درهم</bdi>.</li><li><strong>سبيكة فضة كيلو:</strong> نحو <bdi>${S(1, 1000)} درهم</bdi>.</li></ul>
+<p>للمقارنة مع الذهب: <a href="/gold-bars/">أسعار سبائك الذهب</a> و<a href="/gold-price-usd/">سعر الذهب عالمياً بالدولار</a>.</p>`}</div></section>
 ${links(L, 'silver')}`,
       faq: en ? [
         ['What is the silver price per gram in the UAE today?', 'The live price of fine (999) silver per gram is shown at the top of this page in AED and USD, along with 925 sterling silver.'],
         ['What is 925 silver?', '925 or sterling silver contains 92.5% pure silver mixed with other metals for strength. It is the standard purity for silver jewellery.'],
-        ['How much is 1 kg of silver in AED?', 'The live value of 1 kg of fine silver is shown in the weight table above; dealers add a premium for bars.']
+        ['How much is 1 kg of silver in AED?', 'The live value of 1 kg of fine silver is shown in the weight table above; dealers add a premium for bars.'],
+        ['What is the silver price in Dubai today?', 'Dubai follows the global spot price converted at 3.6725 AED per dollar. The live price per gram, ounce and kilo is at the top of this page.'],
+        ['What is the silver bullion price in the UAE?', 'Bullion bars and coins are sold at the spot value plus a dealer premium. The raw value of 1 oz, 100 g and 1 kg is listed above.']
       ] : [
         ['كم سعر غرام الفضة اليوم في الإمارات؟', 'يظهر سعر غرام الفضة الخالصة (999) محدَّثاً في أعلى الصفحة بالدرهم والدولار، ومعه سعر الفضة الاسترليني 925.'],
         ['ما معنى فضة 925؟', 'فضة 925 أو الاسترليني تحتوي على 92.5% فضة خالصة مخلوطة بمعادن أخرى لزيادة الصلابة، وهي العيار المعتاد في مجوهرات الفضة.'],
-        ['كم سعر كيلو الفضة اليوم؟', 'قيمة كيلو الفضة الخالصة تظهر في جدول الأوزان أعلاه بالدرهم والدولار، ويضيف التاجر علاوة عند بيع السبائك.']
+        ['كم سعر كيلو الفضة اليوم؟', 'قيمة كيلو الفضة الخالصة تظهر في جدول الأوزان أعلاه بالدرهم والدولار، ويضيف التاجر علاوة عند بيع السبائك.'],
+        ['كم سعر الفضة في دبي اليوم؟', 'تتبع دبي السعر العالمي محوَّلاً بسعر 3.6725 درهم للدولار، ويظهر سعر الغرام والأونصة والكيلو الحالي في أعلى الصفحة.'],
+        ['كم سعر سبائك الفضة في الإمارات؟', 'تُباع السبائك والعملات بقيمة الفضة الخام مع علاوة للتاجر، وقيمة الأونصة و100 غرام والكيلو الخام مذكورة أعلاه.']
       ] });
   }
 
