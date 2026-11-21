@@ -134,6 +134,9 @@ ${AD}
 <thead><tr><th>العيار</th><th>الغرام (درهم)</th><th>الغرام (دولار)</th><th>10 غرام (درهم)</th><th>التولة (درهم)</th><th>الأونصة (درهم)</th></tr></thead><tbody>
 ${KS.map(k => `<tr><td><a href="${url('ar', 'gold-' + k + 'k')}"><strong>عيار ${k}</strong></a> <span class="sub"><bdi>${K[k].purity}</bdi></span></td><td class="n">${P(k)}</td><td class="n">$${P(k, 1, { cur: 'usd' })}</td><td class="n">${P(k, 10)}</td><td class="n">${P(k, TOLA)}</td><td class="n">${P(k, ctx.TROY)}</td></tr>`).join('')}
 </tbody></table></div><p class="note">السعر للذهب الخام بدون مصنعية أو ضريبة. التولة = 11.664 غرام · الأونصة = 31.1035 غرام.</p></section>
+<section class="card-section"><h2>سعر الذهب عيار 21 بالدولار وبالمصنعية</h2><div class="prose">
+<p><strong>سعر غرام عيار 21 بالدولار</strong> اليوم نحو <bdi>$${P(21, 1, { cur: 'usd' })}</bdi>، وسعر غرام عيار 24 نحو <bdi>$${P(24, 1, { cur: 'usd' })}</bdi>، وسعر الأونصة العالمي <bdi>$${P(24, ctx.TROY, { cur: 'usd' })}</bdi>.</p>
+<p><strong>سعر الذهب في الإمارات بالمصنعية:</strong> إذا كانت المصنعية 5 دراهم للغرام يصبح غرام عيار 21 نحو <bdi>${P(21, 1, { mc: 5 })} درهم</bdi>، وبمصنعية 10 دراهم نحو <bdi>${P(21, 1, { mc: 10 })} درهم</bdi>، وبمصنعية 15 درهماً نحو <bdi>${P(21, 1, { mc: 15 })} درهم</bdi> (قبل ضريبة 5% على المشغولات). لحساب وزنك ومصنعيتك بدقة استخدم <a href="/gold-calculator/">حاسبة الذهب بالمصنعية</a>.</p></div></section>
 ${spark('ar')}${why('ar')}${links('ar', '')}
 ${AD}
 <section class="card-section"><h2>دليل سعر الذهب في الإمارات</h2><div class="prose">
@@ -143,6 +146,8 @@ ${AD}
 ${sources('ar')}`,
     faq: [
       ['كم سعر غرام الذهب عيار 21 في الإمارات اليوم؟', 'يظهر سعر غرام عيار 21 محدَّثاً في أعلى الصفحة بالدرهم والدولار، ويُحدَّث كل 5 دقائق تقريباً. وهو سعر الذهب الخام بدون مصنعية أو ضريبة.'],
+      ['كم سعر الذهب عيار 21 بالدولار اليوم؟', 'سعر غرام عيار 21 بالدولار = (سعر الأونصة بالدولار ÷ 31.1035) × 0.875، ويظهر محدَّثاً بالدولار في جدول الأسعار أعلاه وفي قسم "سعر الذهب عيار 21 بالدولار وبالمصنعية".'],
+      ['كم سعر الذهب في الإمارات بالمصنعية؟', 'أضف المصنعية للغرام إلى سعر الغرام ثم اضرب في الوزن، وأضف ضريبة 5% على المشغولات. المصنعية تبدأ من بضعة دراهم وتصل إلى 15 درهماً أو أكثر حسب التصميم، ويمكنك الحساب بدقة من حاسبة الذهب.'],
       ['كيف يُحسب سعر غرام الذهب بالدرهم؟', 'سعر غرام عيار 24 = سعر الأونصة بالدولار × 3.6725 ÷ 31.1035. ثم يُضرب في نسبة العيار: 0.917 لعيار 22، و0.875 لعيار 21، و0.75 لعيار 18.'],
       ['هل السعر المعروض يشمل المصنعية والضريبة؟', 'لا. السعر المعروض للذهب الخام فقط. في المحل تُضاف المصنعية حسب القطعة، وضريبة القيمة المضافة 5% على المشغولات الذهبية.'],
       ['ما الفرق بين عيار 24 و22 و21 و18؟', 'نسبة الذهب الخالص: عيار 24 = 99.9%، عيار 22 = 91.7%، عيار 21 = 87.5%، عيار 18 = 75%. كلما زاد العيار زاد السعر وقلّت صلابة الذهب.'],
@@ -216,7 +221,7 @@ ${links(L, `gold-${k}k`)}`,
     const opt = [24, 22, 21, 18, 14].map(k => `<option value="${k}"${k === (en ? 22 : 21) ? ' selected' : ''}>${en ? `${k}K (${k === 14 ? '58.3%' : K[k].purity})` : `عيار ${k} (${k === 14 ? '58.3%' : K[k].purity})`}</option>`).join('');
     out.push({ lang: L, slug: 'gold-calculator', alt: true, usesFx: true,
       crumbs: [[en ? 'Gold calculator' : 'حاسبة الذهب', url(L, 'gold-calculator')]],
-      title: en ? 'Gold Calculator UAE — Price with Making Charges & 5% VAT' : 'حاسبة الذهب في الإمارات بالمصنعية والضريبة | احسب سعر مشترياتك',
+      title: en ? 'Gold Calculator UAE: Calculate Gold Price with Making Charges & VAT' : 'حاسبة الذهب في الإمارات بالمصنعية والضريبة | احسب سعر مشترياتك',
       desc: en ? 'Free gold calculator: enter weight and karat, add making charges per gram and 5% VAT, and see the final shop price in AED and USD at today\'s live UAE rate.'
         : 'حاسبة ذهب مجانية: أدخل الوزن والعيار وأضف المصنعية للغرام وضريبة 5% لتعرف السعر النهائي في المحل بالدرهم والدولار حسب سعر اليوم المباشر.',
       schema: [{ '@context': 'https://schema.org', '@type': 'WebApplication', name: en ? 'UAE Gold Price Calculator' : 'حاسبة سعر الذهب الإمارات', applicationCategory: 'FinanceApplication', operatingSystem: 'Any', inLanguage: L, url: ctx.SITE + url(L, 'gold-calculator'), offers: { '@type': 'Offer', price: '0', priceCurrency: 'AED' } }],
@@ -683,7 +688,7 @@ ${[['', L === 'en' ? 'UAE' : 'الإمارات'], ...Object.entries(GCC).filter(
           : `سعر الذهب اليوم ${x.in} بال${x.cur} والدولار، محدَّث كل 5 دقائق: سعر غرام عيار 24 و22 و21 و18، وسعر الأونصة والتولة${c.vat ? `، والسعر شامل ضريبة ${c.vat}%` : ''}.`,
         body: `${hero(en ? `Gold Price in ${x.n} Today` : `سعر الذهب اليوم ${x.in}`, en ? `Raw gold price per gram in ${x.cur} (${c.code}) and US dollars` : `سعر غرام الذهب الخام بال${x.cur} (${c.code}) والدولار`, L)}
 ${errBox}
-<div class="karat-grid">${KS.map(k => { const link = (k === 21 || k === 24) && !en; const tag = link ? `a class="karat-card" href="${url(L, `${slug}/gold-${k}k`)}"` : 'div class="karat-card"';
+<div class="karat-grid">${KS.map(k => { const link = en ? [21, 22, 24].includes(k) : (k === 21 || k === 24); const tag = link ? `a class="karat-card" href="${url(L, `${slug}/gold-${k}k`)}"` : 'div class="karat-card"';
   return `<${tag}><span class="karat-badge">${en ? k + 'K' : 'عيار ' + k}</span><div class="karat-label"><bdi>${K[k].purity}</bdi></div><div class="k-price">${P(k, 1, opt())}</div><div class="k-usd">$${P(k, 1, { cur: 'usd' })}</div><div class="k-unit">${en ? `${c.code} per gram` : `${x.curS} / غرام`}</div></${link ? 'a' : 'div'}>`; }).join('')}</div>
 <div class="meta-row">
 <span>${en ? 'Updated' : 'آخر تحديث'}: <strong>${updated(L)}</strong></span>
@@ -745,6 +750,38 @@ ${rows.map(([n, w]) => `<tr><td>${n}</td><td class="n">${P(k, w, opt())}</td>${c
         faq: [
           [`كم سعر غرام الذهب عيار ${k} ${x.in} اليوم؟`, `يظهر سعر غرام عيار ${k} بال${x.cur} محدَّثاً في أعلى الصفحة ويُحدَّث كل 5 دقائق تقريباً، وهو سعر الذهب الخام بدون مصنعية${c.vat ? ' أو ضريبة' : ''}.`],
           [`كم نسبة الذهب في عيار ${k}؟`, `يحتوي عيار ${k} على ${K[k].purity} ذهب خالص ويحمل ختم ${K[k].mark}.`]
+        ] });
+    }
+    // صفحات العيارات لكل دولة (إنجليزي) — 22K و21K و24K
+    for (const k of [22, 21, 24]) {
+      const x = c.en, ko = K[k].en;
+      const rows = [...[1, 2, 4, 5, 8, 10, 20, 50, 100].map(w => [`${w} g`, w]), ['1 tola (11.66 g)', TOLA], ['1 ounce (31.1 g)', ctx.TROY]];
+      out.push({ lang: 'en', slug: `${slug}/gold-${k}k`, usesFx: !!c.fx,
+        crumbs: [[`Gold price in ${x.n}`, url('en', slug)], [`${k}K`, url('en', `${slug}/gold-${k}k`)]],
+        title: `${k}K Gold Rate in ${x.n} Today (${c.code}) — Price per Gram`,
+        desc: `Live ${k}K gold rate in ${x.n} today in ${x.cur} (${c.code}) and US dollars: price per gram, 10 grams, tola and ounce, updated every 5 minutes${c.vat ? `, including ${c.vat}% VAT` : ''}.`,
+        body: `${hero(`${k}K Gold Rate in ${x.n} Today`, `${ko.label} · ${K[k].purity} purity · hallmark ${K[k].mark}`, 'en')}
+${errBox}
+<div class="big-price"><div class="u">${k}K — price per gram in ${x.cur}</div><div class="v">${P(k, 1, opt())} <span style="font-size:.45em">${c.code}</span></div><div class="s"><bdi>≈ $${P(k, 1, { cur: 'usd' })} USD</bdi></div>
+<div class="note">Updated: ${updated('en')} · <button class="btn-sm" id="refresh" type="button">🔄 Refresh</button></div></div>
+${AD}
+<section class="card-section"><h2>${k}K gold price by weight in ${x.n}</h2><div class="table-wrap"><table class="data-table">
+<thead><tr><th>Weight</th><th>Price (${c.code})</th>${c.vat ? `<th>+ ${c.vat}% VAT</th>` : ''}<th>Price (USD)</th></tr></thead><tbody>
+${rows.map(([n, w]) => `<tr><td>${n}</td><td class="n">${P(k, w, opt())}</td>${c.vat ? `<td class="n">${P(k, w * (1 + c.vat / 100), opt())}</td>` : ''}<td class="n">$${P(k, w, { cur: 'usd' })}</td></tr>`).join('')}
+</tbody></table></div><p class="note">Raw gold price without making charges. ${k === 24 ? 'Bar prices at dealers are slightly higher because of the premium.' : 'Shops add making charges per piece' + (c.vat ? ` and ${c.vat}% VAT.` : '.')}</p></section>
+<section class="card-section"><h2>About ${k}K gold in ${x.n}</h2><div class="prose">
+<p><strong>${k} karat gold</strong> contains <strong>${K[k].purity}</strong> pure gold and is hallmarked <strong>${K[k].mark}</strong>. It is commonly used for ${ko.use}.</p>
+<p>Formula: ${k}K price per gram = (ounce price in USD × USD/${c.code} rate ÷ 31.1035) × ${(k / 24).toFixed(3)}. The ${x.cur} is ${c.pegEn}.</p>
+<p>${c.noteEn}</p></div></section>
+<section class="card-section"><h2>Related pages</h2><div class="links-grid">
+<a class="link-card" href="${url('en', slug)}">All karats in ${x.n}<span>24K, 22K, 21K, 18K</span></a>
+${[22, 21, 24].filter(o => o !== k).map(o => `<a class="link-card" href="${url('en', `${slug}/gold-${o}k`)}">${o}K gold rate in ${x.n}</a>`).join('')}
+<a class="link-card" href="/en/gold-calculator/">Gold calculator<span>${c.code}</span></a>
+<a class="link-card" href="/en/gcc/">Compare Gulf gold prices</a>
+<a class="link-card" href="/en/gold-${k}k/">${k}K gold rate in the UAE</a></div></section>`,
+        faq: [
+          [`What is the ${k}K gold rate in ${x.n} today?`, `The live ${k}K price per gram in ${x.cur} is shown at the top of this page and refreshes about every 5 minutes. It is the raw gold price without making charges${c.vat ? ` or ${c.vat}% VAT` : ''}.`],
+          [`What is ${k}K gold?`, `${k}K gold contains ${K[k].purity} pure gold and carries the hallmark ${K[k].mark}.`]
         ] });
     }
   }
