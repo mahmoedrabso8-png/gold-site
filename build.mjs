@@ -223,7 +223,7 @@ function layout(p, ctx) {
   const crumbs = [[en ? 'Home' : tr ? 'Ana sayfa' : L === 'hi' ? 'होम' : L === 'ur' ? 'ہوم' : L === 'id' ? 'Beranda' : L === 'bn' ? 'হোম' : L === 'tl' ? 'Home' : L === 'ms' ? 'Laman Utama' : 'الرئيسية', url(L, langHome)], ...(p.crumbs || [])];
   const schema = [
     { '@context': 'https://schema.org', '@type': 'WebPage', name: p.title, description: p.desc, url: self, inLanguage: L, dateModified: TODAY,
-      isPartOf: { '@type': 'WebSite', name: en ? 'UAE Gold Prices — Maelumatii' : 'معلوماتي — أسعار الذهب في الإمارات', url: SITE + '/' },
+      isPartOf: { '@type': 'WebSite', name: en ? 'Gold Prices Today — Maelumatii' : 'معلوماتي — أسعار الذهب في الإمارات', url: SITE + '/' },
       publisher: { '@type': 'Organization', name: 'Maelumatii', url: SITE + '/', logo: SITE + '/icons/icon-512x512.png' } },
     ...(crumbs.length > 1 ? [{ '@context': 'https://schema.org', '@type': 'BreadcrumbList',
       itemListElement: crumbs.map(([n, u], i) => ({ '@type': 'ListItem', position: i + 1, name: n, item: SITE + u })) }] : []),
@@ -325,14 +325,14 @@ function layout(p, ctx) {
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:locale" content="${tr ? 'tr_TR' : L === 'hi' ? 'hi_IN' : L === 'ur' ? 'ur_PK' : L === 'id' ? 'id_ID' : L === 'bn' ? 'bn_BD' : L === 'tl' ? 'tl_PH' : L === 'ms' ? 'ms_MY' : en ? 'en_AE' : 'ar_AE'}" />
-  <meta property="og:site_name" content="${tr ? 'Maelumatii — Altın Fiyatları' : en ? 'Maelumatii — Gulf Gold Prices' : 'معلوماتي — أسعار الذهب في الخليج'}" />
+  <meta property="og:site_name" content="${tr ? 'Maelumatii — Altın Fiyatları' : en ? 'Maelumatii — Gold Prices Today' : 'معلوماتي — أسعار الذهب في الخليج'}" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="${SITE}/icons/og-image.png" />
   <link rel="manifest" href="/manifest.json" />
   <meta name="theme-color" content="#e8b800" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="${tr ? 'Altın' : L === 'hi' ? 'सोना' : L === 'ur' ? 'سونا' : L === 'id' ? 'Emas' : L === 'bn' ? 'সোনা' : L === 'tl' ? 'Ginto' : L === 'ms' ? 'Emas' : en ? 'UAE Gold' : 'ذهب الإمارات'}" />
+  <meta name="apple-mobile-web-app-title" content="${tr ? 'Altın' : L === 'hi' ? 'सोना' : L === 'ur' ? 'سونا' : L === 'id' ? 'Emas' : L === 'bn' ? 'সোনা' : L === 'tl' ? 'Ginto' : L === 'ms' ? 'Emas' : en ? 'Gold Prices' : 'ذهب الإمارات'}" />
   <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
   <link rel="icon" href="/icons/icon-96x96.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -346,7 +346,7 @@ function layout(p, ctx) {
 </head>
 <body data-ctry="${ctry}" data-sub="${sub}"${p.fixed ? ' data-fixed="1"' : ''}${p.dollar ? ' data-dollar="1"' : ''}>
 <header class="site-header"><div class="container"><div class="header-inner">
-  <a href="${url(L, langHome)}" class="logo"><img src="/icons/icon-72x72.png" alt="" width="28" height="28" /><span>${tr ? 'Altın Fiyatları' : L === 'hi' ? 'सोने का भाव' : L === 'ur' ? 'سونے کا ریٹ' : L === 'id' ? 'Harga Emas' : L === 'bn' ? 'সোনার দাম' : L === 'tl' ? 'Presyo ng Ginto' : L === 'ms' ? 'Harga Emas' : en ? 'Gulf Gold Prices' : 'أسعار الذهب اليوم'}</span></a>
+  <a href="${url(L, langHome)}" class="logo"><img src="/icons/icon-72x72.png" alt="" width="28" height="28" /><span>${tr ? 'Altın Fiyatları' : L === 'hi' ? 'सोने का भाव' : L === 'ur' ? 'سونے کا ریٹ' : L === 'id' ? 'Harga Emas' : L === 'bn' ? 'সোনার দাম' : L === 'tl' ? 'Presyo ng Ginto' : L === 'ms' ? 'Harga Emas' : en ? 'Gold Prices Today' : 'أسعار الذهب اليوم'}</span></a>
   ${toggle}
   <div class="header-side"><span class="header-time" id="live-time"></span>${langSel}${cselect}</div>
 </div></div></header>
