@@ -67,7 +67,8 @@ export function pages(ctx) {
     ['QAR', 'ريال قطري', 'Qatari riyal', 0, 2], ['OMR', 'ريال عُماني', 'Omani rial', 5, 3], ['BHD', 'دينار بحريني', 'Bahraini dinar', 10, 3],
     ['EGP', 'جنيه مصري', 'Egyptian pound', 0, 0], ['INR', 'روبية هندية', 'Indian rupee', 3, 0],
     ['PKR', 'روبية باكستانية', 'Pakistani rupee', 0, 0], ['BDT', 'تاكا بنجلاديشي', 'Bangladeshi taka', 0, 0], ['TRY', 'ليرة تركية', 'Turkish lira', 0, 0],
-    ['USD', 'دولار أمريكي', 'US dollar', 0, 2], ['GBP', 'جنيه إسترليني', 'British pound', 0, 2], ['CAD', 'دولار كندي', 'Canadian dollar', 0, 2], ['AUD', 'دولار أسترالي', 'Australian dollar', 0, 2]];
+    ['USD', 'دولار أمريكي', 'US dollar', 0, 2], ['GBP', 'جنيه إسترليني', 'British pound', 0, 2], ['CAD', 'دولار كندي', 'Canadian dollar', 0, 2], ['AUD', 'دولار أسترالي', 'Australian dollar', 0, 2],
+    ['PHP', 'بيسو فلبيني', 'Philippine peso', 0, 0], ['MYR', 'رينغيت ماليزي', 'Malaysian ringgit', 0, 2], ['NPR', 'روبية نيبالية', 'Nepalese rupee', 0, 0], ['ZAR', 'راند جنوب أفريقيا', 'South African rand', 0, 2]];
   const TOLA = 11.6638;
 
   // ── أجزاء مشتركة ──────────────────────────────────────
@@ -97,7 +98,7 @@ export function pages(ctx) {
     en: [['gold-22k', '22K gold rate', 'Popular for Indian jewellery'], ['gold-24k', '24K gold rate', 'Pure gold & bars'], ['gold-21k', '21K gold rate', 'Gulf jewellery'], ['gold-18k', '18K gold rate', 'Diamond jewellery'],
       ['gold-price-usd', 'Gold price in USD', 'Live ounce XAU/USD'], ['silver', 'Silver price', 'Per gram, ounce & kg'],
       ['gcc', 'Gulf gold prices', 'Compare 6 countries'], ['saudi', 'Gold price in Saudi Arabia', 'In SAR'], ['kuwait', 'Gold price in Kuwait', 'In KWD'],
-      ['qatar', 'Gold price in Qatar', 'In QAR'], ['oman', 'Gold price in Oman', 'In OMR'], ['bahrain', 'Gold price in Bahrain', 'In BHD'], ['egypt', 'Gold price in Egypt', 'In EGP'], ['india', 'Gold rate in India', 'In INR, 22K & 24K'], ['pakistan', 'Gold rate in Pakistan', 'In PKR, per tola'], ['bangladesh', 'Gold price in Bangladesh', 'In BDT'], ['turkey', 'Gold price in Turkey', 'Gram altın in TRY'], ['usa', 'Gold price in USA', 'In USD'], ['uk', 'Gold price in UK', 'In GBP'], ['canada', 'Gold price in Canada', 'In CAD'], ['australia', 'Gold price in Australia', 'In AUD'], ['gold-rate-inr', 'Gold rate in INR', 'Dubai price in rupees'], ['gold-rate-pkr', 'Gold rate in PKR', 'Per tola in rupees'],
+      ['qatar', 'Gold price in Qatar', 'In QAR'], ['oman', 'Gold price in Oman', 'In OMR'], ['bahrain', 'Gold price in Bahrain', 'In BHD'], ['egypt', 'Gold price in Egypt', 'In EGP'], ['india', 'Gold rate in India', 'In INR, 22K & 24K'], ['pakistan', 'Gold rate in Pakistan', 'In PKR, per tola'], ['bangladesh', 'Gold price in Bangladesh', 'In BDT'], ['turkey', 'Gold price in Turkey', 'Gram altın in TRY'], ['usa', 'Gold price in USA', 'In USD'], ['uk', 'Gold price in UK', 'In GBP'], ['canada', 'Gold price in Canada', 'In CAD'], ['australia', 'Gold price in Australia', 'In AUD'], ['philippines', 'Gold price in Philippines', 'In PHP'], ['malaysia', 'Gold price in Malaysia', 'Emas 916 in MYR'], ['nepal', 'Gold price in Nepal', 'In NPR, per tola'], ['southafrica', 'Gold price in South Africa', 'Krugerrand in ZAR'], ['gold-rate-inr', 'Gold rate in INR', 'Dubai price in rupees'], ['gold-rate-pkr', 'Gold rate in PKR', 'Per tola in rupees'],
       ['gold-bars', 'Gold bar prices', '1 g to 1 kg, tola bars'], ['gold-calculator', 'Gold calculator', 'With making charges & VAT'], ['gold-price-yesterday', 'Last 10 days', 'Yesterday\'s gold rate'], ['zakat-calculator', 'Zakat calculator', 'Nisab and zakat due']]
   };
   const links = (L, skip) => `<section class="card-section"><h2>${L === 'en' ? 'More gold prices & tools' : 'أسعار وأدوات أخرى'}</h2><div class="links-grid">${LINKS[L].filter(l => l[0] !== skip).map(([s, n, d]) => `<a class="link-card" href="${url(L, s)}">${n}<span>${d}</span></a>`).join('')}</div></section>`;
@@ -782,6 +783,46 @@ ${links('ar', '')}`,
         ['What is the gold price in Australia today?', 'The live price per gram in Australian dollars is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw gold rate without GST or making charges.'],
         ['Is there GST on gold in Australia?', 'Investment-grade gold (bars and coins of at least 99.5% purity) is GST-free in Australia. Gold jewellery carries 10% GST, included in the shop price.'],
         ['Which karat is most common in Australia?', 'Most everyday jewellery in Australia is 9K or 18K. 24K is bought as bars and coins, including Perth Mint products.']
+      ] },
+    philippines: { code: 'PHP', d: 0, vat: 0, peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,
+      ar: { n: 'الفلبين', in: 'في الفلبين', cur: 'بيسو', curS: 'بيسو', cities: '' },
+      en: { n: 'Philippines', adj: 'Filipino', cur: 'Philippine peso', cities: 'Manila, Quezon City, Cebu and Davao' },
+      noteAr: '',
+      noteEn: 'The Philippine peso floats freely, so the gold price in PHP moves with both the global price and the exchange rate. Jewellery in the Philippines is most often 18K or 14K, and pieces sold as Saudi gold (18K and 21K) are especially popular with overseas Filipino workers. Jewellery carries 12% VAT in the shop price, and pawnshops and dealers add their own margins — so this page shows the raw gold value only.',
+      faqEn: [
+        ['What is the gold price in the Philippines today?', 'The live price per gram in Philippine pesos is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw gold rate without VAT or making charges.'],
+        ['Which karat is most common in the Philippines?', 'Most jewellery in the Philippines is 18K or 14K. Saudi gold pieces in 18K and 21K are widely bought, especially by overseas Filipino workers.'],
+        ['Is gold taxed in the Philippines?', 'Gold jewellery carries 12% VAT in the Philippines, included in the shop price. Dealers and pawnshops also add their own margins over the raw gold value shown here.']
+      ] },
+    malaysia: { code: 'MYR', d: 2, vat: 0, peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,
+      ar: { n: 'ماليزيا', in: 'في ماليزيا', cur: 'رينغيت', curS: 'رينغيت', cities: '' },
+      en: { n: 'Malaysia', adj: 'Malaysian', cur: 'Malaysian ringgit', cities: 'Kuala Lumpur, Penang, Johor Bahru and Ipoh' },
+      noteAr: '',
+      noteEn: 'The Malaysian ringgit floats freely, so the gold price in MYR moves with both the global price and the exchange rate. Malaysia has a strong 22K culture: emas 916 (91.6% gold) is the standard for jewellery and saving, while 999 gold is bought as bars and dinar coins. Investment precious metals are exempt from sales and service tax in Malaysia, and jewellers quote daily rates that add workmanship per piece.',
+      faqEn: [
+        ['What is the gold price in Malaysia today?', 'The live price per gram in Malaysian ringgit is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw gold rate without workmanship charges.'],
+        ['What is emas 916?', 'Emas 916 is 22K gold (91.6% purity), the standard karat for jewellery and saving in Malaysia. Its price per gram tracks the 22K rate shown on this page.'],
+        ['Is gold taxed in Malaysia?', 'Investment precious metals are exempt from sales and service tax (SST) in Malaysia. Jewellery prices add workmanship charges per piece over the raw gold value.']
+      ] },
+    nepal: { code: 'NPR', d: 0, vat: 0, peg: '', pegEn: 'pegged to the Indian rupee, which itself floats against the US dollar', fx: true, enOnly: true,
+      ar: { n: 'نيبال', in: 'في نيبال', cur: 'روبية', curS: 'روبية', cities: '' },
+      en: { n: 'Nepal', adj: 'Nepali', cur: 'Nepalese rupee', cities: 'Kathmandu, Pokhara, Lalitpur and Biratnagar' },
+      noteAr: '',
+      noteEn: 'The Nepalese rupee is pegged to the Indian rupee (NPR 1.6 = INR 1), which floats against the US dollar, so the gold price in NPR moves with both the global price and the exchange rate. Gold in Nepal is traditionally quoted per tola (11.664 g), and the table above includes the tola column. The national gold and silver dealers association announces daily reference rates, and hallmark-certified (chhapawal) gold commands a premium over the raw rate shown here.',
+      faqEn: [
+        ['What is the gold price per tola in Nepal today?', 'The live 24K rate per tola (11.664 g) in Nepalese rupees is shown in the price table above and refreshes about every 5 minutes. Per-gram rates for 22K, 21K and 18K are on their own pages.'],
+        ['What is chhapawal gold?', 'Chhapawal is hallmark-certified gold in Nepal, tested and stamped for purity. It trades at a premium over non-certified (tejabi) gold, and both track the international rate shown here.'],
+        ['Which karat is most common in Nepal?', 'Traditional jewellery in Nepal is mostly 24K and 22K, bought per tola. 18K is used for diamond and modern designs.']
+      ] },
+    southafrica: { code: 'ZAR', d: 2, vat: 0, peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,
+      ar: { n: 'جنوب أفريقيا', in: 'في جنوب أفريقيا', cur: 'راند', curS: 'راند', cities: '' },
+      en: { n: 'South Africa', adj: 'South African', cur: 'South African rand', cities: 'Johannesburg, Cape Town, Durban and Pretoria' },
+      noteAr: '',
+      noteEn: 'The South African rand floats freely, so the gold price in ZAR moves with both the global price and the exchange rate. South Africa is one of the historic giants of gold mining and the home of the Krugerrand, the 22K investment coin that contains exactly one ounce of pure gold. Krugerrands are zero-rated for VAT, while jewellery carries 15% VAT in the shop price. Everyday jewellery is most often 9K or 18K.',
+      faqEn: [
+        ['What is the gold price in South Africa today?', 'The live price per gram in South African rand is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw gold rate without VAT or making charges.'],
+        ['What is a Krugerrand?', 'A South African investment coin minted since 1967, made of 22K gold and containing exactly one troy ounce of pure gold. Its value tracks the gold price per ounce shown on this page, plus a small minting premium.'],
+        ['Is there VAT on gold in South Africa?', 'Krugerrands and qualifying investment coins are zero-rated for VAT in South Africa. Gold jewellery carries 15% VAT, included in the shop price.']
       ] }
   };
   const COUNTRY_PAGES = { ...GCC, ...OTHERS };
