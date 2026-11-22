@@ -66,7 +66,8 @@ export function pages(ctx) {
   const CURS = [['AED', 'درهم إماراتي', 'UAE dirham', 5, 2], ['SAR', 'ريال سعودي', 'Saudi riyal', 15, 2], ['KWD', 'دينار كويتي', 'Kuwaiti dinar', 0, 3],
     ['QAR', 'ريال قطري', 'Qatari riyal', 0, 2], ['OMR', 'ريال عُماني', 'Omani rial', 5, 3], ['BHD', 'دينار بحريني', 'Bahraini dinar', 10, 3],
     ['EGP', 'جنيه مصري', 'Egyptian pound', 0, 0], ['INR', 'روبية هندية', 'Indian rupee', 3, 0],
-    ['PKR', 'روبية باكستانية', 'Pakistani rupee', 0, 0], ['BDT', 'تاكا بنجلاديشي', 'Bangladeshi taka', 0, 0], ['TRY', 'ليرة تركية', 'Turkish lira', 0, 0]];
+    ['PKR', 'روبية باكستانية', 'Pakistani rupee', 0, 0], ['BDT', 'تاكا بنجلاديشي', 'Bangladeshi taka', 0, 0], ['TRY', 'ليرة تركية', 'Turkish lira', 0, 0],
+    ['USD', 'دولار أمريكي', 'US dollar', 0, 2], ['GBP', 'جنيه إسترليني', 'British pound', 0, 2], ['CAD', 'دولار كندي', 'Canadian dollar', 0, 2], ['AUD', 'دولار أسترالي', 'Australian dollar', 0, 2]];
   const TOLA = 11.6638;
 
   // ── أجزاء مشتركة ──────────────────────────────────────
@@ -96,7 +97,7 @@ export function pages(ctx) {
     en: [['gold-22k', '22K gold rate', 'Popular for Indian jewellery'], ['gold-24k', '24K gold rate', 'Pure gold & bars'], ['gold-21k', '21K gold rate', 'Gulf jewellery'], ['gold-18k', '18K gold rate', 'Diamond jewellery'],
       ['gold-price-usd', 'Gold price in USD', 'Live ounce XAU/USD'], ['silver', 'Silver price', 'Per gram, ounce & kg'],
       ['gcc', 'Gulf gold prices', 'Compare 6 countries'], ['saudi', 'Gold price in Saudi Arabia', 'In SAR'], ['kuwait', 'Gold price in Kuwait', 'In KWD'],
-      ['qatar', 'Gold price in Qatar', 'In QAR'], ['oman', 'Gold price in Oman', 'In OMR'], ['bahrain', 'Gold price in Bahrain', 'In BHD'], ['egypt', 'Gold price in Egypt', 'In EGP'], ['india', 'Gold rate in India', 'In INR, 22K & 24K'], ['pakistan', 'Gold rate in Pakistan', 'In PKR, per tola'], ['bangladesh', 'Gold price in Bangladesh', 'In BDT'], ['turkey', 'Gold price in Turkey', 'Gram altın in TRY'], ['gold-rate-inr', 'Gold rate in INR', 'Dubai price in rupees'], ['gold-rate-pkr', 'Gold rate in PKR', 'Per tola in rupees'],
+      ['qatar', 'Gold price in Qatar', 'In QAR'], ['oman', 'Gold price in Oman', 'In OMR'], ['bahrain', 'Gold price in Bahrain', 'In BHD'], ['egypt', 'Gold price in Egypt', 'In EGP'], ['india', 'Gold rate in India', 'In INR, 22K & 24K'], ['pakistan', 'Gold rate in Pakistan', 'In PKR, per tola'], ['bangladesh', 'Gold price in Bangladesh', 'In BDT'], ['turkey', 'Gold price in Turkey', 'Gram altın in TRY'], ['usa', 'Gold price in USA', 'In USD'], ['uk', 'Gold price in UK', 'In GBP'], ['canada', 'Gold price in Canada', 'In CAD'], ['australia', 'Gold price in Australia', 'In AUD'], ['gold-rate-inr', 'Gold rate in INR', 'Dubai price in rupees'], ['gold-rate-pkr', 'Gold rate in PKR', 'Per tola in rupees'],
       ['gold-bars', 'Gold bar prices', '1 g to 1 kg, tola bars'], ['gold-calculator', 'Gold calculator', 'With making charges & VAT'], ['gold-price-yesterday', 'Last 10 days', 'Yesterday\'s gold rate'], ['zakat-calculator', 'Zakat calculator', 'Nisab and zakat due']]
   };
   const links = (L, skip) => `<section class="card-section"><h2>${L === 'en' ? 'More gold prices & tools' : 'أسعار وأدوات أخرى'}</h2><div class="links-grid">${LINKS[L].filter(l => l[0] !== skip).map(([s, n, d]) => `<a class="link-card" href="${url(L, s)}">${n}<span>${d}</span></a>`).join('')}</div></section>`;
@@ -741,6 +742,46 @@ ${links('ar', '')}`,
         ['What is the gram gold (gram altin) price in Turkey today?', 'The live 24K price per gram in Turkish lira is shown at the top of this page and refreshes about every 5 minutes. It is the raw gold rate calculated from the global spot price and the TRY exchange rate.'],
         ['What is ceyrek altin (quarter gold coin)?', 'A small Turkish gold coin weighing about 1.75 g of 22K gold, traditionally given as a gift and used for saving. Its value tracks the 22K rate per gram.'],
         ['Is there VAT on gold in Turkey?', 'Investment gold (bars and coins) is generally exempt from VAT (KDV) in Turkey, while jewellery carries KDV on the workmanship portion.']
+      ] },
+    usa: { code: 'USD', d: 2, vat: 0, peg: '', pegEn: 'the base currency of the global gold market, so the US price follows the global spot price directly', fx: false, enOnly: true,
+      ar: { n: 'أمريكا', in: 'في أمريكا', cur: 'دولار', curS: 'دولار', cities: '' },
+      en: { n: 'USA', adj: 'American', cur: 'US dollar', cities: 'New York, Los Angeles, Chicago and Houston' },
+      noteAr: '',
+      noteEn: 'The US dollar is the base currency of the global gold market, so the gold price in the USA tracks the spot price directly with no exchange-rate step. Everyday jewellery in the US is most often 14K or 10K, while 18K is the standard for fine jewellery and 24K is bought as bars and coins. Investment-grade bullion is exempt from sales tax in many states, while jewellery is usually taxed at the local rate; tax rules differ by state, so this page shows the raw gold value only.',
+      faqEn: [
+        ['What is the gold price in the USA today?', 'The live price per gram in US dollars is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw gold rate calculated directly from the global spot price, without tax or making charges.'],
+        ['Which karat is most common in the USA?', 'Most everyday jewellery in the US is 14K or 10K, with 18K used for fine jewellery. 24K is bought mainly as bars and coins for investment.'],
+        ['Is gold taxed in the USA?', 'Tax rules differ by state: many states exempt investment-grade bullion from sales tax, while jewellery is usually taxed at the local rate. This page shows the raw gold value only.']
+      ] },
+    uk: { code: 'GBP', d: 2, vat: 0, peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,
+      ar: { n: 'بريطانيا', in: 'في بريطانيا', cur: 'جنيه إسترليني', curS: 'إسترليني', cities: '' },
+      en: { n: 'UK', adj: 'British', cur: 'British pound', cities: 'London, Birmingham, Manchester and Leeds' },
+      noteAr: '',
+      noteEn: 'The pound sterling floats freely, so the gold price in GBP moves with both the global price and the exchange rate. Jewellery in the UK is most often 9K or 18K, and all gold sold is hallmarked by an official assay office. Investment gold (qualifying bars and coins) is exempt from VAT in the UK, while jewellery carries 20% VAT included in the shop price — so this page shows the raw gold value only.',
+      faqEn: [
+        ['What is the gold price in the UK today?', 'The live price per gram in British pounds is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw gold rate without VAT or making charges.'],
+        ['Is there VAT on gold in the UK?', 'Investment gold (qualifying bars and coins) is VAT-exempt in the UK. Gold jewellery carries 20% VAT, which shops include in the final price.'],
+        ['Which karat is most common in the UK?', 'Most British jewellery is 9K or 18K, and every piece over one gram must carry a hallmark from an official assay office. 22K is popular in South Asian communities, and 24K is bought as bars and coins.']
+      ] },
+    canada: { code: 'CAD', d: 2, vat: 0, peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,
+      ar: { n: 'كندا', in: 'في كندا', cur: 'دولار كندي', curS: 'دولار', cities: '' },
+      en: { n: 'Canada', adj: 'Canadian', cur: 'Canadian dollar', cities: 'Toronto, Vancouver, Montreal and Calgary' },
+      noteAr: '',
+      noteEn: 'The Canadian dollar floats freely, so the gold price in CAD moves with both the global price and the exchange rate. Canada is a major gold producer, and bars and coins of 99.5% purity or higher are exempt from GST/HST as investment precious metals, while jewellery is taxed at the local rate. Everyday jewellery is most often 10K or 14K, with 18K for fine pieces.',
+      faqEn: [
+        ['What is the gold price in Canada today?', 'The live price per gram in Canadian dollars is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw gold rate without tax or making charges.'],
+        ['Is gold taxed in Canada?', 'Bars and coins of at least 99.5% purity are exempt from GST/HST as investment precious metals. Gold jewellery is taxed at the local GST/HST/PST rate, included in the shop price.'],
+        ['Which karat is most common in Canada?', 'Most everyday jewellery in Canada is 10K or 14K, with 18K used for fine jewellery. 24K is bought as bars and coins, including the Maple Leaf coin.']
+      ] },
+    australia: { code: 'AUD', d: 2, vat: 0, peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,
+      ar: { n: 'أستراليا', in: 'في أستراليا', cur: 'دولار أسترالي', curS: 'دولار', cities: '' },
+      en: { n: 'Australia', adj: 'Australian', cur: 'Australian dollar', cities: 'Sydney, Melbourne, Brisbane and Perth' },
+      noteAr: '',
+      noteEn: 'The Australian dollar floats freely, so the gold price in AUD moves with both the global price and the exchange rate. Australia is one of the world\'s largest gold producers, and investment-grade gold (bars and coins of 99.5% purity or higher) is GST-free, while jewellery carries 10% GST in the shop price. Everyday jewellery is most often 9K or 18K.',
+      faqEn: [
+        ['What is the gold price in Australia today?', 'The live price per gram in Australian dollars is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw gold rate without GST or making charges.'],
+        ['Is there GST on gold in Australia?', 'Investment-grade gold (bars and coins of at least 99.5% purity) is GST-free in Australia. Gold jewellery carries 10% GST, included in the shop price.'],
+        ['Which karat is most common in Australia?', 'Most everyday jewellery in Australia is 9K or 18K. 24K is bought as bars and coins, including Perth Mint products.']
       ] }
   };
   const COUNTRY_PAGES = { ...GCC, ...OTHERS };
@@ -749,8 +790,8 @@ ${links('ar', '')}`,
     const cur = c.code.toLowerCase(), d = c.d;
     const TN = c.taxName || 'VAT';
     const opt = (o = {}) => ({ cur, d: o.d ?? d, ...o });
-    const other = L => `<section class="card-section"><h2>${L === 'en' ? 'Gold prices in other Gulf countries' : 'سعر الذهب في دول الخليج الأخرى'}</h2><div class="links-grid">
-${[['', L === 'en' ? 'UAE' : 'الإمارات'], ...Object.entries(GCC).filter(([s]) => s !== slug).map(([s, o]) => [s, o[L].n])].map(([s, n]) => `<a class="link-card" href="${url(L, s)}">${L === 'en' ? `Gold price in ${n}` : `سعر الذهب في ${n}`}</a>`).join('')}
+    const other = L => `<section class="card-section"><h2>${L === 'en' ? 'Gold prices in other countries' : 'سعر الذهب في دول أخرى'}</h2><div class="links-grid">
+${[['', L === 'en' ? 'UAE' : 'الإمارات'], ...Object.entries(COUNTRY_PAGES).filter(([s, o]) => s !== slug && (L === 'en' || !o.enOnly)).map(([s, o]) => [s, o[L].n])].map(([s, n]) => `<a class="link-card" href="${url(L, s)}">${L === 'en' ? `Gold price in ${n}` : `سعر الذهب في ${n}`}</a>`).join('')}
 <a class="link-card" href="${url(L, 'gcc')}">${L === 'en' ? 'Compare Gulf gold prices' : 'مقارنة أسعار الذهب في الخليج'}</a>
 <a class="link-card" href="${url(L, 'gold-calculator')}">${L === 'en' ? 'Gold calculator' : 'حاسبة الذهب'}<span>${c.code}</span></a></div></section>`;
 
@@ -780,7 +821,7 @@ ${KS.map(k => `<tr><td><strong>${en ? k + 'K' : 'عيار ' + k}</strong> <span 
 ${GW.map(w => `<tr><td>${en ? w + ' g' : w + ' غرام'}</td><td class="n">${P(21, w, opt())}</td><td class="n">${P(24, w, opt())}</td></tr>`).join('')}
 </tbody></table></div></section>
 <section class="card-section"><h2>${en ? `About the gold price in ${x.n}` : `عن سعر الذهب ${x.in}`}</h2><div class="prose">
-${en ? `<p>The gold price in ${x.n} follows the global spot price of gold in US dollars per ounce. The ${x.cur} is ${c.pegEn}, so the local price is calculated as: <strong>(ounce price in USD × USD/${c.code} rate ÷ 31.1035) × karat purity</strong>.</p><p>${c.noteEn}</p><p>Gold shops in ${x.cities} usually quote a daily rate per karat that follows the global price, then add making charges per piece${c.vat ? ` and ${c.vat}% ${TN}` : ''}. Use the <a href="/en/gold-calculator/">gold calculator</a> and choose ${c.code} to see the final price.</p>`
+${en ? `<p>The gold price in ${x.n} follows the global spot price of gold in US dollars per ounce. The ${x.cur} is ${c.pegEn}, so the local price is calculated as: <strong>(${c.code === 'USD' ? 'ounce price in USD ÷ 31.1035' : `ounce price in USD × USD/${c.code} rate ÷ 31.1035`}) × karat purity</strong>.</p><p>${c.noteEn}</p><p>Gold shops in ${x.cities} usually quote a daily rate per karat that follows the global price, then add making charges per piece${c.vat ? ` and ${c.vat}% ${TN}` : ''}. Use the <a href="/en/gold-calculator/">gold calculator</a> and choose ${c.code} to see the final price.</p>`
           : `<p>يتبع سعر الذهب ${x.in} السعر العالمي لأونصة الذهب بالدولار. وال${x.cur} ${c.peg}، لذلك يُحسب السعر المحلي هكذا: <strong>(سعر الأونصة بالدولار × سعر صرف الدولار بال${x.cur} ÷ 31.1035) × نسبة العيار</strong>.</p><p>${c.noteAr}</p><p>تُعلن محلات الذهب في ${x.cities} سعراً يومياً لكل عيار يتبع السعر العالمي، ثم تُضاف المصنعية حسب القطعة${c.vat ? ` وضريبة القيمة المضافة ${c.vat}%` : ''}. استخدم <a href="/gold-calculator/">حاسبة الذهب</a> واختر ${x.cur} لمعرفة السعر النهائي.</p>`}</div></section>
 ${share(L, slug, en ? `Gold price in ${x.n} today` : `سعر الذهب اليوم ${x.in}`)}
 ${other(L)}`,

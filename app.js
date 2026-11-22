@@ -82,9 +82,11 @@ const PEG={USD:1,AED:3.6725,SAR:3.75,QAR:3.64,OMR:0.3845,BHD:0.376};
 const rate=c=>PEG[c.toUpperCase()]||G.fx[c.toUpperCase()]||null;
 
 /* ── الدولة المختارة من القائمة اللي فوق ── */
-const CTRY={AED:'',SAR:'saudi',KWD:'kuwait',QAR:'qatar',OMR:'oman',BHD:'bahrain',EGP:'egypt',INR:'india',PKR:'pakistan',BDT:'bangladesh',TRY:'turkey'};
-const DEC={AED:2,SAR:2,QAR:2,KWD:3,OMR:3,BHD:3,EGP:0,INR:0,PKR:0,BDT:0,TRY:0};
-const NAME={AED:'درهم',SAR:'ريال',KWD:'دينار',QAR:'ريال',OMR:'ريال',BHD:'دينار',EGP:'جنيه',INR:'روبية',PKR:'روبية باكستانية',BDT:'تاكا',TRY:'ليرة'};
+const CTRY={AED:'',SAR:'saudi',KWD:'kuwait',QAR:'qatar',OMR:'oman',BHD:'bahrain',EGP:'egypt',INR:'india',PKR:'pakistan',BDT:'bangladesh',TRY:'turkey',USD:'usa',GBP:'uk',CAD:'canada',AUD:'australia'};
+const DEC={AED:2,SAR:2,QAR:2,KWD:3,OMR:3,BHD:3,EGP:0,INR:0,PKR:0,BDT:0,TRY:0,USD:2,GBP:2,CAD:2,AUD:2};
+const NAME={AED:'درهم',SAR:'ريال',KWD:'دينار',QAR:'ريال',OMR:'ريال',BHD:'دينار',EGP:'جنيه',INR:'روبية',PKR:'روبية باكستانية',BDT:'تاكا',TRY:'ليرة',USD:'دولار',GBP:'إسترليني',CAD:'دولار كندي',AUD:'دولار أسترالي'};
+// دول صفحاتها إنجليزي بس: التحويل من الصفحات العربية يروح للنسخة الإنجليزية بدل 404
+const EN_ONLY={INR:1,PKR:1,BDT:1,TRY:1,USD:1,GBP:1,CAD:1,AUD:1};
 const BD=document.body.dataset;
 // صفحة خاصة بدولة (الرئيسية وعيار 21 و24 لكل دولة): عملتها ثابتة
 const PAGE_CUR=BD.ctry?(BD.ctry==='uae'?'AED':Object.keys(CTRY).find(k=>CTRY[k]===BD.ctry)):null;
@@ -92,7 +94,7 @@ const PAGE_CUR=BD.ctry?(BD.ctry==='uae'?'AED':Object.keys(CTRY).find(k=>CTRY[k]=
 const FIXED=!!PAGE_CUR||BD.fixed==='1';
 let SAVED=null;try{SAVED=localStorage.getItem('cur');}catch(e){}
 let SEL=PAGE_CUR||(CTRY.hasOwnProperty(SAVED)?SAVED:'AED');
-const pageFor=c=>(EN?'/en/':'/')+(CTRY[c]?CTRY[c]+'/':'')+(BD.sub?BD.sub+'/':'');
+const pageFor=c=>((EN||EN_ONLY[c])?'/en/':'/')+(CTRY[c]?CTRY[c]+'/':'')+(BD.sub?BD.sub+'/':'');
 // صفحة إماراتية ليها نسخة لكل دولة، والزائر اختار دولة تانية قبل كده: نوديه لصفحة دولته
 if(BD.ctry==='uae'&&SAVED&&SAVED!=='AED'&&CTRY[SAVED]) location.replace(pageFor(SAVED));
 // معامل التحويل من الدرهم للعملة المختارة (null لو سعر الصرف لسه ما وصلش)
