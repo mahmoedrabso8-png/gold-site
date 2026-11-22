@@ -134,7 +134,7 @@ export function pages(ctx) {
 <div class="trust-item"><strong>المعادلة</strong>(سعر الأونصة بالدولار × 3.6725 ÷ 31.1035) × نسبة العيار.</div>
 <div class="trust-item"><strong>غير مشمول</strong>المصنعية وضريبة القيمة المضافة. الأسعار للاطلاع فقط.</div>
 <div class="trust-item"><strong>التصحيح</strong>لاحظت خطأ؟ <a href="/contact/">راسلنا</a> ونراجعه فوراً. <a href="/about/">من نحن</a></div></div></section>`;
-  const hero = (h1, sub, L) => `<div class="hero"><h1>${h1}</h1><p class="hero-sub">${sub}</p><div class="update-badge"><span class="update-dot"></span>${L === 'en' ? 'Live — updated every 5 minutes' : L === 'tr' ? 'Canlı — her 5 dakikada güncellenir' : L === 'hi' ? 'लाइव — हर 5 मिनट में अपडेट' : L === 'ur' ? 'لائیو — ہر 5 منٹ میں تازہ کاری' : 'مباشر — يُحدَّث كل 5 دقائق'}</div></div>`;
+  const hero = (h1, sub, L) => `<div class="hero"><h1>${h1}</h1><p class="hero-sub">${sub}</p><div class="update-badge"><span class="update-dot"></span>${L === 'en' ? 'Live — updated every 5 minutes' : L === 'tr' ? 'Canlı — her 5 dakikada güncellenir' : L === 'hi' ? 'लाइव — हर 5 मिनट में अपडेट' : L === 'ur' ? 'لائیو — ہر 5 منٹ میں تازہ کاری' : L === 'id' ? 'Langsung — diperbarui setiap 5 menit' : 'مباشر — يُحدَّث كل 5 دقائق'}</div></div>`;
   const TG_CHANNEL = 'https://t.me/emaratijob';
   const share = (L, slug, title) => {
     const en = L === 'en', u = encodeURIComponent(ctx.SITE + url(L, slug)), t = encodeURIComponent(title);
@@ -1564,6 +1564,73 @@ ${URK.filter(([k2]) => k2 !== k).map(([, n2, s2]) => `<a class="link-card" href=
     for (const p2 of out) {
       const us = Object.keys(UR_EN).find(k2 => UR_EN[k2] === p2.slug);
       if (us && p2.lang === 'en') p2.alts = p2.alts ? [...p2.alts.filter(a => a[0] !== 'x-default'), ['ur', url('ur', us)], ['x-default', url('en', p2.slug)]] : [['en', url('en', p2.slug)], ['ur', url('ur', us)], ['x-default', url('en', p2.slug)]];
+    }
+  }
+
+  // ── Indonesian pilot: Indonesia pages in Bahasa (real content, hreflang-paired with en) ──
+  {
+    const idrG = (k, w = 1) => ctx.g24 && ctx.fx.IDR ? fmt(ctx.g24 * k / 24 * w / ctx.AED * ctx.fx.IDR, 0) : null;
+    const idP = (k, w = 1, o = {}) => P(k, w, { cur: 'idr', d: 0, ...o });
+    const IDK = [[24, '24 Karat', '24-karat'], [22, '22 Karat', '22-karat'], [21, '21 Karat', '21-karat'], [18, '18 Karat', '18-karat']];
+    const ID_EN = { 'harga-emas': 'indonesia', 'harga-emas/24-karat': 'indonesia/gold-24k', 'harga-emas/22-karat': 'indonesia/gold-22k', 'harga-emas/21-karat': 'indonesia/gold-21k', 'harga-emas/18-karat': 'indonesia/gold-18k' };
+    const ID_ALTS = is2 => [['id', url('id', is2)], ['en', url('en', ID_EN[is2])], ['x-default', url('en', ID_EN[is2])]];
+    const g24i = idrG(24);
+    out.push({ lang: 'id', fixed: true, slug: 'harga-emas', usesFx: true, trEn: 'indonesia',
+      alts: ID_ALTS('harga-emas'),
+      crumbs: [['Harga emas hari ini', url('id', 'harga-emas')]],
+      title: `Harga Emas Hari Ini: ${g24i} Rupiah per Gram — 22 & 24 Karat`,
+      desc: 'Harga emas terkini hari ini: 24, 22, 21 dan 18 karat per gram, 10 gram dan ons dalam rupiah dan dolar, diperbarui setiap 5 menit.',
+      body: `${hero('Harga Emas Hari Ini', 'Harga langsung per gram dalam rupiah (IDR) dan dolar AS', 'id')}
+${errBox}
+<div class="karat-grid">${IDK.map(([k, n, s]) => `<a class="karat-card" href="${url('id', 'harga-emas/' + s)}">
+<span class="karat-badge">${n}</span>
+<div class="k-price">${idP(k)}</div>
+<div class="k-usd">$${P(k, 1, { cur: 'usd', d: 2 })}</div>
+<div class="k-unit">IDR / gram</div></a>`).join('')}</div>
+<div class="meta-row"><span>Diperbarui: <strong>${updated('en')}</strong> (Dubai)</span><span>Ons: <strong>${idP(24, ctx.TROY)} IDR</strong> · <strong>$${P(24, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">🔄 Muat ulang</button></div>
+<section class="card-section"><h2>Harga emas hari ini — gram, 10 gram dan ons</h2><div class="table-wrap"><table class="data-table">
+<thead><tr><th>Karat</th><th>1 gram (IDR)</th><th>10 gram (IDR)</th><th>1 ons (IDR)</th></tr></thead><tbody>
+${IDK.map(([k, n]) => `<tr><td><strong>${n}</strong></td><td class="n">${idP(k)}</td><td class="n">${idP(k, 10)}</td><td class="n">${idP(k, ctx.TROY)}</td></tr>`).join('')}
+</tbody></table></div><p class="note">Harga emas murni tanpa ongkos pembuatan. 1 ons = 31.1035 g.</p></section>
+${AD}
+<section class="card-section"><h2>Tentang emas 22 dan 24 karat di Indonesia</h2><div class="prose">
+<p><strong>Emas 24 karat</strong> (999) adalah emas paling murni dan di Indonesia paling dikenal lewat <strong>emas Antam</strong> — batangan dan kepingan resmi dari PT Aneka Tambang yang menjadi patokan harga nasional. <strong>Emas 22 karat</strong> banyak dipakai untuk perhiasan, sedangkan perhiasan toko emas sehari-hari sering memakai kadar 18 karat (750) atau lebih rendah.</p>
+<p>Harga emas di Indonesia ditentukan oleh dua hal: harga ons internasional (dalam dolar) dan kurs dolar/rupiah. Harga di toko ditambah ongkos pembuatan; harga di halaman ini adalah harga murni tanpa ongkos.</p>
+<p>Halaman terkait: <a href="${url('en', 'indonesia')}">English version</a> · <a href="${url('id', 'harga-emas/22-karat')}">Harga emas 22 karat</a> · <a href="${url('en', 'gold-price-usd')}">Harga ons (USD)</a>.</p>
+</div></section>`,
+      faq: [
+        ['Berapa harga emas hari ini?', `1 gram emas 24 karat saat ini sekitar ${g24i} rupiah; harga terkini diperbarui di bagian atas halaman setiap 5 menit.`],
+        ['Mengapa harga emas berubah setiap hari?', 'Harga emas tergantung pada harga ons internasional (dolar) dan kurs dolar/rupiah. Jika keduanya berubah, harga dalam rupiah ikut berubah.'],
+        ['Apa itu emas Antam?', 'Emas Antam adalah emas batangan resmi produksi PT Aneka Tambang (BUMN) dengan kemurnian 999.9, dan harga jual-belinya menjadi acuan pasar emas di Indonesia.']
+      ] });
+    for (const [k, n, s] of IDK) {
+      const is2 = `harga-emas/${s}`, kt = idrG(k);
+      out.push({ lang: 'id', fixed: true, slug: is2, usesFx: true, trEn: ID_EN[is2],
+        alts: ID_ALTS(is2),
+        crumbs: [['Harga emas', url('id', 'harga-emas')], [`Harga ${n.toLowerCase()}`, url('id', is2)]],
+        title: `Harga Emas ${n} Hari Ini: 1 Gram = ${kt} Rupiah`,
+        desc: `Harga emas ${n.toLowerCase()} terkini: per gram, 10 gram dan ons dalam rupiah dan dolar, diperbarui setiap 5 menit. Harga murni tanpa ongkos pembuatan.`,
+        body: `${hero(`Harga Emas ${n} Hari Ini`, `${kt} rupiah per gram — langsung`, 'id')}
+${errBox}
+<div class="meta-row"><span>Diperbarui: <strong>${updated('en')}</strong> (Dubai)</span><span>Ons: <strong>${idP(k, ctx.TROY)} IDR</strong> · <strong>$${P(k, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">🔄 Muat ulang</button></div>
+<section class="card-section"><h2>Emas ${n.toLowerCase()} — harga menurut berat</h2><div class="table-wrap"><table class="data-table">
+<thead><tr><th>Berat</th><th>Harga (IDR)</th><th>Harga (USD)</th></tr></thead><tbody>
+${[1, 2, 4, 5, 8, 10, 20, 50, 100].map(w => `<tr><td class="n">${w} gram</td><td class="n">${idP(k, w)}</td><td class="n">$${P(k, w, { cur: 'usd', d: 2 })}</td></tr>`).join('')}
+<tr><td class="n">1 ons (31.1 g)</td><td class="n">${idP(k, ctx.TROY)}</td><td class="n">$${P(k, ctx.TROY, { cur: 'usd', d: 2 })}</td></tr>
+</tbody></table></div><p class="note">Harga murni tanpa ongkos pembuatan.</p></section>
+${AD}
+<section class="card-section"><h2>Karat lainnya</h2><div class="links-grid">
+${IDK.filter(([k2]) => k2 !== k).map(([, n2, s2]) => `<a class="link-card" href="${url('id', 'harga-emas/' + s2)}">Harga emas ${n2.toLowerCase()}</a>`).join('')}
+<a class="link-card" href="${url('id', 'harga-emas')}">Harga semua karat</a>
+<a class="link-card" href="${url('en', ID_EN[is2])}">English version</a></div></section>`,
+        faq: [
+          [`Berapa harga emas ${n.toLowerCase()} hari ini?`, `1 gram emas ${n.toLowerCase()} saat ini sekitar ${kt} rupiah; harga terkini diperbarui setiap 5 menit.`],
+          [`Bagaimana harga emas ${n.toLowerCase()} ditentukan?`, `Harga ons internasional (dolar) dikonversi dengan kurs dolar/rupiah lalu dikalikan rasio kemurnian ${n.toLowerCase()}.`]
+        ] });
+    }
+    for (const p2 of out) {
+      const is2 = Object.keys(ID_EN).find(k2 => ID_EN[k2] === p2.slug);
+      if (is2 && p2.lang === 'en') p2.alts = p2.alts ? [...p2.alts.filter(a => a[0] !== 'x-default'), ['id', url('id', is2)], ['x-default', url('en', p2.slug)]] : [['en', url('en', p2.slug)], ['id', url('id', is2)], ['x-default', url('en', p2.slug)]];
     }
   }
 
