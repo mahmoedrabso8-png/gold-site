@@ -65,7 +65,8 @@ export function pages(ctx) {
   // عملات الحاسبة: الكود، الاسم، نسبة ضريبة القيمة المضافة، عدد الكسور
   const CURS = [['AED', 'درهم إماراتي', 'UAE dirham', 5, 2], ['SAR', 'ريال سعودي', 'Saudi riyal', 15, 2], ['KWD', 'دينار كويتي', 'Kuwaiti dinar', 0, 3],
     ['QAR', 'ريال قطري', 'Qatari riyal', 0, 2], ['OMR', 'ريال عُماني', 'Omani rial', 5, 3], ['BHD', 'دينار بحريني', 'Bahraini dinar', 10, 3],
-    ['EGP', 'جنيه مصري', 'Egyptian pound', 0, 0], ['INR', 'روبية هندية', 'Indian rupee', 3, 0]];
+    ['EGP', 'جنيه مصري', 'Egyptian pound', 0, 0], ['INR', 'روبية هندية', 'Indian rupee', 3, 0],
+    ['PKR', 'روبية باكستانية', 'Pakistani rupee', 0, 0], ['BDT', 'تاكا بنجلاديشي', 'Bangladeshi taka', 0, 0], ['TRY', 'ليرة تركية', 'Turkish lira', 0, 0]];
   const TOLA = 11.6638;
 
   // ── أجزاء مشتركة ──────────────────────────────────────
@@ -95,7 +96,7 @@ export function pages(ctx) {
     en: [['gold-22k', '22K gold rate', 'Popular for Indian jewellery'], ['gold-24k', '24K gold rate', 'Pure gold & bars'], ['gold-21k', '21K gold rate', 'Gulf jewellery'], ['gold-18k', '18K gold rate', 'Diamond jewellery'],
       ['gold-price-usd', 'Gold price in USD', 'Live ounce XAU/USD'], ['silver', 'Silver price', 'Per gram, ounce & kg'],
       ['gcc', 'Gulf gold prices', 'Compare 6 countries'], ['saudi', 'Gold price in Saudi Arabia', 'In SAR'], ['kuwait', 'Gold price in Kuwait', 'In KWD'],
-      ['qatar', 'Gold price in Qatar', 'In QAR'], ['oman', 'Gold price in Oman', 'In OMR'], ['bahrain', 'Gold price in Bahrain', 'In BHD'], ['egypt', 'Gold price in Egypt', 'In EGP'], ['india', 'Gold rate in India', 'In INR, 22K & 24K'], ['gold-rate-inr', 'Gold rate in INR', 'Dubai price in rupees'], ['gold-rate-pkr', 'Gold rate in PKR', 'Per tola in rupees'],
+      ['qatar', 'Gold price in Qatar', 'In QAR'], ['oman', 'Gold price in Oman', 'In OMR'], ['bahrain', 'Gold price in Bahrain', 'In BHD'], ['egypt', 'Gold price in Egypt', 'In EGP'], ['india', 'Gold rate in India', 'In INR, 22K & 24K'], ['pakistan', 'Gold rate in Pakistan', 'In PKR, per tola'], ['bangladesh', 'Gold price in Bangladesh', 'In BDT'], ['turkey', 'Gold price in Turkey', 'Gram altın in TRY'], ['gold-rate-inr', 'Gold rate in INR', 'Dubai price in rupees'], ['gold-rate-pkr', 'Gold rate in PKR', 'Per tola in rupees'],
       ['gold-bars', 'Gold bar prices', '1 g to 1 kg, tola bars'], ['gold-calculator', 'Gold calculator', 'With making charges & VAT'], ['gold-price-yesterday', 'Last 10 days', 'Yesterday\'s gold rate'], ['zakat-calculator', 'Zakat calculator', 'Nisab and zakat due']]
   };
   const links = (L, skip) => `<section class="card-section"><h2>${L === 'en' ? 'More gold prices & tools' : 'أسعار وأدوات أخرى'}</h2><div class="links-grid">${LINKS[L].filter(l => l[0] !== skip).map(([s, n, d]) => `<a class="link-card" href="${url(L, s)}">${n}<span>${d}</span></a>`).join('')}</div></section>`;
@@ -710,6 +711,36 @@ ${links('ar', '')}`,
         ['What is the 22K gold rate in India today?', 'The live 22K price per gram in Indian rupees is shown at the top of this page and refreshes about every 5 minutes. It is the raw gold rate calculated from the global spot price and the INR exchange rate, without making charges or GST.'],
         ['Is there GST on gold in India?', 'Yes. India charges 3% GST on the gold value and 5% GST on making charges. The GST column on this page adds 3% to the gold value only.'],
         ['Why do Indian shop prices differ from this page?', 'The rate here is calculated live from the global spot price and the INR exchange rate. Local jewellers quote per-city rates that add making charges, GST, and often a premium caused by import duties and local demand.']
+      ] },
+    pakistan: { code: 'PKR', d: 0, vat: 0, peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,
+      ar: { n: 'باكستان', in: 'في باكستان', cur: 'روبية', curS: 'روبية', cities: '' },
+      en: { n: 'Pakistan', adj: 'Pakistani', cur: 'Pakistani rupee', cities: 'Karachi, Lahore, Islamabad and Peshawar' },
+      noteAr: '',
+      noteEn: 'The Pakistani rupee is not pegged to the dollar, so the gold rate in PKR moves with both the global price and the exchange rate. Jewellery in Pakistan is mostly 22K and 21K, while 24K is bought as bars and coins. Gold in Pakistan is commonly quoted per tola (11.664 g), and the table above includes the tola column. City sarafa associations announce daily rates that can include a premium over international parity, and shops add making charges per piece.',
+      faqEn: [
+        ['What is the gold rate per tola in Pakistan today?', 'The live 24K rate per tola (11.664 g) in Pakistani rupees is shown in the price table above and refreshes about every 5 minutes. Per-gram rates for 22K, 21K and 18K are shown on their own pages.'],
+        ['Which karat is most common in Pakistan?', 'Most jewellery in Pakistan is made in 22K and 21K gold, while 24K is used for bars and coins bought for saving and investment.'],
+        ['Why do Pakistani shop rates differ from this page?', 'The rate here is calculated live from the global spot price and the PKR exchange rate. City sarafa associations announce daily rates that can include a premium, and shops add making charges per piece.']
+      ] },
+    bangladesh: { code: 'BDT', d: 0, vat: 0, peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,
+      ar: { n: 'بنجلاديش', in: 'في بنجلاديش', cur: 'تاكا', curS: 'تاكا', cities: '' },
+      en: { n: 'Bangladesh', adj: 'Bangladeshi', cur: 'Bangladeshi taka', cities: 'Dhaka, Chattogram, Khulna and Sylhet' },
+      noteAr: '',
+      noteEn: 'The Bangladeshi taka is not pegged to the dollar, so the gold price in BDT moves with both the global price and the exchange rate. Most jewellery in Bangladesh is 22K, with 21K also common. The national jewellers association announces reference prices that can sit above international parity, and shops add making charges per piece — so expect shop prices to be higher than the raw rate shown here.',
+      faqEn: [
+        ['What is the gold price in Bangladesh today?', 'The live price per gram in Bangladeshi taka is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw gold rate without making charges.'],
+        ['Which karat is most common in Bangladesh?', 'Most jewellery in Bangladesh is made in 22K gold, with 21K also widely available. 24K is used mainly for bars and coins.'],
+        ['Why do shop prices in Bangladesh differ from this page?', 'The rate here is calculated live from the global spot price and the BDT exchange rate. The jewellers association announces reference rates that include a premium, and shops add making charges per piece.']
+      ] },
+    turkey: { code: 'TRY', d: 0, vat: 0, peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,
+      ar: { n: 'تركيا', in: 'في تركيا', cur: 'ليرة', curS: 'ليرة', cities: '' },
+      en: { n: 'Turkey', adj: 'Turkish', cur: 'Turkish lira', cities: 'Istanbul, Ankara, Izmir and Bursa' },
+      noteAr: '',
+      noteEn: 'The Turkish lira floats freely, so the gold price in TRY moves with both the global price and the exchange rate, and can change even when the global ounce price is flat. Turkey has a strong gram-gold culture: 24K is bought as gram gold (gram altin) and coins for saving, while jewellery is usually 22K (bilezik) or 18K. Investment gold is generally exempt from VAT (KDV); jewellery carries KDV on the workmanship portion. The famous quarter coin (ceyrek altin) weighs about 1.75 g of 22K gold.',
+      faqEn: [
+        ['What is the gram gold (gram altin) price in Turkey today?', 'The live 24K price per gram in Turkish lira is shown at the top of this page and refreshes about every 5 minutes. It is the raw gold rate calculated from the global spot price and the TRY exchange rate.'],
+        ['What is ceyrek altin (quarter gold coin)?', 'A small Turkish gold coin weighing about 1.75 g of 22K gold, traditionally given as a gift and used for saving. Its value tracks the 22K rate per gram.'],
+        ['Is there VAT on gold in Turkey?', 'Investment gold (bars and coins) is generally exempt from VAT (KDV) in Turkey, while jewellery carries KDV on the workmanship portion.']
       ] }
   };
   const COUNTRY_PAGES = { ...GCC, ...OTHERS };
