@@ -8,6 +8,8 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { pages } from './content.mjs';
+import { loadCountryHistory } from './history-data.mjs';
+import { historySection } from './history-core.mjs';
 import { ARTICLES, ARTICLES_EN } from './articles.mjs';
 
 const SITE   = 'https://www.maelumatii.com';
@@ -213,6 +215,7 @@ function layout(p, ctx) {
   else if (/^gold-(?:24|22|21|18)k$/.test(p.slug)) { ctry = 'uae'; sub = p.slug; }
   let body = !ctry && !p.fixed ? markCur(p.body) : p.body;
   if (ctry && !p.slug.endsWith('gold-calculator')) body = body.replace(/href="(\/(?:en\/)?gold-calculator\/)"/g, (_, href) => `href="${href}?country=${ctry}"`);
+  if(ctry && !sub && !p.slug.startsWith('dollar-') && (L==='ar'||en)){const market=ctx.markets.find(m=>m.slug===ctry);if(market){const chart=historySection(ctx.countryHistory,market,L,TODAY).replace('data-as-of=',`data-version="${ASSET_V.historydata}" data-as-of=`);body=body.replace('</section>','</section>'+chart);}}
   const cselect = `<select id="country" class="ctry" aria-label="${en ? 'Country' : tr ? 'Ülke' : L === 'hi' ? 'देश' : L === 'ur' ? 'ملک' : L === 'id' ? 'Negara' : L === 'ms' ? 'Negara' : L === 'tl' ? 'Bansa' : L === 'bn' ? 'দেশ' : 'الدولة'}">${COUNTRIES.map(([c, a, e]) => `<option value="${c}">${L === 'ar' ? a : e}</option>`).join('')}</select>`;
   const altLinks = p.noindex ? '' : p.alts
     ? p.alts.map(([h, u]) => `<link rel="alternate" hreflang="${h}" href="${SITE + u}" />`).join('\n  ')
@@ -386,6 +389,7 @@ ${p.noAds ? '' : AD}
 </div>
 </div>
 <script src="/assets/app.js?v=${ASSET_V.js}" defer></script>
+${body.includes('id="gold-history"') ? `<script src="/assets/history.js?v=${ASSET_V.history}" defer></script>` : ''}
 ${p.assistant ? `<script src="/assets/assistant-kb.js?v=${ASSET_V.kb}" defer></script>\n<script src="/assets/assistant.js?v=${ASSET_V.assist}" defer></script>` : ''}
 </body>
 </html>`;
@@ -420,6 +424,7 @@ const daily = process.env.FAKE_HISTORY ? JSON.parse(await fs.readFile(process.en
 let ag = await loadSilver(), fx = await loadFX();
 if (process.env.FAKE_PRICE) { price.g24 = +process.env.FAKE_PRICE; price.at = new Date().toISOString(); ag = 49.25 * AED / TROY; fx = { INR: 95.0, PKR: 281.5, AED: 3.6725, KWD: 0.3065 }; }
 const ctx = makeCtx(price, daily, { ag, fx });
+ctx.countryHistory = await loadCountryHistory(TODAY);
 console.log('price 24k:', price.g24 ? price.g24.toFixed(2) : 'n/a', '| days in archive:', daily.length);
 
 await fs.rm(OUT, { recursive: true, force: true });
@@ -458,6 +463,10 @@ await place('og-image.png', ['static/icons', 'icons', '.'], path.join(OUT, 'icon
 // رقم نسخة من محتوى الملف نفسه: أي تعديل في السكريبت أو التصميم يغيّر الرابط، فالمتصفح يجيب النسخة الجديدة فوراً
 const hashOf = async f => crypto.createHash('md5').update(await fs.readFile(path.join(OUT, 'assets', f))).digest('hex').slice(0, 10);
 ASSET_V.js = await hashOf('app.js'); ASSET_V.css = await hashOf('style.css'); ASSET_V.assist = await hashOf('assistant.js'); ASSET_V.kb = await hashOf('assistant-kb.js');
+await fs.writeFile(path.join(OUT,'assets','gold-history.json'),JSON.stringify(ctx.countryHistory));
+const historyJs='(function(){'+(await fs.readFile('history-core.mjs','utf8')).replace(/^export /gm,'')+'\n'+await fs.readFile('history-client.js','utf8')+'})();';
+await fs.writeFile(path.join(OUT,'assets','history.js'),historyJs);
+ASSET_V.history=await hashOf('history.js'); ASSET_V.historydata=await hashOf('gold-history.json');
 const list = pages(ctx);
 const sitemap = [];
 for (const p of list) {
