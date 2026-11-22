@@ -148,7 +148,7 @@ export function pages(ctx) {
   // ── الصفحة الرئيسية ────────────────────────────────────
   out.push({ lang: 'ar', slug: '', alt: true,
     title: px(21) ? `سعر الذهب اليوم في الإمارات | عيار 21: ${px(21)} درهم` : 'سعر الذهب اليوم في الإمارات بالدرهم | عيار 24 و22 و21 و18',
-    desc: (px(21) ? `سعر الذهب اليوم في الإمارات: عيار 21 بـ ${px(21)} درهم، عيار 24 بـ ${px(24)}، عيار 22 بـ ${px(22)}، عيار 18 بـ ${px(18)} للغرام. ` : 'سعر الذهب اليوم في الإمارات ودبي بالدرهم. ') + 'تحديث كل 5 دقائق، مع سعر الأونصة والسبائك وحاسبة الذهب بالمصنعية والزكاة.',
+    desc: (px(21) ? `سعر الذهب اليوم في الإمارات: عيار 21 بـ ${px(21)} درهم، عيار 24 بـ ${px(24)}، عيار 22 بـ ${px(22)}، عيار 18 بـ ${px(18)} للغرام. ` : 'سعر الذهب اليوم في الإمارات ودبي بالدرهم. ') + 'تحديث كل 5 دقائق، مع سعر الأونصة والسبائك وحاسبة الذهب.',
     body: `${hero('سعر الذهب اليوم في الإمارات بالدرهم', 'سعر غرام الذهب الخام لعيار 24 و22 و21 و18 بالدرهم الإماراتي والدولار', 'ar')}
 ${errBox}${karatCards('ar')}${metaRow('ar')}
 ${AD}
@@ -180,7 +180,7 @@ ${sources('ar')}`,
 
   out.push({ lang: 'en', slug: '', alt: true,
     title: px(24) ? `Gold Rate in UAE Today: 24K ${px(24)} AED, 22K ${px(22)} AED` : 'Gold Rate in UAE Today (AED) — 24K, 22K, 21K, 18K Live Price',
-    desc: 'Today\'s gold rate in the UAE and Dubai in AED, updated every 5 minutes: 24K, 22K, 21K and 18K per gram, per tola and per ounce, plus gold bar prices and a gold calculator with making charges and VAT.',
+    desc: 'Today\'s gold rate in the UAE and Dubai in AED, updated every 5 minutes: 24K, 22K, 21K and 18K per gram, tola and ounce, plus gold bar prices and a gold calculator.',
     body: `${hero('Gold Rate in UAE Today', '24K, 22K, 21K and 18K gold price per gram in UAE dirhams (AED) and US dollars', 'en')}
 ${errBox}${karatCards('en')}${metaRow('en')}
 ${AD}
@@ -295,7 +295,7 @@ ${links(L, 'gold-calculator')}`,
     out.push({ lang: L, slug: 'zakat-calculator', alt: true,
       crumbs: [[en ? 'Zakat calculator' : 'حاسبة زكاة الذهب', url(L, 'zakat-calculator')]],
       title: en ? 'Zakat on Gold Calculator UAE — Nisab Today in AED' : 'حاسبة زكاة الذهب في الإمارات | قيمة النصاب اليوم بالدرهم',
-      desc: en ? 'Calculate zakat on your gold in the UAE using today\'s live gold price. Enter grams per karat to see the pure-gold weight, whether you reach the nisab (85 g) and the 2.5% zakat due in AED.'
+      desc: en ? 'Calculate zakat on your gold using today\'s live price. Enter grams per karat to see the pure-gold weight, whether you reach the nisab (85 g) and the 2.5% due.'
         : 'احسب زكاة الذهب في الإمارات بسعر اليوم المباشر: أدخل الوزن لكل عيار لتعرف وزن الذهب الخالص، وهل بلغ النصاب (85 غرام)، وقيمة الزكاة 2.5% بالدرهم.',
       schema: [{ '@context': 'https://schema.org', '@type': 'WebApplication', name: en ? 'Zakat on Gold Calculator' : 'حاسبة زكاة الذهب', applicationCategory: 'FinanceApplication', operatingSystem: 'Any', inLanguage: L, url: ctx.SITE + url(L, 'zakat-calculator'), offers: { '@type': 'Offer', price: '0', priceCurrency: 'AED' } }],
       body: `${hero(en ? 'Zakat on Gold Calculator' : 'حاسبة زكاة الذهب', en ? 'Nisab and zakat due at today\'s live gold price' : 'النصاب وقيمة الزكاة بسعر الذهب اليوم', L)}
@@ -1157,7 +1157,7 @@ ${c.code !== 'USD' ? `<a class="link-card" href="${url(L, 'dollar-' + slug)}">${
       out.push({ lang: L, slug, alt: !c.enOnly, usesFx: !!c.fx,
         crumbs: [[en ? `Gold price in ${x.n}` : `سعر الذهب ${x.in}`, url(L, slug)]],
         title: en ? (c.tEn || `Gold Price in ${x.n} Today (${c.code}) — 24K, 22K, 21K, 18K`) : `سعر الذهب اليوم ${x.in} بال${x.cur} | عيار 24 و22 و21 و18`,
-        desc: en ? (c.dEn || `Live gold price in ${x.n} today in ${x.cur} (${c.code}) and US dollars: 24K, 22K, 21K and 18K per gram, per tola and per ounce, updated every 5 minutes${c.vat ? `, with prices including ${c.vat}% ${TN}` : ''}.`)
+        desc: en ? (c.dEn || `Live gold price in ${x.n} today in ${x.cur} (${c.code}) and US dollars: 24K, 22K, 21K and 18K per gram, tola and ounce, updated every 5 minutes${c.vat ? `, incl. ${c.vat}% ${TN}` : ''}.`)
           : `سعر الذهب اليوم ${x.in} بال${x.cur} والدولار، محدَّث كل 5 دقائق: سعر غرام عيار 24 و22 و21 و18، وسعر الأونصة والتولة${c.vat ? `، والسعر شامل ضريبة ${c.vat}%` : ''}.`,
         body: `${hero(en ? `Gold Price in ${x.n} Today` : `سعر الذهب اليوم ${x.in}`, en ? `Raw gold price per gram in ${x.cur} (${c.code}) and US dollars` : `سعر غرام الذهب الخام بال${x.cur} (${c.code}) والدولار`, L)}
 ${errBox}
@@ -1270,7 +1270,7 @@ ${KS.filter(o => o !== k).map(o => `<a class="link-card" href="${url('en', `${sl
     const en = L === 'en';
     out.push({ lang: L, fixed: true, slug: 'gcc', alt: true, usesFx: true,
       crumbs: [[en ? 'Gulf gold prices' : 'أسعار الذهب في الخليج', url(L, 'gcc')]],
-      title: en ? 'Gold Prices in the Gulf Today — UAE, Saudi, Kuwait, Qatar, Oman, Bahrain' : 'أسعار الذهب في دول الخليج اليوم | الإمارات والسعودية والكويت وقطر وعُمان والبحرين',
+      title: en ? 'Gulf Gold Prices Today: UAE, Saudi, Kuwait, Qatar, Oman, Bahrain' : 'أسعار الذهب في الخليج اليوم | الإمارات والسعودية والكويت وقطر',
       desc: en ? 'Compare today\'s gold price across the GCC in local currencies: UAE, Saudi Arabia, Kuwait, Qatar, Oman and Bahrain — 24K, 22K, 21K and 18K per gram, with VAT rates.'
         : 'قارن سعر الذهب اليوم في دول الخليج بالعملات المحلية: الإمارات والسعودية والكويت وقطر وعُمان والبحرين، لعيار 24 و22 و21 و18، مع نسب الضريبة في كل دولة.',
       body: `${hero(en ? 'Gold Prices in the Gulf Today' : 'أسعار الذهب في دول الخليج اليوم', en ? 'Price per gram in each country\'s currency' : 'سعر الغرام بالعملة المحلية لكل دولة', L)}
@@ -1301,7 +1301,7 @@ ${AD}
     out.push({ lang: L, fixed: true, dollar: true, slug: 'dollar', alt: true, usesFx: true,
       crumbs: [[en ? 'US dollar rate today' : 'سعر الدولار اليوم', url(L, 'dollar')]],
       title: en ? 'US Dollar Rate Today — Live Exchange Rates for 40 Currencies' : 'سعر الدولار اليوم | سعر الصرف مباشر مقابل 40 عملة',
-      desc: en ? 'Live US dollar exchange rate today against 40 currencies: Egyptian pound, Saudi riyal, UAE dirham, Indian rupee, Pakistani rupee, Turkish lira and more — updated every 5 minutes.'
+      desc: en ? 'Live US dollar rate today against 40 currencies: Egyptian pound, Saudi riyal, UAE dirham, Indian rupee, Turkish lira and more, updated every 5 minutes.'
         : 'سعر الدولار اليوم مباشر مقابل 40 عملة: الجنيه المصري والريال السعودي والدرهم الإماراتي والروبية الهندية والليرة التركية وغيرها — محدَّث كل 5 دقائق.',
       body: `${hero(en ? 'US Dollar Rate Today' : 'سعر الدولار اليوم', en ? 'Live exchange rate against every currency we cover' : 'سعر الصرف مباشر مقابل كل العملات التي نغطيها', L)}
 ${errBox}
@@ -1332,7 +1332,7 @@ ${AD}
       out.push({ lang: L, fixed: true, dollar: true, slug: `dollar-${slug}`, alt: !c.enOnly, usesFx: true,
         crumbs: [[en ? `Dollar rate in ${x.n}` : `سعر الدولار ${x.in}`, url(L, `dollar-${slug}`)]],
         title: en ? `US Dollar Rate in ${x.n} Today: 1 USD = ${rTxt} ${c.code}` : `سعر الدولار اليوم ${x.in}: 1 دولار = ${rTxt} ${x.cur}`,
-        desc: en ? `Live US dollar to ${x.cur} rate today: 1 USD = ${rTxt} ${c.code}. Conversion tables from 1 to 1,000 dollars and back, updated every 5 minutes.`
+        desc: en ? `Live US dollar rate in ${x.n} today: 1 USD = ${rTxt} ${c.code}. Conversion tables from 1 to 1,000 dollars and back, updated every 5 minutes.`
           : `سعر الدولار اليوم ${x.in} بال${x.cur}: 1 دولار = ${rTxt} ${x.cur}. جداول تحويل من 1 حتى 1000 دولار والعكس، محدَّث كل 5 دقائق.`,
         body: `${hero(en ? `US Dollar Rate in ${x.n} Today` : `سعر الدولار اليوم ${x.in}`, en ? `1 US dollar = ${rTxt} ${x.cur}` : `1 دولار = ${rTxt} ${x.cur}`, L)}
 ${errBox}

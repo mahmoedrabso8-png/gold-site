@@ -210,7 +210,7 @@ function layout(p, ctx) {
   else if (p.slug === '' && !p.file) ctry = 'uae';
   else if (/^gold-(?:24|22|21|18)k$/.test(p.slug)) { ctry = 'uae'; sub = p.slug; }
   const body = !ctry && !p.fixed ? markCur(p.body) : p.body;
-  const cselect = `<select id="country" class="ctry" aria-label="${en ? 'Country' : tr ? 'Ülke' : L === 'hi' ? 'देश' : L === 'ur' ? 'ملک' : 'الدولة'}">${COUNTRIES.map(([c, a, e]) => `<option value="${c}">${L === 'ar' ? a : e}</option>`).join('')}</select>`;
+  const cselect = `<select id="country" class="ctry" aria-label="${en ? 'Country' : tr ? 'Ülke' : L === 'hi' ? 'देश' : L === 'ur' ? 'ملک' : L === 'id' ? 'Negara' : L === 'ms' ? 'Negara' : L === 'tl' ? 'Bansa' : L === 'bn' ? 'দেশ' : 'الدولة'}">${COUNTRIES.map(([c, a, e]) => `<option value="${c}">${L === 'ar' ? a : e}</option>`).join('')}</select>`;
   const altLinks = p.alts
     ? p.alts.map(([h, u]) => `<link rel="alternate" hreflang="${h}" href="${SITE + u}" />`).join('\n  ')
     : p.alt
@@ -264,7 +264,7 @@ function layout(p, ctx) {
       ? `<a href="${(L === 'ar' && (ctry === 'uae' || AR_CTRIES.has(ctry))) ? url('ar', ctry === 'uae' ? '' : ctry) : url('en', ctry === 'uae' ? '' : ctry)}">🪙 ${L === 'ar' ? `سعر الذهب في ${CNAMES[ctry][0]}` : `Gold price in ${CNAMES[ctry][1]}`}</a>`
       : `<a href="${url(L === 'ar' ? 'ar' : 'en', '')}">🪙 ${L === 'ar' ? 'أسعار الذهب' : 'Gold prices'}</a>`;
     toggle = `<div class="page-toggle">${back}</div>`;
-  } else if (ctry && CNAMES[ctry]) {
+  } else if (ctry && CNAMES[ctry] && ctry !== 'usa') {
     const ds = ctry === 'uae' ? 'dollar-uae' : `dollar-${ctry}`;
     const du = (L === 'ar' && (ctry === 'uae' || AR_CTRIES.has(ctry))) ? url('ar', ds) : url('en', ds);
     toggle = `<div class="page-toggle"><a href="${du}">💵 ${L === 'ar' ? `سعر الدولار في ${CNAMES[ctry][0]}` : `Dollar price in ${CNAMES[ctry][1]}`}</a></div>`;
