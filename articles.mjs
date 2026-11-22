@@ -1046,3 +1046,143 @@ ARTICLES_EN.push(
     ]
   }
 );
+
+// ── Wave 2 batch E: Qatar, Oman, Bahrain, Egypt, Iraq, Jordan ──
+ARTICLES_EN.push(
+  {
+    slug: 'buying-gold-qatar',
+    title: 'Buying Gold in Qatar: 22K and 21K, VAT-Free Shopping',
+    h1: 'Buying gold in Qatar: 22K and 21K, VAT-free shopping',
+    desc: 'How to buy gold in Qatar: 22K and 21K jewellery in Souq Waqif and the Gold Souq, no VAT, making charges, and why riyal prices track the world market.',
+    teaser: 'VAT-free gold in the Gold Souq',
+    intro: 'Qatar keeps gold buying simple: no VAT and a pegged riyal',
+    body: `
+<p>Qatar is one of the easiest places in the world to buy gold: no VAT, a dollar-pegged riyal, and souks full of 22K.</p>
+<h3>The karats</h3>
+<p>Qatari shops work mainly in <strong>22K</strong> and <strong>21K</strong> for traditional jewellery, <a href="/en/gold-18k/">18K</a> for diamond and modern pieces, and <a href="/en/gold-24k/">24K</a> for bars and coins. The daily gram rate per karat is displayed in every shop.</p>
+<h3>No VAT, pegged riyal</h3>
+<p>Qatar applies <strong>no VAT</strong> on gold, and the riyal is pegged at <strong>3.64 per US dollar</strong> — so prices track the world <a href="/en/gold-price-usd/">USD price</a> exactly, plus workmanship. What you see on the world chart is what the souq charges, plus making.</p>
+<h3>Where to buy</h3>
+<p>The Gold Souq near Souq Waqif and the jewellery corridors of Doha's malls. Making charges vary — plain bangles are cheapest per gram, bridal sets the most — so always separate the gold rate from the workmanship in the quote.</p>
+<h3>What buyers can do</h3>
+<p>Compare making charges across shops, buy hallmarked pieces with itemized invoices, and choose 24K bars or coins for pure savings. See today's <a href="/en/qatar/">gold price in Qatar</a>. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['Is there VAT on gold in Qatar?', 'No — Qatar does not apply VAT, so the price is the gold value plus workmanship.'],
+      ['What karat is gold jewellery in Qatar?', 'Mainly 22K and 21K for traditional pieces, 18K for modern designs, and 24K for investment bars and coins.'],
+      ['Why do Qatari gold prices track the world price so closely?', 'The riyal is pegged to the US dollar at 3.64, so there is no exchange-rate movement between the world price and the local price.']
+    ]
+  },
+  {
+    slug: 'buying-gold-oman',
+    title: 'Buying Gold in Oman: Muttrah Souk, 22K and Prices',
+    h1: 'Buying gold in Oman: Muttrah souk, 22K and prices',
+    desc: 'How to buy gold in Oman: 22K and 21K in Muttrah Souq, no VAT on gold, making charges, and why rial prices track the world market.',
+    teaser: 'Muttrah souk and the VAT-free rial',
+    intro: 'Omani gold: old souk, pegged rial, no VAT',
+    body: `
+<p>Oman's gold trade centers on one of Arabia's most atmospheric markets — Muttrah Souq — and runs on very buyer-friendly rules.</p>
+<h3>Karats in Oman</h3>
+<p>Omani jewellery is mostly <strong>22K</strong> and <strong>21K</strong>, with traditional Omani silver-and-gold bridal work as the heritage specialty; <a href="/en/gold-18k/">18K</a> covers modern pieces and <a href="/en/gold-24k/">24K</a> bars serve savers. Shops quote the gram rate per karat daily.</p>
+<h3>No VAT on gold</h3>
+<p>Oman's 5% VAT does not apply to investment gold, and jewellery pricing remains simple: metal value at the day's rate plus workmanship. The rial is pegged at <strong>0.3845 per US dollar</strong>, so prices track the world <a href="/en/gold-price-usd/">USD price</a> directly.</p>
+<h3>Where to buy</h3>
+<p>Muttrah Souq in Muscat is the classic destination; Salalah's souq serves the south. Compare making charges — plain pieces carry a few riyals per gram, traditional bridal sets far more.</p>
+<h3>What buyers can do</h3>
+<p>Check the day's gram rate first, negotiate workmanship separately, and take an itemized invoice. For savings, 24K bars and coins skip workmanship entirely. See today's <a href="/en/oman/">gold price in Oman</a>. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['Is gold taxed in Oman?', 'Investment gold is exempt from Oman\'s 5% VAT; jewellery pricing is metal value plus workmanship.'],
+      ['What karat is Omani gold jewellery?', 'Mostly 22K and 21K, with 18K for modern pieces and 24K for bars and coins.'],
+      ['Why do Omani gold prices track the world market?', 'The rial is pegged to the US dollar at 0.3845, so there is no currency movement between the world price and the local price.']
+    ]
+  },
+  {
+    slug: 'buying-gold-bahrain',
+    title: 'Buying Gold in Bahrain: 21K and 22K, VAT and Prices',
+    h1: 'Buying gold in Bahrain: 21K and 22K, VAT and prices',
+    desc: 'How to buy gold in Bahrain: 21K and 22K jewellery in the Manama gold souk, 10% VAT on jewellery, making charges, and the pegged dinar.',
+    teaser: 'Pearl-diving money turned gold-souk tradition',
+    intro: 'Bahrain\'s gold souk predates its oil — the rules are simple',
+    body: `
+<p>Bahrain traded pearls and gold long before oil, and its Manama gold souk remains one of the Gulf's trusted markets.</p>
+<h3>The karats</h3>
+<p>Bahraini jewellery is traditionally <strong>21K</strong> and <strong>22K</strong>, with <a href="/en/gold-18k/">18K</a> for modern and diamond pieces and <a href="/en/gold-24k/">24K</a> for bars and coins. Shops display the gram rate per karat daily, based on the world <a href="/en/gold-price-usd/">USD price</a>.</p>
+<h3>VAT and the pegged dinar</h3>
+<p>Bahrain applies <strong>10% VAT</strong> on gold jewellery (investment gold of 99%+ is zero-rated). The dinar is pegged at <strong>0.376 per US dollar</strong>, so local prices track the world market exactly, plus workmanship and VAT.</p>
+<h3>What buyers can do</h3>
+<p>Shop the Manama souk and the gold city complex on the day's rate, negotiate making charges separately — plain bangles carry the lowest — and take an itemized invoice with weight, karat and charges. For savings, 24K bars and coins are zero-rated and workmanship-free. See today's <a href="/en/bahrain/">gold price in Bahrain</a>. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['Is there VAT on gold in Bahrain?', 'Yes — 10% VAT applies to gold jewellery. Investment gold of 99%+ purity is zero-rated.'],
+      ['What karat is Bahraini gold jewellery?', 'Traditionally 21K and 22K, with 18K for modern designs and 24K for bars and coins.'],
+      ['Why do Bahraini gold prices track the world price?', 'The dinar is pegged to the US dollar at 0.376, so there is no exchange-rate movement between world and local prices.']
+    ]
+  },
+  {
+    slug: 'why-gold-rises-egypt',
+    title: 'Why Is the Gold Price Rising in Egypt? Pound, Dollar and 21K',
+    h1: 'Why is the gold price rising in Egypt?',
+    desc: 'Why gold keeps climbing in Egypt: the global price, the pound\'s devaluations, and how the 21K gram price is formed — plus what Egyptian buyers watch.',
+    teaser: 'The pound, the dollar and the 21K gram',
+    intro: 'Egyptian gold is a currency story before anything else',
+    body: `
+<p>Few people watch gold as closely as Egyptians — and few currencies explain it as clearly as the pound.</p>
+<h3>1. The world price</h3>
+<p>The base is the global <a href="/en/gold-price-usd/">USD spot price</a>, at record highs on central-bank buying and rate-cut expectations.</p>
+<h3>2. The pound's devaluations multiply it</h3>
+<p>The formula: <strong>EGP price = USD price × USD/EGP</strong>. Successive devaluations (2022, 2023, March 2024) sent the pound from ~15 to ~50 per dollar — tripling the local gold price even where the world market moved modestly. Egyptians use gold as the household hedge, which keeps demand strong. Track the <a href="/en/dollar-egypt/">dollar rate in Egypt</a> beside gold.</p>
+<h3>3. The 21K standard and local premiums</h3>
+<p>Egyptian jewellery is <strong>21K (875)</strong> — the karat of the shabka and every family occasion. The iifra (souq) announces daily gram rates; in shortage periods, local prices have traded at premiums over the dollar-implied price when import supply tightened.</p>
+<h3>What buyers can do</h3>
+<p>Watch the dollar rate alongside gold, ask for the gram rate and workmanship (المصنعية) separately, and prefer 24K coins and bars for pure savings. See today's <a href="/en/egypt/">gold price in Egypt</a>. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['Why does gold keep rising in Egypt?', 'Record world prices plus repeated pound devaluations: gold is priced in dollars, so each fall in the pound raises the EGP price directly.'],
+      ['What karat is Egyptian gold jewellery?', 'Overwhelmingly 21K (87.5% pure) — the standard for the shabka and family gold, with 18K for modern pieces and 24K for coins and bars.'],
+      ['Why do Egyptian gold prices sometimes exceed the dollar-implied price?', 'When import supply tightens, local demand creates a premium over the world-price-converted rate. It usually narrows as supply normalizes.']
+    ]
+  },
+  {
+    slug: 'gold-iraq-21k-mithqal',
+    title: 'Gold in Iraq: 21K, the Mithqal and Prices in Dinars',
+    h1: 'Gold in Iraq: 21K, the mithqal and prices in dinars',
+    desc: 'How gold works in Iraq: 21K as the standard, the mithqal (5 g) as the quoting unit, and how dinar prices follow the dollar.',
+    teaser: 'One mithqal = 5 grams of 21K',
+    intro: 'Iraq quotes gold in a unit most of the world forgot: the mithqal',
+    body: `
+<p>Iraq's gold market speaks its own language — 21K gold quoted per mithqal — and it is simpler than it looks.</p>
+<h3>The mithqal</h3>
+<p>One <strong>mithqal = 5 grams</strong>. Iraqi shops announce the daily price of a mithqal of 21K gold, and everything else is derived from it: a gram is one-fifth, a bracelet's price is its weight in mithqals times the rate.</p>
+<h3>21K is the standard</h3>
+<p>Iraqi jewellery is almost entirely <strong>21K (875)</strong> — the karat of the mahar and every family gift. <a href="/en/gold-18k/">18K</a> covers modern pieces; savers buy 24K bars and coins or gold pounds (lira gold).</p>
+<h3>The dollar link</h3>
+<p>Iraq's economy runs largely on dollars, so gold follows the world <a href="/en/gold-price-usd/">USD price</a> × USD/IQD directly. The dinar's official rate has been stable, but street-rate movements still pass into gold. Follow the <a href="/en/dollar-iraq/">dollar rate in Iraq</a> beside today's <a href="/en/iraq/">gold price in Iraq</a>.</p>
+<h3>What buyers can do</h3>
+<p>Buy from the licensed souks of Baghdad (Kadhimiya) and the cities, check the day's mithqal rate, negotiate workmanship separately, and keep an itemized invoice. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['What is a mithqal of gold?', 'A mithqal is 5 grams — the traditional unit Iraqi gold shops use to quote the daily price of 21K gold.'],
+      ['What karat is Iraqi gold jewellery?', 'Almost entirely 21K (87.5% pure), with 18K for modern pieces and 24K for bars, coins and gold pounds.'],
+      ['How do Iraqi gold prices move?', 'With the world USD price times USD/IQD. The dinar\'s official rate is stable, but street-rate shifts still pass into gold prices.']
+    ]
+  },
+  {
+    slug: 'buying-gold-jordan',
+    title: 'Buying Gold in Jordan: 21K Jewellery and Prices in Dinars',
+    h1: 'Buying gold in Jordan: 21K jewellery and prices in dinars',
+    desc: 'How to buy gold in Jordan: 21K as the standard, the Jewellers\' Syndicate daily rates, making charges, and the pegged dinar.',
+    teaser: 'Syndicate rates, 21K and the pegged dinar',
+    intro: 'Jordan prices gold with unusual transparency — use it',
+    body: `
+<p>Jordan's gold market is one of the region's most transparent: the Jewellers' Syndicate publishes official daily rates that every shop follows.</p>
+<h3>Syndicate daily rates</h3>
+<p>The Jordanian Jewellers' Syndicate announces the gram price each morning for 24K, 21K and 18K, derived from the world <a href="/en/gold-price-usd/">USD price</a> at the day's rate. Shops price on this number plus workmanship (أجرة الصياغة), which is where the negotiation happens.</p>
+<h3>21K is the standard</h3>
+<p>Jordanian jewellery is traditionally <strong>21K</strong> — the karat of weddings and family gold — with <a href="/en/gold-18k/">18K</a> for modern and diamond pieces and <a href="/en/gold-24k/">24K</a> for bars, coins and the popular gold lira coins.</p>
+<h3>The pegged dinar</h3>
+<p>The dinar is pegged at <strong>0.709 per US dollar</strong>, so Jordanian gold tracks the world market directly with no currency noise.</p>
+<h3>What buyers can do</h3>
+<p>Check the syndicate rate before shopping (it is published daily), compare making charges between Downtown Amman shops, and take an itemized invoice. For savings, 24K coins and bars skip workmanship entirely. See today's <a href="/en/jordan/">gold price in Jordan</a>. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['Who sets gold prices in Jordan?', 'The Jewellers\' Syndicate publishes official daily gram rates for 24K, 21K and 18K based on the world price, and shops price on top of them.'],
+      ['What karat is Jordanian gold jewellery?', 'Traditionally 21K, with 18K for modern pieces and 24K for bars and coins.'],
+      ['Why do Jordanian gold prices track the world market?', 'The dinar is pegged to the US dollar at 0.709, so there is no currency movement between the world price and the local price.']
+    ]
+  }
+);
