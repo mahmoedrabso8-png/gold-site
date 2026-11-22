@@ -69,7 +69,8 @@ export function pages(ctx) {
     ['PKR', 'روبية باكستانية', 'Pakistani rupee', 0, 0], ['BDT', 'تاكا بنجلاديشي', 'Bangladeshi taka', 0, 0], ['TRY', 'ليرة تركية', 'Turkish lira', 0, 0],
     ['USD', 'دولار أمريكي', 'US dollar', 0, 2], ['GBP', 'جنيه إسترليني', 'British pound', 0, 2], ['CAD', 'دولار كندي', 'Canadian dollar', 0, 2], ['AUD', 'دولار أسترالي', 'Australian dollar', 0, 2],
     ['PHP', 'بيسو فلبيني', 'Philippine peso', 0, 0], ['MYR', 'رينغيت ماليزي', 'Malaysian ringgit', 0, 2], ['NPR', 'روبية نيبالية', 'Nepalese rupee', 0, 0], ['ZAR', 'راند جنوب أفريقيا', 'South African rand', 0, 2],
-    ['IQD', 'دينار عراقي', 'Iraqi dinar', 0, 0], ['JOD', 'دينار أردني', 'Jordanian dinar', 0, 3], ['MAD', 'درهم مغربي', 'Moroccan dirham', 0, 2], ['DZD', 'دينار جزائري', 'Algerian dinar', 0, 0]];
+    ['IQD', 'دينار عراقي', 'Iraqi dinar', 0, 0], ['JOD', 'دينار أردني', 'Jordanian dinar', 0, 3], ['MAD', 'درهم مغربي', 'Moroccan dirham', 0, 2], ['DZD', 'دينار جزائري', 'Algerian dinar', 0, 0],
+    ['IDR', 'روبية إندونيسية', 'Indonesian rupiah', 0, 0], ['THB', 'باهت تايلاندي', 'Thai baht', 0, 2], ['VND', 'دونغ فيتنامي', 'Vietnamese dong', 0, 0], ['SGD', 'دولار سنغافوري', 'Singapore dollar', 0, 2]];
   const TOLA = 11.6638;
 
   // ── أجزاء مشتركة ──────────────────────────────────────
@@ -99,7 +100,7 @@ export function pages(ctx) {
     en: [['gold-22k', '22K gold rate', 'Popular for Indian jewellery'], ['gold-24k', '24K gold rate', 'Pure gold & bars'], ['gold-21k', '21K gold rate', 'Gulf jewellery'], ['gold-18k', '18K gold rate', 'Diamond jewellery'],
       ['gold-price-usd', 'Gold price in USD', 'Live ounce XAU/USD'], ['silver', 'Silver price', 'Per gram, ounce & kg'],
       ['gcc', 'Gulf gold prices', 'Compare 6 countries'], ['saudi', 'Gold price in Saudi Arabia', 'In SAR'], ['kuwait', 'Gold price in Kuwait', 'In KWD'],
-      ['qatar', 'Gold price in Qatar', 'In QAR'], ['oman', 'Gold price in Oman', 'In OMR'], ['bahrain', 'Gold price in Bahrain', 'In BHD'], ['egypt', 'Gold price in Egypt', 'In EGP'], ['india', 'Gold rate in India', 'In INR, 22K & 24K'], ['pakistan', 'Gold rate in Pakistan', 'In PKR, per tola'], ['bangladesh', 'Gold price in Bangladesh', 'In BDT'], ['turkey', 'Gold price in Turkey', 'Gram altın in TRY'], ['usa', 'Gold price in USA', 'In USD'], ['uk', 'Gold price in UK', 'In GBP'], ['canada', 'Gold price in Canada', 'In CAD'], ['australia', 'Gold price in Australia', 'In AUD'], ['philippines', 'Gold price in Philippines', 'In PHP'], ['malaysia', 'Gold price in Malaysia', 'Emas 916 in MYR'], ['nepal', 'Gold price in Nepal', 'In NPR, per tola'], ['southafrica', 'Gold price in South Africa', 'Krugerrand in ZAR'], ['iraq', 'Gold price in Iraq', 'In IQD'], ['jordan', 'Gold price in Jordan', 'In JOD'], ['morocco', 'Gold price in Morocco', 'In MAD'], ['algeria', 'Gold price in Algeria', 'In DZD'], ['gold-rate-inr', 'Gold rate in INR', 'Dubai price in rupees'], ['gold-rate-pkr', 'Gold rate in PKR', 'Per tola in rupees'],
+      ['qatar', 'Gold price in Qatar', 'In QAR'], ['oman', 'Gold price in Oman', 'In OMR'], ['bahrain', 'Gold price in Bahrain', 'In BHD'], ['egypt', 'Gold price in Egypt', 'In EGP'], ['india', 'Gold rate in India', 'In INR, 22K & 24K'], ['pakistan', 'Gold rate in Pakistan', 'In PKR, per tola'], ['bangladesh', 'Gold price in Bangladesh', 'In BDT'], ['turkey', 'Gold price in Turkey', 'Gram altın in TRY'], ['usa', 'Gold price in USA', 'In USD'], ['uk', 'Gold price in UK', 'In GBP'], ['canada', 'Gold price in Canada', 'In CAD'], ['australia', 'Gold price in Australia', 'In AUD'], ['philippines', 'Gold price in Philippines', 'In PHP'], ['malaysia', 'Gold price in Malaysia', 'Emas 916 in MYR'], ['nepal', 'Gold price in Nepal', 'In NPR, per tola'], ['southafrica', 'Gold price in South Africa', 'Krugerrand in ZAR'], ['iraq', 'Gold price in Iraq', 'In IQD'], ['jordan', 'Gold price in Jordan', 'In JOD'], ['morocco', 'Gold price in Morocco', 'In MAD'], ['algeria', 'Gold price in Algeria', 'In DZD'], ['indonesia', 'Gold price in Indonesia', 'Antam bars in IDR'], ['thailand', 'Gold price in Thailand', 'Per baht weight, THB'], ['vietnam', 'Gold price in Vietnam', 'SJC bars in VND'], ['singapore', 'Gold price in Singapore', 'GST-free IPM in SGD'], ['gold-rate-inr', 'Gold rate in INR', 'Dubai price in rupees'], ['gold-rate-pkr', 'Gold rate in PKR', 'Per tola in rupees'],
       ['gold-bars', 'Gold bar prices', '1 g to 1 kg, tola bars'], ['gold-calculator', 'Gold calculator', 'With making charges & VAT'], ['gold-price-yesterday', 'Last 10 days', 'Yesterday\'s gold rate'], ['zakat-calculator', 'Zakat calculator', 'Nisab and zakat due']]
   };
   const links = (L, skip) => `<section class="card-section"><h2>${L === 'en' ? 'More gold prices & tools' : 'أسعار وأدوات أخرى'}</h2><div class="links-grid">${LINKS[L].filter(l => l[0] !== skip).map(([s, n, d]) => `<a class="link-card" href="${url(L, s)}">${n}<span>${d}</span></a>`).join('')}</div></section>`;
@@ -884,6 +885,46 @@ ${links('ar', '')}`,
         ['What is the 18K gold price in Algeria today?', 'The live 18K price per gram in Algerian dinars is shown in the price table above and refreshes about every 5 minutes. It is the raw gold price without making charges.'],
         ['Which karat is most common in Algeria?', '18K is the standard karat for Algerian jewellery, while 24K is bought as bars and coins for saving.'],
         ['Why do Algerian shop prices differ from this page?', 'The rate here is the raw gold value calculated from the global price and the dinar exchange rate. Shops add making charges and their margin per piece.']
+      ] },
+    indonesia: { code: 'IDR', d: 0, vat: 0, peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,
+      ar: { n: 'إندونيسيا', in: 'في إندونيسيا', cur: 'روبية', curS: 'روبية', cities: '' },
+      en: { n: 'Indonesia', adj: 'Indonesian', cur: 'Indonesian rupiah', cities: 'Jakarta, Surabaya, Bandung and Medan' },
+      noteAr: '',
+      noteEn: 'The Indonesian rupiah floats freely, so the gold price in IDR moves with both the global price and the exchange rate. Indonesia has a strong 24K saving culture: Antam bars (Logam Mulia, the state refiner) are the standard investment product and trade at a premium over the raw rate shown here, while everyday jewellery is often made in lower local purities. Gold bars in Indonesia are priced per gram with buyback spreads at official boutiques.',
+      faqEn: [
+        ['What is the gold price in Indonesia today?', 'The live price per gram in Indonesian rupiah is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw gold rate without premiums or making charges.'],
+        ['What is an Antam gold bar?', 'A bar produced by Logam Mulia, the precious-metal refinery of the Indonesian state miner Antam. It is the standard gold investment product in Indonesia and trades at a premium over the international rate shown here.'],
+        ['Which karat is most common in Indonesia?', 'For saving, Indonesians prefer 24K bars and coins. Jewellery is often made in lower local purities as well as 18K and 22K.']
+      ] },
+    thailand: { code: 'THB', d: 2, vat: 0, peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,
+      ar: { n: 'تايلاند', in: 'في تايلاند', cur: 'باهت', curS: 'باهت', cities: '' },
+      en: { n: 'Thailand', adj: 'Thai', cur: 'Thai baht', cities: 'Bangkok, Chiang Mai, Phuket and Hat Yai' },
+      noteAr: '',
+      noteEn: 'The Thai baht floats freely, so the gold price in THB moves with both the global price and the exchange rate. Thailand has its own gold standard: jewellery and bars are 96.5% pure (roughly 23K) and are traded per baht of weight, where one baht of gold equals 15.244 grams. The Gold Traders Association announces reference prices several times a day in Bangkok, and those rates track the international price shown here plus a small local premium.',
+      faqEn: [
+        ['What is the gold price in Thailand today?', 'The live price per gram in Thai baht is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw international rate without the local premium.'],
+        ['How much is one baht of gold in grams?', 'In Thailand, gold is traded per baht of weight: one baht of gold equals 15.244 grams. A one-baht 24K gold bar is worth about 15.244 times the per-gram price shown on this page.'],
+        ['What purity is Thai gold?', 'Standard Thai gold, both bars and jewellery, is 96.5% pure, which is roughly 23 karat. International-standard 24K and 18K pieces are also sold.']
+      ] },
+    vietnam: { code: 'VND', d: 0, vat: 0, peg: '', pegEn: 'managed against the US dollar, so its rate moves daily', fx: true, enOnly: true,
+      ar: { n: 'فيتنام', in: 'في فيتنام', cur: 'دونغ', curS: 'دونغ', cities: '' },
+      en: { n: 'Vietnam', adj: 'Vietnamese', cur: 'Vietnamese dong', cities: 'Hanoi, Ho Chi Minh City, Da Nang and Hai Phong' },
+      noteAr: '',
+      noteEn: 'The Vietnamese dong is managed against the US dollar, so the gold price in VND moves with both the global price and the exchange rate. Vietnam has one of the strongest gold-saving cultures in Asia: 24K SJC bars are the national standard and are traded per tael (luong), where one tael equals 37.5 grams. SJC bars often carry a large premium over the international rate shown here because of tight supply controls, while jewellery rings (nhan) trade closer to the international price.',
+      faqEn: [
+        ['What is the gold price in Vietnam today?', 'The live price per gram in Vietnamese dong is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw international rate without the local premium.'],
+        ['How much is one tael of gold in grams?', 'In Vietnam, gold is traded per tael (luong or cay): one tael equals 37.5 grams. A one-tael 24K bar is worth about 37.5 times the per-gram price shown on this page.'],
+        ['What is an SJC gold bar?', 'A 24K bar produced by the state-licensed Saigon Jewelry Company, the standard gold investment product in Vietnam. SJC bars often trade at a significant premium over the international rate because of supply controls.']
+      ] },
+    singapore: { code: 'SGD', d: 2, vat: 0, peg: '', pegEn: 'managed against a trade-weighted basket of currencies, so its rate moves daily', fx: true, enOnly: true,
+      ar: { n: 'سنغافورة', in: 'في سنغافورة', cur: 'دولار', curS: 'دولار', cities: '' },
+      en: { n: 'Singapore', adj: 'Singaporean', cur: 'Singapore dollar', cities: 'Little India, Chinatown and the city centre' },
+      noteAr: '',
+      noteEn: 'The Singapore dollar is managed against a trade-weighted basket of currencies, so the gold price in SGD moves with both the global price and the exchange rate. Singapore is a major gold-trading hub: investment precious metals (qualifying bars and coins) are exempt from GST, while jewellery carries 9% GST in the shop price. Jewellery in Singapore is most often 22K (916) or 18K.',
+      faqEn: [
+        ['What is the gold price in Singapore today?', 'The live price per gram in Singapore dollars is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw gold rate without GST or making charges.'],
+        ['Is gold taxed in Singapore?', 'Investment precious metals (qualifying bars and coins) are exempt from GST in Singapore. Gold jewellery carries 9% GST, included in the shop price.'],
+        ['Which karat is most common in Singapore?', 'Most jewellery in Singapore is 22K (marked 916) or 18K, while 24K is bought as bars and coins for investment.']
       ] }
   };
   const COUNTRY_PAGES = { ...GCC, ...OTHERS };
