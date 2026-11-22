@@ -764,3 +764,145 @@ ARTICLES_EN.push(
     ]
   }
 );
+
+// ── Wave 2 batch C: Europe + Nigeria ──
+ARTICLES_EN.push(
+  {
+    slug: 'buying-gold-germany-vat-free',
+    title: 'Buying Gold in Germany: VAT-Free Bullion and 999 Bars',
+    h1: 'Buying gold in Germany: VAT-free bullion and 999 bars',
+    desc: 'How to buy gold in Germany: VAT-exempt investment gold, popular coins like the Krugerrand and Philharmoniker, dealer premiums, and the 999 purity standard.',
+    teaser: 'VAT rules, coins and German buying habits',
+    intro: 'Germans are Europe\'s biggest private gold buyers — the rules favour them',
+    body: `
+<p>Germans hold more private gold than the Bundesbank — and the tax rules are a big reason why.</p>
+<h3>Investment gold is VAT-free</h3>
+<p>Under EU rules, <strong>investment gold</strong> — bars and wafers of 99.5%+ purity and a list of qualifying coins — is <strong>exempt from VAT</strong> in Germany. Jewellery carries the normal 19% VAT, so serious buyers stick to bullion. Even better: private gains on gold held longer than one year are tax-free in Germany.</p>
+<h3>What Germans buy</h3>
+<p>The classics: <strong>Krugerrand</strong> (1 oz, 22K but priced as bullion), <strong>Philharmoniker</strong>, <strong>Maple Leaf</strong>, and 999.9 bars from 1 g to 1 kg from refiners like Heraeus and Degussa. Banks, dealers (pro aurum, ESG) and online shops all quote off the live <a href="/en/gold-price-usd/">USD price</a> converted to EUR.</p>
+<h3>Premiums and spreads</h3>
+<p>1 oz coins typically carry 2–4% over spot; bars over 100 g get close to 1%. Tiny 1 g bars cost 10%+ — fine as gifts, poor as savings. Compare the dealer's buyback spread, not just the selling price.</p>
+<h3>What moves the EUR price</h3>
+<p>World price × USD/EUR. A weaker euro lifts German gold even in flat world markets — see the <a href="/en/dollar-germany/">dollar rate in Germany</a> and today's <a href="/en/germany/">gold price in Germany</a>. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['Is gold taxed in Germany?', 'Investment gold (99.5%+ bars and qualifying coins) is VAT-exempt, and private gains are tax-free after a one-year holding period. Jewellery carries 19% VAT.'],
+      ['Which gold coin is most popular in Germany?', 'The Krugerrand is the historical favourite; the Philharmoniker and Maple Leaf are close behind. All trade at small premiums over spot.'],
+      ['What purity is German investment gold?', 'Bars are 999.9 (99.99%); classic coins like the Krugerrand are 22K but contain a full ounce of pure gold and trade as bullion.']
+    ]
+  },
+  {
+    slug: 'gold-france-napoleon-18k',
+    title: 'Gold in France: Napoleon Coins, 18K Jewellery and Prices',
+    h1: 'Gold in France: Napoleon coins, 18K jewellery and prices',
+    desc: 'How gold works in France: the beloved 20-franc Napoleon, 18K (750) jewellery as the legal standard, premiums, and how the daily price in euros is formed.',
+    teaser: 'The coin French families pass down generations',
+    intro: 'France saves in Napoleons and wears 18K — here is the system',
+    body: `
+<p>France has a gold tradition like no other: millions of families keep <strong>Napoleon coins</strong> at home, and French jewellery is legally anchored to 18K.</p>
+<h3>The 20-franc Napoleon</h3>
+<p>The 20-franc gold Napoleon (5.81 g of 90% pure gold) is France's savings coin, minted since 1803 and still traded daily. Dealers quote its price off the live <a href="/en/gold-price-usd/">USD spot</a> in EUR plus a small premium that widens whenever savers rush in — the premium itself is a French fear gauge.</p>
+<h3>18K by law and by taste</h3>
+<p>French jewellery is overwhelmingly <strong>18 karat (750)</strong> — the traditional legal standard for "or" in France, stamped with the eagle's head hallmark. Anything below 750 cannot be marketed simply as gold. See the live <a href="/en/gold-18k/">18K rate</a>.</p>
+<h3>Taxes</h3>
+<p>Investment gold (bars 995+, listed coins) is VAT-free; sales of bullion carry a flat precious-metals tax (around 11.5%) unless you document the purchase and opt for the capital-gains regime. Keep every invoice.</p>
+<h3>What moves the EUR price</h3>
+<p>World price × USD/EUR. Follow the <a href="/en/dollar-france/">dollar rate in France</a> and today's <a href="/en/france/">gold price in France</a>. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['What is a Napoleon gold coin?', 'A French 20-franc gold coin (5.81 g, 90% pure) first minted under Napoleon Bonaparte — still the standard savings coin traded by French dealers.'],
+      ['Why is French jewellery 18K?', '18K (750) is the traditional legal standard for gold jewellery in France, marked with the eagle\'s head hallmark — a balance of colour, value and durability.'],
+      ['Is gold taxed in France?', 'Investment gold is VAT-free when bought. On resale there is a flat precious-metals tax (about 11.5%) or, with proof of purchase, the capital-gains regime.']
+    ]
+  },
+  {
+    slug: 'gold-italy-18k-standard',
+    title: 'Gold in Italy: Why 18K (750) Is the National Standard',
+    h1: 'Gold in Italy: why 18K (750) is the national standard',
+    desc: 'Why Italian jewellery is 18K (750): the hallmark system, Italy\'s goldsmith tradition, and how the daily gold price in euros works for buyers and sellers.',
+    teaser: 'The 750 stamp behind Italian gold',
+    intro: 'Italy makes the world\'s finest jewellery — almost all of it 18K',
+    body: `
+<p>Italy is a global jewellery powerhouse — Vicenza, Arezzo, Valenza — and nearly everything it makes is stamped <strong>750</strong>.</p>
+<h3>Why 18K rules</h3>
+<p>Italian law and tradition settled on <strong>18 karat (75% pure)</strong> for jewellery: high enough to hold real value, hard enough for the intricate chains, mesh and cameos Italian workshops are famous for. Every piece carries the hallmark "750" with the maker's registered mark. See the live <a href="/en/gold-18k/">18K rate</a>.</p>
+<h3>Buying and selling</h3>
+<p>Jewellers price pieces as metal weight (at the day's 750 rate, from the world <a href="/en/gold-price-usd/">USD price</a> × USD/EUR) plus lavorazione — workmanship — which is where Italian craft commands its premium. When selling, "compro oro" shops pay for metal value only, so keep design value in mind when buying.</p>
+<h3>Investment gold</h3>
+<p>For pure saving, Italians buy VAT-free investment gold: 999.9 bars and coins (Krugerrand, Marengo 20 lire). Italy's old 20-lira Marengo coin is the local classic, like France's Napoleon.</p>
+<h3>What moves the EUR price</h3>
+<p>World price × USD/EUR — see the <a href="/en/dollar-italy/">dollar rate in Italy</a> and today's <a href="/en/italy/">gold price in Italy</a>. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['What does 750 mean on Italian gold?', '750 means 75% pure gold — 18 karat — the legal and traditional standard for Italian jewellery, always stamped with the maker\'s registered hallmark.'],
+      ['Is 18K gold a good store of value?', 'It keeps 75% of the pure-gold value per gram, but when reselling you are paid for metal only. For savings, VAT-free bars and coins track the price better.'],
+      ['What is the Marengo coin?', 'The Italian 20-lira gold coin (about 6.45 g, 90% pure) — the classic Italian savings coin, comparable to the French Napoleon.']
+    ]
+  },
+  {
+    slug: 'gold-spain-oro-18k',
+    title: 'Gold in Spain: Oro de 18 Kilates, Prices and Taxes',
+    h1: 'Gold in Spain: oro de 18 kilates, prices and taxes',
+    desc: 'How gold works in Spain: 18K (750) as the jewellery standard, contraste hallmarks, VAT-free investment gold, and how the daily price in euros is formed.',
+    teaser: 'Oro de ley and the contraste stamp',
+    intro: 'Spanish gold runs on 18K jewellery and VAT-free bullion',
+    body: `
+<p>In Spain, "oro de primera ley" means one thing: <strong>18 karat</strong>. The system is simple once you know the stamps.</p>
+<h3>18K is the standard</h3>
+<p>Spanish jewellery is traditionally <strong>18K (750)</strong> — "oro de ley" — hallmarked with the piece's purity and the official contraste (assay) mark. Lower-karat pieces exist (9K in fashion chains) but 18K keeps the resale value. Check the live <a href="/en/gold-18k/">18K rate</a>.</p>
+<h3>Investment gold is VAT-free</h3>
+<p>Bars of 99.5%+ and qualifying coins trade <strong>without IVA</strong> in Spain, making bullion far more efficient than jewellery for savings. Spreads at Madrid dealers run a few percent on 1 oz coins, less on larger bars.</p>
+<h3>How prices are formed</h3>
+<p>Everything derives from the world <a href="/en/gold-price-usd/">USD price</a> × USD/EUR. Jewellers quote the day's 18K gram price and add workmanship per piece; "compro oro" shops buy back at metal value minus a margin. Follow the <a href="/en/dollar-spain/">dollar rate in Spain</a> beside today's <a href="/en/spain/">gold price in Spain</a>.</p>
+<h3>What buyers can do</h3>
+<p>Check the contraste hallmark, ask for the gram price and workmanship separately, and keep invoices — reselling documented pieces is far easier. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['What is oro de ley in Spain?', '"Oro de ley" is 18-karat gold (75% pure) — Spain\'s traditional standard for quality jewellery, hallmarked with the purity and contraste marks.'],
+      ['Is gold taxed in Spain?', 'Investment gold (99.5%+ bars and listed coins) is exempt from IVA; jewellery carries the standard 21% IVA, so savers prefer bullion.'],
+      ['What is the contraste mark?', 'The official Spanish assay hallmark guaranteeing the stated purity — always check it when buying or selling gold in Spain.']
+    ]
+  },
+  {
+    slug: 'buying-gold-switzerland-pamp',
+    title: 'Buying Gold in Switzerland: PAMP Bars, Vaults and Prices',
+    h1: 'Buying gold in Switzerland: PAMP bars, vaults and prices',
+    desc: 'Why Switzerland is the world\'s gold refinery: PAMP and Valcambi bars, VAT-free investment gold, bank vaults, and how prices in francs are formed.',
+    teaser: 'Where most of the world\'s gold gets refined',
+    intro: 'Switzerland refines most of the world\'s gold — buying there is a craft',
+    body: `
+<p>Switzerland refines the majority of the world's mined gold. If you buy a 999.9 bar anywhere on earth, odds are it passed through Ticino.</p>
+<h3>The refinery capital</h3>
+<p><strong>PAMP</strong>, <strong>Valcambi</strong>, Argor-Heraeus and Metalor — four of the world's great refiners — are Swiss. Their 999.9 bars, especially the PAMP Lady Fortuna, are global benchmarks and buyable in Switzerland at tight premiums.</p>
+<h3>Taxes and the Vreneli</h3>
+<p>Investment gold is <strong>VAT-free</strong> in Switzerland (one reason the trade concentrates there); jewellery carries 8.1% VAT. The national coin is the 20-franc <strong>Goldvreneli</strong> (5.81 g, 90%) — the Swiss answer to the Napoleon.</p>
+<h3>Vaulting culture</h3>
+<p>Swiss banks and private vaults (including alpine facilities outside the banking system) store gold for clients worldwide. Allocated storage typically costs 0.5–1% per year; some buyers combine purchase and vaulting in one contract.</p>
+<h3>What moves the CHF price</h3>
+<p>World <a href="/en/gold-price-usd/">USD price</a> × USD/CHF. The strong franc historically dampened local gold moves — see the <a href="/en/dollar-switzerland/">dollar rate in Switzerland</a> and today's <a href="/en/switzerland/">gold price in Switzerland</a>. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['Why is Switzerland famous for gold?', 'It refines most of the world\'s mined gold (PAMP, Valcambi, Argor-Heraeus, Metalor) and combines VAT-free investment gold with world-class vaulting.'],
+      ['What is a PAMP bar?', 'A 999.9 fine gold bar made by PAMP in Ticino — the Lady Fortuna design is the world\'s best-known retail gold bar.'],
+      ['What is the Goldvreneli?', 'The Swiss 20-franc gold coin (5.81 g, 90% pure) — the classic Swiss savings coin, traded by every dealer.']
+    ]
+  },
+  {
+    slug: 'why-gold-rises-nigeria',
+    title: 'Why Is the Gold Price Rising in Nigeria? Naira and Inflation',
+    h1: 'Why is the gold price rising in Nigeria?',
+    desc: 'Why gold keeps climbing in Nigeria: the global price, naira devaluation, and inflation hedging — plus how Nigerians buy gold in grams, coins and jewellery.',
+    teaser: 'What naira devaluation does to gold prices',
+    intro: 'In Nigeria, gold is a dollar asset — and the naira keeps proving it',
+    body: `
+<p>Gold in Nigeria has become dramatically more expensive in naira terms. The story is mostly the currency.</p>
+<h3>1. The world price</h3>
+<p>The base is the global <a href="/en/gold-price-usd/">USD spot price</a> — at record highs on central-bank buying and rate-cut expectations.</p>
+<h3>2. Naira devaluation multiplies it</h3>
+<p>The formula: <strong>NGN price = USD price × USD/NGN</strong>. Repeated naira devaluations — including the sharp 2023–2024 slide — multiplied local gold prices even where the world market moved little. For Nigerian savers, gold is effectively a way to hold dollars. Watch the <a href="/en/dollar-nigeria/">dollar rate in Nigeria</a> beside gold.</p>
+<h3>3. How Nigerians buy gold</h3>
+<p>Through jewellery (18K and 22K, priced per gram with workmanship), gold coins and bars from dealers in Lagos and Abuja, and increasingly digital gold platforms. Nigeria is also a gold producer — artisanal and industrial mining in states like Osun and Zamfara — but most refined gold still follows import pricing.</p>
+<h3>What buyers can do</h3>
+<p>Verify purity (ask for 18K/22K stamps), buy from registered dealers with receipts, and compare per-gram prices across sellers — spreads are wide. See today's <a href="/en/nigeria/">gold price in Nigeria</a>. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['Why is gold so expensive in Nigeria now?', 'Record global prices plus repeated naira devaluation: gold is priced in dollars, so each naira slide raises the local price even in flat world markets.'],
+      ['Is gold a good hedge in Nigeria?', 'It has protected savings against naira depreciation, which is why demand keeps growing. Prices remain volatile, so gradual buying is the common approach.'],
+      ['What karat gold is sold in Nigeria?', 'Mostly 18K and 22K jewellery priced per gram, plus investment coins and bars from registered dealers.']
+    ]
+  }
+);
