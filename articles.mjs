@@ -1325,3 +1325,30 @@ ARTICLES_EN.push(
     ]
   }
 );
+
+// ── Wave 2 bonus: South Africa (completes 40/40) ──
+ARTICLES_EN.push(
+  {
+    slug: 'gold-southafrica-krugerrand',
+    title: 'Gold in South Africa: the Krugerrand, Prices and the Rand',
+    h1: 'Gold in South Africa: the Krugerrand, prices and the rand',
+    desc: 'How gold works in South Africa: the Krugerrand — the world\'s first bullion coin — mining heritage, and how the price in rands follows the dollar.',
+    teaser: 'The country that invented the bullion coin',
+    intro: 'South Africa put gold in everyone\'s reach with one coin',
+    body: `
+<p>South Africa mined much of the gold humanity owns — and in 1967 it invented the modern bullion coin.</p>
+<h3>The Krugerrand</h3>
+<p>The <strong>Krugerrand</strong> was the world's first coin minted to be bought as gold: 22K (91.7%) but containing exactly <strong>1 troy ounce of pure gold</strong> (33.93 g total), priced off the world <a href="/en/gold-price-usd;">USD price</a> plus a small premium. Over 60 million have been sold, and every South African dealer quotes it daily — also in ½, ¼ and 1/10 oz sizes.</p>
+<h3>The rand link</h3>
+<p>Gold in rands = world price × USD/ZAR. The rand is one of the world's most traded emerging-market currencies — and one of the most volatile — so South African gold moves on both the metal and the currency. For local savers that is the point: Krugerrands hedge the rand. Track the <a href="/en/dollar-southafrica/">dollar rate in South Africa</a> beside today's <a href="/en/southafrica/">gold price in South Africa</a>.</p>
+<h3>Jewellery and buying</h3>
+<p>South African jewellery is mostly 9K and 18K, but serious buying flows through the Rand Refinery (the Krugerrand's maker), dealers and banks. Krugerrands are legal tender — no VAT on them as currency, which keeps spreads tight.</p>
+<h3>What buyers can do</h3>
+<p>Compare premiums on full and fractional Krugerrands across dealers, buy from Rand Refinery-accredited sellers, and keep certificates and receipts. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['What is a Krugerrand?', 'South Africa\'s bullion coin — the world\'s first — 22 karat but containing exactly one troy ounce of pure gold. It is legal tender and priced off the world price plus a small premium.'],
+      ['Why is the Krugerrand 22K and not 24K?', 'The copper alloy makes it durable for handling and circulation; it still contains a full ounce of pure gold, which is what its price tracks.'],
+      ['Is there VAT on Krugerrands?', 'No — as legal-tender currency, Krugerrands are not subject to VAT in South Africa, which keeps buy-sell spreads tight.']
+    ]
+  }
+);

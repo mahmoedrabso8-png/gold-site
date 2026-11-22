@@ -1148,7 +1148,7 @@ ${links('ar', '')}`,
     pakistan: 'why-gold-rises-pakistan', bangladesh: 'why-gold-rises-bangladesh', nepal: 'why-gold-rises-nepal', srilanka: 'why-gold-rises-srilanka', turkey: 'why-gold-rises-turkey', malaysia: 'emas-916-vs-999-malaysia',
     indonesia: 'why-gold-rises-indonesia', thailand: 'thai-gold-baht-purity-guide', vietnam: 'vietnam-gold-sjc-tael-guide', singapore: 'buying-gold-singapore-gst-free', japan: 'why-gold-rises-japan', china: 'gold-china-999-shanghai-premium',
     germany: 'buying-gold-germany-vat-free', france: 'gold-france-napoleon-18k', italy: 'gold-italy-18k-standard', spain: 'gold-spain-oro-18k', switzerland: 'buying-gold-switzerland-pamp', nigeria: 'why-gold-rises-nigeria',
-    ghana: 'gold-ghana-prices-cedi', kenya: 'why-gold-rises-kenya', mexico: 'gold-mexico-centenario', brazil: 'gold-brazil-ouro-750', saudi: 'buying-gold-saudi-arabia', kuwait: 'buying-gold-kuwait',
+    ghana: 'gold-ghana-prices-cedi', kenya: 'why-gold-rises-kenya', mexico: 'gold-mexico-centenario', brazil: 'gold-brazil-ouro-750', saudi: 'buying-gold-saudi-arabia', kuwait: 'buying-gold-kuwait', southafrica: 'gold-southafrica-krugerrand',
     qatar: 'buying-gold-qatar', oman: 'buying-gold-oman', bahrain: 'buying-gold-bahrain', egypt: 'why-gold-rises-egypt', iraq: 'gold-iraq-21k-mithqal', jordan: 'buying-gold-jordan',
     morocco: 'gold-morocco-18k', algeria: 'gold-algeria-18k', lebanon: 'gold-lebanon-dollar-pricing', tunisia: 'gold-tunisia-18k', libya: 'gold-libya-21k', yemen: 'gold-yemen-21k' };
   const ART_BY_SLUG = Object.fromEntries(ARTICLES_EN.map(a => [a.slug, a]));
