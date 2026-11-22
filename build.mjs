@@ -130,8 +130,8 @@ export const url = (lang, slug) => (lang === 'ar' ? '/' : `/${lang}/`) + (slug ?
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 
 const NAV = {
-  ar: [['', 'الرئيسية'], ['gold-21k', 'عيار 21'], ['gold-24k', 'عيار 24'], ['gold-22k', 'عيار 22'], ['gold-18k', 'عيار 18'], ['gcc', 'مقارنة الخليج'], ['gold-price-usd', 'السعر العالمي'], ['silver', 'الفضة'], ['gold-bars', 'السبائك'], ['gold-calculator', 'حاسبة الذهب'], ['zakat-calculator', 'زكاة الذهب'], ['gold-price-yesterday', 'سعر أمس'], ['gold-forecast', 'توقعات الذهب'], ['articles', 'مقالات'], ['assistant', 'المساعد'], ['history', 'الأرشيف']],
-  en: [['', 'Home'], ['gold-22k', '22K'], ['gold-24k', '24K'], ['gold-18k', '18K'], ['gold-21k', '21K'], ['gcc', 'Gulf compare'], ['gold-price-usd', 'Gold in USD'], ['silver', 'Silver'], ['gold-rate-inr', 'In INR'], ['gold-rate-pkr', 'In PKR'], ['gold-bars', 'Gold Bars'], ['gold-calculator', 'Calculator'], ['gold-price-yesterday', 'Last 10 days'], ['zakat-calculator', 'Zakat'], ['articles', 'Articles'], ['assistant', 'Assistant']],
+  ar: [['', 'الرئيسية'], ['gold-21k', 'عيار 21'], ['gold-24k', 'عيار 24'], ['gold-22k', 'عيار 22'], ['gold-18k', 'عيار 18'], ['gcc', 'مقارنة الخليج'], ['gold-price-usd', 'السعر العالمي'], ['silver', 'الفضة'], ['gold-bars', 'السبائك'], ['gold-calculator', 'حاسبة الذهب'], ['price-alerts', 'تنبيهات السعر'], ['zakat-calculator', 'زكاة الذهب'], ['gold-price-yesterday', 'سعر أمس'], ['gold-forecast', 'توقعات الذهب'], ['articles', 'مقالات'], ['assistant', 'المساعد'], ['history', 'الأرشيف']],
+  en: [['', 'Home'], ['gold-22k', '22K'], ['gold-24k', '24K'], ['gold-18k', '18K'], ['gold-21k', '21K'], ['gcc', 'Gulf compare'], ['gold-price-usd', 'Gold in USD'], ['silver', 'Silver'], ['gold-rate-inr', 'In INR'], ['gold-rate-pkr', 'In PKR'], ['gold-bars', 'Gold Bars'], ['gold-calculator', 'Calculator'], ['price-alerts', 'Price alerts'], ['gold-price-yesterday', 'Last 10 days'], ['zakat-calculator', 'Zakat'], ['articles', 'Articles'], ['assistant', 'Assistant']],
   tr: [['turkiye', 'Gram Altın'], ['turkiye/24-ayar-altin', '24 Ayar'], ['turkiye/22-ayar-altin', '22 Ayar'], ['turkiye/21-ayar-altin', '21 Ayar'], ['turkiye/18-ayar-altin', '18 Ayar']],
   hi: [['sone-ka-bhav', 'सोने का भाव'], ['sone-ka-bhav/24-karat', '24 कैरेट'], ['sone-ka-bhav/22-karat', '22 कैरेट'], ['sone-ka-bhav/18-karat', '18 कैरेट'], ['sone-ka-bhav/21-karat', '21 कैरेट']],
   ur: [['sone-ka-rate', 'سونے کا ریٹ'], ['sone-ka-rate/24-karat', '24 کیرٹ'], ['sone-ka-rate/22-karat', '22 کیرٹ'], ['sone-ka-rate/18-karat', '18 کیرٹ'], ['sone-ka-rate/21-karat', '21 کیرٹ']],
@@ -215,7 +215,7 @@ function layout(p, ctx) {
   else if (/^gold-(?:24|22|21|18)k$/.test(p.slug)) { ctry = 'uae'; sub = p.slug; }
   let body = !ctry && !p.fixed ? markCur(p.body) : p.body;
   if (ctry && !p.slug.endsWith('gold-calculator')) body = body.replace(/href="(\/(?:en\/)?gold-calculator\/)"/g, (_, href) => `href="${href}?country=${ctry}"`);
-  if(ctry && !sub && !p.slug.startsWith('dollar-') && (L==='ar'||en)){const market=ctx.markets.find(m=>m.slug===ctry);if(market){const chart=historySection(ctx.countryHistory,market,L,TODAY).replace('data-as-of=',`data-version="${ASSET_V.historydata}" data-as-of=`);body=body.replace('</section>','</section>'+chart);}}
+  if(ctry && !sub && !p.slug.startsWith('dollar-') && (L==='ar'||en)){const market=ctx.markets.find(m=>m.slug===ctry);if(market){const alertLink=`<p class="country-alert-link"><a href="${url(L,'price-alerts')}?country=${ctry}">${en?'Save a gold price target for this country':'احفظ سعراً مستهدفاً للذهب في هذه الدولة'}</a> <small>${en?'Free device alert while the site is open':'تنبيه مجاني على الجهاز أثناء فتح الموقع'}</small></p>`;const chart=alertLink+historySection(ctx.countryHistory,market,L,TODAY).replace('data-as-of=',`data-version="${ASSET_V.historydata}" data-as-of=`);body=body.replace('</section>','</section>'+chart);}}
   const cselect = `<select id="country" class="ctry" aria-label="${en ? 'Country' : tr ? 'Ülke' : L === 'hi' ? 'देश' : L === 'ur' ? 'ملک' : L === 'id' ? 'Negara' : L === 'ms' ? 'Negara' : L === 'tl' ? 'Bansa' : L === 'bn' ? 'দেশ' : 'الدولة'}">${COUNTRIES.map(([c, a, e]) => `<option value="${c}">${L === 'ar' ? a : e}</option>`).join('')}</select>`;
   const altLinks = p.noindex ? '' : p.alts
     ? p.alts.map(([h, u]) => `<link rel="alternate" hreflang="${h}" href="${SITE + u}" />`).join('\n  ')
@@ -363,7 +363,7 @@ function layout(p, ctx) {
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1982414703735990" crossorigin="anonymous"></script>
   ${schema.map(s => `<script type="application/ld+json">${JSON.stringify(s)}</script>`).join('\n  ')}
 </head>
-<body data-ctry="${ctry}" data-sub="${sub}"${p.fixed ? ' data-fixed="1"' : ''}${p.dollar ? ' data-dollar="1"' : ''} data-av-assist="${ASSET_V.assist}" data-av-kb="${ASSET_V.kb}">
+<body data-ctry="${ctry}" data-sub="${sub}"${p.fixed ? ' data-fixed="1"' : ''}${p.dollar ? ' data-dollar="1"' : ''} data-av-alerts="${ASSET_V.alerts}" data-av-assist="${ASSET_V.assist}" data-av-kb="${ASSET_V.kb}">
 <header class="site-header"><div class="container"><div class="header-inner">
   <a href="${url(L, langHome)}" class="logo" aria-label="${L === 'ar' ? 'أسعار الذهب اليوم، الرئيسية' : 'Gold Prices Today, home'}"><img src="/icons/icon-72x72.png" alt="" width="28" height="28" /><span>${tr ? 'Altın Fiyatları' : L === 'hi' ? 'सोने का भाव' : L === 'ur' ? 'سونے کا ریٹ' : L === 'id' ? 'Harga Emas' : L === 'bn' ? 'সোনার দাম' : L === 'tl' ? 'Presyo ng Ginto' : L === 'ms' ? 'Harga Emas' : en ? 'Gold Prices Today' : 'أسعار الذهب اليوم'}</span></a>
   ${toggle}
@@ -437,7 +437,7 @@ async function place(name, dirs, dest) {
   }
   throw new Error('missing file: ' + name);
 }
-for (const f of ['style.css', 'app.js', 'assistant.js']) await place(f, ['assets', '.'], path.join(OUT, 'assets', f));
+for (const f of ['style.css', 'app.js', 'assistant.js', 'alerts.js']) await place(f, ['assets', '.'], path.join(OUT, 'assets', f));
 
 /* قاعدة معرفة المساعد: تُبنى من مقالات الموقع وأسئلتها الشائعة (استرجاع نصي داخل المتصفح) */
 {
@@ -462,7 +462,7 @@ await place('og-image.png', ['static/icons', 'icons', '.'], path.join(OUT, 'icon
 
 // رقم نسخة من محتوى الملف نفسه: أي تعديل في السكريبت أو التصميم يغيّر الرابط، فالمتصفح يجيب النسخة الجديدة فوراً
 const hashOf = async f => crypto.createHash('md5').update(await fs.readFile(path.join(OUT, 'assets', f))).digest('hex').slice(0, 10);
-ASSET_V.js = await hashOf('app.js'); ASSET_V.css = await hashOf('style.css'); ASSET_V.assist = await hashOf('assistant.js'); ASSET_V.kb = await hashOf('assistant-kb.js');
+ASSET_V.alerts = await hashOf('alerts.js'); ASSET_V.js = await hashOf('app.js'); ASSET_V.css = await hashOf('style.css'); ASSET_V.assist = await hashOf('assistant.js'); ASSET_V.kb = await hashOf('assistant-kb.js');
 await fs.writeFile(path.join(OUT,'assets','gold-history.json'),JSON.stringify(ctx.countryHistory));
 const historyJs='(function(){'+(await fs.readFile('history-core.mjs','utf8')).replace(/^export /gm,'')+'\n'+await fs.readFile('history-client.js','utf8')+'})();';
 await fs.writeFile(path.join(OUT,'assets','history.js'),historyJs);

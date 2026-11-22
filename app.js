@@ -162,11 +162,11 @@ function paint(){
   });
 }
 function render(p){
-  G.g24=p.g24;
+  G.g24=p.g24;G.at=Date.parse(p.at)||0;G.stale=!!p.stale;
   paint();
   $$('[data-upd]').forEach(el=>el.textContent=dubaiTime(p.at));
   nisab();labels();
-  calc();zakat();
+  calc();zakat();if(window.GoldAlerts)window.GoldAlerts.check();
 }
 async function loadSilver(){
   if(!$('[data-m="ag"]')) return;
@@ -177,11 +177,13 @@ async function loadSilver(){
   }catch(e){}
 }
 async function loadFX(force){
+  if(G.fxLoading)return;
   if(!force&&!$$('[data-fxd]').length&&!(!PEG[SEL]&&!FIXED&&SEL)&&![...$$('[data-cur]'),...$$('#c-cur option')].some(el=>!PEG[(el.dataset.cur||el.value||'').toUpperCase()])) return;
+  G.fxLoading=true;
   try{
     const d=await (await fetch('https://open.er-api.com/v6/latest/USD')).json();
-    if(d.rates){G.fx=d.rates;paint();labels();nisab();calc();zakat();dconv('usd');$$('[data-fx]').forEach(el=>{const v=d.rates[el.dataset.fx];if(v) el.textContent=fmt(v/AED,4);});$$('[data-fxd]').forEach(el=>{const v=d.rates[el.dataset.fxd];if(v){const w=+(el.dataset.w||1);el.textContent=fmt(el.dataset.i?w/v:v*w,+el.dataset.d||0);}});}
-  }catch(e){}
+    if(d.rates){G.fx=d.rates;G.fxAt=Number(d.time_last_update_unix)*1000||0;G.fxFetchedAt=Date.now();if(window.GoldAlerts)window.GoldAlerts.check();paint();labels();nisab();calc();zakat();dconv('usd');$$('[data-fx]').forEach(el=>{const v=d.rates[el.dataset.fx];if(v) el.textContent=fmt(v/AED,4);});$$('[data-fxd]').forEach(el=>{const v=d.rates[el.dataset.fxd];if(v){const w=+(el.dataset.w||1);el.textContent=fmt(el.dataset.i?w/v:v*w,+el.dataset.d||0);}});}
+  }catch(e){}finally{G.fxLoading=false;}
 }
 
 function renderChange(pct){
@@ -203,6 +205,7 @@ async function load(){
     if(err) err.hidden=!p.stale, err.textContent=T.fail;
     try{const old=await rowBefore(24*3600*1000);if(old) renderChange((p.g24-old.price_24k)/old.price_24k*100);}catch(e){}
   }catch(e){
+    G.stale=true;if(window.GoldAlerts)window.GoldAlerts.check();
     if(err){err.hidden=false;err.textContent=T.fail;}
     if(G.g24){paint();labels();nisab();calc();zakat();}
   }finally{
@@ -291,7 +294,12 @@ const rb=$('#refresh');if(rb) rb.addEventListener('click',load);
 // نعرض الأسعار المكتوبة في الصفحة بعملة الدولة المختارة فوراً، قبل ما السعر المباشر يوصل
 paint();labels();nisab();
 load();spark();loadSilver();loadFX();
-setInterval(()=>{load();loadSilver();},CACHE_MS);
+setInterval(()=>{load();loadSilver();if(window.GoldAlerts?.hasActive()&&Date.now()-(G.fxFetchedAt||0)>6*3600000)loadFX(true);},CACHE_MS);
+
+/* ── Device-only gold targets ── */
+window.getGoldAlertSnapshot=()=>({g24:G.g24,at:G.at||0,stale:!!G.stale,fx:G.fx||{},fxAt:G.fxAt||0});
+window.ensureGoldAlertRates=()=>loadFX(true);
+try{if(document.getElementById('price-alerts')||(JSON.parse(localStorage.getItem('mael-gold-alerts-v1')||'[]')||[]).length){const script=document.createElement('script');script.src='/assets/alerts.js?v='+(document.body.dataset.avAlerts||'');document.head.appendChild(script);}}catch{}
 
 /* ── PWA ── */
 if('serviceWorker' in navigator) addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));

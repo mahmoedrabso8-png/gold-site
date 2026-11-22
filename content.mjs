@@ -1,10 +1,11 @@
+import { priceAlertPages } from './alerts-content.mjs';
 import { pilotGuide } from './local-guides.mjs';
 // محتوى صفحات الموقع (عربي + إنجليزي)
 import { ARTICLES, ARTICLES_EN } from './articles.mjs';
 
 export function pages(ctx) {
   const { P, FXD, updated, chg, daily, fmt, url, AD, TODAY } = ctx;
-  const out = [];
+  const out = priceAlertPages(ctx);
   const px = k => ctx.g24 ? fmt(ctx.g24 * k / 24) : null;   // سعر الغرام لإدراجه في العناوين
 
   // ── معلومات العيارات ─────────────────────────────────────
@@ -511,6 +512,7 @@ ${links('ar', '')}` });
 <p>يمكنك إيقاف الإعلانات المخصصة من <a href="https://www.google.com/settings/ads" rel="nofollow noopener" target="_blank">إعدادات الإعلانات في Google</a>، والاطلاع على <a href="https://policies.google.com/technologies/partner-sites" rel="nofollow noopener" target="_blank">كيف تستخدم Google البيانات</a>. كما يمكنك إيقاف ملفات تعريف الارتباط من إعدادات متصفحك.</p>
 <h3>خدمات خارجية</h3>
 <p>نجلب أسعار الذهب من Gold-API.com ونحفظ الأسعار (وليس بيانات الزوار) في قاعدة بيانات Supabase. ونستخدم خطوط Google Fonts، وتتم استضافة الموقع على Cloudflare التي قد تسجّل بيانات تقنية مثل عنوان IP لأغراض الأمان.</p>
+<h3>تنبيهات الأسعار على الجهاز</h3><p>إذا حفظت هدفاً لسعر الذهب، يُحفظ في التخزين المحلي لهذا المتصفح ولا يُرفع إلى خادمنا أو يتزامن مع أجهزة أخرى. يمكنك حذفه من صفحة التنبيهات أو بمسح بيانات الموقع. إشعارات المتصفح اختيارية وتتطلب إذنك؛ تظل التنبيهات مرتبطة بفتح الموقع ولا تعمل كمراسلات تليجرام أو بريد.</p>
 <h3>الأطفال</h3><p>الموقع غير موجّه للأطفال دون 13 عاماً ولا نجمع بياناتهم عن قصد.</p>
 <h3>التواصل</h3><p>لأي سؤال عن الخصوصية: <a href="mailto:contact@maelumatii.com">contact@maelumatii.com</a>.</p>
 </div></section>` });

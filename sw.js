@@ -48,3 +48,15 @@ async function staleWhileRevalidate(req){
   const net=fetch(req).then(res=>{if(res.ok) c.put(req,res.clone());return res;}).catch(()=>hit);
   return hit||net;
 }
+
+// This handles a click only. It does not poll prices or provide background delivery.
+self.addEventListener('notificationclick',event=>{
+  if(!event.notification.tag.startsWith('gold-target-'))return;
+  const path=event.notification.data?.url;
+  if(path!=='/price-alerts/'&&path!=='/en/price-alerts/')return;
+  event.notification.close();
+  const target=new URL(path,self.location.origin).href;
+  event.waitUntil(clients.matchAll({type:'window',includeUncontrolled:true}).then(windows=>{
+    const found=windows.find(w=>w.url===target);return found?found.focus():clients.openWindow(target);
+  }));
+});
