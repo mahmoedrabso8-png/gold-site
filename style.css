@@ -1,4 +1,8 @@
-:root{--g3:#fce35c;--g4:#f9d12a;--g5:#e8b800;--bg:#0d0d0d;--bc:#161616;--bc2:#1e1e1e;--bb:#2a2a2a;--t1:#f5f0e0;--t2:#b0a890;--t3:#777060;--grn:#22c55e;--red:#ef4444;--rsm:8px;--rmd:14px;--rlg:20px}
+:root{color-scheme:dark;--g3:#fce35c;--g4:#f9d12a;--g5:#e8b800;--bg:#14161b;--bc:#1b1e24;--bc2:#22262e;--bb:#2e333d;--t1:#eae6da;--t2:#a8a396;--t3:#7c7769;--grn:#22c55e;--red:#ef4444;--rsm:8px;--rmd:14px;--rlg:20px}
+:root[data-theme=light]{color-scheme:light;--g3:#8a6a00;--g4:#96760a;--g5:#b8900a;--bg:#f5f3ec;--bc:#ffffff;--bc2:#efebdf;--bb:#dcd6c4;--t1:#29241a;--t2:#5d5644;--t3:#8b8370}
+:root[data-theme=light] .update-badge{color:#15803d}
+:root[data-theme=light] .error-box{color:#b91c1c}
+:root[data-theme=light] .chat-nums div{background:rgba(0,0,0,.05)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px;scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
 body{background:var(--bg);color:var(--t1);font-family:'Cairo',system-ui,sans-serif;line-height:1.7;min-height:100dvh}
@@ -10,11 +14,14 @@ a{color:var(--g4)}
 .header-inner{display:flex;align-items:center;justify-content:space-between;height:56px;gap:10px}
 .logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:1rem;color:var(--g4);text-decoration:none;white-space:nowrap}
 .logo img{width:28px;height:28px;border-radius:7px}
-.header-side{display:flex;align-items:center;gap:12px}
+.header-side{display:flex;align-items:center;gap:12px;min-width:0}
+.theme-toggle{background:none;border:1px solid var(--bb);border-radius:6px;padding:2px 8px;font-size:.85rem;cursor:pointer;line-height:1.4}
 .header-time{font-size:.72rem;color:var(--t3);white-space:nowrap}
 .lang-link{font-size:.75rem;font-weight:700;color:var(--t2);text-decoration:none;border:1px solid var(--bb);border-radius:6px;padding:2px 8px}
 .lang-link:hover{color:var(--g4);border-color:var(--g5)}
-@media(max-width:520px){.header-time{display:none}}
+@media(max-width:720px){.page-toggle{display:none}}
+@media(max-width:520px){.header-time{display:none}.header-side{gap:8px}#langsel,.ctry{max-width:92px}}
+@media(max-width:400px){.logo span{font-size:.82rem}.header-side{gap:6px}#langsel,.ctry{max-width:78px;font-size:.7rem}}
 
 /* Nav */
 .site-nav{background:var(--bc2);border-bottom:1px solid var(--bb);overflow-x:auto;scrollbar-width:none}

@@ -32,6 +32,12 @@ const dubaiTime=d=>new Date(d).toLocaleString(EN?'en-AE':'ar-AE',{hour:'2-digit'
 const clock=$('#live-time');
 if(clock){const t=()=>clock.textContent=new Date().toLocaleTimeString(EN?'en-AE':'ar-AE',{hour:'2-digit',minute:'2-digit',timeZone:'Asia/Dubai'})+(EN?' Dubai':' دبي');t();setInterval(t,30000);}
 
+/* ── Theme toggle ── */
+const themeBtn=$('#theme-toggle');
+const paintTheme=()=>{if(themeBtn)themeBtn.textContent=document.documentElement.getAttribute('data-theme')==='light'?'☀️':'🌙';};
+paintTheme();
+if(themeBtn)themeBtn.addEventListener('click',()=>{const t=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';document.documentElement.setAttribute('data-theme',t);try{localStorage.setItem('mael-theme',t)}catch(e){}paintTheme();});
+
 /* ── Supabase ── */
 async function sb(path,opts={}){
   const r=await fetch(SB_URL+'/rest/v1'+path,{...opts,headers:{apikey:SB_KEY,Authorization:'Bearer '+SB_KEY,'Content-Type':'application/json',Prefer:'return=minimal',...(opts.headers||{})}});
