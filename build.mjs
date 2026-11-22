@@ -157,12 +157,12 @@ function markCur(html) {
 function layout(p, ctx) {
   const L = p.lang, en = L === 'en';
   const self = SITE + url(L, p.slug);
-  // الصفحات الخاصة بدولة: الرئيسية وعيار 21 و24 (عربي)، والرئيسية (إنجليزي)
+  // الصفحات الخاصة بدولة: الرئيسية وصفحات العيارات الأربعة (عربي وإنجليزي)
   let ctry = '', sub = '';
   const cm = p.slug.match(/^(saudi|kuwait|qatar|oman|bahrain)(?:\/(gold-(?:24|22|21|18)k))?$/);
   if (cm) { ctry = cm[1]; sub = cm[2] || ''; }
   else if (p.slug === '' && !p.file) ctry = 'uae';
-  else if (!en && (p.slug === 'gold-21k' || p.slug === 'gold-24k')) { ctry = 'uae'; sub = p.slug; }
+  else if (/^gold-(?:24|22|21|18)k$/.test(p.slug)) { ctry = 'uae'; sub = p.slug; }
   const body = !ctry && !p.fixed ? markCur(p.body) : p.body;
   const cselect = `<select id="country" class="ctry" aria-label="${en ? 'Country' : 'الدولة'}">${COUNTRIES.map(([c, a, e]) => `<option value="${c}">${en ? e : a}</option>`).join('')}</select>`;
   const altLinks = p.alt
