@@ -132,7 +132,9 @@ const NAV = {
   hi: [['sone-ka-bhav', 'सोने का भाव'], ['sone-ka-bhav/24-karat', '24 कैरेट'], ['sone-ka-bhav/22-karat', '22 कैरेट'], ['sone-ka-bhav/18-karat', '18 कैरेट'], ['sone-ka-bhav/21-karat', '21 कैरेट']],
   ur: [['sone-ka-rate', 'سونے کا ریٹ'], ['sone-ka-rate/24-karat', '24 کیرٹ'], ['sone-ka-rate/22-karat', '22 کیرٹ'], ['sone-ka-rate/18-karat', '18 کیرٹ'], ['sone-ka-rate/21-karat', '21 کیرٹ']],
   id: [['harga-emas', 'Harga Emas'], ['harga-emas/24-karat', '24 Karat'], ['harga-emas/22-karat', '22 Karat'], ['harga-emas/18-karat', '18 Karat'], ['harga-emas/21-karat', '21 Karat']],
-  bn: [['sonar-dam', 'সোনার দাম'], ['sonar-dam/24-karat', '২৪ ক্যারেট'], ['sonar-dam/22-karat', '২২ ক্যারেট'], ['sonar-dam/18-karat', '১৮ ক্যারেট'], ['sonar-dam/21-karat', '২১ ক্যারেট']]
+  bn: [['sonar-dam', 'সোনার দাম'], ['sonar-dam/24-karat', '২৪ ক্যারেট'], ['sonar-dam/22-karat', '২২ ক্যারেট'], ['sonar-dam/18-karat', '১৮ ক্যারেট'], ['sonar-dam/21-karat', '২১ ক্যারেট']],
+  tl: [['presyo-ng-ginto', 'Presyo ng Ginto'], ['presyo-ng-ginto/24-karat', '24 Karat'], ['presyo-ng-ginto/22-karat', '22 Karat'], ['presyo-ng-ginto/21-karat', '21 Karat'], ['presyo-ng-ginto/18-karat', '18 Karat']],
+  ms: [['harga-emas', 'Harga Emas'], ['harga-emas/24-karat', 'Emas 999'], ['harga-emas/22-karat', 'Emas 916'], ['harga-emas/21-karat', 'Emas 875'], ['harga-emas/18-karat', 'Emas 750']]
 };
 
 // كود الإعلان كما أرسله صاحب الموقع (بدون تعديل)
@@ -188,6 +190,12 @@ function layout(p, ctx) {
   } else if (L === 'bn') {
     const bm = p.slug.match(/^sonar-dam(?:\/(24|22|21|18)-karat)?$/);
     if (bm) { ctry = 'bangladesh'; sub = bm[1] ? `gold-${bm[1]}k` : ''; }
+  } else if (L === 'tl') {
+    const pm = p.slug.match(/^presyo-ng-ginto(?:\/(24|22|21|18)-karat)?$/);
+    if (pm) { ctry = 'philippines'; sub = pm[1] ? `gold-${pm[1]}k` : ''; }
+  } else if (L === 'ms') {
+    const mm = p.slug.match(/^harga-emas(?:\/(24|22|21|18)-karat)?$/);
+    if (mm) { ctry = 'malaysia'; sub = mm[1] ? `gold-${mm[1]}k` : ''; }
   }
   else if (/^dollar-.+$/.test(p.slug)) ctry = p.slug.slice(7);
   else if (p.slug === '' && !p.file) ctry = 'uae';
@@ -202,8 +210,8 @@ function layout(p, ctx) {
   <link rel="alternate" hreflang="x-default" href="${SITE + url('ar', p.slug)}" />`
     : `<link rel="alternate" hreflang="${L}" href="${self}" />
   <link rel="alternate" hreflang="x-default" href="${self}" />`;
-  const langHome = tr ? 'turkiye' : L === 'hi' ? 'sone-ka-bhav' : L === 'ur' ? 'sone-ka-rate' : L === 'id' ? 'harga-emas' : L === 'bn' ? 'sonar-dam' : '';
-  const crumbs = [[en ? 'Home' : tr ? 'Ana sayfa' : L === 'hi' ? 'होम' : L === 'ur' ? 'ہوم' : L === 'id' ? 'Beranda' : L === 'bn' ? 'হোম' : 'الرئيسية', url(L, langHome)], ...(p.crumbs || [])];
+  const langHome = tr ? 'turkiye' : L === 'hi' ? 'sone-ka-bhav' : L === 'ur' ? 'sone-ka-rate' : L === 'id' ? 'harga-emas' : L === 'bn' ? 'sonar-dam' : L === 'tl' ? 'presyo-ng-ginto' : L === 'ms' ? 'harga-emas' : '';
+  const crumbs = [[en ? 'Home' : tr ? 'Ana sayfa' : L === 'hi' ? 'होम' : L === 'ur' ? 'ہوم' : L === 'id' ? 'Beranda' : L === 'bn' ? 'হোম' : L === 'tl' ? 'Home' : L === 'ms' ? 'Laman Utama' : 'الرئيسية', url(L, langHome)], ...(p.crumbs || [])];
   const schema = [
     { '@context': 'https://schema.org', '@type': 'WebPage', name: p.title, description: p.desc, url: self, inLanguage: L, dateModified: TODAY,
       isPartOf: { '@type': 'WebSite', name: en ? 'UAE Gold Prices — Maelumatii' : 'معلوماتي — أسعار الذهب في الإمارات', url: SITE + '/' },
@@ -215,14 +223,22 @@ function layout(p, ctx) {
     ...(p.schema || [])
   ];
   const nav = NAV[L].map(([s, n]) => `<li><a href="${url(L, s)}"${s === p.slug ? ' aria-current="page"' : ''}>${n}</a></li>`).join('');
-  const langLink = tr || L === 'hi' || L === 'ur' || L === 'id' || L === 'bn'
+  const langLink = tr || L === 'hi' || L === 'ur' || L === 'id' || L === 'bn' || L === 'tl' || L === 'ms'
     ? `<a class="lang-link" href="${url('en', p.trEn || '')}" hreflang="en">English</a>`
     : p.alt
     ? `<a class="lang-link" href="${url(en ? 'ar' : 'en', p.slug)}" hreflang="${en ? 'ar' : 'en'}">${en ? 'عربي' : 'English'}</a>`
     : `<a class="lang-link" href="${url(en ? 'ar' : 'en', '')}">${en ? 'عربي' : 'English'}</a>`;
   const crumbHtml = crumbs.length > 1
     ? `<nav class="crumbs" aria-label="breadcrumb">${crumbs.map(([n, u], i) => i < crumbs.length - 1 ? `<a href="${u}">${n}</a> › ` : `<span>${n}</span>`).join('')}</nav>` : '';
-  const footer = L === 'bn'
+  const footer = L === 'tl'
+    ? `<div class="footer-links"><a href="/tl/presyo-ng-ginto/">Presyo ng ginto</a><a href="/en/philippines/">English version</a><a href="/privacy/">Privacy</a></div>
+<p>Pinagmulan ng presyo: Gold-API.com · Palitan: open.er-api.com · Ina-update kada 5 minuto.</p>
+<p>Hindi kasama ang making charge at buwis. Para sa impormasyon lamang; hindi payo sa pamumuhunan. © ${TODAY.slice(0, 4)} maelumatii.com</p>`
+    : L === 'ms'
+    ? `<div class="footer-links"><a href="/ms/harga-emas/">Harga emas</a><a href="/en/malaysia/">English version</a><a href="/privacy/">Privasi</a></div>
+<p>Sumber harga: Gold-API.com · Kadar tukaran: open.er-api.com · Dikemas kini setiap 5 minit.</p>
+<p>Harga tidak termasuk upah dan cukai. Untuk maklumat sahaja; bukan nasihat pelaburan. © ${TODAY.slice(0, 4)} maelumatii.com</p>`
+    : L === 'bn'
     ? `<div class="footer-links"><a href="/bn/sonar-dam/">সোনার দাম</a><a href="/en/bangladesh/">English version</a><a href="/privacy/">গোপনীয়তা</a></div>
 <p>মূল্যের উৎস: Gold-API.com · বিনিময় হার: open.er-api.com · প্রতি ৫ মিনিটে হালনাগাদ।</p>
 <p>দামে মজুরি ও ভ্যাট অন্তর্ভুক্ত নয়। শুধুমাত্র তথ্যের জন্য; বিনিয়োগ পরামর্শ নয়। © ${TODAY.slice(0, 4)} maelumatii.com</p>`
@@ -267,7 +283,7 @@ function layout(p, ctx) {
   <meta property="og:image" content="${SITE}/icons/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:locale" content="${tr ? 'tr_TR' : L === 'hi' ? 'hi_IN' : L === 'ur' ? 'ur_PK' : L === 'id' ? 'id_ID' : L === 'bn' ? 'bn_BD' : en ? 'en_AE' : 'ar_AE'}" />
+  <meta property="og:locale" content="${tr ? 'tr_TR' : L === 'hi' ? 'hi_IN' : L === 'ur' ? 'ur_PK' : L === 'id' ? 'id_ID' : L === 'bn' ? 'bn_BD' : L === 'tl' ? 'tl_PH' : L === 'ms' ? 'ms_MY' : en ? 'en_AE' : 'ar_AE'}" />
   <meta property="og:site_name" content="${tr ? 'Maelumatii — Altın Fiyatları' : en ? 'Maelumatii — Gulf Gold Prices' : 'معلوماتي — أسعار الذهب في الخليج'}" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="${SITE}/icons/og-image.png" />
@@ -275,7 +291,7 @@ function layout(p, ctx) {
   <meta name="theme-color" content="#e8b800" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="${tr ? 'Altın' : L === 'hi' ? 'सोना' : L === 'ur' ? 'سونا' : L === 'id' ? 'Emas' : L === 'bn' ? 'সোনা' : en ? 'UAE Gold' : 'ذهب الإمارات'}" />
+  <meta name="apple-mobile-web-app-title" content="${tr ? 'Altın' : L === 'hi' ? 'सोना' : L === 'ur' ? 'سونا' : L === 'id' ? 'Emas' : L === 'bn' ? 'সোনা' : L === 'tl' ? 'Ginto' : L === 'ms' ? 'Emas' : en ? 'UAE Gold' : 'ذهب الإمارات'}" />
   <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
   <link rel="icon" href="/icons/icon-96x96.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -289,7 +305,7 @@ function layout(p, ctx) {
 </head>
 <body data-ctry="${ctry}" data-sub="${sub}"${p.fixed ? ' data-fixed="1"' : ''}${p.dollar ? ' data-dollar="1"' : ''}>
 <header class="site-header"><div class="container"><div class="header-inner">
-  <a href="${url(L, langHome)}" class="logo"><img src="/icons/icon-72x72.png" alt="" width="28" height="28" /><span>${tr ? 'Altın Fiyatları' : L === 'hi' ? 'सोने का भाव' : L === 'ur' ? 'سونے کا ریٹ' : L === 'id' ? 'Harga Emas' : L === 'bn' ? 'সোনার দাম' : en ? 'Gulf Gold Prices' : 'أسعار الذهب اليوم'}</span></a>
+  <a href="${url(L, langHome)}" class="logo"><img src="/icons/icon-72x72.png" alt="" width="28" height="28" /><span>${tr ? 'Altın Fiyatları' : L === 'hi' ? 'सोने का भाव' : L === 'ur' ? 'سونے کا ریٹ' : L === 'id' ? 'Harga Emas' : L === 'bn' ? 'সোনার দাম' : L === 'tl' ? 'Presyo ng Ginto' : L === 'ms' ? 'Harga Emas' : en ? 'Gulf Gold Prices' : 'أسعار الذهب اليوم'}</span></a>
   <div class="header-side"><span class="header-time" id="live-time"></span>${cselect}${langLink}</div>
 </div></div></header>
 <nav class="site-nav" aria-label="${en ? 'Main menu' : 'القائمة الرئيسية'}"><div class="container"><ul class="nav-list">${nav}</ul></div></nav>

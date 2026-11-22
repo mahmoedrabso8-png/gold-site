@@ -134,7 +134,7 @@ export function pages(ctx) {
 <div class="trust-item"><strong>المعادلة</strong>(سعر الأونصة بالدولار × 3.6725 ÷ 31.1035) × نسبة العيار.</div>
 <div class="trust-item"><strong>غير مشمول</strong>المصنعية وضريبة القيمة المضافة. الأسعار للاطلاع فقط.</div>
 <div class="trust-item"><strong>التصحيح</strong>لاحظت خطأ؟ <a href="/contact/">راسلنا</a> ونراجعه فوراً. <a href="/about/">من نحن</a></div></div></section>`;
-  const hero = (h1, sub, L) => `<div class="hero"><h1>${h1}</h1><p class="hero-sub">${sub}</p><div class="update-badge"><span class="update-dot"></span>${L === 'en' ? 'Live — updated every 5 minutes' : L === 'tr' ? 'Canlı — her 5 dakikada güncellenir' : L === 'hi' ? 'लाइव — हर 5 मिनट में अपडेट' : L === 'ur' ? 'لائیو — ہر 5 منٹ میں تازہ کاری' : L === 'id' ? 'Langsung — diperbarui setiap 5 menit' : L === 'bn' ? 'লাইভ — প্রতি ৫ মিনিটে হালনাগাদ' : 'مباشر — يُحدَّث كل 5 دقائق'}</div></div>`;
+  const hero = (h1, sub, L) => `<div class="hero"><h1>${h1}</h1><p class="hero-sub">${sub}</p><div class="update-badge"><span class="update-dot"></span>${L === 'en' ? 'Live — updated every 5 minutes' : L === 'tr' ? 'Canlı — her 5 dakikada güncellenir' : L === 'hi' ? 'लाइव — हर 5 मिनट में अपडेट' : L === 'ur' ? 'لائیو — ہر 5 منٹ میں تازہ کاری' : L === 'id' ? 'Langsung — diperbarui setiap 5 menit' : L === 'bn' ? 'লাইভ — প্রতি ৫ মিনিটে হালনাগাদ' : L === 'tl' ? 'Live — ina-update kada 5 minuto' : L === 'ms' ? 'Langsung — dikemas kini setiap 5 minit' : 'مباشر — يُحدَّث كل 5 دقائق'}</div></div>`;
   const TG_CHANNEL = 'https://t.me/emaratijob';
   const share = (L, slug, title) => {
     const en = L === 'en', u = encodeURIComponent(ctx.SITE + url(L, slug)), t = encodeURIComponent(title);
@@ -1699,6 +1699,140 @@ ${BNK.filter(([k2]) => k2 !== k).map(([, n2, s2]) => `<a class="link-card" href=
     for (const p2 of out) {
       const bs = Object.keys(BN_EN).find(k2 => BN_EN[k2] === p2.slug);
       if (bs && p2.lang === 'en') p2.alts = p2.alts ? [...p2.alts.filter(a => a[0] !== 'x-default'), ['bn', url('bn', bs)], ['x-default', url('en', p2.slug)]] : [['en', url('en', p2.slug)], ['bn', url('bn', bs)], ['x-default', url('en', p2.slug)]];
+    }
+  }
+
+  // ── Filipino pilot: Philippines pages in Filipino (real content, hreflang-paired with en) ──
+  {
+    const phpG = (k, w = 1) => ctx.g24 && ctx.fx.PHP ? fmt(ctx.g24 * k / 24 * w / ctx.AED * ctx.fx.PHP, 0) : null;
+    const tlP = (k, w = 1, o = {}) => P(k, w, { cur: 'php', d: 0, ...o });
+    const TLK = [[24, '24 karat', '24-karat'], [22, '22 karat', '22-karat'], [21, '21 karat', '21-karat'], [18, '18 karat', '18-karat']];
+    const TL_EN = { 'presyo-ng-ginto': 'philippines', 'presyo-ng-ginto/24-karat': 'philippines/gold-24k', 'presyo-ng-ginto/22-karat': 'philippines/gold-22k', 'presyo-ng-ginto/21-karat': 'philippines/gold-21k', 'presyo-ng-ginto/18-karat': 'philippines/gold-18k' };
+    const TL_ALTS = ts => [['tl', url('tl', ts)], ['en', url('en', TL_EN[ts])], ['x-default', url('en', TL_EN[ts])]];
+    const g24t = phpG(24);
+    out.push({ lang: 'tl', fixed: true, slug: 'presyo-ng-ginto', usesFx: true, trEn: 'philippines',
+      alts: TL_ALTS('presyo-ng-ginto'),
+      crumbs: [['Presyo ng ginto', url('tl', 'presyo-ng-ginto')]],
+      title: `Presyo ng Ginto Ngayon: ₱${g24t} kada Gramo — 22 at 24 Karat`,
+      desc: 'Pinakabagong presyo ng ginto: 24, 22, 21 at 18 karat na ginto kada gramo, 10 gramo at onsa, sa piso at dolyar, ina-update kada 5 minuto.',
+      body: `${hero('Presyo ng Ginto Ngayon', 'Live na presyo kada gramo sa piso (PHP) at dolyar ng Amerika', 'tl')}
+${errBox}
+<div class="karat-grid">${TLK.map(([k, n, s]) => `<a class="karat-card" href="${url('tl', 'presyo-ng-ginto/' + s)}">
+<span class="karat-badge">${n}</span>
+<div class="k-price">${tlP(k)}</div>
+<div class="k-usd">$${P(k, 1, { cur: 'usd', d: 2 })}</div>
+<div class="k-unit">piso / gramo</div></a>`).join('')}</div>
+<div class="meta-row"><span>Na-update: <strong>${updated('en')}</strong> (Dubai)</span><span>Onsa: <strong>₱${tlP(24, ctx.TROY)}</strong> · <strong>$${P(24, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">🔄 I-refresh</button></div>
+<section class="card-section"><h2>Presyo ng ginto ngayon — gramo, 10 gramo at onsa</h2><div class="table-wrap"><table class="data-table">
+<thead><tr><th>Karat</th><th>1 gramo (₱)</th><th>10 gramo (₱)</th><th>1 onsa (₱)</th></tr></thead><tbody>
+${TLK.map(([k, n]) => `<tr><td><strong>${n}</strong></td><td class="n">${tlP(k)}</td><td class="n">${tlP(k, 10)}</td><td class="n">${tlP(k, ctx.TROY)}</td></tr>`).join('')}
+</tbody></table></div><p class="note">Purong presyo ng ginto, walang making charge. 1 onsa = 31.1035 gramo.</p></section>
+${AD}
+<section class="card-section"><h2>Tungkol sa 22 at 24 karat na ginto sa Pilipinas</h2><div class="prose">
+<p><strong>Ang 24 karat na ginto</strong> (999 puro) ang pinakadalisay na ginto at karaniwang binibili bilang bar o barya para sa ipon. <strong>Ang 22 at 21 karat</strong> naman ang karaniwang ginagamit sa alahas — kilala sa Pilipinas ang tinatawag na “Saudi gold” na kadalasang 21K o 18K.</p>
+<p>Ang presyo ng ginto sa Pilipinas ay nakadepende sa dalawang bagay: ang internasyonal na presyo ng onsa (sa dolyar) at ang palitan ng dolyar at piso. Ang mga pawnshop tulad ng Cebuana Lhuillier at Palawan Pawnshop ay araw-araw naglalabas ng kanilang bilihan at sanglaan rate; ang presyo rito ay purong halaga ng ginto, walang making charge.</p>
+<p>Kaugnay na pahina: <a href="${url('en', 'philippines')}">English version</a> · <a href="${url('tl', 'presyo-ng-ginto/22-karat')}">Presyo ng 22 karat na ginto</a> · <a href="${url('en', 'gold-price-usd')}">Presyo ng onsa (USD)</a>.</p>
+</div></section>`,
+      faq: [
+        ['Magkano ang presyo ng ginto ngayon?', `Ang 1 gramo ng 24 karat na ginto ay humigit-kumulang ₱${g24t} ngayon; ang pinakabagong presyo ay ina-update kada 5 minuto sa itaas.`],
+        ['Bakit nagbabago ang presyo ng ginto araw-araw?', 'Nakadepende ang presyo ng ginto sa internasyonal na presyo ng onsa (dolyar) at sa palitan ng USD/PHP. Kapag gumalaw ang alinman sa dalawa, gumagalaw din ang presyo sa piso.'],
+        ['Ano ang pagkakaiba ng 18K, 21K, 22K at 24K?', 'Ang karat ang sukatan ng kadalisayan: 24K = 99.9% puro, 22K = 91.6%, 21K = 87.5%, at 18K = 75%. Mas mataas ang karat, mas mahal ang kada gramo.']
+      ] });
+    for (const [k, n, s] of TLK) {
+      const ts = `presyo-ng-ginto/${s}`, kt = phpG(k);
+      out.push({ lang: 'tl', fixed: true, slug: ts, usesFx: true, trEn: TL_EN[ts],
+        alts: TL_ALTS(ts),
+        crumbs: [['Presyo ng ginto', url('tl', 'presyo-ng-ginto')], [`${n} na ginto`, url('tl', ts)]],
+        title: `Presyo ng ${n} na Ginto Ngayon: 1 Gramo = ₱${kt}`,
+        desc: `Pinakabagong presyo ng ${n} na ginto: kada gramo, 10 gramo at onsa, sa piso at dolyar, ina-update kada 5 minuto. Purong presyo, walang making charge.`,
+        body: `${hero(`Presyo ng ${n} na Ginto Ngayon`, `₱${kt} kada gramo — live`, 'tl')}
+${errBox}
+<div class="meta-row"><span>Na-update: <strong>${updated('en')}</strong> (Dubai)</span><span>Onsa: <strong>₱${tlP(k, ctx.TROY)}</strong> · <strong>$${P(k, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">🔄 I-refresh</button></div>
+<section class="card-section"><h2>${n} na ginto — presyo ayon sa timbang</h2><div class="table-wrap"><table class="data-table">
+<thead><tr><th>Timbang</th><th>Presyo (₱)</th><th>Presyo (USD)</th></tr></thead><tbody>
+${[1, 2, 4, 5, 8, 10, 20, 50, 100].map(w => `<tr><td class="n">${w} gramo</td><td class="n">${tlP(k, w)}</td><td class="n">$${P(k, w, { cur: 'usd', d: 2 })}</td></tr>`).join('')}
+<tr><td class="n">1 onsa (31.1 g)</td><td class="n">${tlP(k, ctx.TROY)}</td><td class="n">$${P(k, ctx.TROY, { cur: 'usd', d: 2 })}</td></tr>
+</tbody></table></div><p class="note">Purong presyo, walang making charge.</p></section>
+${AD}
+<section class="card-section"><h2>Iba pang karat</h2><div class="links-grid">
+${TLK.filter(([k2]) => k2 !== k).map(([, n2, s2]) => `<a class="link-card" href="${url('tl', 'presyo-ng-ginto/' + s2)}">Presyo ng ${n2} na ginto</a>`).join('')}
+<a class="link-card" href="${url('tl', 'presyo-ng-ginto')}">Presyo ng lahat ng karat</a>
+<a class="link-card" href="${url('en', TL_EN[ts])}">English version</a></div></section>`,
+        faq: [
+          [`Magkano ang presyo ng ${n} na ginto ngayon?`, `Ang 1 gramo ng ${n} na ginto ay humigit-kumulang ₱${kt} ngayon; ina-update ang presyo kada 5 minuto.`],
+          [`Paano nakukuha ang presyo ng ${n} na ginto?`, `Ang internasyonal na presyo ng onsa (dolyar) ay kino-convert gamit ang palitan ng USD/PHP, pagkatapos ay minumultiply sa ratio ng kadalisayan ng ${n}.`]
+        ] });
+    }
+    for (const p2 of out) {
+      const ts = Object.keys(TL_EN).find(k2 => TL_EN[k2] === p2.slug);
+      if (ts && p2.lang === 'en') p2.alts = p2.alts ? [...p2.alts.filter(a => a[0] !== 'x-default'), ['tl', url('tl', ts)], ['x-default', url('en', p2.slug)]] : [['en', url('en', p2.slug)], ['tl', url('tl', ts)], ['x-default', url('en', p2.slug)]];
+    }
+  }
+
+  // ── Malay pilot: Malaysia pages in Malay (real content, hreflang-paired with en) ──
+  {
+    const myrG = (k, w = 1) => ctx.g24 && ctx.fx.MYR ? fmt(ctx.g24 * k / 24 * w / ctx.AED * ctx.fx.MYR, 2) : null;
+    const msP = (k, w = 1, o = {}) => P(k, w, { cur: 'myr', d: 2, ...o });
+    const MSK = [[24, '999 (24 karat)', '24-karat'], [22, '916 (22 karat)', '22-karat'], [21, '875 (21 karat)', '21-karat'], [18, '750 (18 karat)', '18-karat']];
+    const MS_EN = { 'harga-emas': 'malaysia', 'harga-emas/24-karat': 'malaysia/gold-24k', 'harga-emas/22-karat': 'malaysia/gold-22k', 'harga-emas/21-karat': 'malaysia/gold-21k', 'harga-emas/18-karat': 'malaysia/gold-18k' };
+    const MS_ALTS = ms2 => [['ms', url('ms', ms2)], ['en', url('en', MS_EN[ms2])], ['x-default', url('en', MS_EN[ms2])]];
+    const g24m = myrG(24);
+    out.push({ lang: 'ms', fixed: true, slug: 'harga-emas', usesFx: true, trEn: 'malaysia',
+      alts: MS_ALTS('harga-emas'),
+      crumbs: [['Harga emas', url('ms', 'harga-emas')]],
+      title: `Harga Emas Hari Ini: RM${g24m} Segram — Emas 916 & 999`,
+      desc: 'Harga emas terkini: emas 999, 916, 875 dan 750 segram, 10 gram dan auns, dalam ringgit dan dolar, dikemas kini setiap 5 minit.',
+      body: `${hero('Harga Emas Hari Ini', 'Harga langsung segram dalam ringgit (MYR) dan dolar Amerika', 'ms')}
+${errBox}
+<div class="karat-grid">${MSK.map(([k, n, s]) => `<a class="karat-card" href="${url('ms', 'harga-emas/' + s)}">
+<span class="karat-badge">${n}</span>
+<div class="k-price">${msP(k)}</div>
+<div class="k-usd">$${P(k, 1, { cur: 'usd', d: 2 })}</div>
+<div class="k-unit">RM / gram</div></a>`).join('')}</div>
+<div class="meta-row"><span>Dikemas kini: <strong>${updated('en')}</strong> (Dubai)</span><span>Auns: <strong>RM${msP(24, ctx.TROY)}</strong> · <strong>$${P(24, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">🔄 Muat semula</button></div>
+<section class="card-section"><h2>Harga emas hari ini — gram, 10 gram dan auns</h2><div class="table-wrap"><table class="data-table">
+<thead><tr><th>Karat</th><th>1 gram (RM)</th><th>10 gram (RM)</th><th>1 auns (RM)</th></tr></thead><tbody>
+${MSK.map(([k, n]) => `<tr><td><strong>${n}</strong></td><td class="n">${msP(k)}</td><td class="n">${msP(k, 10)}</td><td class="n">${msP(k, ctx.TROY)}</td></tr>`).join('')}
+</tbody></table></div><p class="note">Harga emas tulen tanpa upah. 1 auns = 31.1035 gram.</p></section>
+${AD}
+<section class="card-section"><h2>Tentang emas 916 dan 999 di Malaysia</h2><div class="prose">
+<p><strong>Emas 999</strong> (24 karat) ialah emas paling tulen dan biasanya dibeli sebagai jongkong atau dinar untuk simpanan. <strong>Emas 916</strong> (22 karat) pula menjadi standard barang kemas di Malaysia, manakala <strong>emas 750</strong> (18 karat) popular untuk barang kemas fesyen.</p>
+<p>Harga emas di Malaysia bergantung pada dua perkara: harga auns antarabangsa (dalam dolar) dan kadar tukaran dolar/ringgit. Kedai emas menambah upah pada harga akhir; harga di halaman ini ialah harga tulen tanpa upah.</p>
+<p>Halaman berkaitan: <a href="${url('en', 'malaysia')}">English version</a> · <a href="${url('ms', 'harga-emas/22-karat')}">Harga emas 916</a> · <a href="${url('en', 'gold-price-usd')}">Harga auns (USD)</a>.</p>
+</div></section>`,
+      faq: [
+        ['Berapa harga emas hari ini?', `1 gram emas 999 kini sekitar RM${g24m}; harga terkini dikemas kini di bahagian atas halaman setiap 5 minit.`],
+        ['Mengapa harga emas berubah setiap hari?', 'Harga emas bergantung pada harga auns antarabangsa (dolar) dan kadar tukaran USD/MYR. Apabila kedua-duanya berubah, harga dalam ringgit turut berubah.'],
+        ['Apa itu emas 916?', 'Emas 916 ialah emas 22 karat dengan ketulenan 91.6%, dan ia merupakan standard barang kemas yang paling lazim di Malaysia.']
+      ] });
+    for (const [k, n, s] of MSK) {
+      const ms2 = `harga-emas/${s}`, kt = myrG(k);
+      out.push({ lang: 'ms', fixed: true, slug: ms2, usesFx: true, trEn: MS_EN[ms2],
+        alts: MS_ALTS(ms2),
+        crumbs: [['Harga emas', url('ms', 'harga-emas')], [`Harga emas ${n}`, url('ms', ms2)]],
+        title: `Harga Emas ${n} Hari Ini: 1 Gram = RM${kt}`,
+        desc: `Harga emas ${n} terkini: segram, 10 gram dan auns, dalam ringgit dan dolar, dikemas kini setiap 5 minit. Harga tulen tanpa upah.`,
+        body: `${hero(`Harga Emas ${n} Hari Ini`, `RM${kt} segram — langsung`, 'ms')}
+${errBox}
+<div class="meta-row"><span>Dikemas kini: <strong>${updated('en')}</strong> (Dubai)</span><span>Auns: <strong>RM${msP(k, ctx.TROY)}</strong> · <strong>$${P(k, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">🔄 Muat semula</button></div>
+<section class="card-section"><h2>Emas ${n} — harga mengikut berat</h2><div class="table-wrap"><table class="data-table">
+<thead><tr><th>Berat</th><th>Harga (RM)</th><th>Harga (USD)</th></tr></thead><tbody>
+${[1, 2, 4, 5, 8, 10, 20, 50, 100].map(w => `<tr><td class="n">${w} gram</td><td class="n">${msP(k, w)}</td><td class="n">$${P(k, w, { cur: 'usd', d: 2 })}</td></tr>`).join('')}
+<tr><td class="n">1 auns (31.1 g)</td><td class="n">${msP(k, ctx.TROY)}</td><td class="n">$${P(k, ctx.TROY, { cur: 'usd', d: 2 })}</td></tr>
+</tbody></table></div><p class="note">Harga tulen tanpa upah.</p></section>
+${AD}
+<section class="card-section"><h2>Karat lain</h2><div class="links-grid">
+${MSK.filter(([k2]) => k2 !== k).map(([, n2, s2]) => `<a class="link-card" href="${url('ms', 'harga-emas/' + s2)}">Harga emas ${n2}</a>`).join('')}
+<a class="link-card" href="${url('ms', 'harga-emas')}">Harga semua karat</a>
+<a class="link-card" href="${url('en', MS_EN[ms2])}">English version</a></div></section>`,
+        faq: [
+          [`Berapa harga emas ${n} hari ini?`, `1 gram emas ${n} kini sekitar RM${kt}; harga dikemas kini setiap 5 minit.`],
+          [`Bagaimana harga emas ${n} ditentukan?`, `Harga auns antarabangsa (dolar) ditukar mengikut kadar USD/MYR kemudian didarab dengan nisbah ketulenan emas ${n}.`]
+        ] });
+    }
+    for (const p2 of out) {
+      const ms2 = Object.keys(MS_EN).find(k2 => MS_EN[k2] === p2.slug);
+      if (ms2 && p2.lang === 'en') p2.alts = p2.alts ? [...p2.alts.filter(a => a[0] !== 'x-default'), ['ms', url('ms', ms2)], ['x-default', url('en', p2.slug)]] : [['en', url('en', p2.slug)], ['ms', url('ms', ms2)], ['x-default', url('en', p2.slug)]];
     }
   }
 
