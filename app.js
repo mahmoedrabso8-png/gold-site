@@ -82,9 +82,9 @@ const PEG={USD:1,AED:3.6725,SAR:3.75,QAR:3.64,OMR:0.3845,BHD:0.376};
 const rate=c=>PEG[c.toUpperCase()]||G.fx[c.toUpperCase()]||null;
 
 /* ── الدولة المختارة من القائمة اللي فوق ── */
-const CTRY={AED:'',SAR:'saudi',KWD:'kuwait',QAR:'qatar',OMR:'oman',BHD:'bahrain',EGP:'egypt'};
-const DEC={AED:2,SAR:2,QAR:2,KWD:3,OMR:3,BHD:3,EGP:0};
-const NAME={AED:'درهم',SAR:'ريال',KWD:'دينار',QAR:'ريال',OMR:'ريال',BHD:'دينار',EGP:'جنيه'};
+const CTRY={AED:'',SAR:'saudi',KWD:'kuwait',QAR:'qatar',OMR:'oman',BHD:'bahrain',EGP:'egypt',INR:'india'};
+const DEC={AED:2,SAR:2,QAR:2,KWD:3,OMR:3,BHD:3,EGP:0,INR:0};
+const NAME={AED:'درهم',SAR:'ريال',KWD:'دينار',QAR:'ريال',OMR:'ريال',BHD:'دينار',EGP:'جنيه',INR:'روبية'};
 const BD=document.body.dataset;
 // صفحة خاصة بدولة (الرئيسية وعيار 21 و24 لكل دولة): عملتها ثابتة
 const PAGE_CUR=BD.ctry?(BD.ctry==='uae'?'AED':Object.keys(CTRY).find(k=>CTRY[k]===BD.ctry)):null;
@@ -111,7 +111,7 @@ if(csel){
     const c=csel.value;try{localStorage.setItem('cur',c);}catch(e){}
     if(PAGE_CUR){location.href=pageFor(c);return;}
     SEL=c;
-    if((c==='KWD'||c==='EGP')&&!G.fx[c]) loadFX(true);
+    if((c==='KWD'||c==='EGP'||c==='INR')&&!G.fx[c]) loadFX(true);
     syncCalcCur();paint();labels();calc();zakat();nisab();
   });
 }
@@ -149,7 +149,7 @@ async function loadSilver(){
   }catch(e){}
 }
 async function loadFX(force){
-  if(!force&&!((SEL==='KWD'||SEL==='EGP')&&!FIXED)&&![...$$('[data-cur]'),...$$('#c-cur option')].some(el=>!PEG[(el.dataset.cur||el.value||'').toUpperCase()])) return;
+  if(!force&&!((SEL==='KWD'||SEL==='EGP'||SEL==='INR')&&!FIXED)&&![...$$('[data-cur]'),...$$('#c-cur option')].some(el=>!PEG[(el.dataset.cur||el.value||'').toUpperCase()])) return;
   try{
     const d=await (await fetch('https://open.er-api.com/v6/latest/USD')).json();
     if(d.rates){G.fx=d.rates;paint();labels();nisab();calc();zakat();$$('[data-fx]').forEach(el=>{const v=d.rates[el.dataset.fx];if(v) el.textContent=fmt(v/AED,4);});}

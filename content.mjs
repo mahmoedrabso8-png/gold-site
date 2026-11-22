@@ -65,7 +65,7 @@ export function pages(ctx) {
   // عملات الحاسبة: الكود، الاسم، نسبة ضريبة القيمة المضافة، عدد الكسور
   const CURS = [['AED', 'درهم إماراتي', 'UAE dirham', 5, 2], ['SAR', 'ريال سعودي', 'Saudi riyal', 15, 2], ['KWD', 'دينار كويتي', 'Kuwaiti dinar', 0, 3],
     ['QAR', 'ريال قطري', 'Qatari riyal', 0, 2], ['OMR', 'ريال عُماني', 'Omani rial', 5, 3], ['BHD', 'دينار بحريني', 'Bahraini dinar', 10, 3],
-    ['EGP', 'جنيه مصري', 'Egyptian pound', 0, 0]];
+    ['EGP', 'جنيه مصري', 'Egyptian pound', 0, 0], ['INR', 'روبية هندية', 'Indian rupee', 3, 0]];
   const TOLA = 11.6638;
 
   // ── أجزاء مشتركة ──────────────────────────────────────
@@ -95,7 +95,7 @@ export function pages(ctx) {
     en: [['gold-22k', '22K gold rate', 'Popular for Indian jewellery'], ['gold-24k', '24K gold rate', 'Pure gold & bars'], ['gold-21k', '21K gold rate', 'Gulf jewellery'], ['gold-18k', '18K gold rate', 'Diamond jewellery'],
       ['gold-price-usd', 'Gold price in USD', 'Live ounce XAU/USD'], ['silver', 'Silver price', 'Per gram, ounce & kg'],
       ['gcc', 'Gulf gold prices', 'Compare 6 countries'], ['saudi', 'Gold price in Saudi Arabia', 'In SAR'], ['kuwait', 'Gold price in Kuwait', 'In KWD'],
-      ['qatar', 'Gold price in Qatar', 'In QAR'], ['oman', 'Gold price in Oman', 'In OMR'], ['bahrain', 'Gold price in Bahrain', 'In BHD'], ['egypt', 'Gold price in Egypt', 'In EGP'], ['gold-rate-inr', 'Gold rate in INR', 'Dubai price in rupees'], ['gold-rate-pkr', 'Gold rate in PKR', 'Per tola in rupees'],
+      ['qatar', 'Gold price in Qatar', 'In QAR'], ['oman', 'Gold price in Oman', 'In OMR'], ['bahrain', 'Gold price in Bahrain', 'In BHD'], ['egypt', 'Gold price in Egypt', 'In EGP'], ['india', 'Gold rate in India', 'In INR, 22K & 24K'], ['gold-rate-inr', 'Gold rate in INR', 'Dubai price in rupees'], ['gold-rate-pkr', 'Gold rate in PKR', 'Per tola in rupees'],
       ['gold-bars', 'Gold bar prices', '1 g to 1 kg, tola bars'], ['gold-calculator', 'Gold calculator', 'With making charges & VAT'], ['gold-price-yesterday', 'Last 10 days', 'Yesterday\'s gold rate'], ['zakat-calculator', 'Zakat calculator', 'Nisab and zakat due']]
   };
   const links = (L, skip) => `<section class="card-section"><h2>${L === 'en' ? 'More gold prices & tools' : 'أسعار وأدوات أخرى'}</h2><div class="links-grid">${LINKS[L].filter(l => l[0] !== skip).map(([s, n, d]) => `<a class="link-card" href="${url(L, s)}">${n}<span>${d}</span></a>`).join('')}</div></section>`;
@@ -700,25 +700,36 @@ ${links('ar', '')}`,
         ['What is the 21K gold price in Egypt today?', 'The live 21K price per gram in Egyptian pounds is shown at the top of this page and refreshes about every 5 minutes. It is the raw gold price calculated from the global spot price and the EGP exchange rate, without making charges or hallmarking fees.'],
         ['Is there VAT on gold in Egypt?', 'Egypt applies 14% VAT on making charges and workmanship only, not on the gold value itself, plus hallmarking (damgha) fees.'],
         ['Why do Egyptian shop prices differ from this page?', 'The price here is calculated live from the global spot price and the EGP exchange rate. Local shops add making charges and hallmarking fees, and may add a market premium depending on supply and demand.']
+      ] },
+    india: { code: 'INR', d: 0, vat: 3, taxName: 'GST', peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,
+      ar: { n: 'الهند', in: 'في الهند', cur: 'روبية', curS: 'روبية', cities: '' },
+      en: { n: 'India', adj: 'Indian', cur: 'Indian rupee', cities: 'Mumbai, Delhi, Chennai, Kolkata and Hyderabad' },
+      noteAr: '',
+      noteEn: 'The Indian rupee is not pegged to the dollar, so the gold rate in INR moves with both the global price and the exchange rate. 22K is the most traded karat in India, while 24K is bought mainly as coins and bars. India charges 3% GST on the gold value and 5% GST on making charges; the GST column here adds 3% to the gold value only. Local jewellers quote per-city rates that can sit above international parity because of import duties and local demand, so expect shop prices to be higher than the raw rate shown here.',
+      faqEn: [
+        ['What is the 22K gold rate in India today?', 'The live 22K price per gram in Indian rupees is shown at the top of this page and refreshes about every 5 minutes. It is the raw gold rate calculated from the global spot price and the INR exchange rate, without making charges or GST.'],
+        ['Is there GST on gold in India?', 'Yes. India charges 3% GST on the gold value and 5% GST on making charges. The GST column on this page adds 3% to the gold value only.'],
+        ['Why do Indian shop prices differ from this page?', 'The rate here is calculated live from the global spot price and the INR exchange rate. Local jewellers quote per-city rates that add making charges, GST, and often a premium caused by import duties and local demand.']
       ] }
   };
   const COUNTRY_PAGES = { ...GCC, ...OTHERS };
   const GW = [1, 5, 10, 20, 50, 100];
   for (const [slug, c] of Object.entries(COUNTRY_PAGES)) {
     const cur = c.code.toLowerCase(), d = c.d;
+    const TN = c.taxName || 'VAT';
     const opt = (o = {}) => ({ cur, d: o.d ?? d, ...o });
     const other = L => `<section class="card-section"><h2>${L === 'en' ? 'Gold prices in other Gulf countries' : 'سعر الذهب في دول الخليج الأخرى'}</h2><div class="links-grid">
 ${[['', L === 'en' ? 'UAE' : 'الإمارات'], ...Object.entries(GCC).filter(([s]) => s !== slug).map(([s, o]) => [s, o[L].n])].map(([s, n]) => `<a class="link-card" href="${url(L, s)}">${L === 'en' ? `Gold price in ${n}` : `سعر الذهب في ${n}`}</a>`).join('')}
 <a class="link-card" href="${url(L, 'gcc')}">${L === 'en' ? 'Compare Gulf gold prices' : 'مقارنة أسعار الذهب في الخليج'}</a>
 <a class="link-card" href="${url(L, 'gold-calculator')}">${L === 'en' ? 'Gold calculator' : 'حاسبة الذهب'}<span>${c.code}</span></a></div></section>`;
 
-    for (const L of ['ar', 'en']) {
+    for (const L of c.enOnly ? ['en'] : ['ar', 'en']) {
       const en = L === 'en', x = c[L];
-      const vatCol = c.vat ? `<th>${en ? `+ VAT ${c.vat}%` : `شامل الضريبة ${c.vat}%`}</th>` : '';
-      out.push({ lang: L, slug, alt: true, usesFx: !!c.fx,
+      const vatCol = c.vat ? `<th>${en ? `+ ${TN} ${c.vat}%` : `شامل الضريبة ${c.vat}%`}</th>` : '';
+      out.push({ lang: L, slug, alt: !c.enOnly, usesFx: !!c.fx,
         crumbs: [[en ? `Gold price in ${x.n}` : `سعر الذهب ${x.in}`, url(L, slug)]],
         title: en ? `Gold Price in ${x.n} Today (${c.code}) — 24K, 22K, 21K, 18K` : `سعر الذهب اليوم ${x.in} بال${x.cur} | عيار 24 و22 و21 و18`,
-        desc: en ? `Live gold price in ${x.n} today in ${x.cur} (${c.code}) and US dollars: 24K, 22K, 21K and 18K per gram, per tola and per ounce, updated every 5 minutes${c.vat ? `, with prices including ${c.vat}% VAT` : ''}.`
+        desc: en ? `Live gold price in ${x.n} today in ${x.cur} (${c.code}) and US dollars: 24K, 22K, 21K and 18K per gram, per tola and per ounce, updated every 5 minutes${c.vat ? `, with prices including ${c.vat}% ${TN}` : ''}.`
           : `سعر الذهب اليوم ${x.in} بال${x.cur} والدولار، محدَّث كل 5 دقائق: سعر غرام عيار 24 و22 و21 و18، وسعر الأونصة والتولة${c.vat ? `، والسعر شامل ضريبة ${c.vat}%` : ''}.`,
         body: `${hero(en ? `Gold Price in ${x.n} Today` : `سعر الذهب اليوم ${x.in}`, en ? `Raw gold price per gram in ${x.cur} (${c.code}) and US dollars` : `سعر غرام الذهب الخام بال${x.cur} (${c.code}) والدولار`, L)}
 ${errBox}
@@ -738,7 +749,7 @@ ${KS.map(k => `<tr><td><strong>${en ? k + 'K' : 'عيار ' + k}</strong> <span 
 ${GW.map(w => `<tr><td>${en ? w + ' g' : w + ' غرام'}</td><td class="n">${P(21, w, opt())}</td><td class="n">${P(24, w, opt())}</td></tr>`).join('')}
 </tbody></table></div></section>
 <section class="card-section"><h2>${en ? `About the gold price in ${x.n}` : `عن سعر الذهب ${x.in}`}</h2><div class="prose">
-${en ? `<p>The gold price in ${x.n} follows the global spot price of gold in US dollars per ounce. The ${x.cur} is ${c.pegEn}, so the local price is calculated as: <strong>(ounce price in USD × USD/${c.code} rate ÷ 31.1035) × karat purity</strong>.</p><p>${c.noteEn}</p><p>Gold shops in ${x.cities} usually quote a daily rate per karat that follows the global price, then add making charges per piece${c.vat ? ` and ${c.vat}% VAT` : ''}. Use the <a href="/en/gold-calculator/">gold calculator</a> and choose ${c.code} to see the final price.</p>`
+${en ? `<p>The gold price in ${x.n} follows the global spot price of gold in US dollars per ounce. The ${x.cur} is ${c.pegEn}, so the local price is calculated as: <strong>(ounce price in USD × USD/${c.code} rate ÷ 31.1035) × karat purity</strong>.</p><p>${c.noteEn}</p><p>Gold shops in ${x.cities} usually quote a daily rate per karat that follows the global price, then add making charges per piece${c.vat ? ` and ${c.vat}% ${TN}` : ''}. Use the <a href="/en/gold-calculator/">gold calculator</a> and choose ${c.code} to see the final price.</p>`
           : `<p>يتبع سعر الذهب ${x.in} السعر العالمي لأونصة الذهب بالدولار. وال${x.cur} ${c.peg}، لذلك يُحسب السعر المحلي هكذا: <strong>(سعر الأونصة بالدولار × سعر صرف الدولار بال${x.cur} ÷ 31.1035) × نسبة العيار</strong>.</p><p>${c.noteAr}</p><p>تُعلن محلات الذهب في ${x.cities} سعراً يومياً لكل عيار يتبع السعر العالمي، ثم تُضاف المصنعية حسب القطعة${c.vat ? ` وضريبة القيمة المضافة ${c.vat}%` : ''}. استخدم <a href="/gold-calculator/">حاسبة الذهب</a> واختر ${x.cur} لمعرفة السعر النهائي.</p>`}</div></section>
 ${share(L, slug, en ? `Gold price in ${x.n} today` : `سعر الذهب اليوم ${x.in}`)}
 ${other(L)}`,
@@ -754,7 +765,7 @@ ${other(L)}`,
     }
 
     // صفحات العيارات لكل دولة (عربي)
-    for (const k of [24, 22, 21, 18]) {
+    if (!c.enOnly) for (const k of [24, 22, 21, 18]) {
       const x = c.ar;
       const rows = [...[1, 2, 4, 5, 8, 10, 20, 50, 100].map(w => [`${w} غرام`, w]), ['تولة (11.66 غ)', TOLA], ['أونصة (31.1 غ)', ctx.TROY]];
       out.push({ lang: 'ar', slug: `${slug}/gold-${k}k`, alt: true, usesFx: !!c.fx,
@@ -794,19 +805,19 @@ ${KS.filter(o => o !== k).map(o => `<a class="link-card" href="${url('ar', `${sl
     for (const k of [24, 22, 21, 18]) {
       const x = c.en, ko = K[k].en;
       const rows = [...[1, 2, 4, 5, 8, 10, 20, 50, 100].map(w => [`${w} g`, w]), ['1 tola (11.66 g)', TOLA], ['1 ounce (31.1 g)', ctx.TROY]];
-      out.push({ lang: 'en', slug: `${slug}/gold-${k}k`, alt: true, usesFx: !!c.fx,
+      out.push({ lang: 'en', slug: `${slug}/gold-${k}k`, alt: !c.enOnly, usesFx: !!c.fx,
         crumbs: [[`Gold price in ${x.n}`, url('en', slug)], [`${k}K`, url('en', `${slug}/gold-${k}k`)]],
         title: `${k}K Gold Rate in ${x.n} Today (${c.code}) — Price per Gram`,
-        desc: `Live ${k}K gold rate in ${x.n} today in ${x.cur} (${c.code}) and US dollars: price per gram, 10 grams, tola and ounce, updated every 5 minutes${c.vat ? `, including ${c.vat}% VAT` : ''}.`,
+        desc: `Live ${k}K gold rate in ${x.n} today in ${x.cur} (${c.code}) and US dollars: price per gram, 10 grams, tola and ounce, updated every 5 minutes${c.vat ? `, including ${c.vat}% ${TN}` : ''}.`,
         body: `${hero(`${k}K Gold Rate in ${x.n} Today`, `${ko.label} · ${K[k].purity} purity · hallmark ${K[k].mark}`, 'en')}
 ${errBox}
 <div class="big-price"><div class="u">${k}K — price per gram in ${x.cur}</div><div class="v">${P(k, 1, opt())} <span style="font-size:.45em">${c.code}</span></div><div class="s"><bdi>≈ $${P(k, 1, { cur: 'usd' })} USD</bdi></div>
 <div class="note">Updated: ${updated('en')} · <button class="btn-sm" id="refresh" type="button">🔄 Refresh</button></div></div>
 ${AD}
 <section class="card-section"><h2>${k}K gold price by weight in ${x.n}</h2><div class="table-wrap"><table class="data-table">
-<thead><tr><th>Weight</th><th>Price (${c.code})</th>${c.vat ? `<th>+ ${c.vat}% VAT</th>` : ''}<th>Price (USD)</th></tr></thead><tbody>
+<thead><tr><th>Weight</th><th>Price (${c.code})</th>${c.vat ? `<th>+ ${c.vat}% ${TN}</th>` : ''}<th>Price (USD)</th></tr></thead><tbody>
 ${rows.map(([n, w]) => `<tr><td>${n}</td><td class="n">${P(k, w, opt())}</td>${c.vat ? `<td class="n">${P(k, w * (1 + c.vat / 100), opt())}</td>` : ''}<td class="n">$${P(k, w, { cur: 'usd' })}</td></tr>`).join('')}
-</tbody></table></div><p class="note">Raw gold price without making charges. ${k === 24 ? 'Bar prices at dealers are slightly higher because of the premium.' : 'Shops add making charges per piece' + (c.vat ? ` and ${c.vat}% VAT.` : '.')}</p></section>
+</tbody></table></div><p class="note">Raw gold price without making charges. ${k === 24 ? 'Bar prices at dealers are slightly higher because of the premium.' : 'Shops add making charges per piece' + (c.vat ? ` and ${c.vat}% ${TN}.` : '.')}</p></section>
 <section class="card-section"><h2>About ${k}K gold in ${x.n}</h2><div class="prose">
 <p><strong>${k} karat gold</strong> contains <strong>${K[k].purity}</strong> pure gold and is hallmarked <strong>${K[k].mark}</strong>. It is commonly used for ${ko.use}.</p>
 <p>Formula: ${k}K price per gram = (ounce price in USD × USD/${c.code} rate ÷ 31.1035) × ${(k / 24).toFixed(3)}. The ${x.cur} is ${c.pegEn}.</p>
@@ -819,7 +830,7 @@ ${KS.filter(o => o !== k).map(o => `<a class="link-card" href="${url('en', `${sl
 <a class="link-card" href="/en/gcc/">Compare Gulf gold prices</a>
 <a class="link-card" href="/en/gold-${k}k/">${k}K gold rate in the UAE</a></div></section>`,
         faq: [
-          [`What is the ${k}K gold rate in ${x.n} today?`, `The live ${k}K price per gram in ${x.cur} is shown at the top of this page and refreshes about every 5 minutes. It is the raw gold price without making charges${c.vat ? ` or ${c.vat}% VAT` : ''}.`],
+          [`What is the ${k}K gold rate in ${x.n} today?`, `The live ${k}K price per gram in ${x.cur} is shown at the top of this page and refreshes about every 5 minutes. It is the raw gold price without making charges${c.vat ? ` or ${c.vat}% ${TN}` : ''}.`],
           [`What is ${k}K gold?`, `${k}K gold contains ${K[k].purity} pure gold and carries the hallmark ${K[k].mark}.`]
         ] });
     }

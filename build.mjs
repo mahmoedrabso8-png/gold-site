@@ -137,7 +137,7 @@ export const AD = `<div class="ad-slot">
 </div>`;
 
 // قائمة الدول اللي فوق
-const COUNTRIES = [['AED', 'الإمارات', 'UAE'], ['SAR', 'السعودية', 'Saudi Arabia'], ['KWD', 'الكويت', 'Kuwait'], ['QAR', 'قطر', 'Qatar'], ['OMR', 'عُمان', 'Oman'], ['BHD', 'البحرين', 'Bahrain'], ['EGP', 'مصر', 'Egypt']];
+const COUNTRIES = [['AED', 'الإمارات', 'UAE'], ['SAR', 'السعودية', 'Saudi Arabia'], ['KWD', 'الكويت', 'Kuwait'], ['QAR', 'قطر', 'Qatar'], ['OMR', 'عُمان', 'Oman'], ['BHD', 'البحرين', 'Bahrain'], ['EGP', 'مصر', 'Egypt'], ['INR', 'الهند', 'India']];
 // نعلّم كلمة "درهم" و"AED" في النص عشان تتغير لعملة الدولة المختارة
 // (ما عدا جوه القوائم والسكريبتات، وجملة سعر الربط "3.6725 درهم للدولار")
 function markCur(html) {
@@ -159,7 +159,7 @@ function layout(p, ctx) {
   const self = SITE + url(L, p.slug);
   // الصفحات الخاصة بدولة: الرئيسية وصفحات العيارات الأربعة (عربي وإنجليزي)
   let ctry = '', sub = '';
-  const cm = p.slug.match(/^(saudi|kuwait|qatar|oman|bahrain|egypt)(?:\/(gold-(?:24|22|21|18)k))?$/);
+  const cm = p.slug.match(/^(saudi|kuwait|qatar|oman|bahrain|egypt|india)(?:\/(gold-(?:24|22|21|18)k))?$/);
   if (cm) { ctry = cm[1]; sub = cm[2] || ''; }
   else if (p.slug === '' && !p.file) ctry = 'uae';
   else if (/^gold-(?:24|22|21|18)k$/.test(p.slug)) { ctry = 'uae'; sub = p.slug; }
