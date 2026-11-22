@@ -1816,7 +1816,7 @@ ARTICLES_EN.push(
     body: `
 <p>South Africa mined much of the gold humanity owns — and in 1967 it invented the modern bullion coin.</p>
 <h3>The Krugerrand</h3>
-<p>The <strong>Krugerrand</strong> was the world's first coin minted to be bought as gold: 22K (91.7%) but containing exactly <strong>1 troy ounce of pure gold</strong> (33.93 g total), priced off the world <a href="/en/gold-price-usd;">USD price</a> plus a small premium. Over 60 million have been sold, and every South African dealer quotes it daily — also in ½, ¼ and 1/10 oz sizes.</p>
+<p>The <strong>Krugerrand</strong> was the world's first coin minted to be bought as gold: 22K (91.7%) but containing exactly <strong>1 troy ounce of pure gold</strong> (33.93 g total), priced off the world <a href="/en/gold-price-usd/">USD price</a> plus a small premium. Over 60 million have been sold, and every South African dealer quotes it daily — also in ½, ¼ and 1/10 oz sizes.</p>
 <h3>The rand link</h3>
 <p>Gold in rands = world price × USD/ZAR. The rand is one of the world's most traded emerging-market currencies — and one of the most volatile — so South African gold moves on both the metal and the currency. For local savers that is the point: Krugerrands hedge the rand. Track the <a href="/en/dollar-southafrica/">dollar rate in South Africa</a> beside today's <a href="/en/southafrica/">gold price in South Africa</a>.</p>
 <h3>Jewellery and buying</h3>

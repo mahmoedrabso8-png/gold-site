@@ -1,5 +1,5 @@
 :root{color-scheme:dark;--g3:#fce35c;--g4:#f9d12a;--g5:#e8b800;--bg:#14161b;--bc:#1b1e24;--bc2:#22262e;--bb:#2e333d;--t1:#eae6da;--t2:#a8a396;--t3:#7c7769;--grn:#22c55e;--red:#ef4444;--rsm:8px;--rmd:14px;--rlg:20px}
-:root[data-theme=light]{color-scheme:light;--g3:#8a6a00;--g4:#96760a;--g5:#b8900a;--bg:#f5f3ec;--bc:#ffffff;--bc2:#efebdf;--bb:#dcd6c4;--t1:#29241a;--t2:#5d5644;--t3:#8b8370}
+:root[data-theme=light]{color-scheme:light;--g3:#8a6a00;--g4:#826400;--g5:#b8900a;--bg:#f5f3ec;--bc:#ffffff;--bc2:#efebdf;--bb:#dcd6c4;--t1:#29241a;--t2:#5d5644;--t3:#706855}
 :root[data-theme=light] .update-badge{color:#15803d}
 :root[data-theme=light] .error-box{color:#b91c1c}
 :root[data-theme=light] .chat-nums div{background:rgba(0,0,0,.05)}

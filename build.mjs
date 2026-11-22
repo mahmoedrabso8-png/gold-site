@@ -180,7 +180,7 @@ function markCur(html) {
 
 function layout(p, ctx) {
   const L = p.lang, en = L === 'en', tr = L === 'tr';
-  const self = SITE + url(L, p.slug);
+  const self = SITE + (p.file ? '/' + p.file : url(L, p.slug));
   // الصفحات الخاصة بدولة: الرئيسية وصفحات العيارات الأربعة (عربي وإنجليزي)
   let ctry = '', sub = '';
   const cm = p.slug.match(/^(saudi|kuwait|qatar|oman|bahrain|egypt|india|pakistan|bangladesh|turkey|usa|uk|canada|australia|philippines|malaysia|nepal|southafrica|iraq|jordan|morocco|algeria|indonesia|thailand|vietnam|singapore|srilanka|germany|japan|switzerland|nigeria|ghana|kenya|mexico|brazil|china|france|italy|spain|lebanon|tunisia|libya|yemen)(?:\/(gold-(?:24|22|21|18)k))?$/);
@@ -212,7 +212,7 @@ function layout(p, ctx) {
   else if (/^gold-(?:24|22|21|18)k$/.test(p.slug)) { ctry = 'uae'; sub = p.slug; }
   const body = !ctry && !p.fixed ? markCur(p.body) : p.body;
   const cselect = `<select id="country" class="ctry" aria-label="${en ? 'Country' : tr ? 'Ülke' : L === 'hi' ? 'देश' : L === 'ur' ? 'ملک' : L === 'id' ? 'Negara' : L === 'ms' ? 'Negara' : L === 'tl' ? 'Bansa' : L === 'bn' ? 'দেশ' : 'الدولة'}">${COUNTRIES.map(([c, a, e]) => `<option value="${c}">${L === 'ar' ? a : e}</option>`).join('')}</select>`;
-  const altLinks = p.alts
+  const altLinks = p.noindex ? '' : p.alts
     ? p.alts.map(([h, u]) => `<link rel="alternate" hreflang="${h}" href="${SITE + u}" />`).join('\n  ')
     : p.alt
     ? `<link rel="alternate" hreflang="ar" href="${SITE + url('ar', p.slug)}" />
@@ -223,7 +223,7 @@ function layout(p, ctx) {
   const langHome = tr ? 'turkiye' : L === 'hi' ? 'sone-ka-bhav' : L === 'ur' ? 'sone-ka-rate' : L === 'id' ? 'harga-emas' : L === 'bn' ? 'sonar-dam' : L === 'tl' ? 'presyo-ng-ginto' : L === 'ms' ? 'harga-emas' : '';
   const crumbs = [[en ? 'Home' : tr ? 'Ana sayfa' : L === 'hi' ? 'होम' : L === 'ur' ? 'ہوم' : L === 'id' ? 'Beranda' : L === 'bn' ? 'হোম' : L === 'tl' ? 'Home' : L === 'ms' ? 'Laman Utama' : 'الرئيسية', url(L, langHome)], ...(p.crumbs || [])];
   const schema = [
-    { '@context': 'https://schema.org', '@type': 'WebPage', name: p.title, description: p.desc, url: self, inLanguage: L, dateModified: TODAY,
+    { '@context': 'https://schema.org', '@type': 'WebPage', name: p.title, description: p.desc, url: self, inLanguage: L, dateModified: p.lastmod || TODAY,
       isPartOf: { '@type': 'WebSite', name: en ? 'Gold Prices Today — Maelumatii' : 'معلوماتي — أسعار الذهب في الإمارات', url: SITE + '/' },
       publisher: { '@type': 'Organization', name: 'Maelumatii', url: SITE + '/', logo: SITE + '/icons/icon-512x512.png' } },
     ...(crumbs.length > 1 ? [{ '@context': 'https://schema.org', '@type': 'BreadcrumbList',
@@ -353,14 +353,14 @@ function layout(p, ctx) {
   <link rel="preconnect" href="https://api.gold-api.com" />
   <link rel="preconnect" href="https://kmvadxkjehxfxpeveekg.supabase.co" />
   <script>try{if(localStorage.getItem('mael-theme')!=='dark')document.documentElement.setAttribute('data-theme','light')}catch(e){document.documentElement.setAttribute('data-theme','light')}</script>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=optional" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/style.css?v=${ASSET_V.css}" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1982414703735990" crossorigin="anonymous"></script>
   ${schema.map(s => `<script type="application/ld+json">${JSON.stringify(s)}</script>`).join('\n  ')}
 </head>
 <body data-ctry="${ctry}" data-sub="${sub}"${p.fixed ? ' data-fixed="1"' : ''}${p.dollar ? ' data-dollar="1"' : ''} data-av-assist="${ASSET_V.assist}" data-av-kb="${ASSET_V.kb}">
 <header class="site-header"><div class="container"><div class="header-inner">
-  <a href="${url(L, langHome)}" class="logo"><img src="/icons/icon-72x72.png" alt="" width="28" height="28" /><span>${tr ? 'Altın Fiyatları' : L === 'hi' ? 'सोने का भाव' : L === 'ur' ? 'سونے کا ریٹ' : L === 'id' ? 'Harga Emas' : L === 'bn' ? 'সোনার দাম' : L === 'tl' ? 'Presyo ng Ginto' : L === 'ms' ? 'Harga Emas' : en ? 'Gold Prices Today' : 'أسعار الذهب اليوم'}</span></a>
+  <a href="${url(L, langHome)}" class="logo" aria-label="${L === 'ar' ? 'أسعار الذهب اليوم، الرئيسية' : 'Gold Prices Today, home'}"><img src="/icons/icon-72x72.png" alt="" width="28" height="28" /><span>${tr ? 'Altın Fiyatları' : L === 'hi' ? 'सोने का भाव' : L === 'ur' ? 'سونے کا ریٹ' : L === 'id' ? 'Harga Emas' : L === 'bn' ? 'সোনার দাম' : L === 'tl' ? 'Presyo ng Ginto' : L === 'ms' ? 'Harga Emas' : en ? 'Gold Prices Today' : 'أسعار الذهب اليوم'}</span></a>
   ${toggle}
   <div class="header-side"><span class="header-time" id="live-time"></span>${toggleM}<button type="button" class="theme-toggle" id="theme-toggle" aria-label="${L === 'ar' ? 'التبديل بين المظهر الداكن والفاتح' : 'Switch between dark and light theme'}">🌙</button>${langSel}${cselect}</div>
 </div></div></header>
@@ -476,6 +476,6 @@ await write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmln
 await write('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
 // llms.txt — ملف تعريفي لبرامج الذكاء الاصطناعي الزاحفة (مثل robots.txt لكن للنماذج)
 const llmsArticles = sitemap.filter(p => p.slug.startsWith('articles/'));
-const llmsCountries = sitemap.filter(p => p.lang === 'en' && !p.slug.includes('/') && !['', 'gold-24k', 'gold-22k', 'gold-21k', 'gold-18k', 'gold-price-usd', 'dollar', 'silver', 'gcc', 'gold-bars', 'gold-calculator', 'zakat-calculator', 'gold-price-yesterday', 'gold-forecast', 'articles', 'history', 'assistant', 'about', 'contact', 'privacy', 'gold-rate-inr', 'gold-rate-pkr'].includes(p.slug));
-await write('llms.txt', `# Gold Prices Today (maelumatii.com)\n\n> Live gold prices in 44 countries and 40+ currencies, in 9 languages: per gram, tola, ounce and kilo for karats 24K, 22K, 21K and 18K, updated every 5 minutes, plus gold and zakat calculators, a gold/currency Q&A assistant, and localized buying guides for every country.\n\n## Core tools\n\n- [Gold price in UAE (Arabic)](${SITE}/): الصفحة الرئيسية بالعربية\n- [Gold price in UAE (English)](${SITE}/en/): live 24K/22K/21K/18K gram prices\n- [Gold calculator](${SITE}/en/gold-calculator/): with making charges and VAT\n- [Zakat calculator](${SITE}/en/zakat-calculator/): nisab and zakat due\n- [Gold bar prices](${SITE}/en/gold-bars/): 1 g to 1 kg\n- [Gold price in USD](${SITE}/en/gold-price-usd/): live XAU/USD ounce\n- [US dollar rate](${SITE}/en/dollar/): USD vs 40 currencies\n- [Silver price](${SITE}/en/silver/)\n- [Gulf comparison](${SITE}/en/gcc/): 6 GCC countries side by side\n- [Gold forecast](${SITE}/en/gold-forecast/): trend and drivers\n- [Price history](${SITE}/history/): daily archive\n- [Gold assistant](${SITE}/en/assistant/): ask any gold or currency question\n\n## Gold prices by country (English)\n\n${llmsCountries.map(p => `- [${p.title}](${SITE}${url(p.lang, p.slug)})`).join('\n')}\n\n## Guides and articles\n\n${llmsArticles.map(p => `- [${p.title}](${SITE}${url(p.lang, p.slug)})`).join('\n')}\n\n## Data sources\n\nSpot price: Gold-API.com, refreshed every 5 minutes. Exchange rates: open.er-api.com. Prices exclude making charges and local taxes; content is informational, not investment advice.\n`);
+const llmsCountries = sitemap.filter(p => p.lang === 'en' && Object.prototype.hasOwnProperty.call(CNAMES, p.slug));
+await write('llms.txt', `# Gold Prices Today (maelumatii.com)\n\n> Live gold prices in 44 countries and 40+ currencies, in 9 languages: per gram, tola, ounce and kilo for karats 24K, 22K, 21K and 18K, updated every 5 minutes, plus gold and zakat calculators, a free gold/currency search assistant, and localized buying guides. The chat widget retrieves passages from 67 articles and FAQs; it is not a general-purpose language model.\n\n## Core tools\n\n- [Gold price in UAE (Arabic)](${SITE}/): الصفحة الرئيسية بالعربية\n- [Gold price in UAE (English)](${SITE}/en/): live 24K/22K/21K/18K gram prices\n- [Gold calculator](${SITE}/en/gold-calculator/): with making charges and VAT\n- [Zakat calculator](${SITE}/en/zakat-calculator/): nisab and zakat due\n- [Gold bar prices](${SITE}/en/gold-bars/): 1 g to 1 kg\n- [Gold price in USD](${SITE}/en/gold-price-usd/): live XAU/USD ounce\n- [US dollar rate](${SITE}/en/dollar/): USD vs 40 currencies\n- [Silver price](${SITE}/en/silver/)\n- [Gulf comparison](${SITE}/en/gcc/): 6 GCC countries side by side\n- [Gold forecast](${SITE}/en/gold-forecast/): trend and drivers\n- [Price history](${SITE}/history/): daily archive\n- [Gold assistant](${SITE}/en/assistant/): ask any gold or currency question\n\n## Gold prices by country (English)\n\n${llmsCountries.map(p => `- [${p.title}](${SITE}${url(p.lang, p.slug)})`).join('\n')}\n\n## Guides and articles\n\n${llmsArticles.map(p => `- [${p.title}](${SITE}${url(p.lang, p.slug)})`).join('\n')}\n\n## Data sources\n\nSpot price: Gold-API.com, refreshed every 5 minutes. Exchange rates: open.er-api.com. Prices exclude making charges and local taxes; content is informational, not investment advice.\n`);
 console.log(`built ${list.length} pages, ${sitemap.length} in sitemap → ${OUT}/`);

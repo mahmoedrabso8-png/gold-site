@@ -149,7 +149,7 @@ export function pages(ctx) {
   // ── الصفحة الرئيسية ────────────────────────────────────
   out.push({ lang: 'ar', slug: '', alt: true,
     title: px(21) ? `سعر الذهب اليوم في الإمارات | عيار 21: ${px(21)} درهم` : 'سعر الذهب اليوم في الإمارات بالدرهم | عيار 24 و22 و21 و18',
-    desc: (px(21) ? `سعر الذهب اليوم في الإمارات: عيار 21 بـ ${px(21)} درهم، عيار 24 بـ ${px(24)}، عيار 22 بـ ${px(22)}، عيار 18 بـ ${px(18)} للغرام. ` : 'سعر الذهب اليوم في الإمارات ودبي بالدرهم. ') + 'تحديث كل 5 دقائق، مع سعر الأونصة والسبائك وحاسبة الذهب.',
+    desc: (px(21) ? `سعر الذهب اليوم في الإمارات: عيار 21 بـ ${px(21)} درهم، عيار 24 بـ ${px(24)}، عيار 22 بـ ${px(22)}، عيار 18 بـ ${px(18)} للغرام. ` : 'سعر الذهب اليوم في الإمارات ودبي بالدرهم. ') + 'تحديث كل 5 دقائق، مع سعر الأونصة والسبائك والحاسبة.',
     body: `${hero('سعر الذهب اليوم في الإمارات بالدرهم', 'سعر غرام الذهب الخام لعيار 24 و22 و21 و18 بالدرهم الإماراتي والدولار', 'ar')}
 ${errBox}${karatCards('ar')}${metaRow('ar')}
 ${AD}
@@ -218,7 +218,7 @@ ${sources('en')}`,
     out.push({ lang: L, slug: `gold-${k}k`, alt: true,
       crumbs: [[en ? `${k}K gold rate` : `سعر عيار ${k}`, url(L, `gold-${k}k`)]],
       title,
-      desc: en ? `Live ${k}K gold price per gram in the UAE and Dubai in AED and USD, updated every 5 minutes, with prices for 1 g to 100 g, tola and ounce${k === 24 ? '' : ' and estimates including making charges'}.`
+      desc: en ? `Live ${k}K gold price per gram in the UAE and Dubai in AED and USD, updated every 5 minutes, with prices for 1 g to 100 g, tola and ounce${k === 24 ? '' : ' and making-charge estimates'}.`
         : `سعر غرام الذهب عيار ${k} اليوم في الإمارات ودبي بالدرهم والدولار، محدَّث كل 5 دقائق، مع جدول أسعار من 1 إلى 100 غرام والتولة والأونصة${k === 24 ? '' : ' وتقدير السعر بالمصنعية'}.`,
       body: `${hero(en ? `${k}K Gold Rate in UAE Today` : `سعر الذهب عيار ${k} اليوم في الإمارات`, en ? `${d.label} · ${K[k].purity} purity · hallmark ${K[k].mark} — used for ${d.use}` : `${d.label} · نقاء ${K[k].purity} · ختم ${K[k].mark} — يُستخدم في ${d.use}`, L)}
 ${errBox}
@@ -248,7 +248,7 @@ ${links(L, `gold-${k}k`)}`,
     const opt = [24, 22, 21, 18, 14].map(k => `<option value="${k}"${k === (en ? 22 : 21) ? ' selected' : ''}>${en ? `${k}K (${k === 14 ? '58.3%' : K[k].purity})` : `عيار ${k} (${k === 14 ? '58.3%' : K[k].purity})`}</option>`).join('');
     out.push({ lang: L, slug: 'gold-calculator', alt: true, usesFx: true,
       crumbs: [[en ? 'Gold calculator' : 'حاسبة الذهب', url(L, 'gold-calculator')]],
-      title: en ? 'Gold Calculator UAE: Calculate Gold Price with Making Charges & VAT' : 'حاسبة الذهب في الإمارات بالمصنعية والضريبة | احسب سعر مشترياتك',
+      title: en ? 'Gold Calculator UAE: Price with Making Charges & VAT' : 'حاسبة الذهب في الإمارات بالمصنعية والضريبة | احسب سعر مشترياتك',
       desc: en ? 'Free gold calculator: enter weight and karat, add making charges per gram and 5% VAT, and see the final shop price in AED and USD at today\'s live UAE rate.'
         : 'حاسبة ذهب مجانية: أدخل الوزن والعيار وأضف المصنعية للغرام وضريبة 5% لتعرف السعر النهائي في المحل بالدرهم والدولار حسب سعر اليوم المباشر.',
       schema: [{ '@context': 'https://schema.org', '@type': 'WebApplication', name: en ? 'UAE Gold Price Calculator' : 'حاسبة سعر الذهب الإمارات', applicationCategory: 'FinanceApplication', operatingSystem: 'Any', inLanguage: L, url: ctx.SITE + url(L, 'gold-calculator'), offers: { '@type': 'Offer', price: '0', priceCurrency: 'AED' } }],
@@ -311,9 +311,8 @@ ${links(L, 'gold-calculator')}`,
       crumbs: [[en ? 'Gold assistant' : 'مساعد الذهب', url(L, 'assistant')]],
       title: en ? 'Gold Price Assistant: Ask Any Gold or Currency Question' : 'مساعد الذهب الذكي: اسأل أي سؤال عن الذهب والعملات',
       desc: en
-        ? 'Free gold assistant: live gold prices in 44 countries, karat and weight conversions (tola, ounce, baht), gold zakat, buying tips and currency conversion — instant answers from live rates.'
+        ? 'Free gold assistant: live prices in 44 countries, weight and currency conversions, zakat and buying guides. Chat on any page in Arabic or English.'
         : 'مساعد الذهب المجاني: أسعار الذهب المباشرة في 44 دولة، تحويل العيارات والأوزان (تولة، أونصة، باهت)، زكاة الذهب وتحويل العملات — إجابات فورية من الأسعار الحية.',
-      schema: [{ '@context': 'https://schema.org', '@type': 'FAQPage', inLanguage: L, mainEntity: assistantFaq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) }],
       faq: assistantFaq,
       body: `
 <header class="page-head"><h1>${en ? 'Gold price assistant' : 'مساعد الذهب الذكي'}</h1>
@@ -1949,7 +1948,7 @@ ${MSK.filter(([k2]) => k2 !== k).map(([, n2, s2]) => `<a class="link-card" href=
 ${links('ar', 'articles')}` });
   for (const a of ARTICLES) {
     out.push({ lang: 'ar', fixed: true, slug: `articles/${a.slug}`,
-      title: a.title, desc: a.desc,
+      title: a.title, desc: a.desc, lastmod: a.dateModified || a.datePublished || '2026-11-22',
       crumbs: [['مقالات الذهب', '/articles/'], [a.h1, `/articles/${a.slug}/`]],
       body: `<div class="hero"><h1>${a.h1}</h1><p class="hero-sub">${a.intro}</p></div>
 <article class="card-section"><div class="prose">${a.body}</div></article>
@@ -1957,7 +1956,7 @@ ${links('ar', 'articles')}` });
 ${share('ar', `articles/${a.slug}`, a.h1)}`,
       faq: a.faq,
       schema: [{ '@context': 'https://schema.org', '@type': 'Article', headline: a.h1, description: a.desc,
-        datePublished: TODAY, dateModified: TODAY, inLanguage: 'ar',
+        datePublished: a.datePublished || '2026-11-22', dateModified: a.dateModified || a.datePublished || '2026-11-22', inLanguage: 'ar',
         author: { '@type': 'Organization', name: 'Maelumatii', url: ctx.SITE + '/' },
         mainEntityOfPage: ctx.SITE + `/articles/${a.slug}/` }]
     });
@@ -1974,7 +1973,7 @@ ${share('ar', `articles/${a.slug}`, a.h1)}`,
 ${links('en', 'articles')}` });
   for (const a of ARTICLES_EN) {
     out.push({ lang: 'en', fixed: true, slug: `articles/${a.slug}`,
-      title: a.title, desc: a.desc,
+      title: a.title, desc: a.desc, lastmod: a.dateModified || a.datePublished || '2026-11-22',
       crumbs: [['Gold articles', '/en/articles/'], [a.h1, `/en/articles/${a.slug}/`]],
       body: `<div class="hero"><h1>${a.h1}</h1><p class="hero-sub">${a.intro}</p></div>
 <article class="card-section"><div class="prose">${a.body}</div></article>
@@ -1982,7 +1981,7 @@ ${links('en', 'articles')}` });
 ${share('en', `articles/${a.slug}`, a.h1)}`,
       faq: a.faq,
       schema: [{ '@context': 'https://schema.org', '@type': 'Article', headline: a.h1, description: a.desc,
-        datePublished: TODAY, dateModified: TODAY, inLanguage: 'en',
+        datePublished: a.datePublished || '2026-11-22', dateModified: a.dateModified || a.datePublished || '2026-11-22', inLanguage: 'en',
         author: { '@type': 'Organization', name: 'Maelumatii', url: ctx.SITE + '/' },
         mainEntityOfPage: ctx.SITE + `/en/articles/${a.slug}/` }]
     });
