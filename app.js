@@ -7,7 +7,7 @@ const CACHE_MS=5*60*1000;      // 5 دقائق
 const TROY=31.1035;
 const AED=3.6725;              // الدرهم مربوط بالدولار رسمياً
 const NISAB_G=85;              // نصاب الذهب بالغرام (عيار 24)
-const EN=document.documentElement.lang==='en';
+const EN=document.documentElement.lang!=='ar';
 const T=EN?{
   upd:'Updated',fail:'Could not load live prices — showing last saved price.',
   load:'Loading prices…',yes:'Nisab reached — zakat is due',no:'Below nisab — no zakat due',

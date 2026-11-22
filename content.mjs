@@ -134,7 +134,7 @@ export function pages(ctx) {
 <div class="trust-item"><strong>المعادلة</strong>(سعر الأونصة بالدولار × 3.6725 ÷ 31.1035) × نسبة العيار.</div>
 <div class="trust-item"><strong>غير مشمول</strong>المصنعية وضريبة القيمة المضافة. الأسعار للاطلاع فقط.</div>
 <div class="trust-item"><strong>التصحيح</strong>لاحظت خطأ؟ <a href="/contact/">راسلنا</a> ونراجعه فوراً. <a href="/about/">من نحن</a></div></div></section>`;
-  const hero = (h1, sub, L) => `<div class="hero"><h1>${h1}</h1><p class="hero-sub">${sub}</p><div class="update-badge"><span class="update-dot"></span>${L === 'en' ? 'Live — updated every 5 minutes' : 'مباشر — يُحدَّث كل 5 دقائق'}</div></div>`;
+  const hero = (h1, sub, L) => `<div class="hero"><h1>${h1}</h1><p class="hero-sub">${sub}</p><div class="update-badge"><span class="update-dot"></span>${L === 'en' ? 'Live — updated every 5 minutes' : L === 'tr' ? 'Canlı — her 5 dakikada güncellenir' : 'مباشر — يُحدَّث كل 5 دقائق'}</div></div>`;
   const TG_CHANNEL = 'https://t.me/emaratijob';
   const share = (L, slug, title) => {
     const en = L === 'en', u = encodeURIComponent(ctx.SITE + url(L, slug)), t = encodeURIComponent(title);
@@ -1360,6 +1360,74 @@ ${DAMTS_L.map(w => `<tr><td class="n">${w.toLocaleString('en-US')}</td><td class
           [`كم سعر الدولار اليوم ${x.in}؟`, `1 دولار = ${rTxt} ${x.cur} بسعر السوق المتوسط المباشر أعلى الصفحة، ويُحدَّث كل 5 دقائق تقريباً.`],
           [`كيف أحوّل الدولار إلى ${x.cur}؟`, `اضرب المبلغ بالدولار في سعر الصرف (${rTxt})، أو استخدم جدول التحويل أعلاه الذي يعرض القيم من 1 حتى 1000 دولار.`]
         ] });
+    }
+  }
+
+  // ── Turkish pilot: Turkey pages in Turkish (real content, hreflang-paired with en) ──
+  {
+    const tryG = (k, w = 1) => ctx.g24 && ctx.fx.TRY ? fmt(ctx.g24 * k / 24 * w / ctx.AED * ctx.fx.TRY, 0) : null;
+    const trP = (k, w = 1, o = {}) => P(k, w, { cur: 'try', d: 0, ...o });
+    const TRK = [[24, '24 Ayar', '24-ayar-altin'], [22, '22 Ayar', '22-ayar-altin'], [21, '21 Ayar', '21-ayar-altin'], [18, '18 Ayar', '18-ayar-altin']];
+    const TR_EN = { 'turkiye': 'turkey', 'turkiye/24-ayar-altin': 'turkey/gold-24k', 'turkiye/22-ayar-altin': 'turkey/gold-22k', 'turkiye/21-ayar-altin': 'turkey/gold-21k', 'turkiye/18-ayar-altin': 'turkey/gold-18k' };
+    const TR_ALTS = ts => [['tr', url('tr', ts)], ['en', url('en', TR_EN[ts])], ['x-default', url('en', TR_EN[ts])]];
+    const g24t = tryG(24);
+    out.push({ lang: 'tr', fixed: true, slug: 'turkiye', usesFx: true, trEn: 'turkey',
+      alts: TR_ALTS('turkiye'),
+      crumbs: [['Gram altın fiyatı', url('tr', 'turkiye')]],
+      title: `Gram Altın Fiyatı Bugün: ${g24t} TL — Canlı Altın Fiyatları`,
+      desc: 'Canlı gram altın fiyatı: 24, 22, 21 ve 18 ayar altının gram ve ons fiyatı Türk lirası ve dolar olarak her 5 dakikada güncellenir.',
+      body: `${hero('Gram Altın Fiyatı Bugün', 'Gram başına Türk lirası (TL) ve ABD doları canlı fiyat', 'tr')}
+${errBox}
+<div class="karat-grid">${TRK.map(([k, n, s]) => `<a class="karat-card" href="${url('tr', 'turkiye/' + s)}">
+<span class="karat-badge">${n}</span>
+<div class="k-price">${trP(k)}</div>
+<div class="k-usd">$${P(k, 1, { cur: 'usd', d: 2 })}</div>
+<div class="k-unit">TL / gram</div></a>`).join('')}</div>
+<div class="meta-row"><span>Güncelleme: <strong>${updated('en')}</strong> (Dubai)</span><span>Ons: <strong>${trP(24, ctx.TROY)} TL</strong> · <strong>$${P(24, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">🔄 Yenile</button></div>
+<section class="card-section"><h2>Bugün altın fiyatları — gram, 10 gram ve ons</h2><div class="table-wrap"><table class="data-table">
+<thead><tr><th>Ayar</th><th>1 gram (TL)</th><th>10 gram (TL)</th><th>1 ons (TL)</th></tr></thead><tbody>
+${TRK.map(([k, n]) => `<tr><td><strong>${n}</strong></td><td class="n">${trP(k)}</td><td class="n">${trP(k, 10)}</td><td class="n">${trP(k, ctx.TROY)}</td></tr>`).join('')}
+</tbody></table></div><p class="note">İşçilik ve KDV hariç ham altın fiyatıdır. 1 ons = 31.1035 g.</p></section>
+${AD}
+<section class="card-section"><h2>Gram altın ve çeyrek altın hakkında</h2><div class="prose">
+<p><strong>Gram altın</strong>, Türkiye'de yatırım için en çok tercih edilen altın türüdür ve 24 ayar (999 milyem) saf altından üretilir. Fiyatı, ons başına dolar bazındaki küresel altın fiyatının güncel dolar/TL kuruyla çevrilmesiyle belirlenir; bu yüzden gram altın hem ons fiyatıyla hem de dolar kuruyla birlikte hareket eder.</p>
+<p><strong>Çeyrek altın</strong> (yeni çeyrek) yaklaşık 1.6065 gram 22 ayar altındır; kuyumcadaki satış fiyatına işçilik ve KDV eklenir. Bu sayfadaki fiyatlar ham külçe değeridir.</p>
+<p>İlgili sayfalar: <a href="${url('en', 'turkey')}">English version</a> · <a href="${url('tr', 'turkiye/22-ayar-altin')}">22 ayar altın fiyatı</a> · <a href="${url('en', 'gold-price-usd')}">Ons altın (USD)</a>.</p>
+</div></section>`,
+      faq: [
+        ['Gram altın bugün ne kadar?', `1 gram 24 ayar altın şu anda yaklaşık ${g24t} TL'dir; güncel fiyat sayfanın üstünde her 5 dakikada bir yenilenir.`],
+        ['Altın fiyatı neden sürekli değişiyor?', 'Gram altın fiyatı iki etkene bağlıdır: küresel ons fiyatı (dolar) ve dolar/TL kuru. İkisi değişince TL bazındaki fiyat da değişir.'],
+        ['Çeyrek altın kaç gramdır?', 'Yeni çeyrek altın yaklaşık 1.6065 gram 22 ayar altındır; Cumhuriyet altını yaklaşık 7.2 gramdır.']
+      ] });
+    for (const [k, n, s] of TRK) {
+      const ts = `turkiye/${s}`, kt = tryG(k);
+      out.push({ lang: 'tr', fixed: true, slug: ts, usesFx: true, trEn: TR_EN[ts],
+        alts: TR_ALTS(ts),
+        crumbs: [['Gram altın', url('tr', 'turkiye')], [`${n} fiyatı`, url('tr', ts)]],
+        title: `${n} Altın Fiyatı Bugün: Gram = ${kt} TL`,
+        desc: `Canlı ${n.toLowerCase()} altın fiyatı: gram, 10 gram ve ons bazında Türk lirası ve dolar, her 5 dakikada güncellenir. İşçilik ve KDV hariç ham fiyat.`,
+        body: `${hero(`${n} Altın Fiyatı Bugün`, `Gram başına ${kt} TL — canlı`, 'tr')}
+${errBox}
+<div class="meta-row"><span>Güncelleme: <strong>${updated('en')}</strong> (Dubai)</span><span>Ons: <strong>${trP(k, ctx.TROY)} TL</strong> · <strong>$${P(k, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">🔄 Yenile</button></div>
+<section class="card-section"><h2>${n} altın — ağırlığa göre fiyatlar</h2><div class="table-wrap"><table class="data-table">
+<thead><tr><th>Ağırlık</th><th>Fiyat (TL)</th><th>Fiyat (USD)</th></tr></thead><tbody>
+${[1, 2, 4, 5, 8, 10, 20, 50, 100].map(w => `<tr><td class="n">${w} g</td><td class="n">${trP(k, w)}</td><td class="n">$${P(k, w, { cur: 'usd', d: 2 })}</td></tr>`).join('')}
+<tr><td class="n">1 ons (31.1 g)</td><td class="n">${trP(k, ctx.TROY)}</td><td class="n">$${P(k, ctx.TROY, { cur: 'usd', d: 2 })}</td></tr>
+</tbody></table></div><p class="note">İşçilik ve KDV hariç ham altın fiyatıdır.</p></section>
+${AD}
+<section class="card-section"><h2>Diğer ayarlar</h2><div class="links-grid">
+${TRK.filter(([k2]) => k2 !== k).map(([, n2, s2]) => `<a class="link-card" href="${url('tr', 'turkiye/' + s2)}">${n2} altın fiyatı</a>`).join('')}
+<a class="link-card" href="${url('tr', 'turkiye')}">Gram altın (tüm ayarlar)</a>
+<a class="link-card" href="${url('en', TR_EN[ts])}">English version</a></div></section>`,
+        faq: [
+          [`${n} gram altın bugün ne kadar?`, `1 gram ${n.toLowerCase()} altın şu anda yaklaşık ${kt} TL'dir; güncel fiyat her 5 dakikada bir yenilenir.`],
+          [`${n} altın neye göre fiyatlanır?`, `Fiyat, küresel ons fiyatının (dolar) güncel dolar/TL kuruyla çevrilmesi ve ${n} saflık oranının uygulanmasıyla hesaplanır.`]
+        ] });
+    }
+    // karşılıklı hreflang: İngilizce Turkey sayfalarına tr bağlantısı ekle
+    for (const p2 of out) {
+      const ts = Object.keys(TR_EN).find(k2 => TR_EN[k2] === p2.slug);
+      if (ts && p2.lang === 'en') p2.alts = [['en', url('en', p2.slug)], ['tr', url('tr', ts)], ['x-default', url('en', p2.slug)]];
     }
   }
 
