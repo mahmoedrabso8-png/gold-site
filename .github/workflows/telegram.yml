@@ -1,7 +1,8 @@
 name: Telegram post
 on:
   schedule:
-    - cron: '3 4-20/4 * * *'
+    # 3 مرات يومياً: 8 صباحاً و2 ظهراً و8 مساءً بتوقيت دبي (بدل 5 مرات × 6 منشورات)
+    - cron: '3 4,10,16 * * *'
   workflow_dispatch:
 permissions:
   contents: read
