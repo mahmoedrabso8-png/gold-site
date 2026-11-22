@@ -113,7 +113,7 @@ function norm(s) {
   s = s.replace(/[,،]/g, '.').replace(/[^\p{L}\p{N}.$\s]/gu, ' ').replace(/\s+/g, ' ').trim();
   return s.replace(/بيغلي|بيزيد|غالي|يرتفع|ارتفاع|يرتفع/g,'ارتفاع').replace(/rising|rises|rise/g,'rise');
 }
-const has = (q, words) => words.some(w => (w = (w || '').trim()) && q.includes(w));
+const has = (q, words) => words.some(w => (w = (w || '').trim()) && ( /^[a-z]+(?: [a-z]+)*$/.test(w) ? (' '+q+' ').includes(' '+w+' ') : q.includes(w)));
 function findCountry(q) { return CS.find(c => has(q, c[3].map(norm))); }
 function findUnit(q) { return UNITS.find(u => has(q, u[2].map(norm))); }
 function findCur(q) { const hit = CUR_ALIAS.filter(c => has(q, c[1].map(norm))); return hit; }
@@ -319,6 +319,8 @@ function answer(raw) {
   const q = norm(raw);
   if (!q) return ansFallback();
   if (has(q, ['سلام', 'اهلا', 'مرحبا', 'هاي', 'hello', 'hi ', 'hey']) && q.length < 30) return ansGreeting();
+  const explicitUnit = findUnit(q);
+  if (explicitUnit && !findCountry(q) && !findKarat(q) && has(q, ['كام', 'كم', 'يساوي', 'حول', 'how many', 'convert', 'in grams']) && !has(q, ['price', 'سعر'])) return ansUnit(explicitUnit, findNum(q));
   if (has(q, ['why', 'what', 'how', 'difference', 'vs', 'tax', 'vat', 'gst', 'buy', 'making', 'premium', 'hallmark', 'purity', 'ليه', 'لماذا', 'ازاي', 'كيف', 'ضريب', 'مصنعي', 'ختم', 'دمغ', 'فرق', 'شراء', 'ادخار', 'استثمار'])) { const knowledge = kbSearch(q); if (knowledge) return knowledge; }
   if (has(q, ['زكاه', 'الزكاه', 'zakat', 'nisab', 'نصاب'])) return ansZakat();
   if (has(q, ['فضه', 'الفضه', 'silver'])) return ansSilver();
