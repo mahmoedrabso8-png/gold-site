@@ -1,3 +1,4 @@
+import { pilotGuide } from './local-guides.mjs';
 // محتوى صفحات الموقع (عربي + إنجليزي)
 import { ARTICLES, ARTICLES_EN } from './articles.mjs';
 
@@ -1480,13 +1481,13 @@ ${TRK.map(([k, n]) => `<tr><td><strong>${n}</strong></td><td class="n">${trP(k)}
 ${AD}
 <section class="card-section"><h2>Gram altın ve çeyrek altın hakkında</h2><div class="prose">
 <p><strong>Gram altın</strong>, Türkiye'de yatırım için en çok tercih edilen altın türüdür ve 24 ayar (999 milyem) saf altından üretilir. Fiyatı, ons başına dolar bazındaki küresel altın fiyatının güncel dolar/TL kuruyla çevrilmesiyle belirlenir; bu yüzden gram altın hem ons fiyatıyla hem de dolar kuruyla birlikte hareket eder.</p>
-<p><strong>Çeyrek altın</strong> (yeni çeyrek) yaklaşık 1.6065 gram 22 ayar altındır; kuyumcadaki satış fiyatına işçilik ve KDV eklenir. Bu sayfadaki fiyatlar ham külçe değeridir.</p>
+<p><strong>Çeyrek altın</strong> için ürün türünü ayırt edin: Darphane belgesine göre ziynet çeyrek 1,754 gram, sikke çeyrek 1,804 gramdır ve ikisi de 22 ayardır. Bunlar brüt metal ağırlıklarıdır; tamamı saf altın değildir. Bu sayfadaki gram fiyatı sikkenin mağaza satış fiyatı değil, ham metal için referanstır.</p>
 <p>İlgili sayfalar: <a href="${url('en', 'turkey')}">English version</a> · <a href="${url('tr', 'turkiye/22-ayar-altin')}">22 ayar altın fiyatı</a> · <a href="${url('en', 'gold-price-usd')}">Ons altın (USD)</a>.</p>
 </div></section>`,
       faq: [
         ['Gram altın bugün ne kadar?', `1 gram 24 ayar altın şu anda yaklaşık ${g24t} TL'dir; güncel fiyat sayfanın üstünde her 5 dakikada bir yenilenir.`],
         ['Altın fiyatı neden sürekli değişiyor?', 'Gram altın fiyatı iki etkene bağlıdır: küresel ons fiyatı (dolar) ve dolar/TL kuru. İkisi değişince TL bazındaki fiyat da değişir.'],
-        ['Çeyrek altın kaç gramdır?', 'Yeni çeyrek altın yaklaşık 1.6065 gram 22 ayar altındır; Cumhuriyet altını yaklaşık 7.2 gramdır.']
+        ['Çeyrek altın kaç gramdır?', 'Darphane belgesine göre ziynet çeyrek 1,754 gram, sikke çeyrek 1,804 gramdır. İkisi de 22 ayardır; ürün türünü ayırt etmek gerekir.']
       ] });
     for (const [k, n, s] of TRK) {
       const ts = `turkiye/${s}`, kt = tryG(k);
@@ -1544,11 +1545,11 @@ ${errBox}
 <section class="card-section"><h2>आज सोने का भाव — ग्राम, 10 ग्राम, तोला और औंस</h2><div class="table-wrap"><table class="data-table">
 <thead><tr><th>कैरेट</th><th>1 ग्राम (रु.)</th><th>10 ग्राम (रु.)</th><th>1 तोला (रु.)</th><th>1 औंस (रु.)</th></tr></thead><tbody>
 ${HIK.map(([k, n]) => `<tr><td><strong>${n}</strong></td><td class="n">${hiP(k)}</td><td class="n">${hiP(k, 10)}</td><td class="n">${hiP(k, TOLA2)}</td><td class="n">${hiP(k, ctx.TROY)}</td></tr>`).join('')}
-</tbody></table></div><p class="note">मेकिंग चार्ज और 3% GST के बिना कच्चे सोने का भाव। 1 तोला = 11.664 ग्राम · 1 औंस = 31.1035 ग्राम।</p></section>
+</tbody></table></div><p class="note">मेकिंग चार्ज और लागू कर के बिना कच्चे सोने का भाव। 1 तोला = 11.664 ग्राम · 1 औंस = 31.1035 ग्राम।</p></section>
 ${AD}
 <section class="card-section"><h2>22 और 24 कैरेट सोने के बारे में</h2><div class="prose">
 <p><strong>24 कैरेट सोना</strong> (999 शुद्धता) सबसे शुद्ध सोना है और भारत में मुख्य रूप से सिक्कों और बिस्किट (बार) के रूप में निवेश के लिए खरीदा जाता है। <strong>22 कैरेट</strong> (916, जिसे BIS हॉलमार्क 916 कहा जाता है) गहनों का मानक है — इसीलिए गहनों की दुकानों की बोर्ड दर आमतौर पर 22 कैरेट के लिए होती है।</p>
-<p>भारत में सोने की दर दो चीजों से बनती है: अंतरराष्ट्रीय औंस भाव (डॉलर में) और डॉलर/रुपया विनिमय दर। दुकान पर अंतिम कीमत में 3% GST और मेकिंग चार्ज जुड़ता है; यहां दिखाया गया भाव कच्चा (GST के बिना) है।</p>
+<p>भारत में सोने की दर दो चीजों से बनती है: अंतरराष्ट्रीय औंस भाव (डॉलर में) और डॉलर/रुपया विनिमय दर। दुकान के अंतिम बिल में लागू कर, मेकिंग चार्ज और दूसरे शुल्क अलग जांचें; यहां दिखाया गया भाव कच्चा (GST के बिना) है।</p>
 <p>संबंधित पेज: <a href="${url('en', 'india')}">English version</a> · <a href="${url('hi', 'sone-ka-bhav/22-karat')}">22 कैरेट सोने का भाव</a> · <a href="${url('en', 'gold-rate-inr')}">Gold rate in INR</a>.</p>
 </div></section>`,
       faq: [
@@ -1615,7 +1616,7 @@ ${URK.map(([k, n]) => `<tr><td><strong>${n}</strong></td><td class="n">${urP(k)}
 </tbody></table></div><p class="note">مزدوری کے بغیر خام سونے کا ریٹ۔ 1 تولہ = 11.664 گرام · 1 اونس = 31.1035 گرام۔</p></section>
 ${AD}
 <section class="card-section"><h2>22 اور 24 کیرٹ سونے کے بارے میں</h2><div class="prose">
-<p><strong>24 کیرٹ سونا</strong> (999 خالص) سب سے خالص سونا ہے اور پاکستان میں عموماً بسکٹ اور سِکّوں کی صورت میں بچت کے لیے خریدا جاتا ہے۔ <strong>22 کیرٹ</strong> (916) زیورات کا معیار ہے، اسی لیے صرافہ مارکیٹ کا بورڈ ریٹ عام طور پر 22 کیرٹ کا ہوتا ہے۔</p>
+<p><strong>24 کیرٹ سونا</strong> (999 خالص) سب سے خالص سونا ہے اور پاکستان میں عموماً بسکٹ اور سِکّوں کی صورت میں بچت کے لیے خریدا جاتا ہے۔ <strong>22 کیرٹ</strong> (916) زیورات میں استعمال ہوتا ہے۔ صرافہ بورڈ پر درج نرخ کا کیرٹ الگ سے معلوم کریں؛ ہر بورڈ کو 22 کیرٹ فرض نہ کریں۔</p>
 <p>پاکستان میں سونے کا ریٹ دو چیزوں سے بنتا ہے: بین الاقوامی اونس ریٹ (ڈالر میں) اور ڈالر/روپے کی شرح تبادلہ۔ دکان پر حتمی قیمت میں مزدوری شامل ہوتی ہے؛ یہاں دکھایا گیا ریٹ خام (مزدوری کے بغیر) ہے۔</p>
 <p>متعلقہ صفحات: <a href="${url('en', 'pakistan')}">English version</a> · <a href="${url('ur', 'sone-ka-rate/22-karat')}">22 کیرٹ سونے کا ریٹ</a> · <a href="${url('en', 'gold-rate-pkr')}">Gold rate in PKR</a>.</p>
 </div></section>`,
@@ -1668,7 +1669,7 @@ ${URK.filter(([k2]) => k2 !== k).map(([, n2, s2]) => `<a class="link-card" href=
       alts: ID_ALTS('harga-emas'),
       crumbs: [['Harga emas hari ini', url('id', 'harga-emas')]],
       title: `Harga Emas Hari Ini: ${g24i} Rupiah per Gram — 22 & 24 Karat`,
-      desc: 'Harga emas terkini hari ini: 24, 22, 21 dan 18 karat per gram, 10 gram dan ons dalam rupiah dan dolar, diperbarui setiap 5 menit.',
+      desc: 'Harga emas terkini hari ini: 24, 22, 21 dan 18 karat per gram, 10 gram dan troy ounce dalam rupiah dan dolar, diperbarui setiap 5 menit.',
       body: `${hero('Harga Emas Hari Ini', 'Harga langsung per gram dalam rupiah (IDR) dan dolar AS', 'id')}
 ${errBox}
 <div class="karat-grid">${IDK.map(([k, n, s]) => `<a class="karat-card" href="${url('id', 'harga-emas/' + s)}">
@@ -1676,20 +1677,20 @@ ${errBox}
 <div class="k-price">${idP(k)}</div>
 <div class="k-usd">$${P(k, 1, { cur: 'usd', d: 2 })}</div>
 <div class="k-unit">IDR / gram</div></a>`).join('')}</div>
-<div class="meta-row"><span>Diperbarui: <strong>${updated('en')}</strong> (Dubai)</span><span>Ons: <strong>${idP(24, ctx.TROY)} IDR</strong> · <strong>$${P(24, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">🔄 Muat ulang</button></div>
-<section class="card-section"><h2>Harga emas hari ini — gram, 10 gram dan ons</h2><div class="table-wrap"><table class="data-table">
-<thead><tr><th>Karat</th><th>1 gram (IDR)</th><th>10 gram (IDR)</th><th>1 ons (IDR)</th></tr></thead><tbody>
+<div class="meta-row"><span>Diperbarui: <strong>${updated('en')}</strong> (Dubai)</span><span>Troy ounce: <strong>${idP(24, ctx.TROY)} IDR</strong> · <strong>$${P(24, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">🔄 Muat ulang</button></div>
+<section class="card-section"><h2>Harga emas hari ini — gram, 10 gram dan troy ounce</h2><div class="table-wrap"><table class="data-table">
+<thead><tr><th>Karat</th><th>1 gram (IDR)</th><th>10 gram (IDR)</th><th>1 troy ounce (IDR)</th></tr></thead><tbody>
 ${IDK.map(([k, n]) => `<tr><td><strong>${n}</strong></td><td class="n">${idP(k)}</td><td class="n">${idP(k, 10)}</td><td class="n">${idP(k, ctx.TROY)}</td></tr>`).join('')}
-</tbody></table></div><p class="note">Harga emas murni tanpa ongkos pembuatan. 1 ons = 31.1035 g.</p></section>
+</tbody></table></div><p class="note">Harga emas murni tanpa ongkos pembuatan. 1 troy ounce = 31.1035 g.</p></section>
 ${AD}
 <section class="card-section"><h2>Tentang emas 22 dan 24 karat di Indonesia</h2><div class="prose">
 <p><strong>Emas 24 karat</strong> (999) adalah emas paling murni dan di Indonesia paling dikenal lewat <strong>emas Antam</strong> — batangan dan kepingan resmi dari PT Aneka Tambang yang menjadi patokan harga nasional. <strong>Emas 22 karat</strong> banyak dipakai untuk perhiasan, sedangkan perhiasan toko emas sehari-hari sering memakai kadar 18 karat (750) atau lebih rendah.</p>
-<p>Harga emas di Indonesia ditentukan oleh dua hal: harga ons internasional (dalam dolar) dan kurs dolar/rupiah. Harga di toko ditambah ongkos pembuatan; harga di halaman ini adalah harga murni tanpa ongkos.</p>
-<p>Halaman terkait: <a href="${url('en', 'indonesia')}">English version</a> · <a href="${url('id', 'harga-emas/22-karat')}">Harga emas 22 karat</a> · <a href="${url('en', 'gold-price-usd')}">Harga ons (USD)</a>.</p>
+<p>Harga emas di Indonesia ditentukan oleh dua hal: harga troy ounce internasional (dalam dolar) dan kurs dolar/rupiah. Harga di toko ditambah ongkos pembuatan; harga di halaman ini adalah harga murni tanpa ongkos.</p>
+<p>Halaman terkait: <a href="${url('en', 'indonesia')}">English version</a> · <a href="${url('id', 'harga-emas/22-karat')}">Harga emas 22 karat</a> · <a href="${url('en', 'gold-price-usd')}">Harga troy ounce (USD)</a>.</p>
 </div></section>`,
       faq: [
         ['Berapa harga emas hari ini?', `1 gram emas 24 karat saat ini sekitar ${g24i} rupiah; harga terkini diperbarui di bagian atas halaman setiap 5 menit.`],
-        ['Mengapa harga emas berubah setiap hari?', 'Harga emas tergantung pada harga ons internasional (dolar) dan kurs dolar/rupiah. Jika keduanya berubah, harga dalam rupiah ikut berubah.'],
+        ['Mengapa harga emas berubah setiap hari?', 'Harga emas tergantung pada harga troy ounce internasional (dolar) dan kurs dolar/rupiah. Jika keduanya berubah, harga dalam rupiah ikut berubah.'],
         ['Apa itu emas Antam?', 'Emas Antam adalah emas batangan resmi produksi PT Aneka Tambang (BUMN) dengan kemurnian 999.9, dan harga jual-belinya menjadi acuan pasar emas di Indonesia.']
       ] });
     for (const [k, n, s] of IDK) {
@@ -1698,14 +1699,14 @@ ${AD}
         alts: ID_ALTS(is2),
         crumbs: [['Harga emas', url('id', 'harga-emas')], [`Harga ${n.toLowerCase()}`, url('id', is2)]],
         title: `Harga Emas ${n} Hari Ini: 1 Gram = ${kt} Rupiah`,
-        desc: `Harga emas ${n.toLowerCase()} terkini: per gram, 10 gram dan ons dalam rupiah dan dolar, diperbarui setiap 5 menit. Harga murni tanpa ongkos pembuatan.`,
+        desc: `Harga emas ${n.toLowerCase()} terkini: per gram, 10 gram dan troy ounce dalam rupiah dan dolar, diperbarui setiap 5 menit. Harga murni tanpa ongkos pembuatan.`,
         body: `${hero(`Harga Emas ${n} Hari Ini`, `${kt} rupiah per gram — langsung`, 'id')}
 ${errBox}
-<div class="meta-row"><span>Diperbarui: <strong>${updated('en')}</strong> (Dubai)</span><span>Ons: <strong>${idP(k, ctx.TROY)} IDR</strong> · <strong>$${P(k, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">🔄 Muat ulang</button></div>
+<div class="meta-row"><span>Diperbarui: <strong>${updated('en')}</strong> (Dubai)</span><span>Troy ounce: <strong>${idP(k, ctx.TROY)} IDR</strong> · <strong>$${P(k, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">🔄 Muat ulang</button></div>
 <section class="card-section"><h2>Emas ${n.toLowerCase()} — harga menurut berat</h2><div class="table-wrap"><table class="data-table">
 <thead><tr><th>Berat</th><th>Harga (IDR)</th><th>Harga (USD)</th></tr></thead><tbody>
 ${[1, 2, 4, 5, 8, 10, 20, 50, 100].map(w => `<tr><td class="n">${w} gram</td><td class="n">${idP(k, w)}</td><td class="n">$${P(k, w, { cur: 'usd', d: 2 })}</td></tr>`).join('')}
-<tr><td class="n">1 ons (31.1 g)</td><td class="n">${idP(k, ctx.TROY)}</td><td class="n">$${P(k, ctx.TROY, { cur: 'usd', d: 2 })}</td></tr>
+<tr><td class="n">1 troy ounce (31.1 g)</td><td class="n">${idP(k, ctx.TROY)}</td><td class="n">$${P(k, ctx.TROY, { cur: 'usd', d: 2 })}</td></tr>
 </tbody></table></div><p class="note">Harga murni tanpa ongkos pembuatan.</p></section>
 ${AD}
 <section class="card-section"><h2>Karat lainnya</h2><div class="links-grid">
@@ -1714,7 +1715,7 @@ ${IDK.filter(([k2]) => k2 !== k).map(([, n2, s2]) => `<a class="link-card" href=
 <a class="link-card" href="${url('en', ID_EN[is2])}">English version</a></div></section>`,
         faq: [
           [`Berapa harga emas ${n.toLowerCase()} hari ini?`, `1 gram emas ${n.toLowerCase()} saat ini sekitar ${kt} rupiah; harga terkini diperbarui setiap 5 menit.`],
-          [`Bagaimana harga emas ${n.toLowerCase()} ditentukan?`, `Harga ons internasional (dolar) dikonversi dengan kurs dolar/rupiah lalu dikalikan rasio kemurnian ${n.toLowerCase()}.`]
+          [`Bagaimana harga emas ${n.toLowerCase()} ditentukan?`, `Harga troy ounce internasional (dolar) dikonversi dengan kurs dolar/rupiah lalu dikalikan rasio kemurnian ${n.toLowerCase()}.`]
         ] });
     }
     for (const p2 of out) {
@@ -1985,5 +1986,12 @@ ${share('en', `articles/${a.slug}`, a.h1)}`,
     body: `<div class="hero"><h1>لا يوجد اتصال بالإنترنت</h1><p class="hero-sub">You are offline — prices will refresh when you reconnect.</p></div>
 <section class="card-section"><p class="prose">افتح <a href="/">الصفحة الرئيسية</a> لعرض آخر سعر محفوظ على جهازك.</p></section>` });
 
+  for(const p of out){
+    if(['tr','hi','ur','id','bn','tl','ms'].includes(p.lang)){
+      const match=p.slug.match(/(?:^|\/)(24|22|21|18)-(?:karat|ayar-altin)$/);
+      const guide=pilotGuide(p.lang,match?+match[1]:0);
+      p.body=p.body.replace('</section>','</section>'+guide);
+    }
+  }
   return out;
 }
