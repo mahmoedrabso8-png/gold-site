@@ -65,6 +65,14 @@ a.karat-card:hover{transform:translateY(-3px);border-color:rgba(233,184,0,.4)}
 .meta-row strong{color:var(--t1);unicode-bidi:isolate}
 .btn-sm{display:inline-flex;align-items:center;gap:5px;background:rgba(233,184,0,.1);border:1px solid rgba(233,184,0,.25);color:var(--g4);border-radius:var(--rsm);padding:5px 12px;font-size:.78rem;font-weight:600;cursor:pointer;font-family:inherit}
 .btn-sm:disabled{opacity:.5;cursor:wait}
+.share-row{display:flex;flex-wrap:wrap;gap:10px}
+.share-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:var(--rmd);font-size:.85rem;font-weight:700;text-decoration:none;border:1px solid var(--bb)}
+.share-btn.wa{background:rgba(37,211,102,.12);border-color:rgba(37,211,102,.35);color:#1da851}
+.share-btn.wa:hover{border-color:#25d366}
+.share-btn.tg{background:rgba(34,158,217,.12);border-color:rgba(34,158,217,.35);color:#1d8bc2}
+.share-btn.tg:hover{border-color:#229ed9}
+.share-btn.join{background:rgba(233,184,0,.12);border-color:rgba(233,184,0,.4);color:var(--g4)}
+.share-btn.join:hover{border-color:var(--g4)}
 
 /* Sections */
 .card-section{background:var(--bc);border:1px solid var(--bb);border-radius:var(--rlg);padding:20px;margin-bottom:16px}

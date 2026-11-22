@@ -159,7 +159,7 @@ function layout(p, ctx) {
   const self = SITE + url(L, p.slug);
   // الصفحات الخاصة بدولة: الرئيسية وعيار 21 و24 (عربي)، والرئيسية (إنجليزي)
   let ctry = '', sub = '';
-  const cm = p.slug.match(/^(saudi|kuwait|qatar|oman|bahrain)(?:\/(gold-2[14]k))?$/);
+  const cm = p.slug.match(/^(saudi|kuwait|qatar|oman|bahrain)(?:\/(gold-(?:24|22|21|18)k))?$/);
   if (cm) { ctry = cm[1]; sub = cm[2] || ''; }
   else if (p.slug === '' && !p.file) ctry = 'uae';
   else if (!en && (p.slug === 'gold-21k' || p.slug === 'gold-24k')) { ctry = 'uae'; sub = p.slug; }

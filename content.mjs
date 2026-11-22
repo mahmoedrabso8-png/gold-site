@@ -122,6 +122,15 @@ export function pages(ctx) {
 <div class="trust-item"><strong>غير مشمول</strong>المصنعية وضريبة القيمة المضافة. الأسعار للاطلاع فقط.</div>
 <div class="trust-item"><strong>التصحيح</strong>لاحظت خطأ؟ <a href="/contact/">راسلنا</a> ونراجعه فوراً. <a href="/about/">من نحن</a></div></div></section>`;
   const hero = (h1, sub, L) => `<div class="hero"><h1>${h1}</h1><p class="hero-sub">${sub}</p><div class="update-badge"><span class="update-dot"></span>${L === 'en' ? 'Live — updated every 5 minutes' : 'مباشر — يُحدَّث كل 5 دقائق'}</div></div>`;
+  const TG_CHANNEL = 'https://t.me/emaratijob';
+  const share = (L, slug, title) => {
+    const en = L === 'en', u = encodeURIComponent(ctx.SITE + url(L, slug)), t = encodeURIComponent(title);
+    return `<section class="card-section share-section"><h2>${en ? 'Share & follow' : 'شارك وتابع'}</h2><div class="share-row">
+<a class="share-btn wa" href="https://wa.me/?text=${t}%20${u}" target="_blank" rel="noopener">${en ? 'Share on WhatsApp' : 'مشاركة واتساب'}</a>
+<a class="share-btn tg" href="https://t.me/share/url?url=${u}&text=${t}" target="_blank" rel="noopener">${en ? 'Share on Telegram' : 'مشاركة تيليجرام'}</a>
+<a class="share-btn join" href="${TG_CHANNEL}" target="_blank" rel="noopener">📢 ${en ? 'Daily gold prices on our Telegram channel' : 'أسعار الذهب يومياً على قناتنا في تيليجرام'}</a>
+</div></section>`;
+  };
 
   // ── الصفحة الرئيسية ────────────────────────────────────
   out.push({ lang: 'ar', slug: '', alt: true,
@@ -205,6 +214,7 @@ ${AD}
 <h3>${en ? 'How the price is calculated' : 'طريقة حساب السعر'}</h3>
 <p>${en ? `${k}K price per gram = (ounce price in USD × 3.6725 ÷ 31.1035) × ${(k / 24).toFixed(3)}.` : `سعر غرام عيار ${k} = (سعر الأونصة بالدولار × 3.6725 ÷ 31.1035) × ${(k / 24).toFixed(3)}.`}</p>
 <h3>${en ? 'Buying tips' : 'نصائح عند الشراء'}</h3><ul>${d.tips.map(t => `<li>${t}</li>`).join('')}</ul></div></section>
+${share(L, `gold-${k}k`, en ? `${k}K gold rate in UAE today` : `سعر الذهب عيار ${k} اليوم في الإمارات`)}
 ${links(L, `gold-${k}k`)}`,
       faq: [
         [en ? `What is the ${k}K gold price per gram in the UAE today?` : `كم سعر غرام الذهب عيار ${k} في الإمارات اليوم؟`,
@@ -688,7 +698,7 @@ ${[['', L === 'en' ? 'UAE' : 'الإمارات'], ...Object.entries(GCC).filter(
           : `سعر الذهب اليوم ${x.in} بال${x.cur} والدولار، محدَّث كل 5 دقائق: سعر غرام عيار 24 و22 و21 و18، وسعر الأونصة والتولة${c.vat ? `، والسعر شامل ضريبة ${c.vat}%` : ''}.`,
         body: `${hero(en ? `Gold Price in ${x.n} Today` : `سعر الذهب اليوم ${x.in}`, en ? `Raw gold price per gram in ${x.cur} (${c.code}) and US dollars` : `سعر غرام الذهب الخام بال${x.cur} (${c.code}) والدولار`, L)}
 ${errBox}
-<div class="karat-grid">${KS.map(k => { const link = en ? [21, 22, 24].includes(k) : (k === 21 || k === 24); const tag = link ? `a class="karat-card" href="${url(L, `${slug}/gold-${k}k`)}"` : 'div class="karat-card"';
+<div class="karat-grid">${KS.map(k => { const link = true; const tag = `a class="karat-card" href="${url(L, `${slug}/gold-${k}k`)}"`;
   return `<${tag}><span class="karat-badge">${en ? k + 'K' : 'عيار ' + k}</span><div class="karat-label"><bdi>${K[k].purity}</bdi></div><div class="k-price">${P(k, 1, opt())}</div><div class="k-usd">$${P(k, 1, { cur: 'usd' })}</div><div class="k-unit">${en ? `${c.code} per gram` : `${x.curS} / غرام`}</div></${link ? 'a' : 'div'}>`; }).join('')}</div>
 <div class="meta-row">
 <span>${en ? 'Updated' : 'آخر تحديث'}: <strong>${updated(L)}</strong></span>
@@ -706,6 +716,7 @@ ${GW.map(w => `<tr><td>${en ? w + ' g' : w + ' غرام'}</td><td class="n">${P(
 <section class="card-section"><h2>${en ? `About the gold price in ${x.n}` : `عن سعر الذهب ${x.in}`}</h2><div class="prose">
 ${en ? `<p>The gold price in ${x.n} follows the global spot price of gold in US dollars per ounce. The ${x.cur} is ${c.pegEn}, so the local price is calculated as: <strong>(ounce price in USD × USD/${c.code} rate ÷ 31.1035) × karat purity</strong>.</p><p>${c.noteEn}</p><p>Gold shops in ${x.cities} usually quote a daily rate per karat that follows the global price, then add making charges per piece${c.vat ? ` and ${c.vat}% VAT` : ''}. Use the <a href="/en/gold-calculator/">gold calculator</a> and choose ${c.code} to see the final price.</p>`
           : `<p>يتبع سعر الذهب ${x.in} السعر العالمي لأونصة الذهب بالدولار. وال${x.cur} ${c.peg}، لذلك يُحسب السعر المحلي هكذا: <strong>(سعر الأونصة بالدولار × سعر صرف الدولار بال${x.cur} ÷ 31.1035) × نسبة العيار</strong>.</p><p>${c.noteAr}</p><p>تُعلن محلات الذهب في ${x.cities} سعراً يومياً لكل عيار يتبع السعر العالمي، ثم تُضاف المصنعية حسب القطعة${c.vat ? ` وضريبة القيمة المضافة ${c.vat}%` : ''}. استخدم <a href="/gold-calculator/">حاسبة الذهب</a> واختر ${x.cur} لمعرفة السعر النهائي.</p>`}</div></section>
+${share(L, slug, en ? `Gold price in ${x.n} today` : `سعر الذهب اليوم ${x.in}`)}
 ${other(L)}`,
         faq: en ? [
           [`What is the 21K gold price in ${x.n} today?`, `The live 21K price per gram in ${x.cur} is shown at the top of this page and refreshes about every 5 minutes. It is the raw gold price without making charges${c.vat ? ' or VAT' : ''}.`],
@@ -718,8 +729,8 @@ ${other(L)}`,
         ] });
     }
 
-    // صفحات عيار 21 و24 لكل دولة (عربي)
-    for (const k of [21, 24]) {
+    // صفحات العيارات لكل دولة (عربي)
+    for (const k of [24, 22, 21, 18]) {
       const x = c.ar;
       const rows = [...[1, 2, 4, 5, 8, 10, 20, 50, 100].map(w => [`${w} غرام`, w]), ['تولة (11.66 غ)', TOLA], ['أونصة (31.1 غ)', ctx.TROY]];
       out.push({ lang: 'ar', slug: `${slug}/gold-${k}k`, usesFx: !!c.fx,
@@ -737,12 +748,15 @@ ${rows.map(([n, w]) => `<tr><td>${n}</td><td class="n">${P(k, w, opt())}</td>${c
 </tbody></table></div><p class="note">سعر الذهب الخام بدون مصنعية. ${k === 24 ? 'أسعار السبائك عند التجار تكون أعلى قليلاً بسبب العلاوة.' : 'تُضاف المصنعية حسب القطعة والمحل.'}</p></section>
 <section class="card-section"><h2>عن الذهب عيار ${k} ${x.in}</h2><div class="prose">
 <p>${k === 21 ? `<strong>عيار 21</strong> هو الأكثر انتشاراً في المجوهرات الخليجية، ويحتوي على <strong>87.5%</strong> ذهب خالص ويُختم برقم <strong>875</strong>. يجمع بين نسبة ذهب عالية تحفظ القيمة وصلابة مناسبة للاستخدام اليومي، لذلك هو الخيار الأشهر في الشبكة والأطقم ${x.in}.`
+          : k === 22 ? `<strong>عيار 22</strong> يحتوي على <strong>91.7%</strong> ذهب خالص ويُختم برقم <strong>916</strong>. وهو العيار المفضل في المجوهرات الهندية والأساور والقلائد، ويجمع بين لون قريب من الذهب الخالص وصلابة أفضل من عيار 24.`
+          : k === 18 ? `<strong>عيار 18</strong> يحتوي على <strong>75%</strong> ذهب خالص ويُختم برقم <strong>750</strong>. يُستخدم كثيراً في مجوهرات الألماس والتصاميم الأوروبية، ويتوفر بألوان أصفر وأبيض وروز، وهو أصلب العيارات المتداولة.`
           : `<strong>عيار 24</strong> هو الذهب الخالص بنسبة <strong>99.9%</strong> ويُختم برقم <strong>999</strong>. يُستخدم أساساً في السبائك والعملات الذهبية للادخار والاستثمار، لأنه طري لا يناسب المجوهرات اليومية.`}</p>
 <p>المعادلة: سعر غرام عيار ${k} = (سعر الأونصة بالدولار × سعر صرف الدولار بال${x.cur} ÷ 31.1035) × ${(k / 24).toFixed(3)}.</p>
 <p>${c.noteAr}</p></div></section>
+${share('ar', `${slug}/gold-${k}k`, `سعر الذهب عيار ${k} اليوم ${x.in}`)}
 <section class="card-section"><h2>روابط مفيدة</h2><div class="links-grid">
 <a class="link-card" href="${url('ar', slug)}">كل العيارات ${x.in}<span>24 و22 و21 و18</span></a>
-<a class="link-card" href="${url('ar', `${slug}/gold-${k === 21 ? 24 : 21}k`)}">سعر عيار ${k === 21 ? 24 : 21} ${x.in}</a>
+${KS.filter(o => o !== k).map(o => `<a class="link-card" href="${url('ar', `${slug}/gold-${o}k`)}">سعر عيار ${o} ${x.in}</a>`).join('\n')}
 <a class="link-card" href="/gold-calculator/">حاسبة الذهب<span>اختر ${x.cur}</span></a>
 <a class="link-card" href="/zakat-calculator/">حاسبة زكاة الذهب</a>
 <a class="link-card" href="/gcc/">مقارنة أسعار الخليج</a>
@@ -752,8 +766,8 @@ ${rows.map(([n, w]) => `<tr><td>${n}</td><td class="n">${P(k, w, opt())}</td>${c
           [`كم نسبة الذهب في عيار ${k}؟`, `يحتوي عيار ${k} على ${K[k].purity} ذهب خالص ويحمل ختم ${K[k].mark}.`]
         ] });
     }
-    // صفحات العيارات لكل دولة (إنجليزي) — 22K و21K و24K
-    for (const k of [22, 21, 24]) {
+    // صفحات العيارات لكل دولة (إنجليزي)
+    for (const k of [24, 22, 21, 18]) {
       const x = c.en, ko = K[k].en;
       const rows = [...[1, 2, 4, 5, 8, 10, 20, 50, 100].map(w => [`${w} g`, w]), ['1 tola (11.66 g)', TOLA], ['1 ounce (31.1 g)', ctx.TROY]];
       out.push({ lang: 'en', slug: `${slug}/gold-${k}k`, usesFx: !!c.fx,
@@ -773,9 +787,10 @@ ${rows.map(([n, w]) => `<tr><td>${n}</td><td class="n">${P(k, w, opt())}</td>${c
 <p><strong>${k} karat gold</strong> contains <strong>${K[k].purity}</strong> pure gold and is hallmarked <strong>${K[k].mark}</strong>. It is commonly used for ${ko.use}.</p>
 <p>Formula: ${k}K price per gram = (ounce price in USD × USD/${c.code} rate ÷ 31.1035) × ${(k / 24).toFixed(3)}. The ${x.cur} is ${c.pegEn}.</p>
 <p>${c.noteEn}</p></div></section>
+${share('en', `${slug}/gold-${k}k`, `${k}K gold rate in ${x.n} today`)}
 <section class="card-section"><h2>Related pages</h2><div class="links-grid">
 <a class="link-card" href="${url('en', slug)}">All karats in ${x.n}<span>24K, 22K, 21K, 18K</span></a>
-${[22, 21, 24].filter(o => o !== k).map(o => `<a class="link-card" href="${url('en', `${slug}/gold-${o}k`)}">${o}K gold rate in ${x.n}</a>`).join('')}
+${KS.filter(o => o !== k).map(o => `<a class="link-card" href="${url('en', `${slug}/gold-${o}k`)}">${o}K gold rate in ${x.n}</a>`).join('')}
 <a class="link-card" href="/en/gold-calculator/">Gold calculator<span>${c.code}</span></a>
 <a class="link-card" href="/en/gcc/">Compare Gulf gold prices</a>
 <a class="link-card" href="/en/gold-${k}k/">${k}K gold rate in the UAE</a></div></section>`,
