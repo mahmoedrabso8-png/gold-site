@@ -68,7 +68,8 @@ export function pages(ctx) {
     ['EGP', 'جنيه مصري', 'Egyptian pound', 0, 0], ['INR', 'روبية هندية', 'Indian rupee', 3, 0],
     ['PKR', 'روبية باكستانية', 'Pakistani rupee', 0, 0], ['BDT', 'تاكا بنجلاديشي', 'Bangladeshi taka', 0, 0], ['TRY', 'ليرة تركية', 'Turkish lira', 0, 0],
     ['USD', 'دولار أمريكي', 'US dollar', 0, 2], ['GBP', 'جنيه إسترليني', 'British pound', 0, 2], ['CAD', 'دولار كندي', 'Canadian dollar', 0, 2], ['AUD', 'دولار أسترالي', 'Australian dollar', 0, 2],
-    ['PHP', 'بيسو فلبيني', 'Philippine peso', 0, 0], ['MYR', 'رينغيت ماليزي', 'Malaysian ringgit', 0, 2], ['NPR', 'روبية نيبالية', 'Nepalese rupee', 0, 0], ['ZAR', 'راند جنوب أفريقيا', 'South African rand', 0, 2]];
+    ['PHP', 'بيسو فلبيني', 'Philippine peso', 0, 0], ['MYR', 'رينغيت ماليزي', 'Malaysian ringgit', 0, 2], ['NPR', 'روبية نيبالية', 'Nepalese rupee', 0, 0], ['ZAR', 'راند جنوب أفريقيا', 'South African rand', 0, 2],
+    ['IQD', 'دينار عراقي', 'Iraqi dinar', 0, 0], ['JOD', 'دينار أردني', 'Jordanian dinar', 0, 3], ['MAD', 'درهم مغربي', 'Moroccan dirham', 0, 2], ['DZD', 'دينار جزائري', 'Algerian dinar', 0, 0]];
   const TOLA = 11.6638;
 
   // ── أجزاء مشتركة ──────────────────────────────────────
@@ -91,14 +92,14 @@ export function pages(ctx) {
     ar: [['gold-21k', 'سعر عيار 21', 'الأكثر طلباً في الخليج'], ['gold-24k', 'سعر عيار 24', 'الذهب الخالص والسبائك'], ['gold-22k', 'سعر عيار 22', 'المجوهرات الهندية'], ['gold-18k', 'سعر عيار 18', 'مجوهرات الألماس'],
       ['gold-price-usd', 'سعر الذهب عالمياً', 'الأونصة بالدولار مباشر'], ['silver', 'سعر الفضة اليوم', 'الغرام والأونصة والكيلو'],
       ['gcc', 'أسعار الذهب في الخليج', 'مقارنة بين 6 دول'], ['saudi', 'سعر الذهب في السعودية', 'بالريال السعودي'], ['kuwait', 'سعر الذهب في الكويت', 'بالدينار الكويتي'],
-      ['qatar', 'سعر الذهب في قطر', 'بالريال القطري'], ['oman', 'سعر الذهب في عُمان', 'بالريال العُماني'], ['bahrain', 'سعر الذهب في البحرين', 'بالدينار البحريني'], ['egypt', 'سعر الذهب في مصر', 'بالجنيه المصري'],
+      ['qatar', 'سعر الذهب في قطر', 'بالريال القطري'], ['oman', 'سعر الذهب في عُمان', 'بالريال العُماني'], ['bahrain', 'سعر الذهب في البحرين', 'بالدينار البحريني'], ['egypt', 'سعر الذهب في مصر', 'بالجنيه المصري'], ['iraq', 'سعر الذهب في العراق', 'بالدينار العراقي'], ['jordan', 'سعر الذهب في الأردن', 'بالدينار الأردني'], ['morocco', 'سعر الذهب في المغرب', 'بالدرهم المغربي'], ['algeria', 'سعر الذهب في الجزائر', 'بالدينار الجزائري'],
       ['gold-bars', 'أسعار السبائك', 'من 1 غرام إلى 1 كيلو'], ['gold-calculator', 'حاسبة الذهب', 'بالمصنعية والضريبة'], ['zakat-calculator', 'حاسبة زكاة الذهب', 'النصاب وقيمة الزكاة'],
       ['gold-price-yesterday', 'سعر الذهب أمس', 'وآخر 10 أيام'], ['gold-forecast', 'توقعات الذهب', 'الاتجاه والعوامل المؤثرة'], ['history', 'أرشيف الأسعار', 'سعر الذهب يوماً بيوم'],
       ['articles', 'مقالات وأدلة الذهب', 'شروحات الشراء والادخار والزكاة']],
     en: [['gold-22k', '22K gold rate', 'Popular for Indian jewellery'], ['gold-24k', '24K gold rate', 'Pure gold & bars'], ['gold-21k', '21K gold rate', 'Gulf jewellery'], ['gold-18k', '18K gold rate', 'Diamond jewellery'],
       ['gold-price-usd', 'Gold price in USD', 'Live ounce XAU/USD'], ['silver', 'Silver price', 'Per gram, ounce & kg'],
       ['gcc', 'Gulf gold prices', 'Compare 6 countries'], ['saudi', 'Gold price in Saudi Arabia', 'In SAR'], ['kuwait', 'Gold price in Kuwait', 'In KWD'],
-      ['qatar', 'Gold price in Qatar', 'In QAR'], ['oman', 'Gold price in Oman', 'In OMR'], ['bahrain', 'Gold price in Bahrain', 'In BHD'], ['egypt', 'Gold price in Egypt', 'In EGP'], ['india', 'Gold rate in India', 'In INR, 22K & 24K'], ['pakistan', 'Gold rate in Pakistan', 'In PKR, per tola'], ['bangladesh', 'Gold price in Bangladesh', 'In BDT'], ['turkey', 'Gold price in Turkey', 'Gram altın in TRY'], ['usa', 'Gold price in USA', 'In USD'], ['uk', 'Gold price in UK', 'In GBP'], ['canada', 'Gold price in Canada', 'In CAD'], ['australia', 'Gold price in Australia', 'In AUD'], ['philippines', 'Gold price in Philippines', 'In PHP'], ['malaysia', 'Gold price in Malaysia', 'Emas 916 in MYR'], ['nepal', 'Gold price in Nepal', 'In NPR, per tola'], ['southafrica', 'Gold price in South Africa', 'Krugerrand in ZAR'], ['gold-rate-inr', 'Gold rate in INR', 'Dubai price in rupees'], ['gold-rate-pkr', 'Gold rate in PKR', 'Per tola in rupees'],
+      ['qatar', 'Gold price in Qatar', 'In QAR'], ['oman', 'Gold price in Oman', 'In OMR'], ['bahrain', 'Gold price in Bahrain', 'In BHD'], ['egypt', 'Gold price in Egypt', 'In EGP'], ['india', 'Gold rate in India', 'In INR, 22K & 24K'], ['pakistan', 'Gold rate in Pakistan', 'In PKR, per tola'], ['bangladesh', 'Gold price in Bangladesh', 'In BDT'], ['turkey', 'Gold price in Turkey', 'Gram altın in TRY'], ['usa', 'Gold price in USA', 'In USD'], ['uk', 'Gold price in UK', 'In GBP'], ['canada', 'Gold price in Canada', 'In CAD'], ['australia', 'Gold price in Australia', 'In AUD'], ['philippines', 'Gold price in Philippines', 'In PHP'], ['malaysia', 'Gold price in Malaysia', 'Emas 916 in MYR'], ['nepal', 'Gold price in Nepal', 'In NPR, per tola'], ['southafrica', 'Gold price in South Africa', 'Krugerrand in ZAR'], ['iraq', 'Gold price in Iraq', 'In IQD'], ['jordan', 'Gold price in Jordan', 'In JOD'], ['morocco', 'Gold price in Morocco', 'In MAD'], ['algeria', 'Gold price in Algeria', 'In DZD'], ['gold-rate-inr', 'Gold rate in INR', 'Dubai price in rupees'], ['gold-rate-pkr', 'Gold rate in PKR', 'Per tola in rupees'],
       ['gold-bars', 'Gold bar prices', '1 g to 1 kg, tola bars'], ['gold-calculator', 'Gold calculator', 'With making charges & VAT'], ['gold-price-yesterday', 'Last 10 days', 'Yesterday\'s gold rate'], ['zakat-calculator', 'Zakat calculator', 'Nisab and zakat due']]
   };
   const links = (L, skip) => `<section class="card-section"><h2>${L === 'en' ? 'More gold prices & tools' : 'أسعار وأدوات أخرى'}</h2><div class="links-grid">${LINKS[L].filter(l => l[0] !== skip).map(([s, n, d]) => `<a class="link-card" href="${url(L, s)}">${n}<span>${d}</span></a>`).join('')}</div></section>`;
@@ -823,6 +824,66 @@ ${links('ar', '')}`,
         ['What is the gold price in South Africa today?', 'The live price per gram in South African rand is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw gold rate without VAT or making charges.'],
         ['What is a Krugerrand?', 'A South African investment coin minted since 1967, made of 22K gold and containing exactly one troy ounce of pure gold. Its value tracks the gold price per ounce shown on this page, plus a small minting premium.'],
         ['Is there VAT on gold in South Africa?', 'Krugerrands and qualifying investment coins are zero-rated for VAT in South Africa. Gold jewellery carries 15% VAT, included in the shop price.']
+      ] },
+    iraq: { code: 'IQD', d: 0, vat: 0, peg: 'مربوط بسعر رسمي للبنك المركزي مقابل الدولار، مع سعر سوق قد يختلف عنه', pegEn: 'managed at an official rate against the US dollar, with a market rate that can differ', fx: true,
+      ar: { n: 'العراق', in: 'في العراق', cur: 'دينار', curS: 'دينار', cities: 'بغداد والبصرة وأربيل والنجف' },
+      en: { n: 'Iraq', adj: 'Iraqi', cur: 'Iraqi dinar', cities: 'Baghdad, Basra, Erbil and Najaf' },
+      noteAr: 'يعتمد هذا الموقع سعر الصرف اليومي للسوق للدينار العراقي، وقد يختلف عن السعر الرسمي للبنك المركزي (1,310 دينار للدولار)، لذلك قد تجد فرقاً عن نشرات الصاغة المحلية. عيار 21 هو الأكثر انتشاراً في المجوهرات العراقية، بينما يُشترى عيار 24 كسبائك وليرات ذهبية للادخار، وتُضاف المصنعية على كل قطعة حسب الصياغ.',
+      noteEn: 'This page uses the daily market exchange rate of the Iraqi dinar; the official Central Bank rate (1,310 IQD per USD) can differ, so local gold dealer bulletins may show different figures. 21K is the standard karat for Iraqi jewellery, while 24K is bought as bars and gold coins for saving, and making charges are added per piece.',
+      faqAr: [
+        ['كم سعر غرام الذهب عيار 21 في العراق اليوم؟', 'يظهر سعر غرام عيار 21 بالدينار محدَّثاً في أعلى الصفحة ويُحدَّث كل 5 دقائق تقريباً، وهو سعر الذهب الخام بدون مصنعية.'],
+        ['لماذا يختلف السعر هنا عن نشرة الصاغة في العراق؟', 'نحسب السعر من السعر العالمي وسعر صرف السوق اليومي للدينار، وقد يختلف سعر الصرف عن السعر الرسمي للبنك المركزي، كما تضيف المحلات مصنعية وهامشاً محلياً.'],
+        ['ما العيار الأكثر انتشاراً في العراق؟', 'عيار 21 هو الأكثر انتشاراً في المجوهرات العراقية، ويُستخدم عيار 24 للسبائك والليرات الذهبية.']
+      ],
+      faqEn: [
+        ['What is the 21K gold price in Iraq today?', 'The live 21K price per gram in Iraqi dinars is shown at the top of this page and refreshes about every 5 minutes. It is the raw gold price without making charges.'],
+        ['Why does this rate differ from Iraqi dealer bulletins?', 'This page uses the daily market exchange rate of the dinar, which can differ from the official Central Bank rate (1,310 IQD per USD). Local shops also add making charges and a market premium.'],
+        ['Which karat is most common in Iraq?', '21K is the standard karat for Iraqi jewellery, while 24K is bought as bars and gold coins for saving.']
+      ] },
+    jordan: { code: 'JOD', d: 3, vat: 0, peg: 'مربوط بالدولار بسعر ثابت (0.709)', pegEn: 'pegged to the US dollar at 0.709', fx: false,
+      ar: { n: 'الأردن', in: 'في الأردن', cur: 'دينار', curS: 'دينار', cities: 'عمّان وإربد والزرقاء والعقبة' },
+      en: { n: 'Jordan', adj: 'Jordanian', cur: 'Jordanian dinar', cities: 'Amman, Irbid, Zarqa and Aqaba' },
+      noteAr: 'الدينار الأردني مربوط بالدولار بسعر ثابت 0.709 منذ عام 1995، لذلك يتحرك سعر الذهب بالدينار مع السعر العالمي بشكل شبه مباشر. عيار 21 هو الأكثر انتشاراً في المجوهرات الأردنية، بينما يُشترى عيار 24 كسبائك وعملات للادخار، وتضيف المحلات المصنعية على كل قطعة.',
+      noteEn: 'The Jordanian dinar has been pegged to the US dollar at 0.709 since 1995, so the gold price in JOD follows the global price almost one-to-one. 21K is the standard karat for jewellery in Jordan, while 24K is bought as bars and coins, and shops add making charges per piece.',
+      faqAr: [
+        ['كم سعر غرام الذهب عيار 21 في الأردن اليوم؟', 'يظهر سعر غرام عيار 21 بالدينار محدَّثاً في أعلى الصفحة ويُحدَّث كل 5 دقائق تقريباً، وهو سعر الذهب الخام بدون مصنعية.'],
+        ['هل الدينار الأردني مربوط بالدولار؟', 'نعم، الدينار الأردني مربوط بالدولار بسعر ثابت 0.709 منذ عام 1995، لذلك يتحرك سعر الذهب بالدينار مع السعر العالمي مباشرة تقريباً.'],
+        ['ما العيار الأكثر انتشاراً في الأردن؟', 'عيار 21 هو الأكثر انتشاراً في المجوهرات الأردنية، بينما يُشترى عيار 24 كسبائك وعملات للادخار.']
+      ],
+      faqEn: [
+        ['What is the 21K gold price in Jordan today?', 'The live 21K price per gram in Jordanian dinars is shown at the top of this page and refreshes about every 5 minutes. It is the raw gold price without making charges.'],
+        ['Is the Jordanian dinar pegged to the dollar?', 'Yes. The Jordanian dinar has been pegged at 0.709 JOD per USD since 1995, so the gold price in JOD follows the global price almost directly.'],
+        ['Which karat is most common in Jordan?', '21K is the standard karat for Jordanian jewellery, while 24K is bought as bars and coins for saving.']
+      ] },
+    morocco: { code: 'MAD', d: 2, vat: 0, peg: 'مُدار بسعر مرن مقابل سلة من اليورو والدولار', pegEn: 'managed against a basket of the euro and the US dollar, so its rate moves daily', fx: true, noK21: true,
+      ar: { n: 'المغرب', in: 'في المغرب', cur: 'درهم', curS: 'درهم', cities: 'الدار البيضاء والرباط ومراكش وفاس' },
+      en: { n: 'Morocco', adj: 'Moroccan', cur: 'Moroccan dirham', cities: 'Casablanca, Rabat, Marrakech and Fes' },
+      noteAr: 'الدرهم المغربي يُدار بسعر مرن مقابل سلة من اليورو والدولار، لذلك يتحرك سعر الذهب بالدرهم مع السعر العالمي وسعر الصرف معاً. عيار 18 هو الأكثر انتشاراً في المجوهرات المغربية التقليدية والعصرية، بينما يُقتنى عيار 24 كسبائك وعملات، وتُضاف المصنعية على كل قطعة.',
+      noteEn: 'The Moroccan dirham is managed against a basket of the euro and the US dollar, so the gold price in MAD moves with both the global price and the exchange rate. 18K is the standard karat for Moroccan jewellery, both traditional and modern, while 24K is bought as bars and coins, and making charges are added per piece.',
+      faqAr: [
+        ['كم سعر غرام الذهب عيار 18 في المغرب اليوم؟', 'يظهر سعر غرام عيار 18 بالدرهم في جدول الأسعار أعلى الصفحة ويُحدَّث كل 5 دقائق تقريباً، وهو سعر الذهب الخام بدون مصنعية.'],
+        ['ما العيار الأكثر انتشاراً في المغرب؟', 'عيار 18 هو الأكثر انتشاراً في المجوهرات المغربية، ويُقتنى عيار 24 كسبائك وعملات للادخار.'],
+        ['لماذا يختلف سعر المحل عن هذه الصفحة؟', 'السعر هنا خام محسوب من السعر العالمي وسعر صرف الدرهم، والمحلات تضيف المصنعية والضرائب وهامش الربح على كل قطعة.']
+      ],
+      faqEn: [
+        ['What is the 18K gold price in Morocco today?', 'The live 18K price per gram in Moroccan dirhams is shown in the price table above and refreshes about every 5 minutes. It is the raw gold price without making charges.'],
+        ['Which karat is most common in Morocco?', '18K is the standard karat for Moroccan jewellery, both traditional and modern, while 24K is bought as bars and coins.'],
+        ['Why do Moroccan shop prices differ from this page?', 'The rate here is the raw gold value calculated from the global price and the dirham exchange rate. Shops add making charges, taxes and their margin per piece.']
+      ] },
+    algeria: { code: 'DZD', d: 0, vat: 0, peg: 'مُدار بسعر مرن مقابل الدولار', pegEn: 'managed against the US dollar, so its rate moves daily', fx: true, noK21: true,
+      ar: { n: 'الجزائر', in: 'في الجزائر', cur: 'دينار', curS: 'دينار', cities: 'الجزائر العاصمة ووهران وقسنطينة وسطيف' },
+      en: { n: 'Algeria', adj: 'Algerian', cur: 'Algerian dinar', cities: 'Algiers, Oran, Constantine and Setif' },
+      noteAr: 'الدينار الجزائري يُدار بسعر مرن مقابل الدولار، لذلك يتحرك سعر الذهب بالدينار مع السعر العالمي وسعر الصرف معاً. عيار 18 هو الأكثر انتشاراً في المجوهرات الجزائرية، بينما يُقتنى عيار 24 كسبائك وعملات للادخار، وتُضاف المصنعية على كل قطعة.',
+      noteEn: 'The Algerian dinar is managed against the US dollar, so the gold price in DZD moves with both the global price and the exchange rate. 18K is the standard karat for Algerian jewellery, while 24K is bought as bars and coins for saving, and making charges are added per piece.',
+      faqAr: [
+        ['كم سعر غرام الذهب عيار 18 في الجزائر اليوم؟', 'يظهر سعر غرام عيار 18 بالدينار في جدول الأسعار أعلى الصفحة ويُحدَّث كل 5 دقائق تقريباً، وهو سعر الذهب الخام بدون مصنعية.'],
+        ['ما العيار الأكثر انتشاراً في الجزائر؟', 'عيار 18 هو الأكثر انتشاراً في المجوهرات الجزائرية، ويُقتنى عيار 24 كسبائك وعملات للادخار.'],
+        ['لماذا يختلف سعر المحل عن هذه الصفحة؟', 'السعر هنا خام محسوب من السعر العالمي وسعر صرف الدينار، والمحلات تضيف المصنعية وهامش الربح على كل قطعة.']
+      ],
+      faqEn: [
+        ['What is the 18K gold price in Algeria today?', 'The live 18K price per gram in Algerian dinars is shown in the price table above and refreshes about every 5 minutes. It is the raw gold price without making charges.'],
+        ['Which karat is most common in Algeria?', '18K is the standard karat for Algerian jewellery, while 24K is bought as bars and coins for saving.'],
+        ['Why do Algerian shop prices differ from this page?', 'The rate here is the raw gold value calculated from the global price and the dinar exchange rate. Shops add making charges and their margin per piece.']
       ] }
   };
   const COUNTRY_PAGES = { ...GCC, ...OTHERS };
@@ -895,7 +956,7 @@ ${AD}
 ${rows.map(([n, w]) => `<tr><td>${n}</td><td class="n">${P(k, w, opt())}</td>${c.vat ? `<td class="n">${P(k, w * (1 + c.vat / 100), opt())}</td>` : ''}<td class="n">$${P(k, w, { cur: 'usd' })}</td></tr>`).join('')}
 </tbody></table></div><p class="note">سعر الذهب الخام بدون مصنعية. ${k === 24 ? 'أسعار السبائك عند التجار تكون أعلى قليلاً بسبب العلاوة.' : 'تُضاف المصنعية حسب القطعة والمحل.'}</p></section>
 <section class="card-section"><h2>عن الذهب عيار ${k} ${x.in}</h2><div class="prose">
-<p>${k === 21 ? `<strong>عيار 21</strong> هو الأكثر انتشاراً في المجوهرات الخليجية، ويحتوي على <strong>87.5%</strong> ذهب خالص ويُختم برقم <strong>875</strong>. يجمع بين نسبة ذهب عالية تحفظ القيمة وصلابة مناسبة للاستخدام اليومي، لذلك هو الخيار الأشهر في الشبكة والأطقم ${x.in}.`
+<p>${k === 21 ? `<strong>عيار 21</strong> هو الأكثر انتشاراً في المجوهرات الخليجية، ويحتوي على <strong>87.5%</strong> ذهب خالص ويُختم برقم <strong>875</strong>. يجمع بين نسبة ذهب عالية تحفظ القيمة وصلابة مناسبة للاستخدام اليومي${c.noK21 ? '، وهو الأشهر في مصر والعراق والخليج، بينما عيار 18 هو الغالب على المجوهرات ' + x.in + '.' : '، لذلك هو الخيار الأشهر في الشبكة والأطقم ' + x.in + '.'}`
           : k === 22 ? `<strong>عيار 22</strong> يحتوي على <strong>91.7%</strong> ذهب خالص ويُختم برقم <strong>916</strong>. وهو العيار المفضل في المجوهرات الهندية والأساور والقلائد، ويجمع بين لون قريب من الذهب الخالص وصلابة أفضل من عيار 24.`
           : k === 18 ? `<strong>عيار 18</strong> يحتوي على <strong>75%</strong> ذهب خالص ويُختم برقم <strong>750</strong>. يُستخدم كثيراً في مجوهرات الألماس والتصاميم الأوروبية، ويتوفر بألوان أصفر وأبيض وروز، وهو أصلب العيارات المتداولة.`
           : `<strong>عيار 24</strong> هو الذهب الخالص بنسبة <strong>99.9%</strong> ويُختم برقم <strong>999</strong>. يُستخدم أساساً في السبائك والعملات الذهبية للادخار والاستثمار، لأنه طري لا يناسب المجوهرات اليومية.`}</p>

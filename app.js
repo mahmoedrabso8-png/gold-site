@@ -78,13 +78,13 @@ async function getPrice(){
 // data-cur: aed (افتراضي) | usd | inr | pkr ...
 G.ag=+(window.__AG||0)||null; G.fx=window.__FX||{};
 // عملات مربوطة بالدولار بسعر ثابت (رسمي). الدينار الكويتي مش مربوط فبييجي من سعر الصرف اليومي
-const PEG={USD:1,AED:3.6725,SAR:3.75,QAR:3.64,OMR:0.3845,BHD:0.376};
+const PEG={USD:1,AED:3.6725,SAR:3.75,QAR:3.64,OMR:0.3845,BHD:0.376,JOD:0.709};
 const rate=c=>PEG[c.toUpperCase()]||G.fx[c.toUpperCase()]||null;
 
 /* ── الدولة المختارة من القائمة اللي فوق ── */
-const CTRY={AED:'',SAR:'saudi',KWD:'kuwait',QAR:'qatar',OMR:'oman',BHD:'bahrain',EGP:'egypt',INR:'india',PKR:'pakistan',BDT:'bangladesh',TRY:'turkey',USD:'usa',GBP:'uk',CAD:'canada',AUD:'australia',PHP:'philippines',MYR:'malaysia',NPR:'nepal',ZAR:'southafrica'};
-const DEC={AED:2,SAR:2,QAR:2,KWD:3,OMR:3,BHD:3,EGP:0,INR:0,PKR:0,BDT:0,TRY:0,USD:2,GBP:2,CAD:2,AUD:2,PHP:0,MYR:2,NPR:0,ZAR:2};
-const NAME={AED:'درهم',SAR:'ريال',KWD:'دينار',QAR:'ريال',OMR:'ريال',BHD:'دينار',EGP:'جنيه',INR:'روبية',PKR:'روبية باكستانية',BDT:'تاكا',TRY:'ليرة',USD:'دولار',GBP:'إسترليني',CAD:'دولار كندي',AUD:'دولار أسترالي',PHP:'بيسو',MYR:'رينغيت',NPR:'روبية نيبالية',ZAR:'راند'};
+const CTRY={AED:'',SAR:'saudi',KWD:'kuwait',QAR:'qatar',OMR:'oman',BHD:'bahrain',EGP:'egypt',INR:'india',PKR:'pakistan',BDT:'bangladesh',TRY:'turkey',USD:'usa',GBP:'uk',CAD:'canada',AUD:'australia',PHP:'philippines',MYR:'malaysia',NPR:'nepal',ZAR:'southafrica',IQD:'iraq',JOD:'jordan',MAD:'morocco',DZD:'algeria'};
+const DEC={AED:2,SAR:2,QAR:2,KWD:3,OMR:3,BHD:3,EGP:0,INR:0,PKR:0,BDT:0,TRY:0,USD:2,GBP:2,CAD:2,AUD:2,PHP:0,MYR:2,NPR:0,ZAR:2,IQD:0,JOD:3,MAD:2,DZD:0};
+const NAME={AED:'درهم',SAR:'ريال',KWD:'دينار',QAR:'ريال',OMR:'ريال',BHD:'دينار',EGP:'جنيه',INR:'روبية',PKR:'روبية باكستانية',BDT:'تاكا',TRY:'ليرة',USD:'دولار',GBP:'إسترليني',CAD:'دولار كندي',AUD:'دولار أسترالي',PHP:'بيسو',MYR:'رينغيت',NPR:'روبية نيبالية',ZAR:'راند',IQD:'دينار عراقي',JOD:'دينار أردني',MAD:'درهم مغربي',DZD:'دينار جزائري'};
 // دول صفحاتها إنجليزي بس: التحويل من الصفحات العربية يروح للنسخة الإنجليزية بدل 404
 const EN_ONLY={INR:1,PKR:1,BDT:1,TRY:1,USD:1,GBP:1,CAD:1,AUD:1,PHP:1,MYR:1,NPR:1,ZAR:1};
 const BD=document.body.dataset;
@@ -113,7 +113,7 @@ if(csel){
     const c=csel.value;try{localStorage.setItem('cur',c);}catch(e){}
     if(PAGE_CUR){location.href=pageFor(c);return;}
     SEL=c;
-    if(!G.fx[c]&&!{AED:1,USD:1,SAR:1,QAR:1,OMR:1,BHD:1}[c]) loadFX(true);
+    if(!G.fx[c]&&!{AED:1,USD:1,SAR:1,QAR:1,OMR:1,BHD:1,JOD:1}[c]) loadFX(true);
     syncCalcCur();paint();labels();calc();zakat();nisab();
   });
 }
