@@ -73,7 +73,8 @@ export function pages(ctx) {
     ['IDR', 'روبية إندونيسية', 'Indonesian rupiah', 0, 0], ['THB', 'باهت تايلاندي', 'Thai baht', 0, 2], ['VND', 'دونغ فيتنامي', 'Vietnamese dong', 0, 0], ['SGD', 'دولار سنغافوري', 'Singapore dollar', 0, 2],
     ['LKR', 'روبية سريلانكية', 'Sri Lankan rupee', 0, 0], ['EUR', 'يورو', 'Euro', 0, 2], ['JPY', 'ين ياباني', 'Japanese yen', 0, 0], ['CHF', 'فرنك سويسري', 'Swiss franc', 0, 2],
     ['NGN', 'نايرا نيجيرية', 'Nigerian naira', 0, 0], ['GHS', 'سيدي غاني', 'Ghanaian cedi', 0, 2], ['KES', 'شلن كيني', 'Kenyan shilling', 0, 0],
-    ['MXN', 'بيسو مكسيكي', 'Mexican peso', 0, 2], ['BRL', 'ريال برازيلي', 'Brazilian real', 0, 2], ['CNY', 'يوان صيني', 'Chinese yuan', 0, 2]];
+    ['MXN', 'بيسو مكسيكي', 'Mexican peso', 0, 2], ['BRL', 'ريال برازيلي', 'Brazilian real', 0, 2], ['CNY', 'يوان صيني', 'Chinese yuan', 0, 2],
+    ['LBP', 'ليرة لبنانية', 'Lebanese pound', 0, 0], ['TND', 'دينار تونسي', 'Tunisian dinar', 0, 2], ['LYD', 'دينار ليبي', 'Libyan dinar', 0, 2], ['YER', 'ريال يمني', 'Yemeni rial', 0, 0]];
   const TOLA = 11.6638;
 
   // ── أجزاء مشتركة ──────────────────────────────────────
@@ -96,14 +97,14 @@ export function pages(ctx) {
     ar: [['gold-21k', 'سعر عيار 21', 'الأكثر طلباً في الخليج'], ['gold-24k', 'سعر عيار 24', 'الذهب الخالص والسبائك'], ['gold-22k', 'سعر عيار 22', 'المجوهرات الهندية'], ['gold-18k', 'سعر عيار 18', 'مجوهرات الألماس'],
       ['gold-price-usd', 'سعر الذهب عالمياً', 'الأونصة بالدولار مباشر'], ['silver', 'سعر الفضة اليوم', 'الغرام والأونصة والكيلو'],
       ['gcc', 'أسعار الذهب في الخليج', 'مقارنة بين 6 دول'], ['saudi', 'سعر الذهب في السعودية', 'بالريال السعودي'], ['kuwait', 'سعر الذهب في الكويت', 'بالدينار الكويتي'],
-      ['qatar', 'سعر الذهب في قطر', 'بالريال القطري'], ['oman', 'سعر الذهب في عُمان', 'بالريال العُماني'], ['bahrain', 'سعر الذهب في البحرين', 'بالدينار البحريني'], ['egypt', 'سعر الذهب في مصر', 'بالجنيه المصري'], ['iraq', 'سعر الذهب في العراق', 'بالدينار العراقي'], ['jordan', 'سعر الذهب في الأردن', 'بالدينار الأردني'], ['morocco', 'سعر الذهب في المغرب', 'بالدرهم المغربي'], ['algeria', 'سعر الذهب في الجزائر', 'بالدينار الجزائري'],
+      ['qatar', 'سعر الذهب في قطر', 'بالريال القطري'], ['oman', 'سعر الذهب في عُمان', 'بالريال العُماني'], ['bahrain', 'سعر الذهب في البحرين', 'بالدينار البحريني'], ['egypt', 'سعر الذهب في مصر', 'بالجنيه المصري'], ['iraq', 'سعر الذهب في العراق', 'بالدينار العراقي'], ['jordan', 'سعر الذهب في الأردن', 'بالدينار الأردني'], ['morocco', 'سعر الذهب في المغرب', 'بالدرهم المغربي'], ['algeria', 'سعر الذهب في الجزائر', 'بالدينار الجزائري'], ['lebanon', 'سعر الذهب في لبنان', 'بالليرة والدولار'], ['tunisia', 'سعر الذهب في تونس', 'بالدينار التونسي'], ['libya', 'سعر الذهب في ليبيا', 'بالدينار الليبي'], ['yemen', 'سعر الذهب في اليمن', 'بالريال اليمني'],
       ['gold-bars', 'أسعار السبائك', 'من 1 غرام إلى 1 كيلو'], ['gold-calculator', 'حاسبة الذهب', 'بالمصنعية والضريبة'], ['zakat-calculator', 'حاسبة زكاة الذهب', 'النصاب وقيمة الزكاة'],
       ['gold-price-yesterday', 'سعر الذهب أمس', 'وآخر 10 أيام'], ['gold-forecast', 'توقعات الذهب', 'الاتجاه والعوامل المؤثرة'], ['history', 'أرشيف الأسعار', 'سعر الذهب يوماً بيوم'],
       ['articles', 'مقالات وأدلة الذهب', 'شروحات الشراء والادخار والزكاة']],
     en: [['gold-22k', '22K gold rate', 'Popular for Indian jewellery'], ['gold-24k', '24K gold rate', 'Pure gold & bars'], ['gold-21k', '21K gold rate', 'Gulf jewellery'], ['gold-18k', '18K gold rate', 'Diamond jewellery'],
       ['gold-price-usd', 'Gold price in USD', 'Live ounce XAU/USD'], ['silver', 'Silver price', 'Per gram, ounce & kg'],
       ['gcc', 'Gulf gold prices', 'Compare 6 countries'], ['saudi', 'Gold price in Saudi Arabia', 'In SAR'], ['kuwait', 'Gold price in Kuwait', 'In KWD'],
-      ['qatar', 'Gold price in Qatar', 'In QAR'], ['oman', 'Gold price in Oman', 'In OMR'], ['bahrain', 'Gold price in Bahrain', 'In BHD'], ['egypt', 'Gold price in Egypt', 'In EGP'], ['india', 'Gold rate in India', 'In INR, 22K & 24K'], ['pakistan', 'Gold rate in Pakistan', 'In PKR, per tola'], ['bangladesh', 'Gold price in Bangladesh', 'In BDT'], ['turkey', 'Gold price in Turkey', 'Gram altın in TRY'], ['usa', 'Gold price in USA', 'In USD'], ['uk', 'Gold price in UK', 'In GBP'], ['canada', 'Gold price in Canada', 'In CAD'], ['australia', 'Gold price in Australia', 'In AUD'], ['philippines', 'Gold price in Philippines', 'In PHP'], ['malaysia', 'Gold price in Malaysia', 'Emas 916 in MYR'], ['nepal', 'Gold price in Nepal', 'In NPR, per tola'], ['southafrica', 'Gold price in South Africa', 'Krugerrand in ZAR'], ['iraq', 'Gold price in Iraq', 'In IQD'], ['jordan', 'Gold price in Jordan', 'In JOD'], ['morocco', 'Gold price in Morocco', 'In MAD'], ['algeria', 'Gold price in Algeria', 'In DZD'], ['indonesia', 'Gold price in Indonesia', 'Antam bars in IDR'], ['thailand', 'Gold price in Thailand', 'Per baht weight, THB'], ['vietnam', 'Gold price in Vietnam', 'SJC bars in VND'], ['singapore', 'Gold price in Singapore', 'GST-free IPM in SGD'], ['srilanka', 'Gold price in Sri Lanka', 'In LKR'], ['germany', 'Gold price in Germany', 'VAT-free bullion, EUR'], ['japan', 'Gold price in Japan', 'In JPY'], ['switzerland', 'Gold price in Switzerland', 'Home of PAMP, CHF'], ['nigeria', 'Gold price in Nigeria', 'In NGN'], ['ghana', 'Gold price in Ghana', 'The Gold Coast, GHS'], ['kenya', 'Gold price in Kenya', 'In KES'], ['mexico', 'Gold price in Mexico', 'Centenario in MXN'], ['brazil', 'Gold price in Brazil', 'Ouro 18K in BRL'], ['china', 'Gold price in China', '999 gold in CNY'], ['france', 'Gold price in France', 'Napoleon coins, EUR'], ['italy', 'Gold price in Italy', '18K standard, EUR'], ['spain', 'Gold price in Spain', 'Oro de ley, EUR'], ['gold-rate-inr', 'Gold rate in INR', 'Dubai price in rupees'], ['gold-rate-pkr', 'Gold rate in PKR', 'Per tola in rupees'],
+      ['qatar', 'Gold price in Qatar', 'In QAR'], ['oman', 'Gold price in Oman', 'In OMR'], ['bahrain', 'Gold price in Bahrain', 'In BHD'], ['egypt', 'Gold price in Egypt', 'In EGP'], ['india', 'Gold rate in India', 'In INR, 22K & 24K'], ['pakistan', 'Gold rate in Pakistan', 'In PKR, per tola'], ['bangladesh', 'Gold price in Bangladesh', 'In BDT'], ['turkey', 'Gold price in Turkey', 'Gram altın in TRY'], ['usa', 'Gold price in USA', 'In USD'], ['uk', 'Gold price in UK', 'In GBP'], ['canada', 'Gold price in Canada', 'In CAD'], ['australia', 'Gold price in Australia', 'In AUD'], ['philippines', 'Gold price in Philippines', 'In PHP'], ['malaysia', 'Gold price in Malaysia', 'Emas 916 in MYR'], ['nepal', 'Gold price in Nepal', 'In NPR, per tola'], ['southafrica', 'Gold price in South Africa', 'Krugerrand in ZAR'], ['iraq', 'Gold price in Iraq', 'In IQD'], ['jordan', 'Gold price in Jordan', 'In JOD'], ['morocco', 'Gold price in Morocco', 'In MAD'], ['algeria', 'Gold price in Algeria', 'In DZD'], ['indonesia', 'Gold price in Indonesia', 'Antam bars in IDR'], ['thailand', 'Gold price in Thailand', 'Per baht weight, THB'], ['vietnam', 'Gold price in Vietnam', 'SJC bars in VND'], ['singapore', 'Gold price in Singapore', 'GST-free IPM in SGD'], ['srilanka', 'Gold price in Sri Lanka', 'In LKR'], ['germany', 'Gold price in Germany', 'VAT-free bullion, EUR'], ['japan', 'Gold price in Japan', 'In JPY'], ['switzerland', 'Gold price in Switzerland', 'Home of PAMP, CHF'], ['nigeria', 'Gold price in Nigeria', 'In NGN'], ['ghana', 'Gold price in Ghana', 'The Gold Coast, GHS'], ['kenya', 'Gold price in Kenya', 'In KES'], ['mexico', 'Gold price in Mexico', 'Centenario in MXN'], ['brazil', 'Gold price in Brazil', 'Ouro 18K in BRL'], ['china', 'Gold price in China', '999 gold in CNY'], ['france', 'Gold price in France', 'Napoleon coins, EUR'], ['italy', 'Gold price in Italy', '18K standard, EUR'], ['spain', 'Gold price in Spain', 'Oro de ley, EUR'], ['lebanon', 'Gold price in Lebanon', 'In LBP & USD'], ['tunisia', 'Gold price in Tunisia', 'In TND'], ['libya', 'Gold price in Libya', 'In LYD'], ['yemen', 'Gold price in Yemen', 'In YER'], ['gold-rate-inr', 'Gold rate in INR', 'Dubai price in rupees'], ['gold-rate-pkr', 'Gold rate in PKR', 'Per tola in rupees'],
       ['gold-bars', 'Gold bar prices', '1 g to 1 kg, tola bars'], ['gold-calculator', 'Gold calculator', 'With making charges & VAT'], ['gold-price-yesterday', 'Last 10 days', 'Yesterday\'s gold rate'], ['zakat-calculator', 'Zakat calculator', 'Nisab and zakat due']]
   };
   const links = (L, skip) => `<section class="card-section"><h2>${L === 'en' ? 'More gold prices & tools' : 'أسعار وأدوات أخرى'}</h2><div class="links-grid">${LINKS[L].filter(l => l[0] !== skip).map(([s, n, d]) => `<a class="link-card" href="${url(L, s)}">${n}<span>${d}</span></a>`).join('')}</div></section>`;
@@ -1058,6 +1059,66 @@ ${links('ar', '')}`,
         ['What is the gold price in Spain today?', 'The live price per gram in euros is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw gold rate without VAT or making charges.'],
         ['Is gold taxed in Spain?', 'Investment gold (qualifying bars and coins) is exempt from VAT in Spain, as across the EU. Gold jewellery carries 21% VAT, included in the shop price.'],
         ['Which karat is most common in Spain?', 'Spanish jewellery is traditionally oro de ley, 18K (750), stamped with an official hallmark. 24K is bought as bars and coins for investment.']
+      ] },
+    lebanon: { code: 'LBP', d: 0, vat: 0, peg: 'مربوط رسمياً بالدولار، مع سعر سوق يختلف كثيراً عن السعر الرسمي', pegEn: 'officially pegged to the US dollar, with a market rate that can differ widely', fx: true,
+      ar: { n: 'لبنان', in: 'في لبنان', cur: 'ليرة', curS: 'ليرة', cities: 'بيروت وطرابلس وصيدا وزحلة' },
+      en: { n: 'Lebanon', adj: 'Lebanese', cur: 'Lebanese pound', cities: 'Beirut, Tripoli, Sidon and Zahle' },
+      noteAr: 'يعتمد هذا الموقع سعر الصرف اليومي للسوق، وقد يختلف كثيراً عن السعر الرسمي للمصرف المركزي، لذلك يُفضَّل متابعة السعر بالدولار أيضاً. كثير من الصاغة في لبنان يُسعِّرون بالدولار الأمريكي مباشرة. عيار 18 و21 هما الأكثر انتشاراً في المجوهرات اللبنانية، وتُضاف المصنعية على كل قطعة.',
+      noteEn: 'This page uses the daily market exchange rate, which can differ widely from the official central bank rate, so following the US dollar price alongside is recommended. Many Lebanese jewellers price directly in US dollars. 18K and 21K are the most common jewellery karats in Lebanon, and making charges are added per piece.',
+      faqAr: [
+        ['كم سعر غرام الذهب عيار 21 في لبنان اليوم؟', 'يظهر سعر غرام عيار 21 بالليرة محدَّثاً في أعلى الصفحة ويُحدَّث كل 5 دقائق تقريباً، وهو سعر الذهب الخام بدون مصنعية.'],
+        ['لماذا يُسعِّر الصاغة في لبنان بالدولار؟', 'بسبب فرق سعر الصرف الرسمي عن سعر السوق، يعتمد كثير من الصاغة التسعير بالدولار مباشرة. يظهر السعر بالدولار بجانب السعر بالليرة في أعلى الصفحة.'],
+        ['ما العيار الأكثر انتشاراً في لبنان؟', 'عيار 18 و21 هما الأكثر انتشاراً في المجوهرات اللبنانية، بينما يُقتنى عيار 24 كسبائك وعملات للادخار.']
+      ],
+      faqEn: [
+        ['What is the 21K gold price in Lebanon today?', 'The live 21K price per gram in Lebanese pounds is shown at the top of this page and refreshes about every 5 minutes. It is the raw gold price without making charges.'],
+        ['Why do Lebanese jewellers price in dollars?', 'Because the market exchange rate differs widely from the official rate, many jewellers price directly in US dollars. The dollar price is shown next to the pound price at the top of this page.'],
+        ['Which karat is most common in Lebanon?', '18K and 21K are the most common jewellery karats in Lebanon, while 24K is bought as bars and coins for saving.']
+      ] },
+    tunisia: { code: 'TND', d: 2, vat: 0, peg: 'مُدار بسعر مرن مقابل الدولار', pegEn: 'managed against the US dollar, so its rate moves daily', fx: true, noK21: true,
+      ar: { n: 'تونس', in: 'في تونس', cur: 'دينار', curS: 'دينار', cities: 'تونس العاصمة وصفاقس وسوسة والقيروان' },
+      en: { n: 'Tunisia', adj: 'Tunisian', cur: 'Tunisian dinar', cities: 'Tunis, Sfax, Sousse and Kairouan' },
+      noteAr: 'الدينار التونسي يُدار بسعر مرن مقابل الدولار، لذلك يتحرك سعر الذهب بالدينار مع السعر العالمي وسعر الصرف معاً. عيار 18 هو الأكثر انتشاراً في المجوهرات التونسية، وتُباع السبائك الصغيرة والعملات للادخار، وتُضاف المصنعية على كل قطعة.',
+      noteEn: 'The Tunisian dinar is managed against the US dollar, so the gold price in TND moves with both the global price and the exchange rate. 18K is the most common karat in Tunisian jewellery, while small bars and coins are bought for saving, and making charges are added per piece.',
+      faqAr: [
+        ['كم سعر غرام الذهب عيار 18 في تونس اليوم؟', 'يظهر سعر غرام عيار 18 بالدينار في جدول الأسعار أعلى الصفحة ويُحدَّث كل 5 دقائق تقريباً، وهو سعر الذهب الخام بدون مصنعية.'],
+        ['ما العيار الأكثر انتشاراً في تونس؟', 'عيار 18 هو الأكثر انتشاراً في المجوهرات التونسية، بينما تُقتنى السبائك الصغيرة والعملات للادخار.'],
+        ['لماذا يختلف سعر المحل عن هذه الصفحة؟', 'السعر هنا خام محسوب من السعر العالمي وسعر صرف الدينار، والمحلات تضيف المصنعية وهامش الربح على كل قطعة.']
+      ],
+      faqEn: [
+        ['What is the 18K gold price in Tunisia today?', 'The live 18K price per gram in Tunisian dinars is shown in the price table above and refreshes about every 5 minutes. It is the raw gold price without making charges.'],
+        ['Which karat is most common in Tunisia?', '18K is the most common karat in Tunisian jewellery, while small bars and coins are bought for saving.'],
+        ['Why do Tunisian shop prices differ from this page?', 'The rate here is the raw gold value calculated from the global price and the dinar exchange rate. Shops add making charges and their margin per piece.']
+      ] },
+    libya: { code: 'LYD', d: 2, vat: 0, peg: 'مُدار بسعر شبه ثابت مقابل الدولار، مع سعر سوق موازٍ قد يختلف', pegEn: 'managed at a near-fixed rate against the US dollar, with a parallel market rate that can differ', fx: true,
+      ar: { n: 'ليبيا', in: 'في ليبيا', cur: 'دينار', curS: 'دينار', cities: 'طرابلس وبنغازي ومصراتة وسبها' },
+      en: { n: 'Libya', adj: 'Libyan', cur: 'Libyan dinar', cities: 'Tripoli, Benghazi, Misrata and Sabha' },
+      noteAr: 'الدينار الليبي مُدار بسعر شبه ثابت مقابل الدولار مع سعر سوق موازٍ قد يختلف، ويعتمد هذا الموقع سعر الصرف اليومي المتاح. عيار 21 و18 هما الأكثر انتشاراً في المجوهرات الليبية، وتُضاف المصنعية على كل قطعة.',
+      noteEn: 'The Libyan dinar is managed at a near-fixed rate against the US dollar with a parallel market rate that can differ, and this page uses the daily available exchange rate. 21K and 18K are the most common jewellery karats in Libya, and making charges are added per piece.',
+      faqAr: [
+        ['كم سعر غرام الذهب عيار 21 في ليبيا اليوم؟', 'يظهر سعر غرام عيار 21 بالدينار محدَّثاً في أعلى الصفحة ويُحدَّث كل 5 دقائق تقريباً، وهو سعر الذهب الخام بدون مصنعية.'],
+        ['ما العيار الأكثر انتشاراً في ليبيا؟', 'عيار 21 و18 هما الأكثر انتشاراً في المجوهرات الليبية، بينما يُقتنى عيار 24 كسبائك وعملات للادخار.'],
+        ['لماذا يختلف سعر المحل عن هذه الصفحة؟', 'السعر هنا خام محسوب من السعر العالمي وسعر صرف الدينار، والمحلات تضيف المصنعية وهامش الربح على كل قطعة.']
+      ],
+      faqEn: [
+        ['What is the 21K gold price in Libya today?', 'The live 21K price per gram in Libyan dinars is shown at the top of this page and refreshes about every 5 minutes. It is the raw gold price without making charges.'],
+        ['Which karat is most common in Libya?', '21K and 18K are the most common jewellery karats in Libya, while 24K is bought as bars and coins for saving.'],
+        ['Why do Libyan shop prices differ from this page?', 'The rate here is the raw gold value calculated from the global price and the dinar exchange rate. Shops add making charges and their margin per piece.']
+      ] },
+    yemen: { code: 'YER', d: 0, vat: 0, peg: 'مُدار مقابل الدولار، وتتعدد أسعار الصرف بين المناطق', pegEn: 'managed against the US dollar, with exchange rates differing between regions', fx: true,
+      ar: { n: 'اليمن', in: 'في اليمن', cur: 'ريال', curS: 'ريال', cities: 'صنعاء وعدن وتعز والمكلا' },
+      en: { n: 'Yemen', adj: 'Yemeni', cur: 'Yemeni rial', cities: 'Sanaa, Aden, Taiz and Mukalla' },
+      noteAr: 'يتعدد سعر صرف الريال اليمني بين المناطق، ويعتمد هذا الموقع سعر الصرف اليومي المتاح، لذلك قد يختلف السعر الفعلي في السوق المحلية عن المعروض هنا. عيار 21 هو الأكثر انتشاراً في المجوهرات اليمنية، وتُضاف المصنعية على كل قطعة.',
+      noteEn: 'The Yemeni rial trades at different rates in different regions, and this page uses the daily available exchange rate, so the actual local market price may differ from what is shown here. 21K is the most common jewellery karat in Yemen, and making charges are added per piece.',
+      faqAr: [
+        ['كم سعر غرام الذهب عيار 21 في اليمن اليوم؟', 'يظهر سعر غرام عيار 21 بالريال محدَّثاً في أعلى الصفحة ويُحدَّث كل 5 دقائق تقريباً، وهو سعر الذهب الخام بدون مصنعية.'],
+        ['لماذا يختلف سعر الذهب بين المناطق في اليمن؟', 'لأن سعر صرف الريال يختلف بين المناطق، ويُحسب السعر هنا بسعر الصرف اليومي المتاح، فقد تجد فرقاً عن السوق المحلية في منطقتك.'],
+        ['ما العيار الأكثر انتشاراً في اليمن؟', 'عيار 21 هو الأكثر انتشاراً في المجوهرات اليمنية، ويُستخدم عيار 18 في بعض التصاميم الحديثة.']
+      ],
+      faqEn: [
+        ['What is the 21K gold price in Yemen today?', 'The live 21K price per gram in Yemeni rials is shown at the top of this page and refreshes about every 5 minutes. It is the raw gold price without making charges.'],
+        ['Why does the gold price differ between regions in Yemen?', 'The rial trades at different rates in different regions. This page uses the daily available rate, so your local market price may differ.'],
+        ['Which karat is most common in Yemen?', '21K is the most common jewellery karat in Yemen, with 18K used in some modern designs.']
       ] }
   };
   const COUNTRY_PAGES = { ...GCC, ...OTHERS };
