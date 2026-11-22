@@ -334,3 +334,150 @@ export const ARTICLES = [
     ]
   }
 ];
+
+// English country articles — one localized SEO guide per major market
+export const ARTICLES_EN = [
+  {
+    slug: 'why-gold-rises-india',
+    title: 'Why Is the Gold Price Rising in India? Rupee, Duty and Demand',
+    h1: 'Why is the gold price rising in India?',
+    desc: 'The real reasons gold keeps rising in India: global spot price, weaker rupee, import duty and GST, and wedding demand — plus what it means for 22K buyers.',
+    teaser: 'Rupee, import duty and wedding demand, explained simply',
+    intro: 'Every record high has the same three engines behind it — here is how they work',
+    body: `
+<p>Gold in India has set record after record, and the reason is never one thing. The price you pay at the jeweller is built in three layers: the <strong>global spot price</strong>, the <strong>rupee exchange rate</strong>, and <strong>Indian taxes and demand</strong>. When all three push the same way, prices jump fast.</p>
+<h3>1. The global price keeps climbing</h3>
+<p>Gold is priced worldwide in US dollars per troy ounce (31.1035 g). Central banks buying gold, investors hedging inflation, and expectations of lower interest rates have pushed the spot price to historic highs. Every Indian price starts from this number — see the live <a href="/en/gold-price-usd/">gold price in USD</a>.</p>
+<h3>2. The rupee multiplies the move</h3>
+<p>Because gold is bought in dollars, a weaker rupee raises the Indian price even when the global price is flat. The rule: <strong>local price = global price × USD/INR ÷ 31.1035</strong>. If gold rises 5% globally and the rupee slips 3%, Indian buyers feel roughly 8%. Check today's rate on the <a href="/en/india/">gold rate in India</a> page.</p>
+<h3>3. Duty, GST and demand</h3>
+<p>India imports nearly all its gold, so taxes land directly in the retail price: import duty (cut to 6% in the 2024 budget) plus <strong>3% GST</strong> on the gold value and 5% GST on making charges. On top of that, wedding and festival seasons (Diwali, Akshaya Tritiya) create waves of physical demand that widen local premiums.</p>
+<h3>What it means for buyers</h3>
+<p>Nobody can time the exact top or bottom. What you can control: buy <strong>BIS-hallmarked 22K</strong> (the <a href="/en/gold-22k/">22K rate</a> is what jewellers quote for jewellery), compare making charges between shops, and consider buying in parts rather than waiting for a crash that may not come. For savings, coins and bars in <a href="/en/gold-24k/">24K</a> track the raw price most closely.</p>
+<p>This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['Why does the gold price increase in India?', 'Three combined drivers: the global dollar price of gold, the USD/INR exchange rate (a weaker rupee raises local prices), and Indian import duty plus 3% GST. Wedding-season demand adds local premiums on top.'],
+      ['Does a weak rupee make gold costlier in India?', 'Yes. Gold is imported and priced in US dollars, so when the rupee falls against the dollar, the Indian price rises even if the global price is unchanged.'],
+      ['Is gold still a good investment in India?', 'Gold has preserved purchasing power in India over decades and hedges rupee weakness, but it is volatile in the short term. Many households combine jewellery for use with 24K coins or bars for savings.']
+    ]
+  },
+  {
+    slug: 'why-gold-rises-usa',
+    title: 'Why Is the Gold Price Rising in the US? Fed, Inflation and Demand',
+    h1: 'Why is the gold price rising in the US?',
+    desc: 'What drives the US gold price: Fed rate expectations and real yields, inflation hedging, central-bank buying and ETF flows — and what record prices mean for buyers.',
+    teaser: 'Fed rates, inflation and central-bank buying, in plain English',
+    intro: 'Gold is priced in dollars — so American buyers watch the purest version of the story',
+    body: `
+<p>In the US, gold is priced directly in dollars, so the <a href="/en/usa/">gold price in the USA</a> is the global spot price itself. When it hits record highs, four forces are usually at work.</p>
+<h3>1. Fed rate expectations</h3>
+<p>Gold pays no interest, so its biggest rival is the yield on safe Treasury bonds. When markets expect the <strong>Federal Reserve to cut rates</strong> — or when real (after-inflation) yields fall — holding gold gets cheaper by comparison and demand rises. Rate-cut cycles have historically been strong periods for gold.</p>
+<h3>2. Inflation hedging</h3>
+<p>Every inflation scare revives gold's oldest pitch: an ounce buys roughly what it always has. After the 2021–2023 inflation surge, both retail buyers and funds increased their gold allocations, and that demand has stayed sticky.</p>
+<h3>3. Central banks and ETFs</h3>
+<p>Central banks — especially in Asia — have been buying gold at record pace to diversify reserves away from the dollar. Add Western ETF inflows and you get a deep, steady bid under the price that did not exist a decade ago.</p>
+<h3>4. The dollar itself</h3>
+<p>Gold and the dollar usually move in opposite directions. A softer dollar makes gold cheaper for the rest of the world, lifting global demand — which feeds straight back into the US price.</p>
+<h3>What it means for you</h3>
+<p>American buyers meet this price in three forms: <strong>bullion</strong> (coins and bars, sold close to spot plus a premium), <strong>jewellery</strong> (usually <a href="/en/gold-18k/">14K or 18K</a>, where workmanship matters more than metal), and <strong>paper gold</strong> (ETFs). For bullion, compare dealer premiums over the live <a href="/en/gold-price-usd/">spot price</a>; for jewellery, know the karat before the price. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['Why is gold going up in the US?', 'Mainly expectations of lower Fed rates, inflation hedging, record central-bank buying and ETF inflows. Because gold is priced in dollars, the US price is the global spot price.'],
+      ['Does a strong dollar push gold down?', 'Usually, yes — gold and the dollar tend to move inversely. A weaker dollar makes gold cheaper abroad, raising global demand and lifting the dollar price.'],
+      ['Is it too late to buy gold after record highs?', 'No one can time the market. Buyers who want exposure often build it gradually (dollar-cost averaging) rather than waiting for a specific dip.']
+    ]
+  },
+  {
+    slug: 'why-gold-rises-canada',
+    title: 'Why Is the Gold Price Rising in Canada? CAD, Rates and Demand',
+    h1: 'Why is the gold price rising in Canada?',
+    desc: 'Why gold keeps climbing in Canadian dollars: the global spot price, USD/CAD, Bank of Canada policy, and what it means for Maple Leaf and jewellery buyers.',
+    teaser: 'The loonie effect: why CAD gold outruns USD gold',
+    intro: 'Canadian gold buyers watch two charts at once — the metal and the dollar',
+    body: `
+<p>The <a href="/en/canada/">gold price in Canada</a> is the global US-dollar price translated through USD/CAD — and that translation is why Canadian gold charts often look even stronger than American ones.</p>
+<h3>The loonie effect</h3>
+<p>Gold is bought worldwide in US dollars. The formula is simple: <strong>CAD price = USD spot × USD/CAD</strong>. When the Canadian dollar weakens — as it has through much of the recent rate cycle — the CAD gold price rises even if the global price is flat. A 5% global rally plus a 4% weaker loonie is roughly a 9% Canadian gain.</p>
+<h3>The Bank of Canada factor</h3>
+<p>Gold competes with interest-bearing savings. When the Bank of Canada cuts rates, the opportunity cost of holding gold falls, and Canadian investors historically add exposure through ETFs and bullion dealers.</p>
+<h3>A gold-producing country buying its own metal</h3>
+<p>Canada is one of the world's top gold producers, yet domestic retail demand is strong: the Royal Canadian Mint's <strong>Maple Leaf</strong> coins (99.99% pure) are a global benchmark, and local dealers price them off the live CAD spot plus a premium of a few percent.</p>
+<h3>What it means for buyers</h3>
+<p>For bullion, compare dealer premiums over the live price — Maple Leafs usually carry lower premiums than foreign coins in Canada. For jewellery, know that most Canadian pieces are 10K–18K; the raw value follows <a href="/en/gold-18k/">18K</a> and 24K rates converted to CAD. Try the <a href="/en/gold-calculator/">gold calculator</a> with CAD selected. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['Why is gold rising in Canadian dollars?', 'The global price has climbed on rate-cut expectations and central-bank buying, and a weaker Canadian dollar amplifies every global move for CAD buyers.'],
+      ['Does USD/CAD affect the gold price in Canada?', 'Directly. The Canadian price equals the US-dollar spot price times USD/CAD, so a weaker loonie raises the local price even when the global price is unchanged.'],
+      ['Are Maple Leaf coins a good way to buy gold in Canada?', 'They are 99.99% pure, globally recognized and usually carry modest premiums in Canada, which makes them a popular bullion choice. Premiums vary by dealer, so compare.']
+    ]
+  },
+  {
+    slug: 'why-gold-rises-australia',
+    title: 'Why Is Gold Rising in Australia? AUD and Global Demand',
+    h1: 'Why is the gold price rising in Australia?',
+    desc: 'Why gold sets records in Australian dollars: the global spot cycle, the AUD/USD rate, RBA expectations, and what it means for Perth Mint and jewellery buyers.',
+    teaser: 'AUD gold has outrun USD gold — here is why',
+    intro: 'Australia digs the metal up — and still pays the world price for it, in AUD',
+    body: `
+<p>Australia is the world's third-biggest gold producer, yet the <a href="/en/australia/">gold price in Australia</a> is set by the same global auction as everywhere else — translated into AUD.</p>
+<h3>The AUD amplifier</h3>
+<p>The local formula is <strong>AUD price = USD spot × AUD/USD</strong>. The Australian dollar has spent long stretches weaker against the US dollar, so AUD gold has repeatedly hit record highs even in periods when the USD price was only steady. For Australian savers, gold has been both a global asset and a currency hedge.</p>
+<h3>Global cycle, local rates</h3>
+<p>Worldwide demand — central-bank buying, ETF inflows, inflation hedging — drives the spot price. Locally, Reserve Bank of Australia rate expectations matter too: lower expected rates reduce the appeal of cash and term deposits relative to gold.</p>
+<h3>The Perth Mint channel</h3>
+<p>Most Australian retail buyers meet gold through <strong>Perth Mint</strong> products: Kangaroo coins (99.99%), minted bars, and depository accounts. Prices are the live AUD spot plus a premium that shrinks as size grows — a 1 oz coin carries a noticeably lower percentage premium than a 1 g bar.</p>
+<h3>What it means for buyers</h3>
+<p>For bullion, compare premiums over the live AUD price and buy sizes that keep the percentage premium low. For jewellery — mostly 9K and <a href="/en/gold-18k/">18K</a> in Australia — the metal value follows the karat rate, with workmanship on top. The <a href="/en/gold-calculator/">gold calculator</a> works with AUD. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['Why is gold at record highs in Australia?', 'The global price has climbed on rate-cut expectations and central-bank demand, and a softer Australian dollar has amplified the move in AUD terms.'],
+      ['Does the AUD/USD rate change the local gold price?', 'Yes — the Australian price is the US-dollar spot price converted at AUD/USD. A weaker AUD means a higher local price for the same global market.'],
+      ['Is Perth Mint gold a good buy?', 'Perth Mint coins and bars are government-backed, 99.99% pure and easy to resell in Australia. Compare dealer premiums over the live spot price before buying.']
+    ]
+  },
+  {
+    slug: 'gold-karats-uk',
+    title: 'Gold Karats in the UK: 9K, 18K, 22K and 24K Explained',
+    h1: 'Gold karats in the UK: 9K, 18K, 22K and 24K explained',
+    desc: 'What 9K, 18K, 22K and 24K gold mean in the UK: purity, hallmarks and Assay offices, sovereign coins, and which karat suits jewellery versus investment.',
+    teaser: 'Hallmarks, sovereigns and which karat to buy',
+    intro: 'Britain is a 9K country with a 22K coin at its heart — here is how the karats fit together',
+    body: `
+<p>Walk into a British jeweller and most pieces are <strong>9 karat</strong>; ask for investment gold and you will be offered <strong>sovereigns and Britannias</strong>. Both are "real gold" — the karat just tells you how much.</p>
+<h3>What the karats mean</h3>
+<p>Karat measures pure gold content out of 24 parts: <strong>9K = 37.5%</strong> (hallmark 375), <strong>18K = 75%</strong> (750), <strong>22K = 91.7%</strong> (916) and <strong>24K = 99.9%</strong> (999). The rest is alloy — copper, silver, zinc — added for hardness and colour. See live rates for <a href="/en/gold-18k/">18K</a>, <a href="/en/gold-22k/">22K</a> and <a href="/en/gold-24k/">24K</a> in pounds.</p>
+<h3>Why 9K rules the high street</h3>
+<p>At 37.5% gold, 9K is harder, cheaper and more scratch-resistant — suited to everyday rings and chains. The trade-off: lower resale value per gram and a paler colour. 18K (75%) is the premium choice for engagement rings and fine pieces, richer in colour and value.</p>
+<h3>Hallmarks are the law</h3>
+<p>In the UK, any gold item over 1 gram sold as gold must carry a hallmark from one of the four Assay offices (London, Birmingham, Sheffield, Edinburgh). The stamp shows the fineness number (375, 750, 916, 999) — check it before you buy, and keep it visible when you sell.</p>
+<h3>22K and 24K: the investor's karats</h3>
+<p>The <strong>sovereign</strong> (22K, 7.99 g) and the <strong>Britannia</strong> (24K) are the classic British investment coins — legal tender, which makes them exempt from Capital Gains Tax for UK residents, and free of VAT as investment gold. South Asian communities in the UK also favour 22K jewellery, priced per gram off the live rate plus making charges.</p>
+<h3>Which karat should you buy?</h3>
+<p>Daily-wear jewellery: 9K or 18K. Jewellery as savings: 22K. Pure investment: sovereigns, Britannias or 24K bars bought close to the <a href="/en/uk/">live UK gold price</a>. Compare dealer premiums, and use the <a href="/en/gold-calculator/">gold calculator</a> to check gram values in GBP. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['Is 9K gold real gold?', 'Yes — 9K is 37.5% pure gold with the rest alloy, and it is the UK high-street standard because it is hard-wearing and affordable. It simply contains less gold per gram than 18K or 22K.'],
+      ['What does a 375 hallmark mean?', '375 means 375 parts of pure gold per 1,000 — 37.5%, i.e. 9 karat. UK law requires a hallmark from a British Assay office on gold items over 1 gram.'],
+      ['Why are sovereign coins popular in the UK?', 'They are 22K legal-tender gold coins: VAT-free as investment gold, exempt from Capital Gains Tax for UK residents, and easy to sell back to dealers at small spreads.']
+    ]
+  },
+  {
+    slug: '21k-vs-24k-gold-philippines',
+    title: "21K vs 24K Gold: What 'Saudi Gold' Means in the Philippines",
+    h1: "21K vs 24K gold: what 'Saudi gold' means in the Philippines",
+    desc: "Why Filipinos call 21K jewellery 'Saudi gold', how 18K, 21K and 24K differ in purity and price per gram, and how pawnshops value each karat.",
+    teaser: "Purity, pawnshop value and the OFW favourite, explained",
+    intro: "The karat decides the price — and in the Philippines, 21K has a story",
+    body: `
+<p>In Filipino jewellery shops, <strong>"Saudi gold"</strong> means 21-karat jewellery — pieces historically brought home by OFWs from the Gulf, where 21K is the standard. It is prized for its rich colour and high melt value, and pawnshops appraise it higher than the local standard, 18K.</p>
+<h3>The purity ladder</h3>
+<p><strong>18K = 75%</strong> pure (the everyday standard in Philippine shops), <strong>21K = 87.5%</strong> (Saudi gold — deeper yellow, higher value, slightly softer), and <strong>24K = 99.9%</strong> (pure gold — bars and coins, too soft for daily jewellery). Check the live <a href="/en/philippines/">gold price in the Philippines</a> per gram for each karat.</p>
+<h3>How the price difference works</h3>
+<p>Gold value scales with purity: if 24K is ₱X per gram, 21K is about 87.5% of that and 18K about 75%. So a gram of Saudi gold is worth roughly <strong>17% more</strong> than a gram of 18K in raw metal — before workmanship. That is why karat is the first question any buyer or pawnbroker asks.</p>
+<h3>Pawnshops and resale</h3>
+<p>The Philippines has one of the world's most active gold-pawning markets — Cebuana Lhuillier, Palawan and local pawnshops appraise by karat against the day's rate. Higher karat means a higher appraisal per gram. Keep receipts and know your piece's karat and weight before you pawn or sell.</p>
+<h3>Which should you buy?</h3>
+<p>For jewellery you will wear daily, 18K balances durability and value. For jewellery as savings — the OFW tradition — 21K keeps more metal value per peso. For pure investment, 24K bars and coins track the <a href="/en/gold-price-usd/">world price</a> most closely, converted to pesos at the day's USD/PHP rate. Try values in the <a href="/en/gold-calculator/">gold calculator</a>. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['What is Saudi gold in the Philippines?', "Filipino shorthand for 21-karat gold jewellery (87.5% pure), traditionally brought home by OFWs from Saudi Arabia and the Gulf, where 21K is the jewellery standard."],
+      ['Is 21K better than 18K?', 'In metal value, yes: 21K is 87.5% pure versus 75% for 18K, so it is worth about 17% more per gram and appraises higher at pawnshops. 18K is harder and better for daily wear.'],
+      ['How much is Saudi gold per gram in the Philippines?', 'It follows the live 21K rate: the world gold price converted to pesos, times 0.875. The Philippines gold price page shows the current 21K and 24K gram rates in PHP.']
+    ]
+  }
+];

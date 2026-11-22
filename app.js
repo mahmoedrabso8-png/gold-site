@@ -164,7 +164,7 @@ async function loadFX(force){
   if(!force&&!$$('[data-fxd]').length&&!(!PEG[SEL]&&!FIXED&&SEL)&&![...$$('[data-cur]'),...$$('#c-cur option')].some(el=>!PEG[(el.dataset.cur||el.value||'').toUpperCase()])) return;
   try{
     const d=await (await fetch('https://open.er-api.com/v6/latest/USD')).json();
-    if(d.rates){G.fx=d.rates;paint();labels();nisab();calc();zakat();$$('[data-fx]').forEach(el=>{const v=d.rates[el.dataset.fx];if(v) el.textContent=fmt(v/AED,4);});$$('[data-fxd]').forEach(el=>{const v=d.rates[el.dataset.fxd];if(v){const w=+(el.dataset.w||1);el.textContent=fmt(el.dataset.i?w/v:v*w,+el.dataset.d||0);}});}
+    if(d.rates){G.fx=d.rates;paint();labels();nisab();calc();zakat();dconv('usd');$$('[data-fx]').forEach(el=>{const v=d.rates[el.dataset.fx];if(v) el.textContent=fmt(v/AED,4);});$$('[data-fxd]').forEach(el=>{const v=d.rates[el.dataset.fxd];if(v){const w=+(el.dataset.w||1);el.textContent=fmt(el.dataset.i?w/v:v*w,+el.dataset.d||0);}});}
   }catch(e){}
 }
 
@@ -220,6 +220,20 @@ async function spark(){
   if(usd){ctx.fillStyle='#b0a890';ctx.font='11px Cairo, sans-serif';ctx.fillText('$'+fmt(hi-pad,0),4,12);ctx.fillText('$'+fmt(lo+pad,0),4,H-4);}
 }
 
+/* ── Dollar converter (two-way, dollar pages) ── */
+function dconv(dir){
+  const box=$('#dcv');if(!box)return;
+  const sel=$('#dcv-cur');
+  const o=sel?sel.selectedOptions[0]:null;
+  const code=o?o.value:box.dataset.code;
+  const r=(G.fx&&G.fx[code])||+(o?o.dataset.rate:box.dataset.rate);
+  if(!r)return;
+  const d=+(o?o.dataset.d:box.dataset.d)||0;
+  const usd=$('#dcv-usd'),loc=$('#dcv-loc');if(!usd||!loc)return;
+  const lbl=$('#dcv-locl');if(lbl&&o)lbl.textContent=o.textContent;
+  if(dir==='loc'){const v=parseFloat(loc.value);usd.value=isFinite(v)?+(v/r).toFixed(2):'';}
+  else{const v=parseFloat(usd.value);loc.value=isFinite(v)?+(v*r).toFixed(d):'';}
+}
 /* ── Gold calculator ── */
 function setText(id,v){const el=document.getElementById(id);if(el) el.textContent=v;}
 function calc(){
@@ -251,8 +265,8 @@ function zakat(){
     msg.textContent=due?'✅ '+T.yes:'❌ '+T.no+' — '+T.need+' '+fmt(NISAB_G-pure,1)+' '+T.more;
   }
 }
-document.addEventListener('input',e=>{if(e.target.closest('#calc'))calc();if(e.target.closest('#zakat'))zakat();});
-document.addEventListener('change',e=>{if(e.target.closest('#calc'))calc();if(e.target.closest('#zakat'))zakat();});
+document.addEventListener('input',e=>{if(e.target.closest('#calc'))calc();if(e.target.closest('#zakat'))zakat();if(e.target.closest('#dcv'))dconv(e.target.id==='dcv-loc'?'loc':'usd');});
+document.addEventListener('change',e=>{if(e.target.closest('#calc'))calc();if(e.target.closest('#zakat'))zakat();if(e.target.closest('#dcv'))dconv('usd');});
 
 const rb=$('#refresh');if(rb) rb.addEventListener('click',load);
 

@@ -1,5 +1,5 @@
 // محتوى صفحات الموقع (عربي + إنجليزي)
-import { ARTICLES } from './articles.mjs';
+import { ARTICLES, ARTICLES_EN } from './articles.mjs';
 
 export function pages(ctx) {
   const { P, FXD, updated, chg, daily, fmt, url, AD, TODAY } = ctx;
@@ -105,7 +105,8 @@ export function pages(ctx) {
       ['gold-price-usd', 'Gold price in USD', 'Live ounce XAU/USD'], ['dollar', 'US dollar rate', 'Live vs 40 currencies'], ['silver', 'Silver price', 'Per gram, ounce & kg'],
       ['gcc', 'Gulf gold prices', 'Compare 6 countries'], ['saudi', 'Gold price in Saudi Arabia', 'In SAR'], ['kuwait', 'Gold price in Kuwait', 'In KWD'],
       ['qatar', 'Gold price in Qatar', 'In QAR'], ['oman', 'Gold price in Oman', 'In OMR'], ['bahrain', 'Gold price in Bahrain', 'In BHD'], ['egypt', 'Gold price in Egypt', 'In EGP'], ['india', 'Gold rate in India', 'In INR, 22K & 24K'], ['pakistan', 'Gold rate in Pakistan', 'In PKR, per tola'], ['bangladesh', 'Gold price in Bangladesh', 'In BDT'], ['turkey', 'Gold price in Turkey', 'Gram altın in TRY'], ['usa', 'Gold price in USA', 'In USD'], ['uk', 'Gold price in UK', 'In GBP'], ['canada', 'Gold price in Canada', 'In CAD'], ['australia', 'Gold price in Australia', 'In AUD'], ['philippines', 'Gold price in Philippines', 'In PHP'], ['malaysia', 'Gold price in Malaysia', 'Emas 916 in MYR'], ['nepal', 'Gold price in Nepal', 'In NPR, per tola'], ['southafrica', 'Gold price in South Africa', 'Krugerrand in ZAR'], ['iraq', 'Gold price in Iraq', 'In IQD'], ['jordan', 'Gold price in Jordan', 'In JOD'], ['morocco', 'Gold price in Morocco', 'In MAD'], ['algeria', 'Gold price in Algeria', 'In DZD'], ['indonesia', 'Gold price in Indonesia', 'Antam bars in IDR'], ['thailand', 'Gold price in Thailand', 'Per baht weight, THB'], ['vietnam', 'Gold price in Vietnam', 'SJC bars in VND'], ['singapore', 'Gold price in Singapore', 'GST-free IPM in SGD'], ['srilanka', 'Gold price in Sri Lanka', 'In LKR'], ['germany', 'Gold price in Germany', 'VAT-free bullion, EUR'], ['japan', 'Gold price in Japan', 'In JPY'], ['switzerland', 'Gold price in Switzerland', 'Home of PAMP, CHF'], ['nigeria', 'Gold price in Nigeria', 'In NGN'], ['ghana', 'Gold price in Ghana', 'The Gold Coast, GHS'], ['kenya', 'Gold price in Kenya', 'In KES'], ['mexico', 'Gold price in Mexico', 'Centenario in MXN'], ['brazil', 'Gold price in Brazil', 'Ouro 18K in BRL'], ['china', 'Gold price in China', '999 gold in CNY'], ['france', 'Gold price in France', 'Napoleon coins, EUR'], ['italy', 'Gold price in Italy', '18K standard, EUR'], ['spain', 'Gold price in Spain', 'Oro de ley, EUR'], ['lebanon', 'Gold price in Lebanon', 'In LBP & USD'], ['tunisia', 'Gold price in Tunisia', 'In TND'], ['libya', 'Gold price in Libya', 'In LYD'], ['yemen', 'Gold price in Yemen', 'In YER'], ['gold-rate-inr', 'Gold rate in INR', 'Dubai price in rupees'], ['gold-rate-pkr', 'Gold rate in PKR', 'Per tola in rupees'],
-      ['gold-bars', 'Gold bar prices', '1 g to 1 kg, tola bars'], ['gold-calculator', 'Gold calculator', 'With making charges & VAT'], ['gold-price-yesterday', 'Last 10 days', 'Yesterday\'s gold rate'], ['zakat-calculator', 'Zakat calculator', 'Nisab and zakat due']]
+      ['gold-bars', 'Gold bar prices', '1 g to 1 kg, tola bars'], ['gold-calculator', 'Gold calculator', 'With making charges & VAT'], ['gold-price-yesterday', 'Last 10 days', 'Yesterday\'s gold rate'], ['zakat-calculator', 'Zakat calculator', 'Nisab and zakat due'],
+      ['articles', 'Gold guides & articles', 'Buying tips, karats and why prices rise']]
   };
   const links = (L, skip) => `<section class="card-section"><h2>${L === 'en' ? 'More gold prices & tools' : 'أسعار وأدوات أخرى'}</h2><div class="links-grid">${LINKS[L].filter(l => l[0] !== skip).map(([s, n, d]) => `<a class="link-card" href="${url(L, s)}">${n}<span>${d}</span></a>`).join('')}</div></section>`;
   const why = L => L === 'en'
@@ -188,7 +189,9 @@ ${AD}
 <thead><tr><th>Karat</th><th>1 gram (AED)</th><th>1 gram (USD)</th><th>10 grams (AED)</th><th>1 tola (AED)</th><th>1 ounce (AED)</th></tr></thead><tbody>
 ${KS.map(k => `<tr><td><a href="${url('en', 'gold-' + k + 'k')}"><strong>${k}K</strong></a> <span class="sub"><bdi>${K[k].purity}</bdi></span></td><td class="n">${P(k)}</td><td class="n">$${P(k, 1, { cur: 'usd' })}</td><td class="n">${P(k, 10)}</td><td class="n">${P(k, TOLA)}</td><td class="n">${P(k, ctx.TROY)}</td></tr>`).join('')}
 </tbody></table></div><p class="note">Raw gold price excluding making charges and VAT. 1 tola = 11.664 g · 1 troy ounce = 31.1035 g.</p></section>
-${spark('en')}${why('en')}${links('en', '')}
+${spark('en')}${why('en')}
+<section class="card-section"><h2>Gold guides & articles</h2><div class="links-grid">${ARTICLES_EN.map(a => `<a class="link-card" href="/en/articles/${a.slug}/">${a.h1}<span>${a.teaser}</span></a>`).join('')}</div></section>
+${links('en', '')}
 ${AD}
 <section class="card-section"><h2>Buying gold in the UAE</h2><div class="prose">
 <p>The <strong>UAE</strong> is one of the world's biggest gold trading hubs, and the <strong>Deira Gold Souk in Dubai</strong> and the Sharjah gold souk are known for competitive prices. Because the dirham is pegged to the US dollar at 3.6725, the <strong>gold rate in Dubai</strong> moves directly with the global ounce price.</p>
@@ -1140,6 +1143,9 @@ ${links('ar', '')}`,
       ] }
   };
   const COUNTRY_PAGES = { ...GCC, ...OTHERS };
+  // مقال إنجليزي مخصص لكل سوق كبير — يظهر في صفحة الدولة الإنجليزية
+  const CTRY_ART = { india: 'why-gold-rises-india', usa: 'why-gold-rises-usa', uk: 'gold-karats-uk', canada: 'why-gold-rises-canada', australia: 'why-gold-rises-australia', philippines: '21k-vs-24k-gold-philippines' };
+  const ART_BY_SLUG = Object.fromEntries(ARTICLES_EN.map(a => [a.slug, a]));
   const GW = [1, 5, 10, 20, 50, 100];
   for (const [slug, c] of Object.entries(COUNTRY_PAGES)) {
     const cur = c.code.toLowerCase(), d = c.d;
@@ -1179,6 +1185,7 @@ ${GW.map(w => `<tr><td>${en ? w + ' g' : w + ' غرام'}</td><td class="n">${P(
 <section class="card-section"><h2>${en ? `About the gold price in ${x.n}` : `عن سعر الذهب ${x.in}`}</h2><div class="prose">
 ${en ? `<p>The gold price in ${x.n} follows the global spot price of gold in US dollars per ounce. The ${x.cur} is ${c.pegEn}, so the local price is calculated as: <strong>(${c.code === 'USD' ? 'ounce price in USD ÷ 31.1035' : `ounce price in USD × USD/${c.code} rate ÷ 31.1035`}) × karat purity</strong>.</p><p>${c.noteEn}</p><p>Gold shops in ${x.cities} usually quote a daily rate per karat that follows the global price, then add making charges per piece${c.vat ? ` and ${c.vat}% ${TN}` : ''}. Use the <a href="/en/gold-calculator/">gold calculator</a> and choose ${c.code} to see the final price.</p>`
           : `<p>يتبع سعر الذهب ${x.in} السعر العالمي لأونصة الذهب بالدولار. وال${x.cur} ${c.peg}، لذلك يُحسب السعر المحلي هكذا: <strong>(سعر الأونصة بالدولار × سعر صرف الدولار بال${x.cur} ÷ 31.1035) × نسبة العيار</strong>.</p><p>${c.noteAr}</p><p>تُعلن محلات الذهب في ${x.cities} سعراً يومياً لكل عيار يتبع السعر العالمي، ثم تُضاف المصنعية حسب القطعة${c.vat ? ` وضريبة القيمة المضافة ${c.vat}%` : ''}. استخدم <a href="/gold-calculator/">حاسبة الذهب</a> واختر ${x.cur} لمعرفة السعر النهائي.</p>`}</div></section>
+${en && CTRY_ART[slug] ? `<section class="card-section"><h2>Gold guide for ${x.n}</h2><div class="links-grid"><a class="link-card" href="/en/articles/${CTRY_ART[slug]}/">${ART_BY_SLUG[CTRY_ART[slug]].h1}<span>${ART_BY_SLUG[CTRY_ART[slug]].teaser}</span></a></div></section>` : ''}
 ${share(L, slug, en ? `Gold price in ${x.n} today` : `سعر الذهب اليوم ${x.in}`)}
 ${other(L)}`,
         faq: en ? (c.faqEn || [
@@ -1299,6 +1306,26 @@ ${AD}
 <a class="link-card" href="/articles/why-dollar-rises-egypt/">ليه سعر الدولار بيزيد في مصر؟<span>الأسباب الحقيقية وراء ارتفاعه</span></a>
 <a class="link-card" href="/articles/official-vs-parallel-dollar-rate/">السعر الرسمي وسعر السوق الموازية<span>الفرق بينهما ببساطة</span></a>
 <a class="link-card" href="/articles/dollar-forecast-egypt/">توقعات سعر الدولار في مصر<span>العوامل والسيناريوهات</span></a></div></section>`;
+  // محول دولار تفاعلي (من وإلى): c = عملة صفحة دولة، وبدونه = نسخة المركز مع اختيار عملة
+  const dcvConv = (L, c) => {
+    const en = L === 'en';
+    const note = en ? 'Type in either field — the other side updates instantly at the live mid-market rate.' : 'اكتب في أي خانة والثانية تتحدث تلقائياً بسعر السوق المتوسط المباشر.';
+    if (c) {
+      const rate = ctx.fx[c.code];
+      return `<section class="card-section" id="dcv" data-code="${c.code}" data-rate="${rate || ''}" data-d="${c.d}"><h2>${en ? 'Convert USD both ways' : 'حوّل من وإلى الدولار'}</h2>
+<div class="form-grid">
+<div class="field"><label for="dcv-usd">${en ? 'US dollar (USD)' : 'دولار أمريكي (USD)'}</label><input id="dcv-usd" type="number" inputmode="decimal" min="0" step="any" value="100"></div>
+<div class="field"><label for="dcv-loc">${c[L].cur} (${c.code})</label><input id="dcv-loc" type="number" inputmode="decimal" min="0" step="any" value="${rate ? +(rate * 100).toFixed(c.d) : ''}"></div>
+</div><p class="note">${note}</p></section>`;
+    }
+    const eg = DCS.find(([s]) => s === 'egypt')[1], egRate = ctx.fx.EGP;
+    return `<section class="card-section" id="dcv"><h2>${en ? 'Convert USD both ways' : 'حوّل من وإلى الدولار'}</h2>
+<div class="form-grid">
+<div class="field"><label for="dcv-cur">${en ? 'Currency' : 'العملة'}</label><select id="dcv-cur">${DCS.map(([s, cc]) => `<option value="${cc.code}" data-rate="${ctx.fx[cc.code] || ''}" data-d="${cc.d}"${s === 'egypt' ? ' selected' : ''}>${en ? cc.en.cur : cc.ar.cur} (${cc.code})</option>`).join('')}</select></div>
+<div class="field"><label for="dcv-usd">${en ? 'US dollar (USD)' : 'دولار أمريكي (USD)'}</label><input id="dcv-usd" type="number" inputmode="decimal" min="0" step="any" value="100"></div>
+<div class="field"><label for="dcv-loc" id="dcv-locl">${en ? eg.en.cur : eg.ar.cur} (${eg.code})</label><input id="dcv-loc" type="number" inputmode="decimal" min="0" step="any" value="${egRate ? +(egRate * 100).toFixed(eg.d) : ''}"></div>
+</div><p class="note">${note}</p></section>`;
+  };
   const DCS = [['uae', { code: 'AED', d: 2, peg: 'مربوط بالدولار رسمياً عند 3.6725 درهم', pegEn: 'officially pegged at 3.6725 dirhams per US dollar', ar: { n: 'الإمارات', in: 'في الإمارات', cur: 'درهم إماراتي', curS: 'درهم' }, en: { n: 'the UAE', adj: 'UAE', cur: 'UAE dirham' } }],
     ...Object.entries(COUNTRY_PAGES).filter(([, c]) => c.code !== 'USD')];
   for (const L of ['ar', 'en']) {
@@ -1314,6 +1341,7 @@ ${errBox}
 <thead><tr><th>${en ? 'Country' : 'الدولة'}</th><th>${en ? 'Currency' : 'العملة'}</th><th>${en ? '1 USD' : '1 دولار'}</th><th>${en ? '100 USD' : '100 دولار'}</th></tr></thead><tbody>
 ${DCS.filter(([, c]) => en || !c.enOnly).map(([s, c]) => `<tr><td><a href="${url(L, 'dollar-' + s)}"><strong>${c[L].n}</strong></a></td><td><span class="sub">${c.code}</span></td><td class="n">${FXD(c.code, { d: c.d })}</td><td class="n">${FXD(c.code, { w: 100, d: c.d })}</td></tr>`).join('')}
 </tbody></table></div><p class="note">${en ? 'Mid-market rates, refreshed live. Gulf currencies (AED, SAR, QAR, OMR, BHD) and the Jordanian dinar are officially pegged to the US dollar.' : 'أسعار السوق المتوسطة وتُحدَّث لحظياً. عملات الخليج (الدرهم والريال السعودي والقطري والعُماني والدينار البحريني) والدينار الأردني مربوطة رسمياً بالدولار.'}</p></section>
+${dcvConv(L)}
 ${AD}
 <section class="card-section"><h2>${en ? 'About these exchange rates' : 'عن أسعار الصرف هذه'}</h2><div class="prose">
 <p>${en ? 'These are mid-market rates from the open.er-api.com feed — the same rates used to convert the global gold price into each local currency on this site. Banks and exchange offices add a margin, so the counter rate you get will differ slightly.' : 'هذه أسعار السوق المتوسطة من مصدر open.er-api.com، وهي نفسها المستخدمة لتحويل السعر العالمي للذهب إلى كل عملة محلية في هذا الموقع. البنوك ومكاتب الصرافة تضيف هامشاً، لذلك يختلف السعر الذي تحصل عليه قليلاً.'}</p>
@@ -1345,6 +1373,7 @@ ${errBox}
 <tr><th>${en ? '1 US dollar' : '1 دولار أمريكي'}</th><td class="n">${FXD(c.code, { d: dd })} ${c.code}</td></tr>
 <tr><th>${en ? `1 ${x.cur}` : `1 ${x.cur}`}</th><td class="n">$${FXD(c.code, { i: true, d: 4 })}</td></tr>
 </tbody></table></div><p class="note">${en ? 'Updated' : 'آخر تحديث'}: ${updated(L)} ${en ? '(Dubai time)' : '(بتوقيت دبي)'} · ${en ? 'mid-market rate' : 'سعر السوق المتوسط'}</p></section>
+${dcvConv(L, c)}
 ${AD}
 <section class="card-section"><h2>${en ? `Convert USD to ${x.cur}` : `تحويل الدولار إلى ${x.cur}`}</h2><div class="table-wrap"><table class="data-table">
 <thead><tr><th>${en ? 'USD' : 'دولار'}</th><th>${c.code}</th></tr></thead><tbody>
@@ -1864,6 +1893,31 @@ ${share('ar', `articles/${a.slug}`, a.h1)}`,
         datePublished: TODAY, dateModified: TODAY, inLanguage: 'ar',
         author: { '@type': 'Organization', name: 'Maelumatii', url: ctx.SITE + '/' },
         mainEntityOfPage: ctx.SITE + `/articles/${a.slug}/` }]
+    });
+  }
+
+  // ── المقالات الإنجليزية (دليل لكل سوق كبير) ──────────────
+  const artCardEn = a => `<a class="link-card" href="/en/articles/${a.slug}/">${a.h1}<span>${a.teaser}</span></a>`;
+  out.push({ lang: 'en', fixed: true, slug: 'articles',
+    title: 'Gold Guides: Karats, Prices and Buying Tips | Maelumatii',
+    desc: 'Plain-English gold guides: why gold prices rise in India, the US, Canada and Australia, karats explained for UK buyers, and 21K vs 24K in the Philippines.',
+    crumbs: [['Gold articles', '/en/articles/']],
+    body: `<div class="hero"><h1>Gold Guides & Articles</h1><p class="hero-sub">Plain-English guides to help you buy and save in gold with confidence</p></div>
+<section class="card-section"><h2>All articles</h2><div class="links-grid">${ARTICLES_EN.map(artCardEn).join('')}</div></section>
+${links('en', 'articles')}` });
+  for (const a of ARTICLES_EN) {
+    out.push({ lang: 'en', fixed: true, slug: `articles/${a.slug}`,
+      title: a.title, desc: a.desc,
+      crumbs: [['Gold articles', '/en/articles/'], [a.h1, `/en/articles/${a.slug}/`]],
+      body: `<div class="hero"><h1>${a.h1}</h1><p class="hero-sub">${a.intro}</p></div>
+<article class="card-section"><div class="prose">${a.body}</div></article>
+<section class="card-section"><h2>More articles</h2><div class="links-grid">${ARTICLES_EN.filter(x => x.slug !== a.slug).map(artCardEn).join('')}</div></section>
+${share('en', `articles/${a.slug}`, a.h1)}`,
+      faq: a.faq,
+      schema: [{ '@context': 'https://schema.org', '@type': 'Article', headline: a.h1, description: a.desc,
+        datePublished: TODAY, dateModified: TODAY, inLanguage: 'en',
+        author: { '@type': 'Organization', name: 'Maelumatii', url: ctx.SITE + '/' },
+        mainEntityOfPage: ctx.SITE + `/en/articles/${a.slug}/` }]
     });
   }
 
