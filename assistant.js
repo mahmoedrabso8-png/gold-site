@@ -189,7 +189,7 @@ function ansCountryPrice(c, num, unit, karat) {
 function unitName(unit, n) {
   if (!unit) return AR ? (n > 2 && n <= 10 ? 'جرامات' : 'جرام') : (n === 1 ? 'gram' : 'grams');
   const arNames = { tola: 'تولة', ounce: 'أونصة', bhori: 'بهوري', mithqal: 'مثقال', baht: 'باهت', tael: 'تايل', kg: 'كيلوغرام', gram: 'جرام' };
-  return AR ? arNames[unit[0]] : unit[0];
+  return AR ? arNames[unit[0]] : unit[0] + (n === 1 ? '' : 's');
 }
 
 function ansKaratPrice(karat, num, unit) {
