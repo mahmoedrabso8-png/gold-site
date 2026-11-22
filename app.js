@@ -82,11 +82,11 @@ const PEG={USD:1,AED:3.6725,SAR:3.75,QAR:3.64,OMR:0.3845,BHD:0.376,JOD:0.709};
 const rate=c=>PEG[c.toUpperCase()]||G.fx[c.toUpperCase()]||null;
 
 /* ── الدولة المختارة من القائمة اللي فوق ── */
-const CTRY={AED:'',SAR:'saudi',KWD:'kuwait',QAR:'qatar',OMR:'oman',BHD:'bahrain',EGP:'egypt',INR:'india',PKR:'pakistan',BDT:'bangladesh',TRY:'turkey',USD:'usa',GBP:'uk',CAD:'canada',AUD:'australia',PHP:'philippines',MYR:'malaysia',NPR:'nepal',ZAR:'southafrica',IQD:'iraq',JOD:'jordan',MAD:'morocco',DZD:'algeria',IDR:'indonesia',THB:'thailand',VND:'vietnam',SGD:'singapore'};
-const DEC={AED:2,SAR:2,QAR:2,KWD:3,OMR:3,BHD:3,EGP:0,INR:0,PKR:0,BDT:0,TRY:0,USD:2,GBP:2,CAD:2,AUD:2,PHP:0,MYR:2,NPR:0,ZAR:2,IQD:0,JOD:3,MAD:2,DZD:0,IDR:0,THB:2,VND:0,SGD:2};
-const NAME={AED:'درهم',SAR:'ريال',KWD:'دينار',QAR:'ريال',OMR:'ريال',BHD:'دينار',EGP:'جنيه',INR:'روبية',PKR:'روبية باكستانية',BDT:'تاكا',TRY:'ليرة',USD:'دولار',GBP:'إسترليني',CAD:'دولار كندي',AUD:'دولار أسترالي',PHP:'بيسو',MYR:'رينغيت',NPR:'روبية نيبالية',ZAR:'راند',IQD:'دينار عراقي',JOD:'دينار أردني',MAD:'درهم مغربي',DZD:'دينار جزائري',IDR:'روبية إندونيسية',THB:'باهت',VND:'دونغ',SGD:'دولار سنغافوري'};
+const CTRY={AED:'',SAR:'saudi',KWD:'kuwait',QAR:'qatar',OMR:'oman',BHD:'bahrain',EGP:'egypt',INR:'india',PKR:'pakistan',BDT:'bangladesh',TRY:'turkey',USD:'usa',GBP:'uk',CAD:'canada',AUD:'australia',PHP:'philippines',MYR:'malaysia',NPR:'nepal',ZAR:'southafrica',IQD:'iraq',JOD:'jordan',MAD:'morocco',DZD:'algeria',IDR:'indonesia',THB:'thailand',VND:'vietnam',SGD:'singapore',LKR:'srilanka',EUR:'germany',JPY:'japan',CHF:'switzerland'};
+const DEC={AED:2,SAR:2,QAR:2,KWD:3,OMR:3,BHD:3,EGP:0,INR:0,PKR:0,BDT:0,TRY:0,USD:2,GBP:2,CAD:2,AUD:2,PHP:0,MYR:2,NPR:0,ZAR:2,IQD:0,JOD:3,MAD:2,DZD:0,IDR:0,THB:2,VND:0,SGD:2,LKR:0,EUR:2,JPY:0,CHF:2};
+const NAME={AED:'درهم',SAR:'ريال',KWD:'دينار',QAR:'ريال',OMR:'ريال',BHD:'دينار',EGP:'جنيه',INR:'روبية',PKR:'روبية باكستانية',BDT:'تاكا',TRY:'ليرة',USD:'دولار',GBP:'إسترليني',CAD:'دولار كندي',AUD:'دولار أسترالي',PHP:'بيسو',MYR:'رينغيت',NPR:'روبية نيبالية',ZAR:'راند',IQD:'دينار عراقي',JOD:'دينار أردني',MAD:'درهم مغربي',DZD:'دينار جزائري',IDR:'روبية إندونيسية',THB:'باهت',VND:'دونغ',SGD:'دولار سنغافوري',LKR:'روبية سريلانكية',EUR:'يورو',JPY:'ين',CHF:'فرنك سويسري'};
 // دول صفحاتها إنجليزي بس: التحويل من الصفحات العربية يروح للنسخة الإنجليزية بدل 404
-const EN_ONLY={INR:1,PKR:1,BDT:1,TRY:1,USD:1,GBP:1,CAD:1,AUD:1,PHP:1,MYR:1,NPR:1,ZAR:1,IDR:1,THB:1,VND:1,SGD:1};
+const EN_ONLY={INR:1,PKR:1,BDT:1,TRY:1,USD:1,GBP:1,CAD:1,AUD:1,PHP:1,MYR:1,NPR:1,ZAR:1,IDR:1,THB:1,VND:1,SGD:1,LKR:1,EUR:1,JPY:1,CHF:1};
 const BD=document.body.dataset;
 // صفحة خاصة بدولة (الرئيسية وعيار 21 و24 لكل دولة): عملتها ثابتة
 const PAGE_CUR=BD.ctry?(BD.ctry==='uae'?'AED':Object.keys(CTRY).find(k=>CTRY[k]===BD.ctry)):null;

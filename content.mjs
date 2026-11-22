@@ -70,7 +70,8 @@ export function pages(ctx) {
     ['USD', 'دولار أمريكي', 'US dollar', 0, 2], ['GBP', 'جنيه إسترليني', 'British pound', 0, 2], ['CAD', 'دولار كندي', 'Canadian dollar', 0, 2], ['AUD', 'دولار أسترالي', 'Australian dollar', 0, 2],
     ['PHP', 'بيسو فلبيني', 'Philippine peso', 0, 0], ['MYR', 'رينغيت ماليزي', 'Malaysian ringgit', 0, 2], ['NPR', 'روبية نيبالية', 'Nepalese rupee', 0, 0], ['ZAR', 'راند جنوب أفريقيا', 'South African rand', 0, 2],
     ['IQD', 'دينار عراقي', 'Iraqi dinar', 0, 0], ['JOD', 'دينار أردني', 'Jordanian dinar', 0, 3], ['MAD', 'درهم مغربي', 'Moroccan dirham', 0, 2], ['DZD', 'دينار جزائري', 'Algerian dinar', 0, 0],
-    ['IDR', 'روبية إندونيسية', 'Indonesian rupiah', 0, 0], ['THB', 'باهت تايلاندي', 'Thai baht', 0, 2], ['VND', 'دونغ فيتنامي', 'Vietnamese dong', 0, 0], ['SGD', 'دولار سنغافوري', 'Singapore dollar', 0, 2]];
+    ['IDR', 'روبية إندونيسية', 'Indonesian rupiah', 0, 0], ['THB', 'باهت تايلاندي', 'Thai baht', 0, 2], ['VND', 'دونغ فيتنامي', 'Vietnamese dong', 0, 0], ['SGD', 'دولار سنغافوري', 'Singapore dollar', 0, 2],
+    ['LKR', 'روبية سريلانكية', 'Sri Lankan rupee', 0, 0], ['EUR', 'يورو', 'Euro', 0, 2], ['JPY', 'ين ياباني', 'Japanese yen', 0, 0], ['CHF', 'فرنك سويسري', 'Swiss franc', 0, 2]];
   const TOLA = 11.6638;
 
   // ── أجزاء مشتركة ──────────────────────────────────────
@@ -100,7 +101,7 @@ export function pages(ctx) {
     en: [['gold-22k', '22K gold rate', 'Popular for Indian jewellery'], ['gold-24k', '24K gold rate', 'Pure gold & bars'], ['gold-21k', '21K gold rate', 'Gulf jewellery'], ['gold-18k', '18K gold rate', 'Diamond jewellery'],
       ['gold-price-usd', 'Gold price in USD', 'Live ounce XAU/USD'], ['silver', 'Silver price', 'Per gram, ounce & kg'],
       ['gcc', 'Gulf gold prices', 'Compare 6 countries'], ['saudi', 'Gold price in Saudi Arabia', 'In SAR'], ['kuwait', 'Gold price in Kuwait', 'In KWD'],
-      ['qatar', 'Gold price in Qatar', 'In QAR'], ['oman', 'Gold price in Oman', 'In OMR'], ['bahrain', 'Gold price in Bahrain', 'In BHD'], ['egypt', 'Gold price in Egypt', 'In EGP'], ['india', 'Gold rate in India', 'In INR, 22K & 24K'], ['pakistan', 'Gold rate in Pakistan', 'In PKR, per tola'], ['bangladesh', 'Gold price in Bangladesh', 'In BDT'], ['turkey', 'Gold price in Turkey', 'Gram altın in TRY'], ['usa', 'Gold price in USA', 'In USD'], ['uk', 'Gold price in UK', 'In GBP'], ['canada', 'Gold price in Canada', 'In CAD'], ['australia', 'Gold price in Australia', 'In AUD'], ['philippines', 'Gold price in Philippines', 'In PHP'], ['malaysia', 'Gold price in Malaysia', 'Emas 916 in MYR'], ['nepal', 'Gold price in Nepal', 'In NPR, per tola'], ['southafrica', 'Gold price in South Africa', 'Krugerrand in ZAR'], ['iraq', 'Gold price in Iraq', 'In IQD'], ['jordan', 'Gold price in Jordan', 'In JOD'], ['morocco', 'Gold price in Morocco', 'In MAD'], ['algeria', 'Gold price in Algeria', 'In DZD'], ['indonesia', 'Gold price in Indonesia', 'Antam bars in IDR'], ['thailand', 'Gold price in Thailand', 'Per baht weight, THB'], ['vietnam', 'Gold price in Vietnam', 'SJC bars in VND'], ['singapore', 'Gold price in Singapore', 'GST-free IPM in SGD'], ['gold-rate-inr', 'Gold rate in INR', 'Dubai price in rupees'], ['gold-rate-pkr', 'Gold rate in PKR', 'Per tola in rupees'],
+      ['qatar', 'Gold price in Qatar', 'In QAR'], ['oman', 'Gold price in Oman', 'In OMR'], ['bahrain', 'Gold price in Bahrain', 'In BHD'], ['egypt', 'Gold price in Egypt', 'In EGP'], ['india', 'Gold rate in India', 'In INR, 22K & 24K'], ['pakistan', 'Gold rate in Pakistan', 'In PKR, per tola'], ['bangladesh', 'Gold price in Bangladesh', 'In BDT'], ['turkey', 'Gold price in Turkey', 'Gram altın in TRY'], ['usa', 'Gold price in USA', 'In USD'], ['uk', 'Gold price in UK', 'In GBP'], ['canada', 'Gold price in Canada', 'In CAD'], ['australia', 'Gold price in Australia', 'In AUD'], ['philippines', 'Gold price in Philippines', 'In PHP'], ['malaysia', 'Gold price in Malaysia', 'Emas 916 in MYR'], ['nepal', 'Gold price in Nepal', 'In NPR, per tola'], ['southafrica', 'Gold price in South Africa', 'Krugerrand in ZAR'], ['iraq', 'Gold price in Iraq', 'In IQD'], ['jordan', 'Gold price in Jordan', 'In JOD'], ['morocco', 'Gold price in Morocco', 'In MAD'], ['algeria', 'Gold price in Algeria', 'In DZD'], ['indonesia', 'Gold price in Indonesia', 'Antam bars in IDR'], ['thailand', 'Gold price in Thailand', 'Per baht weight, THB'], ['vietnam', 'Gold price in Vietnam', 'SJC bars in VND'], ['singapore', 'Gold price in Singapore', 'GST-free IPM in SGD'], ['srilanka', 'Gold price in Sri Lanka', 'In LKR'], ['germany', 'Gold price in Germany', 'VAT-free bullion, EUR'], ['japan', 'Gold price in Japan', 'In JPY'], ['switzerland', 'Gold price in Switzerland', 'Home of PAMP, CHF'], ['gold-rate-inr', 'Gold rate in INR', 'Dubai price in rupees'], ['gold-rate-pkr', 'Gold rate in PKR', 'Per tola in rupees'],
       ['gold-bars', 'Gold bar prices', '1 g to 1 kg, tola bars'], ['gold-calculator', 'Gold calculator', 'With making charges & VAT'], ['gold-price-yesterday', 'Last 10 days', 'Yesterday\'s gold rate'], ['zakat-calculator', 'Zakat calculator', 'Nisab and zakat due']]
   };
   const links = (L, skip) => `<section class="card-section"><h2>${L === 'en' ? 'More gold prices & tools' : 'أسعار وأدوات أخرى'}</h2><div class="links-grid">${LINKS[L].filter(l => l[0] !== skip).map(([s, n, d]) => `<a class="link-card" href="${url(L, s)}">${n}<span>${d}</span></a>`).join('')}</div></section>`;
@@ -925,6 +926,46 @@ ${links('ar', '')}`,
         ['What is the gold price in Singapore today?', 'The live price per gram in Singapore dollars is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw gold rate without GST or making charges.'],
         ['Is gold taxed in Singapore?', 'Investment precious metals (qualifying bars and coins) are exempt from GST in Singapore. Gold jewellery carries 9% GST, included in the shop price.'],
         ['Which karat is most common in Singapore?', 'Most jewellery in Singapore is 22K (marked 916) or 18K, while 24K is bought as bars and coins for investment.']
+      ] },
+    srilanka: { code: 'LKR', d: 0, vat: 0, peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,
+      ar: { n: 'سريلانكا', in: 'في سريلانكا', cur: 'روبية', curS: 'روبية', cities: '' },
+      en: { n: 'Sri Lanka', adj: 'Sri Lankan', cur: 'Sri Lankan rupee', cities: 'Colombo, Kandy, Galle and Jaffna' },
+      noteAr: '',
+      noteEn: 'The Sri Lankan rupee floats freely, so the gold price in LKR moves with both the global price and the exchange rate. Jewellery in Sri Lanka is traditionally 22K, and gold is also widely used for pawning and savings. Local dealers quote daily rates that follow the international price shown here, then add making charges per piece, and import duties can put a premium on the local market.',
+      faqEn: [
+        ['What is the gold price in Sri Lanka today?', 'The live price per gram in Sri Lankan rupees is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw international rate without making charges.'],
+        ['Which karat is most common in Sri Lanka?', 'Most traditional jewellery in Sri Lanka is 22K, while 24K is bought as coins and bars for saving.'],
+        ['Why do Sri Lankan shop prices differ from this page?', 'The rate here is calculated live from the global spot price and the LKR exchange rate. Shops add making charges, and import duties and local demand can add a premium.']
+      ] },
+    germany: { code: 'EUR', d: 2, vat: 0, peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,
+      ar: { n: 'ألمانيا', in: 'في ألمانيا', cur: 'يورو', curS: 'يورو', cities: '' },
+      en: { n: 'Germany', adj: 'German', cur: 'euro', cities: 'Berlin, Munich, Hamburg and Frankfurt' },
+      noteAr: '',
+      noteEn: 'The euro floats freely, so the gold price in EUR moves with both the global price and the exchange rate. Germany is one of the largest private gold markets in the world: investment gold (qualifying bars and coins) is exempt from VAT across the EU, while jewellery carries 19% VAT in the shop price. German jewellery is most often 8K (333), 14K (585) or 18K (750), while 24K is bought as bars and coins for saving.',
+      faqEn: [
+        ['What is the gold price in Germany today?', 'The live price per gram in euros is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw gold rate without VAT or dealer premiums.'],
+        ['Is gold taxed in Germany?', 'Investment gold (qualifying bars and coins) is exempt from VAT in Germany and across the EU. Gold jewellery carries 19% VAT, included in the shop price.'],
+        ['Which karat is most common in Germany?', 'German jewellery is most often 8K (333), 14K (585) or 18K (750). 24K is bought mainly as bars and coins for investment.']
+      ] },
+    japan: { code: 'JPY', d: 0, vat: 0, peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,
+      ar: { n: 'اليابان', in: 'في اليابان', cur: 'ين', curS: 'ين', cities: '' },
+      en: { n: 'Japan', adj: 'Japanese', cur: 'Japanese yen', cities: 'Tokyo, Osaka, Nagoya and Fukuoka' },
+      noteAr: '',
+      noteEn: 'The Japanese yen floats freely, so the gold price in JPY moves with both the global price and the exchange rate. Japan is unusual among major markets in charging 10% consumption tax on gold bars as well as jewellery, so dealer prices include the tax on top of the rate shown here, while the tax is recovered on resale through dealers. Retailers such as Tanaka quote daily per-gram rates that follow the international price, and 18K is the most common jewellery karat.',
+      faqEn: [
+        ['What is the gold price in Japan today?', 'The live price per gram in Japanese yen is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw international rate before consumption tax.'],
+        ['Is gold taxed in Japan?', 'Yes. Japan charges 10% consumption tax on gold purchases, including bars, which dealer prices include on top of the international rate shown here.'],
+        ['Which karat is most common in Japan?', 'Most jewellery in Japan is 18K (marked K18), while 24K is bought as bars and coins for saving.']
+      ] },
+    switzerland: { code: 'CHF', d: 2, vat: 0, peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,
+      ar: { n: 'سويسرا', in: 'في سويسرا', cur: 'فرنك', curS: 'فرنك', cities: '' },
+      en: { n: 'Switzerland', adj: 'Swiss', cur: 'Swiss franc', cities: 'Zurich, Geneva, Basel and Bern' },
+      noteAr: '',
+      noteEn: 'The Swiss franc floats freely, so the gold price in CHF moves with both the global price and the exchange rate. Switzerland is the refining capital of the world: most of the world\'s gold bars are refined there, and investment gold is exempt from Swiss VAT, while jewellery carries 8.1% VAT in the shop price. Swiss buyers favour 24K bars from refiners such as PAMP and Valcambi, and jewellery is most often 18K.',
+      faqEn: [
+        ['What is the gold price in Switzerland today?', 'The live price per gram in Swiss francs is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw gold rate without VAT or dealer premiums.'],
+        ['Is gold taxed in Switzerland?', 'Investment gold is exempt from VAT in Switzerland. Gold jewellery carries 8.1% VAT, included in the shop price.'],
+        ['Why is Switzerland important for gold?', 'Switzerland refines the majority of the world\'s gold bars through refiners such as PAMP, Valcambi and Argor-Heraeus, and Zurich is one of the historic centres of the global gold trade.']
       ] }
   };
   const COUNTRY_PAGES = { ...GCC, ...OTHERS };
