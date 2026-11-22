@@ -347,12 +347,12 @@ function layout(p, ctx) {
 <body data-ctry="${ctry}" data-sub="${sub}"${p.fixed ? ' data-fixed="1"' : ''}${p.dollar ? ' data-dollar="1"' : ''}>
 <header class="site-header"><div class="container"><div class="header-inner">
   <a href="${url(L, langHome)}" class="logo"><img src="/icons/icon-72x72.png" alt="" width="28" height="28" /><span>${tr ? 'Altın Fiyatları' : L === 'hi' ? 'सोने का भाव' : L === 'ur' ? 'سونے کا ریٹ' : L === 'id' ? 'Harga Emas' : L === 'bn' ? 'সোনার দাম' : L === 'tl' ? 'Presyo ng Ginto' : L === 'ms' ? 'Harga Emas' : en ? 'Gulf Gold Prices' : 'أسعار الذهب اليوم'}</span></a>
+  ${toggle}
   <div class="header-side"><span class="header-time" id="live-time"></span>${langSel}${cselect}</div>
 </div></div></header>
 <nav class="site-nav" aria-label="${en ? 'Main menu' : 'القائمة الرئيسية'}"><div class="container"><ul class="nav-list">${nav}</ul></div></nav>
 <main><div class="container">
 ${crumbHtml}
-${toggle}
 ${body}
 ${p.faq ? `<section class="card-section" id="faq"><h2>${en ? 'Frequently asked questions' : 'أسئلة شائعة'}</h2>${p.faq.map(([q, a]) => `<details class="faq"><summary>${q}</summary><p>${a}</p></details>`).join('')}</section>` : ''}
 ${p.noAds ? '' : AD}
