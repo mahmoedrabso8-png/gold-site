@@ -177,6 +177,7 @@ function layout(p, ctx) {
     const hm = p.slug.match(/^sone-ka-bhav(?:\/(24|22|21|18)-karat)?$/);
     if (hm) { ctry = 'india'; sub = hm[1] ? `gold-${hm[1]}k` : ''; }
   }
+  else if (/^dollar-.+$/.test(p.slug)) ctry = p.slug.slice(7);
   else if (p.slug === '' && !p.file) ctry = 'uae';
   else if (/^gold-(?:24|22|21|18)k$/.test(p.slug)) { ctry = 'uae'; sub = p.slug; }
   const body = !ctry && !p.fixed ? markCur(p.body) : p.body;
@@ -262,7 +263,7 @@ function layout(p, ctx) {
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1982414703735990" crossorigin="anonymous"></script>
   ${schema.map(s => `<script type="application/ld+json">${JSON.stringify(s)}</script>`).join('\n  ')}
 </head>
-<body data-ctry="${ctry}" data-sub="${sub}"${p.fixed ? ' data-fixed="1"' : ''}>
+<body data-ctry="${ctry}" data-sub="${sub}"${p.fixed ? ' data-fixed="1"' : ''}${p.dollar ? ' data-dollar="1"' : ''}>
 <header class="site-header"><div class="container"><div class="header-inner">
   <a href="${url(L, tr ? 'turkiye' : L === 'hi' ? 'sone-ka-bhav' : '')}" class="logo"><img src="/icons/icon-72x72.png" alt="" width="28" height="28" /><span>${tr ? 'Altın Fiyatları' : L === 'hi' ? 'सोने का भाव' : en ? 'Gulf Gold Prices' : 'أسعار الذهب اليوم'}</span></a>
   <div class="header-side"><span class="header-time" id="live-time"></span>${cselect}${langLink}</div>

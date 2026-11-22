@@ -94,9 +94,11 @@ const EXTRA_SLUGS={france:'EUR',italy:'EUR',spain:'EUR'};
 const PAGE_CUR=BD.ctry?(BD.ctry==='uae'?'AED':(Object.keys(CTRY).find(k=>CTRY[k]===BD.ctry)||EXTRA_SLUGS[BD.ctry])):null;
 // صفحات عملتها ثابتة: صفحات الدول + صفحات فيها أرقام ثابتة (الأرشيف، المقارنة، الروبية...)
 const FIXED=!!PAGE_CUR||BD.fixed==='1';
+// صفحات الدولار: تغيير الدولة ينقل لصفحة دولار الدولة الجديدة بدل صفحة الذهب
+const DPG=BD.dollar==='1';
 let SAVED=null;try{SAVED=localStorage.getItem('cur');}catch(e){}
 let SEL=PAGE_CUR||(CTRY.hasOwnProperty(SAVED)?SAVED:'AED');
-const pageFor=c=>((EN||EN_ONLY[c])?'/en/':'/')+(CTRY[c]?CTRY[c]+'/':'')+(BD.sub?BD.sub+'/':'');
+const pageFor=c=>((EN||EN_ONLY[c])?'/en/':'/')+(DPG?'dollar-'+(c==='AED'?'uae':CTRY[c])+'/':(CTRY[c]?CTRY[c]+'/':''))+(DPG?'':BD.sub?BD.sub+'/':'');
 // صفحة إماراتية ليها نسخة لكل دولة، والزائر اختار دولة تانية قبل كده: نوديه لصفحة دولته
 if(BD.ctry==='uae'&&SAVED&&SAVED!=='AED'&&CTRY[SAVED]) location.replace(pageFor(SAVED));
 // معامل التحويل من الدرهم للعملة المختارة (null لو سعر الصرف لسه ما وصلش)
@@ -109,11 +111,14 @@ function labels(){
 }
 function nisab(){if(G.g24) $$('[data-nisab]').forEach(el=>el.textContent=fmt(G.g24*NISAB_G*(conv()||1),DEC[effCur()]));}
 const csel=$('#country');
+// دول بتشارك عملة غيرها (فرنسا/إيطاليا/إسبانيا باليورو): اعرض اسم الدولة الصح في القائمة بدل ألمانيا
+const EURP={france:['فرنسا','France'],italy:['إيطاليا','Italy'],spain:['إسبانيا','Spain']};
 if(csel){
   csel.value=SEL;
+  if(EXTRA_SLUGS[BD.ctry]&&EURP[BD.ctry]){const o=[...csel.options].find(op=>op.value===EXTRA_SLUGS[BD.ctry]);if(o)o.textContent=EN?EURP[BD.ctry][1]:EURP[BD.ctry][0];}
   csel.addEventListener('change',()=>{
     const c=csel.value;try{localStorage.setItem('cur',c);}catch(e){}
-    if(PAGE_CUR){location.href=pageFor(c);return;}
+    if(PAGE_CUR||DPG){location.href=pageFor(c);return;}
     SEL=c;
     if(!G.fx[c]&&!{AED:1,USD:1,SAR:1,QAR:1,OMR:1,BHD:1,JOD:1}[c]) loadFX(true);
     syncCalcCur();paint();labels();calc();zakat();nisab();

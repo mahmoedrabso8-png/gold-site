@@ -1298,7 +1298,7 @@ ${AD}
     ...Object.entries(COUNTRY_PAGES).filter(([, c]) => c.code !== 'USD')];
   for (const L of ['ar', 'en']) {
     const en = L === 'en';
-    out.push({ lang: L, fixed: true, slug: 'dollar', alt: true, usesFx: true,
+    out.push({ lang: L, fixed: true, dollar: true, slug: 'dollar', alt: true, usesFx: true,
       crumbs: [[en ? 'US dollar rate today' : 'سعر الدولار اليوم', url(L, 'dollar')]],
       title: en ? 'US Dollar Rate Today — Live Exchange Rates for 40 Currencies' : 'سعر الدولار اليوم | سعر الصرف مباشر مقابل 40 عملة',
       desc: en ? 'Live US dollar exchange rate today against 40 currencies: Egyptian pound, Saudi riyal, UAE dirham, Indian rupee, Pakistani rupee, Turkish lira and more — updated every 5 minutes.'
@@ -1329,7 +1329,7 @@ ${AD}
     const rTxt = rate ? fmt(rate, rate < 10 ? 4 : dd) : '';
     for (const L of c.enOnly ? ['en'] : ['ar', 'en']) {
       const en = L === 'en', x = c[L];
-      out.push({ lang: L, fixed: true, slug: `dollar-${slug}`, alt: !c.enOnly, usesFx: true,
+      out.push({ lang: L, fixed: true, dollar: true, slug: `dollar-${slug}`, alt: !c.enOnly, usesFx: true,
         crumbs: [[en ? `Dollar rate in ${x.n}` : `سعر الدولار ${x.in}`, url(L, `dollar-${slug}`)]],
         title: en ? `US Dollar Rate in ${x.n} Today: 1 USD = ${rTxt} ${c.code}` : `سعر الدولار اليوم ${x.in}: 1 دولار = ${rTxt} ${x.cur}`,
         desc: en ? `Live US dollar to ${x.cur} rate today: 1 USD = ${rTxt} ${c.code}. Conversion tables from 1 to 1,000 dollars and back, updated every 5 minutes.`
