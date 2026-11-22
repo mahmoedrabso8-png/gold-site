@@ -134,7 +134,7 @@ export function pages(ctx) {
 <div class="trust-item"><strong>المعادلة</strong>(سعر الأونصة بالدولار × 3.6725 ÷ 31.1035) × نسبة العيار.</div>
 <div class="trust-item"><strong>غير مشمول</strong>المصنعية وضريبة القيمة المضافة. الأسعار للاطلاع فقط.</div>
 <div class="trust-item"><strong>التصحيح</strong>لاحظت خطأ؟ <a href="/contact/">راسلنا</a> ونراجعه فوراً. <a href="/about/">من نحن</a></div></div></section>`;
-  const hero = (h1, sub, L) => `<div class="hero"><h1>${h1}</h1><p class="hero-sub">${sub}</p><div class="update-badge"><span class="update-dot"></span>${L === 'en' ? 'Live — updated every 5 minutes' : L === 'tr' ? 'Canlı — her 5 dakikada güncellenir' : L === 'hi' ? 'लाइव — हर 5 मिनट में अपडेट' : 'مباشر — يُحدَّث كل 5 دقائق'}</div></div>`;
+  const hero = (h1, sub, L) => `<div class="hero"><h1>${h1}</h1><p class="hero-sub">${sub}</p><div class="update-badge"><span class="update-dot"></span>${L === 'en' ? 'Live — updated every 5 minutes' : L === 'tr' ? 'Canlı — her 5 dakikada güncellenir' : L === 'hi' ? 'लाइव — हर 5 मिनट में अपडेट' : L === 'ur' ? 'لائیو — ہر 5 منٹ میں تازہ کاری' : 'مباشر — يُحدَّث كل 5 دقائق'}</div></div>`;
   const TG_CHANNEL = 'https://t.me/emaratijob';
   const share = (L, slug, title) => {
     const en = L === 'en', u = encodeURIComponent(ctx.SITE + url(L, slug)), t = encodeURIComponent(title);
@@ -1496,6 +1496,74 @@ ${HIK.filter(([k2]) => k2 !== k).map(([, n2, s2]) => `<a class="link-card" href=
     for (const p2 of out) {
       const hs = Object.keys(HI_EN).find(k2 => HI_EN[k2] === p2.slug);
       if (hs && p2.lang === 'en') p2.alts = [['en', url('en', p2.slug)], ['hi', url('hi', hs)], ['x-default', url('en', p2.slug)]];
+    }
+  }
+
+  // ── Urdu pilot: Pakistan pages in Urdu (real content, hreflang-paired with en) ──
+  {
+    const pkrG = (k, w = 1) => ctx.g24 && ctx.fx.PKR ? fmt(ctx.g24 * k / 24 * w / ctx.AED * ctx.fx.PKR, 0) : null;
+    const urP = (k, w = 1, o = {}) => P(k, w, { cur: 'pkr', d: 0, ...o });
+    const URK = [[24, '24 کیرٹ', '24-karat'], [22, '22 کیرٹ', '22-karat'], [21, '21 کیرٹ', '21-karat'], [18, '18 کیرٹ', '18-karat']];
+    const UR_EN = { 'sone-ka-rate': 'pakistan', 'sone-ka-rate/24-karat': 'pakistan/gold-24k', 'sone-ka-rate/22-karat': 'pakistan/gold-22k', 'sone-ka-rate/21-karat': 'pakistan/gold-21k', 'sone-ka-rate/18-karat': 'pakistan/gold-18k' };
+    const UR_ALTS = us => [['ur', url('ur', us)], ['en', url('en', UR_EN[us])], ['x-default', url('en', UR_EN[us])]];
+    const g24u = pkrG(24), TOLA3 = 11.6638;
+    out.push({ lang: 'ur', fixed: true, slug: 'sone-ka-rate', usesFx: true, trEn: 'pakistan',
+      alts: UR_ALTS('sone-ka-rate'),
+      crumbs: [['آج کا سونے کا ریٹ', url('ur', 'sone-ka-rate')]],
+      title: `آج کا سونے کا ریٹ: ${g24u} روپے فی گرام — 22 اور 24 کیرٹ`,
+      desc: 'آج کا تازہ سونے کا ریٹ: 24، 22، 21 اور 18 کیرٹ سونے کی گرام، 10 گرام، تولہ اور اونس قیمت روپے اور ڈالر میں، ہر 5 منٹ میں تازہ کاری۔',
+      body: `${hero('آج کا سونے کا ریٹ', 'فی گرام روپے (PKR) اور امریکی ڈالر میں لائیو ریٹ', 'ur')}
+${errBox}
+<div class="karat-grid">${URK.map(([k, n, s]) => `<a class="karat-card" href="${url('ur', 'sone-ka-rate/' + s)}">
+<span class="karat-badge">${n}</span>
+<div class="k-price">${urP(k)}</div>
+<div class="k-usd">$${P(k, 1, { cur: 'usd', d: 2 })}</div>
+<div class="k-unit">روپے / گرام</div></a>`).join('')}</div>
+<div class="meta-row"><span>تازہ کاری: <strong>${updated('en')}</strong> (دبئی)</span><span>اونس: <strong>${urP(24, ctx.TROY)} روپے</strong> · <strong>$${P(24, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">🔄 تازہ کریں</button></div>
+<section class="card-section"><h2>آج سونے کا ریٹ — گرام، 10 گرام، تولہ اور اونس</h2><div class="table-wrap"><table class="data-table">
+<thead><tr><th>کیرٹ</th><th>1 گرام (روپے)</th><th>10 گرام (روپے)</th><th>1 تولہ (روپے)</th><th>1 اونس (روپے)</th></tr></thead><tbody>
+${URK.map(([k, n]) => `<tr><td><strong>${n}</strong></td><td class="n">${urP(k)}</td><td class="n">${urP(k, 10)}</td><td class="n">${urP(k, TOLA3)}</td><td class="n">${urP(k, ctx.TROY)}</td></tr>`).join('')}
+</tbody></table></div><p class="note">مزدوری کے بغیر خام سونے کا ریٹ۔ 1 تولہ = 11.664 گرام · 1 اونس = 31.1035 گرام۔</p></section>
+${AD}
+<section class="card-section"><h2>22 اور 24 کیرٹ سونے کے بارے میں</h2><div class="prose">
+<p><strong>24 کیرٹ سونا</strong> (999 خالص) سب سے خالص سونا ہے اور پاکستان میں عموماً بسکٹ اور سِکّوں کی صورت میں بچت کے لیے خریدا جاتا ہے۔ <strong>22 کیرٹ</strong> (916) زیورات کا معیار ہے، اسی لیے صرافہ مارکیٹ کا بورڈ ریٹ عام طور پر 22 کیرٹ کا ہوتا ہے۔</p>
+<p>پاکستان میں سونے کا ریٹ دو چیزوں سے بنتا ہے: بین الاقوامی اونس ریٹ (ڈالر میں) اور ڈالر/روپے کی شرح تبادلہ۔ دکان پر حتمی قیمت میں مزدوری شامل ہوتی ہے؛ یہاں دکھایا گیا ریٹ خام (مزدوری کے بغیر) ہے۔</p>
+<p>متعلقہ صفحات: <a href="${url('en', 'pakistan')}">English version</a> · <a href="${url('ur', 'sone-ka-rate/22-karat')}">22 کیرٹ سونے کا ریٹ</a> · <a href="${url('en', 'gold-rate-pkr')}">Gold rate in PKR</a>.</p>
+</div></section>`,
+      faq: [
+        ['آج سونے کا ریٹ کیا ہے؟', `1 گرام 24 کیرٹ سونا اس وقت تقریباً ${g24u} روپے ہے؛ تازہ ریٹ اوپر ہر 5 منٹ میں تازہ ہوتا ہے۔`],
+        ['سونے کا ریٹ روز کیوں بدلتا ہے؟', 'سونے کا ریٹ بین الاقوامی اونس ریٹ (ڈالر) اور ڈالر/روپے کی شرح تبادلہ پر منحصر ہے۔ دونوں بدلیں تو روپے میں ریٹ بھی بدلتا ہے۔'],
+        ['1 تولہ کتنے گرام ہوتا ہے؟', '1 تولہ = 11.664 گرام۔ پاکستان میں سونا اکثر تولہ اور 10 گرام میں ناپا جاتا ہے۔']
+      ] });
+    for (const [k, n, s] of URK) {
+      const us = `sone-ka-rate/${s}`, kt = pkrG(k);
+      out.push({ lang: 'ur', fixed: true, slug: us, usesFx: true, trEn: UR_EN[us],
+        alts: UR_ALTS(us),
+        crumbs: [['سونے کا ریٹ', url('ur', 'sone-ka-rate')], [`${n} ریٹ`, url('ur', us)]],
+        title: `${n} سونے کا ریٹ آج: 1 گرام = ${kt} روپے`,
+        desc: `${n} سونے کا تازہ ریٹ: گرام، 10 گرام، تولہ اور اونس میں روپے اور ڈالر، ہر 5 منٹ میں تازہ کاری۔ مزدوری کے بغیر خام ریٹ۔`,
+        body: `${hero(`${n} سونے کا ریٹ آج`, `فی گرام ${kt} روپے — لائیو`, 'ur')}
+${errBox}
+<div class="meta-row"><span>تازہ کاری: <strong>${updated('en')}</strong> (دبئی)</span><span>اونس: <strong>${urP(k, ctx.TROY)} روپے</strong> · <strong>$${P(k, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">🔄 تازہ کریں</button></div>
+<section class="card-section"><h2>${n} سونا — وزن کے حساب سے ریٹ</h2><div class="table-wrap"><table class="data-table">
+<thead><tr><th>وزن</th><th>ریٹ (روپے)</th><th>ریٹ (USD)</th></tr></thead><tbody>
+${[1, 2, 4, 5, 8, 10, 20, 50, 100].map(w => `<tr><td class="n">${w} گرام</td><td class="n">${urP(k, w)}</td><td class="n">$${P(k, w, { cur: 'usd', d: 2 })}</td></tr>`).join('')}
+<tr><td class="n">1 تولہ (11.66 گرام)</td><td class="n">${urP(k, TOLA3)}</td><td class="n">$${P(k, TOLA3, { cur: 'usd', d: 2 })}</td></tr>
+<tr><td class="n">1 اونس (31.1 گرام)</td><td class="n">${urP(k, ctx.TROY)}</td><td class="n">$${P(k, ctx.TROY, { cur: 'usd', d: 2 })}</td></tr>
+</tbody></table></div><p class="note">مزدوری کے بغیر خام ریٹ۔</p></section>
+${AD}
+<section class="card-section"><h2>دیگر کیرٹ</h2><div class="links-grid">
+${URK.filter(([k2]) => k2 !== k).map(([, n2, s2]) => `<a class="link-card" href="${url('ur', 'sone-ka-rate/' + s2)}">${n2} سونے کا ریٹ</a>`).join('')}
+<a class="link-card" href="${url('ur', 'sone-ka-rate')}">تمام کیرٹ کا ریٹ</a>
+<a class="link-card" href="${url('en', UR_EN[us])}">English version</a></div></section>`,
+        faq: [
+          [`${n} سونے کا ریٹ آج کیا ہے؟`, `1 گرام ${n} سونا اس وقت تقریباً ${kt} روپے ہے؛ تازہ ریٹ ہر 5 منٹ میں تازہ ہوتا ہے۔`],
+          [`${n} سونے کا ریٹ کیسے طے ہوتا ہے؟`, `بین الاقوامی اونس ریٹ (ڈالر) کو ڈالر/روپے کی شرح سے بدل کر ${n} خلوص کا تناسب لگایا جاتا ہے۔`]
+        ] });
+    }
+    for (const p2 of out) {
+      const us = Object.keys(UR_EN).find(k2 => UR_EN[k2] === p2.slug);
+      if (us && p2.lang === 'en') p2.alts = p2.alts ? [...p2.alts.filter(a => a[0] !== 'x-default'), ['ur', url('ur', us)], ['x-default', url('en', p2.slug)]] : [['en', url('en', p2.slug)], ['ur', url('ur', us)], ['x-default', url('en', p2.slug)]];
     }
   }
 

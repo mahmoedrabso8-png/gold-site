@@ -129,7 +129,8 @@ const NAV = {
   ar: [['', 'الرئيسية'], ['gold-21k', 'عيار 21'], ['gold-24k', 'عيار 24'], ['gold-22k', 'عيار 22'], ['gold-18k', 'عيار 18'], ['gcc', 'مقارنة الخليج'], ['gold-price-usd', 'السعر العالمي'], ['silver', 'الفضة'], ['gold-bars', 'السبائك'], ['gold-calculator', 'حاسبة الذهب'], ['zakat-calculator', 'زكاة الذهب'], ['gold-price-yesterday', 'سعر أمس'], ['gold-forecast', 'توقعات الذهب'], ['articles', 'مقالات'], ['history', 'الأرشيف']],
   en: [['', 'Home'], ['gold-22k', '22K'], ['gold-24k', '24K'], ['gold-18k', '18K'], ['gold-21k', '21K'], ['gcc', 'Gulf compare'], ['gold-price-usd', 'Gold in USD'], ['silver', 'Silver'], ['gold-rate-inr', 'In INR'], ['gold-rate-pkr', 'In PKR'], ['gold-bars', 'Gold Bars'], ['gold-calculator', 'Calculator'], ['gold-price-yesterday', 'Last 10 days'], ['zakat-calculator', 'Zakat']],
   tr: [['turkiye', 'Gram Altın'], ['turkiye/24-ayar-altin', '24 Ayar'], ['turkiye/22-ayar-altin', '22 Ayar'], ['turkiye/21-ayar-altin', '21 Ayar'], ['turkiye/18-ayar-altin', '18 Ayar']],
-  hi: [['sone-ka-bhav', 'सोने का भाव'], ['sone-ka-bhav/24-karat', '24 कैरेट'], ['sone-ka-bhav/22-karat', '22 कैरेट'], ['sone-ka-bhav/18-karat', '18 कैरेट'], ['sone-ka-bhav/21-karat', '21 कैरेट']]
+  hi: [['sone-ka-bhav', 'सोने का भाव'], ['sone-ka-bhav/24-karat', '24 कैरेट'], ['sone-ka-bhav/22-karat', '22 कैरेट'], ['sone-ka-bhav/18-karat', '18 कैरेट'], ['sone-ka-bhav/21-karat', '21 कैरेट']],
+  ur: [['sone-ka-rate', 'سونے کا ریٹ'], ['sone-ka-rate/24-karat', '24 کیرٹ'], ['sone-ka-rate/22-karat', '22 کیرٹ'], ['sone-ka-rate/18-karat', '18 کیرٹ'], ['sone-ka-rate/21-karat', '21 کیرٹ']]
 };
 
 // كود الإعلان كما أرسله صاحب الموقع (بدون تعديل)
@@ -176,12 +177,15 @@ function layout(p, ctx) {
   } else if (L === 'hi') {
     const hm = p.slug.match(/^sone-ka-bhav(?:\/(24|22|21|18)-karat)?$/);
     if (hm) { ctry = 'india'; sub = hm[1] ? `gold-${hm[1]}k` : ''; }
+  } else if (L === 'ur') {
+    const um = p.slug.match(/^sone-ka-rate(?:\/(24|22|21|18)-karat)?$/);
+    if (um) { ctry = 'pakistan'; sub = um[1] ? `gold-${um[1]}k` : ''; }
   }
   else if (/^dollar-.+$/.test(p.slug)) ctry = p.slug.slice(7);
   else if (p.slug === '' && !p.file) ctry = 'uae';
   else if (/^gold-(?:24|22|21|18)k$/.test(p.slug)) { ctry = 'uae'; sub = p.slug; }
   const body = !ctry && !p.fixed ? markCur(p.body) : p.body;
-  const cselect = `<select id="country" class="ctry" aria-label="${en ? 'Country' : tr ? 'Ülke' : L === 'hi' ? 'देश' : 'الدولة'}">${COUNTRIES.map(([c, a, e]) => `<option value="${c}">${L === 'ar' ? a : e}</option>`).join('')}</select>`;
+  const cselect = `<select id="country" class="ctry" aria-label="${en ? 'Country' : tr ? 'Ülke' : L === 'hi' ? 'देश' : L === 'ur' ? 'ملک' : 'الدولة'}">${COUNTRIES.map(([c, a, e]) => `<option value="${c}">${L === 'ar' ? a : e}</option>`).join('')}</select>`;
   const altLinks = p.alts
     ? p.alts.map(([h, u]) => `<link rel="alternate" hreflang="${h}" href="${SITE + u}" />`).join('\n  ')
     : p.alt
@@ -190,8 +194,8 @@ function layout(p, ctx) {
   <link rel="alternate" hreflang="x-default" href="${SITE + url('ar', p.slug)}" />`
     : `<link rel="alternate" hreflang="${L}" href="${self}" />
   <link rel="alternate" hreflang="x-default" href="${self}" />`;
-  const langHome = tr ? 'turkiye' : L === 'hi' ? 'sone-ka-bhav' : '';
-  const crumbs = [[en ? 'Home' : tr ? 'Ana sayfa' : L === 'hi' ? 'होम' : 'الرئيسية', url(L, langHome)], ...(p.crumbs || [])];
+  const langHome = tr ? 'turkiye' : L === 'hi' ? 'sone-ka-bhav' : L === 'ur' ? 'sone-ka-rate' : '';
+  const crumbs = [[en ? 'Home' : tr ? 'Ana sayfa' : L === 'hi' ? 'होम' : L === 'ur' ? 'ہوم' : 'الرئيسية', url(L, langHome)], ...(p.crumbs || [])];
   const schema = [
     { '@context': 'https://schema.org', '@type': 'WebPage', name: p.title, description: p.desc, url: self, inLanguage: L, dateModified: TODAY,
       isPartOf: { '@type': 'WebSite', name: en ? 'UAE Gold Prices — Maelumatii' : 'معلوماتي — أسعار الذهب في الإمارات', url: SITE + '/' },
@@ -203,14 +207,18 @@ function layout(p, ctx) {
     ...(p.schema || [])
   ];
   const nav = NAV[L].map(([s, n]) => `<li><a href="${url(L, s)}"${s === p.slug ? ' aria-current="page"' : ''}>${n}</a></li>`).join('');
-  const langLink = tr || L === 'hi'
+  const langLink = tr || L === 'hi' || L === 'ur'
     ? `<a class="lang-link" href="${url('en', p.trEn || '')}" hreflang="en">English</a>`
     : p.alt
     ? `<a class="lang-link" href="${url(en ? 'ar' : 'en', p.slug)}" hreflang="${en ? 'ar' : 'en'}">${en ? 'عربي' : 'English'}</a>`
     : `<a class="lang-link" href="${url(en ? 'ar' : 'en', '')}">${en ? 'عربي' : 'English'}</a>`;
   const crumbHtml = crumbs.length > 1
     ? `<nav class="crumbs" aria-label="breadcrumb">${crumbs.map(([n, u], i) => i < crumbs.length - 1 ? `<a href="${u}">${n}</a> › ` : `<span>${n}</span>`).join('')}</nav>` : '';
-  const footer = L === 'hi'
+  const footer = L === 'ur'
+    ? `<div class="footer-links"><a href="/ur/sone-ka-rate/">سونے کا ریٹ</a><a href="/en/pakistan/">English version</a><a href="/privacy/">پرائیویسی</a></div>
+<p>قیمتوں کا ذریعہ: Gold-API.com · شرح تبادلہ: open.er-api.com · ہر 5 منٹ میں تازہ کاری۔</p>
+<p>قیمتوں میں مزدوری اور ٹیکس شامل نہیں۔ صرف معلومات کے لیے؛ سرمایہ کاری کا مشورہ نہیں۔ © ${TODAY.slice(0, 4)} maelumatii.com</p>`
+    : L === 'hi'
     ? `<div class="footer-links"><a href="/hi/sone-ka-bhav/">सोने का भाव</a><a href="/en/india/">English version</a><a href="/privacy/">गोपनीयता</a></div>
 <p>मूल्य डेटा: Gold-API.com · विनिमय दरें: open.er-api.com · हर 5 मिनट में अपडेट।</p>
 <p>कीमतों में मेकिंग चार्ज और GST शामिल नहीं हैं। केवल जानकारी के लिए; निवेश सलाह नहीं। © ${TODAY.slice(0, 4)} maelumatii.com</p>`
@@ -227,7 +235,7 @@ function layout(p, ctx) {
 <p>الأسعار لا تشمل المصنعية أو ضريبة القيمة المضافة، وهي للاطلاع فقط ولا تمثّل نصيحة استثمارية. © ${TODAY.slice(0, 4)} maelumatii.com</p>`;
 
   return `<!DOCTYPE html>
-<html lang="${L}" dir="${L === 'ar' ? 'rtl' : 'ltr'}">
+<html lang="${L}" dir="${L === 'ar' || L === 'ur' ? 'rtl' : 'ltr'}">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -243,7 +251,7 @@ function layout(p, ctx) {
   <meta property="og:image" content="${SITE}/icons/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:locale" content="${tr ? 'tr_TR' : L === 'hi' ? 'hi_IN' : en ? 'en_AE' : 'ar_AE'}" />
+  <meta property="og:locale" content="${tr ? 'tr_TR' : L === 'hi' ? 'hi_IN' : L === 'ur' ? 'ur_PK' : en ? 'en_AE' : 'ar_AE'}" />
   <meta property="og:site_name" content="${tr ? 'Maelumatii — Altın Fiyatları' : en ? 'Maelumatii — Gulf Gold Prices' : 'معلوماتي — أسعار الذهب في الخليج'}" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="${SITE}/icons/og-image.png" />
@@ -251,7 +259,7 @@ function layout(p, ctx) {
   <meta name="theme-color" content="#e8b800" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="${tr ? 'Altın' : L === 'hi' ? 'सोना' : en ? 'UAE Gold' : 'ذهب الإمارات'}" />
+  <meta name="apple-mobile-web-app-title" content="${tr ? 'Altın' : L === 'hi' ? 'सोना' : L === 'ur' ? 'سونا' : en ? 'UAE Gold' : 'ذهب الإمارات'}" />
   <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
   <link rel="icon" href="/icons/icon-96x96.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -265,7 +273,7 @@ function layout(p, ctx) {
 </head>
 <body data-ctry="${ctry}" data-sub="${sub}"${p.fixed ? ' data-fixed="1"' : ''}${p.dollar ? ' data-dollar="1"' : ''}>
 <header class="site-header"><div class="container"><div class="header-inner">
-  <a href="${url(L, tr ? 'turkiye' : L === 'hi' ? 'sone-ka-bhav' : '')}" class="logo"><img src="/icons/icon-72x72.png" alt="" width="28" height="28" /><span>${tr ? 'Altın Fiyatları' : L === 'hi' ? 'सोने का भाव' : en ? 'Gulf Gold Prices' : 'أسعار الذهب اليوم'}</span></a>
+  <a href="${url(L, langHome)}" class="logo"><img src="/icons/icon-72x72.png" alt="" width="28" height="28" /><span>${tr ? 'Altın Fiyatları' : L === 'hi' ? 'सोने का भाव' : L === 'ur' ? 'سونے کا ریٹ' : en ? 'Gulf Gold Prices' : 'أسعار الذهب اليوم'}</span></a>
   <div class="header-side"><span class="header-time" id="live-time"></span>${cselect}${langLink}</div>
 </div></div></header>
 <nav class="site-nav" aria-label="${en ? 'Main menu' : 'القائمة الرئيسية'}"><div class="container"><ul class="nav-list">${nav}</ul></div></nav>
