@@ -1162,10 +1162,10 @@ ${c.code !== 'USD' ? `<a class="link-card" href="${url(L, 'dollar-' + slug)}">${
         body: `${hero(en ? `Gold Price in ${x.n} Today` : `سعر الذهب اليوم ${x.in}`, en ? `Raw gold price per gram in ${x.cur} (${c.code}) and US dollars` : `سعر غرام الذهب الخام بال${x.cur} (${c.code}) والدولار`, L)}
 ${errBox}
 <div class="karat-grid">${KS.map(k => { const link = true; const tag = `a class="karat-card" href="${url(L, `${slug}/gold-${k}k`)}"`;
-  return `<${tag}><span class="karat-badge">${en ? k + 'K' : 'عيار ' + k}</span><div class="karat-label"><bdi>${K[k].purity}</bdi></div><div class="k-price">${P(k, 1, opt())}</div><div class="k-usd">$${P(k, 1, { cur: 'usd' })}</div><div class="k-unit">${en ? `${c.code} per gram` : `${x.curS} / غرام`}</div></${link ? 'a' : 'div'}>`; }).join('')}</div>
+  return `<${tag}><span class="karat-badge">${en ? k + 'K' : 'عيار ' + k}</span><div class="karat-label"><bdi>${K[k].purity}</bdi></div><div class="k-price">${P(k, 1, opt())}</div>${c.code === 'USD' ? '' : `<div class="k-usd">$${P(k, 1, { cur: 'usd' })}</div>`}<div class="k-unit">${en ? `${c.code} per gram` : `${x.curS} / غرام`}</div></${link ? 'a' : 'div'}>`; }).join('')}</div>
 <div class="meta-row">
 <span>${en ? 'Updated' : 'آخر تحديث'}: <strong>${updated(L)}</strong></span>
-<span>${en ? 'Ounce' : 'الأونصة'}: <strong>${P(24, ctx.TROY, opt())} ${c.code}</strong> · <strong>$${P(24, ctx.TROY, { cur: 'usd' })}</strong></span>
+<span>${en ? 'Ounce' : 'الأونصة'}: <strong>${P(24, ctx.TROY, opt())} ${c.code}</strong>${c.code === 'USD' ? '' : ` · <strong>$${P(24, ctx.TROY, { cur: 'usd' })}</strong>`}</span>
 ${chg}<button class="btn-sm" id="refresh" type="button">🔄 ${en ? 'Refresh' : 'تحديث'}</button></div>
 ${AD}
 <section class="card-section"><h2>${en ? `Gold price table in ${x.n} today` : `جدول أسعار الذهب ${x.in} اليوم`}</h2><div class="table-wrap"><table class="data-table">
@@ -1239,12 +1239,12 @@ ${KS.filter(o => o !== k).map(o => `<a class="link-card" href="${url('ar', `${sl
         desc: `Live ${k}K gold rate in ${x.n} today in ${x.cur} (${c.code}) and US dollars: price per gram, 10 grams, tola and ounce, updated every 5 minutes${c.vat ? `, including ${c.vat}% ${TN}` : ''}.`,
         body: `${hero(`${k}K Gold Rate in ${x.n} Today`, `${ko.label} · ${K[k].purity} purity · hallmark ${K[k].mark}`, 'en')}
 ${errBox}
-<div class="big-price"><div class="u">${k}K — price per gram in ${x.cur}</div><div class="v">${P(k, 1, opt())} <span style="font-size:.45em">${c.code}</span></div><div class="s"><bdi>≈ $${P(k, 1, { cur: 'usd' })} USD</bdi></div>
+<div class="big-price"><div class="u">${k}K — price per gram in ${x.cur}</div><div class="v">${P(k, 1, opt())} <span style="font-size:.45em">${c.code}</span></div>${c.code === 'USD' ? '' : `<div class="s"><bdi>≈ $${P(k, 1, { cur: 'usd' })} USD</bdi></div>`}
 <div class="note">Updated: ${updated('en')} · <button class="btn-sm" id="refresh" type="button">🔄 Refresh</button></div></div>
 ${AD}
 <section class="card-section"><h2>${k}K gold price by weight in ${x.n}</h2><div class="table-wrap"><table class="data-table">
-<thead><tr><th>Weight</th><th>Price (${c.code})</th>${c.vat ? `<th>+ ${c.vat}% ${TN}</th>` : ''}<th>Price (USD)</th></tr></thead><tbody>
-${rows.map(([n, w]) => `<tr><td>${n}</td><td class="n">${P(k, w, opt())}</td>${c.vat ? `<td class="n">${P(k, w * (1 + c.vat / 100), opt())}</td>` : ''}<td class="n">$${P(k, w, { cur: 'usd' })}</td></tr>`).join('')}
+<thead><tr><th>Weight</th><th>Price (${c.code})</th>${c.vat ? `<th>+ ${c.vat}% ${TN}</th>` : ''}${c.code === 'USD' ? '' : '<th>Price (USD)</th>'}</tr></thead><tbody>
+${rows.map(([n, w]) => `<tr><td>${n}</td><td class="n">${P(k, w, opt())}</td>${c.vat ? `<td class="n">${P(k, w * (1 + c.vat / 100), opt())}</td>` : ''}${c.code === 'USD' ? '' : `<td class="n">$${P(k, w, { cur: 'usd' })}</td>`}</tr>`).join('')}
 </tbody></table></div><p class="note">Raw gold price without making charges. ${k === 24 ? 'Bar prices at dealers are slightly higher because of the premium.' : 'Shops add making charges per piece' + (c.vat ? ` and ${c.vat}% ${TN}.` : '.')}</p></section>
 <section class="card-section"><h2>About ${k}K gold in ${x.n}</h2><div class="prose">
 <p><strong>${k} karat gold</strong> contains <strong>${K[k].purity}</strong> pure gold and is hallmarked <strong>${K[k].mark}</strong>. It is commonly used for ${ko.use}.</p>
