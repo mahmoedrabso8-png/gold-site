@@ -209,3 +209,5 @@ details.faq p{padding:0 16px 13px;font-size:.84rem;color:var(--t2)}
 @media(max-width:720px){.page-toggle{display:none}}
 @media(max-width:520px){.header-time{display:none}.header-side{gap:8px}#langsel,.ctry{max-width:92px}}
 @media(max-width:400px){.logo span{font-size:.82rem}.header-side{gap:6px}#langsel,.ctry{max-width:78px;font-size:.7rem}}
+.page-toggle-m{display:none}
+@media(max-width:720px){.page-toggle-m{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;border:1px solid rgba(233,184,0,.35);background:var(--bc2);text-decoration:none;font-size:.8rem;flex-shrink:0}}

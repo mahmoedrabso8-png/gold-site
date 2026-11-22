@@ -258,16 +258,22 @@ function layout(p, ctx) {
   const langUrls = Object.fromEntries(LANGS.map(([lg]) => [lg, langUrlFor(lg)]));
   const langSel = `<select id="langsel" class="ctry" aria-label="${L === 'ar' ? 'اللغة' : 'Language'}">${LANGS.map(([lg, nm]) => `<option value="${lg}"${lg === L ? ' selected' : ''}>${nm}</option>`).join('')}</select>`;
   // زر التبديل بين صفحة الذهب وصفحة الدولار لنفس الدولة (في الاتجاهين)
-  let toggle = '';
+  let toggle = '', toggleM = '';
   if (p.dollar) {
-    const back = ctry && CNAMES[ctry]
-      ? `<a href="${(L === 'ar' && (ctry === 'uae' || AR_CTRIES.has(ctry))) ? url('ar', ctry === 'uae' ? '' : ctry) : url('en', ctry === 'uae' ? '' : ctry)}">🪙 ${L === 'ar' ? `سعر الذهب في ${CNAMES[ctry][0]}` : `Gold price in ${CNAMES[ctry][1]}`}</a>`
-      : `<a href="${url(L === 'ar' ? 'ar' : 'en', '')}">🪙 ${L === 'ar' ? 'أسعار الذهب' : 'Gold prices'}</a>`;
-    toggle = `<div class="page-toggle">${back}</div>`;
+    const backUrl = ctry && CNAMES[ctry]
+      ? ((L === 'ar' && (ctry === 'uae' || AR_CTRIES.has(ctry))) ? url('ar', ctry === 'uae' ? '' : ctry) : url('en', ctry === 'uae' ? '' : ctry))
+      : url(L === 'ar' ? 'ar' : 'en', '');
+    const backLabel = ctry && CNAMES[ctry]
+      ? (L === 'ar' ? `سعر الذهب في ${CNAMES[ctry][0]}` : `Gold price in ${CNAMES[ctry][1]}`)
+      : (L === 'ar' ? 'أسعار الذهب' : 'Gold prices');
+    toggle = `<div class="page-toggle"><a href="${backUrl}">🪙 ${backLabel}</a></div>`;
+    toggleM = `<a class="page-toggle-m" href="${backUrl}" aria-label="${backLabel}">🪙</a>`;
   } else if (ctry && CNAMES[ctry] && ctry !== 'usa') {
     const ds = ctry === 'uae' ? 'dollar-uae' : `dollar-${ctry}`;
     const du = (L === 'ar' && (ctry === 'uae' || AR_CTRIES.has(ctry))) ? url('ar', ds) : url('en', ds);
-    toggle = `<div class="page-toggle"><a href="${du}">💵 ${L === 'ar' ? `سعر الدولار في ${CNAMES[ctry][0]}` : `Dollar price in ${CNAMES[ctry][1]}`}</a></div>`;
+    const dLabel = L === 'ar' ? `سعر الدولار في ${CNAMES[ctry][0]}` : `Dollar price in ${CNAMES[ctry][1]}`;
+    toggle = `<div class="page-toggle"><a href="${du}">💵 ${dLabel}</a></div>`;
+    toggleM = `<a class="page-toggle-m" href="${du}" aria-label="${dLabel}">💵</a>`;
   }
   const crumbHtml = crumbs.length > 1
     ? `<nav class="crumbs" aria-label="breadcrumb">${crumbs.map(([n, u], i) => i < crumbs.length - 1 ? `<a href="${u}">${n}</a> › ` : `<span>${n}</span>`).join('')}</nav>` : '';
@@ -339,7 +345,7 @@ function layout(p, ctx) {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://api.gold-api.com" />
   <link rel="preconnect" href="https://kmvadxkjehxfxpeveekg.supabase.co" />
-  <script>try{if(localStorage.getItem('mael-theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
+  <script>try{if(localStorage.getItem('mael-theme')!=='dark')document.documentElement.setAttribute('data-theme','light')}catch(e){document.documentElement.setAttribute('data-theme','light')}</script>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/style.css?v=${ASSET_V.css}" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1982414703735990" crossorigin="anonymous"></script>
@@ -349,7 +355,7 @@ function layout(p, ctx) {
 <header class="site-header"><div class="container"><div class="header-inner">
   <a href="${url(L, langHome)}" class="logo"><img src="/icons/icon-72x72.png" alt="" width="28" height="28" /><span>${tr ? 'Altın Fiyatları' : L === 'hi' ? 'सोने का भाव' : L === 'ur' ? 'سونے کا ریٹ' : L === 'id' ? 'Harga Emas' : L === 'bn' ? 'সোনার দাম' : L === 'tl' ? 'Presyo ng Ginto' : L === 'ms' ? 'Harga Emas' : en ? 'Gold Prices Today' : 'أسعار الذهب اليوم'}</span></a>
   ${toggle}
-  <div class="header-side"><span class="header-time" id="live-time"></span><button type="button" class="theme-toggle" id="theme-toggle" aria-label="${L === 'ar' ? 'التبديل بين المظهر الداكن والفاتح' : 'Switch between dark and light theme'}">🌙</button>${langSel}${cselect}</div>
+  <div class="header-side"><span class="header-time" id="live-time"></span>${toggleM}<button type="button" class="theme-toggle" id="theme-toggle" aria-label="${L === 'ar' ? 'التبديل بين المظهر الداكن والفاتح' : 'Switch between dark and light theme'}">🌙</button>${langSel}${cselect}</div>
 </div></div></header>
 <nav class="site-nav" aria-label="${en ? 'Main menu' : 'القائمة الرئيسية'}"><div class="container"><ul class="nav-list">${nav}</ul></div></nav>
 <main><div class="container">
