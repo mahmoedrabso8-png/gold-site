@@ -124,6 +124,9 @@ if(csel){
     syncCalcCur();paint();labels();calc();zakat();nisab();
   });
 }
+// قائمة اللغات: تنتقل للرابط المحسوب لكل لغة في الصفحة (window.__LANGURLS)
+const lsel=$('#langsel');
+if(lsel) lsel.addEventListener('change',()=>{const u=(window.__LANGURLS||{})[lsel.value];if(u)location.href=u;});
 function syncCalcCur(){const cs=$('#c-cur');if(cs&&!FIXED&&[...cs.options].some(o=>o.value===SEL)) cs.value=SEL;}
 syncCalcCur();
 function paint(){

@@ -137,6 +137,15 @@ const NAV = {
   ms: [['harga-emas', 'Harga Emas'], ['harga-emas/24-karat', 'Emas 999'], ['harga-emas/22-karat', 'Emas 916'], ['harga-emas/21-karat', 'Emas 875'], ['harga-emas/18-karat', 'Emas 750']]
 };
 
+// قوائم اللغات وخرائط التنقل بين اللغات وبين صفحات الذهب والدولار
+const LANGS = [['ar', 'العربية'], ['en', 'English'], ['tr', 'Türkçe'], ['hi', 'हिन्दी'], ['ur', 'اردو'], ['id', 'Indonesia'], ['bn', 'বাংলা'], ['tl', 'Filipino'], ['ms', 'Melayu']];
+const LANG_HOME = { ar: '', en: '', tr: 'turkiye', hi: 'sone-ka-bhav', ur: 'sone-ka-rate', id: 'harga-emas', bn: 'sonar-dam', tl: 'presyo-ng-ginto', ms: 'harga-emas' };
+// دول لها صفحات عربية (غير enOnly) + الرئيسية للإمارات
+const AR_CTRIES = new Set(['saudi', 'kuwait', 'qatar', 'oman', 'bahrain', 'egypt', 'iraq', 'jordan', 'morocco', 'algeria', 'lebanon', 'tunisia', 'libya', 'yemen']);
+// دولة كل لغة تجريبية: [slug الدولة, slug الصفحة في اللغة]
+const PILOT_CTRY = { tr: ['turkey', 'turkiye'], hi: ['india', 'sone-ka-bhav'], ur: ['pakistan', 'sone-ka-rate'], id: ['indonesia', 'harga-emas'], bn: ['bangladesh', 'sonar-dam'], tl: ['philippines', 'presyo-ng-ginto'], ms: ['malaysia', 'harga-emas'] };
+const CNAMES = { uae: ['الإمارات', 'UAE'], saudi: ['السعودية', 'Saudi Arabia'], kuwait: ['الكويت', 'Kuwait'], qatar: ['قطر', 'Qatar'], oman: ['عُمان', 'Oman'], bahrain: ['البحرين', 'Bahrain'], egypt: ['مصر', 'Egypt'], india: ['الهند', 'India'], pakistan: ['باكستان', 'Pakistan'], bangladesh: ['بنجلاديش', 'Bangladesh'], turkey: ['تركيا', 'Turkey'], usa: ['أمريكا', 'USA'], uk: ['بريطانيا', 'UK'], canada: ['كندا', 'Canada'], australia: ['أستراليا', 'Australia'], philippines: ['الفلبين', 'Philippines'], malaysia: ['ماليزيا', 'Malaysia'], nepal: ['نيبال', 'Nepal'], southafrica: ['جنوب أفريقيا', 'South Africa'], iraq: ['العراق', 'Iraq'], jordan: ['الأردن', 'Jordan'], morocco: ['المغرب', 'Morocco'], algeria: ['الجزائر', 'Algeria'], indonesia: ['إندونيسيا', 'Indonesia'], thailand: ['تايلاند', 'Thailand'], vietnam: ['فيتنام', 'Vietnam'], singapore: ['سنغافورة', 'Singapore'], srilanka: ['سريلانكا', 'Sri Lanka'], germany: ['ألمانيا', 'Germany'], japan: ['اليابان', 'Japan'], switzerland: ['سويسرا', 'Switzerland'], nigeria: ['نيجيريا', 'Nigeria'], ghana: ['غانا', 'Ghana'], kenya: ['كينيا', 'Kenya'], mexico: ['المكسيك', 'Mexico'], brazil: ['البرازيل', 'Brazil'], china: ['الصين', 'China'], france: ['فرنسا', 'France'], italy: ['إيطاليا', 'Italy'], spain: ['إسبانيا', 'Spain'], lebanon: ['لبنان', 'Lebanon'], tunisia: ['تونس', 'Tunisia'], libya: ['ليبيا', 'Libya'], yemen: ['اليمن', 'Yemen'] };
+
 // كود الإعلان كما أرسله صاحب الموقع (بدون تعديل)
 export const AD = `<div class="ad-slot">
 <!-- HIJUN -->
@@ -223,11 +232,43 @@ function layout(p, ctx) {
     ...(p.schema || [])
   ];
   const nav = NAV[L].map(([s, n]) => `<li><a href="${url(L, s)}"${s === p.slug ? ' aria-current="page"' : ''}>${n}</a></li>`).join('');
-  const langLink = tr || L === 'hi' || L === 'ur' || L === 'id' || L === 'bn' || L === 'tl' || L === 'ms'
-    ? `<a class="lang-link" href="${url('en', p.trEn || '')}" hreflang="en">English</a>`
-    : p.alt
-    ? `<a class="lang-link" href="${url(en ? 'ar' : 'en', p.slug)}" hreflang="${en ? 'ar' : 'en'}">${en ? 'عربي' : 'English'}</a>`
-    : `<a class="lang-link" href="${url(en ? 'ar' : 'en', '')}">${en ? 'عربي' : 'English'}</a>`;
+  // روابط التحويل لكل لغة: تحافظ على الدولة/العيار/الدولار لو فيه مقابل، وإلا لرئيسية اللغة
+  const langUrlFor = lg => {
+    const home = LANG_HOME[lg] || '';
+    if (p.dollar) {
+      const ds = ctry ? (ctry === 'uae' ? 'dollar-uae' : `dollar-${ctry}`) : 'dollar';
+      if (lg === 'ar') return url('ar', (!ctry || ctry === 'uae' || AR_CTRIES.has(ctry)) ? ds : home);
+      return url('en', ds);
+    }
+    if (ctry) {
+      const ks = sub ? sub.replace('gold-', '').replace('k', '') : '';
+      const goldSlug = () => (ctry === 'uae' ? (ks ? `gold-${ks}k` : '') : ctry + (ks ? `/gold-${ks}k` : ''));
+      if (lg === 'ar') return url('ar', ctry === 'uae' || AR_CTRIES.has(ctry) ? goldSlug() : home);
+      if (lg === 'en') return url('en', goldSlug());
+      const pc = PILOT_CTRY[lg];
+      if (pc && pc[0] === ctry) {
+        if (lg === 'tr') return url('tr', ks ? `turkiye/${ks}-ayar-altin` : 'turkiye');
+        return url(lg, pc[1] + (ks ? `/${ks}-karat` : ''));
+      }
+      return url(lg, home);
+    }
+    if ((lg === 'ar' || lg === 'en') && p.alt) return url(lg, p.slug);
+    return url(lg, home);
+  };
+  const langUrls = Object.fromEntries(LANGS.map(([lg]) => [lg, langUrlFor(lg)]));
+  const langSel = `<select id="langsel" class="ctry" aria-label="${L === 'ar' ? 'اللغة' : 'Language'}">${LANGS.map(([lg, nm]) => `<option value="${lg}"${lg === L ? ' selected' : ''}>${nm}</option>`).join('')}</select>`;
+  // زر التبديل بين صفحة الذهب وصفحة الدولار لنفس الدولة (في الاتجاهين)
+  let toggle = '';
+  if (p.dollar) {
+    const back = ctry && CNAMES[ctry]
+      ? `<a href="${(L === 'ar' && (ctry === 'uae' || AR_CTRIES.has(ctry))) ? url('ar', ctry === 'uae' ? '' : ctry) : url('en', ctry === 'uae' ? '' : ctry)}">🪙 ${L === 'ar' ? `سعر الذهب في ${CNAMES[ctry][0]}` : `Gold price in ${CNAMES[ctry][1]}`}</a>`
+      : `<a href="${url(L === 'ar' ? 'ar' : 'en', '')}">🪙 ${L === 'ar' ? 'أسعار الذهب' : 'Gold prices'}</a>`;
+    toggle = `<div class="page-toggle">${back}</div>`;
+  } else if (ctry && CNAMES[ctry]) {
+    const ds = ctry === 'uae' ? 'dollar-uae' : `dollar-${ctry}`;
+    const du = (L === 'ar' && (ctry === 'uae' || AR_CTRIES.has(ctry))) ? url('ar', ds) : url('en', ds);
+    toggle = `<div class="page-toggle"><a href="${du}">💵 ${L === 'ar' ? `سعر الدولار في ${CNAMES[ctry][0]}` : `Dollar price in ${CNAMES[ctry][1]}`}</a></div>`;
+  }
   const crumbHtml = crumbs.length > 1
     ? `<nav class="crumbs" aria-label="breadcrumb">${crumbs.map(([n, u], i) => i < crumbs.length - 1 ? `<a href="${u}">${n}</a> › ` : `<span>${n}</span>`).join('')}</nav>` : '';
   const footer = L === 'tl'
@@ -306,17 +347,18 @@ function layout(p, ctx) {
 <body data-ctry="${ctry}" data-sub="${sub}"${p.fixed ? ' data-fixed="1"' : ''}${p.dollar ? ' data-dollar="1"' : ''}>
 <header class="site-header"><div class="container"><div class="header-inner">
   <a href="${url(L, langHome)}" class="logo"><img src="/icons/icon-72x72.png" alt="" width="28" height="28" /><span>${tr ? 'Altın Fiyatları' : L === 'hi' ? 'सोने का भाव' : L === 'ur' ? 'سونے کا ریٹ' : L === 'id' ? 'Harga Emas' : L === 'bn' ? 'সোনার দাম' : L === 'tl' ? 'Presyo ng Ginto' : L === 'ms' ? 'Harga Emas' : en ? 'Gulf Gold Prices' : 'أسعار الذهب اليوم'}</span></a>
-  <div class="header-side"><span class="header-time" id="live-time"></span>${cselect}${langLink}</div>
+  <div class="header-side"><span class="header-time" id="live-time"></span>${langSel}${cselect}</div>
 </div></div></header>
 <nav class="site-nav" aria-label="${en ? 'Main menu' : 'القائمة الرئيسية'}"><div class="container"><ul class="nav-list">${nav}</ul></div></nav>
 <main><div class="container">
 ${crumbHtml}
+${toggle}
 ${body}
 ${p.faq ? `<section class="card-section" id="faq"><h2>${en ? 'Frequently asked questions' : 'أسئلة شائعة'}</h2>${p.faq.map(([q, a]) => `<details class="faq"><summary>${q}</summary><p>${a}</p></details>`).join('')}</section>` : ''}
 ${p.noAds ? '' : AD}
 </div></main>
 <footer class="site-footer"><div class="container">${footer}</div></footer>
-<script>window.__G=${ctx.g24 ? ctx.g24.toFixed(4) : 'null'};${p.usesAg ? `window.__AG=${ctx.ag ? ctx.ag.toFixed(4) : 'null'};` : ''}${p.usesFx ? `window.__FX=${JSON.stringify({ INR: ctx.fx.INR, PKR: ctx.fx.PKR, KWD: ctx.fx.KWD, EGP: ctx.fx.EGP, BDT: ctx.fx.BDT, TRY: ctx.fx.TRY, GBP: ctx.fx.GBP, CAD: ctx.fx.CAD, AUD: ctx.fx.AUD, PHP: ctx.fx.PHP, MYR: ctx.fx.MYR, NPR: ctx.fx.NPR, ZAR: ctx.fx.ZAR, IQD: ctx.fx.IQD, MAD: ctx.fx.MAD, DZD: ctx.fx.DZD, IDR: ctx.fx.IDR, THB: ctx.fx.THB, VND: ctx.fx.VND, SGD: ctx.fx.SGD, LKR: ctx.fx.LKR, EUR: ctx.fx.EUR, JPY: ctx.fx.JPY, CHF: ctx.fx.CHF, NGN: ctx.fx.NGN, GHS: ctx.fx.GHS, KES: ctx.fx.KES, MXN: ctx.fx.MXN, BRL: ctx.fx.BRL, CNY: ctx.fx.CNY, LBP: ctx.fx.LBP, TND: ctx.fx.TND, LYD: ctx.fx.LYD, YER: ctx.fx.YER })};` : ''}</script>
+<script>window.__G=${ctx.g24 ? ctx.g24.toFixed(4) : 'null'};window.__LANGURLS=${JSON.stringify(langUrls)};${p.usesAg ? `window.__AG=${ctx.ag ? ctx.ag.toFixed(4) : 'null'};` : ''}${p.usesFx ? `window.__FX=${JSON.stringify({ INR: ctx.fx.INR, PKR: ctx.fx.PKR, KWD: ctx.fx.KWD, EGP: ctx.fx.EGP, BDT: ctx.fx.BDT, TRY: ctx.fx.TRY, GBP: ctx.fx.GBP, CAD: ctx.fx.CAD, AUD: ctx.fx.AUD, PHP: ctx.fx.PHP, MYR: ctx.fx.MYR, NPR: ctx.fx.NPR, ZAR: ctx.fx.ZAR, IQD: ctx.fx.IQD, MAD: ctx.fx.MAD, DZD: ctx.fx.DZD, IDR: ctx.fx.IDR, THB: ctx.fx.THB, VND: ctx.fx.VND, SGD: ctx.fx.SGD, LKR: ctx.fx.LKR, EUR: ctx.fx.EUR, JPY: ctx.fx.JPY, CHF: ctx.fx.CHF, NGN: ctx.fx.NGN, GHS: ctx.fx.GHS, KES: ctx.fx.KES, MXN: ctx.fx.MXN, BRL: ctx.fx.BRL, CNY: ctx.fx.CNY, LBP: ctx.fx.LBP, TND: ctx.fx.TND, LYD: ctx.fx.LYD, YER: ctx.fx.YER })};` : ''}</script>
 <a class="tg-float" href="https://t.me/emaratijob" target="_blank" rel="noopener" aria-label="${L === 'ar' ? 'أسعار الذهب يومياً على تيليجرام' : 'Daily gold prices on Telegram'}"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M9.04 15.9l-.38 5.36c.55 0 .79-.24 1.08-.52l2.6-2.48 5.38 3.94c.99.55 1.69.26 1.96-.9l3.55-16.64c.32-1.45-.52-2.02-1.47-1.66L1.7 10.8c-1.42.55-1.4 1.34-.24 1.7l5.3 1.65L18.98 5.7c.58-.38 1.1-.17.67.21L9.04 15.9z"/></svg><span>${L === 'ar' ? 'أسعار الذهب يومياً' : 'Daily prices on Telegram'}</span></a>
 <script src="/assets/app.js?v=${ASSET_V.js}" defer></script>
 </body>
