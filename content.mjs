@@ -1294,6 +1294,11 @@ ${AD}
   }
 
   // ── صفحات سعر الدولار وأسعار الصرف ─────────────────────
+  // روابط مقالات الدولار (عربي فقط) لصفحات الدولار العربية
+  const DART = `<section class="card-section"><h2>مقالات عن الدولار</h2><div class="links-grid">
+<a class="link-card" href="/articles/why-dollar-rises-egypt/">ليه سعر الدولار بيزيد في مصر؟<span>الأسباب الحقيقية وراء ارتفاعه</span></a>
+<a class="link-card" href="/articles/official-vs-parallel-dollar-rate/">السعر الرسمي وسعر السوق الموازية<span>الفرق بينهما ببساطة</span></a>
+<a class="link-card" href="/articles/dollar-forecast-egypt/">توقعات سعر الدولار في مصر<span>العوامل والسيناريوهات</span></a></div></section>`;
   const DCS = [['uae', { code: 'AED', d: 2, peg: 'مربوط بالدولار رسمياً عند 3.6725 درهم', pegEn: 'officially pegged at 3.6725 dirhams per US dollar', ar: { n: 'الإمارات', in: 'في الإمارات', cur: 'درهم إماراتي', curS: 'درهم' }, en: { n: 'the UAE', adj: 'UAE', cur: 'UAE dirham' } }],
     ...Object.entries(COUNTRY_PAGES).filter(([, c]) => c.code !== 'USD')];
   for (const L of ['ar', 'en']) {
@@ -1313,7 +1318,7 @@ ${AD}
 <section class="card-section"><h2>${en ? 'About these exchange rates' : 'عن أسعار الصرف هذه'}</h2><div class="prose">
 <p>${en ? 'These are mid-market rates from the open.er-api.com feed — the same rates used to convert the global gold price into each local currency on this site. Banks and exchange offices add a margin, so the counter rate you get will differ slightly.' : 'هذه أسعار السوق المتوسطة من مصدر open.er-api.com، وهي نفسها المستخدمة لتحويل السعر العالمي للذهب إلى كل عملة محلية في هذا الموقع. البنوك ومكاتب الصرافة تضيف هامشاً، لذلك يختلف السعر الذي تحصل عليه قليلاً.'}</p>
 <p>${en ? 'For currencies not pegged to the dollar — like the Egyptian pound, Indian rupee and Turkish lira — the rate moves daily, and the local gold price moves with it. Pegged currencies stay fixed by official policy.' : 'العملات غير المربوطة بالدولار — مثل الجنيه المصري والروبية الهندية والليرة التركية — يتغير سعرها يومياً، ويتغير معها سعر الذهب المحلي. أما العملات المربوطة فتظل ثابتة بقرار رسمي.'}</p>
-<p>${en ? `Related: <a href="${url(L, 'gold-price-usd')}">gold price in USD</a> · <a href="${url(L, 'gold-calculator')}">gold calculator</a> · <a href="${url(L, 'gcc')}">Gulf gold prices</a>.` : `مواضيع ذات صلة: <a href="${url(L, 'gold-price-usd')}">سعر الذهب بالدولار</a> · <a href="${url(L, 'gold-calculator')}">حاسبة الذهب</a> · <a href="${url(L, 'gcc')}">أسعار الذهب في الخليج</a>.`}</p></div></section>`,
+<p>${en ? `Related: <a href="${url(L, 'gold-price-usd')}">gold price in USD</a> · <a href="${url(L, 'gold-calculator')}">gold calculator</a> · <a href="${url(L, 'gcc')}">Gulf gold prices</a>.` : `مواضيع ذات صلة: <a href="${url(L, 'gold-price-usd')}">سعر الذهب بالدولار</a> · <a href="${url(L, 'gold-calculator')}">حاسبة الذهب</a> · <a href="${url(L, 'gcc')}">أسعار الذهب في الخليج</a>.`}</p></div></section>${en ? '' : DART}`,
       faq: en ? [
         ['What is the US dollar rate today?', 'The live mid-market rate for 1 USD against each currency appears in the table above and refreshes about every 5 minutes.'],
         ['Why is my bank\'s dollar rate different from this rate?', 'Banks and exchange offices add a margin to the mid-market rate, and cash rates differ from transfer rates. The rate here is the mid-market reference.']
@@ -1352,7 +1357,7 @@ ${DAMTS_L.map(w => `<tr><td class="n">${w.toLocaleString('en-US')}</td><td class
 <section class="card-section"><h2>${en ? 'About this rate' : 'عن هذا السعر'}</h2><div class="prose">
 <p>${en ? `The ${x.cur} is ${c.pegEn}.` : `ال${x.curS || x.cur} ${c.peg}.`}</p>
 <p>${en ? 'The rate shown is the mid-market rate from the daily open.er-api.com feed. Banks and exchange offices include a margin, and where a parallel market exists the street rate can differ.' : 'السعر المعروض هو سعر السوق المتوسط من مصدر open.er-api.com اليومي. أسعار البنوك والصرافة تشمل هامشاً، وحيث توجد سوق موازية قد يختلف سعرها.'}</p>
-<p>${en ? `Related: <a href="${url(L, slug === 'uae' ? '' : slug)}">gold price in ${x.n}</a> · <a href="${url(L, 'dollar')}">dollar rate in all currencies</a> · <a href="${url(L, 'gold-calculator')}">gold calculator</a>.` : `مواضيع ذات صلة: <a href="${url(L, slug === 'uae' ? '' : slug)}">سعر الذهب ${x.in}</a> · <a href="${url(L, 'dollar')}">سعر الدولار بجميع العملات</a> · <a href="${url(L, 'gold-calculator')}">حاسبة الذهب</a>.`}</p></div></section>`,
+<p>${en ? `Related: <a href="${url(L, slug === 'uae' ? '' : slug)}">gold price in ${x.n}</a> · <a href="${url(L, 'dollar')}">dollar rate in all currencies</a> · <a href="${url(L, 'gold-calculator')}">gold calculator</a>.` : `مواضيع ذات صلة: <a href="${url(L, slug === 'uae' ? '' : slug)}">سعر الذهب ${x.in}</a> · <a href="${url(L, 'dollar')}">سعر الدولار بجميع العملات</a> · <a href="${url(L, 'gold-calculator')}">حاسبة الذهب</a>.`}</p></div></section>${en ? '' : DART}`,
         faq: en ? [
           [`What is 1 USD in ${x.cur} today?`, `1 US dollar = ${rTxt} ${c.code} at the live mid-market rate shown above, refreshed every 5 minutes.`],
           [`How much is 100 US dollars in ${x.cur}?`, `100 USD = ${rate ? fmt(rate * 100, dd) : ''} ${c.code} at the current rate. The full conversion table above updates live every 5 minutes.`]
