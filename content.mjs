@@ -1,4 +1,6 @@
 // محتوى صفحات الموقع (عربي + إنجليزي)
+import { ARTICLES } from './articles.mjs';
+
 export function pages(ctx) {
   const { P, updated, chg, daily, fmt, url, AD, TODAY } = ctx;
   const out = [];
@@ -87,7 +89,8 @@ export function pages(ctx) {
       ['gcc', 'أسعار الذهب في الخليج', 'مقارنة بين 6 دول'], ['saudi', 'سعر الذهب في السعودية', 'بالريال السعودي'], ['kuwait', 'سعر الذهب في الكويت', 'بالدينار الكويتي'],
       ['qatar', 'سعر الذهب في قطر', 'بالريال القطري'], ['oman', 'سعر الذهب في عُمان', 'بالريال العُماني'], ['bahrain', 'سعر الذهب في البحرين', 'بالدينار البحريني'],
       ['gold-bars', 'أسعار السبائك', 'من 1 غرام إلى 1 كيلو'], ['gold-calculator', 'حاسبة الذهب', 'بالمصنعية والضريبة'], ['zakat-calculator', 'حاسبة زكاة الذهب', 'النصاب وقيمة الزكاة'],
-      ['gold-price-yesterday', 'سعر الذهب أمس', 'وآخر 10 أيام'], ['gold-forecast', 'توقعات الذهب', 'الاتجاه والعوامل المؤثرة'], ['history', 'أرشيف الأسعار', 'سعر الذهب يوماً بيوم']],
+      ['gold-price-yesterday', 'سعر الذهب أمس', 'وآخر 10 أيام'], ['gold-forecast', 'توقعات الذهب', 'الاتجاه والعوامل المؤثرة'], ['history', 'أرشيف الأسعار', 'سعر الذهب يوماً بيوم'],
+      ['articles', 'مقالات وأدلة الذهب', 'شروحات الشراء والادخار والزكاة']],
     en: [['gold-22k', '22K gold rate', 'Popular for Indian jewellery'], ['gold-24k', '24K gold rate', 'Pure gold & bars'], ['gold-21k', '21K gold rate', 'Gulf jewellery'], ['gold-18k', '18K gold rate', 'Diamond jewellery'],
       ['gold-price-usd', 'Gold price in USD', 'Live ounce XAU/USD'], ['silver', 'Silver price', 'Per gram, ounce & kg'],
       ['gcc', 'Gulf gold prices', 'Compare 6 countries'], ['saudi', 'Gold price in Saudi Arabia', 'In SAR'], ['kuwait', 'Gold price in Kuwait', 'In KWD'],
@@ -147,6 +150,7 @@ ${KS.map(k => `<tr><td><a href="${url('ar', 'gold-' + k + 'k')}"><strong>عيا�
 <p><strong>سعر غرام عيار 21 بالدولار</strong> اليوم نحو <bdi>$${P(21, 1, { cur: 'usd' })}</bdi>، وسعر غرام عيار 24 نحو <bdi>$${P(24, 1, { cur: 'usd' })}</bdi>، وسعر الأونصة العالمي <bdi>$${P(24, ctx.TROY, { cur: 'usd' })}</bdi>.</p>
 <p><strong>سعر الذهب في الإمارات بالمصنعية:</strong> إذا كانت المصنعية 5 دراهم للغرام يصبح غرام عيار 21 نحو <bdi>${P(21, 1, { mc: 5 })} درهم</bdi>، وبمصنعية 10 دراهم نحو <bdi>${P(21, 1, { mc: 10 })} درهم</bdi>، وبمصنعية 15 درهماً نحو <bdi>${P(21, 1, { mc: 15 })} درهم</bdi> (قبل ضريبة 5% على المشغولات). لحساب وزنك ومصنعيتك بدقة استخدم <a href="/gold-calculator/">حاسبة الذهب بالمصنعية</a>.</p></div></section>
 ${spark('ar')}${why('ar')}${links('ar', '')}
+<section class="card-section"><h2>مقالات وأدلة عن الذهب</h2><div class="links-grid">${ARTICLES.map(a => `<a class="link-card" href="/articles/${a.slug}/">${a.h1}<span>${a.teaser}</span></a>`).join('')}</div></section>
 ${AD}
 <section class="card-section"><h2>دليل سعر الذهب في الإمارات</h2><div class="prose">
 <p>تُعدّ <strong>الإمارات</strong> من أكبر مراكز تجارة الذهب في العالم، ويشتهر <strong>سوق الذهب في ديرة بدبي</strong> وسوق الذهب في الشارقة بتنوع المحلات وتنافس الأسعار. تتحدد <strong>أسعار الذهب في الإمارات</strong> على أساس السعر العالمي للأونصة بالدولار، ولأن الدرهم مربوط بالدولار عند 3.6725 فإن حركة السعر المحلي تتبع السوق العالمية مباشرة.</p>
@@ -831,6 +835,31 @@ ${AD}
   }
 
   // ── صفحات خاصة (خارج الـ sitemap) ─────────────────────
+  // ── المقالات التعليمية ─────────────────────────────────
+  const artCard = a => `<a class="link-card" href="/articles/${a.slug}/">${a.h1}<span>${a.teaser}</span></a>`;
+  out.push({ lang: 'ar', fixed: true, slug: 'articles',
+    title: 'مقالات الذهب: أدلة الشراء والادخار والزكاة | معلوماتي',
+    desc: 'مقالات تعليمية مبسطة عن الذهب: كيف يُحسب السعر، الفرق بين العيارات، المصنعية، السبائك أم المشغولات، زكاة الذهب، ومتى تشتري.',
+    crumbs: [['مقالات الذهب', '/articles/']],
+    body: `<div class="hero"><h1>مقالات وأدلة الذهب</h1><p class="hero-sub">شروحات مبسطة تساعدك تشتري وتدخر في الذهب بفهم</p></div>
+<section class="card-section"><h2>كل المقالات</h2><div class="links-grid">${ARTICLES.map(artCard).join('')}</div></section>
+${links('ar', 'articles')}` });
+  for (const a of ARTICLES) {
+    out.push({ lang: 'ar', fixed: true, slug: `articles/${a.slug}`,
+      title: a.title, desc: a.desc,
+      crumbs: [['مقالات الذهب', '/articles/'], [a.h1, `/articles/${a.slug}/`]],
+      body: `<div class="hero"><h1>${a.h1}</h1><p class="hero-sub">${a.intro}</p></div>
+<article class="card-section"><div class="prose">${a.body}</div></article>
+<section class="card-section"><h2>مقالات أخرى</h2><div class="links-grid">${ARTICLES.filter(x => x.slug !== a.slug).map(artCard).join('')}</div></section>
+${share('ar', `articles/${a.slug}`, a.h1)}`,
+      faq: a.faq,
+      schema: [{ '@context': 'https://schema.org', '@type': 'Article', headline: a.h1, description: a.desc,
+        datePublished: TODAY, dateModified: TODAY, inLanguage: 'ar',
+        author: { '@type': 'Organization', name: 'Maelumatii', url: ctx.SITE + '/' },
+        mainEntityOfPage: ctx.SITE + `/articles/${a.slug}/` }]
+    });
+  }
+
   out.push({ lang: 'ar', fixed: true, slug: '404', file: '404.html', noindex: true,
     title: 'الصفحة غير موجودة | Page not found', desc: 'الصفحة غير موجودة',
     body: `<div class="hero"><h1>الصفحة غير موجودة</h1><p class="hero-sub">Page not found — <a href="/en/">go to the English site</a></p></div>
