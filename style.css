@@ -19,9 +19,6 @@ a{color:var(--g4)}
 .header-time{font-size:.72rem;color:var(--t3);white-space:nowrap}
 .lang-link{font-size:.75rem;font-weight:700;color:var(--t2);text-decoration:none;border:1px solid var(--bb);border-radius:6px;padding:2px 8px}
 .lang-link:hover{color:var(--g4);border-color:var(--g5)}
-@media(max-width:720px){.page-toggle{display:none}}
-@media(max-width:520px){.header-time{display:none}.header-side{gap:8px}#langsel,.ctry{max-width:92px}}
-@media(max-width:400px){.logo span{font-size:.82rem}.header-side{gap:6px}#langsel,.ctry{max-width:78px;font-size:.7rem}}
 
 /* Nav */
 .site-nav{background:var(--bc2);border-bottom:1px solid var(--bb);overflow-x:auto;scrollbar-width:none}
@@ -209,3 +206,6 @@ details.faq p{padding:0 16px 13px;font-size:.84rem;color:var(--t2)}
 .chat-form input{flex:1;background:var(--bc2);border:1px solid var(--bb);border-radius:10px;padding:10px 14px;font-family:inherit;font-size:.88rem;color:var(--t1)}
 .chat-form input:focus{outline:none;border-color:var(--g5)}
 .chat-form button{background:linear-gradient(135deg,var(--g5),var(--g4));color:#111;border:none;border-radius:10px;padding:10px 20px;font-family:inherit;font-weight:800;font-size:.88rem;cursor:pointer}
+@media(max-width:720px){.page-toggle{display:none}}
+@media(max-width:520px){.header-time{display:none}.header-side{gap:8px}#langsel,.ctry{max-width:92px}}
+@media(max-width:400px){.logo span{font-size:.82rem}.header-side{gap:6px}#langsel,.ctry{max-width:78px;font-size:.7rem}}
