@@ -134,7 +134,7 @@ export function pages(ctx) {
 <div class="trust-item"><strong>المعادلة</strong>(سعر الأونصة بالدولار × 3.6725 ÷ 31.1035) × نسبة العيار.</div>
 <div class="trust-item"><strong>غير مشمول</strong>المصنعية وضريبة القيمة المضافة. الأسعار للاطلاع فقط.</div>
 <div class="trust-item"><strong>التصحيح</strong>لاحظت خطأ؟ <a href="/contact/">راسلنا</a> ونراجعه فوراً. <a href="/about/">من نحن</a></div></div></section>`;
-  const hero = (h1, sub, L) => `<div class="hero"><h1>${h1}</h1><p class="hero-sub">${sub}</p><div class="update-badge"><span class="update-dot"></span>${L === 'en' ? 'Live — updated every 5 minutes' : L === 'tr' ? 'Canlı — her 5 dakikada güncellenir' : 'مباشر — يُحدَّث كل 5 دقائق'}</div></div>`;
+  const hero = (h1, sub, L) => `<div class="hero"><h1>${h1}</h1><p class="hero-sub">${sub}</p><div class="update-badge"><span class="update-dot"></span>${L === 'en' ? 'Live — updated every 5 minutes' : L === 'tr' ? 'Canlı — her 5 dakikada güncellenir' : L === 'hi' ? 'लाइव — हर 5 मिनट में अपडेट' : 'مباشر — يُحدَّث كل 5 دقائق'}</div></div>`;
   const TG_CHANNEL = 'https://t.me/emaratijob';
   const share = (L, slug, title) => {
     const en = L === 'en', u = encodeURIComponent(ctx.SITE + url(L, slug)), t = encodeURIComponent(title);
@@ -1428,6 +1428,74 @@ ${TRK.filter(([k2]) => k2 !== k).map(([, n2, s2]) => `<a class="link-card" href=
     for (const p2 of out) {
       const ts = Object.keys(TR_EN).find(k2 => TR_EN[k2] === p2.slug);
       if (ts && p2.lang === 'en') p2.alts = [['en', url('en', p2.slug)], ['tr', url('tr', ts)], ['x-default', url('en', p2.slug)]];
+    }
+  }
+
+  // ── Hindi pilot: India pages in Hindi (real content, hreflang-paired with en) ──
+  {
+    const inrG = (k, w = 1) => ctx.g24 && ctx.fx.INR ? fmt(ctx.g24 * k / 24 * w / ctx.AED * ctx.fx.INR, 0) : null;
+    const hiP = (k, w = 1, o = {}) => P(k, w, { cur: 'inr', d: 0, ...o });
+    const HIK = [[24, '24 कैरेट', '24-karat'], [22, '22 कैरेट', '22-karat'], [21, '21 कैरेट', '21-karat'], [18, '18 कैरेट', '18-karat']];
+    const HI_EN = { 'sone-ka-bhav': 'india', 'sone-ka-bhav/24-karat': 'india/gold-24k', 'sone-ka-bhav/22-karat': 'india/gold-22k', 'sone-ka-bhav/21-karat': 'india/gold-21k', 'sone-ka-bhav/18-karat': 'india/gold-18k' };
+    const HI_ALTS = hs => [['hi', url('hi', hs)], ['en', url('en', HI_EN[hs])], ['x-default', url('en', HI_EN[hs])]];
+    const g24h = inrG(24), TOLA2 = 11.6638;
+    out.push({ lang: 'hi', fixed: true, slug: 'sone-ka-bhav', usesFx: true, trEn: 'india',
+      alts: HI_ALTS('sone-ka-bhav'),
+      crumbs: [['आज का सोने का भाव', url('hi', 'sone-ka-bhav')]],
+      title: `आज का सोने का भाव: ${g24h} रुपये/ग्राम — 22 और 24 कैरेट`,
+      desc: 'आज का सोने का ताजा भाव: 24, 22, 21 और 18 कैरेट सोने की ग्राम, 10 ग्राम, तोला और औंस कीमत रुपये और डॉलर में, हर 5 मिनट में अपडेट।',
+      body: `${hero('आज का सोने का भाव', 'प्रति ग्राम रुपये (INR) और अमेरिकी डॉलर में लाइव भाव', 'hi')}
+${errBox}
+<div class="karat-grid">${HIK.map(([k, n, s]) => `<a class="karat-card" href="${url('hi', 'sone-ka-bhav/' + s)}">
+<span class="karat-badge">${n}</span>
+<div class="k-price">${hiP(k)}</div>
+<div class="k-usd">$${P(k, 1, { cur: 'usd', d: 2 })}</div>
+<div class="k-unit">रुपये / ग्राम</div></a>`).join('')}</div>
+<div class="meta-row"><span>अपडेट: <strong>${updated('en')}</strong> (दुबई)</span><span>औंस: <strong>${hiP(24, ctx.TROY)} रु.</strong> · <strong>$${P(24, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">🔄 रीफ्रेश</button></div>
+<section class="card-section"><h2>आज सोने का भाव — ग्राम, 10 ग्राम, तोला और औंस</h2><div class="table-wrap"><table class="data-table">
+<thead><tr><th>कैरेट</th><th>1 ग्राम (रु.)</th><th>10 ग्राम (रु.)</th><th>1 तोला (रु.)</th><th>1 औंस (रु.)</th></tr></thead><tbody>
+${HIK.map(([k, n]) => `<tr><td><strong>${n}</strong></td><td class="n">${hiP(k)}</td><td class="n">${hiP(k, 10)}</td><td class="n">${hiP(k, TOLA2)}</td><td class="n">${hiP(k, ctx.TROY)}</td></tr>`).join('')}
+</tbody></table></div><p class="note">मेकिंग चार्ज और 3% GST के बिना कच्चे सोने का भाव। 1 तोला = 11.664 ग्राम · 1 औंस = 31.1035 ग्राम।</p></section>
+${AD}
+<section class="card-section"><h2>22 और 24 कैरेट सोने के बारे में</h2><div class="prose">
+<p><strong>24 कैरेट सोना</strong> (999 शुद्धता) सबसे शुद्ध सोना है और भारत में मुख्य रूप से सिक्कों और बिस्किट (बार) के रूप में निवेश के लिए खरीदा जाता है। <strong>22 कैरेट</strong> (916, जिसे BIS हॉलमार्क 916 कहा जाता है) गहनों का मानक है — इसीलिए गहनों की दुकानों की बोर्ड दर आमतौर पर 22 कैरेट के लिए होती है।</p>
+<p>भारत में सोने की दर दो चीजों से बनती है: अंतरराष्ट्रीय औंस भाव (डॉलर में) और डॉलर/रुपया विनिमय दर। दुकान पर अंतिम कीमत में 3% GST और मेकिंग चार्ज जुड़ता है; यहां दिखाया गया भाव कच्चा (GST के बिना) है।</p>
+<p>संबंधित पेज: <a href="${url('en', 'india')}">English version</a> · <a href="${url('hi', 'sone-ka-bhav/22-karat')}">22 कैरेट सोने का भाव</a> · <a href="${url('en', 'gold-rate-inr')}">Gold rate in INR</a>.</p>
+</div></section>`,
+      faq: [
+        ['आज सोने का भाव क्या है?', `1 ग्राम 24 कैरेट सोना अभी लगभग ${g24h} रुपये है; ताजा भाव ऊपर हर 5 मिनट में अपडेट होता है।`],
+        ['सोने का भाव रोज क्यों बदलता है?', 'सोने का भाव अंतरराष्ट्रीय औंस भाव (डॉलर) और डॉलर/रुपया विनिमय दर पर निर्भर करता है। दोनों बदलते हैं तो रुपये में भाव भी बदलता है।'],
+        ['1 तोला कितने ग्राम होता है?', '1 तोला = 11.664 ग्राम। भारत में सोना अक्सर तोला और 10 ग्राम में मापा जाता है।']
+      ] });
+    for (const [k, n, s] of HIK) {
+      const hs = `sone-ka-bhav/${s}`, kt = inrG(k);
+      out.push({ lang: 'hi', fixed: true, slug: hs, usesFx: true, trEn: HI_EN[hs],
+        alts: HI_ALTS(hs),
+        crumbs: [['सोने का भाव', url('hi', 'sone-ka-bhav')], [`${n} भाव`, url('hi', hs)]],
+        title: `${n} सोने का भाव आज: 1 ग्राम = ${kt} रुपये`,
+        desc: `${n} सोने का ताजा भाव: ग्राम, 10 ग्राम, तोला और औंस में रुपये और डॉलर, हर 5 मिनट में अपडेट। मेकिंग चार्ज और GST के बिना कच्चा भाव।`,
+        body: `${hero(`${n} सोने का भाव आज`, `प्रति ग्राम ${kt} रुपये — लाइव`, 'hi')}
+${errBox}
+<div class="meta-row"><span>अपडेट: <strong>${updated('en')}</strong> (दुबई)</span><span>औंस: <strong>${hiP(k, ctx.TROY)} रु.</strong> · <strong>$${P(k, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">🔄 रीफ्रेश</button></div>
+<section class="card-section"><h2>${n} सोना — वजन के हिसाब से भाव</h2><div class="table-wrap"><table class="data-table">
+<thead><tr><th>वजन</th><th>भाव (रु.)</th><th>भाव (USD)</th></tr></thead><tbody>
+${[1, 2, 4, 5, 8, 10, 20, 50, 100].map(w => `<tr><td class="n">${w} ग्राम</td><td class="n">${hiP(k, w)}</td><td class="n">$${P(k, w, { cur: 'usd', d: 2 })}</td></tr>`).join('')}
+<tr><td class="n">1 तोला (11.66 ग्राम)</td><td class="n">${hiP(k, TOLA2)}</td><td class="n">$${P(k, TOLA2, { cur: 'usd', d: 2 })}</td></tr>
+<tr><td class="n">1 औंस (31.1 ग्राम)</td><td class="n">${hiP(k, ctx.TROY)}</td><td class="n">$${P(k, ctx.TROY, { cur: 'usd', d: 2 })}</td></tr>
+</tbody></table></div><p class="note">मेकिंग चार्ज और GST के बिना कच्चा भाव।</p></section>
+${AD}
+<section class="card-section"><h2>अन्य कैरेट</h2><div class="links-grid">
+${HIK.filter(([k2]) => k2 !== k).map(([, n2, s2]) => `<a class="link-card" href="${url('hi', 'sone-ka-bhav/' + s2)}">${n2} सोने का भाव</a>`).join('')}
+<a class="link-card" href="${url('hi', 'sone-ka-bhav')}">सभी कैरेट का भाव</a>
+<a class="link-card" href="${url('en', HI_EN[hs])}">English version</a></div></section>`,
+        faq: [
+          [`${n} सोने का भाव आज क्या है?`, `1 ग्राम ${n} सोना अभी लगभग ${kt} रुपये है; ताजा भाव हर 5 मिनट में अपडेट होता है।`],
+          [`${n} सोने का भाव कैसे तय होता है?`, `अंतरराष्ट्रीय औंस भाव (डॉलर) को डॉलर/रुपया दर से बदलकर ${n} शुद्धता का अनुपात लगाया जाता है।`]
+        ] });
+    }
+    for (const p2 of out) {
+      const hs = Object.keys(HI_EN).find(k2 => HI_EN[k2] === p2.slug);
+      if (hs && p2.lang === 'en') p2.alts = [['en', url('en', p2.slug)], ['hi', url('hi', hs)], ['x-default', url('en', p2.slug)]];
     }
   }
 
