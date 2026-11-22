@@ -2,8 +2,6 @@
    يجيب عن أسعار الذهب والعملات من الأسعار الحية (Gold-API + open.er-api) */
 (function () {
 'use strict';
-const root = document.getElementById('assistant');
-if (!root) return;
 const AR = document.documentElement.lang === 'ar';
 const TROY = 31.1035, AED = 3.6725;
 const DIG = '٠١٢٣٤٥٦٧٨٩';
@@ -298,6 +296,23 @@ function ansFallback() {
     : `I did not quite get that. I can answer:<br>• Gold price in any of 44 countries ("gold price in Turkey")<br>• A specific weight ("price of 5 tola 22K in Pakistan")<br>• Weight conversions ("how many grams in an ounce")<br>• Currency conversion ("100 USD to AED")<br>• Karat differences, gold zakat, buying tips, silver price`;
 }
 
+/* ── قاعدة المعرفة: بحث استرجاعي في مقالات الموقع وأدلتها ── */
+const KB = AR ? (window.__KB_AR || []) : (window.__KB_EN || []);
+const STOP = new Set((AR
+  ? 'في من على إلى الى عن ما هو هي هذا هذه ذلك الذي التي او أو ثم قد لو هل سعر اسعار الذهب دهب بكم بكام كام كم ايه إيه اي أي النهارده النهاردة اليوم الان الآن لو سمحت من فضلك عندي عايز عاوز بدي كيف لماذا ليه متى امتى اين فين عند عندما غرام جرام'
+  : 'the a an of in on at is are was were what which who how much many price prices rate rates gold for to and or it its this that these those please tell me about do does did can could should will would today now current currently best good gram grams per').split(' '));
+const KB_N = KB.map(e => ({ t: e.t, d: e.d, u: e.u, _n: norm(e.t + ' ' + e.d) }));
+function kbSearch(q) {
+  const toks = [...new Set(norm(q).split(' ').filter(t => t.length > 1 && !STOP.has(t)))];
+  if (!toks.length) return null;
+  let best = null, bs = 0;
+  for (const e of KB_N) { let s = 0; for (const t of toks) if (e._n.includes(t)) s++; if (s > bs) { bs = s; best = e; } }
+  if (!best || bs < 2 || (toks.length >= 4 && bs < toks.length * 0.5)) return null;
+  return (AR
+    ? `أقرب معلومة لسؤالك من أدلتنا:<br><strong>${best.t}</strong><br>${best.d}<div class="chat-links">${link(best.u, 'اقرأ الدليل كاملاً')}</div>`
+    : `Closest match from our guides:<br><strong>${best.t}</strong><br>${best.d}<div class="chat-links">${link(best.u, 'Read the full guide')}</div>`);
+}
+
 /* ── محرك الأنماط ── */
 function answer(raw) {
   const q = norm(raw);
@@ -329,42 +344,50 @@ function answer(raw) {
   /* عيار فقط */
   if (karat) return ansKaratPrice(karat, num, unit);
   if (has(q, ['سعر الذهب', 'الذهب', 'gold', 'دهب'])) return num ? ansKaratPrice(karat || 24, num, unit) : ansOverview();
+  const kb = kbSearch(q);
+  if (kb) return kb;
   return ansFallback();
 }
 
-/* ── واجهة المحادثة ── */
-const log = document.getElementById('chat-log');
-const form = document.getElementById('chat-form');
-const input = document.getElementById('chat-in');
-const chips = document.getElementById('chat-chips');
+/* ── واجهة المحادثة: تُربط بأي حاوية فيها .chat-log/.chat-chips/.chat-form/.chat-in ── */
 const CHIPS = AR
   ? ['سعر الذهب في مصر', 'سعر 10 جرام عيار 21', 'التولة كام جرام', 'زكاة الذهب', '100 دولار كام جنيه', 'سعر الفضة']
   : ['Gold price in India', 'Price of 10 grams 22K', 'How many grams in a tola?', 'Convert 100 USD to EUR', 'Will gold go up?', 'Silver price'];
-
-function bubble(html, me) {
-  const d = document.createElement('div');
-  d.className = 'chat-msg' + (me ? ' me' : '');
-  if (me) d.textContent = html; else d.innerHTML = html;
-  log.appendChild(d);
-  log.scrollTop = log.scrollHeight;
-  return d;
+let refreshed = false;
+function mount(root) {
+  if (!root || root.__gaMounted) return;
+  root.__gaMounted = 1;
+  const log = root.querySelector('.chat-log');
+  const form = root.querySelector('.chat-form');
+  const input = root.querySelector('.chat-in');
+  const chips = root.querySelector('.chat-chips');
+  if (!log || !form || !input) return;
+  function bubble(html, me) {
+    const d = document.createElement('div');
+    d.className = 'chat-msg' + (me ? ' me' : '');
+    if (me) d.textContent = html; else d.innerHTML = html;
+    log.appendChild(d);
+    log.scrollTop = log.scrollHeight;
+    return d;
+  }
+  function ask(text) {
+    const q = String(text || '').trim();
+    if (!q) return;
+    bubble(q, true);
+    input.value = '';
+    const t = bubble('<span class="chat-typing">•••</span>', false);
+    setTimeout(() => { t.innerHTML = answer(q); log.scrollTop = log.scrollHeight; }, 350);
+  }
+  form.addEventListener('submit', e => { e.preventDefault(); ask(input.value); });
+  if (chips) CHIPS.forEach(c => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'chat-chip'; b.textContent = c;
+    b.addEventListener('click', () => ask(c));
+    chips.appendChild(b);
+  });
+  if (!refreshed) { refreshed = true; refresh(); }
+  bubble(ansGreeting(), false);
 }
-function ask(text) {
-  const q = String(text || '').trim();
-  if (!q) return;
-  bubble(q, true);
-  input.value = '';
-  const t = bubble('<span class="chat-typing">•••</span>', false);
-  setTimeout(() => { t.innerHTML = answer(q); log.scrollTop = log.scrollHeight; }, 350);
-}
-form.addEventListener('submit', e => { e.preventDefault(); ask(input.value); });
-CHIPS.forEach(c => {
-  const b = document.createElement('button');
-  b.type = 'button'; b.className = 'chat-chip'; b.textContent = c;
-  b.addEventListener('click', () => ask(c));
-  chips.appendChild(b);
-});
-
-refresh();
-bubble(ansGreeting(), false);
+window.GoldAssistant = { mount };
+mount(document.getElementById('assistant'));
 })();

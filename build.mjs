@@ -8,6 +8,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { pages } from './content.mjs';
+import { ARTICLES, ARTICLES_EN } from './articles.mjs';
 
 const SITE   = 'https://www.maelumatii.com';
 const OUT    = 'dist';
@@ -351,7 +352,7 @@ function layout(p, ctx) {
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1982414703735990" crossorigin="anonymous"></script>
   ${schema.map(s => `<script type="application/ld+json">${JSON.stringify(s)}</script>`).join('\n  ')}
 </head>
-<body data-ctry="${ctry}" data-sub="${sub}"${p.fixed ? ' data-fixed="1"' : ''}${p.dollar ? ' data-dollar="1"' : ''}>
+<body data-ctry="${ctry}" data-sub="${sub}"${p.fixed ? ' data-fixed="1"' : ''}${p.dollar ? ' data-dollar="1"' : ''} data-av-assist="${ASSET_V.assist}" data-av-kb="${ASSET_V.kb}">
 <header class="site-header"><div class="container"><div class="header-inner">
   <a href="${url(L, langHome)}" class="logo"><img src="/icons/icon-72x72.png" alt="" width="28" height="28" /><span>${tr ? 'Altın Fiyatları' : L === 'hi' ? 'सोने का भाव' : L === 'ur' ? 'سونے کا ریٹ' : L === 'id' ? 'Harga Emas' : L === 'bn' ? 'সোনার দাম' : L === 'tl' ? 'Presyo ng Ginto' : L === 'ms' ? 'Harga Emas' : en ? 'Gold Prices Today' : 'أسعار الذهب اليوم'}</span></a>
   ${toggle}
@@ -367,8 +368,17 @@ ${p.noAds ? '' : AD}
 <footer class="site-footer"><div class="container">${footer}</div></footer>
 <script>window.__G=${ctx.g24 ? ctx.g24.toFixed(4) : 'null'};window.__LANGURLS=${JSON.stringify(langUrls)};${p.usesAg ? `window.__AG=${ctx.ag ? ctx.ag.toFixed(4) : 'null'};` : ''}${p.usesFx ? `window.__FX=${JSON.stringify({ INR: ctx.fx.INR, PKR: ctx.fx.PKR, KWD: ctx.fx.KWD, EGP: ctx.fx.EGP, BDT: ctx.fx.BDT, TRY: ctx.fx.TRY, GBP: ctx.fx.GBP, CAD: ctx.fx.CAD, AUD: ctx.fx.AUD, PHP: ctx.fx.PHP, MYR: ctx.fx.MYR, NPR: ctx.fx.NPR, ZAR: ctx.fx.ZAR, IQD: ctx.fx.IQD, MAD: ctx.fx.MAD, DZD: ctx.fx.DZD, IDR: ctx.fx.IDR, THB: ctx.fx.THB, VND: ctx.fx.VND, SGD: ctx.fx.SGD, LKR: ctx.fx.LKR, EUR: ctx.fx.EUR, JPY: ctx.fx.JPY, CHF: ctx.fx.CHF, NGN: ctx.fx.NGN, GHS: ctx.fx.GHS, KES: ctx.fx.KES, MXN: ctx.fx.MXN, BRL: ctx.fx.BRL, CNY: ctx.fx.CNY, LBP: ctx.fx.LBP, TND: ctx.fx.TND, LYD: ctx.fx.LYD, YER: ctx.fx.YER })};` : ''}</script>
 <a class="tg-float" href="https://t.me/emaratijob" target="_blank" rel="noopener" aria-label="${L === 'ar' ? 'أسعار الذهب يومياً على تيليجرام' : 'Daily gold prices on Telegram'}"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M9.04 15.9l-.38 5.36c.55 0 .79-.24 1.08-.52l2.6-2.48 5.38 3.94c.99.55 1.69.26 1.96-.9l3.55-16.64c.32-1.45-.52-2.02-1.47-1.66L1.7 10.8c-1.42.55-1.4 1.34-.24 1.7l5.3 1.65L18.98 5.7c.58-.38 1.1-.17.67.21L9.04 15.9z"/></svg><span>${L === 'ar' ? 'أسعار الذهب يومياً' : 'Daily prices on Telegram'}</span></a>
+<div id="chat-widget">
+<button type="button" id="chat-fab" aria-expanded="false" aria-label="${L === 'ar' ? 'اسأل مساعد الذهب' : 'Ask the gold assistant'}">💬</button>
+<div id="chat-panel" class="chat-panel" hidden role="dialog" aria-label="${L === 'ar' ? 'مساعد الذهب' : 'Gold assistant'}">
+  <div class="chat-panel-head"><span>🪙 ${L === 'ar' ? 'مساعد الذهب' : 'Gold assistant'}</span><a class="chat-full" href="${url(L, 'assistant')}" aria-label="${L === 'ar' ? 'فتح صفحة المساعد' : 'Open assistant page'}">⛶</a><button type="button" class="chat-close" aria-label="${L === 'ar' ? 'إغلاق' : 'Close'}">✕</button></div>
+  <div class="chat-log" aria-live="polite"></div>
+  <div class="chat-chips"></div>
+  <form class="chat-form"><input class="chat-in" type="text" autocomplete="off" placeholder="${L === 'ar' ? 'اسأل عن أسعار الذهب…' : 'Ask about gold prices…'}" aria-label="${L === 'ar' ? 'سؤالك' : 'Your question'}" /><button type="submit">${L === 'ar' ? 'اسأل' : 'Ask'}</button></form>
+</div>
+</div>
 <script src="/assets/app.js?v=${ASSET_V.js}" defer></script>
-${p.assistant ? `<script src="/assets/assistant.js?v=${ASSET_V.assist}" defer></script>` : ''}
+${p.assistant ? `<script src="/assets/assistant-kb.js?v=${ASSET_V.kb}" defer></script>\n<script src="/assets/assistant.js?v=${ASSET_V.assist}" defer></script>` : ''}
 </body>
 </html>`;
 }
@@ -415,6 +425,20 @@ async function place(name, dirs, dest) {
   throw new Error('missing file: ' + name);
 }
 for (const f of ['style.css', 'app.js', 'assistant.js']) await place(f, ['assets', '.'], path.join(OUT, 'assets', f));
+
+/* قاعدة معرفة المساعد: تُبنى من مقالات الموقع وأسئلتها الشائعة (استرجاع نصي داخل المتصفح) */
+{
+  const stripH = s => String(s || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  const cut = (s, n = 240) => (s.length <= n ? s : s.slice(0, n).replace(/\s\S*$/, '') + '…');
+  const kbFrom = (arr, lang) => arr.flatMap(a => {
+    const u = url(lang, 'articles/' + a.slug);
+    const out = [{ t: stripH(a.h1 || a.title), d: cut(stripH((a.desc || '') + ' ' + (a.teaser || ''))), u }];
+    for (const [q, ans] of (a.faq || [])) out.push({ t: stripH(q), d: cut(stripH(ans)), u });
+    return out;
+  });
+  const kbJs = 'window.__KB_AR=' + JSON.stringify(kbFrom(ARTICLES, 'ar')) + ';window.__KB_EN=' + JSON.stringify(kbFrom(ARTICLES_EN, 'en')) + ';';
+  await fs.writeFile(path.join(OUT, 'assets', 'assistant-kb.js'), kbJs);
+}
 for (const f of ['sw.js', 'manifest.json', 'ads.txt', '_headers']) await place(f, ['static', '.'], path.join(OUT, f));
 for (const s of [72, 96, 128, 144, 152, 192, 384, 512]) {
   const f = `icon-${s}x${s}.png`;
@@ -424,7 +448,7 @@ await place('og-image.png', ['static/icons', 'icons', '.'], path.join(OUT, 'icon
 
 // رقم نسخة من محتوى الملف نفسه: أي تعديل في السكريبت أو التصميم يغيّر الرابط، فالمتصفح يجيب النسخة الجديدة فوراً
 const hashOf = async f => crypto.createHash('md5').update(await fs.readFile(path.join(OUT, 'assets', f))).digest('hex').slice(0, 10);
-ASSET_V.js = await hashOf('app.js'); ASSET_V.css = await hashOf('style.css'); ASSET_V.assist = await hashOf('assistant.js');
+ASSET_V.js = await hashOf('app.js'); ASSET_V.css = await hashOf('style.css'); ASSET_V.assist = await hashOf('assistant.js'); ASSET_V.kb = await hashOf('assistant-kb.js');
 const list = pages(ctx);
 const sitemap = [];
 for (const p of list) {

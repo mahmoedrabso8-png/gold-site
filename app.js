@@ -297,4 +297,34 @@ addEventListener('beforeinstallprompt',e=>{
   },6000);
 });
 addEventListener('appinstalled',()=>{const b=$('#install-banner');if(b)b.remove();});
+
+/* ── المساعد العائم: زر المحادثة أسفل الشاشة ── */
+const chatFab=$('#chat-fab'),chatPanel=$('#chat-panel');
+if(chatFab&&chatPanel){
+  const loadJs=src=>new Promise((res,rej)=>{const s=document.createElement('script');s.src=src;s.onload=res;s.onerror=rej;document.head.appendChild(s);});
+  let chatReady=false,chatLoading=false;
+  const openChat=async()=>{
+    chatPanel.hidden=false;chatFab.setAttribute('aria-expanded','true');
+    if(!chatReady&&!chatLoading){
+      chatLoading=true;
+      try{
+        if(!window.GoldAssistant){
+          const av=document.body.dataset;
+          await loadJs('/assets/assistant-kb.js?v='+(av.avKb||''));
+          await loadJs('/assets/assistant.js?v='+(av.avAssist||''));
+        }
+        if(window.GoldAssistant){window.GoldAssistant.mount(chatPanel);chatReady=true;}
+      }catch(e){}
+      chatLoading=false;
+    }
+    const inp=chatPanel.querySelector('.chat-in');
+    if(inp)setTimeout(()=>inp.focus(),60);
+  };
+  const closeChat=()=>{chatPanel.hidden=true;chatFab.setAttribute('aria-expanded','false');};
+  chatFab.addEventListener('click',()=>chatPanel.hidden?openChat():closeChat());
+  const cx=chatPanel.querySelector('.chat-close');
+  if(cx)cx.addEventListener('click',closeChat);
+  /* رفع الزر فوق بانر التثبيت عند ظهوره */
+  new MutationObserver(()=>document.body.classList.toggle('ib',!!document.getElementById('install-banner'))).observe(document.body,{childList:true});
+}
 })();
