@@ -2,7 +2,7 @@
 import { ARTICLES } from './articles.mjs';
 
 export function pages(ctx) {
-  const { P, updated, chg, daily, fmt, url, AD, TODAY } = ctx;
+  const { P, FXD, updated, chg, daily, fmt, url, AD, TODAY } = ctx;
   const out = [];
   const px = k => ctx.g24 ? fmt(ctx.g24 * k / 24) : null;   // سعر الغرام لإدراجه في العناوين
 
@@ -95,14 +95,14 @@ export function pages(ctx) {
   <canvas id="spark" aria-label="chart"></canvas></section>`;
   const LINKS = {
     ar: [['gold-21k', 'سعر عيار 21', 'الأكثر طلباً في الخليج'], ['gold-24k', 'سعر عيار 24', 'الذهب الخالص والسبائك'], ['gold-22k', 'سعر عيار 22', 'المجوهرات الهندية'], ['gold-18k', 'سعر عيار 18', 'مجوهرات الألماس'],
-      ['gold-price-usd', 'سعر الذهب عالمياً', 'الأونصة بالدولار مباشر'], ['silver', 'سعر الفضة اليوم', 'الغرام والأونصة والكيلو'],
+      ['gold-price-usd', 'سعر الذهب عالمياً', 'الأونصة بالدولار مباشر'], ['dollar', 'سعر الدولار اليوم', 'مباشر بكل العملات'], ['silver', 'سعر الفضة اليوم', 'الغرام والأونصة والكيلو'],
       ['gcc', 'أسعار الذهب في الخليج', 'مقارنة بين 6 دول'], ['saudi', 'سعر الذهب في السعودية', 'بالريال السعودي'], ['kuwait', 'سعر الذهب في الكويت', 'بالدينار الكويتي'],
       ['qatar', 'سعر الذهب في قطر', 'بالريال القطري'], ['oman', 'سعر الذهب في عُمان', 'بالريال العُماني'], ['bahrain', 'سعر الذهب في البحرين', 'بالدينار البحريني'], ['egypt', 'سعر الذهب في مصر', 'بالجنيه المصري'], ['iraq', 'سعر الذهب في العراق', 'بالدينار العراقي'], ['jordan', 'سعر الذهب في الأردن', 'بالدينار الأردني'], ['morocco', 'سعر الذهب في المغرب', 'بالدرهم المغربي'], ['algeria', 'سعر الذهب في الجزائر', 'بالدينار الجزائري'], ['lebanon', 'سعر الذهب في لبنان', 'بالليرة والدولار'], ['tunisia', 'سعر الذهب في تونس', 'بالدينار التونسي'], ['libya', 'سعر الذهب في ليبيا', 'بالدينار الليبي'], ['yemen', 'سعر الذهب في اليمن', 'بالريال اليمني'],
       ['gold-bars', 'أسعار السبائك', 'من 1 غرام إلى 1 كيلو'], ['gold-calculator', 'حاسبة الذهب', 'بالمصنعية والضريبة'], ['zakat-calculator', 'حاسبة زكاة الذهب', 'النصاب وقيمة الزكاة'],
       ['gold-price-yesterday', 'سعر الذهب أمس', 'وآخر 10 أيام'], ['gold-forecast', 'توقعات الذهب', 'الاتجاه والعوامل المؤثرة'], ['history', 'أرشيف الأسعار', 'سعر الذهب يوماً بيوم'],
       ['articles', 'مقالات وأدلة الذهب', 'شروحات الشراء والادخار والزكاة']],
     en: [['gold-22k', '22K gold rate', 'Popular for Indian jewellery'], ['gold-24k', '24K gold rate', 'Pure gold & bars'], ['gold-21k', '21K gold rate', 'Gulf jewellery'], ['gold-18k', '18K gold rate', 'Diamond jewellery'],
-      ['gold-price-usd', 'Gold price in USD', 'Live ounce XAU/USD'], ['silver', 'Silver price', 'Per gram, ounce & kg'],
+      ['gold-price-usd', 'Gold price in USD', 'Live ounce XAU/USD'], ['dollar', 'US dollar rate', 'Live vs 40 currencies'], ['silver', 'Silver price', 'Per gram, ounce & kg'],
       ['gcc', 'Gulf gold prices', 'Compare 6 countries'], ['saudi', 'Gold price in Saudi Arabia', 'In SAR'], ['kuwait', 'Gold price in Kuwait', 'In KWD'],
       ['qatar', 'Gold price in Qatar', 'In QAR'], ['oman', 'Gold price in Oman', 'In OMR'], ['bahrain', 'Gold price in Bahrain', 'In BHD'], ['egypt', 'Gold price in Egypt', 'In EGP'], ['india', 'Gold rate in India', 'In INR, 22K & 24K'], ['pakistan', 'Gold rate in Pakistan', 'In PKR, per tola'], ['bangladesh', 'Gold price in Bangladesh', 'In BDT'], ['turkey', 'Gold price in Turkey', 'Gram altın in TRY'], ['usa', 'Gold price in USA', 'In USD'], ['uk', 'Gold price in UK', 'In GBP'], ['canada', 'Gold price in Canada', 'In CAD'], ['australia', 'Gold price in Australia', 'In AUD'], ['philippines', 'Gold price in Philippines', 'In PHP'], ['malaysia', 'Gold price in Malaysia', 'Emas 916 in MYR'], ['nepal', 'Gold price in Nepal', 'In NPR, per tola'], ['southafrica', 'Gold price in South Africa', 'Krugerrand in ZAR'], ['iraq', 'Gold price in Iraq', 'In IQD'], ['jordan', 'Gold price in Jordan', 'In JOD'], ['morocco', 'Gold price in Morocco', 'In MAD'], ['algeria', 'Gold price in Algeria', 'In DZD'], ['indonesia', 'Gold price in Indonesia', 'Antam bars in IDR'], ['thailand', 'Gold price in Thailand', 'Per baht weight, THB'], ['vietnam', 'Gold price in Vietnam', 'SJC bars in VND'], ['singapore', 'Gold price in Singapore', 'GST-free IPM in SGD'], ['srilanka', 'Gold price in Sri Lanka', 'In LKR'], ['germany', 'Gold price in Germany', 'VAT-free bullion, EUR'], ['japan', 'Gold price in Japan', 'In JPY'], ['switzerland', 'Gold price in Switzerland', 'Home of PAMP, CHF'], ['nigeria', 'Gold price in Nigeria', 'In NGN'], ['ghana', 'Gold price in Ghana', 'The Gold Coast, GHS'], ['kenya', 'Gold price in Kenya', 'In KES'], ['mexico', 'Gold price in Mexico', 'Centenario in MXN'], ['brazil', 'Gold price in Brazil', 'Ouro 18K in BRL'], ['china', 'Gold price in China', '999 gold in CNY'], ['france', 'Gold price in France', 'Napoleon coins, EUR'], ['italy', 'Gold price in Italy', '18K standard, EUR'], ['spain', 'Gold price in Spain', 'Oro de ley, EUR'], ['lebanon', 'Gold price in Lebanon', 'In LBP & USD'], ['tunisia', 'Gold price in Tunisia', 'In TND'], ['libya', 'Gold price in Libya', 'In LYD'], ['yemen', 'Gold price in Yemen', 'In YER'], ['gold-rate-inr', 'Gold rate in INR', 'Dubai price in rupees'], ['gold-rate-pkr', 'Gold rate in PKR', 'Per tola in rupees'],
       ['gold-bars', 'Gold bar prices', '1 g to 1 kg, tola bars'], ['gold-calculator', 'Gold calculator', 'With making charges & VAT'], ['gold-price-yesterday', 'Last 10 days', 'Yesterday\'s gold rate'], ['zakat-calculator', 'Zakat calculator', 'Nisab and zakat due']]
@@ -1147,6 +1147,7 @@ ${links('ar', '')}`,
     const opt = (o = {}) => ({ cur, d: o.d ?? d, ...o });
     const other = L => `<section class="card-section"><h2>${L === 'en' ? 'Gold prices in other countries' : 'سعر الذهب في دول أخرى'}</h2><div class="links-grid">
 ${[['', L === 'en' ? 'UAE' : 'الإمارات'], ...Object.entries(COUNTRY_PAGES).filter(([s, o]) => s !== slug && (L === 'en' || !o.enOnly)).map(([s, o]) => [s, o[L].n])].map(([s, n]) => `<a class="link-card" href="${url(L, s)}">${L === 'en' ? `Gold price in ${n}` : `سعر الذهب في ${n}`}</a>`).join('')}
+${c.code !== 'USD' ? `<a class="link-card" href="${url(L, 'dollar-' + slug)}">${L === 'en' ? `Dollar rate in ${c.en.n}` : `سعر الدولار ${c.ar.in}`}</a>` : ''}
 <a class="link-card" href="${url(L, 'gcc')}">${L === 'en' ? 'Compare Gulf gold prices' : 'مقارنة أسعار الذهب في الخليج'}</a>
 <a class="link-card" href="${url(L, 'gold-calculator')}">${L === 'en' ? 'Gold calculator' : 'حاسبة الذهب'}<span>${c.code}</span></a></div></section>`;
 
@@ -1290,6 +1291,76 @@ ${AD}
         ['أين أرخص سعر للذهب في الخليج؟', 'سعر الذهب الخام واحد تقريباً في كل دول الخليج. والكويت وقطر بلا ضريبة قيمة مضافة، فتكون المشغولات فيهما أرخص غالباً قبل المصنعية.'],
         ['لماذا يختلف سعر الذهب بين عملات الخليج؟', 'الذي يختلف هو العملة فقط: فالسعر واحد وهو السعر العالمي محوَّلاً بسعر صرف كل دولة، ومعظم عملات الخليج مربوطة بالدولار.']
       ] });
+  }
+
+  // ── صفحات سعر الدولار وأسعار الصرف ─────────────────────
+  const DCS = [['uae', { code: 'AED', d: 2, peg: 'مربوط بالدولار رسمياً عند 3.6725 درهم', pegEn: 'officially pegged at 3.6725 dirhams per US dollar', ar: { n: 'الإمارات', in: 'في الإمارات', cur: 'درهم إماراتي', curS: 'درهم' }, en: { n: 'the UAE', adj: 'UAE', cur: 'UAE dirham' } }],
+    ...Object.entries(COUNTRY_PAGES).filter(([, c]) => c.code !== 'USD')];
+  for (const L of ['ar', 'en']) {
+    const en = L === 'en';
+    out.push({ lang: L, fixed: true, slug: 'dollar', alt: true, usesFx: true,
+      crumbs: [[en ? 'US dollar rate today' : 'سعر الدولار اليوم', url(L, 'dollar')]],
+      title: en ? 'US Dollar Rate Today — Live Exchange Rates for 40 Currencies' : 'سعر الدولار اليوم | سعر الصرف مباشر مقابل 40 عملة',
+      desc: en ? 'Live US dollar exchange rate today against 40 currencies: Egyptian pound, Saudi riyal, UAE dirham, Indian rupee, Pakistani rupee, Turkish lira and more — updated every 5 minutes.'
+        : 'سعر الدولار اليوم مباشر مقابل 40 عملة: الجنيه المصري والريال السعودي والدرهم الإماراتي والروبية الهندية والليرة التركية وغيرها — محدَّث كل 5 دقائق.',
+      body: `${hero(en ? 'US Dollar Rate Today' : 'سعر الدولار اليوم', en ? 'Live exchange rate against every currency we cover' : 'سعر الصرف مباشر مقابل كل العملات التي نغطيها', L)}
+${errBox}
+<section class="card-section"><h2>${en ? '1 US dollar in every currency' : 'سعر الدولار بجميع العملات'}</h2><div class="table-wrap"><table class="data-table">
+<thead><tr><th>${en ? 'Country' : 'الدولة'}</th><th>${en ? 'Currency' : 'العملة'}</th><th>${en ? '1 USD' : '1 دولار'}</th><th>${en ? '100 USD' : '100 دولار'}</th></tr></thead><tbody>
+${DCS.filter(([, c]) => en || !c.enOnly).map(([s, c]) => `<tr><td><a href="${url(L, 'dollar-' + s)}"><strong>${c[L].n}</strong></a></td><td><span class="sub">${c.code}</span></td><td class="n">${FXD(c.code, { d: c.d })}</td><td class="n">${FXD(c.code, { w: 100, d: c.d })}</td></tr>`).join('')}
+</tbody></table></div><p class="note">${en ? 'Mid-market rates, refreshed live. Gulf currencies (AED, SAR, QAR, OMR, BHD) and the Jordanian dinar are officially pegged to the US dollar.' : 'أسعار السوق المتوسطة وتُحدَّث لحظياً. عملات الخليج (الدرهم والريال السعودي والقطري والعُماني والدينار البحريني) والدينار الأردني مربوطة رسمياً بالدولار.'}</p></section>
+${AD}
+<section class="card-section"><h2>${en ? 'About these exchange rates' : 'عن أسعار الصرف هذه'}</h2><div class="prose">
+<p>${en ? 'These are mid-market rates from the open.er-api.com feed — the same rates used to convert the global gold price into each local currency on this site. Banks and exchange offices add a margin, so the counter rate you get will differ slightly.' : 'هذه أسعار السوق المتوسطة من مصدر open.er-api.com، وهي نفسها المستخدمة لتحويل السعر العالمي للذهب إلى كل عملة محلية في هذا الموقع. البنوك ومكاتب الصرافة تضيف هامشاً، لذلك يختلف السعر الذي تحصل عليه قليلاً.'}</p>
+<p>${en ? 'For currencies not pegged to the dollar — like the Egyptian pound, Indian rupee and Turkish lira — the rate moves daily, and the local gold price moves with it. Pegged currencies stay fixed by official policy.' : 'العملات غير المربوطة بالدولار — مثل الجنيه المصري والروبية الهندية والليرة التركية — يتغير سعرها يومياً، ويتغير معها سعر الذهب المحلي. أما العملات المربوطة فتظل ثابتة بقرار رسمي.'}</p>
+<p>${en ? `Related: <a href="${url(L, 'gold-price-usd')}">gold price in USD</a> · <a href="${url(L, 'gold-calculator')}">gold calculator</a> · <a href="${url(L, 'gcc')}">Gulf gold prices</a>.` : `مواضيع ذات صلة: <a href="${url(L, 'gold-price-usd')}">سعر الذهب بالدولار</a> · <a href="${url(L, 'gold-calculator')}">حاسبة الذهب</a> · <a href="${url(L, 'gcc')}">أسعار الذهب في الخليج</a>.`}</p></div></section>`,
+      faq: en ? [
+        ['What is the US dollar rate today?', 'The live mid-market rate for 1 USD against each currency appears in the table above and refreshes about every 5 minutes.'],
+        ['Why is my bank\'s dollar rate different from this rate?', 'Banks and exchange offices add a margin to the mid-market rate, and cash rates differ from transfer rates. The rate here is the mid-market reference.']
+      ] : [
+        ['كم سعر الدولار اليوم؟', 'يظهر السعر المباشر للدولار مقابل كل عملة في الجدول أعلاه ويُحدَّث كل 5 دقائق تقريباً.'],
+        ['لماذا يختلف سعر الدولار في البنك عن المعروض هنا؟', 'البنوك ومكاتب الصرافة تضيف هامشاً على سعر السوق المتوسط، وسعر الكاش يختلف عن سعر التحويل. السعر هنا هو سعر السوق المتوسط المرجعي.']
+      ] });
+  }
+  const DAMTS = [1, 5, 10, 25, 50, 100, 500, 1000];
+  const DAMTS_L = [1, 10, 50, 100, 500, 1000, 5000, 10000];
+  for (const [slug, c] of DCS) {
+    const rate = ctx.fx[c.code], dd = c.d ?? 2;
+    const rTxt = rate ? fmt(rate, rate < 10 ? 4 : dd) : '';
+    for (const L of c.enOnly ? ['en'] : ['ar', 'en']) {
+      const en = L === 'en', x = c[L];
+      out.push({ lang: L, fixed: true, slug: `dollar-${slug}`, alt: !c.enOnly, usesFx: true,
+        crumbs: [[en ? `Dollar rate in ${x.n}` : `سعر الدولار ${x.in}`, url(L, `dollar-${slug}`)]],
+        title: en ? `US Dollar Rate in ${x.n} Today: 1 USD = ${rTxt} ${c.code}` : `سعر الدولار اليوم ${x.in}: 1 دولار = ${rTxt} ${x.cur}`,
+        desc: en ? `Live US dollar to ${x.cur} rate today: 1 USD = ${rTxt} ${c.code}. Conversion tables from 1 to 1,000 dollars and back, updated every 5 minutes.`
+          : `سعر الدولار اليوم ${x.in} بال${x.cur}: 1 دولار = ${rTxt} ${x.cur}. جداول تحويل من 1 حتى 1000 دولار والعكس، محدَّث كل 5 دقائق.`,
+        body: `${hero(en ? `US Dollar Rate in ${x.n} Today` : `سعر الدولار اليوم ${x.in}`, en ? `1 US dollar = ${rTxt} ${x.cur}` : `1 دولار = ${rTxt} ${x.cur}`, L)}
+${errBox}
+<section class="card-section"><div class="table-wrap"><table class="data-table"><tbody>
+<tr><th>${en ? '1 US dollar' : '1 دولار أمريكي'}</th><td class="n">${FXD(c.code, { d: dd })} ${c.code}</td></tr>
+<tr><th>${en ? `1 ${x.cur}` : `1 ${x.cur}`}</th><td class="n">$${FXD(c.code, { i: true, d: 4 })}</td></tr>
+</tbody></table></div><p class="note">${en ? 'Updated' : 'آخر تحديث'}: ${updated(L)} ${en ? '(Dubai time)' : '(بتوقيت دبي)'} · ${en ? 'mid-market rate' : 'سعر السوق المتوسط'}</p></section>
+${AD}
+<section class="card-section"><h2>${en ? `Convert USD to ${x.cur}` : `تحويل الدولار إلى ${x.cur}`}</h2><div class="table-wrap"><table class="data-table">
+<thead><tr><th>${en ? 'USD' : 'دولار'}</th><th>${c.code}</th></tr></thead><tbody>
+${DAMTS.map(w => `<tr><td class="n">$${w.toLocaleString('en-US')}</td><td class="n">${FXD(c.code, { w, d: dd })}</td></tr>`).join('')}
+</tbody></table></div></section>
+<section class="card-section"><h2>${en ? `Convert ${x.cur} to USD` : `تحويل ال${x.curS || x.cur} إلى دولار`}</h2><div class="table-wrap"><table class="data-table">
+<thead><tr><th>${c.code}</th><th>${en ? 'USD' : 'دولار'}</th></tr></thead><tbody>
+${DAMTS_L.map(w => `<tr><td class="n">${w.toLocaleString('en-US')}</td><td class="n">$${FXD(c.code, { w, i: true, d: rate && w / rate >= 100 ? 2 : 4 })}</td></tr>`).join('')}
+</tbody></table></div></section>
+<section class="card-section"><h2>${en ? 'About this rate' : 'عن هذا السعر'}</h2><div class="prose">
+<p>${en ? `The ${x.cur} is ${c.pegEn}.` : `ال${x.curS || x.cur} ${c.peg}.`}</p>
+<p>${en ? 'The rate shown is the mid-market rate from the daily open.er-api.com feed. Banks and exchange offices include a margin, and where a parallel market exists the street rate can differ.' : 'السعر المعروض هو سعر السوق المتوسط من مصدر open.er-api.com اليومي. أسعار البنوك والصرافة تشمل هامشاً، وحيث توجد سوق موازية قد يختلف سعرها.'}</p>
+<p>${en ? `Related: <a href="${url(L, slug === 'uae' ? '' : slug)}">gold price in ${x.n}</a> · <a href="${url(L, 'dollar')}">dollar rate in all currencies</a> · <a href="${url(L, 'gold-calculator')}">gold calculator</a>.` : `مواضيع ذات صلة: <a href="${url(L, slug === 'uae' ? '' : slug)}">سعر الذهب ${x.in}</a> · <a href="${url(L, 'dollar')}">سعر الدولار بجميع العملات</a> · <a href="${url(L, 'gold-calculator')}">حاسبة الذهب</a>.`}</p></div></section>`,
+        faq: en ? [
+          [`What is 1 USD in ${x.cur} today?`, `1 US dollar = ${rTxt} ${c.code} at the live mid-market rate shown above, refreshed every 5 minutes.`],
+          [`How much is 100 US dollars in ${x.cur}?`, `100 USD = ${rate ? fmt(rate * 100, dd) : ''} ${c.code} at the current rate. The full conversion table above updates live every 5 minutes.`]
+        ] : [
+          [`كم سعر الدولار اليوم ${x.in}؟`, `1 دولار = ${rTxt} ${x.cur} بسعر السوق المتوسط المباشر أعلى الصفحة، ويُحدَّث كل 5 دقائق تقريباً.`],
+          [`كيف أحوّل الدولار إلى ${x.cur}؟`, `اضرب المبلغ بالدولار في سعر الصرف (${rTxt})، أو استخدم جدول التحويل أعلاه الذي يعرض القيم من 1 حتى 1000 دولار.`]
+        ] });
+    }
   }
 
   // ── صفحات خاصة (خارج الـ sitemap) ─────────────────────

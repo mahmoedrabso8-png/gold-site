@@ -103,6 +103,13 @@ function makeCtx(price, daily, extra = {}) {
     return span(`data-p data-m="ag"${f !== 1 ? ` data-f="${f}"` : ''}${w !== 1 ? ` data-w="${w}"` : ''}${cur !== 'aed' ? ` data-cur="${cur}"` : ''}`, v, d);
   };
   const FX = c => `<span data-fx="${c}">${fx[c] ? fmt(fx[c] / AED, 4) : '—'}</span>`;
+  // سعر الدولار بعملة معينة (قابل للتحديث لحظياً): w = عدد الدولارات، i = الاتجاه العكسي (من العملة إلى الدولار)
+  const FXD = (c, { w = 1, i = false, d } = {}) => {
+    const r = fx[c.toUpperCase()];
+    const v = r == null ? null : (i ? w / r : r * w);
+    const dd = d != null ? d : (v == null ? 2 : v < 10 ? 4 : v >= 100000 ? 0 : 2);
+    return `<span data-fxd="${c.toUpperCase()}"${w !== 1 ? ` data-w="${w}"` : ''}${i ? ' data-i="1"' : ''} data-d="${dd}">${v == null ? '—' : fmt(v, dd)}</span>`;
+  };
   const updated = lang => `<span data-upd>${price.at ? new Date(price.at).toLocaleString(lang === 'en' ? 'en-AE' : 'ar-AE-u-nu-latn', { hour: '2-digit', minute: '2-digit', day: 'numeric', month: 'short', timeZone: 'Asia/Dubai' }) : '—'}</span>`;
   let chg = '';
   if (daily.length >= 2 && g) {
@@ -111,7 +118,7 @@ function makeCtx(price, daily, extra = {}) {
     const dir = pct > 0.005 ? 'up' : pct < -0.005 ? 'dn' : 'fl';
     chg = `<span class="chg ${dir}" data-chg>${dir === 'up' ? '▲' : dir === 'dn' ? '▼' : '●'} ${Math.abs(pct).toFixed(2)}%</span>`;
   } else chg = '<span class="chg fl" data-chg hidden></span>';
-  return { g24: g, ag, fx, PEG, rateOf, P, S, FX, updated, chg, daily, fmt, AED, TROY, SITE, TODAY, url, AD };
+  return { g24: g, ag, fx, PEG, rateOf, P, S, FX, FXD, updated, chg, daily, fmt, AED, TROY, SITE, TODAY, url, AD };
 }
 
 // ── Layout ────────────────────────────────────────────────────

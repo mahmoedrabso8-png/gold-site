@@ -153,10 +153,10 @@ async function loadSilver(){
   }catch(e){}
 }
 async function loadFX(force){
-  if(!force&&!(!PEG[SEL]&&!FIXED&&SEL)&&![...$$('[data-cur]'),...$$('#c-cur option')].some(el=>!PEG[(el.dataset.cur||el.value||'').toUpperCase()])) return;
+  if(!force&&!$$('[data-fxd]').length&&!(!PEG[SEL]&&!FIXED&&SEL)&&![...$$('[data-cur]'),...$$('#c-cur option')].some(el=>!PEG[(el.dataset.cur||el.value||'').toUpperCase()])) return;
   try{
     const d=await (await fetch('https://open.er-api.com/v6/latest/USD')).json();
-    if(d.rates){G.fx=d.rates;paint();labels();nisab();calc();zakat();$$('[data-fx]').forEach(el=>{const v=d.rates[el.dataset.fx];if(v) el.textContent=fmt(v/AED,4);});}
+    if(d.rates){G.fx=d.rates;paint();labels();nisab();calc();zakat();$$('[data-fx]').forEach(el=>{const v=d.rates[el.dataset.fx];if(v) el.textContent=fmt(v/AED,4);});$$('[data-fxd]').forEach(el=>{const v=d.rates[el.dataset.fxd];if(v){const w=+(el.dataset.w||1);el.textContent=fmt(el.dataset.i?w/v:v*w,+el.dataset.d||0);}});}
   }catch(e){}
 }
 
