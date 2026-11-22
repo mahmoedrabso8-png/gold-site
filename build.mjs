@@ -168,7 +168,9 @@ function layout(p, ctx) {
   const altLinks = p.alt
     ? `<link rel="alternate" hreflang="ar" href="${SITE + url('ar', p.slug)}" />
   <link rel="alternate" hreflang="en" href="${SITE + url('en', p.slug)}" />
-  <link rel="alternate" hreflang="x-default" href="${SITE + url('ar', p.slug)}" />` : '';
+  <link rel="alternate" hreflang="x-default" href="${SITE + url('ar', p.slug)}" />`
+    : `<link rel="alternate" hreflang="${L}" href="${self}" />
+  <link rel="alternate" hreflang="x-default" href="${self}" />`;
   const crumbs = [[en ? 'Home' : 'الرئيسية', url(L, '')], ...(p.crumbs || [])];
   const schema = [
     { '@context': 'https://schema.org', '@type': 'WebPage', name: p.title, description: p.desc, url: self, inLanguage: L, dateModified: TODAY,
@@ -313,7 +315,8 @@ for (const p of list) {
 
 const smEntries = sitemap.map(p => {
   const alts = p.alt ? ['ar', 'en'].map(l => `\n    <xhtml:link rel="alternate" hreflang="${l}" href="${SITE + url(l, p.slug)}"/>`).join('') +
-    `\n    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE + url('ar', p.slug)}"/>` : '';
+    `\n    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE + url('ar', p.slug)}"/>`
+    : `\n    <xhtml:link rel="alternate" hreflang="${p.lang}" href="${SITE + url(p.lang, p.slug)}"/>\n    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE + url(p.lang, p.slug)}"/>`;
   return `  <url>\n    <loc>${SITE + url(p.lang, p.slug)}</loc>\n    <lastmod>${p.lastmod || TODAY}</lastmod>${alts}\n  </url>`;
 }).join('\n');
 await write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${smEntries}\n</urlset>\n`);

@@ -711,6 +711,8 @@ ${links('ar', '')}`,
         ['Why do Egyptian shop prices differ from this page?', 'The price here is calculated live from the global spot price and the EGP exchange rate. Local shops add making charges and hallmarking fees, and may add a market premium depending on supply and demand.']
       ] },
     india: { code: 'INR', d: 0, vat: 3, taxName: 'GST', peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,
+      tEn: 'Gold Rate in India Today (INR) — 22K & 24K per Gram',
+      dEn: 'Live gold rate in India today in rupees (INR) and dollars: 22K and 24K gold price per gram, 10 grams, tola and ounce with 3% GST column, updated every 5 minutes.',
       ar: { n: 'الهند', in: 'في الهند', cur: 'روبية', curS: 'روبية', cities: '' },
       en: { n: 'India', adj: 'Indian', cur: 'Indian rupee', cities: 'Mumbai, Delhi, Chennai, Kolkata and Hyderabad' },
       noteAr: '',
@@ -721,6 +723,8 @@ ${links('ar', '')}`,
         ['Why do Indian shop prices differ from this page?', 'The rate here is calculated live from the global spot price and the INR exchange rate. Local jewellers quote per-city rates that add making charges, GST, and often a premium caused by import duties and local demand.']
       ] },
     pakistan: { code: 'PKR', d: 0, vat: 0, peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,
+      tEn: 'Gold Rate in Pakistan Today (PKR) — Per Tola & Gram',
+      dEn: 'Live gold rate in Pakistan today in rupees (PKR) and dollars: 24K, 22K, 21K and 18K per tola, per gram and per ounce, updated every 5 minutes.',
       ar: { n: 'باكستان', in: 'في باكستان', cur: 'روبية', curS: 'روبية', cities: '' },
       en: { n: 'Pakistan', adj: 'Pakistani', cur: 'Pakistani rupee', cities: 'Karachi, Lahore, Islamabad and Peshawar' },
       noteAr: '',
@@ -741,6 +745,8 @@ ${links('ar', '')}`,
         ['Why do shop prices in Bangladesh differ from this page?', 'The rate here is calculated live from the global spot price and the BDT exchange rate. The jewellers association announces reference rates that include a premium, and shops add making charges per piece.']
       ] },
     turkey: { code: 'TRY', d: 0, vat: 0, peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,
+      tEn: 'Gold Price in Turkey Today (TRY) — Gram Altın Rates',
+      dEn: 'Live gram altın price in Turkey today in lira (TRY) and dollars: 24K gram gold, 22K, 21K and 18K per gram and per ounce, updated every 5 minutes.',
       ar: { n: 'تركيا', in: 'في تركيا', cur: 'ليرة', curS: 'ليرة', cities: '' },
       en: { n: 'Turkey', adj: 'Turkish', cur: 'Turkish lira', cities: 'Istanbul, Ankara, Izmir and Bursa' },
       noteAr: '',
@@ -751,6 +757,8 @@ ${links('ar', '')}`,
         ['Is there VAT on gold in Turkey?', 'Investment gold (bars and coins) is generally exempt from VAT (KDV) in Turkey, while jewellery carries KDV on the workmanship portion.']
       ] },
     usa: { code: 'USD', d: 2, vat: 0, peg: '', pegEn: 'the base currency of the global gold market, so the US price follows the global spot price directly', fx: false, enOnly: true,
+      tEn: 'Gold Price Today in USA (USD) — Per Gram & Ounce',
+      dEn: 'Live gold price in the USA today in US dollars: 24K, 22K, 21K and 18K per gram, per ounce and per kilo, updated every 5 minutes from the global spot price.',
       ar: { n: 'أمريكا', in: 'في أمريكا', cur: 'دولار', curS: 'دولار', cities: '' },
       en: { n: 'USA', adj: 'American', cur: 'US dollar', cities: 'New York, Los Angeles, Chicago and Houston' },
       noteAr: '',
@@ -801,6 +809,8 @@ ${links('ar', '')}`,
         ['Is gold taxed in the Philippines?', 'Gold jewellery carries 12% VAT in the Philippines, included in the shop price. Dealers and pawnshops also add their own margins over the raw gold value shown here.']
       ] },
     malaysia: { code: 'MYR', d: 2, vat: 0, peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,
+      tEn: 'Gold Price in Malaysia Today (MYR) — Emas 916 & 999',
+      dEn: 'Live gold price in Malaysia today in ringgit (MYR) and dollars: emas 916 (22K), 999 (24K) and 18K per gram and per ounce, updated every 5 minutes.',
       ar: { n: 'ماليزيا', in: 'في ماليزيا', cur: 'رينغيت', curS: 'رينغيت', cities: '' },
       en: { n: 'Malaysia', adj: 'Malaysian', cur: 'Malaysian ringgit', cities: 'Kuala Lumpur, Penang, Johor Bahru and Ipoh' },
       noteAr: '',
@@ -811,6 +821,8 @@ ${links('ar', '')}`,
         ['Is gold taxed in Malaysia?', 'Investment precious metals are exempt from sales and service tax (SST) in Malaysia. Jewellery prices add workmanship charges per piece over the raw gold value.']
       ] },
     nepal: { code: 'NPR', d: 0, vat: 0, peg: '', pegEn: 'pegged to the Indian rupee, which itself floats against the US dollar', fx: true, enOnly: true,
+      tEn: 'Gold Price in Nepal Today (NPR) — Per Tola & Gram',
+      dEn: 'Live gold price in Nepal today in rupees (NPR) and dollars: 24K, 22K, 21K and 18K per tola, per gram and per ounce, updated every 5 minutes.',
       ar: { n: 'نيبال', in: 'في نيبال', cur: 'روبية', curS: 'روبية', cities: '' },
       en: { n: 'Nepal', adj: 'Nepali', cur: 'Nepalese rupee', cities: 'Kathmandu, Pokhara, Lalitpur and Biratnagar' },
       noteAr: '',
@@ -900,7 +912,9 @@ ${links('ar', '')}`,
         ['What is an Antam gold bar?', 'A bar produced by Logam Mulia, the precious-metal refinery of the Indonesian state miner Antam. It is the standard gold investment product in Indonesia and trades at a premium over the international rate shown here.'],
         ['Which karat is most common in Indonesia?', 'For saving, Indonesians prefer 24K bars and coins. Jewellery is often made in lower local purities as well as 18K and 22K.']
       ] },
-    thailand: { code: 'THB', d: 2, vat: 0, peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,
+    thailand: { code: 'THB', d: 2, vat: 0, peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true, un: ['1 baht (15.244 g)', 15.244],
+      tEn: 'Gold Price in Thailand Today (THB) — Baht & Gram',
+      dEn: 'Live gold price in Thailand today in baht (THB) and dollars: 24K, 22K, 21K and 18K per gram, per baht weight (15.244 g) and per ounce, updated every 5 minutes.',
       ar: { n: 'تايلاند', in: 'في تايلاند', cur: 'باهت', curS: 'باهت', cities: '' },
       en: { n: 'Thailand', adj: 'Thai', cur: 'Thai baht', cities: 'Bangkok, Chiang Mai, Phuket and Hat Yai' },
       noteAr: '',
@@ -910,7 +924,9 @@ ${links('ar', '')}`,
         ['How much is one baht of gold in grams?', 'In Thailand, gold is traded per baht of weight: one baht of gold equals 15.244 grams. A one-baht 24K gold bar is worth about 15.244 times the per-gram price shown on this page.'],
         ['What purity is Thai gold?', 'Standard Thai gold, both bars and jewellery, is 96.5% pure, which is roughly 23 karat. International-standard 24K and 18K pieces are also sold.']
       ] },
-    vietnam: { code: 'VND', d: 0, vat: 0, peg: '', pegEn: 'managed against the US dollar, so its rate moves daily', fx: true, enOnly: true,
+    vietnam: { code: 'VND', d: 0, vat: 0, peg: '', pegEn: 'managed against the US dollar, so its rate moves daily', fx: true, enOnly: true, un: ['1 tael (37.5 g)', 37.5],
+      tEn: 'Gold Price in Vietnam Today (VND) — Per Tael & Gram',
+      dEn: 'Live gold price in Vietnam today in dong (VND) and dollars: 24K, 22K, 21K and 18K per gram, per tael (lượng, 37.5 g) and per ounce, updated every 5 minutes.',
       ar: { n: 'فيتنام', in: 'في فيتنام', cur: 'دونغ', curS: 'دونغ', cities: '' },
       en: { n: 'Vietnam', adj: 'Vietnamese', cur: 'Vietnamese dong', cities: 'Hanoi, Ho Chi Minh City, Da Nang and Hai Phong' },
       noteAr: '',
@@ -931,6 +947,8 @@ ${links('ar', '')}`,
         ['Which karat is most common in Singapore?', 'Most jewellery in Singapore is 22K (marked 916) or 18K, while 24K is bought as bars and coins for investment.']
       ] },
     srilanka: { code: 'LKR', d: 0, vat: 0, peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,
+      tEn: 'Gold Rate in Sri Lanka Today (LKR) — 22K & 24K',
+      dEn: 'Live gold rate in Sri Lanka today in rupees (LKR) and dollars: 22K and 24K gold price per gram, 10 grams, tola and ounce, updated every 5 minutes.',
       ar: { n: 'سريلانكا', in: 'في سريلانكا', cur: 'روبية', curS: 'روبية', cities: '' },
       en: { n: 'Sri Lanka', adj: 'Sri Lankan', cur: 'Sri Lankan rupee', cities: 'Colombo, Kandy, Galle and Jaffna' },
       noteAr: '',
@@ -1137,8 +1155,8 @@ ${[['', L === 'en' ? 'UAE' : 'الإمارات'], ...Object.entries(COUNTRY_PAGE
       const vatCol = c.vat ? `<th>${en ? `+ ${TN} ${c.vat}%` : `شامل الضريبة ${c.vat}%`}</th>` : '';
       out.push({ lang: L, slug, alt: !c.enOnly, usesFx: !!c.fx,
         crumbs: [[en ? `Gold price in ${x.n}` : `سعر الذهب ${x.in}`, url(L, slug)]],
-        title: en ? `Gold Price in ${x.n} Today (${c.code}) — 24K, 22K, 21K, 18K` : `سعر الذهب اليوم ${x.in} بال${x.cur} | عيار 24 و22 و21 و18`,
-        desc: en ? `Live gold price in ${x.n} today in ${x.cur} (${c.code}) and US dollars: 24K, 22K, 21K and 18K per gram, per tola and per ounce, updated every 5 minutes${c.vat ? `, with prices including ${c.vat}% ${TN}` : ''}.`
+        title: en ? (c.tEn || `Gold Price in ${x.n} Today (${c.code}) — 24K, 22K, 21K, 18K`) : `سعر الذهب اليوم ${x.in} بال${x.cur} | عيار 24 و22 و21 و18`,
+        desc: en ? (c.dEn || `Live gold price in ${x.n} today in ${x.cur} (${c.code}) and US dollars: 24K, 22K, 21K and 18K per gram, per tola and per ounce, updated every 5 minutes${c.vat ? `, with prices including ${c.vat}% ${TN}` : ''}.`)
           : `سعر الذهب اليوم ${x.in} بال${x.cur} والدولار، محدَّث كل 5 دقائق: سعر غرام عيار 24 و22 و21 و18، وسعر الأونصة والتولة${c.vat ? `، والسعر شامل ضريبة ${c.vat}%` : ''}.`,
         body: `${hero(en ? `Gold Price in ${x.n} Today` : `سعر الذهب اليوم ${x.in}`, en ? `Raw gold price per gram in ${x.cur} (${c.code}) and US dollars` : `سعر غرام الذهب الخام بال${x.cur} (${c.code}) والدولار`, L)}
 ${errBox}
@@ -1150,9 +1168,9 @@ ${errBox}
 ${chg}<button class="btn-sm" id="refresh" type="button">🔄 ${en ? 'Refresh' : 'تحديث'}</button></div>
 ${AD}
 <section class="card-section"><h2>${en ? `Gold price table in ${x.n} today` : `جدول أسعار الذهب ${x.in} اليوم`}</h2><div class="table-wrap"><table class="data-table">
-<thead><tr><th>${en ? 'Karat' : 'العيار'}</th><th>${en ? `1 gram (${c.code})` : `الغرام (${x.curS})`}</th>${vatCol}<th>${en ? `10 grams (${c.code})` : `10 غرام (${x.curS})`}</th><th>${en ? `1 tola (${c.code})` : `التولة (${x.curS})`}</th><th>${en ? `1 ounce (${c.code})` : `الأونصة (${x.curS})`}</th></tr></thead><tbody>
-${KS.map(k => `<tr><td><strong>${en ? k + 'K' : 'عيار ' + k}</strong> <span class="sub"><bdi>${K[k].purity}</bdi></span></td><td class="n">${P(k, 1, opt())}</td>${c.vat ? `<td class="n">${P(k, 1 + c.vat / 100, opt())}</td>` : ''}<td class="n">${P(k, 10, opt())}</td><td class="n">${P(k, TOLA, opt())}</td><td class="n">${P(k, ctx.TROY, opt())}</td></tr>`).join('')}
-</tbody></table></div><p class="note">${en ? `Raw gold price without making charges${c.vat ? `; the VAT column adds ${c.vat}% to the gold value only` : ''}. 1 tola = 11.664 g · 1 ounce = 31.1035 g.` : `سعر الذهب الخام بدون مصنعية${c.vat ? `، وعمود الضريبة يضيف ${c.vat}% على قيمة الذهب فقط` : ''}. التولة = 11.664 غرام · الأونصة = 31.1035 غرام.`}</p></section>
+<thead><tr><th>${en ? 'Karat' : 'العيار'}</th><th>${en ? `1 gram (${c.code})` : `الغرام (${x.curS})`}</th>${vatCol}<th>${en ? `10 grams (${c.code})` : `10 غرام (${x.curS})`}</th><th>${c.un ? `${c.un[0]} (${c.code})` : en ? `1 tola (${c.code})` : `التولة (${x.curS})`}</th><th>${en ? `1 ounce (${c.code})` : `الأونصة (${x.curS})`}</th></tr></thead><tbody>
+${KS.map(k => `<tr><td><strong>${en ? k + 'K' : 'عيار ' + k}</strong> <span class="sub"><bdi>${K[k].purity}</bdi></span></td><td class="n">${P(k, 1, opt())}</td>${c.vat ? `<td class="n">${P(k, 1 + c.vat / 100, opt())}</td>` : ''}<td class="n">${P(k, 10, opt())}</td><td class="n">${P(k, c.un ? c.un[1] : TOLA, opt())}</td><td class="n">${P(k, ctx.TROY, opt())}</td></tr>`).join('')}
+</tbody></table></div><p class="note">${en ? `Raw gold price without making charges${c.vat ? `; the VAT column adds ${c.vat}% to the gold value only` : ''}. ${c.un ? c.un[0] : '1 tola = 11.664 g'} · 1 ounce = 31.1035 g.` : `سعر الذهب الخام بدون مصنعية${c.vat ? `، وعمود الضريبة يضيف ${c.vat}% على قيمة الذهب فقط` : ''}. التولة = 11.664 غرام · الأونصة = 31.1035 غرام.`}</p></section>
 <section class="card-section"><h2>${en ? `Gold price by weight in ${x.n} (21K and 24K)` : `سعر الذهب حسب الوزن ${x.in} (عيار 21 و24)`}</h2><div class="table-wrap"><table class="data-table">
 <thead><tr><th>${en ? 'Weight' : 'الوزن'}</th><th>${en ? '21K' : 'عيار 21'}</th><th>${en ? '24K' : 'عيار 24'}</th></tr></thead><tbody>
 ${GW.map(w => `<tr><td>${en ? w + ' g' : w + ' غرام'}</td><td class="n">${P(21, w, opt())}</td><td class="n">${P(24, w, opt())}</td></tr>`).join('')}
@@ -1213,7 +1231,7 @@ ${KS.filter(o => o !== k).map(o => `<a class="link-card" href="${url('ar', `${sl
     // صفحات العيارات لكل دولة (إنجليزي)
     for (const k of [24, 22, 21, 18]) {
       const x = c.en, ko = K[k].en;
-      const rows = [...[1, 2, 4, 5, 8, 10, 20, 50, 100].map(w => [`${w} g`, w]), ['1 tola (11.66 g)', TOLA], ['1 ounce (31.1 g)', ctx.TROY]];
+      const rows = [...[1, 2, 4, 5, 8, 10, 20, 50, 100].map(w => [`${w} g`, w]), [c.un ? c.un[0] : '1 tola (11.66 g)', c.un ? c.un[1] : TOLA], ['1 ounce (31.1 g)', ctx.TROY]];
       out.push({ lang: 'en', slug: `${slug}/gold-${k}k`, alt: !c.enOnly, usesFx: !!c.fx,
         crumbs: [[`Gold price in ${x.n}`, url('en', slug)], [`${k}K`, url('en', `${slug}/gold-${k}k`)]],
         title: `${k}K Gold Rate in ${x.n} Today (${c.code}) — Price per Gram`,
