@@ -16,7 +16,7 @@ const AED    = 3.6725;
 const SB_URL = 'https://kmvadxkjehxfxpeveekg.supabase.co';
 const SB_KEY = process.env.SUPABASE_KEY || 'sb_publishable_kWJE1YujD-0VdmAOET0dVw_xOUNu2d1';
 const TODAY  = new Date().toISOString().slice(0, 10);
-const ASSET_V = { js: TODAY, css: TODAY };
+const ASSET_V = { js: TODAY, css: TODAY, assist: TODAY };
 
 // ── Data ──────────────────────────────────────────────────────
 async function getJSON(url, opts = {}) {
@@ -126,8 +126,8 @@ export const url = (lang, slug) => (lang === 'ar' ? '/' : `/${lang}/`) + (slug ?
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 
 const NAV = {
-  ar: [['', 'الرئيسية'], ['gold-21k', 'عيار 21'], ['gold-24k', 'عيار 24'], ['gold-22k', 'عيار 22'], ['gold-18k', 'عيار 18'], ['gcc', 'مقارنة الخليج'], ['gold-price-usd', 'السعر العالمي'], ['silver', 'الفضة'], ['gold-bars', 'السبائك'], ['gold-calculator', 'حاسبة الذهب'], ['zakat-calculator', 'زكاة الذهب'], ['gold-price-yesterday', 'سعر أمس'], ['gold-forecast', 'توقعات الذهب'], ['articles', 'مقالات'], ['history', 'الأرشيف']],
-  en: [['', 'Home'], ['gold-22k', '22K'], ['gold-24k', '24K'], ['gold-18k', '18K'], ['gold-21k', '21K'], ['gcc', 'Gulf compare'], ['gold-price-usd', 'Gold in USD'], ['silver', 'Silver'], ['gold-rate-inr', 'In INR'], ['gold-rate-pkr', 'In PKR'], ['gold-bars', 'Gold Bars'], ['gold-calculator', 'Calculator'], ['gold-price-yesterday', 'Last 10 days'], ['zakat-calculator', 'Zakat'], ['articles', 'Articles']],
+  ar: [['', 'الرئيسية'], ['gold-21k', 'عيار 21'], ['gold-24k', 'عيار 24'], ['gold-22k', 'عيار 22'], ['gold-18k', 'عيار 18'], ['gcc', 'مقارنة الخليج'], ['gold-price-usd', 'السعر العالمي'], ['silver', 'الفضة'], ['gold-bars', 'السبائك'], ['gold-calculator', 'حاسبة الذهب'], ['zakat-calculator', 'زكاة الذهب'], ['gold-price-yesterday', 'سعر أمس'], ['gold-forecast', 'توقعات الذهب'], ['articles', 'مقالات'], ['assistant', 'المساعد'], ['history', 'الأرشيف']],
+  en: [['', 'Home'], ['gold-22k', '22K'], ['gold-24k', '24K'], ['gold-18k', '18K'], ['gold-21k', '21K'], ['gcc', 'Gulf compare'], ['gold-price-usd', 'Gold in USD'], ['silver', 'Silver'], ['gold-rate-inr', 'In INR'], ['gold-rate-pkr', 'In PKR'], ['gold-bars', 'Gold Bars'], ['gold-calculator', 'Calculator'], ['gold-price-yesterday', 'Last 10 days'], ['zakat-calculator', 'Zakat'], ['articles', 'Articles'], ['assistant', 'Assistant']],
   tr: [['turkiye', 'Gram Altın'], ['turkiye/24-ayar-altin', '24 Ayar'], ['turkiye/22-ayar-altin', '22 Ayar'], ['turkiye/21-ayar-altin', '21 Ayar'], ['turkiye/18-ayar-altin', '18 Ayar']],
   hi: [['sone-ka-bhav', 'सोने का भाव'], ['sone-ka-bhav/24-karat', '24 कैरेट'], ['sone-ka-bhav/22-karat', '22 कैरेट'], ['sone-ka-bhav/18-karat', '18 कैरेट'], ['sone-ka-bhav/21-karat', '21 कैरेट']],
   ur: [['sone-ka-rate', 'سونے کا ریٹ'], ['sone-ka-rate/24-karat', '24 کیرٹ'], ['sone-ka-rate/22-karat', '22 کیرٹ'], ['sone-ka-rate/18-karat', '18 کیرٹ'], ['sone-ka-rate/21-karat', '21 کیرٹ']],
@@ -361,6 +361,7 @@ ${p.noAds ? '' : AD}
 <script>window.__G=${ctx.g24 ? ctx.g24.toFixed(4) : 'null'};window.__LANGURLS=${JSON.stringify(langUrls)};${p.usesAg ? `window.__AG=${ctx.ag ? ctx.ag.toFixed(4) : 'null'};` : ''}${p.usesFx ? `window.__FX=${JSON.stringify({ INR: ctx.fx.INR, PKR: ctx.fx.PKR, KWD: ctx.fx.KWD, EGP: ctx.fx.EGP, BDT: ctx.fx.BDT, TRY: ctx.fx.TRY, GBP: ctx.fx.GBP, CAD: ctx.fx.CAD, AUD: ctx.fx.AUD, PHP: ctx.fx.PHP, MYR: ctx.fx.MYR, NPR: ctx.fx.NPR, ZAR: ctx.fx.ZAR, IQD: ctx.fx.IQD, MAD: ctx.fx.MAD, DZD: ctx.fx.DZD, IDR: ctx.fx.IDR, THB: ctx.fx.THB, VND: ctx.fx.VND, SGD: ctx.fx.SGD, LKR: ctx.fx.LKR, EUR: ctx.fx.EUR, JPY: ctx.fx.JPY, CHF: ctx.fx.CHF, NGN: ctx.fx.NGN, GHS: ctx.fx.GHS, KES: ctx.fx.KES, MXN: ctx.fx.MXN, BRL: ctx.fx.BRL, CNY: ctx.fx.CNY, LBP: ctx.fx.LBP, TND: ctx.fx.TND, LYD: ctx.fx.LYD, YER: ctx.fx.YER })};` : ''}</script>
 <a class="tg-float" href="https://t.me/emaratijob" target="_blank" rel="noopener" aria-label="${L === 'ar' ? 'أسعار الذهب يومياً على تيليجرام' : 'Daily gold prices on Telegram'}"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M9.04 15.9l-.38 5.36c.55 0 .79-.24 1.08-.52l2.6-2.48 5.38 3.94c.99.55 1.69.26 1.96-.9l3.55-16.64c.32-1.45-.52-2.02-1.47-1.66L1.7 10.8c-1.42.55-1.4 1.34-.24 1.7l5.3 1.65L18.98 5.7c.58-.38 1.1-.17.67.21L9.04 15.9z"/></svg><span>${L === 'ar' ? 'أسعار الذهب يومياً' : 'Daily prices on Telegram'}</span></a>
 <script src="/assets/app.js?v=${ASSET_V.js}" defer></script>
+${p.assistant ? `<script src="/assets/assistant.js?v=${ASSET_V.assist}" defer></script>` : ''}
 </body>
 </html>`;
 }
@@ -406,7 +407,7 @@ async function place(name, dirs, dest) {
   }
   throw new Error('missing file: ' + name);
 }
-for (const f of ['style.css', 'app.js']) await place(f, ['assets', '.'], path.join(OUT, 'assets', f));
+for (const f of ['style.css', 'app.js', 'assistant.js']) await place(f, ['assets', '.'], path.join(OUT, 'assets', f));
 for (const f of ['sw.js', 'manifest.json', 'ads.txt', '_headers']) await place(f, ['static', '.'], path.join(OUT, f));
 for (const s of [72, 96, 128, 144, 152, 192, 384, 512]) {
   const f = `icon-${s}x${s}.png`;
@@ -416,7 +417,7 @@ await place('og-image.png', ['static/icons', 'icons', '.'], path.join(OUT, 'icon
 
 // رقم نسخة من محتوى الملف نفسه: أي تعديل في السكريبت أو التصميم يغيّر الرابط، فالمتصفح يجيب النسخة الجديدة فوراً
 const hashOf = async f => crypto.createHash('md5').update(await fs.readFile(path.join(OUT, 'assets', f))).digest('hex').slice(0, 10);
-ASSET_V.js = await hashOf('app.js'); ASSET_V.css = await hashOf('style.css');
+ASSET_V.js = await hashOf('app.js'); ASSET_V.css = await hashOf('style.css'); ASSET_V.assist = await hashOf('assistant.js');
 const list = pages(ctx);
 const sitemap = [];
 for (const p of list) {
@@ -435,4 +436,8 @@ const smEntries = sitemap.map(p => {
 }).join('\n');
 await write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${smEntries}\n</urlset>\n`);
 await write('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
+// llms.txt — ملف تعريفي لبرامج الذكاء الاصطناعي الزاحفة (مثل robots.txt لكن للنماذج)
+const llmsArticles = sitemap.filter(p => p.slug.startsWith('articles/'));
+const llmsCountries = sitemap.filter(p => p.lang === 'en' && !p.slug.includes('/') && !['', 'gold-24k', 'gold-22k', 'gold-21k', 'gold-18k', 'gold-price-usd', 'dollar', 'silver', 'gcc', 'gold-bars', 'gold-calculator', 'zakat-calculator', 'gold-price-yesterday', 'gold-forecast', 'articles', 'history', 'assistant', 'about', 'contact', 'privacy', 'gold-rate-inr', 'gold-rate-pkr'].includes(p.slug));
+await write('llms.txt', `# Gold Prices Today (maelumatii.com)\n\n> Live gold prices in 44 countries and 40+ currencies, in 9 languages: per gram, tola, ounce and kilo for karats 24K, 22K, 21K and 18K, updated every 5 minutes, plus gold and zakat calculators, a gold/currency Q&A assistant, and localized buying guides for every country.\n\n## Core tools\n\n- [Gold price in UAE (Arabic)](${SITE}/): الصفحة الرئيسية بالعربية\n- [Gold price in UAE (English)](${SITE}/en/): live 24K/22K/21K/18K gram prices\n- [Gold calculator](${SITE}/en/gold-calculator/): with making charges and VAT\n- [Zakat calculator](${SITE}/en/zakat-calculator/): nisab and zakat due\n- [Gold bar prices](${SITE}/en/gold-bars/): 1 g to 1 kg\n- [Gold price in USD](${SITE}/en/gold-price-usd/): live XAU/USD ounce\n- [US dollar rate](${SITE}/en/dollar/): USD vs 40 currencies\n- [Silver price](${SITE}/en/silver/)\n- [Gulf comparison](${SITE}/en/gcc/): 6 GCC countries side by side\n- [Gold forecast](${SITE}/en/gold-forecast/): trend and drivers\n- [Price history](${SITE}/history/): daily archive\n- [Gold assistant](${SITE}/en/assistant/): ask any gold or currency question\n\n## Gold prices by country (English)\n\n${llmsCountries.map(p => `- [${p.title}](${SITE}${url(p.lang, p.slug)})`).join('\n')}\n\n## Guides and articles\n\n${llmsArticles.map(p => `- [${p.title}](${SITE}${url(p.lang, p.slug)})`).join('\n')}\n\n## Data sources\n\nSpot price: Gold-API.com, refreshed every 5 minutes. Exchange rates: open.er-api.com. Prices exclude making charges and local taxes; content is informational, not investment advice.\n`);
 console.log(`built ${list.length} pages, ${sitemap.length} in sitemap → ${OUT}/`);

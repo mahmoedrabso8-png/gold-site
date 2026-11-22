@@ -94,14 +94,14 @@ export function pages(ctx) {
   <div class="chart-legend">${[[24, '#fce35c'], [22, '#f9a825'], [21, '#ff8a50'], [18, '#a09880']].map(([k, c]) => `<span class="legend-item"><span class="legend-dot" style="background:${c}"></span>${k}K</span>`).join('')}</div></div>
   <canvas id="spark" aria-label="chart"></canvas></section>`;
   const LINKS = {
-    ar: [['gold-21k', 'سعر عيار 21', 'الأكثر طلباً في الخليج'], ['gold-24k', 'سعر عيار 24', 'الذهب الخالص والسبائك'], ['gold-22k', 'سعر عيار 22', 'المجوهرات الهندية'], ['gold-18k', 'سعر عيار 18', 'مجوهرات الألماس'],
+    ar: [['assistant', 'مساعد الذهب الذكي', 'اسأل أي سؤال عن الذهب والعملات'], ['gold-21k', 'سعر عيار 21', 'الأكثر طلباً في الخليج'], ['gold-24k', 'سعر عيار 24', 'الذهب الخالص والسبائك'], ['gold-22k', 'سعر عيار 22', 'المجوهرات الهندية'], ['gold-18k', 'سعر عيار 18', 'مجوهرات الألماس'],
       ['gold-price-usd', 'سعر الذهب عالمياً', 'الأونصة بالدولار مباشر'], ['dollar', 'سعر الدولار اليوم', 'مباشر بكل العملات'], ['silver', 'سعر الفضة اليوم', 'الغرام والأونصة والكيلو'],
       ['gcc', 'أسعار الذهب في الخليج', 'مقارنة بين 6 دول'], ['saudi', 'سعر الذهب في السعودية', 'بالريال السعودي'], ['kuwait', 'سعر الذهب في الكويت', 'بالدينار الكويتي'],
       ['qatar', 'سعر الذهب في قطر', 'بالريال القطري'], ['oman', 'سعر الذهب في عُمان', 'بالريال العُماني'], ['bahrain', 'سعر الذهب في البحرين', 'بالدينار البحريني'], ['egypt', 'سعر الذهب في مصر', 'بالجنيه المصري'], ['iraq', 'سعر الذهب في العراق', 'بالدينار العراقي'], ['jordan', 'سعر الذهب في الأردن', 'بالدينار الأردني'], ['morocco', 'سعر الذهب في المغرب', 'بالدرهم المغربي'], ['algeria', 'سعر الذهب في الجزائر', 'بالدينار الجزائري'], ['lebanon', 'سعر الذهب في لبنان', 'بالليرة والدولار'], ['tunisia', 'سعر الذهب في تونس', 'بالدينار التونسي'], ['libya', 'سعر الذهب في ليبيا', 'بالدينار الليبي'], ['yemen', 'سعر الذهب في اليمن', 'بالريال اليمني'],
       ['gold-bars', 'أسعار السبائك', 'من 1 غرام إلى 1 كيلو'], ['gold-calculator', 'حاسبة الذهب', 'بالمصنعية والضريبة'], ['zakat-calculator', 'حاسبة زكاة الذهب', 'النصاب وقيمة الزكاة'],
       ['gold-price-yesterday', 'سعر الذهب أمس', 'وآخر 10 أيام'], ['gold-forecast', 'توقعات الذهب', 'الاتجاه والعوامل المؤثرة'], ['history', 'أرشيف الأسعار', 'سعر الذهب يوماً بيوم'],
       ['articles', 'مقالات وأدلة الذهب', 'شروحات الشراء والادخار والزكاة']],
-    en: [['gold-22k', '22K gold rate', 'Popular for Indian jewellery'], ['gold-24k', '24K gold rate', 'Pure gold & bars'], ['gold-21k', '21K gold rate', 'Gulf jewellery'], ['gold-18k', '18K gold rate', 'Diamond jewellery'],
+    en: [['assistant', 'Gold price assistant', 'Ask any gold or currency question'], ['gold-22k', '22K gold rate', 'Popular for Indian jewellery'], ['gold-24k', '24K gold rate', 'Pure gold & bars'], ['gold-21k', '21K gold rate', 'Gulf jewellery'], ['gold-18k', '18K gold rate', 'Diamond jewellery'],
       ['gold-price-usd', 'Gold price in USD', 'Live ounce XAU/USD'], ['dollar', 'US dollar rate', 'Live vs 40 currencies'], ['silver', 'Silver price', 'Per gram, ounce & kg'],
       ['gcc', 'Gulf gold prices', 'Compare 6 countries'], ['saudi', 'Gold price in Saudi Arabia', 'In SAR'], ['kuwait', 'Gold price in Kuwait', 'In KWD'],
       ['qatar', 'Gold price in Qatar', 'In QAR'], ['oman', 'Gold price in Oman', 'In OMR'], ['bahrain', 'Gold price in Bahrain', 'In BHD'], ['egypt', 'Gold price in Egypt', 'In EGP'], ['india', 'Gold rate in India', 'In INR, 22K & 24K'], ['pakistan', 'Gold rate in Pakistan', 'In PKR, per tola'], ['bangladesh', 'Gold price in Bangladesh', 'In BDT'], ['turkey', 'Gold price in Turkey', 'Gram altın in TRY'], ['usa', 'Gold price in USA', 'In USD'], ['uk', 'Gold price in UK', 'In GBP'], ['canada', 'Gold price in Canada', 'In CAD'], ['australia', 'Gold price in Australia', 'In AUD'], ['philippines', 'Gold price in Philippines', 'In PHP'], ['malaysia', 'Gold price in Malaysia', 'Emas 916 in MYR'], ['nepal', 'Gold price in Nepal', 'In NPR, per tola'], ['southafrica', 'Gold price in South Africa', 'Krugerrand in ZAR'], ['iraq', 'Gold price in Iraq', 'In IQD'], ['jordan', 'Gold price in Jordan', 'In JOD'], ['morocco', 'Gold price in Morocco', 'In MAD'], ['algeria', 'Gold price in Algeria', 'In DZD'], ['indonesia', 'Gold price in Indonesia', 'Antam bars in IDR'], ['thailand', 'Gold price in Thailand', 'Per baht weight, THB'], ['vietnam', 'Gold price in Vietnam', 'SJC bars in VND'], ['singapore', 'Gold price in Singapore', 'GST-free IPM in SGD'], ['srilanka', 'Gold price in Sri Lanka', 'In LKR'], ['germany', 'Gold price in Germany', 'VAT-free bullion, EUR'], ['japan', 'Gold price in Japan', 'In JPY'], ['switzerland', 'Gold price in Switzerland', 'Home of PAMP, CHF'], ['nigeria', 'Gold price in Nigeria', 'In NGN'], ['ghana', 'Gold price in Ghana', 'The Gold Coast, GHS'], ['kenya', 'Gold price in Kenya', 'In KES'], ['mexico', 'Gold price in Mexico', 'Centenario in MXN'], ['brazil', 'Gold price in Brazil', 'Ouro 18K in BRL'], ['china', 'Gold price in China', '999 gold in CNY'], ['france', 'Gold price in France', 'Napoleon coins, EUR'], ['italy', 'Gold price in Italy', '18K standard, EUR'], ['spain', 'Gold price in Spain', 'Oro de ley, EUR'], ['lebanon', 'Gold price in Lebanon', 'In LBP & USD'], ['tunisia', 'Gold price in Tunisia', 'In TND'], ['libya', 'Gold price in Libya', 'In LYD'], ['yemen', 'Gold price in Yemen', 'In YER'], ['gold-rate-inr', 'Gold rate in INR', 'Dubai price in rupees'], ['gold-rate-pkr', 'Gold rate in PKR', 'Per tola in rupees'],
@@ -289,6 +289,64 @@ ${links(L, 'gold-calculator')}`,
         ['هل توجد ضريبة على الذهب في الإمارات؟', 'نعم، ضريبة القيمة المضافة 5% على المشغولات الذهبية. أما الذهب الاستثماري بنقاء 99% فأكثر فيُعامل عادةً بنسبة صفر.'],
         ['هل سعر الحاسبة هو نفس سعر المحل؟', 'قريب جداً في قيمة الذهب، لكن المحلات تعلن سعراً يومياً خاصاً بها يتبع السعر العالمي، لذلك الفروق البسيطة طبيعية.']
       ] });
+  }
+
+  // ── المساعد الذكي ─────────────────────────────────────
+  for (const L of ['ar', 'en']) {
+    const en = L === 'en';
+    const assistantFaq = en ? [
+      ['Is the gold assistant free?', 'Yes, completely free with no sign-up. It answers instantly in your browser using the same live gold and exchange rates shown across the site.'],
+      ['Which countries can I ask about?', 'All 44 countries covered by the site: the UAE, Saudi Arabia, Kuwait, Qatar, Oman, Bahrain, Egypt, India, Pakistan, Bangladesh, Turkey, the USA, UK, Europe, Southeast Asia, Africa, Latin America and more — in each local currency.'],
+      ['Where do the answers come from?', 'Prices are computed from the live international spot price (Gold-API) and current exchange rates (open.er-api.com), the same sources the rest of the site uses. Shop prices add making charges and local taxes.'],
+      ['Can the assistant give investment advice?', 'No. It explains prices, karats, units and zakat rules and converts currencies, but nothing it says is investment advice.'],
+      ['What can I ask besides prices?', 'Karat differences (24K vs 22K vs 21K vs 18K), weight units like tola, ounce, baht, mithqal and tael, gold zakat and nisab, buying tips and making charges, silver prices, and currency conversion.']
+    ] : [
+      ['هل المساعد مجاني؟', 'نعم، مجاني تماماً وبدون تسجيل. يجيب فوراً داخل متصفحك باستخدام نفس الأسعار الحية للذهب والصرف المعروضة في الموقع.'],
+      ['عن أي الدول أستطيع أن أسأل؟', 'كل الدول الـ44 التي يغطيها الموقع: الإمارات والسعودية والكويت وقطر وعُمان والبحرين ومصر والهند وباكستان وبنجلاديش وتركيا وأمريكا وبريطانيا وأوروبا وجنوب شرق آسيا وأفريقيا وأمريكا اللاتينية وغيرها، بكل عملة محلية.'],
+      ['من أين تأتي الإجابات؟', 'تُحسب الأسعار من السعر العالمي المباشر (Gold-API) وأسعار الصرف الحالية (open.er-api.com)، وهي نفس مصادر باقي صفحات الموقع. أسعار المحلات تضيف المصنعية والضرائب المحلية.'],
+      ['هل يقدم المساعد نصيحة استثمارية؟', 'لا. يشرح الأسعار والعيارات والأوزان وأحكام الزكاة ويحوّل العملات، لكن لا شيء مما يقوله نصيحة استثمارية.'],
+      ['بماذا يجيب غير الأسعار؟', 'الفرق بين العيارات (24 و22 و21 و18)، ووحدات الوزن مثل التولة والأونصة والباهت والمثقال والتايل، وزكاة الذهب والنصاب، ونصائح الشراء والمصنعية، وأسعار الفضة، وتحويل العملات.']
+    ];
+    out.push({ lang: L, slug: 'assistant', alt: true, usesFx: true, usesAg: true, assistant: true,
+      crumbs: [[en ? 'Gold assistant' : 'مساعد الذهب', url(L, 'assistant')]],
+      title: en ? 'Gold Price Assistant: Ask Any Gold or Currency Question' : 'مساعد الذهب الذكي: اسأل أي سؤال عن الذهب والعملات',
+      desc: en
+        ? 'Free gold assistant: live gold prices in 44 countries, karat and weight conversions (tola, ounce, baht), gold zakat, buying tips and currency conversion — instant answers from live rates.'
+        : 'مساعد الذهب المجاني: أسعار الذهب المباشرة في 44 دولة، تحويل العيارات والأوزان (تولة، أونصة، باهت)، زكاة الذهب وتحويل العملات — إجابات فورية من الأسعار الحية.',
+      schema: [{ '@context': 'https://schema.org', '@type': 'FAQPage', inLanguage: L, mainEntity: assistantFaq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) }],
+      faq: assistantFaq,
+      body: `
+<header class="page-head"><h1>${en ? 'Gold price assistant' : 'مساعد الذهب الذكي'}</h1>
+<p class="lead">${en ? 'Ask anything about gold and currencies — live prices in 44 countries, conversions, zakat and buying tips. Answers are computed instantly from the live rates, free and with no sign-up.' : 'اسأل أي سؤال عن الذهب والعملات — أسعار مباشرة في 44 دولة، تحويلات، زكاة ونصائح شراء. الإجابات تُحسب فوراً من الأسعار الحية، مجاناً وبدون تسجيل.'}</p></header>
+<section class="chat-wrap" id="assistant" aria-label="${en ? 'Gold assistant chat' : 'محادثة مساعد الذهب'}">
+  <div class="chat-log" id="chat-log" aria-live="polite"></div>
+  <div class="chat-chips" id="chat-chips"></div>
+  <form class="chat-form" id="chat-form">
+    <input id="chat-in" type="text" autocomplete="off" placeholder="${en ? 'Ask: gold price in India, 10 grams 22K…' : 'اسأل: سعر الذهب في مصر، 10 جرام عيار 21…'}" aria-label="${en ? 'Your question' : 'سؤالك'}" />
+    <button type="submit" aria-label="${en ? 'Send' : 'إرسال'}">${en ? 'Ask' : 'اسأل'}</button>
+  </form>
+</section>
+<section class="card-section"><h2>${en ? 'What you can ask' : 'ماذا يمكنك أن تسأل؟'}</h2><div class="prose">
+${en ? `<ul>
+<li><strong>Live gold prices:</strong> "gold price in Egypt", "gold rate in India today", "gold price in Saudi Arabia" — any of the 44 countries, in its local currency and karats 24K, 22K, 21K and 18K.</li>
+<li><strong>A specific weight:</strong> "price of 10 grams 22K in Pakistan", "5 tola gold price".</li>
+<li><strong>Weight conversions:</strong> tola = 11.664 g, troy ounce = 31.103 g, Thai baht = 15.244 g, Iraqi mithqal = 5 g, Vietnamese tael = 37.5 g.</li>
+<li><strong>Currency conversion:</strong> "convert 100 USD to EGP" across 40 currencies.</li>
+<li><strong>Gold zakat:</strong> the 85-gram nisab, its value today, and the 2.5% due — then use the <a href="/en/zakat-calculator/">zakat calculator</a>.</li>
+<li><strong>Karats and buying:</strong> the difference between 24K, 22K, 21K and 18K, making charges, VAT by country, and whether bars or jewellery suit saving.</li>
+</ul>
+<p>The assistant reads the same live spot price and exchange rates as the rest of Gold Prices Today, so its numbers match the country pages. For deep dives, browse the <a href="/en/articles/">gold guides</a> or open any <a href="/en/gcc/">country comparison</a>.</p>`
+: `<ul>
+<li><strong>أسعار الذهب المباشرة:</strong> «سعر الذهب في مصر»، «سعر الذهب في السعودية»، «سعر الذهب في الهند» — أي دولة من 44 دولة بعملتها المحلية وعيارات 24 و22 و21 و18.</li>
+<li><strong>وزن معين:</strong> «سعر 10 جرام عيار 21»، «سعر 5 تولة عيار 22 في باكستان».</li>
+<li><strong>تحويل الأوزان:</strong> التولة = 11.664 جرام، الأونصة = 31.103 جرام، الباهت التايلاندي = 15.244 جرام، المثقال العراقي = 5 جرام، التايل الفيتنامي = 37.5 جرام.</li>
+<li><strong>تحويل العملات:</strong> «100 دولار كام جنيه» بين 40 عملة.</li>
+<li><strong>زكاة الذهب:</strong> النصاب 85 جراماً وقيمته اليوم والزكاة المستحقة 2.5% — ثم احسب من <a href="/zakat-calculator/">حاسبة الزكاة</a>.</li>
+<li><strong>العيارات والشراء:</strong> الفرق بين عيار 24 و22 و21 و18، والمصنعية، والضريبة في كل دولة، وأيهما أوفر للادخار: السبائك أم المشغولات.</li>
+</ul>
+<p>يقرأ المساعد نفس السعر العالمي المباشر وأسعار الصرف المستخدمة في باقي صفحات الموقع، لذلك أرقامه مطابقة لصفحات الدول. وللتفصيل تصفح <a href="/articles/">مقالات الذهب</a> أو افتح <a href="/gcc/">مقارنة أسعار الخليج</a>.</p>`}</div></section>
+${links(L, 'assistant')}`
+    });
   }
 
   // ── حاسبة الزكاة ──────────────────────────────────────
