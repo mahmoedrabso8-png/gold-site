@@ -71,7 +71,9 @@ export function pages(ctx) {
     ['PHP', 'بيسو فلبيني', 'Philippine peso', 0, 0], ['MYR', 'رينغيت ماليزي', 'Malaysian ringgit', 0, 2], ['NPR', 'روبية نيبالية', 'Nepalese rupee', 0, 0], ['ZAR', 'راند جنوب أفريقيا', 'South African rand', 0, 2],
     ['IQD', 'دينار عراقي', 'Iraqi dinar', 0, 0], ['JOD', 'دينار أردني', 'Jordanian dinar', 0, 3], ['MAD', 'درهم مغربي', 'Moroccan dirham', 0, 2], ['DZD', 'دينار جزائري', 'Algerian dinar', 0, 0],
     ['IDR', 'روبية إندونيسية', 'Indonesian rupiah', 0, 0], ['THB', 'باهت تايلاندي', 'Thai baht', 0, 2], ['VND', 'دونغ فيتنامي', 'Vietnamese dong', 0, 0], ['SGD', 'دولار سنغافوري', 'Singapore dollar', 0, 2],
-    ['LKR', 'روبية سريلانكية', 'Sri Lankan rupee', 0, 0], ['EUR', 'يورو', 'Euro', 0, 2], ['JPY', 'ين ياباني', 'Japanese yen', 0, 0], ['CHF', 'فرنك سويسري', 'Swiss franc', 0, 2]];
+    ['LKR', 'روبية سريلانكية', 'Sri Lankan rupee', 0, 0], ['EUR', 'يورو', 'Euro', 0, 2], ['JPY', 'ين ياباني', 'Japanese yen', 0, 0], ['CHF', 'فرنك سويسري', 'Swiss franc', 0, 2],
+    ['NGN', 'نايرا نيجيرية', 'Nigerian naira', 0, 0], ['GHS', 'سيدي غاني', 'Ghanaian cedi', 0, 2], ['KES', 'شلن كيني', 'Kenyan shilling', 0, 0],
+    ['MXN', 'بيسو مكسيكي', 'Mexican peso', 0, 2], ['BRL', 'ريال برازيلي', 'Brazilian real', 0, 2], ['CNY', 'يوان صيني', 'Chinese yuan', 0, 2]];
   const TOLA = 11.6638;
 
   // ── أجزاء مشتركة ──────────────────────────────────────
@@ -101,7 +103,7 @@ export function pages(ctx) {
     en: [['gold-22k', '22K gold rate', 'Popular for Indian jewellery'], ['gold-24k', '24K gold rate', 'Pure gold & bars'], ['gold-21k', '21K gold rate', 'Gulf jewellery'], ['gold-18k', '18K gold rate', 'Diamond jewellery'],
       ['gold-price-usd', 'Gold price in USD', 'Live ounce XAU/USD'], ['silver', 'Silver price', 'Per gram, ounce & kg'],
       ['gcc', 'Gulf gold prices', 'Compare 6 countries'], ['saudi', 'Gold price in Saudi Arabia', 'In SAR'], ['kuwait', 'Gold price in Kuwait', 'In KWD'],
-      ['qatar', 'Gold price in Qatar', 'In QAR'], ['oman', 'Gold price in Oman', 'In OMR'], ['bahrain', 'Gold price in Bahrain', 'In BHD'], ['egypt', 'Gold price in Egypt', 'In EGP'], ['india', 'Gold rate in India', 'In INR, 22K & 24K'], ['pakistan', 'Gold rate in Pakistan', 'In PKR, per tola'], ['bangladesh', 'Gold price in Bangladesh', 'In BDT'], ['turkey', 'Gold price in Turkey', 'Gram altın in TRY'], ['usa', 'Gold price in USA', 'In USD'], ['uk', 'Gold price in UK', 'In GBP'], ['canada', 'Gold price in Canada', 'In CAD'], ['australia', 'Gold price in Australia', 'In AUD'], ['philippines', 'Gold price in Philippines', 'In PHP'], ['malaysia', 'Gold price in Malaysia', 'Emas 916 in MYR'], ['nepal', 'Gold price in Nepal', 'In NPR, per tola'], ['southafrica', 'Gold price in South Africa', 'Krugerrand in ZAR'], ['iraq', 'Gold price in Iraq', 'In IQD'], ['jordan', 'Gold price in Jordan', 'In JOD'], ['morocco', 'Gold price in Morocco', 'In MAD'], ['algeria', 'Gold price in Algeria', 'In DZD'], ['indonesia', 'Gold price in Indonesia', 'Antam bars in IDR'], ['thailand', 'Gold price in Thailand', 'Per baht weight, THB'], ['vietnam', 'Gold price in Vietnam', 'SJC bars in VND'], ['singapore', 'Gold price in Singapore', 'GST-free IPM in SGD'], ['srilanka', 'Gold price in Sri Lanka', 'In LKR'], ['germany', 'Gold price in Germany', 'VAT-free bullion, EUR'], ['japan', 'Gold price in Japan', 'In JPY'], ['switzerland', 'Gold price in Switzerland', 'Home of PAMP, CHF'], ['gold-rate-inr', 'Gold rate in INR', 'Dubai price in rupees'], ['gold-rate-pkr', 'Gold rate in PKR', 'Per tola in rupees'],
+      ['qatar', 'Gold price in Qatar', 'In QAR'], ['oman', 'Gold price in Oman', 'In OMR'], ['bahrain', 'Gold price in Bahrain', 'In BHD'], ['egypt', 'Gold price in Egypt', 'In EGP'], ['india', 'Gold rate in India', 'In INR, 22K & 24K'], ['pakistan', 'Gold rate in Pakistan', 'In PKR, per tola'], ['bangladesh', 'Gold price in Bangladesh', 'In BDT'], ['turkey', 'Gold price in Turkey', 'Gram altın in TRY'], ['usa', 'Gold price in USA', 'In USD'], ['uk', 'Gold price in UK', 'In GBP'], ['canada', 'Gold price in Canada', 'In CAD'], ['australia', 'Gold price in Australia', 'In AUD'], ['philippines', 'Gold price in Philippines', 'In PHP'], ['malaysia', 'Gold price in Malaysia', 'Emas 916 in MYR'], ['nepal', 'Gold price in Nepal', 'In NPR, per tola'], ['southafrica', 'Gold price in South Africa', 'Krugerrand in ZAR'], ['iraq', 'Gold price in Iraq', 'In IQD'], ['jordan', 'Gold price in Jordan', 'In JOD'], ['morocco', 'Gold price in Morocco', 'In MAD'], ['algeria', 'Gold price in Algeria', 'In DZD'], ['indonesia', 'Gold price in Indonesia', 'Antam bars in IDR'], ['thailand', 'Gold price in Thailand', 'Per baht weight, THB'], ['vietnam', 'Gold price in Vietnam', 'SJC bars in VND'], ['singapore', 'Gold price in Singapore', 'GST-free IPM in SGD'], ['srilanka', 'Gold price in Sri Lanka', 'In LKR'], ['germany', 'Gold price in Germany', 'VAT-free bullion, EUR'], ['japan', 'Gold price in Japan', 'In JPY'], ['switzerland', 'Gold price in Switzerland', 'Home of PAMP, CHF'], ['nigeria', 'Gold price in Nigeria', 'In NGN'], ['ghana', 'Gold price in Ghana', 'The Gold Coast, GHS'], ['kenya', 'Gold price in Kenya', 'In KES'], ['mexico', 'Gold price in Mexico', 'Centenario in MXN'], ['brazil', 'Gold price in Brazil', 'Ouro 18K in BRL'], ['china', 'Gold price in China', '999 gold in CNY'], ['gold-rate-inr', 'Gold rate in INR', 'Dubai price in rupees'], ['gold-rate-pkr', 'Gold rate in PKR', 'Per tola in rupees'],
       ['gold-bars', 'Gold bar prices', '1 g to 1 kg, tola bars'], ['gold-calculator', 'Gold calculator', 'With making charges & VAT'], ['gold-price-yesterday', 'Last 10 days', 'Yesterday\'s gold rate'], ['zakat-calculator', 'Zakat calculator', 'Nisab and zakat due']]
   };
   const links = (L, skip) => `<section class="card-section"><h2>${L === 'en' ? 'More gold prices & tools' : 'أسعار وأدوات أخرى'}</h2><div class="links-grid">${LINKS[L].filter(l => l[0] !== skip).map(([s, n, d]) => `<a class="link-card" href="${url(L, s)}">${n}<span>${d}</span></a>`).join('')}</div></section>`;
@@ -966,6 +968,66 @@ ${links('ar', '')}`,
         ['What is the gold price in Switzerland today?', 'The live price per gram in Swiss francs is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw gold rate without VAT or dealer premiums.'],
         ['Is gold taxed in Switzerland?', 'Investment gold is exempt from VAT in Switzerland. Gold jewellery carries 8.1% VAT, included in the shop price.'],
         ['Why is Switzerland important for gold?', 'Switzerland refines the majority of the world\'s gold bars through refiners such as PAMP, Valcambi and Argor-Heraeus, and Zurich is one of the historic centres of the global gold trade.']
+      ] },
+    nigeria: { code: 'NGN', d: 0, vat: 0, peg: '', pegEn: 'managed against the US dollar, so its rate moves daily', fx: true, enOnly: true,
+      ar: { n: 'نيجيريا', in: 'في نيجيريا', cur: 'نايرا', curS: 'نايرا', cities: '' },
+      en: { n: 'Nigeria', adj: 'Nigerian', cur: 'Nigerian naira', cities: 'Lagos, Abuja, Kano and Port Harcourt' },
+      noteAr: '',
+      noteEn: 'The Nigerian naira is managed against the US dollar, so the gold price in NGN moves with both the global price and the exchange rate, and the gap between official and market exchange rates can widen local prices. Jewellery in Nigeria is most often 18K or 22K for weddings and celebrations, and local dealers quote per gram with wide spreads over the international rate shown here.',
+      faqEn: [
+        ['What is the gold price in Nigeria today?', 'The live price per gram in Nigerian naira is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw international rate without dealer spreads.'],
+        ['Which karat is most common in Nigeria?', 'Most jewellery in Nigeria is 18K or 22K, bought for weddings and celebrations, while 24K is bought as coins and bars by savers.'],
+        ['Why do Nigerian dealer prices differ from this page?', 'The rate here is calculated from the global spot price and the market exchange rate. Dealers add wide spreads, making charges, and sometimes price off a different dollar rate.']
+      ] },
+    ghana: { code: 'GHS', d: 2, vat: 0, peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,
+      ar: { n: 'غانا', in: 'في غانا', cur: 'سيدي', curS: 'سيدي', cities: '' },
+      en: { n: 'Ghana', adj: 'Ghanaian', cur: 'Ghanaian cedi', cities: 'Accra, Kumasi, Takoradi and Tema' },
+      noteAr: '',
+      noteEn: 'The Ghanaian cedi floats freely, so the gold price in GHS moves with both the global price and the exchange rate. Ghana is the Gold Coast: one of the largest gold producers in Africa, with a deep gold culture from the Ashanti kingdom to modern mining. Jewellery is most often 22K or 18K, and licensed gold dealers in Accra and Kumasi quote daily rates that follow the international price shown here.',
+      faqEn: [
+        ['What is the gold price in Ghana today?', 'The live price per gram in Ghanaian cedis is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw international rate without dealer margins.'],
+        ['Why is Ghana called the Gold Coast?', 'Ghana was named the Gold Coast by European traders for its rich gold deposits, and it remains one of the largest gold producers in Africa, with mining centred on the Ashanti region.'],
+        ['Which karat is most common in Ghana?', 'Most traditional jewellery in Ghana is 22K or 18K, while 24K is held as bars and coins.']
+      ] },
+    kenya: { code: 'KES', d: 0, vat: 0, peg: '', pegEn: 'managed against the US dollar, so its rate moves daily', fx: true, enOnly: true,
+      ar: { n: 'كينيا', in: 'في كينيا', cur: 'شلن', curS: 'شلن', cities: '' },
+      en: { n: 'Kenya', adj: 'Kenyan', cur: 'Kenyan shilling', cities: 'Nairobi, Mombasa, Kisumu and Nakuru' },
+      noteAr: '',
+      noteEn: 'The Kenyan shilling is managed against the US dollar, so the gold price in KES moves with both the global price and the exchange rate. Kenya is East Africa\'s trading hub, and gold dealing is licensed and concentrated in Nairobi. Jewellery is most often 18K or 22K, and dealers quote per gram over the international rate shown here with a local premium.',
+      faqEn: [
+        ['What is the gold price in Kenya today?', 'The live price per gram in Kenyan shillings is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw international rate without dealer premiums.'],
+        ['Which karat is most common in Kenya?', 'Most jewellery in Kenya is 18K or 22K, while 24K is bought as coins and small bars for saving.'],
+        ['Where is gold traded in Kenya?', 'Licensed gold dealing is concentrated in Nairobi, with prices that track the international rate plus a local premium.']
+      ] },
+    mexico: { code: 'MXN', d: 2, vat: 0, peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,
+      ar: { n: 'المكسيك', in: 'في المكسيك', cur: 'بيسو', curS: 'بيسو', cities: '' },
+      en: { n: 'Mexico', adj: 'Mexican', cur: 'Mexican peso', cities: 'Mexico City, Guadalajara, Monterrey and Cancun' },
+      noteAr: '',
+      noteEn: 'The Mexican peso floats freely, so the gold price in MXN moves with both the global price and the exchange rate. Mexico has a proud coinage tradition: the Centenario, first minted in 1921, contains 37.5 grams of pure gold and remains the classic Mexican investment coin. Everyday jewellery is most often 14K or 10K, and investment gold coins are exempt from VAT in Mexico, while jewellery is taxed at 16%.',
+      faqEn: [
+        ['What is the gold price in Mexico today?', 'The live price per gram in Mexican pesos is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw international rate without dealer premiums.'],
+        ['What is a Centenario coin?', 'Mexico\'s classic gold coin, first minted in 1921, containing 37.5 grams of pure gold. Its value tracks the gold price shown on this page plus a collector and dealer premium.'],
+        ['Which karat is most common in Mexico?', 'Most everyday jewellery in Mexico is 14K or 10K, while the Centenario and Libertad coins are bought for investment.']
+      ] },
+    brazil: { code: 'BRL', d: 2, vat: 0, peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,
+      ar: { n: 'البرازيل', in: 'في البرازيل', cur: 'ريال', curS: 'ريال', cities: '' },
+      en: { n: 'Brazil', adj: 'Brazilian', cur: 'Brazilian real', cities: 'Sao Paulo, Rio de Janeiro, Belo Horizonte and Brasilia' },
+      noteAr: '',
+      noteEn: 'The Brazilian real floats freely, so the gold price in BRL moves with both the global price and the exchange rate. Brazil is one of the largest jewellery markets in the world, and its standard is unmistakable: ouro 18K (750) dominates Brazilian jewellery, while investment gold is traded on the B3 exchange and through banks in bars of certified purity.',
+      faqEn: [
+        ['What is the gold price in Brazil today?', 'The live price per gram in Brazilian reais is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw international rate without dealer premiums.'],
+        ['Which karat is most common in Brazil?', '18K gold (marked 750) is the Brazilian standard for jewellery, dominating the market. 24K is traded as bars on the B3 exchange and through banks.'],
+        ['Why do Brazilian shop prices differ from this page?', 'The rate here is calculated live from the global spot price and the BRL exchange rate. Shops add making charges and their margin per piece.']
+      ] },
+    china: { code: 'CNY', d: 2, vat: 0, peg: '', pegEn: 'managed against the US dollar, so its rate moves daily', fx: true, enOnly: true,
+      ar: { n: 'الصين', in: 'في الصين', cur: 'يوان', curS: 'يوان', cities: '' },
+      en: { n: 'China', adj: 'Chinese', cur: 'Chinese yuan', cities: 'Shanghai, Beijing, Shenzhen and Guangzhou' },
+      noteAr: '',
+      noteEn: 'The Chinese yuan is managed against the US dollar, so the gold price in CNY moves with both the global price and the exchange rate. China is the world\'s largest gold consumer and producer: 24K gold (marked 999 or 9999) is the national standard for both saving and traditional jewellery, and prices are anchored by the Shanghai Gold Exchange, which can trade at a premium over the international rate shown here.',
+      faqEn: [
+        ['What is the gold price in China today?', 'The live price per gram in Chinese yuan is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw international rate; Shanghai Gold Exchange prices can carry a premium.'],
+        ['Which karat is most common in China?', '24K gold (marked 999 or 9999) is the Chinese standard for both saving and traditional jewellery, unlike most Western markets.'],
+        ['Why do Chinese retail prices differ from this page?', 'Chinese retail gold follows the Shanghai Gold Exchange, which can trade at a premium over the international rate, and brands add making charges per gram.']
       ] }
   };
   const COUNTRY_PAGES = { ...GCC, ...OTHERS };
