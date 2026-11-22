@@ -1186,3 +1186,142 @@ ARTICLES_EN.push(
     ]
   }
 );
+
+// ── Wave 2 batch F: Morocco, Algeria, Lebanon, Tunisia, Libya, Yemen ──
+ARTICLES_EN.push(
+  {
+    slug: 'gold-morocco-18k',
+    title: 'Gold in Morocco: Why 18K Rules and How Prices Work',
+    h1: 'Gold in Morocco: why 18K rules and how prices work',
+    desc: 'How gold works in Morocco: 18K (750) as the standard for jewellery, per-gram pricing in dirhams, making charges, and the euro-dollar link.',
+    teaser: 'The Maghreb\'s 750 tradition',
+    intro: 'Moroccan gold is an 18K market with French-era habits',
+    body: `
+<p>Morocco's gold tradition runs from Amazigh bridal jewellery to the Casablanca souks — and unlike the Gulf, it is an <strong>18K</strong> market.</p>
+<h3>18K is the standard</h3>
+<p>Moroccan jewellery is overwhelmingly <strong>18 karat (750)</strong>, hallmarked and priced per gram at the day's rate plus workmanship. Traditional Amazigh and Andalusian pieces carry high workmanship value; plain bangles carry the least. See the live <a href="/en/gold-18k/">18K rate</a>.</p>
+<h3>How the dirham price forms</h3>
+<p>Prices derive from the world <a href="/en/gold-price-usd/">USD price</a> × USD/MAD. The dirham is managed against a euro-dollar basket, so it is relatively stable — Moroccan gold mostly follows the world cycle. Follow the <a href="/en/dollar-morocco/">dollar rate in Morocco</a> beside today's <a href="/en/morocco/">gold price in Morocco</a>.</p>
+<h3>Buying well</h3>
+<p>Buy from licensed bijouteries in the souks (Casablanca's Derb Sultan, Fes, Marrakech), ask for the gram rate and workmanship separately, and keep the invoice with weight and hallmark. For savings, 24K coins and bars track the metal value best; jewellery workmanship is lost on resale.</p>
+<p>This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['What karat is Moroccan gold jewellery?', 'Mostly 18K (750) — the Moroccan standard — hallmarked and priced per gram, with 24K coins and bars for savings.'],
+      ['How is the gold price in Morocco calculated?', 'From the world dollar price times USD/MAD. The dirham is managed against a euro-dollar basket, so prices mainly follow the world cycle.'],
+      ['Where do Moroccans buy gold?', 'Licensed bijouteries in the souks of Casablanca, Fes and Marrakech; always with an itemized invoice and hallmark.']
+    ]
+  },
+  {
+    slug: 'gold-algeria-18k',
+    title: 'Gold in Algeria: 18K Jewellery, Prices and the Dinar',
+    h1: 'Gold in Algeria: 18K jewellery, prices and the dinar',
+    desc: 'How gold works in Algeria: 18K as the jewellery standard, per-gram pricing in dinars, traditional Kabyle pieces, and the euro-dollar link.',
+    teaser: 'Kabyle gold and the 750 standard',
+    intro: 'Algerian gold is family savings cast in 18K',
+    body: `
+<p>In Algeria, gold is the family's reserve — worn at weddings, saved for hard times — and it is almost all <strong>18K</strong>.</p>
+<h3>The 750 standard</h3>
+<p>Algerian jewellery is traditionally <strong>18K (750)</strong>, hallmarked and priced per gram at the day's rate plus workmanship. The famous Kabyle enamel pieces and traditional sets carry the highest workmanship; plain bangles the least. See the live <a href="/en/gold-18k/">18K rate</a>.</p>
+<h3>How the dinar price forms</h3>
+<p>Prices come from the world <a href="/en/gold-price-usd/">USD price</a> × USD/DZD. The dinar has depreciated gradually, so Algerian gold has climbed on both the world cycle and the exchange rate. Track the <a href="/en/dollar-algeria/">dollar rate in Algeria</a> beside today's <a href="/en/algeria/">gold price in Algeria</a>.</p>
+<h3>Buying well</h3>
+<p>Buy from licensed jewellers in Algiers, Oran and Constantine; ask for the gram rate and workmanship separately; and insist on the hallmark and an itemized invoice. For savings, 24K coins and bars avoid workmanship entirely.</p>
+<p>This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['What karat is Algerian gold jewellery?', 'Almost all 18K (750), hallmarked and priced per gram — including the famous traditional Kabyle pieces.'],
+      ['Why does gold keep rising in Algeria?', 'Record world prices plus gradual dinar depreciation: local prices equal the dollar price times USD/DZD.'],
+      ['How do Algerians buy gold?', 'Through licensed jewellers in the big cities, priced per gram plus workmanship; coins and bars for pure savings.']
+    ]
+  },
+  {
+    slug: 'gold-lebanon-dollar-pricing',
+    title: 'Gold in Lebanon: Dollar Pricing, 18K and 21K Explained',
+    h1: 'Gold in Lebanon: dollar pricing, 18K and 21K explained',
+    desc: 'How gold works in Lebanon after the crisis: prices quoted in dollars, 18K and 21K jewellery, the lira collapse, and gold\'s role as savings.',
+    teaser: 'When the lira collapsed, gold spoke dollars',
+    intro: 'Lebanon\'s gold market dollarized itself',
+    body: `
+<p>Lebanon's financial crisis changed how gold is quoted: today the market talks in <strong>dollars</strong>, because the lira no longer means what it did.</p>
+<h3>Prices in dollars</h3>
+<p>After the lira's collapse, jewellers price gold directly in USD — per gram of 18K or 21K at the day's <a href="/en/gold-price-usd/">world price</a> plus workmanship. Lira prices are derived at the day's market exchange rate and change constantly. Follow the <a href="/en/dollar-lebanon/">dollar rate in Lebanon</a> for context.</p>
+<h3>18K and 21K</h3>
+<p>Lebanese jewellery mixes both: <strong>18K</strong> for modern and diamond pieces (the Beirut design tradition) and <strong>21K</strong> for traditional family gold. Savers buy 24K coins and bars — the lira gold pound remains a classic.</p>
+<h3>Gold as survival savings</h3>
+<p>The crisis proved gold's Lebanese role: with banks frozen and the lira down over 90%, families holding gold kept their savings. Demand stayed strong through the worst years.</p>
+<h3>What buyers can do</h3>
+<p>Compare the dollar gram rate across shops, negotiate workmanship separately, and keep invoices in dollars. See today's <a href="/en/lebanon/">gold price in Lebanon</a>. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['Why is gold priced in dollars in Lebanon?', 'The lira collapsed in the financial crisis, so jewellers quote gold in USD at the world price plus workmanship; lira prices are derived at the market rate.'],
+      ['What karat is Lebanese gold jewellery?', 'Both 18K (modern and diamond pieces) and 21K (traditional family gold) are standard, with 24K coins and bars for savings.'],
+      ['Did gold protect Lebanese savings?', 'Yes — with banks frozen and the lira down over 90%, gold holders preserved value in dollar terms, which keeps demand strong.']
+    ]
+  },
+  {
+    slug: 'gold-tunisia-18k',
+    title: 'Gold in Tunisia: 18K Jewellery and Prices in Dinars',
+    h1: 'Gold in Tunisia: 18K jewellery and prices in dinars',
+    desc: 'How gold works in Tunisia: 18K as the standard, per-gram pricing in dinars, traditional wedding gold, and the euro-dollar link.',
+    teaser: 'Wedding gold at 750, priced per gram',
+    intro: 'Tunisian gold is a wedding market built on 18K',
+    body: `
+<p>Tunisia's gold market lives around weddings and family occasions — and it runs on <strong>18K</strong>.</p>
+<h3>The 750 standard</h3>
+<p>Tunisian jewellery is almost entirely <strong>18 karat (750)</strong>, hallmarked and priced per gram at the day's rate plus workmanship. Traditional sets — the khomssa, chnaf and heavy bangles — carry the highest workmanship. See the live <a href="/en/gold-18k/">18K rate</a>.</p>
+<h3>How the dinar price forms</h3>
+<p>Prices derive from the world <a href="/en/gold-price-usd/">USD price</a> × USD/TND. The dinar is managed and relatively stable against a euro-dollar basket, so Tunisian gold mostly follows the world cycle. Track the <a href="/en/dollar-tunisia/">dollar rate in Tunisia</a> beside today's <a href="/en/tunisia/">gold price in Tunisia</a>.</p>
+<h3>Buying well</h3>
+<p>Buy from licensed bijouteries (the souks of Tunis, Sfax, Djerba's Houmt Souk), ask for the gram rate and workmanship separately, and keep the itemized invoice. For savings, 24K coins and bars track the metal value best; jewellery workmanship is not recovered on resale.</p>
+<p>This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['What karat is Tunisian gold jewellery?', 'Almost entirely 18K (750), hallmarked and priced per gram, with 24K coins and bars for savings.'],
+      ['How is the gold price in Tunisia calculated?', 'From the world dollar price times USD/TND. The managed dinar is relatively stable, so prices mainly follow the world cycle.'],
+      ['Where do Tunisians buy gold?', 'Licensed bijouteries in the souks of Tunis, Sfax and Djerba — always with the hallmark and an itemized invoice.']
+    ]
+  },
+  {
+    slug: 'gold-libya-21k',
+    title: 'Gold in Libya: 21K Jewellery and Prices in Dinars',
+    h1: 'Gold in Libya: 21K jewellery and prices in dinars',
+    desc: 'How gold works in Libya: 21K as the standard, per-gram pricing in dinars, the dollar link, and gold\'s role as family savings.',
+    teaser: '21K and the family reserve',
+    intro: 'Libyan gold is 21K family savings, priced per gram',
+    body: `
+<p>Libya's gold tradition mirrors Egypt's: <strong>21K</strong> family gold, worn at weddings and kept as the household reserve.</p>
+<h3>21K is the standard</h3>
+<p>Libyan jewellery is mostly <strong>21K (875)</strong> — the karat of the mahar and family gifts — with <a href="/en/gold-18k/">18K</a> for modern pieces and 24K coins and bars for savings. Shops quote the gram rate daily.</p>
+<h3>How the dinar price forms</h3>
+<p>Prices come from the world <a href="/en/gold-price-usd/">USD price</a> × USD/LYD. The dinar's 2021 devaluation raised local gold prices sharply, and the parallel-market rate still matters when it diverges from the official one. Follow the <a href="/en/dollar-libya/">dollar rate in Libya</a> beside today's <a href="/en/libya/">gold price in Libya</a>.</p>
+<h3>Gold as the family reserve</h3>
+<p>Through years of instability, gold kept its role as the safe store of Libyan household wealth — portable, divisible, and dollar-linked. Demand for coins and small bars grows whenever confidence in banks shakes.</p>
+<h3>What buyers can do</h3>
+<p>Buy from known jewellers in Tripoli and Benghazi, check the day's gram rate, negotiate workmanship separately, and keep itemized invoices. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['What karat is Libyan gold jewellery?', 'Mostly 21K (87.5% pure), with 18K for modern pieces and 24K coins and bars for savings.'],
+      ['Why did gold prices jump in Libya?', 'The 2021 dinar devaluation raised local prices sharply, and world record prices added more since. Local prices equal the dollar price times USD/LYD.'],
+      ['Is gold popular as savings in Libya?', 'Very — it is the traditional household reserve, dollar-linked and portable, and demand rises whenever banking confidence weakens.']
+    ]
+  },
+  {
+    slug: 'gold-yemen-21k',
+    title: 'Gold in Yemen: 21K Jewellery, the Rial and Prices',
+    h1: 'Gold in Yemen: 21K jewellery, the rial and prices',
+    desc: 'How gold works in Yemen: 21K as the standard, per-gram pricing in riyals, the split exchange rate, and gold\'s role through the crisis.',
+    teaser: 'The rial split and the 21K gram',
+    intro: 'In Yemen, gold outlasted the currency itself',
+    body: `
+<p>Yemen's gold market kept working through war and a currency split — because gold needs no bank.</p>
+<h3>21K is the standard</h3>
+<p>Yemeni jewellery is traditionally <strong>21K (875)</strong> — the karat of the bride's gold (shabka) and family savings — priced per gram at the day's rate plus workmanship. Famous Yemeni silversmith-gold traditions (Sana'a agate rings, bridal sets) carry cultural as well as metal value.</p>
+<h3>A split currency</h3>
+<p>Yemen effectively has two riyal rates — Sana'a and Aden — and gold prices differ between them because the world <a href="/en/gold-price-usd/">USD price</a> converts at each region's rate. Aden's riyal has depreciated far more, so gold there costs far more in nominal riyals. Follow the <a href="/en/dollar-yemen/">dollar rate in Yemen</a> beside today's <a href="/en/yemen/">gold price in Yemen</a>.</p>
+<h3>Gold through the crisis</h3>
+<p>With banking disrupted and the rial split, gold became the safest way for Yemeni families to hold and move value — small, dollar-linked, and sellable anywhere.</p>
+<h3>What buyers can do</h3>
+<p>Check the day's gram rate in your city, buy from known souq jewellers, negotiate workmanship separately, and keep small, easy-to-sell pieces. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['What karat is Yemeni gold jewellery?', 'Traditionally 21K (87.5% pure) — the karat of the bride\'s gold and family savings — priced per gram plus workmanship.'],
+      ['Why do gold prices differ between Sana\'a and Aden?', 'Because the riyal trades at different rates in the two regions, and the world dollar price converts at each region\'s exchange rate.'],
+      ['Why is gold important in Yemen?', 'With the banking system disrupted and the currency split, gold is the safest portable store of value for families.']
+    ]
+  }
+);
