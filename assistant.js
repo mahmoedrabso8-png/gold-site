@@ -164,7 +164,7 @@ function ansCountryPrice(c, num, unit, karat) {
   const [, code, dec, , defK, art, arN, enN] = c;
   if (!g24(code)) return AR ? 'تعذر تحميل السعر المباشر الآن، جرّب بعد لحظات أو افتح صفحة ' + link('/' + c[0] + '/', arN) + '.' : 'Live price unavailable right now, try again in a moment or open the ' + link('/en/' + c[0] + '/', enN) + ' page.';
   const w = unit ? unit[1] : 1;
-  const amount = num || w;
+  const amount = num || 1;
   const gramsW = unit ? amount * unit[1] : amount;
   let head;
   if (num || unit) {
@@ -298,7 +298,7 @@ function ansFallback() {
 
 /* ── قاعدة المعرفة: بحث استرجاعي في مقالات الموقع وأدلتها ── */
 const KB = AR ? (window.__KB_AR || []) : (window.__KB_EN || []);
-const STOP = new Set((AR
+const STOP = new Set(norm(AR
   ? 'في من على إلى الى عن ما هو هي هذا هذه ذلك الذي التي او أو ثم قد لو هل سعر اسعار الذهب دهب بكم بكام كام كم ايه إيه اي أي النهارده النهاردة اليوم الان الآن لو سمحت من فضلك عندي عايز عاوز بدي كيف لماذا ليه متى امتى اين فين عند عندما غرام جرام'
   : 'the a an of in on at is are was were what which who how much many price prices rate rates gold for to and or it its this that these those please tell me about do does did can could should will would today now current currently best good gram grams per').split(' '));
 const KB_N = KB.map(e => ({ t: e.t, d: e.d, u: e.u, _n: norm(e.t + ' ' + e.d) }));
@@ -306,7 +306,7 @@ function kbSearch(q) {
   const toks = [...new Set(norm(q).split(' ').filter(t => t.length > 1 && !STOP.has(t)))];
   if (!toks.length) return null;
   let best = null, bs = 0;
-  for (const e of KB_N) { let s = 0; for (const t of toks) if (e._n.includes(t)) s++; if (s > bs) { bs = s; best = e; } }
+  for (const e of KB_N) { let s = 0; for (const t of toks) if ((' '+e._n+' ').includes(' '+t+' ')) s += 1 + (norm(e.t).includes(t) ? 0.7 : 0); if (s > bs) { bs = s; best = e; } }
   if (!best || bs < 2 || (toks.length >= 4 && bs < toks.length * 0.5)) return null;
   return (AR
     ? `أقرب معلومة لسؤالك من أدلتنا:<br><strong>${best.t}</strong><br>${best.d}<div class="chat-links">${link(best.u, 'اقرأ الدليل كاملاً')}</div>`
@@ -318,6 +318,7 @@ function answer(raw) {
   const q = norm(raw);
   if (!q) return ansFallback();
   if (has(q, ['سلام', 'اهلا', 'مرحبا', 'هاي', 'hello', 'hi ', 'hey']) && q.length < 30) return ansGreeting();
+  if (has(q, ['why', 'what', 'how', 'difference', 'vs', 'tax', 'vat', 'gst', 'buy', 'making', 'premium', 'hallmark', 'purity', 'ليه', 'لماذا', 'ازاي', 'كيف', 'ضريب', 'مصنعي', 'ختم', 'دمغ', 'فرق', 'شراء', 'ادخار', 'استثمار'])) { const knowledge = kbSearch(q); if (knowledge) return knowledge; }
   if (has(q, ['زكاه', 'الزكاه', 'zakat', 'nisab', 'نصاب'])) return ansZakat();
   if (has(q, ['فضه', 'الفضه', 'silver'])) return ansSilver();
   if (has(q, ['توقع', 'هيزيد', 'هيرتفع', 'هيزيد', 'هينزل', 'هيقل', 'هيغلي', 'forecast', 'will gold', 'go up', 'ذهب هل', 'رايك في الذهب', 'اتوقع', 'future'])) return ansForecast();
@@ -327,7 +328,7 @@ function answer(raw) {
   const country = findCountry(q);
   const unit = findUnit(q);
   const karat = findKarat(q);
-  const num = findNum(q);
+  const num = findNum(q.replace(/(?:عيار|k|قيراط|ك)\s*(24|22|21|18)\b|\b(24|22|21|18)\s*k\b/g, ' '));
 
   /* تحويل عملات: عملتان ورقم */
   const curs = findCur(q);

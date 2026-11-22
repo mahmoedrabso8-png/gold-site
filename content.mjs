@@ -322,7 +322,7 @@ ${links(L, 'gold-calculator')}`,
   <div class="chat-log" id="chat-log" aria-live="polite"></div>
   <div class="chat-chips" id="chat-chips"></div>
   <form class="chat-form" id="chat-form">
-    <input id="chat-in" type="text" autocomplete="off" placeholder="${en ? 'Ask: gold price in India, 10 grams 22K…' : 'اسأل: سعر الذهب في مصر، 10 جرام عيار 21…'}" aria-label="${en ? 'Your question' : 'سؤالك'}" />
+    <input class="chat-in" id="chat-in" type="text" autocomplete="off" placeholder="${en ? 'Ask: gold price in India, 10 grams 22K…' : 'اسأل: سعر الذهب في مصر، 10 جرام عيار 21…'}" aria-label="${en ? 'Your question' : 'سؤالك'}" />
     <button type="submit" aria-label="${en ? 'Send' : 'إرسال'}">${en ? 'Ask' : 'اسأل'}</button>
   </form>
 </section>

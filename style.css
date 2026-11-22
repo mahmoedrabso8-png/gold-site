@@ -225,3 +225,7 @@ details.faq p{padding:0 16px 13px;font-size:.84rem;color:var(--t2)}
 .chat-panel .chat-form{padding:10px 12px;border-top:1px solid var(--bb)}
 body.ib #chat-widget{bottom:98px}
 @media(max-width:520px){.chat-panel{inset-inline:10px;width:auto;bottom:78px;height:min(65vh,520px)}}
+.chat-form input{min-width:0}
+.chat-panel .chat-chip{flex-shrink:0}
+body.ib .chat-panel{bottom:160px;height:min(58vh,480px)}
+body.ib .tg-float{bottom:100px}

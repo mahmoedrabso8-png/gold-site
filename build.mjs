@@ -371,7 +371,7 @@ ${p.noAds ? '' : AD}
 <div id="chat-widget">
 <button type="button" id="chat-fab" aria-expanded="false" aria-label="${L === 'ar' ? 'اسأل مساعد الذهب' : 'Ask the gold assistant'}">💬</button>
 <div id="chat-panel" class="chat-panel" hidden role="dialog" aria-label="${L === 'ar' ? 'مساعد الذهب' : 'Gold assistant'}">
-  <div class="chat-panel-head"><span>🪙 ${L === 'ar' ? 'مساعد الذهب' : 'Gold assistant'}</span><a class="chat-full" href="${url(L, 'assistant')}" aria-label="${L === 'ar' ? 'فتح صفحة المساعد' : 'Open assistant page'}">⛶</a><button type="button" class="chat-close" aria-label="${L === 'ar' ? 'إغلاق' : 'Close'}">✕</button></div>
+  <div class="chat-panel-head"><span>🪙 ${L === 'ar' ? 'مساعد الذهب' : 'Gold assistant'}</span><a class="chat-full" href="${url(L === 'ar' ? 'ar' : 'en', 'assistant')}" aria-label="${L === 'ar' ? 'فتح صفحة المساعد' : 'Open assistant page'}">⛶</a><button type="button" class="chat-close" aria-label="${L === 'ar' ? 'إغلاق' : 'Close'}">✕</button></div>
   <div class="chat-log" aria-live="polite"></div>
   <div class="chat-chips"></div>
   <form class="chat-form"><input class="chat-in" type="text" autocomplete="off" placeholder="${L === 'ar' ? 'اسأل عن أسعار الذهب…' : 'Ask about gold prices…'}" aria-label="${L === 'ar' ? 'سؤالك' : 'Your question'}" /><button type="submit">${L === 'ar' ? 'اسأل' : 'Ask'}</button></form>
@@ -432,7 +432,8 @@ for (const f of ['style.css', 'app.js', 'assistant.js']) await place(f, ['assets
   const cut = (s, n = 240) => (s.length <= n ? s : s.slice(0, n).replace(/\s\S*$/, '') + '…');
   const kbFrom = (arr, lang) => arr.flatMap(a => {
     const u = url(lang, 'articles/' + a.slug);
-    const out = [{ t: stripH(a.h1 || a.title), d: cut(stripH((a.desc || '') + ' ' + (a.teaser || ''))), u }];
+    const out = [{ t: stripH(a.h1 || a.title), d: cut(stripH(a.intro || a.desc), 600), u }];
+    for (const para of String(a.body || '').split(/<\/p>/i)) { const text = stripH(para); if (text.length > 70) out.push({t: stripH(a.h1 || a.title), d: cut(text, 700), u}); }
     for (const [q, ans] of (a.faq || [])) out.push({ t: stripH(q), d: cut(stripH(ans)), u });
     return out;
   });
