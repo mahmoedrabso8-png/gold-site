@@ -119,7 +119,8 @@ function makeCtx(price, daily, extra = {}) {
     const dir = pct > 0.005 ? 'up' : pct < -0.005 ? 'dn' : 'fl';
     chg = `<span class="chg ${dir}" data-chg>${dir === 'up' ? '▲' : dir === 'dn' ? '▼' : '●'} ${Math.abs(pct).toFixed(2)}%</span>`;
   } else chg = '<span class="chg fl" data-chg hidden></span>';
-  return { g24: g, ag, fx, PEG, rateOf, P, S, FX, FXD, updated, chg, daily, fmt, AED, TROY, SITE, TODAY, url, AD };
+  const markets = Object.entries(CNAMES).map(([slug, [ar, en]]) => ({slug, ar, en, currency: (COUNTRIES.find(c => c[2] === en || c[1] === ar) || ['EUR'])[0]}));
+  return { markets, g24: g, ag, fx, PEG, rateOf, P, S, FX, FXD, updated, chg, daily, fmt, AED, TROY, SITE, TODAY, url, AD };
 }
 
 // ── Layout ────────────────────────────────────────────────────
@@ -210,7 +211,8 @@ function layout(p, ctx) {
   else if (/^dollar-.+$/.test(p.slug)) ctry = p.slug.slice(7);
   else if (p.slug === '' && !p.file) ctry = 'uae';
   else if (/^gold-(?:24|22|21|18)k$/.test(p.slug)) { ctry = 'uae'; sub = p.slug; }
-  const body = !ctry && !p.fixed ? markCur(p.body) : p.body;
+  let body = !ctry && !p.fixed ? markCur(p.body) : p.body;
+  if (ctry && !p.slug.endsWith('gold-calculator')) body = body.replace(/href="(\/(?:en\/)?gold-calculator\/)"/g, (_, href) => `href="${href}?country=${ctry}"`);
   const cselect = `<select id="country" class="ctry" aria-label="${en ? 'Country' : tr ? 'Ülke' : L === 'hi' ? 'देश' : L === 'ur' ? 'ملک' : L === 'id' ? 'Negara' : L === 'ms' ? 'Negara' : L === 'tl' ? 'Bansa' : L === 'bn' ? 'দেশ' : 'الدولة'}">${COUNTRIES.map(([c, a, e]) => `<option value="${c}">${L === 'ar' ? a : e}</option>`).join('')}</select>`;
   const altLinks = p.noindex ? '' : p.alts
     ? p.alts.map(([h, u]) => `<link rel="alternate" hreflang="${h}" href="${SITE + u}" />`).join('\n  ')

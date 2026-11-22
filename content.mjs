@@ -242,53 +242,42 @@ ${links(L, `gold-${k}k`)}`,
       ] });
   }
 
-  // ── حاسبة الذهب ───────────────────────────────────────
+  // ── حاسبة المجوهرات لكل دولة ──
   for (const L of ['ar', 'en']) {
     const en = L === 'en';
-    const opt = [24, 22, 21, 18, 14].map(k => `<option value="${k}"${k === (en ? 22 : 21) ? ' selected' : ''}>${en ? `${k}K (${k === 14 ? '58.3%' : K[k].purity})` : `عيار ${k} (${k === 14 ? '58.3%' : K[k].purity})`}</option>`).join('');
-    out.push({ lang: L, slug: 'gold-calculator', alt: true, usesFx: true,
-      crumbs: [[en ? 'Gold calculator' : 'حاسبة الذهب', url(L, 'gold-calculator')]],
-      title: en ? 'Gold Calculator UAE: Price with Making Charges & VAT' : 'حاسبة الذهب في الإمارات بالمصنعية والضريبة | احسب سعر مشترياتك',
-      desc: en ? 'Free gold calculator: enter weight and karat, add making charges per gram and 5% VAT, and see the final shop price in AED and USD at today\'s live UAE rate.'
-        : 'حاسبة ذهب مجانية: أدخل الوزن والعيار وأضف المصنعية للغرام وضريبة 5% لتعرف السعر النهائي في المحل بالدرهم والدولار حسب سعر اليوم المباشر.',
-      schema: [{ '@context': 'https://schema.org', '@type': 'WebApplication', name: en ? 'UAE Gold Price Calculator' : 'حاسبة سعر الذهب الإمارات', applicationCategory: 'FinanceApplication', operatingSystem: 'Any', inLanguage: L, url: ctx.SITE + url(L, 'gold-calculator'), offers: { '@type': 'Offer', price: '0', priceCurrency: 'AED' } }],
-      body: `${hero(en ? 'Gold Price Calculator (UAE)' : 'حاسبة سعر الذهب بالمصنعية والضريبة', en ? 'Today\'s live rate × weight + making charges + VAT' : 'سعر اليوم المباشر × الوزن + المصنعية + الضريبة', L)}
-${errBox}
-<section class="card-section" id="calc"><h2>${en ? 'Calculate your gold price' : 'احسب سعر ذهبك'}</h2>
-<div class="form-grid">
-<div class="field"><label for="c-w">${en ? 'Weight (grams)' : 'الوزن (غرام)'}</label><input id="c-w" type="number" inputmode="decimal" min="0" step="0.01" value="10" /></div>
-<div class="field"><label for="c-k">${en ? 'Karat' : 'العيار'}</label><select id="c-k">${opt}</select></div>
-<div class="field"><label for="c-cur">${en ? 'Currency / country' : 'العملة / البلد'}</label><select id="c-cur">${CURS.map(([c, a, e, v, d]) => `<option value="${c}" data-vat="${v}" data-d="${d}">${en ? e : a} (${c})</option>`).join('')}</select></div>
-<div class="field"><label for="c-mc">${en ? 'Making charge (per gram, in the chosen currency)' : 'المصنعية (للغرام بالعملة المختارة)'}</label><input id="c-mc" type="number" inputmode="decimal" min="0" step="0.5" value="0" /></div>
-<div class="field" style="display:flex;align-items:flex-end"><label class="check"><input id="c-vat" type="checkbox" /> ${en ? 'Add VAT <span id="c-vatp">5</span>% (jewellery)' : 'إضافة ضريبة القيمة المضافة <span id="c-vatp">5</span>% (للمشغولات)'}</label></div>
+    const opt = [24, 22, 21, 18, 14].map(k => `<option value="${k}"${k === (en ? 22 : 21) ? ' selected' : ''}>${en ? k + 'K' : 'عيار ' + k}</option>`).join('');
+    const mopts = ctx.markets.map(m => `<option value="${m.currency}" data-market="${m.slug}" data-d="${(CURS.find(c=>c[0]===m.currency)||[])[4] ?? 2}">${en ? m.en : m.ar} (${m.currency})</option>`).join('');
+    out.push({lang:L, slug:'gold-calculator', alt:true, usesFx:true,
+      title:en?'Gold Jewelry Calculator: Making Charges & Tax by Country':'حاسبة الذهب بالمصنعية والضريبة حسب الدولة',
+      desc:en?'Calculate jewelry cost in 44 countries: weight, karat, live or shop gram price, making charges per gram, per piece or percent, and your invoice tax rate.':'احسب تكلفة الذهب في 44 دولة بالوزن والعيار وسعر الغرام والمصنعية للغرام أو للقطعة أو كنسبة، مع ضريبة قابلة للتعديل حسب فاتورة المحل.',
+      crumbs:[[en?'Jewelry calculator':'حاسبة المجوهرات',url(L,'gold-calculator')]],
+      schema:[{'@context':'https://schema.org','@type':'WebApplication',name:en?'Gold Jewelry Calculator':'حاسبة المجوهرات الذهبية',applicationCategory:'FinanceApplication',operatingSystem:'Any',inLanguage:L,url:ctx.SITE+url(L,'gold-calculator'),offers:{'@type':'Offer',price:'0',priceCurrency:'USD'}}],
+      body:`${hero(en?'Gold jewelry cost calculator':'حاسبة تكلفة المجوهرات الذهبية',en?'Choose your country, then enter the shop’s charges and tax.':'اختر الدولة، ثم أدخل مصنعية المحل والضريبة الفعلية.',L)}${errBox}
+<section class="card-section" id="calc"><h2>${en?'Build your estimate':'احسب التكلفة التقديرية'}</h2><div class="form-grid">
+<div class="field"><label for="c-cur">${en?'Country / currency':'الدولة / العملة'}</label><select id="c-cur">${mopts}</select></div>
+<div class="field"><label for="c-w">${en?'Gold weight, excluding stones (grams)':'وزن الذهب بدون الأحجار (غرام)'}</label><input id="c-w" type="number" inputmode="decimal" min="0" step="0.01" value="10" /></div>
+<div class="field"><label for="c-k">${en?'Karat':'العيار'}</label><select id="c-k">${opt}</select></div>
+<div class="field"><label for="c-rate">${en?'Shop gram price (optional)':'سعر غرام المحل (اختياري)'}</label><input id="c-rate" type="number" inputmode="decimal" min="0" step="0.01" placeholder="${en?'Blank = live raw gold rate':'فارغ = سعر الذهب الخام المباشر'}" /></div>
+<div class="field"><label for="c-mtype">${en?'How is making charged?':'طريقة حساب المصنعية'}</label><select id="c-mtype"><option value="gram">${en?'Per gram':'لكل غرام'}</option><option value="piece">${en?'Total for this piece':'إجمالي القطعة'}</option><option value="percent">${en?'Percent of gold value':'نسبة من قيمة الذهب'}</option></select></div>
+<div class="field"><label for="c-mc">${en?'Making charge (currency or %, as selected)':'المصنعية (بالعملة أو % حسب الاختيار)'}</label><input id="c-mc" type="number" inputmode="decimal" min="0" step="0.01" value="0" /></div>
+<div class="field"><label for="c-tax-rate">${en?'Tax rate from your invoice (%)':'نسبة الضريبة من فاتورتك (%)'}</label><input id="c-tax-rate" type="number" inputmode="decimal" min="0" max="100" step="0.01" value="0" /></div>
+<div class="field"><label for="c-tax-base">${en?'Tax applies to':'تُحسب الضريبة على'}</label><select id="c-tax-base"><option value="all">${en?'Gold + making charges':'الذهب والمصنعية'}</option><option value="making">${en?'Making charges only':'المصنعية فقط'}</option><option value="gold">${en?'Gold value only':'قيمة الذهب فقط'}</option></select></div>
 </div>
-<div class="result">
-<div class="result-row"><span>${en ? 'Price per gram' : 'سعر الغرام'}</span><strong><span id="c-pg">—</span> <span class="c-curl">AED</span></strong></div>
-<div class="result-row"><span>${en ? 'Gold value' : 'قيمة الذهب'}</span><strong><span id="c-gold">—</span> <span class="c-curl">AED</span></strong></div>
-<div class="result-row"><span>${en ? 'Making charges' : 'المصنعية'}</span><strong><span id="c-make">—</span> <span class="c-curl">AED</span></strong></div>
-<div class="result-row"><span>${en ? 'VAT' : 'الضريبة'}</span><strong><span id="c-tax">—</span> <span class="c-curl">AED</span></strong></div>
-<div class="result-row total"><span>${en ? 'Total' : 'الإجمالي'}</span><strong><span id="c-total">—</span> <span class="c-curl">AED</span></strong></div>
-<div class="result-row"><span>${en ? 'Total in USD' : 'الإجمالي بالدولار'}</span><strong>$<span id="c-usd">—</span></strong></div>
-</div>
-<p class="note">${en ? 'Based on the live raw gold price. Shop rates can differ slightly.' : 'الحساب على سعر الذهب الخام المباشر، وقد يختلف سعر المحل قليلاً.'}</p></section>
-${AD}
-<section class="card-section"><h2>${en ? 'How to use the calculator' : 'طريقة استخدام الحاسبة'}</h2><div class="prose">
-${en ? `<p>Enter the weight shown on the tag or invoice, choose the karat, and type the making charge the shop quotes per gram. Tick VAT for jewellery to see the final amount you will pay.</p>
-<p><strong>Selling gold?</strong> Leave making charges at 0 and VAT unticked — shops buy back based on the raw gold value, usually minus a small margin.</p>
-<p>Formula: total = weight × (gram price of the karat + making charge) × (1.05 if VAT applies).</p>`
-        : `<p>أدخل الوزن المكتوب على البطاقة أو الفاتورة، واختر العيار، ثم اكتب المصنعية التي يطلبها المحل للغرام. فعّل الضريبة إذا كانت القطعة مشغولات ذهبية لتعرف المبلغ النهائي.</p>
-<p><strong>تريد البيع؟</strong> اجعل المصنعية صفراً وألغِ الضريبة، فالمحل يشتري على أساس قيمة الذهب الخام مع خصم بسيط في الغالب.</p>
-<p>المعادلة: الإجمالي = الوزن × (سعر غرام العيار + المصنعية) × (1.05 إذا طُبّقت الضريبة).</p>`}</div></section>
-${links(L, 'gold-calculator')}`,
-      faq: en ? [
-        ['How much are making charges in the UAE?', 'They vary by shop and design — from a few dirhams per gram for simple chains to 15 AED per gram or more for detailed pieces. Always ask for it separately from the gold rate.'],
-        ['Is VAT charged on gold in the UAE?', 'Gold jewellery carries 5% VAT. Investment gold of 99% purity or higher is generally zero-rated.'],
-        ['Is the calculator price the same as the shop price?', 'It is very close for the gold value. Shops set their own daily rate that follows the global price, so small differences are normal.']
-      ] : [
-        ['كم تبلغ المصنعية في الإمارات؟', 'تختلف حسب المحل والتصميم، من بضعة دراهم للغرام في السلاسل البسيطة حتى 15 درهماً أو أكثر للقطع المشغولة. اطلبها دائماً منفصلة عن سعر الغرام.'],
-        ['هل توجد ضريبة على الذهب في الإمارات؟', 'نعم، ضريبة القيمة المضافة 5% على المشغولات الذهبية. أما الذهب الاستثماري بنقاء 99% فأكثر فيُعامل عادةً بنسبة صفر.'],
-        ['هل سعر الحاسبة هو نفس سعر المحل؟', 'قريب جداً في قيمة الذهب، لكن المحلات تعلن سعراً يومياً خاصاً بها يتبع السعر العالمي، لذلك الفروق البسيطة طبيعية.']
-      ] });
+<p class="note">${en?'Tax starts at 0 because rules differ by product and location. Enter the rate and tax base on the shop’s invoice. Zero here does not mean tax-exempt.':'تبدأ الضريبة بصفر لأن القواعد تختلف حسب المنتج والمكان. أدخل النسبة وأساس الحساب المكتوبين في فاتورة المحل. الصفر هنا لا يعني الإعفاء الضريبي.'}</p>
+<div class="result" aria-live="polite">
+${[['c-pg',en?'Price per gram':'سعر الغرام'],['c-gold',en?'Gold value':'قيمة الذهب'],['c-make',en?'Making charges':'المصنعية'],['c-tax',en?'Tax':'الضريبة'],['c-total',en?'Estimated total':'الإجمالي التقديري']].map(([id,label])=>`<div class="result-row${id==='c-total'?' total':''}"><span>${label}</span><strong><span id="${id}">—</span> <span class="c-curl">AED</span></strong></div>`).join('')}
+<div class="result-row"><span>${en?'Estimated total in USD':'الإجمالي التقديري بالدولار'}</span><strong>$<span id="c-usd">—</span></strong></div></div>
+<p class="note" id="c-rate-source"></p></section>${AD}
+<section class="card-section"><h2>${en?'How the estimate works':'كيف تُحسب التكلفة'}</h2><div class="prose"><p>${en?'Gold value = gold weight × gram price for the selected karat. Making charges can be per gram, a fixed amount for the piece, or a percentage of the gold value. Tax is calculated on the base you choose. Total = gold + making + tax.':'قيمة الذهب = وزن الذهب × سعر غرام العيار المختار. يمكن أن تكون المصنعية لكل غرام أو مبلغاً ثابتاً للقطعة أو نسبة من قيمة الذهب. تُحسب الضريبة على الأساس الذي تختاره. الإجمالي = الذهب + المصنعية + الضريبة.'}</p><p>${en?'The automatic rate is international raw gold converted at the current exchange rate. It is not a guaranteed local retail quote. Enter the shop gram price to match an actual offer. Stones, delivery, other fees and buyback deductions are not included.':'السعر التلقائي هو الذهب الخام العالمي محوّلاً بسعر الصرف الحالي، وليس عرضاً مضموناً من محلات بلدك. أدخل سعر غرام المحل لمقارنة عرض فعلي. لا يشمل الحساب الأحجار أو التوصيل أو الرسوم الأخرى أو خصم إعادة الشراء.'}</p></div></section>${links(L,'gold-calculator')}`,
+      faq:en?[
+        ['Can I use the calculator outside the UAE?','Yes. Select any of the 44 countries to use its currency. Enter the making charge and actual invoice tax; tax rules are not assumed.'],
+        ['Can I enter the shop’s own gram price?','Yes. The optional shop-price field replaces the live raw rate for the selected karat. Leave it blank to use the live rate.'],
+        ['Does zero tax mean gold is exempt?','No. Zero is an initial input, not tax advice. Use the rate and taxable base quoted by your retailer.']
+      ]:[
+        ['هل تعمل الحاسبة خارج الإمارات؟','نعم، اختر أياً من 44 دولة لاستخدام عملتها، ثم أدخل المصنعية والضريبة الفعلية من الفاتورة. لا تفترض الحاسبة قواعد ضريبية.'],
+        ['هل يمكن إدخال سعر غرام المحل؟','نعم، الحقل الاختياري يستبدل السعر المباشر بسعر غرام المحل للعيار المختار. اتركه فارغاً لاستخدام السعر المباشر.'],
+        ['هل الضريبة صفر تعني إعفاء الذهب؟','لا. الصفر قيمة ابتدائية وليس نصيحة ضريبية. استخدم النسبة وأساس الحساب اللذين يحددهما البائع.']
+      ]});
   }
 
   // ── المساعد الذكي ─────────────────────────────────────

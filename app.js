@@ -140,8 +140,11 @@ if(modeSel)modeSel.addEventListener('change',()=>{
 // قائمة اللغات: تنتقل للرابط المحسوب لكل لغة في الصفحة (window.__LANGURLS)
 const lsel=$('#langsel');
 if(lsel) lsel.addEventListener('change',()=>{const u=(window.__LANGURLS||{})[lsel.value];if(u)location.href=u;});
-function syncCalcCur(){const cs=$('#c-cur');if(cs&&!FIXED&&[...cs.options].some(o=>o.value===SEL)) cs.value=SEL;}
+function syncCalcCur(){const cs=$('#c-cur');if(cs&&!FIXED&&cs.value!==SEL&&[...cs.options].some(o=>o.value===SEL)){cs.value=SEL;cs.dispatchEvent(new Event('change',{bubbles:true}));}}
 syncCalcCur();
+const calcSelect=$('#c-cur');if(calcSelect)calcSelect.addEventListener('change',()=>{if($('#c-rate'))$('#c-rate').value='';if($('#c-mtype').value!=='percent')$('#c-mc').value='0';$('#c-tax-rate').value='0';});
+const calcCountry=new URLSearchParams(location.search).get('country');
+if(calcCountry&&$('#c-cur')){const co=[...$('#c-cur').options].find(o=>o.dataset.market===calcCountry);if(co)co.selected=true;}
 function paint(){
   $$('[data-p]').forEach(el=>{
     const ag=el.dataset.m==='ag';
@@ -250,18 +253,20 @@ function dconv(dir){
 /* ── Gold calculator ── */
 function setText(id,v){const el=document.getElementById(id);if(el) el.textContent=v;}
 function calc(){
-  if(!$('#calc')||!G.g24) return;
-  // العملة والضريبة حسب البلد (من اختيار العملة)
+  if(!$('#calc')) return;
+  if([...$('#calc').querySelectorAll('input')].some(el=>!el.validity.valid)){['c-pg','c-gold','c-make','c-tax','c-total','c-usd'].forEach(id=>setText(id,'—'));setText('c-rate-source',EN?'Check your inputs: values cannot be negative; tax must be between 0 and 100%.':'راجع المدخلات: لا تقبل القيم السالبة، والضريبة من صفر إلى 100%.');return;}
   const sel=$('#c-cur'),opt=sel?sel.options[sel.selectedIndex]:null;
-  const cur=opt?opt.value:'AED',vr=opt?+opt.dataset.vat:5,dp=opt?+(opt.dataset.d||2):2,r=rate(cur);
+  const cur=opt?opt.value:'AED',dp=opt?+(opt.dataset.d||2):2,r=rate(cur);
   $$('.c-curl').forEach(el=>el.textContent=cur);
-  setText('c-vatp',vr);
-  const vbox=$('#c-vat');if(vbox){vbox.disabled=!vr;if(!vr)vbox.checked=false;}
-  if(!r){['c-pg','c-gold','c-make','c-tax','c-total','c-usd'].forEach(id=>setText(id,'—'));return;}
-  const w=num('c-w'),k=+$('#c-k').value,mc=num('c-mc'),vat=vbox&&vbox.checked;
-  const pg=G.g24*k/24/AED*r,gold=pg*w,make=mc*w,sub=gold+make,tax=vat?sub*vr/100:0,total=sub+tax;
+  const quoted=num('c-rate'),w=num('c-w'),k=+$('#c-k').value,mc=num('c-mc');
+  const pg=quoted>0?quoted:(G.g24&&r?G.g24*k/24/AED*r:0);
+  setText('c-rate-source',quoted>0?(EN?'Using your shop gram price for the selected karat.':'يُستخدم سعر غرام المحل للعيار المختار.'):(EN?'Using the live raw gold rate, converted at the current exchange rate.':'يُستخدم سعر الذهب الخام المباشر محوّلاً بسعر الصرف الحالي.'));
+  if(!pg){['c-pg','c-gold','c-make','c-tax','c-total','c-usd'].forEach(id=>setText(id,'—'));return;}
+  const gold=pg*w,mode=$('#c-mtype').value,make=mode==='piece'?mc:mode==='percent'?gold*mc/100:mc*w;
+  const base=$('#c-tax-base').value,taxable=base==='making'?make:base==='gold'?gold:gold+make;
+  const tax=taxable*Math.min(num('c-tax-rate'),100)/100,total=gold+make+tax;
   setText('c-pg',fmt(pg,dp));setText('c-gold',fmt(gold,dp));setText('c-make',fmt(make,dp));
-  setText('c-tax',fmt(tax,dp));setText('c-total',fmt(total,dp));setText('c-usd',fmt(total/r));
+  setText('c-tax',fmt(tax,dp));setText('c-total',fmt(total,dp));setText('c-usd',r?fmt(total/r):'—');
 }
 
 /* ── Zakat calculator ── */
