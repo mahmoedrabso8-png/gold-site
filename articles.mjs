@@ -622,3 +622,145 @@ ARTICLES_EN.push(
     ]
   }
 );
+
+// ── Wave 2 batch B: Southeast & East Asia ──
+ARTICLES_EN.push(
+  {
+    slug: 'why-gold-rises-indonesia',
+    title: 'Why Is the Gold Price Rising in Indonesia? Antam and Rupiah',
+    h1: 'Why is the gold price rising in Indonesia?',
+    desc: 'Why Antam gold keeps breaking records in Indonesia: the world price, the rupiah, and steady retail demand — plus how Antam pricing and buyback work.',
+    teaser: 'Antam, the rupiah and Indonesia\'s gold habit',
+    intro: 'When Antam raises its price, the whole country notices — here is what moves it',
+    body: `
+<p>In Indonesia, one company sets the national mood on gold: <strong>Antam</strong>. Its daily price list is the reference for millions of savers, and it has kept climbing.</p>
+<h3>1. The world price</h3>
+<p>Antam's list starts from the global <a href="/en/gold-price-usd/">gold price in USD</a>, which is at record highs on central-bank buying and rate-cut expectations.</p>
+<h3>2. The rupiah layer</h3>
+<p>The formula is <strong>IDR price = USD price × USD/IDR</strong>. The rupiah has weakened gradually for years, so Indonesian gold rises even in flat global markets. Follow the <a href="/en/dollar-indonesia/">dollar rate in Indonesia</a> next to gold prices.</p>
+<h3>3. How Antam pricing works</h3>
+<p>Antam sells 99.99% bars from 0.5 g to 1 kg. Smaller bars carry much higher premiums per gram — a 1 g bar can cost 8–10% over the metal value while 100 g bars sit close to spot. Antam also publishes a <strong>buyback price</strong> daily, lower than the selling price; the spread between them is the real cost of owning gold. Pegadaian and e-commerce gold accounts follow the same pattern.</p>
+<h3>What buyers can do</h3>
+<p>Buy sizes that keep premiums low (25 g and up where possible), buy from Antam's official channels or Pegadaian, and hold for years rather than trading the spread. See today's <a href="/en/indonesia/">gold price in Indonesia</a>. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['Why does Antam gold keep getting more expensive?', 'The world gold price is at record highs and the rupiah has weakened over time, so the rupiah price rises on both fronts.'],
+      ['What is the Antam buyback price?', 'The price Antam pays to buy its bars back, published daily. It is lower than the selling price, and the spread is the effective cost of owning the gold.'],
+      ['Are small Antam bars worth it?', 'They are convenient, but premiums per gram are much higher on 0.5–5 g bars. Larger bars (25–100 g) track the metal price far more closely.']
+    ]
+  },
+  {
+    slug: 'thai-gold-baht-purity-guide',
+    title: 'Thai Gold Explained: Baht Weight, 96.5% Purity and Prices',
+    h1: 'Thai gold explained: baht weight, 96.5% purity and prices',
+    desc: 'How gold works in Thailand: the baht weight (15.244 g), 96.5% purity, gold-bar versus jewellery prices, and how Thai shops quote the daily rate.',
+    teaser: 'One baht of gold is not one baht of money',
+    intro: 'Thailand has its own gold system — weight, purity and pricing all unique',
+    body: `
+<p>Thailand's gold market confuses every newcomer because it uses its own unit and its own purity. Once you know both, the system is beautifully simple.</p>
+<h3>The baht weight</h3>
+<p>One <strong>baht of gold = 15.244 grams</strong> (about half a troy ounce) — unrelated to the currency of the same name. Shops quote the daily price per baht, with smaller units: 1 salung = ¼ baht (3.81 g), 2 salung = ½ baht, and so on.</p>
+<h3>96.5% purity</h3>
+<p>Standard Thai gold is <strong>96.5% pure</strong> — slightly above 23K — a tradition enforced by the gold traders' association. It gives the deep yellow colour Thai buyers expect while staying workable for jewellery. Pure 99.99% bars exist mainly for investors.</p>
+<h3>Two prices: bar and jewellery</h3>
+<p>The Gold Traders Association announces two daily prices: <strong>gold bar</strong> (the investment benchmark, bought back with a tiny spread) and <strong>gold ornament</strong> (jewellery, which includes workmanship and sells at a discount when you resell). Smart savers buy bars; buyers who want wearable value accept the ornament spread.</p>
+<h3>What moves the price</h3>
+<p>The global <a href="/en/gold-price-usd/">USD gold price</a> times USD/THB — so both record world prices and a weaker baht push Thai prices up. See today's <a href="/en/thailand/">gold price in Thailand</a>. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['How many grams is one baht of gold?', 'One baht of gold equals 15.244 grams — a traditional Thai weight unit, separate from the Thai currency of the same name.'],
+      ['Why is Thai gold 96.5% pure?', 'It is the national standard set by the Gold Traders Association — a deep-yellow alloy slightly above 23 karat, traditional for both jewellery and bars.'],
+      ['What is the difference between bar and ornament prices in Thailand?', 'The bar price is the investment benchmark with a tiny buy-sell spread; the ornament (jewellery) price includes workmanship and resells at a discount.']
+    ]
+  },
+  {
+    slug: 'vietnam-gold-sjc-tael-guide',
+    title: 'Gold in Vietnam: SJC Bars, Tael Weight and Prices Explained',
+    h1: 'Gold in Vietnam: SJC bars, tael weight and prices',
+    desc: 'How gold works in Vietnam: the tael (37.5 g) and chỉ, why SJC bars trade at a premium, and how to read the daily gold price in dong.',
+    teaser: 'SJC, tael and chỉ — Vietnam\'s own gold language',
+    intro: 'Vietnamese gold has its own units and its own star brand',
+    body: `
+<p>Vietnam's gold market runs on two things foreigners rarely expect: the <strong>tael</strong> as the unit, and <strong>SJC</strong> as the brand everyone wants.</p>
+<h3>Tael, lượng and chỉ</h3>
+<p>Gold is quoted per <strong>tael (also called lượng, 37.5 g)</strong>. One tael = 10 <strong>chỉ</strong> (3.75 g each) = 100 phân. Daily prices are quoted per lượng or per chỉ in millions of dong.</p>
+<h3>The SJC premium</h3>
+<p>SJC bars — produced by the state-licensed Saigon Jewelry Company — are Vietnam's reference gold. Because the government tightly controls SJC supply, these bars trade at a persistent <strong>premium</strong> over world prices that has sometimes reached millions of dong per tael. Plain 9999 rings (nhẫn trơn) and 24K jewellery track world prices more closely.</p>
+<h3>What moves the price</h3>
+<p>The world <a href="/en/gold-price-usd/">USD price</a> × USD/VND, plus the SJC supply premium. A weaker dong lifts everything; changes in State Bank of Vietnam gold policy move the premium itself. Follow the <a href="/en/dollar-vietnam/">dollar rate in Vietnam</a> beside gold.</p>
+<h3>What buyers can do</h3>
+<p>For savings with the tightest link to world prices, 9999 rings often beat premium-laden SJC bars. Buy from licensed dealers (SJC, PNJ, DOJI), keep receipts, and check today's <a href="/en/vietnam/">gold price in Vietnam</a>. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['What is a tael of gold in Vietnam?', 'A tael (lượng) is 37.5 grams — the standard gold weight in Vietnam. One tael equals 10 chỉ of 3.75 grams each.'],
+      ['Why are SJC bars more expensive than world gold?', 'SJC supply is tightly controlled by the State Bank of Vietnam, so the bars trade at a premium over world prices that can reach millions of dong per tael.'],
+      ['What is the cheapest way to own gold in Vietnam?', 'Plain 9999 rings (nhẫn trơn) usually track world prices more closely than SJC bars because they avoid the supply premium.']
+    ]
+  },
+  {
+    slug: 'buying-gold-singapore-gst-free',
+    title: 'Buying Gold in Singapore: GST-Free Investment Gold Explained',
+    h1: 'Buying gold in Singapore: GST-free investment gold explained',
+    desc: 'Why Singapore is a global gold hub: no GST on investment precious metals, tight dealer spreads, and how to buy bars and coins in SGD.',
+    teaser: 'The GST rule that made Singapore a gold hub',
+    intro: 'Singapore built itself into Asia\'s gold vault — on purpose',
+    body: `
+<p>Singapore deliberately made itself one of the best places on earth to buy gold. One policy did most of the work.</p>
+<h3>No GST on investment gold</h3>
+<p>Since 2012, <strong>Investment Precious Metals (IPM)</strong> — gold of 99.5%+ purity in bar, wafer or coin form — is <strong>exempt from GST</strong> in Singapore. Jewellery still carries 9% GST, but bullion trades tax-free, which keeps dealer prices among the tightest in Asia.</p>
+<h3>What you can buy</h3>
+<p>Bars from PAMP and local refiners, Maples, Kangaroos and the Singapore Mint's own pieces — all priced off the live <a href="/en/gold-price-usd/">USD spot</a> converted at USD/SGD, plus a premium of roughly 1–3% for larger bars. Dealers like BullionStar, GoldSilver Central and bank channels compete hard on spreads.</p>
+<h3>Storage is part of the plan</h3>
+<p>Singapore's real specialty is vaulted storage: allocated, insured vaulting from dealers, plus the purpose-built Silver Bullion vault. Many regional investors buy and store in Singapore without ever taking delivery.</p>
+<h3>What moves the SGD price</h3>
+<p>World price × USD/SGD. The Singapore dollar is managed against a trade basket and is relatively stable, so local gold mostly follows the global cycle. See today's <a href="/en/singapore/">gold price in Singapore</a>. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['Is gold tax-free in Singapore?', 'Investment-grade gold (99.5%+ purity bars, wafers and coins) is GST-exempt. Jewellery is not — it carries the standard 9% GST.'],
+      ['Why is Singapore popular for buying gold?', 'No GST on investment gold, tight dealer spreads, strong property rights and world-class vaulting make it a regional bullion hub.'],
+      ['What premium do gold bars carry in Singapore?', 'Typically around 1–3% over spot for larger bars from competitive dealers; small bars and coins cost more per gram.']
+    ]
+  },
+  {
+    slug: 'why-gold-rises-japan',
+    title: 'Why Is the Gold Price Rising in Japan? The Weak Yen Effect',
+    h1: 'Why is the gold price rising in Japan?',
+    desc: 'Why gold keeps hitting records in Japan: the global price, the historically weak yen, and safe-haven demand — plus how Tanaka and retail bars are priced.',
+    teaser: 'The yen turned a gold rally into a gold boom',
+    intro: 'In yen terms, gold has never looked stronger — currency is the reason',
+    body: `
+<p>Japanese gold prices have set record after record — and the biggest driver is not gold itself but the yen.</p>
+<h3>1. The world price</h3>
+<p>The base is the global <a href="/en/gold-price-usd/">USD spot price</a>, at record highs on central-bank buying and rate-cut expectations.</p>
+<h3>2. The historically weak yen</h3>
+<p>The formula is <strong>JPY price = USD price × USD/JPY</strong>. The yen weakened to multi-decade lows, so Japanese gold rose much faster than the world price. For Japanese savers, gold became the clearest hedge against their own currency. Watch the <a href="/en/dollar-japan/">dollar rate in Japan</a> beside gold.</p>
+<h3>3. How Japan buys gold</h3>
+<p>Retail gold flows through <strong>Tanaka Kikinzoku</strong> and other refiners: bars from 5 g up, coins like the Maple Leaf, and accumulation plans (monthly gold savings). Department-store and jewelry-counter sales of 18K pieces follow the same daily rate plus workmanship.</p>
+<h3>What buyers can do</h3>
+<p>Compare dealer premiums (they widen on small bars), consider accumulation plans for gradual buying, and remember the yen risk cuts both ways: a stronger yen would pull yen-gold prices down even if world gold is flat. See today's <a href="/en/japan/">gold price in Japan</a>. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['Why is gold at record highs in Japan?', 'Record global prices plus a historically weak yen: the yen price equals the dollar price times USD/JPY, and both have risen.'],
+      ['Does the yen exchange rate change Japanese gold prices?', 'Directly. A weaker yen raises the yen price of gold even when the world price is unchanged — and a stronger yen lowers it.'],
+      ['How do people buy gold in Japan?', 'Through refiners like Tanaka Kikinzoku: bars, coins and monthly accumulation plans, plus 18K jewellery at department stores.']
+    ]
+  },
+  {
+    slug: 'gold-china-999-shanghai-premium',
+    title: 'Gold in China: 999 Gold, the Shanghai Premium and Prices',
+    h1: 'Gold in China: 999 gold, the Shanghai premium and prices',
+    desc: 'How gold works in China: 999 and 9999 purity, the Shanghai Gold Exchange benchmark, the premium over world prices, and how Chinese buyers purchase gold.',
+    teaser: 'Why Chinese gold sometimes costs more than world gold',
+    intro: 'China is the world\'s biggest gold buyer — with its own price system',
+    body: `
+<p>China is the largest gold consumer on the planet, and its market runs on its own benchmark: the <strong>Shanghai Gold Exchange (SGE)</strong>.</p>
+<h3>999 and 9999 purity</h3>
+<p>Chinese gold jewellery and bars are typically <strong>999</strong> (99.9%, "qian zu jin") or <strong>9999</strong> (99.99%) — the same as <a href="/en/gold-24k/">24K</a>. Unlike Western markets, low-karat jewellery is rare; buyers expect near-pure gold, priced per gram in yuan.</p>
+<h3>The Shanghai premium</h3>
+<p>SGE prices usually track the world <a href="/en/gold-price-usd/">USD price</a> × USD/CNY — but when Chinese demand outruns import quotas, SGE trades at a <strong>premium</strong> over London, sometimes $10–30 per ounce. The premium is a live signal of Chinese demand: it widened during festival seasons and whenever households rushed to hedge the yuan.</p>
+<h3>How Chinese buyers purchase gold</h3>
+<p>Through banks (investment bars and accumulation plans), jewellers like Chow Tai Fook and Lao Feng Xiang (per-gram pricing plus workmanship), and increasingly gold ETFs and exchange products. Spring Festival and wedding seasons drive visible demand waves.</p>
+<h3>What moves the price</h3>
+<p>World price × USD/CNY ± the SGE premium. Follow the <a href="/en/dollar-china/">dollar rate in China</a> and today's <a href="/en/china/">gold price in China</a>. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['What is 999 gold in China?', 'Gold of 99.9% purity (24K) — the standard for Chinese jewellery and investment bars, sold per gram in yuan.'],
+      ['What is the Shanghai gold premium?', 'The gap between Shanghai Gold Exchange prices and world prices. When Chinese demand outruns import supply, SGE gold trades above the international price.'],
+      ['How do Chinese households buy gold?', 'Bank investment bars, jewellery chains selling 999/9999 pieces per gram, and gold ETFs — with demand peaking around Spring Festival and weddings.']
+    ]
+  }
+);
