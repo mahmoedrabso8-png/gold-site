@@ -481,3 +481,144 @@ export const ARTICLES_EN = [
     ]
   }
 ];
+
+// ── Wave 2 batch A: South Asia + Turkey + Malaysia ──
+ARTICLES_EN.push(
+  {
+    slug: 'why-gold-rises-pakistan',
+    title: 'Why Is the Gold Price Rising in Pakistan? Rupee and Tola',
+    h1: 'Why is the gold price rising in Pakistan?',
+    desc: 'Why gold keeps climbing in Pakistan: the global spot price, the falling rupee, and wedding-season demand — plus how the tola rate is calculated and what buyers can do.',
+    teaser: 'The rupee effect behind every record tola price',
+    intro: 'Every record tola rate has the same engines behind it — here is how they work',
+    body: `
+<p>Gold in Pakistan is quoted per <strong>tola (11.664 g)</strong>, and the tola rate has broken record after record. Three forces drive it: the global price, the rupee, and local demand.</p>
+<h3>1. The global price</h3>
+<p>Everything starts with the world <a href="/en/gold-price-usd/">gold price in USD</a> per ounce (31.1035 g). Central-bank buying, inflation hedging and expectations of lower interest rates have pushed it to historic highs, and Pakistan's prices follow mechanically.</p>
+<h3>2. The rupee multiplies every move</h3>
+<p>The formula is <strong>tola price = USD per ounce × USD/PKR × 11.664 ÷ 31.1035</strong>. Because the rupee has depreciated sharply over the years, Pakistani gold rises even when the world price is flat. A 5% global rally with a 5% weaker rupee feels like a 10% jump at the jeweller. Watch the <a href="/en/dollar-pakistan/">dollar rate in Pakistan</a> alongside gold.</p>
+<h3>3. Local demand and the sarafa market</h3>
+<p>Pakistan's sarafa bazaars (Karachi, Lahore, Rawalpindi) announce daily rates that follow the formula plus a small local premium. Wedding seasons bring waves of buying in <strong>22K jewellery</strong> — the local standard — which widens premiums further.</p>
+<h3>What buyers can do</h3>
+<p>You cannot time the market, but you can control how you buy: always ask for the day's per-tola rate and the making charges separately, buy hallmarked 22K from a known shop, and consider building savings in small coins or bars rather than waiting for a crash. Track the live <a href="/en/pakistan/">gold rate in Pakistan</a> per tola and gram. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['Why does gold keep getting expensive in Pakistan?', 'The global dollar price is rising and the rupee has weakened over time, so the rupee price of gold rises on both fronts. Wedding-season demand adds local premiums.'],
+      ['How is the per-tola gold rate calculated in Pakistan?', 'Tola rate = world ounce price in USD × USD/PKR rate × 11.664 ÷ 31.1035. Sarafa markets then add a small local premium.'],
+      ['Is gold a good investment in Pakistan?', 'Gold has historically protected savings against rupee depreciation, which is why households hold it. It is still volatile short-term, so many buy gradually rather than all at once.']
+    ]
+  },
+  {
+    slug: 'why-gold-rises-bangladesh',
+    title: 'Why Is the Gold Price Rising in Bangladesh? Taka and Demand',
+    h1: 'Why is the gold price rising in Bangladesh?',
+    desc: 'Why gold keeps climbing in Bangladesh: the global price, the weaker taka, and BAJUS rate-setting — plus how the bhori (11.664 g) price works and what buyers can do.',
+    teaser: 'Taka, BAJUS rates and the bhori, explained simply',
+    intro: 'The bhori keeps setting records — the reasons are the same every time',
+    body: `
+<p>In Bangladesh gold is priced per <strong>bhori (also called vori, 11.664 g)</strong>, and the Bangladesh Jewellers' Association (BAJUS) announces official rates that keep setting records. Here is why.</p>
+<h3>1. The world price leads</h3>
+<p>Bangladesh imports almost all its gold, so the local price starts from the global <a href="/en/gold-price-usd/">spot price in dollars</a>. Record global prices translate directly into record bhori rates.</p>
+<h3>2. The taka decides the size of the jump</h3>
+<p>The math: <strong>bhori price = USD ounce price × USD/BDT × 11.664 ÷ 31.1035</strong>. The taka has weakened steadily against the dollar, so Bangladeshi buyers feel global rallies amplified. Follow the <a href="/en/dollar-bangladesh/">dollar rate in Bangladesh</a> to understand the gold move.</p>
+<h3>3. How BAJUS sets the daily rate</h3>
+<p>BAJUS publishes per-bhori rates for 22K, 21K, 18K and traditional (sanatan) gold, adjusted for import costs and local supply. Jewellers then add making charges — often 8–15% for ornaments — on top of the metal value.</p>
+<h3>What buyers can do</h3>
+<p>Compare the BAJUS rate with what the shop quotes, negotiate making charges, and always take a detailed invoice showing weight, purity and charges. For savings, 22K coins and bars track the metal value most closely. Check today's <a href="/en/bangladesh/">gold price in Bangladesh</a> per bhori and gram. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['Why is gold so expensive in Bangladesh now?', 'Global gold is at record highs and the taka has weakened, so the bhori price rises on both fronts. BAJUS adjusts official rates as import costs change.'],
+      ['What is a bhori of gold?', 'A bhori (vori) is the traditional South Asian gold weight used in Bangladesh, equal to 11.664 grams — the same as a tola.'],
+      ['Who sets gold prices in Bangladesh?', 'BAJUS (the Bangladesh Jewellers\' Association) announces daily per-bhori rates by karat, based on the international price, the exchange rate and import costs.']
+    ]
+  },
+  {
+    slug: 'why-gold-rises-nepal',
+    title: 'Why Is the Gold Price Rising in Nepal? INR Peg and Demand',
+    h1: 'Why is the gold price rising in Nepal?',
+    desc: 'Why gold keeps climbing in Nepal: the global price, the rupee peg to the Indian currency, and festival demand — plus how the per-tola rate in NPR is formed.',
+    teaser: 'How the Indian-rupee peg shapes Nepal\'s gold price',
+    intro: 'Nepali gold follows two markets at once — the world and India',
+    body: `
+<p>Nepal prices gold per <strong>tola (11.664 g)</strong>, and the Federation of Nepal Gold and Silver Dealers announces daily rates that keep climbing. The drivers are global and regional at once.</p>
+<h3>1. The world price in dollars</h3>
+<p>Like everywhere, the base is the global <a href="/en/gold-price-usd/">gold price in USD</a> — at record highs on central-bank buying and rate-cut expectations.</p>
+<h3>2. The INR peg passes India's gold inflation through</h3>
+<p>The Nepali rupee is <strong>pegged to the Indian rupee</strong> at 1.6 NPR per INR. India imports gold in dollars, so when the Indian price rises — global price plus rupee weakness — Nepal's price follows through the peg, plus local import duty and taxes.</p>
+<h3>3. Festival and wedding demand</h3>
+<p>Dashain, Tihar and the wedding season bring surges of physical buying in 22K and 24K jewellery, and demand from Nepali households treats gold as the family reserve. Local premiums widen in peak season.</p>
+<h3>What buyers can do</h3>
+<p>Check the federation's daily rate before shopping, ask for making charges separately, and buy hallmark-certified pieces. For savings, small 24K bars and coins track the metal value best. See today's <a href="/en/nepal/">gold price in Nepal</a> per tola and gram. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['Why is the gold price increasing in Nepal?', 'The global price is at record highs, and because the Nepali rupee is pegged to the Indian rupee, rises in India\'s gold price pass straight through, plus local duty.'],
+      ['Who announces gold prices in Nepal?', 'The Federation of Nepal Gold and Silver Dealers publishes daily per-tola rates for fine (24K) and standard gold, which shops across the country follow.'],
+      ['How many grams are in one tola?', 'One tola equals 11.664 grams. Gold in Nepal is traditionally quoted per tola, with gram prices derived from it.']
+    ]
+  },
+  {
+    slug: 'why-gold-rises-srilanka',
+    title: 'Why Is the Gold Price Rising in Sri Lanka? Rupee and Crisis',
+    h1: 'Why is the gold price rising in Sri Lanka?',
+    desc: 'Why gold keeps climbing in Sri Lanka: the global price, the rupee\'s collapse and recovery, and what it means for 22K jewellery buyers and savers.',
+    teaser: 'What the currency crisis did to Sri Lankan gold',
+    intro: 'Sri Lankan gold tells the story of the rupee itself',
+    body: `
+<p>Few countries show the link between currency and gold as clearly as Sri Lanka. The <a href="/en/srilanka/">gold price in Sri Lanka</a> has multiplied over recent years — and most of that move is the rupee.</p>
+<h3>1. The global price</h3>
+<p>The base layer is the world <a href="/en/gold-price-usd/">spot price in USD</a>, at record highs on central-bank buying and rate-cut expectations.</p>
+<h3>2. The rupee's collapse — and what it taught savers</h3>
+<p>During the 2022 crisis the Sri Lankan rupee lost nearly half its value against the dollar, and gold prices in LKR roughly doubled even where the world price moved little. The lesson stuck: many households now treat gold as their hedge against currency risk. Track the <a href="/en/dollar-srilanka/">dollar rate in Sri Lanka</a> next to gold.</p>
+<h3>3. Local market habits</h3>
+<p>Sri Lankan jewellers work mostly in <strong>22K</strong>, quoting per gram and per pound (8 sovereigns = 1 pound in local usage for coins). Making charges vary widely between Colombo's Sea Street shops and smaller towns, and sovereign coins remain a popular savings form.</p>
+<h3>What buyers can do</h3>
+<p>Ask for the day's rate and making charges separately, compare Sea Street quotes, and keep invoices with weight and purity. For savings, sovereigns and small bars are the most liquid. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['Why did gold prices jump so much in Sri Lanka?', 'The 2022 currency crisis cut the rupee\'s value sharply, and since gold is priced in dollars, the LKR price roughly doubled. Global record prices have added more since.'],
+      ['Is gold a good hedge in Sri Lanka?', 'It protected savers through the currency collapse, which is why demand stays strong. It is still volatile short-term, so gradual buying is the common approach.'],
+      ['What karat do Sri Lankan jewellers use?', 'Mostly 22K (91.6% pure) for jewellery, with 24K for coins and bars. Sovereign coins are a traditional savings unit.']
+    ]
+  },
+  {
+    slug: 'why-gold-rises-turkey',
+    title: 'Why Is the Gold Price Rising in Turkey? Lira and Inflation',
+    h1: 'Why is the gold price rising in Turkey?',
+    desc: 'Why gram altın keeps breaking records in Turkey: the global price, lira depreciation, high inflation, and how Turks use çeyrek and gram gold to protect savings.',
+    teaser: 'Gram altın, çeyrek and the lira story',
+    intro: 'In Turkey, gold is not a luxury — it is the household savings account',
+    body: `
+<p>Turkey is one of the world's most gold-loving countries, and the <a href="/en/turkey/">gold price in Turkey</a> has risen relentlessly in lira terms. The drivers are global and domestic at once.</p>
+<h3>1. The world price</h3>
+<p>The base is the global <a href="/en/gold-price-usd/">spot price in USD</a>, at record highs. Turkish prices convert it at the day's USD/TRY rate.</p>
+<h3>2. Lira depreciation and inflation</h3>
+<p>The lira has depreciated for years while inflation ran high, so gold in TRY rises on both the global price and the exchange rate. For Turkish savers, <strong>gram altın</strong> has outpaced bank deposits for a generation — which is exactly why demand never fades. Watch the <a href="/en/dollar-turkey/">dollar rate in Turkey</a> beside gold.</p>
+<h3>3. How Turks buy: gram and çeyrek</h3>
+<p>Retail gold comes in familiar units: <strong>gram altın</strong> (24K), <strong>çeyrek</strong> (quarter, 1.6 g), yarım (half) and tam (full, ~7 g) coins, plus 22K bracelets and 18K jewellery. The çeyrek is the standard wedding gift — millions change hands every season, creating steady physical demand.</p>
+<h3>What buyers can do</h3>
+<p>Buy from jewelers or banks with transparent buy-sell spreads, prefer 24K gram or coins for savings, and compare the spread, not just the price. Grand Bazaar rates set the national tone. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['Why does gram altın keep rising in Turkey?', 'The global price is at record highs and the lira keeps depreciating with high inflation, so the lira price of gold rises on both fronts year after year.'],
+      ['What is a çeyrek coin?', 'A çeyrek is a 22K gold quarter coin weighing about 1.6 grams — Turkey\'s most popular small gold unit and the traditional wedding gift.'],
+      ['Is gold a good savings tool in Turkey?', 'It has protected purchasing power through lira depreciation for decades, which is why Turkish households hold so much of it. Spreads between buy and sell prices matter, so compare sellers.']
+    ]
+  },
+  {
+    slug: 'emas-916-vs-999-malaysia',
+    title: 'Emas 916 vs 999: How to Buy Gold in Malaysia',
+    h1: 'Emas 916 vs 999: how to buy gold in Malaysia',
+    desc: 'What emas 916 and emas 999 mean in Malaysia, how jewellers price per gram in ringgit, and which purity suits jewellery versus savings.',
+    teaser: 'The two purities every Malaysian buyer meets',
+    intro: 'Malaysian gold talk starts with two numbers: 916 and 999',
+    body: `
+<p>Walk into any kedai emas and you will hear two numbers: <strong>916</strong> and <strong>999</strong>. They are fineness marks — and choosing between them is the main decision in Malaysian gold buying.</p>
+<h3>What the numbers mean</h3>
+<p><strong>Emas 999</strong> is 99.9% pure gold — the same as <a href="/en/gold-24k/">24K</a> — sold as bars, coins and some jewellery. <strong>Emas 916</strong> is 91.6% pure, the same as <a href="/en/gold-22k/">22K</a>, and it is the standard for Malaysian jewellery: hard enough for daily wear, high enough to keep most of the metal value. (Emas 750 = <a href="/en/gold-18k/">18K</a> appears in modern and diamond pieces.)</p>
+<h3>How prices are quoted</h3>
+<p>Malaysian jewellers display a daily price <strong>per gram in ringgit</strong> for 999 and 916, based on the world <a href="/en/gold-price-usd/">USD price</a> converted at USD/MYR, plus association margins. On top comes the <strong>upah</strong> (workmanship fee) per piece — always ask for it separately. See today's <a href="/en/malaysia/">gold price in Malaysia</a>.</p>
+<h3>Which should you buy?</h3>
+<p>For savings: 999 bars and dinars from dealers or banks, with the tightest spreads. For jewellery you will wear: 916 — the resale market is deep, and pawnshops (pajak gadai) appraise it readily. For fashion pieces with stones: 750 is fine, but know you are paying for design more than metal.</p>
+<p>This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['What is emas 916?', 'Emas 916 is gold of 91.6% purity — the same as 22 karat — and the standard for Malaysian jewellery, balancing durability with high metal value.'],
+      ['Is emas 999 better than 916?', 'For savings, yes: 999 is pure gold with the tightest spreads on bars and coins. For daily-wear jewellery, 916 is more practical because pure gold is soft.'],
+      ['How is gold priced in Malaysia?', 'Per gram in ringgit, from the world USD price converted at USD/MYR, plus a workmanship fee (upah) per piece. Always ask for the upah separately.']
+    ]
+  }
+);

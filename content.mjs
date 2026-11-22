@@ -1144,7 +1144,13 @@ ${links('ar', '')}`,
   };
   const COUNTRY_PAGES = { ...GCC, ...OTHERS };
   // مقال إنجليزي مخصص لكل سوق كبير — يظهر في صفحة الدولة الإنجليزية
-  const CTRY_ART = { india: 'why-gold-rises-india', usa: 'why-gold-rises-usa', uk: 'gold-karats-uk', canada: 'why-gold-rises-canada', australia: 'why-gold-rises-australia', philippines: '21k-vs-24k-gold-philippines' };
+  const CTRY_ART = { india: 'why-gold-rises-india', usa: 'why-gold-rises-usa', uk: 'gold-karats-uk', canada: 'why-gold-rises-canada', australia: 'why-gold-rises-australia', philippines: '21k-vs-24k-gold-philippines',
+    pakistan: 'why-gold-rises-pakistan', bangladesh: 'why-gold-rises-bangladesh', nepal: 'why-gold-rises-nepal', srilanka: 'why-gold-rises-srilanka', turkey: 'why-gold-rises-turkey', malaysia: 'emas-916-vs-999-malaysia',
+    indonesia: 'why-gold-rises-indonesia', thailand: 'thai-gold-baht-purity-guide', vietnam: 'vietnam-gold-sjc-tael-guide', singapore: 'buying-gold-singapore-gst-free', japan: 'why-gold-rises-japan', china: 'gold-china-999-shanghai-premium',
+    germany: 'buying-gold-germany-vat-free', france: 'gold-france-napoleon-18k', italy: 'gold-italy-18k-standard', spain: 'gold-spain-oro-18k', switzerland: 'buying-gold-switzerland-pamp', nigeria: 'why-gold-rises-nigeria',
+    ghana: 'gold-ghana-prices-cedi', kenya: 'why-gold-rises-kenya', mexico: 'gold-mexico-centenario', brazil: 'gold-brazil-ouro-750', saudi: 'buying-gold-saudi-arabia', kuwait: 'buying-gold-kuwait',
+    qatar: 'buying-gold-qatar', oman: 'buying-gold-oman', bahrain: 'buying-gold-bahrain', egypt: 'why-gold-rises-egypt', iraq: 'gold-iraq-21k-mithqal', jordan: 'buying-gold-jordan',
+    morocco: 'gold-morocco-18k', algeria: 'gold-algeria-18k', lebanon: 'gold-lebanon-dollar-pricing', tunisia: 'gold-tunisia-18k', libya: 'gold-libya-21k', yemen: 'gold-yemen-21k' };
   const ART_BY_SLUG = Object.fromEntries(ARTICLES_EN.map(a => [a.slug, a]));
   const GW = [1, 5, 10, 20, 50, 100];
   for (const [slug, c] of Object.entries(COUNTRY_PAGES)) {
@@ -1185,7 +1191,7 @@ ${GW.map(w => `<tr><td>${en ? w + ' g' : w + ' غرام'}</td><td class="n">${P(
 <section class="card-section"><h2>${en ? `About the gold price in ${x.n}` : `عن سعر الذهب ${x.in}`}</h2><div class="prose">
 ${en ? `<p>The gold price in ${x.n} follows the global spot price of gold in US dollars per ounce. The ${x.cur} is ${c.pegEn}, so the local price is calculated as: <strong>(${c.code === 'USD' ? 'ounce price in USD ÷ 31.1035' : `ounce price in USD × USD/${c.code} rate ÷ 31.1035`}) × karat purity</strong>.</p><p>${c.noteEn}</p><p>Gold shops in ${x.cities} usually quote a daily rate per karat that follows the global price, then add making charges per piece${c.vat ? ` and ${c.vat}% ${TN}` : ''}. Use the <a href="/en/gold-calculator/">gold calculator</a> and choose ${c.code} to see the final price.</p>`
           : `<p>يتبع سعر الذهب ${x.in} السعر العالمي لأونصة الذهب بالدولار. وال${x.cur} ${c.peg}، لذلك يُحسب السعر المحلي هكذا: <strong>(سعر الأونصة بالدولار × سعر صرف الدولار بال${x.cur} ÷ 31.1035) × نسبة العيار</strong>.</p><p>${c.noteAr}</p><p>تُعلن محلات الذهب في ${x.cities} سعراً يومياً لكل عيار يتبع السعر العالمي، ثم تُضاف المصنعية حسب القطعة${c.vat ? ` وضريبة القيمة المضافة ${c.vat}%` : ''}. استخدم <a href="/gold-calculator/">حاسبة الذهب</a> واختر ${x.cur} لمعرفة السعر النهائي.</p>`}</div></section>
-${en && CTRY_ART[slug] ? `<section class="card-section"><h2>Gold guide for ${x.n}</h2><div class="links-grid"><a class="link-card" href="/en/articles/${CTRY_ART[slug]}/">${ART_BY_SLUG[CTRY_ART[slug]].h1}<span>${ART_BY_SLUG[CTRY_ART[slug]].teaser}</span></a></div></section>` : ''}
+${en && ART_BY_SLUG[CTRY_ART[slug]] ? `<section class="card-section"><h2>Gold guide for ${x.n}</h2><div class="links-grid"><a class="link-card" href="/en/articles/${CTRY_ART[slug]}/">${ART_BY_SLUG[CTRY_ART[slug]].h1}<span>${ART_BY_SLUG[CTRY_ART[slug]].teaser}</span></a></div></section>` : ''}
 ${share(L, slug, en ? `Gold price in ${x.n} today` : `سعر الذهب اليوم ${x.in}`)}
 ${other(L)}`,
         faq: en ? (c.faqEn || [
@@ -1900,7 +1906,7 @@ ${share('ar', `articles/${a.slug}`, a.h1)}`,
   const artCardEn = a => `<a class="link-card" href="/en/articles/${a.slug}/">${a.h1}<span>${a.teaser}</span></a>`;
   out.push({ lang: 'en', fixed: true, slug: 'articles',
     title: 'Gold Guides: Karats, Prices and Buying Tips | Maelumatii',
-    desc: 'Plain-English gold guides: why gold prices rise in India, the US, Canada and Australia, karats explained for UK buyers, and 21K vs 24K in the Philippines.',
+    desc: 'Plain-English gold guides for 40 markets: why prices rise, karats and local units explained, and how to buy well in your country.',
     crumbs: [['Gold articles', '/en/articles/']],
     body: `<div class="hero"><h1>Gold Guides & Articles</h1><p class="hero-sub">Plain-English guides to help you buy and save in gold with confidence</p></div>
 <section class="card-section"><h2>All articles</h2><div class="links-grid">${ARTICLES_EN.map(artCardEn).join('')}</div></section>
