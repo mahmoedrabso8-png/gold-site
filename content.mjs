@@ -134,7 +134,7 @@ export function pages(ctx) {
 <div class="trust-item"><strong>المعادلة</strong>(سعر الأونصة بالدولار × 3.6725 ÷ 31.1035) × نسبة العيار.</div>
 <div class="trust-item"><strong>غير مشمول</strong>المصنعية وضريبة القيمة المضافة. الأسعار للاطلاع فقط.</div>
 <div class="trust-item"><strong>التصحيح</strong>لاحظت خطأ؟ <a href="/contact/">راسلنا</a> ونراجعه فوراً. <a href="/about/">من نحن</a></div></div></section>`;
-  const hero = (h1, sub, L) => `<div class="hero"><h1>${h1}</h1><p class="hero-sub">${sub}</p><div class="update-badge"><span class="update-dot"></span>${L === 'en' ? 'Live — updated every 5 minutes' : L === 'tr' ? 'Canlı — her 5 dakikada güncellenir' : L === 'hi' ? 'लाइव — हर 5 मिनट में अपडेट' : L === 'ur' ? 'لائیو — ہر 5 منٹ میں تازہ کاری' : L === 'id' ? 'Langsung — diperbarui setiap 5 menit' : 'مباشر — يُحدَّث كل 5 دقائق'}</div></div>`;
+  const hero = (h1, sub, L) => `<div class="hero"><h1>${h1}</h1><p class="hero-sub">${sub}</p><div class="update-badge"><span class="update-dot"></span>${L === 'en' ? 'Live — updated every 5 minutes' : L === 'tr' ? 'Canlı — her 5 dakikada güncellenir' : L === 'hi' ? 'लाइव — हर 5 मिनट में अपडेट' : L === 'ur' ? 'لائیو — ہر 5 منٹ میں تازہ کاری' : L === 'id' ? 'Langsung — diperbarui setiap 5 menit' : L === 'bn' ? 'লাইভ — প্রতি ৫ মিনিটে হালনাগাদ' : 'مباشر — يُحدَّث كل 5 دقائق'}</div></div>`;
   const TG_CHANNEL = 'https://t.me/emaratijob';
   const share = (L, slug, title) => {
     const en = L === 'en', u = encodeURIComponent(ctx.SITE + url(L, slug)), t = encodeURIComponent(title);
@@ -1631,6 +1631,74 @@ ${IDK.filter(([k2]) => k2 !== k).map(([, n2, s2]) => `<a class="link-card" href=
     for (const p2 of out) {
       const is2 = Object.keys(ID_EN).find(k2 => ID_EN[k2] === p2.slug);
       if (is2 && p2.lang === 'en') p2.alts = p2.alts ? [...p2.alts.filter(a => a[0] !== 'x-default'), ['id', url('id', is2)], ['x-default', url('en', p2.slug)]] : [['en', url('en', p2.slug)], ['id', url('id', is2)], ['x-default', url('en', p2.slug)]];
+    }
+  }
+
+  // ── Bengali pilot: Bangladesh pages in Bengali (real content, hreflang-paired with en) ──
+  {
+    const bdtG = (k, w = 1) => ctx.g24 && ctx.fx.BDT ? fmt(ctx.g24 * k / 24 * w / ctx.AED * ctx.fx.BDT, 0) : null;
+    const bnP = (k, w = 1, o = {}) => P(k, w, { cur: 'bdt', d: 0, ...o });
+    const BNK = [[24, '২৪ ক্যারেট', '24-karat'], [22, '২২ ক্যারেট', '22-karat'], [21, '২১ ক্যারেট', '21-karat'], [18, '১৮ ক্যারেট', '18-karat']];
+    const BN_EN = { 'sonar-dam': 'bangladesh', 'sonar-dam/24-karat': 'bangladesh/gold-24k', 'sonar-dam/22-karat': 'bangladesh/gold-22k', 'sonar-dam/21-karat': 'bangladesh/gold-21k', 'sonar-dam/18-karat': 'bangladesh/gold-18k' };
+    const BN_ALTS = bs => [['bn', url('bn', bs)], ['en', url('en', BN_EN[bs])], ['x-default', url('en', BN_EN[bs])]];
+    const g24b = bdtG(24), BHORI = 11.6638;
+    out.push({ lang: 'bn', fixed: true, slug: 'sonar-dam', usesFx: true, trEn: 'bangladesh',
+      alts: BN_ALTS('sonar-dam'),
+      crumbs: [['আজকের সোনার দাম', url('bn', 'sonar-dam')]],
+      title: `আজকের সোনার দাম: ${g24b} টাকা প্রতি গ্রাম — ২২ ও ২৪ ক্যারেট`,
+      desc: 'আজকের সোনার সর্বশেষ দাম: ২৪, ২২, ২১ ও ১৮ ক্যারেট সোনার গ্রাম, ১০ গ্রাম, ভরি এবং আউন্সের দাম টাকা ও ডলারে, প্রতি ৫ মিনিটে হালনাগাদ।',
+      body: `${hero('আজকের সোনার দাম', 'প্রতি গ্রামে টাকা (BDT) ও আমেরিকান ডলারে লাইভ দাম', 'bn')}
+${errBox}
+<div class="karat-grid">${BNK.map(([k, n, s]) => `<a class="karat-card" href="${url('bn', 'sonar-dam/' + s)}">
+<span class="karat-badge">${n}</span>
+<div class="k-price">${bnP(k)}</div>
+<div class="k-usd">$${P(k, 1, { cur: 'usd', d: 2 })}</div>
+<div class="k-unit">টাকা / গ্রাম</div></a>`).join('')}</div>
+<div class="meta-row"><span>হালনাগাদ: <strong>${updated('en')}</strong> (দুবাই)</span><span>আউন্স: <strong>${bnP(24, ctx.TROY)} টাকা</strong> · <strong>$${P(24, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">🔄 রিফ্রেশ</button></div>
+<section class="card-section"><h2>আজ সোনার দাম — গ্রাম, ১০ গ্রাম, ভরি ও আউন্স</h2><div class="table-wrap"><table class="data-table">
+<thead><tr><th>ক্যারেট</th><th>১ গ্রাম (টাকা)</th><th>১০ গ্রাম (টাকা)</th><th>১ ভরি (টাকা)</th><th>১ আউন্স (টাকা)</th></tr></thead><tbody>
+${BNK.map(([k, n]) => `<tr><td><strong>${n}</strong></td><td class="n">${bnP(k)}</td><td class="n">${bnP(k, 10)}</td><td class="n">${bnP(k, BHORI)}</td><td class="n">${bnP(k, ctx.TROY)}</td></tr>`).join('')}
+</tbody></table></div><p class="note">মজুরি ছাড়া খাঁটি সোনার দাম। ১ ভরি = ১১.৬৬৪ গ্রাম · ১ আউন্স = ৩১.১০৩৫ গ্রাম।</p></section>
+${AD}
+<section class="card-section"><h2>২২ ও ২৪ ক্যারেট সোনা সম্পর্কে</h2><div class="prose">
+<p><strong>২৪ ক্যারেট সোনা</strong> (৯৯৯ খাঁটি) সবচেয়ে বিশুদ্ধ সোনা এবং বাংলাদেশে মূলত বার ও কয়েন আকারে সঞ্চয়ের জন্য কেনা হয়। <strong>২২ ক্যারেট</strong> (৯১৬) গহনার মান — তাই বাজুস (BAJUS) ঘোষিত দৈনিক দর সাধারণত ২২ ক্যারেটের জন্যই হয়।</p>
+<p>বাংলাদেশে সোনার দাম দুটি বিষয়ের ওপর নির্ভর করে: আন্তর্জাতিক আউন্স মূল্য (ডলারে) এবং ডলার/টাকা বিনিময় হার। দোকানে চূড়ান্ত দামে মজুরি ও ভ্যাট যোগ হয়; এখানে দেখানো দাম মজুরি ছাড়া খাঁটি মূল্য।</p>
+<p>সম্পর্কিত পাতা: <a href="${url('en', 'bangladesh')}">English version</a> · <a href="${url('bn', 'sonar-dam/22-karat')}">২২ ক্যারেট সোনার দাম</a> · <a href="${url('en', 'gold-price-usd')}">আউন্সের দাম (USD)</a>.</p>
+</div></section>`,
+      faq: [
+        ['আজ সোনার দাম কত?', `১ গ্রাম ২৪ ক্যারেট সোনার দাম এখন প্রায় ${g24b} টাকা; সর্বশেষ দাম উপরে প্রতি ৫ মিনিটে হালনাগাদ হয়।`],
+        ['সোনার দাম প্রতিদিন কেন বদলায়?', 'সোনার দাম নির্ভর করে আন্তর্জাতিক আউন্স মূল্য (ডলার) এবং ডলার/টাকা বিনিময় হারের ওপর। দুটো বদলালে টাকায় দামও বদলায়।'],
+        ['১ ভরি কত গ্রাম?', '১ ভরি = ১১.৬৬৪ গ্রাম। বাংলাদেশে সোনা সাধারণত ভরি ও গ্রামে মাপা হয়।']
+      ] });
+    for (const [k, n, s] of BNK) {
+      const bs = `sonar-dam/${s}`, kt = bdtG(k);
+      out.push({ lang: 'bn', fixed: true, slug: bs, usesFx: true, trEn: BN_EN[bs],
+        alts: BN_ALTS(bs),
+        crumbs: [['সোনার দাম', url('bn', 'sonar-dam')], [`${n} দাম`, url('bn', bs)]],
+        title: `${n} সোনার দাম আজ: ১ গ্রাম = ${kt} টাকা`,
+        desc: `${n} সোনার সর্বশেষ দাম: গ্রাম, ১০ গ্রাম, ভরি ও আউন্সে টাকা ও ডলার, প্রতি ৫ মিনিটে হালনাগাদ। মজুরি ছাড়া খাঁটি দাম।`,
+        body: `${hero(`${n} সোনার দাম আজ`, `প্রতি গ্রাম ${kt} টাকা — লাইভ`, 'bn')}
+${errBox}
+<div class="meta-row"><span>হালনাগাদ: <strong>${updated('en')}</strong> (দুবাই)</span><span>আউন্স: <strong>${bnP(k, ctx.TROY)} টাকা</strong> · <strong>$${P(k, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">🔄 রিফ্রেশ</button></div>
+<section class="card-section"><h2>${n} সোনা — ওজন অনুযায়ী দাম</h2><div class="table-wrap"><table class="data-table">
+<thead><tr><th>ওজন</th><th>দাম (টাকা)</th><th>দাম (USD)</th></tr></thead><tbody>
+${[1, 2, 4, 5, 8, 10, 20, 50, 100].map(w => `<tr><td class="n">${w} গ্রাম</td><td class="n">${bnP(k, w)}</td><td class="n">$${P(k, w, { cur: 'usd', d: 2 })}</td></tr>`).join('')}
+<tr><td class="n">১ ভরি (১১.৬৬ গ্রাম)</td><td class="n">${bnP(k, BHORI)}</td><td class="n">$${P(k, BHORI, { cur: 'usd', d: 2 })}</td></tr>
+<tr><td class="n">১ আউন্স (৩১.১ গ্রাম)</td><td class="n">${bnP(k, ctx.TROY)}</td><td class="n">$${P(k, ctx.TROY, { cur: 'usd', d: 2 })}</td></tr>
+</tbody></table></div><p class="note">মজুরি ছাড়া খাঁটি দাম।</p></section>
+${AD}
+<section class="card-section"><h2>অন্যান্য ক্যারেট</h2><div class="links-grid">
+${BNK.filter(([k2]) => k2 !== k).map(([, n2, s2]) => `<a class="link-card" href="${url('bn', 'sonar-dam/' + s2)}">${n2} সোনার দাম</a>`).join('')}
+<a class="link-card" href="${url('bn', 'sonar-dam')}">সব ক্যারেটের দাম</a>
+<a class="link-card" href="${url('en', BN_EN[bs])}">English version</a></div></section>`,
+        faq: [
+          [`${n} সোনার দাম আজ কত?`, `১ গ্রাম ${n} সোনার দাম এখন প্রায় ${kt} টাকা; সর্বশেষ দাম প্রতি ৫ মিনিটে হালনাগাদ হয়।`],
+          [`${n} সোনার দাম কীভাবে নির্ধারিত হয়?`, `আন্তর্জাতিক আউন্স মূল্য (ডলার) ডলার/টাকা হারে রূপান্তর করে ${n} বিশুদ্ধতার অনুপাত প্রয়োগ করা হয়।`]
+        ] });
+    }
+    for (const p2 of out) {
+      const bs = Object.keys(BN_EN).find(k2 => BN_EN[k2] === p2.slug);
+      if (bs && p2.lang === 'en') p2.alts = p2.alts ? [...p2.alts.filter(a => a[0] !== 'x-default'), ['bn', url('bn', bs)], ['x-default', url('en', p2.slug)]] : [['en', url('en', p2.slug)], ['bn', url('bn', bs)], ['x-default', url('en', p2.slug)]];
     }
   }
 
