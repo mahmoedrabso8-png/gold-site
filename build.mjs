@@ -159,7 +159,7 @@ function layout(p, ctx) {
   const self = SITE + url(L, p.slug);
   // الصفحات الخاصة بدولة: الرئيسية وصفحات العيارات الأربعة (عربي وإنجليزي)
   let ctry = '', sub = '';
-  const cm = p.slug.match(/^(saudi|kuwait|qatar|oman|bahrain|egypt|india|pakistan|bangladesh|turkey|usa|uk|canada|australia|philippines|malaysia|nepal|southafrica|iraq|jordan|morocco|algeria|indonesia|thailand|vietnam|singapore|srilanka|germany|japan|switzerland|nigeria|ghana|kenya|mexico|brazil|china)(?:\/(gold-(?:24|22|21|18)k))?$/);
+  const cm = p.slug.match(/^(saudi|kuwait|qatar|oman|bahrain|egypt|india|pakistan|bangladesh|turkey|usa|uk|canada|australia|philippines|malaysia|nepal|southafrica|iraq|jordan|morocco|algeria|indonesia|thailand|vietnam|singapore|srilanka|germany|japan|switzerland|nigeria|ghana|kenya|mexico|brazil|china|france|italy|spain)(?:\/(gold-(?:24|22|21|18)k))?$/);
   if (cm) { ctry = cm[1]; sub = cm[2] || ''; }
   else if (p.slug === '' && !p.file) ctry = 'uae';
   else if (/^gold-(?:24|22|21|18)k$/.test(p.slug)) { ctry = 'uae'; sub = p.slug; }

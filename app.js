@@ -88,8 +88,10 @@ const NAME={AED:'درهم',SAR:'ريال',KWD:'دينار',QAR:'ريال',OMR:'�
 // دول صفحاتها إنجليزي بس: التحويل من الصفحات العربية يروح للنسخة الإنجليزية بدل 404
 const EN_ONLY={INR:1,PKR:1,BDT:1,TRY:1,USD:1,GBP:1,CAD:1,AUD:1,PHP:1,MYR:1,NPR:1,ZAR:1,IDR:1,THB:1,VND:1,SGD:1,LKR:1,EUR:1,JPY:1,CHF:1,NGN:1,GHS:1,KES:1,MXN:1,BRL:1,CNY:1};
 const BD=document.body.dataset;
+// دول بتشارك نفس العملة (اليورو): القائمة فيها ألمانيا لكن الصفحات دي عملتها يورو برضه
+const EXTRA_SLUGS={france:'EUR',italy:'EUR',spain:'EUR'};
 // صفحة خاصة بدولة (الرئيسية وعيار 21 و24 لكل دولة): عملتها ثابتة
-const PAGE_CUR=BD.ctry?(BD.ctry==='uae'?'AED':Object.keys(CTRY).find(k=>CTRY[k]===BD.ctry)):null;
+const PAGE_CUR=BD.ctry?(BD.ctry==='uae'?'AED':(Object.keys(CTRY).find(k=>CTRY[k]===BD.ctry)||EXTRA_SLUGS[BD.ctry])):null;
 // صفحات عملتها ثابتة: صفحات الدول + صفحات فيها أرقام ثابتة (الأرشيف، المقارنة، الروبية...)
 const FIXED=!!PAGE_CUR||BD.fixed==='1';
 let SAVED=null;try{SAVED=localStorage.getItem('cur');}catch(e){}
