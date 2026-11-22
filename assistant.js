@@ -115,7 +115,7 @@ function norm(s) {
   s = s.replace(/[,،]/g, '.').replace(/[^\p{L}\p{N}.$\s]/gu, ' ').replace(/\s+/g, ' ').trim();
   return s;
 }
-const has = (q, words) => words.some(w => q.includes(w));
+const has = (q, words) => words.some(w => (w = (w || '').trim()) && q.includes(w));
 function findCountry(q) { return CS.find(c => has(q, c[3].map(norm))); }
 function findUnit(q) { return UNITS.find(u => has(q, u[2].map(norm))); }
 function findCur(q) { const hit = CUR_ALIAS.filter(c => has(q, c[1].map(norm))); return hit; }
