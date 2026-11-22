@@ -906,3 +906,143 @@ ARTICLES_EN.push(
     ]
   }
 );
+
+// ── Wave 2 batch D: Ghana, Kenya, Mexico, Brazil + Saudi, Kuwait ──
+ARTICLES_EN.push(
+  {
+    slug: 'gold-ghana-prices-cedi',
+    title: 'Gold in Ghana: Prices, the Cedi and the Gold Coast Legacy',
+    h1: 'Gold in Ghana: prices, the cedi and the Gold Coast legacy',
+    desc: 'How gold works in Ghana: Africa\'s top producer, prices in cedis, the dollar link, and how Ghanaians buy jewellery, coins and small bars.',
+    teaser: 'Africa\'s biggest producer buys gold in cedis',
+    intro: 'The Gold Coast still lives up to its name',
+    body: `
+<p>Ghana — the historic Gold Coast — is Africa's largest gold producer. Yet local buyers pay the world price like everyone else, in cedis.</p>
+<h3>Producer country, import pricing</h3>
+<p>Ghanaian gold prices are formed from the world <a href="/en/gold-price-usd/">USD price</a> × USD/GHS. The cedi's long depreciation means local prices have climbed steeply even in years when world gold was quiet. Watch the <a href="/en/dollar-ghana/">dollar rate in Ghana</a> beside today's <a href="/en/ghana/">gold price in Ghana</a>.</p>
+<h3>How Ghanaians buy</h3>
+<p>Mostly jewellery — 22K and 18K chains, rings and beads priced per gram plus workmanship — through the goldsmiths of Accra and Kumasi (Kejetia market is a hub). Investment buying in coins and small bars is growing through licensed dealers and banks.</p>
+<h3>Mining money</h3>
+<p>Gold is Ghana's top export earner, and the Bank of Ghana has run a gold-for-reserves programme to strengthen the cedi — an unusual case of a central bank buying its own mine output to stabilize the currency.</p>
+<h3>What buyers can do</h3>
+<p>Buy hallmarked pieces from licensed goldsmiths, ask for the per-gram rate and workmanship separately, and keep receipts. For savings, coins and small bars from licensed dealers track the metal value best. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['Why are gold prices rising in Ghana?', 'World prices are at record highs and the cedi has depreciated for years, so the cedi price of gold rises on both fronts.'],
+      ['Is gold cheap in Ghana because it is mined there?', 'No — local prices follow the world price converted at USD/GHS. Mining does not create a local discount for buyers.'],
+      ['How do people buy gold in Ghana?', 'Mostly 22K and 18K jewellery from goldsmiths in Accra and Kumasi, plus coins and small bars from licensed dealers and banks.']
+    ]
+  },
+  {
+    slug: 'why-gold-rises-kenya',
+    title: 'Why Is the Gold Price Rising in Kenya? Shilling and Demand',
+    h1: 'Why is the gold price rising in Kenya?',
+    desc: 'Why gold keeps climbing in Kenya: the world price, the shilling\'s moves, and rising middle-class demand — plus how Kenyans buy gold in Nairobi.',
+    teaser: 'The shilling, the dollar and Nairobi\'s gold shops',
+    intro: 'Kenyan gold follows the dollar — and the shilling decides the rest',
+    body: `
+<p>Kenya's gold market is small but growing fast, and its prices have climbed steeply in shilling terms.</p>
+<h3>1. The world price</h3>
+<p>Kenyan dealers price off the global <a href="/en/gold-price-usd/">USD spot price</a>, at record highs on central-bank buying and rate-cut expectations.</p>
+<h3>2. The shilling sets the local number</h3>
+<p>The formula: <strong>KES price = USD price × USD/KES</strong>. The shilling's swings — sharp weakness in 2022–2023, then a strong rebound — passed straight into gold prices. Follow the <a href="/en/dollar-kenya/">dollar rate in Kenya</a> next to gold.</p>
+<h3>3. How Kenyans buy</h3>
+<p>Through Nairobi's jewellers (mostly 18K and 22K, per gram plus workmanship), a growing number of bullion dealers selling coins and small bars, and M-Pesa-era digital gold products. Gold is increasingly seen as a hedge alongside dollars and land.</p>
+<h3>What buyers can do</h3>
+<p>Buy hallmarked pieces, compare per-gram rates between shops, and prefer coins or bars for savings — jewellery workmanship is not recoverable on resale. See today's <a href="/en/kenya/">gold price in Kenya</a>. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['Why is gold getting expensive in Kenya?', 'Record world prices plus shilling moves: gold is priced in dollars, so a weaker shilling raises the local price directly.'],
+      ['Where do Kenyans buy gold?', 'Nairobi jewellers for 18K and 22K pieces, licensed bullion dealers for coins and bars, and digital gold platforms for small savings.'],
+      ['Is gold a good investment in Kenya?', 'It has hedged shilling weakness over time. For savings, coins and bars beat jewellery because workmanship costs are lost on resale.']
+    ]
+  },
+  {
+    slug: 'gold-mexico-centenario',
+    title: 'Gold in Mexico: The Centenario Coin, Prices and the Peso',
+    h1: 'Gold in Mexico: the Centenario coin, prices and the peso',
+    desc: 'How gold works in Mexico: the 50-peso Centenario (37.5 g of pure gold), 14K and 18K jewellery, and how the price in pesos follows the dollar.',
+    teaser: 'One of the world\'s great gold coins is Mexican',
+    intro: 'Mexico minted its savings habit into a coin: the Centenario',
+    body: `
+<p>Mexico's relationship with gold is centuries old, and it crystallized into one of the world's great bullion coins.</p>
+<h3>The Centenario</h3>
+<p>The <strong>Centenario</strong> — 50 pesos gold, 37.5 g of 90% pure gold (1.2057 oz pure) — was minted from 1921 and reissued for decades. It is Mexico's standard savings coin: every casa de cambio and bank quotes it daily, at the world <a href="/en/gold-price-usd/">USD price</a> × USD/MXN plus a small premium.</p>
+<h3>Jewellery: 14K and 18K</h3>
+<p>Mexican jewellery is mostly <strong>14K</strong> and <strong>18K</strong> (oro de 14 y 18 quilates), priced per gram with workmanship. For value retention, coins beat jewellery because workmanship is lost on resale.</p>
+<h3>The peso link</h3>
+<p>Gold in pesos = world price × USD/MXN. The peso's swings against the dollar pass straight through — Mexicans watched peso gold rise even in calm world markets whenever the peso weakened. Track the <a href="/en/dollar-mexico/">dollar rate in Mexico</a> beside today's <a href="/en/mexico/">gold price in Mexico</a>.</p>
+<h3>What buyers can do</h3>
+<p>Buy Centenarios or fractional coins (½, ¼, 1/10) from Banco Azteca, casas de cambio or reputable dealers; compare premiums and keep certificates. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['What is the Centenario gold coin?', 'Mexico\'s 50-peso gold coin containing 37.5 grams of 90% pure gold (1.2057 oz) — the country\'s standard savings coin, quoted daily by banks and exchange houses.'],
+      ['How is the Centenario priced?', 'At the world gold price in dollars times USD/MXN, plus a small dealer premium that varies by house and demand.'],
+      ['Is 14K gold common in Mexico?', 'Yes — most Mexican jewellery is 14K or 18K, priced per gram plus workmanship. For savings, coins hold value better than jewellery.']
+    ]
+  },
+  {
+    slug: 'gold-brazil-ouro-750',
+    title: 'Gold in Brazil: Ouro 750, Prices and the Real',
+    h1: 'Gold in Brazil: ouro 750, prices and the real',
+    desc: 'How gold works in Brazil: why jewellery is 18K (ouro 750), how the price in reais follows the dollar, and where Brazilians buy bars and coins.',
+    teaser: 'Why Brazilian jewellery is almost all 18K',
+    intro: 'Brazil settled on one karat for jewellery: 750',
+    body: `
+<p>Brazil's gold tradition runs from colonial mines to today's jewellers — and modern Brazil standardized on <strong>18K</strong>.</p>
+<h3>Ouro 750</h3>
+<p>Brazilian jewellery is overwhelmingly <strong>18K (ouro 750, 75% pure)</strong>, hallmarked and priced per gram at the day's rate plus workmanship. Lower karats were long considered non-standard for fine pieces. See the live <a href="/en/gold-18k/">18K rate</a>.</p>
+<h3>The real and the dollar</h3>
+<p>Gold in reais = world <a href="/en/gold-price-usd/">USD price</a> × USD/BRL. The real's swings are famous, so Brazilian gold often rises on currency alone. Brazilians know this well — gold is a classic inflation and devaluation hedge there. Track the <a href="/en/dollar-brazil/">dollar rate in Brazil</a> beside today's <a href="/en/brazil/">gold price in Brazil</a>.</p>
+<h3>Where Brazilians buy</h3>
+<p>Jewellery from the big chains (H.Stern, Vivara) and local ourives; investment gold as 999.9 bars and coins from dealers like Ourominas and Parmetal; and exchange-traded gold funds (GOLD11) for brokerage accounts.</p>
+<h3>What buyers can do</h3>
+<p>For savings, choose bars, coins or the gold ETF rather than jewellery — workmanship and retail margins are not recovered on resale. Always buy hallmarked 750 with an invoice. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['What is ouro 750?', 'Brazilian 18-karat gold (75% pure) — the national jewellery standard, hallmarked and priced per gram.'],
+      ['Why does gold rise in reais when the world price is flat?', 'Because local prices equal the dollar price times USD/BRL — a weaker real raises the Brazilian price by itself.'],
+      ['How can Brazilians invest in gold?', 'Through 999.9 bars and coins from dealers, or the GOLD11 exchange-traded fund in a brokerage account; jewellery is the least efficient savings form.']
+    ]
+  },
+  {
+    slug: 'buying-gold-saudi-arabia',
+    title: 'Buying Gold in Saudi Arabia: 21K, VAT and the Riyal Peg',
+    h1: 'Buying gold in Saudi Arabia: 21K, VAT and the riyal peg',
+    desc: 'How to buy gold in Saudi Arabia: 21K as the jewellery standard, 15% VAT on jewellery, making charges, and why the pegged riyal keeps prices tracking the world market.',
+    teaser: '21K, VAT and the pegged riyal',
+    intro: 'Saudi gold buying is simple once you know three things',
+    body: `
+<p>Saudi Arabia is the Gulf's biggest gold market, and its system has three keys: 21K, VAT, and the dollar peg.</p>
+<h3>21K is the standard</h3>
+<p>Saudi jewellery is traditionally <strong>21K (875)</strong> — the rich yellow karat of Gulf weddings and gifts — with <a href="/en/gold-22k/">22K</a> for some communities and <a href="/en/gold-18k/">18K</a> for diamond and modern pieces. Shops quote the day's gram rate for each karat.</p>
+<h3>The pegged riyal</h3>
+<p>The riyal is fixed at <strong>3.75 per US dollar</strong>, so Saudi gold prices track the world <a href="/en/gold-price-usd/">USD price</a> directly — no currency noise. What you pay = world price in SAR + workmanship + VAT.</p>
+<h3>VAT and making charges</h3>
+<p>Jewellery carries <strong>15% VAT</strong> on the full value (gold + workmanship); investment gold of 99%+ purity is treated differently. Making charges (أجرة الصياغة) vary hugely — from a few riyals per gram on plain bangles to much more on sets — so negotiate them separately from the gold rate.</p>
+<h3>What buyers can do</h3>
+<p>Shop in the gold souks (Balad in Jeddah, Batha in Riyadh) on the day's rate, compare making charges across shops, and take a detailed invoice. For pure savings, 24K bars and coins avoid workmanship entirely. See today's <a href="/en/saudi/">gold price in Saudi Arabia</a>. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['What karat is Saudi gold jewellery?', 'Traditionally 21K (87.5% pure), with 22K and 18K also common. Bars and coins for savings are 24K.'],
+      ['Is there VAT on gold in Saudi Arabia?', 'Yes — 15% VAT applies to gold jewellery on the full value including workmanship. Investment-grade gold of 99%+ is treated differently.'],
+      ['Why do Saudi gold prices track the world market exactly?', 'Because the riyal is pegged to the US dollar at 3.75, so there is no exchange-rate movement between the world price and the local price.']
+    ]
+  },
+  {
+    slug: 'buying-gold-kuwait',
+    title: 'Buying Gold in Kuwait: Prices in Dinars and the Souk',
+    h1: 'Buying gold in Kuwait: prices in dinars and the souk',
+    desc: 'How to buy gold in Kuwait: 22K and 21K jewellery in the gold souk, no VAT, making charges, and why dinar prices move with the world market.',
+    teaser: 'No VAT, a strong dinar and a famous souk',
+    intro: 'Kuwait\'s gold souk is one of the Gulf\'s great markets',
+    body: `
+<p>Kuwait's gold market is one of the oldest in the Gulf — and one of the simplest to buy in, because there is no VAT.</p>
+<h3>The souk and the karats</h3>
+<p>Kuwait's gold souk (Mubarakiya and the gold centre) prices jewellery per gram at the day's rate for each karat: <strong>22K</strong> and <strong>21K</strong> dominate traditional pieces, <a href="/en/gold-18k/">18K</a> covers diamond and modern designs, and <a href="/en/gold-24k/">24K</a> bars serve savers. Making charges are quoted separately and are always negotiable.</p>
+<h3>No VAT, strong dinar</h3>
+<p>Kuwait applies <strong>no VAT</strong> on gold, and the dinar — the world's highest-valued currency — is managed against a basket but tracks the dollar closely. So Kuwaiti prices follow the world <a href="/en/gold-price-usd/">USD price</a> with almost no currency noise.</p>
+<h3>What buyers can do</h3>
+<p>Check the day's per-gram rate before entering the souk, compare making charges across at least two shops, and insist on an itemized invoice showing weight, karat and charges. For savings, 24K bars and coins avoid workmanship entirely. See today's <a href="/en/kuwait/">gold price in Kuwait</a>. This guide is educational, not investment advice.</p>`,
+    faq: [
+      ['Is there VAT on gold in Kuwait?', 'No — Kuwait does not apply VAT, so the shop price is the gold value plus workmanship only.'],
+      ['What karat is Kuwaiti gold jewellery?', 'Mostly 22K and 21K for traditional pieces, 18K for modern and diamond jewellery, and 24K for bars and coins.'],
+      ['Why do Kuwaiti gold prices follow the world market closely?', 'The dinar is managed against a currency basket dominated by the dollar, so exchange-rate noise is minimal and prices track the world USD price.']
+    ]
+  }
+);
