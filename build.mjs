@@ -433,7 +433,7 @@ for (const f of ['style.css', 'app.js', 'assistant.js']) await place(f, ['assets
   const kbFrom = (arr, lang) => arr.flatMap(a => {
     const u = url(lang, 'articles/' + a.slug);
     const out = [{ t: stripH(a.h1 || a.title), d: cut(stripH(a.intro || a.desc), 600), u }];
-    for (const para of String(a.body || '').split(/<\/p>/i)) { const text = stripH(para); if (text.length > 70) out.push({t: stripH(a.h1 || a.title), d: cut(text, 700), u}); }
+    for (const match of String(a.body || '').matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)) { const text = stripH(match[1]); if (text.length > 80) out.push({t: stripH(a.h1 || a.title), d: cut(text, 700), u}); }
     for (const [q, ans] of (a.faq || [])) out.push({ t: stripH(q), d: cut(stripH(ans)), u });
     return out;
   });

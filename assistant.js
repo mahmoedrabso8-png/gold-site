@@ -111,7 +111,7 @@ function norm(s) {
   s = s.replace(/[٠-٩]/g, d => DIG.indexOf(d));
   s = s.replace(/[أإآ]/g, 'ا').replace(/ة/g, 'ه').replace(/[ً-ْٰ]/g, '');
   s = s.replace(/[,،]/g, '.').replace(/[^\p{L}\p{N}.$\s]/gu, ' ').replace(/\s+/g, ' ').trim();
-  return s;
+  return s.replace(/بيغلي|بيزيد|غالي|يرتفع|ارتفاع|يرتفع/g,'ارتفاع').replace(/rising|rises|rise/g,'rise');
 }
 const has = (q, words) => words.some(w => (w = (w || '').trim()) && q.includes(w));
 function findCountry(q) { return CS.find(c => has(q, c[3].map(norm))); }
@@ -301,12 +301,13 @@ const KB = AR ? (window.__KB_AR || []) : (window.__KB_EN || []);
 const STOP = new Set(norm(AR
   ? 'في من على إلى الى عن ما هو هي هذا هذه ذلك الذي التي او أو ثم قد لو هل سعر اسعار الذهب دهب بكم بكام كام كم ايه إيه اي أي النهارده النهاردة اليوم الان الآن لو سمحت من فضلك عندي عايز عاوز بدي كيف لماذا ليه متى امتى اين فين عند عندما غرام جرام'
   : 'the a an of in on at is are was were what which who how much many price prices rate rates gold for to and or it its this that these those please tell me about do does did can could should will would today now current currently best good gram grams per').split(' '));
-const KB_N = KB.map(e => ({ t: e.t, d: e.d, u: e.u, _n: norm(e.t + ' ' + e.d) }));
+const tokensOf = q => norm(q).split(' ').map(t => /^[\u0600-\u06ff]+$/.test(t) ? t.replace(/^ال/, '') : t).filter(t => t.length > 1 && !STOP.has(t));
+const KB_N = KB.map(e => ({ t: e.t, d: e.d, u: e.u, _n: tokensOf(e.t + ' ' + e.d), _title: tokensOf(e.t) }));
 function kbSearch(q) {
-  const toks = [...new Set(norm(q).split(' ').filter(t => t.length > 1 && !STOP.has(t)))];
+  const toks = [...new Set(tokensOf(q))];
   if (!toks.length) return null;
   let best = null, bs = 0;
-  for (const e of KB_N) { let s = 0; for (const t of toks) if ((' '+e._n+' ').includes(' '+t+' ')) s += 1 + (norm(e.t).includes(t) ? 0.7 : 0); if (s > bs) { bs = s; best = e; } }
+  for (const e of KB_N) { let s = 0; for (const t of toks) if (e._n.includes(t)) s += 1 + (e._title.includes(t) ? 0.7 : 0); if (s > bs) { bs = s; best = e; } }
   if (!best || bs < 2 || (toks.length >= 4 && bs < toks.length * 0.5)) return null;
   return (AR
     ? `أقرب معلومة لسؤالك من أدلتنا:<br><strong>${best.t}</strong><br>${best.d}<div class="chat-links">${link(best.u, 'اقرأ الدليل كاملاً')}</div>`
