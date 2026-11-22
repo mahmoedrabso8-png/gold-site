@@ -1,7 +1,7 @@
 {
-  "name": "أسعار الذهب — الإمارات",
-  "short_name": "ذهب الإمارات",
-  "description": "سعر الذهب اليوم في الإمارات بالدرهم — عيار 24 22 21 18 + حاسبة + زكاة",
+  "name": "أسعار الذهب — الخليج",
+  "short_name": "ذهب الخليج",
+  "description": "سعر الذهب اليوم في الخليج — الإمارات والسعودية والكويت وقطر وعُمان والبحرين، عيار 24 22 21 18 + حاسبة + زكاة",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -26,14 +26,14 @@
       "name": "حاسبة الذهب",
       "short_name": "الحاسبة",
       "description": "احسب قيمة ذهبك بالدرهم",
-      "url": "/#calculator",
+      "url": "/gold-calculator/",
       "icons": [{ "src": "/icons/icon-96x96.png", "sizes": "96x96" }]
     },
     {
       "name": "زكاة الذهب",
       "short_name": "الزكاة",
       "description": "احسب زكاة ذهبك",
-      "url": "/#zakat",
+      "url": "/zakat-calculator/",
       "icons": [{ "src": "/icons/icon-96x96.png", "sizes": "96x96" }]
     }
   ],

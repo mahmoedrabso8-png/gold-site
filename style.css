@@ -29,7 +29,8 @@ a{color:var(--g4)}
 .crumbs a:hover{color:var(--g4)}
 
 /* Hero */
-.hero{padding:22px 0 8px;text-align:center}
+.hero{padding:26px 0 10px;text-align:center;position:relative}
+.hero::before{content:'';position:absolute;inset:-30px 0 auto;height:240px;background:radial-gradient(ellipse 60% 100% at 50% 0%,rgba(233,184,0,.12),transparent 70%);pointer-events:none}
 .hero h1{font-size:clamp(1.3rem,4vw,2rem);font-weight:800;background:linear-gradient(135deg,var(--g3) 0%,var(--g5) 60%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.35;margin-bottom:6px}
 .hero-sub{color:var(--t2);font-size:.88rem}
 .update-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);color:#4ade80;border-radius:20px;padding:3px 12px;font-size:.72rem;margin-top:8px}
@@ -41,8 +42,8 @@ a{color:var(--g4)}
 /* Karat cards */
 .karat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:16px 0}
 @media(min-width:600px){.karat-grid{grid-template-columns:repeat(4,1fr)}}
-.karat-card{display:block;background:var(--bc);border:1px solid var(--bb);border-radius:var(--rmd);padding:16px 12px;text-align:center;text-decoration:none;color:inherit;transition:transform .18s,border-color .18s}
-a.karat-card:hover{transform:translateY(-3px);border-color:rgba(233,184,0,.4)}
+.karat-card{display:block;background:linear-gradient(180deg,rgba(233,184,0,.05),transparent 40%),var(--bc);border:1px solid var(--bb);border-top:2px solid rgba(233,184,0,.35);border-radius:var(--rmd);padding:16px 12px;text-align:center;text-decoration:none;color:inherit;transition:transform .18s,border-color .18s,box-shadow .18s}
+a.karat-card:hover{transform:translateY(-3px);border-color:rgba(233,184,0,.5);border-top-color:var(--g5);box-shadow:0 8px 24px rgba(0,0,0,.35)}
 .karat-badge{display:inline-block;font-size:.72rem;font-weight:700;padding:2px 9px;border-radius:20px;margin-bottom:6px;background:rgba(233,184,0,.14);color:var(--g3)}
 .karat-label{font-size:.78rem;color:var(--t2)}
 .k-price{font-size:1.35rem;font-weight:800;color:var(--g3);line-height:1.3;direction:ltr}
@@ -73,6 +74,12 @@ a.karat-card:hover{transform:translateY(-3px);border-color:rgba(233,184,0,.4)}
 .share-btn.tg:hover{border-color:#229ed9}
 .share-btn.join{background:rgba(233,184,0,.12);border-color:rgba(233,184,0,.4);color:var(--g4)}
 .share-btn.join:hover{border-color:var(--g4)}
+
+/* Floating Telegram button */
+.tg-float{position:fixed;bottom:18px;inset-inline-end:18px;z-index:90;display:inline-flex;align-items:center;gap:8px;background:#229ed9;color:#fff;font-size:.82rem;font-weight:700;text-decoration:none;padding:10px 16px;border-radius:30px;box-shadow:0 4px 18px rgba(34,158,217,.4);transition:transform .18s,box-shadow .18s}
+.tg-float:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(34,158,217,.5);color:#fff}
+.tg-float svg{flex:none}
+@media(max-width:520px){.tg-float span{display:none}.tg-float{padding:12px;border-radius:50%}}
 
 /* Sections */
 .card-section{background:var(--bc);border:1px solid var(--bb);border-radius:var(--rlg);padding:20px;margin-bottom:16px}
