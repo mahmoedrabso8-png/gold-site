@@ -276,6 +276,12 @@ function layout(p, ctx) {
     toggle = `<div class="page-toggle"><a href="${du}">💵 ${dLabel}</a></div>`;
     toggleM = `<a class="page-toggle-m" href="${du}" aria-label="${dLabel}">💵</a>`;
   }
+  const modeNames = {ar:['أسعار الذهب','أسعار الدولار'],en:['Gold prices','Dollar prices'],tr:['Altın fiyatları','Dolar fiyatları'],hi:['सोने की कीमत','डॉलर की कीमत'],ur:['سونے کی قیمت','ڈالر کی قیمت'],id:['Harga emas','Harga dolar'],ms:['Harga emas','Harga dolar'],bn:['সোনার দাম','ডলারের দাম'],tl:['Presyo ng ginto','Presyo ng dolyar']}[L] || ['Gold prices','Dollar prices'];
+  const modeCountry = ctry && CNAMES[ctry] ? ctry : 'uae';
+  const modeLang = L === 'ar' && (modeCountry === 'uae' || AR_CTRIES.has(modeCountry)) ? 'ar' : 'en';
+  const modeGold = url(modeLang, modeCountry === 'uae' ? '' : modeCountry);
+  const modeDollar = url(modeLang, modeCountry === 'usa' ? 'dollar' : 'dollar-' + modeCountry);
+  toggleM = `<select class="ctry price-mode" id="price-mode" aria-label="${L === 'ar' ? 'نوع الأسعار' : 'Price type'}"><option value="gold"${!p.dollar ? ' selected' : ''} data-url="${modeGold}">${modeNames[0]}</option><option value="dollar"${p.dollar ? ' selected' : ''} data-url="${modeDollar}">${modeNames[1]}</option></select>`;
   const crumbHtml = crumbs.length > 1
     ? `<nav class="crumbs" aria-label="breadcrumb">${crumbs.map(([n, u], i) => i < crumbs.length - 1 ? `<a href="${u}">${n}</a> › ` : `<span>${n}</span>`).join('')}</nav>` : '';
   const footer = L === 'tl'

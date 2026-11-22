@@ -130,6 +130,13 @@ if(csel){
     syncCalcCur();paint();labels();calc();zakat();nisab();
   });
 }
+const modeSel=$('#price-mode');
+if(modeSel)modeSel.addEventListener('change',()=>{
+  const code=csel&&csel.value;
+  const c=code&&Object.prototype.hasOwnProperty.call(CTRY,code)?(CTRY[code]||'uae'):(BD.ctry||'uae');
+  const base=(EN||EN_ONLY[code])?'/en/':'/';
+  location.href=base+(modeSel.value==='dollar'?(c==='usa'?'dollar/':'dollar-'+c+'/'):(c==='uae'?'':c+'/'));
+});
 // قائمة اللغات: تنتقل للرابط المحسوب لكل لغة في الصفحة (window.__LANGURLS)
 const lsel=$('#langsel');
 if(lsel) lsel.addEventListener('change',()=>{const u=(window.__LANGURLS||{})[lsel.value];if(u)location.href=u;});
