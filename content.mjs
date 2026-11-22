@@ -733,7 +733,7 @@ ${other(L)}`,
     for (const k of [24, 22, 21, 18]) {
       const x = c.ar;
       const rows = [...[1, 2, 4, 5, 8, 10, 20, 50, 100].map(w => [`${w} غرام`, w]), ['تولة (11.66 غ)', TOLA], ['أونصة (31.1 غ)', ctx.TROY]];
-      out.push({ lang: 'ar', slug: `${slug}/gold-${k}k`, usesFx: !!c.fx,
+      out.push({ lang: 'ar', slug: `${slug}/gold-${k}k`, alt: true, usesFx: !!c.fx,
         crumbs: [[`سعر الذهب ${x.in}`, url('ar', slug)], [`عيار ${k}`, url('ar', `${slug}/gold-${k}k`)]],
         title: `سعر الذهب عيار ${k} اليوم ${x.in} بال${x.cur}`,
         desc: `سعر غرام الذهب عيار ${k} اليوم ${x.in} بال${x.cur} والدولار، محدَّث كل 5 دقائق، مع جدول الأسعار من 1 إلى 100 غرام والتولة والأونصة${c.vat ? ` والسعر شامل ضريبة ${c.vat}%` : ''}.`,
@@ -770,7 +770,7 @@ ${KS.filter(o => o !== k).map(o => `<a class="link-card" href="${url('ar', `${sl
     for (const k of [24, 22, 21, 18]) {
       const x = c.en, ko = K[k].en;
       const rows = [...[1, 2, 4, 5, 8, 10, 20, 50, 100].map(w => [`${w} g`, w]), ['1 tola (11.66 g)', TOLA], ['1 ounce (31.1 g)', ctx.TROY]];
-      out.push({ lang: 'en', slug: `${slug}/gold-${k}k`, usesFx: !!c.fx,
+      out.push({ lang: 'en', slug: `${slug}/gold-${k}k`, alt: true, usesFx: !!c.fx,
         crumbs: [[`Gold price in ${x.n}`, url('en', slug)], [`${k}K`, url('en', `${slug}/gold-${k}k`)]],
         title: `${k}K Gold Rate in ${x.n} Today (${c.code}) — Price per Gram`,
         desc: `Live ${k}K gold rate in ${x.n} today in ${x.cur} (${c.code}) and US dollars: price per gram, 10 grams, tola and ounce, updated every 5 minutes${c.vat ? `, including ${c.vat}% VAT` : ''}.`,

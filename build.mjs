@@ -157,12 +157,12 @@ function markCur(html) {
 function layout(p, ctx) {
   const L = p.lang, en = L === 'en';
   const self = SITE + url(L, p.slug);
-  // الصفحات الخاصة بدولة: الرئيسية وعيار 21 و24 (عربي)، والرئيسية (إنجليزي)
+  // الصفحات الخاصة بدولة: الرئيسية وصفحات العيارات الأربعة (عربي وإنجليزي)
   let ctry = '', sub = '';
   const cm = p.slug.match(/^(saudi|kuwait|qatar|oman|bahrain)(?:\/(gold-(?:24|22|21|18)k))?$/);
   if (cm) { ctry = cm[1]; sub = cm[2] || ''; }
   else if (p.slug === '' && !p.file) ctry = 'uae';
-  else if (!en && (p.slug === 'gold-21k' || p.slug === 'gold-24k')) { ctry = 'uae'; sub = p.slug; }
+  else if (/^gold-(?:24|22|21|18)k$/.test(p.slug)) { ctry = 'uae'; sub = p.slug; }
   const body = !ctry && !p.fixed ? markCur(p.body) : p.body;
   const cselect = `<select id="country" class="ctry" aria-label="${en ? 'Country' : 'الدولة'}">${COUNTRIES.map(([c, a, e]) => `<option value="${c}">${en ? e : a}</option>`).join('')}</select>`;
   const altLinks = p.alt
@@ -208,10 +208,13 @@ function layout(p, ctx) {
   <meta property="og:url" content="${self}" />
   <meta property="og:title" content="${esc(p.title)}" />
   <meta property="og:description" content="${esc(p.desc)}" />
-  <meta property="og:image" content="${SITE}/icons/icon-512x512.png" />
+  <meta property="og:image" content="${SITE}/icons/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:locale" content="${en ? 'en_AE' : 'ar_AE'}" />
-  <meta property="og:site_name" content="${en ? 'Maelumatii — UAE Gold Prices' : 'معلوماتي — أسعار الذهب'}" />
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:site_name" content="${en ? 'Maelumatii — Gulf Gold Prices' : 'معلوماتي — أسعار الذهب في الخليج'}" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="${SITE}/icons/og-image.png" />
   <link rel="manifest" href="/manifest.json" />
   <meta name="theme-color" content="#e8b800" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -221,6 +224,8 @@ function layout(p, ctx) {
   <link rel="icon" href="/icons/icon-96x96.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://api.gold-api.com" />
+  <link rel="preconnect" href="https://kmvadxkjehxfxpeveekg.supabase.co" />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/style.css?v=${ASSET_V.css}" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1982414703735990" crossorigin="anonymous"></script>
@@ -240,6 +245,7 @@ ${p.noAds ? '' : AD}
 </div></main>
 <footer class="site-footer"><div class="container">${footer}</div></footer>
 <script>window.__G=${ctx.g24 ? ctx.g24.toFixed(4) : 'null'};${p.usesAg ? `window.__AG=${ctx.ag ? ctx.ag.toFixed(4) : 'null'};` : ''}${p.usesFx ? `window.__FX=${JSON.stringify({ INR: ctx.fx.INR, PKR: ctx.fx.PKR, KWD: ctx.fx.KWD })};` : ''}</script>
+<a class="tg-float" href="https://t.me/emaratijob" target="_blank" rel="noopener" aria-label="${en ? 'Daily gold prices on Telegram' : 'أسعار الذهب يومياً على تيليجرام'}"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M9.04 15.9l-.38 5.36c.55 0 .79-.24 1.08-.52l2.6-2.48 5.38 3.94c.99.55 1.69.26 1.96-.9l3.55-16.64c.32-1.45-.52-2.02-1.47-1.66L1.7 10.8c-1.42.55-1.4 1.34-.24 1.7l5.3 1.65L18.98 5.7c.58-.38 1.1-.17.67.21L9.04 15.9z"/></svg><span>${en ? 'Daily prices on Telegram' : 'أسعار الذهب يومياً'}</span></a>
 <script src="/assets/app.js?v=${ASSET_V.js}" defer></script>
 </body>
 </html>`;
@@ -292,6 +298,7 @@ for (const s of [72, 96, 128, 144, 152, 192, 384, 512]) {
   const f = `icon-${s}x${s}.png`;
   await place(f, ['static/icons', 'icons', '.'], path.join(OUT, 'icons', f));
 }
+await place('og-image.png', ['static/icons', 'icons', '.'], path.join(OUT, 'icons', 'og-image.png'));
 
 // رقم نسخة من محتوى الملف نفسه: أي تعديل في السكريبت أو التصميم يغيّر الرابط، فالمتصفح يجيب النسخة الجديدة فوراً
 const hashOf = async f => crypto.createHash('md5').update(await fs.readFile(path.join(OUT, 'assets', f))).digest('hex').slice(0, 10);
