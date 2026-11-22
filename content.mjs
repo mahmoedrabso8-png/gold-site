@@ -1210,6 +1210,8 @@ ${links('ar', '')}`,
     qatar: 'buying-gold-qatar', oman: 'buying-gold-oman', bahrain: 'buying-gold-bahrain', egypt: 'why-gold-rises-egypt', iraq: 'gold-iraq-21k-mithqal', jordan: 'buying-gold-jordan',
     morocco: 'gold-morocco-18k', algeria: 'gold-algeria-18k', lebanon: 'gold-lebanon-dollar-pricing', tunisia: 'gold-tunisia-18k', libya: 'gold-libya-21k', yemen: 'gold-yemen-21k' };
   const ART_BY_SLUG = Object.fromEntries(ARTICLES_EN.map(a => [a.slug, a]));
+  const AR_CTRY_ART = { egypt: 'gold-guide-egypt', saudi: 'gold-guide-saudi', kuwait: 'gold-guide-kuwait', qatar: 'gold-guide-qatar', oman: 'gold-guide-oman', bahrain: 'gold-guide-bahrain', iraq: 'gold-guide-iraq', jordan: 'gold-guide-jordan', lebanon: 'gold-guide-lebanon', morocco: 'gold-guide-morocco', algeria: 'gold-guide-algeria', tunisia: 'gold-guide-tunisia', libya: 'gold-guide-libya', yemen: 'gold-guide-yemen' };
+  const ART_BY_SLUG_AR = Object.fromEntries(ARTICLES.map(a => [a.slug, a]));
   const GW = [1, 5, 10, 20, 50, 100];
   for (const [slug, c] of Object.entries(COUNTRY_PAGES)) {
     const cur = c.code.toLowerCase(), d = c.d;
@@ -1250,6 +1252,7 @@ ${GW.map(w => `<tr><td>${en ? w + ' g' : w + ' غرام'}</td><td class="n">${P(
 ${en ? `<p>The gold price in ${x.n} follows the global spot price of gold in US dollars per ounce. The ${x.cur} is ${c.pegEn}, so the local price is calculated as: <strong>(${c.code === 'USD' ? 'ounce price in USD ÷ 31.1035' : `ounce price in USD × USD/${c.code} rate ÷ 31.1035`}) × karat purity</strong>.</p><p>${c.noteEn}</p><p>Gold shops in ${x.cities} usually quote a daily rate per karat that follows the global price, then add making charges per piece${c.vat ? ` and ${c.vat}% ${TN}` : ''}. Use the <a href="/en/gold-calculator/">gold calculator</a> and choose ${c.code} to see the final price.</p>`
           : `<p>يتبع سعر الذهب ${x.in} السعر العالمي لأونصة الذهب بالدولار. وال${x.cur} ${c.peg}، لذلك يُحسب السعر المحلي هكذا: <strong>(سعر الأونصة بالدولار × سعر صرف الدولار بال${x.cur} ÷ 31.1035) × نسبة العيار</strong>.</p><p>${c.noteAr}</p><p>تُعلن محلات الذهب في ${x.cities} سعراً يومياً لكل عيار يتبع السعر العالمي، ثم تُضاف المصنعية حسب القطعة${c.vat ? ` وضريبة القيمة المضافة ${c.vat}%` : ''}. استخدم <a href="/gold-calculator/">حاسبة الذهب</a> واختر ${x.cur} لمعرفة السعر النهائي.</p>`}</div></section>
 ${en && ART_BY_SLUG[CTRY_ART[slug]] ? `<section class="card-section"><h2>Gold guide for ${x.n}</h2><div class="links-grid"><a class="link-card" href="/en/articles/${CTRY_ART[slug]}/">${ART_BY_SLUG[CTRY_ART[slug]].h1}<span>${ART_BY_SLUG[CTRY_ART[slug]].teaser}</span></a></div></section>` : ''}
+${!en && ART_BY_SLUG_AR[AR_CTRY_ART[slug]] ? `<section class="card-section"><h2>دليل الذهب في ${x.n}</h2><div class="links-grid"><a class="link-card" href="/articles/${AR_CTRY_ART[slug]}/">${ART_BY_SLUG_AR[AR_CTRY_ART[slug]].h1}<span>${ART_BY_SLUG_AR[AR_CTRY_ART[slug]].teaser}</span></a></div></section>` : ''}
 ${share(L, slug, en ? `Gold price in ${x.n} today` : `سعر الذهب اليوم ${x.in}`)}
 ${other(L)}`,
         faq: en ? (c.faqEn || [
