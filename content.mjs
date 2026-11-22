@@ -64,7 +64,8 @@ export function pages(ctx) {
   const KS = [24, 22, 21, 18];
   // عملات الحاسبة: الكود، الاسم، نسبة ضريبة القيمة المضافة، عدد الكسور
   const CURS = [['AED', 'درهم إماراتي', 'UAE dirham', 5, 2], ['SAR', 'ريال سعودي', 'Saudi riyal', 15, 2], ['KWD', 'دينار كويتي', 'Kuwaiti dinar', 0, 3],
-    ['QAR', 'ريال قطري', 'Qatari riyal', 0, 2], ['OMR', 'ريال عُماني', 'Omani rial', 5, 3], ['BHD', 'دينار بحريني', 'Bahraini dinar', 10, 3]];
+    ['QAR', 'ريال قطري', 'Qatari riyal', 0, 2], ['OMR', 'ريال عُماني', 'Omani rial', 5, 3], ['BHD', 'دينار بحريني', 'Bahraini dinar', 10, 3],
+    ['EGP', 'جنيه مصري', 'Egyptian pound', 0, 0]];
   const TOLA = 11.6638;
 
   // ── أجزاء مشتركة ──────────────────────────────────────
@@ -87,14 +88,14 @@ export function pages(ctx) {
     ar: [['gold-21k', 'سعر عيار 21', 'الأكثر طلباً في الخليج'], ['gold-24k', 'سعر عيار 24', 'الذهب الخالص والسبائك'], ['gold-22k', 'سعر عيار 22', 'المجوهرات الهندية'], ['gold-18k', 'سعر عيار 18', 'مجوهرات الألماس'],
       ['gold-price-usd', 'سعر الذهب عالمياً', 'الأونصة بالدولار مباشر'], ['silver', 'سعر الفضة اليوم', 'الغرام والأونصة والكيلو'],
       ['gcc', 'أسعار الذهب في الخليج', 'مقارنة بين 6 دول'], ['saudi', 'سعر الذهب في السعودية', 'بالريال السعودي'], ['kuwait', 'سعر الذهب في الكويت', 'بالدينار الكويتي'],
-      ['qatar', 'سعر الذهب في قطر', 'بالريال القطري'], ['oman', 'سعر الذهب في عُمان', 'بالريال العُماني'], ['bahrain', 'سعر الذهب في البحرين', 'بالدينار البحريني'],
+      ['qatar', 'سعر الذهب في قطر', 'بالريال القطري'], ['oman', 'سعر الذهب في عُمان', 'بالريال العُماني'], ['bahrain', 'سعر الذهب في البحرين', 'بالدينار البحريني'], ['egypt', 'سعر الذهب في مصر', 'بالجنيه المصري'],
       ['gold-bars', 'أسعار السبائك', 'من 1 غرام إلى 1 كيلو'], ['gold-calculator', 'حاسبة الذهب', 'بالمصنعية والضريبة'], ['zakat-calculator', 'حاسبة زكاة الذهب', 'النصاب وقيمة الزكاة'],
       ['gold-price-yesterday', 'سعر الذهب أمس', 'وآخر 10 أيام'], ['gold-forecast', 'توقعات الذهب', 'الاتجاه والعوامل المؤثرة'], ['history', 'أرشيف الأسعار', 'سعر الذهب يوماً بيوم'],
       ['articles', 'مقالات وأدلة الذهب', 'شروحات الشراء والادخار والزكاة']],
     en: [['gold-22k', '22K gold rate', 'Popular for Indian jewellery'], ['gold-24k', '24K gold rate', 'Pure gold & bars'], ['gold-21k', '21K gold rate', 'Gulf jewellery'], ['gold-18k', '18K gold rate', 'Diamond jewellery'],
       ['gold-price-usd', 'Gold price in USD', 'Live ounce XAU/USD'], ['silver', 'Silver price', 'Per gram, ounce & kg'],
       ['gcc', 'Gulf gold prices', 'Compare 6 countries'], ['saudi', 'Gold price in Saudi Arabia', 'In SAR'], ['kuwait', 'Gold price in Kuwait', 'In KWD'],
-      ['qatar', 'Gold price in Qatar', 'In QAR'], ['oman', 'Gold price in Oman', 'In OMR'], ['bahrain', 'Gold price in Bahrain', 'In BHD'], ['gold-rate-inr', 'Gold rate in INR', 'Dubai price in rupees'], ['gold-rate-pkr', 'Gold rate in PKR', 'Per tola in rupees'],
+      ['qatar', 'Gold price in Qatar', 'In QAR'], ['oman', 'Gold price in Oman', 'In OMR'], ['bahrain', 'Gold price in Bahrain', 'In BHD'], ['egypt', 'Gold price in Egypt', 'In EGP'], ['gold-rate-inr', 'Gold rate in INR', 'Dubai price in rupees'], ['gold-rate-pkr', 'Gold rate in PKR', 'Per tola in rupees'],
       ['gold-bars', 'Gold bar prices', '1 g to 1 kg, tola bars'], ['gold-calculator', 'Gold calculator', 'With making charges & VAT'], ['gold-price-yesterday', 'Last 10 days', 'Yesterday\'s gold rate'], ['zakat-calculator', 'Zakat calculator', 'Nisab and zakat due']]
   };
   const links = (L, skip) => `<section class="card-section"><h2>${L === 'en' ? 'More gold prices & tools' : 'أسعار وأدوات أخرى'}</h2><div class="links-grid">${LINKS[L].filter(l => l[0] !== skip).map(([s, n, d]) => `<a class="link-card" href="${url(L, s)}">${n}<span>${d}</span></a>`).join('')}</div></section>`;
@@ -683,8 +684,27 @@ ${links('ar', '')}`,
       noteAr: 'تُطبَّق في البحرين ضريبة القيمة المضافة بنسبة 10% على المشغولات الذهبية، ويُعامل الذهب الاستثماري عادةً معاملة مختلفة. والدينار البحريني مقسّم إلى 1000 فلس، لذلك نعرض الأسعار بثلاث خانات عشرية.',
       noteEn: 'Bahrain applies 10% VAT on gold jewellery, while investment gold is usually treated differently. The Bahraini dinar has 1,000 fils, so prices are shown to three decimals.' }
   };
+  // دول خارج الخليج تبنى بنفس القالب (لا تدخل في صفحة مقارنة الخليج ولا قوائم دول الخليج)
+  const OTHERS = {
+    egypt: { code: 'EGP', d: 0, vat: 0, peg: 'غير مربوط بالدولار، وسعر صرفه يتغير يومياً', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true,
+      ar: { n: 'مصر', in: 'في مصر', cur: 'جنيه', curS: 'جنيه', cities: 'القاهرة والإسكندرية والجيزة والمنصورة وأسيوط' },
+      en: { n: 'Egypt', adj: 'Egyptian', cur: 'Egyptian pound', cities: 'Cairo, Alexandria, Giza, Mansoura and Asyut' },
+      noteAr: 'الجنيه المصري غير مربوط بالدولار، لذلك يتحرك سعر الذهب بالجنيه مع السعر العالمي ومع سعر الصرف معاً، وقد يتغير حتى لو ثبت سعر الأونصة عالمياً. عيار 21 هو الأكثر تداولاً في محلات الصاغة المصرية، يليه عيار 18. وفي مصر تُطبَّق ضريبة القيمة المضافة 14% على المصنعية وأجور التصنيع فقط وليس على قيمة الذهب نفسها، إضافة إلى رسوم الدمغة، لذلك لا نعرض عمود ضريبة على قيمة الذهب. وقد يزيد السعر في السوق المحلية عن السعر المحسوب هنا بعلاوة تختلف حسب العرض والطلب وتوافر الذهب.',
+      noteEn: 'The Egyptian pound is not pegged to the dollar, so the gold price in EGP moves with both the global price and the exchange rate, and can change even when the global ounce price is flat. 21K is the most traded karat in Egyptian jewellery shops, followed by 18K. In Egypt, 14% VAT applies to making charges and workmanship only, not to the gold value itself, plus hallmarking (damgha) fees — so we show no VAT column on the gold value. Local market prices can run above the calculated price here by a premium that varies with supply and demand.',
+      faqAr: [
+        ['كم سعر غرام الذهب عيار 21 في مصر اليوم؟', 'يظهر سعر غرام عيار 21 بالجنيه المصري محدَّثاً في أعلى الصفحة ويُحدَّث كل 5 دقائق تقريباً، وهو سعر الذهب الخام المحسوب من السعر العالمي وسعر الصرف، بدون مصنعية أو رسوم دمغة.'],
+        ['هل توجد ضريبة على الذهب في مصر؟', 'تُطبَّق ضريبة القيمة المضافة 14% على المصنعية وأجور التصنيع ورسوم الدمغة فقط، وليس على قيمة الذهب الخام نفسها.'],
+        ['لماذا يختلف السعر في محلات الصاغة عن السعر المعروض هنا؟', 'السعر هنا محسوب من السعر العالمي وسعر صرف الجنيه لحظياً. في السوق المحلية تُضاف المصنعية ورسوم الدمغة، وقد تُضاف علاوة حسب العرض والطلب وتوافر الذهب، فيكون سعر المحل أعلى.']
+      ],
+      faqEn: [
+        ['What is the 21K gold price in Egypt today?', 'The live 21K price per gram in Egyptian pounds is shown at the top of this page and refreshes about every 5 minutes. It is the raw gold price calculated from the global spot price and the EGP exchange rate, without making charges or hallmarking fees.'],
+        ['Is there VAT on gold in Egypt?', 'Egypt applies 14% VAT on making charges and workmanship only, not on the gold value itself, plus hallmarking (damgha) fees.'],
+        ['Why do Egyptian shop prices differ from this page?', 'The price here is calculated live from the global spot price and the EGP exchange rate. Local shops add making charges and hallmarking fees, and may add a market premium depending on supply and demand.']
+      ] }
+  };
+  const COUNTRY_PAGES = { ...GCC, ...OTHERS };
   const GW = [1, 5, 10, 20, 50, 100];
-  for (const [slug, c] of Object.entries(GCC)) {
+  for (const [slug, c] of Object.entries(COUNTRY_PAGES)) {
     const cur = c.code.toLowerCase(), d = c.d;
     const opt = (o = {}) => ({ cur, d: o.d ?? d, ...o });
     const other = L => `<section class="card-section"><h2>${L === 'en' ? 'Gold prices in other Gulf countries' : 'سعر الذهب في دول الخليج الأخرى'}</h2><div class="links-grid">
@@ -722,15 +742,15 @@ ${en ? `<p>The gold price in ${x.n} follows the global spot price of gold in US 
           : `<p>يتبع سعر الذهب ${x.in} السعر العالمي لأونصة الذهب بالدولار. وال${x.cur} ${c.peg}، لذلك يُحسب السعر المحلي هكذا: <strong>(سعر الأونصة بالدولار × سعر صرف الدولار بال${x.cur} ÷ 31.1035) × نسبة العيار</strong>.</p><p>${c.noteAr}</p><p>تُعلن محلات الذهب في ${x.cities} سعراً يومياً لكل عيار يتبع السعر العالمي، ثم تُضاف المصنعية حسب القطعة${c.vat ? ` وضريبة القيمة المضافة ${c.vat}%` : ''}. استخدم <a href="/gold-calculator/">حاسبة الذهب</a> واختر ${x.cur} لمعرفة السعر النهائي.</p>`}</div></section>
 ${share(L, slug, en ? `Gold price in ${x.n} today` : `سعر الذهب اليوم ${x.in}`)}
 ${other(L)}`,
-        faq: en ? [
+        faq: en ? (c.faqEn || [
           [`What is the 21K gold price in ${x.n} today?`, `The live 21K price per gram in ${x.cur} is shown at the top of this page and refreshes about every 5 minutes. It is the raw gold price without making charges${c.vat ? ' or VAT' : ''}.`],
           [`Is there VAT on gold in ${x.n}?`, c.vat ? `Yes. ${x.n} applies ${c.vat}% VAT on gold jewellery; investment gold is usually treated differently.` : `${x.n} does not currently apply VAT, so the shop price is the gold price plus making charges.`],
           [`Is gold cheaper in ${x.n} or in the UAE?`, `The raw gold price is practically the same across the Gulf because it follows the global price. Differences come from VAT, making charges and shop premiums.`]
-        ] : [
+        ]) : (c.faqAr || [
           [`كم سعر غرام الذهب عيار 21 ${x.in} اليوم؟`, `يظهر سعر غرام عيار 21 بال${x.cur} محدَّثاً في أعلى الصفحة ويُحدَّث كل 5 دقائق تقريباً، وهو سعر الذهب الخام بدون مصنعية${c.vat ? ' أو ضريبة' : ''}.`],
           [`هل توجد ضريبة على الذهب ${x.in}؟`, c.vat ? `نعم، تُطبَّق ضريبة القيمة المضافة بنسبة ${c.vat}% على المشغولات الذهبية ${x.in}، ويُعامل الذهب الاستثماري عادةً معاملة مختلفة.` : `لا تُطبَّق ضريبة القيمة المضافة ${x.in} حتى الآن، فيتكون سعر المحل من سعر الذهب والمصنعية.`],
           [`هل الذهب أرخص ${x.in} أم في الإمارات؟`, 'سعر الذهب الخام متقارب جداً في كل دول الخليج لأنه يتبع السعر العالمي، والفرق الحقيقي يكون في الضريبة والمصنعية وهامش المحل.']
-        ] });
+        ]) });
     }
 
     // صفحات العيارات لكل دولة (عربي)
