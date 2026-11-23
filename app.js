@@ -20,7 +20,10 @@ const T=EN?{
   refresh:'تحديث',refreshing:'جارٍ التحديث…'
 };
 
-let G={g24:+(window.__G||0)||null};
+let G={g24:+(window.__G||0)||null,...(window.__QUOTE||{})};
+G.at=epoch(G.sourceAt);G.stale=!priceState(G).usable;
+function statusPrice(){const status=priceState(G);G.stale=!status.usable;document.querySelectorAll('[data-price-state]').forEach(el=>{el.dataset.priceState=status.state;el.textContent=priceLabel(status.state,document.documentElement.lang);});return status;}
+statusPrice();G.displayedAt=new Date().toISOString();setInterval(()=>{statusPrice();calc();zakat();if(window.GoldAlerts)window.GoldAlerts.check();},30000);
 
 const $=s=>document.querySelector(s);
 const $$=s=>document.querySelectorAll(s);
@@ -53,19 +56,19 @@ if(themeBtn)themeBtn.addEventListener('click',()=>{const t=document.documentElem
 
 /* ── Supabase ── */
 async function sb(path,opts={}){
-  const r=await fetch(SB_URL+'/rest/v1'+path,{...opts,headers:{apikey:SB_KEY,Authorization:'Bearer '+SB_KEY,'Content-Type':'application/json',Prefer:'return=minimal',...(opts.headers||{})}});
+  const r=await fetch(SB_URL+'/rest/v1'+path,{...opts,cache:'no-store',headers:{apikey:SB_KEY,Authorization:'Bearer '+SB_KEY,'Content-Type':'application/json',Prefer:'return=minimal',...(opts.headers||{})}});
   if(!r.ok) throw new Error('db '+r.status);
   return opts.method==='POST'?null:r.json();
 }
-const latestRow=async()=>(await sb('/gold_prices?order=fetched_at.desc&limit=1&select=fetched_at,price_24k'))[0]||null;
+const latestRow=async()=>(await sb('/gold_prices?order=fetched_at.desc&limit=1&select=fetched_at,price_24k,raw_json'))[0]||null;
 async function rowBefore(ms){
   const t=new Date(Date.now()-ms).toISOString();
   return (await sb(`/gold_prices?fetched_at=lte.${t}&order=fetched_at.desc&limit=1&select=price_24k`))[0]||null;
 }
-function saveRow(g24,usd){
+function saveRow(g24,usd,sourceAt){
   return sb('/gold_prices',{method:'POST',body:JSON.stringify({currency:'AED',
     price_24k:+g24.toFixed(4),price_22k:+(g24*22/24).toFixed(4),price_21k:+(g24*21/24).toFixed(4),price_18k:+(g24*18/24).toFixed(4),
-    price_troy:+(g24*TROY).toFixed(4),raw_json:{priceUSD:usd,usdToAed:AED,source:'browser'}})});
+    price_troy:+(g24*TROY).toFixed(4),raw_json:{priceUSD:usd,usdToAed:AED,source:'browser',sourceAt:sourceAt||null}})});
 }
 
 /* ── Live price ── */
@@ -74,20 +77,21 @@ async function fetchLive(){
   if(!r.ok) throw new Error('gold-api '+r.status);
   const d=await r.json();
   if(!(d.price>500)) throw new Error('bad price');
-  return {g24:d.price*AED/TROY,usd:d.price,at:d.updatedAt||new Date().toISOString()};
+  if(!epoch(d.updatedAt))throw new Error('missing source timestamp');
+  return {g24:d.price*AED/TROY,usd:d.price,at:d.updatedAt||null,sourceAt:d.updatedAt||null,fetchedAt:new Date().toISOString(),storedAt:null};
 }
 
 async function getPrice(){
   let cached=null;
   try{cached=await latestRow();}catch(e){}
-  if(cached&&Date.now()-new Date(cached.fetched_at).getTime()<CACHE_MS)
-    return {g24:+cached.price_24k,at:cached.fetched_at};
+  const stored=cached?{g24:+cached.price_24k,at:cached.raw_json?.sourceAt||cached.fetched_at,sourceAt:cached.raw_json?.sourceAt||null,storedAt:cached.fetched_at,fetchedAt:new Date().toISOString()}:null;
+  if(stored&&priceState(stored).state==='LIVE')return stored;
   try{
     const live=await fetchLive();
-    saveRow(live.g24,live.usd).catch(()=>{});
+    saveRow(live.g24,live.usd,live.sourceAt).catch(()=>{});
     return live;
   }catch(e){
-    if(cached) return {g24:+cached.price_24k,at:cached.fetched_at,stale:true};
+    if(stored) return stored;
     throw e;
   }
 }
@@ -95,10 +99,10 @@ async function getPrice(){
 /* ── Render ── */
 // data-p: سعر قابل للتحديث. data-m="ag" للفضة (data-f = النقاء)، غير كده ذهب (data-k = العيار)
 // data-cur: aed (افتراضي) | usd | inr | pkr ...
-G.ag=+(window.__AG||0)||null; G.fx=window.__FX||{};
+G.ag=+(window.__AG||0)||null;G.agAt=epoch(window.__AG_AT); G.fx=window.__FX||{};G.fxAt=epoch(window.__FX_AT);
 // عملات مربوطة بالدولار بسعر ثابت (رسمي). الدينار الكويتي مش مربوط فبييجي من سعر الصرف اليومي
 const PEG={USD:1,AED:3.6725,SAR:3.75,QAR:3.64,OMR:0.3845,BHD:0.376,JOD:0.709};
-const rate=c=>PEG[c.toUpperCase()]||G.fx[c.toUpperCase()]||null;
+const rate=c=>PEG[c.toUpperCase()]||(G.fxAt&&Date.now()-G.fxAt<=4*86400000&&G.fxAt-Date.now()<=2*60000?G.fx[c.toUpperCase()]||null:null);
 
 /* ── الدولة المختارة من القائمة اللي فوق ── */
 const CTRY={AED:'',SAR:'saudi',KWD:'kuwait',QAR:'qatar',OMR:'oman',BHD:'bahrain',EGP:'egypt',INR:'india',PKR:'pakistan',BDT:'bangladesh',TRY:'turkey',USD:'usa',GBP:'uk',CAD:'canada',AUD:'australia',PHP:'philippines',MYR:'malaysia',NPR:'nepal',ZAR:'southafrica',IQD:'iraq',JOD:'jordan',MAD:'morocco',DZD:'algeria',IDR:'indonesia',THB:'thailand',VND:'vietnam',SGD:'singapore',LKR:'srilanka',EUR:'germany',JPY:'japan',CHF:'switzerland',NGN:'nigeria',GHS:'ghana',KES:'kenya',MXN:'mexico',BRL:'brazil',CNY:'china',LBP:'lebanon',TND:'tunisia',LYD:'libya',YER:'yemen'};
@@ -175,9 +179,9 @@ function paint(){
   });
 }
 function render(p){
-  G.g24=p.g24;G.at=Date.parse(p.at)||0;G.stale=!!p.stale;
+  Object.assign(G,p);G.at=epoch(p.sourceAt);G.displayedAt=new Date().toISOString();statusPrice();
   paint();
-  $$('[data-upd]').forEach(el=>el.textContent=dubaiTime(p.at));
+  $$('[data-upd]').forEach(el=>el.textContent=p.sourceAt?dubaiTime(p.sourceAt):(EN?'Source time unavailable':'وقت المصدر غير متاح'));
   nisab();labels();
   calc();zakat();if(window.GoldAlerts)window.GoldAlerts.check();
 }
@@ -186,7 +190,7 @@ async function loadSilver(){
   try{
     const r=await fetch('https://api.gold-api.com/price/XAG',{cache:'no-store'});
     const d=await r.json();
-    if(d.price>1){G.ag=d.price*AED/TROY;paint();$$('[data-upd-ag]').forEach(el=>el.textContent=dubaiTime(d.updatedAt||Date.now()));}
+    if(d.price>1){G.ag=d.price*AED/TROY;G.agAt=epoch(d.updatedAt);paint();$$('[data-upd-ag]').forEach(el=>el.textContent=dubaiTime(d.updatedAt||Date.now()));}
   }catch(e){}
 }
 async function loadFX(force){
@@ -215,11 +219,12 @@ async function load(){
   try{
     const p=await getPrice();
     render(p);
-    if(err) err.hidden=!p.stale, err.textContent=T.fail;
+    const status=priceState(G);
+    if(err){err.hidden=status.state==='LIVE';if(!err.hidden)err.textContent=priceLabel(status.state,EN?'en':'ar');}
     try{const old=await rowBefore(24*3600*1000);if(old) renderChange((p.g24-old.price_24k)/old.price_24k*100);}catch(e){}
   }catch(e){
-    G.stale=true;if(window.GoldAlerts)window.GoldAlerts.check();
-    if(err){err.hidden=false;err.textContent=T.fail;}
+    G.stale=!priceState(G).usable;statusPrice();if(window.GoldAlerts)window.GoldAlerts.check();
+    if(err){err.hidden=false;err.textContent=EN?'Refresh failed. '+priceLabel(priceState(G).state,'en'):'تعذر التحديث. '+priceLabel(priceState(G).state,'ar');}
     if(G.g24){paint();labels();nisab();calc();zakat();}
   }finally{
     if(btn){btn.disabled=false;btn.textContent='🔄 '+T.refresh;}
@@ -276,7 +281,8 @@ function calc(){
   $$('.c-curl').forEach(el=>el.textContent=cur);
   const quoted=num('c-rate'),w=num('c-w'),k=+$('#c-k').value,mc=num('c-mc');
   const pg=quoted>0?quoted:(G.g24&&r?G.g24*k/24/AED*r:0);
-  setText('c-rate-source',quoted>0?(EN?'Using your shop gram price for the selected karat.':'يُستخدم سعر غرام المحل للعيار المختار.'):(EN?'Using the live raw gold rate, converted at the current exchange rate.':'يُستخدم سعر الذهب الخام المباشر محوّلاً بسعر الصرف الحالي.'));
+  setText('c-rate-source',quoted>0?(EN?'Using your shop gram price for the selected karat.':'يُستخدم سعر غرام المحل للعيار المختار.'):(EN?'Using the indicative raw gold rate. Check the source status and FX timestamp.':'يُستخدم سعر الذهب الخام المرجعي. راجع حالة المصدر وتاريخ الصرف.'));
+  if(!quoted&&!priceState(G).usable){['c-pg','c-gold','c-make','c-tax','c-total','c-usd'].forEach(id=>setText(id,'—'));setText('c-rate-source',EN?'Automatic estimate paused: the gold source time is missing or older than 15 minutes. Enter a shop gram quote to calculate manually.':'توقف التقدير التلقائي: وقت المصدر مفقود أو أقدم من 15 دقيقة. أدخل سعر المحل للحساب اليدوي.');return;}
   if(!pg){['c-pg','c-gold','c-make','c-tax','c-total','c-usd'].forEach(id=>setText(id,'—'));return;}
   const gold=pg*w,mode=$('#c-mtype').value,make=mode==='piece'?mc:mode==='percent'?gold*mc/100:mc*w;
   const base=$('#c-tax-base').value,taxable=base==='making'?make:base==='gold'?gold:gold+make;
@@ -288,6 +294,7 @@ function calc(){
 /* ── Zakat calculator ── */
 function zakat(){
   if(!$('#zakat')||!G.g24) return;
+  if(!priceState(G).usable){['z-val','z-amt'].forEach(id=>setText(id,'—'));return;}
   const pure=num('z-24')+num('z-22')*22/24+num('z-21')*21/24+num('z-18')*18/24;
   const dp=DEC[effCur()],value=pure*G.g24*(conv()||1),due=pure>=NISAB_G;
   setText('z-pure',fmt(pure));setText('z-val',fmt(value,dp));
@@ -315,8 +322,9 @@ if(document.getElementById('weight-tool')){const s=document.createElement('scrip
 if(document.getElementById('resale-tool')){const s=document.createElement('script');s.src='/assets/resale.js?v='+(document.body.dataset.avResale||'');document.head.appendChild(s);}
 
 /* ── Device-only gold targets ── */
-window.getGoldAlertSnapshot=()=>({g24:G.g24,at:G.at||0,stale:!!G.stale,fx:G.fx||{},fxAt:G.fxAt||0});
+window.getGoldAlertSnapshot=()=>({g24:G.g24,at:epoch(G.sourceAt),sourceAt:G.sourceAt||null,fetchedAt:G.fetchedAt||null,storedAt:G.storedAt||null,displayedAt:G.displayedAt||null,state:priceState(G).state,stale:!priceState(G).usable,fx:G.fx||{},fxAt:G.fxAt||0,ag:G.ag||null,agAt:G.agAt||0});
 window.ensureGoldAlertRates=()=>loadFX(true);
+window.ensureGoldAssistantRates=async()=>{await Promise.all([G.fxAt&&Date.now()-G.fxAt<86400000?Promise.resolve():loadFX(true),G.agAt&&Date.now()-G.agAt<CACHE_MS?Promise.resolve():loadSilver()]);};
 try{if(document.getElementById('price-alerts')||(JSON.parse(localStorage.getItem('mael-gold-alerts-v1')||'[]')||[]).length){const script=document.createElement('script');script.src='/assets/alerts.js?v='+(document.body.dataset.avAlerts||'');document.head.appendChild(script);}}catch{}
 
 /* ── PWA ── */

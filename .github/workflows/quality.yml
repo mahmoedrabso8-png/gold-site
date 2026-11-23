@@ -24,4 +24,6 @@ jobs:
       - name: Test quality checker failure detection
         run: node tests/quality-selftest.mjs
       - name: Test isolated financial calculations and alerts
-        run: node tests/finance.mjs
+        run: |
+          node tests/finance.mjs
+          node tests/price-state.mjs

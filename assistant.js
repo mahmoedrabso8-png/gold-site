@@ -11,7 +11,9 @@ const PEG = { USD: 1, AED: 3.6725, SAR: 3.75, QAR: 3.64, OMR: 0.3845, BHD: 0.376
 let FX = Object.assign({}, PEG, window.__FX || {});
 let G24_USD = window.__G ? window.__G / AED : null;   // غرام 24 بالدولار
 let AG_USD = window.__AG ? window.__AG / AED : null;  // غرام الفضة بالدولار
-let PRICE_AT = null;
+let PRICE_AT = window.__QUOTE?.sourceAt||null;
+function syncPrices(){const s=window.getGoldAlertSnapshot?.();if(!s)return;G24_USD=s.stale?null:s.g24/AED;PRICE_AT=s.sourceAt;FX=Object.assign({},PEG,s.fxAt&&Date.now()-s.fxAt<4*86400000?s.fx:{});AG_USD=s.agAt&&Date.now()-s.agAt<15*60000?s.ag/AED:null;}
+syncPrices();
 
 /* ── الدول: slug، عملة، كسور، أسماء/ألقاب، العيار الشائع، المقال ── */
 const CS = [
@@ -128,28 +130,16 @@ function findNum(q) {
 
 /* ── الأسعار الحية ── */
 async function refresh() {
-  try {
-    const r = await fetch('https://api.gold-api.com/price/XAU', { cache: 'no-store' });
-    const d = await r.json();
-    if (d.price > 500) { G24_USD = d.price / TROY; PRICE_AT = d.updatedAt || new Date().toISOString(); }
-  } catch (e) {}
-  try {
-    const r = await fetch('https://open.er-api.com/v6/latest/USD');
-    const d = await r.json();
-    if (d.rates) FX = Object.assign({}, PEG, d.rates);
-  } catch (e) {}
-  try {
-    const r = await fetch('https://api.gold-api.com/price/XAG', { cache: 'no-store' });
-    const d = await r.json();
-    if (d.price > 1) AG_USD = d.price / TROY;
-  } catch (e) {}
+  syncPrices();
+  if(window.ensureGoldAssistantRates)await window.ensureGoldAssistantRates();
+  syncPrices();
 }
 const g24 = code => G24_USD && FX[code] ? G24_USD * FX[code] : null;
 const fmt = (v, d = 2) => new Intl.NumberFormat('en-US', { minimumFractionDigits: d, maximumFractionDigits: d }).format(v);
 const bdi = (v, d) => `<bdi>${fmt(v, d)}</bdi>`;
 const srcLine = () => AR
-  ? `<span class="chat-src">السعر المباشر: Gold-API.com${PRICE_AT ? ' · ' + new Date(PRICE_AT).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Dubai' }) + ' بتوقيت دبي' : ''} — للاطلاع فقط وليس نصيحة استثمارية. المحلات تضيف المصنعية والضريبة.</span>`
-  : `<span class="chat-src">Live price: Gold-API.com${PRICE_AT ? ' · ' + new Date(PRICE_AT).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Dubai' }) + ' Dubai time' : ''} — information only, not investment advice. Shops add making charges and tax.</span>`;
+  ? `<span class="chat-src">السعر المرجعي: Gold-API.com${PRICE_AT ? ' · ' + new Date(PRICE_AT).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Dubai' }) + ' بتوقيت دبي' : ''} — للاطلاع فقط وليس نصيحة استثمارية. المحلات تضيف المصنعية والضريبة.</span>`
+  : `<span class="chat-src">Reference quote: Gold-API.com${PRICE_AT ? ' · ' + new Date(PRICE_AT).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Dubai' }) + ' Dubai time' : ''} — information only, not investment advice. Shops add making charges and tax.</span>`;
 const link = (href, t) => `<a href="${href}">${t}</a>`;
 
 function priceRows(code, dec, weight, karat) {
@@ -316,6 +306,7 @@ function kbSearch(q) {
 
 /* ── محرك الأنماط ── */
 function answer(raw) {
+  syncPrices();
   const q = norm(raw);
   if (!q) return ansFallback();
   if (has(q, ['سلام', 'اهلا', 'مرحبا', 'هاي', 'hello', 'hi ', 'hey']) && q.length < 30) return ansGreeting();

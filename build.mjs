@@ -11,6 +11,7 @@ import { pages } from './content.mjs';
 import { loadCountryHistory } from './history-data.mjs';
 import { historySection } from './history-core.mjs';
 import { ARTICLES, ARTICLES_EN } from './articles.mjs';
+import { priceState, priceLabel } from './price-state.mjs';
 
 const SITE   = 'https://www.maelumatii.com';
 const OUT    = 'dist';
@@ -39,15 +40,15 @@ async function loadPrice() {
         method: 'POST', headers: { ...sbHeaders, Prefer: 'return=minimal' },
         body: JSON.stringify({ currency: 'AED', price_24k: +g24.toFixed(4), price_22k: +(g24 * 22 / 24).toFixed(4),
           price_21k: +(g24 * 21 / 24).toFixed(4), price_18k: +(g24 * 18 / 24).toFixed(4), price_troy: +(g24 * TROY).toFixed(4),
-          raw_json: { priceUSD: d.price, usdToAed: AED, source: 'build' } })
+          raw_json: { priceUSD: d.price, usdToAed: AED, source: 'build', sourceAt: d.updatedAt || null } })
       }).catch(() => {});
     }
-    return { g24, at: d.updatedAt || new Date().toISOString() };
+    return { g24, at: d.updatedAt || null, sourceAt: d.updatedAt || null, fetchedAt: new Date().toISOString(), storedAt: null };
   } catch (e) {
     console.warn('live price failed:', e.message);
     try {
-      const [row] = await getJSON(SB_URL + '/rest/v1/gold_prices?order=fetched_at.desc&limit=1&select=fetched_at,price_24k', { headers: sbHeaders });
-      if (row) return { g24: +row.price_24k, at: row.fetched_at };
+      const [row] = await getJSON(SB_URL + '/rest/v1/gold_prices?order=fetched_at.desc&limit=1&select=fetched_at,price_24k,raw_json', { headers: sbHeaders });
+      if (row) return { g24: +row.price_24k, at: row.raw_json?.sourceAt || row.fetched_at, sourceAt: row.raw_json?.sourceAt || null, storedAt: row.fetched_at, fetchedAt: new Date().toISOString() };
     } catch (e2) { console.warn('db fallback failed:', e2.message); }
     return { g24: null, at: null };
   }
@@ -113,7 +114,7 @@ function makeCtx(price, daily, extra = {}) {
     const dd = d != null ? d : (v == null ? 2 : v < 10 ? 4 : v >= 100000 ? 0 : 2);
     return `<span data-fxd="${c.toUpperCase()}"${w !== 1 ? ` data-w="${w}"` : ''}${i ? ' data-i="1"' : ''} data-d="${dd}">${v == null ? '—' : fmt(v, dd)}</span>`;
   };
-  const updated = lang => `<span data-upd>${price.at ? new Date(price.at).toLocaleString(lang === 'en' ? 'en-AE' : 'ar-AE-u-nu-latn', { hour: '2-digit', minute: '2-digit', day: 'numeric', month: 'short', timeZone: 'Asia/Dubai' }) : '—'}</span>`;
+  const updated = lang => `<span data-upd>${price.sourceAt ? new Date(price.sourceAt).toLocaleString(lang === 'en' ? 'en-AE' : 'ar-AE-u-nu-latn', { hour: '2-digit', minute: '2-digit', day: 'numeric', month: 'short', timeZone: 'Asia/Dubai' }) : (lang==='en'?'Source time unavailable':'وقت المصدر غير متاح')}</span>`;
   let chg = '';
   if (daily.length >= 2 && g) {
     const prev = daily[daily.length - 2].close;
@@ -122,7 +123,7 @@ function makeCtx(price, daily, extra = {}) {
     chg = `<span class="chg ${dir}" data-chg>${dir === 'up' ? '▲' : dir === 'dn' ? '▼' : '●'} ${Math.abs(pct).toFixed(2)}%</span>`;
   } else chg = '<span class="chg fl" data-chg hidden></span>';
   const markets = Object.entries(CNAMES).map(([slug, [ar, en]]) => ({slug, ar, en, currency: (COUNTRIES.find(c => c[2] === en || c[1] === ar) || ['EUR'])[0]}));
-  return { markets, g24: g, ag, fx, PEG, rateOf, P, S, FX, FXD, updated, chg, daily, fmt, AED, TROY, SITE, TODAY, url, AD };
+  return { markets, price, priceState:priceState(price), priceLabel, g24: g, ag, fx, PEG, rateOf, P, S, FX, FXD, updated, chg, daily, fmt, AED, TROY, SITE, TODAY, url, AD };
 }
 
 // ── Layout ────────────────────────────────────────────────────
@@ -214,6 +215,7 @@ function layout(p, ctx) {
   else if (p.slug === '' && !p.file) ctry = 'uae';
   else if (/^gold-(?:24|22|21|18)k$/.test(p.slug)) { ctry = 'uae'; sub = p.slug; }
   let body = !ctry && !p.fixed ? markCur(p.body) : p.body;
+  body=body.replace(/<div class="update-badge"><span class="update-dot"><\/span>[^<]*<\/div>/g,`<div class="update-badge" data-price-state="${ctx.priceState.state}" role="status">${priceLabel(ctx.priceState.state,L)}</div>`);
   if (ctry && !p.slug.endsWith('gold-calculator')) body = body.replace(/href="(\/(?:en\/)?gold-calculator\/)"/g, (_, href) => `href="${href}?country=${ctry}"`);
   if(ctry && !sub && !p.slug.startsWith('dollar-') && (L==='ar'||en)){const market=ctx.markets.find(m=>m.slug===ctry);if(market){const alertLink=`<p class="country-alert-link"><a href="${url(L,'price-alerts')}?country=${ctry}">${en?'Save a gold price target for this country':'احفظ سعراً مستهدفاً للذهب في هذه الدولة'}</a> <small>${en?'Free device alert while the site is open':'تنبيه مجاني على الجهاز أثناء فتح الموقع'}</small></p>`;const chart=alertLink+historySection(ctx.countryHistory,market,L,TODAY).replace('data-as-of=',`data-version="${ASSET_V.historydata}" data-as-of=`);body=body.replace('</section>','</section>'+chart);}}
   const cselect = `<select id="country" class="ctry" aria-label="${en ? 'Country' : tr ? 'Ülke' : L === 'hi' ? 'देश' : L === 'ur' ? 'ملک' : L === 'id' ? 'Negara' : L === 'ms' ? 'Negara' : L === 'tl' ? 'Bansa' : L === 'bn' ? 'দেশ' : 'الدولة'}">${COUNTRIES.map(([c, a, e]) => `<option value="${c}">${L === 'ar' ? a : e}</option>`).join('')}</select>`;
@@ -387,7 +389,7 @@ ${p.faq ? `<section class="card-section" id="faq"><h2>${en ? 'Frequently asked q
 ${p.noAds ? '' : AD}
 </div></main>
 <footer class="site-footer"><div class="container">${footer}</div></footer>
-<script>window.__G=${ctx.g24 ? ctx.g24.toFixed(4) : 'null'};window.__LANGURLS=${JSON.stringify(langUrls)};${p.usesAg ? `window.__AG=${ctx.ag ? ctx.ag.toFixed(4) : 'null'};` : ''}${p.usesFx ? `window.__FX=${JSON.stringify({ INR: ctx.fx.INR, PKR: ctx.fx.PKR, KWD: ctx.fx.KWD, EGP: ctx.fx.EGP, BDT: ctx.fx.BDT, TRY: ctx.fx.TRY, GBP: ctx.fx.GBP, CAD: ctx.fx.CAD, AUD: ctx.fx.AUD, PHP: ctx.fx.PHP, MYR: ctx.fx.MYR, NPR: ctx.fx.NPR, ZAR: ctx.fx.ZAR, IQD: ctx.fx.IQD, MAD: ctx.fx.MAD, DZD: ctx.fx.DZD, IDR: ctx.fx.IDR, THB: ctx.fx.THB, VND: ctx.fx.VND, SGD: ctx.fx.SGD, LKR: ctx.fx.LKR, EUR: ctx.fx.EUR, JPY: ctx.fx.JPY, CHF: ctx.fx.CHF, NGN: ctx.fx.NGN, GHS: ctx.fx.GHS, KES: ctx.fx.KES, MXN: ctx.fx.MXN, BRL: ctx.fx.BRL, CNY: ctx.fx.CNY, LBP: ctx.fx.LBP, TND: ctx.fx.TND, LYD: ctx.fx.LYD, YER: ctx.fx.YER })};` : ''}</script>
+<script>window.__AG_AT=${JSON.stringify(ctx.agSourceAt)};window.__FX_AT=${JSON.stringify(ctx.fxSourceAt)};window.__QUOTE=${JSON.stringify(ctx.price)};window.__G=${ctx.g24 ? ctx.g24.toFixed(4) : 'null'};window.__LANGURLS=${JSON.stringify(langUrls)};${p.usesAg ? `window.__AG=${ctx.ag ? ctx.ag.toFixed(4) : 'null'};` : ''}${p.usesFx ? `window.__FX=${JSON.stringify({ INR: ctx.fx.INR, PKR: ctx.fx.PKR, KWD: ctx.fx.KWD, EGP: ctx.fx.EGP, BDT: ctx.fx.BDT, TRY: ctx.fx.TRY, GBP: ctx.fx.GBP, CAD: ctx.fx.CAD, AUD: ctx.fx.AUD, PHP: ctx.fx.PHP, MYR: ctx.fx.MYR, NPR: ctx.fx.NPR, ZAR: ctx.fx.ZAR, IQD: ctx.fx.IQD, MAD: ctx.fx.MAD, DZD: ctx.fx.DZD, IDR: ctx.fx.IDR, THB: ctx.fx.THB, VND: ctx.fx.VND, SGD: ctx.fx.SGD, LKR: ctx.fx.LKR, EUR: ctx.fx.EUR, JPY: ctx.fx.JPY, CHF: ctx.fx.CHF, NGN: ctx.fx.NGN, GHS: ctx.fx.GHS, KES: ctx.fx.KES, MXN: ctx.fx.MXN, BRL: ctx.fx.BRL, CNY: ctx.fx.CNY, LBP: ctx.fx.LBP, TND: ctx.fx.TND, LYD: ctx.fx.LYD, YER: ctx.fx.YER })};` : ''}</script>
 <a class="tg-float" href="https://t.me/emaratijob" target="_blank" rel="noopener" aria-label="${L === 'ar' ? 'أسعار الذهب يومياً على تيليجرام' : 'Daily gold prices on Telegram'}"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M9.04 15.9l-.38 5.36c.55 0 .79-.24 1.08-.52l2.6-2.48 5.38 3.94c.99.55 1.69.26 1.96-.9l3.55-16.64c.32-1.45-.52-2.02-1.47-1.66L1.7 10.8c-1.42.55-1.4 1.34-.24 1.7l5.3 1.65L18.98 5.7c.58-.38 1.1-.17.67.21L9.04 15.9z"/></svg><span>${L === 'ar' ? 'أسعار الذهب يومياً' : 'Daily prices on Telegram'}</span></a>
 <div id="chat-widget">
 <button type="button" id="chat-fab" aria-expanded="false" aria-label="${L === 'ar' ? 'اسأل مساعد الذهب' : 'Ask the gold assistant'}">💬</button>
@@ -420,20 +422,22 @@ async function copyDir(src, dst) {
   }
 }
 
+let agSourceAt=null,fxSourceAt=null;
 async function loadSilver() {
-  try { const d = await getJSON('https://api.gold-api.com/price/XAG'); return d.price > 1 ? d.price * AED / TROY : null; }
+  try { const d = await getJSON('https://api.gold-api.com/price/XAG'); agSourceAt=d.updatedAt||null;return d.price > 1 ? d.price * AED / TROY : null; }
   catch (e) { console.warn('silver failed:', e.message); return null; }
 }
 async function loadFX() {
-  try { const d = await getJSON('https://open.er-api.com/v6/latest/USD'); return d.rates || {}; }
+  try { const d = await getJSON('https://open.er-api.com/v6/latest/USD'); fxSourceAt=d.time_last_update_unix?new Date(d.time_last_update_unix*1000).toISOString():null;return d.rates || {}; }
   catch (e) { console.warn('fx failed:', e.message); return {}; }
 }
 
 const price = await loadPrice();
 const daily = process.env.FAKE_HISTORY ? JSON.parse(await fs.readFile(process.env.FAKE_HISTORY, 'utf8')) : await loadDaily();
 let ag = await loadSilver(), fx = await loadFX();
-if (process.env.FAKE_PRICE) { price.g24 = +process.env.FAKE_PRICE; price.at = new Date().toISOString(); ag = 49.25 * AED / TROY; fx = { INR: 95.0, PKR: 281.5, AED: 3.6725, KWD: 0.3065 }; }
+if (process.env.FAKE_PRICE) { price.g24 = +process.env.FAKE_PRICE; price.at = new Date().toISOString(); price.sourceAt=price.at; ag = 49.25 * AED / TROY; fx = { INR: 95.0, PKR: 281.5, AED: 3.6725, KWD: 0.3065 }; }
 const ctx = makeCtx(price, daily, { ag, fx });
+ctx.agSourceAt=agSourceAt;ctx.fxSourceAt=fxSourceAt;
 ctx.countryHistory = await loadCountryHistory(TODAY);
 console.log('price 24k:', price.g24 ? price.g24.toFixed(2) : 'n/a', '| days in archive:', daily.length);
 
@@ -448,6 +452,10 @@ async function place(name, dirs, dest) {
   throw new Error('missing file: ' + name);
 }
 for (const f of ['style.css', 'app.js', 'assistant.js', 'alerts.js', 'resale.js', 'weight.js']) await place(f, ['assets', '.'], path.join(OUT, 'assets', f));
+
+const priceStateJs=(await fs.readFile('price-state.mjs','utf8')).replace(/^export /gm,'');
+const browserApp=await fs.readFile(path.join(OUT,'assets','app.js'),'utf8');
+await fs.writeFile(path.join(OUT,'assets','app.js'),'(function(){'+priceStateJs+'\n'+browserApp+'})();');
 
 /* قاعدة معرفة المساعد: تُبنى من مقالات الموقع وأسئلتها الشائعة (استرجاع نصي داخل المتصفح) */
 {

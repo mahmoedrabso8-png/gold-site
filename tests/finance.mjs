@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
+import {priceState} from '../price-state.mjs';
 import {historySeries,historyGraph} from '../history-core.mjs';
 
 // Run the production calculator function with a minimal DOM, never with live prices.
@@ -12,7 +13,7 @@ for(const id of ['calc','c-cur','c-rate','c-w','c-k','c-mc','c-mtype','c-tax-bas
 nodes.get('calc').querySelectorAll=()=>['c-rate','c-w','c-mc','c-tax-rate'].map(id=>nodes.get(id));
 const moneyLabels=Array.from({length:6},()=>({textContent:''}));
 const rates={USD:1,AED:3.6725,EGP:50,INR:90,EUR:.9};
-const context={console,EN:true,G:{g24:367.25},AED:3.6725,$:s=>nodes.get(s.slice(1)),$$:()=>moneyLabels,rate:c=>rates[c]||1.25,num:id=>Math.max(0,Number(nodes.get(id).value)||0),setText:(id,v)=>nodes.get(id).textContent=v,fmt:(v,d=2)=>v.toFixed(d)};
+const context={console,EN:true,priceState,G:{g24:367.25,sourceAt:Date.now()},AED:3.6725,$:s=>nodes.get(s.slice(1)),$$:()=>moneyLabels,rate:c=>rates[c]||1.25,num:id=>Math.max(0,Number(nodes.get(id).value)||0),setText:(id,v)=>nodes.get(id).textContent=v,fmt:(v,d=2)=>v.toFixed(d)};
 vm.createContext(context);vm.runInContext(calc,context);
 const html=await fs.readFile(new URL('../dist/en/gold-calculator/index.html',import.meta.url),'utf8');
 const options=[...html.matchAll(/<option value="([A-Z]+)" data-market="([^"]+)" data-d="(\d+)"/g)].map(m=>({value:m[1],market:m[2],dataset:{d:m[3]}}));
