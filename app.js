@@ -199,7 +199,7 @@ async function loadFX(force){
   G.fxLoading=true;
   try{
     const d=await (await fetch('https://open.er-api.com/v6/latest/USD')).json();
-    if(d.rates){G.fx=d.rates;G.fxAt=Number(d.time_last_update_unix)*1000||0;G.fxFetchedAt=Date.now();statusPrice();if(window.GoldAlerts)window.GoldAlerts.check();paint();labels();nisab();calc();zakat();dconv('usd');$$('[data-fx]').forEach(el=>{const v=d.rates[el.dataset.fx];if(v) el.textContent=fmt(v/AED,4);});$$('[data-fxd]').forEach(el=>{const v=d.rates[el.dataset.fxd];if(v){const w=+(el.dataset.w||1);el.textContent=fmt(el.dataset.i?w/v:v*w,+el.dataset.d||0);}});}
+    if(d.rates){if(DPG)$$('[data-upd]').forEach(el=>el.textContent=d.time_last_update_unix?dubaiTime(d.time_last_update_unix*1000):(EN?'Source time unavailable':'وقت المصدر غير متاح'));G.fx=d.rates;G.fxAt=Number(d.time_last_update_unix)*1000||0;G.fxFetchedAt=Date.now();statusPrice();if(window.GoldAlerts)window.GoldAlerts.check();paint();labels();nisab();calc();zakat();dconv('usd');$$('[data-fx]').forEach(el=>{const v=d.rates[el.dataset.fx];if(v) el.textContent=fmt(v/AED,4);});$$('[data-fxd]').forEach(el=>{const v=d.rates[el.dataset.fxd];if(v){const w=+(el.dataset.w||1);el.textContent=fmt(el.dataset.i?w/v:v*w,+el.dataset.d||0);}});}
   }catch(e){}finally{G.fxLoading=false;}
 }
 
@@ -218,6 +218,7 @@ async function load(){
   const err=$('#price-error');
   if(err)err.hidden=true;
   try{
+    if(DPG){await loadFX(true);return;}
     const p=await getPrice();
     render(p);
     const status=priceState(G);

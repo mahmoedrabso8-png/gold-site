@@ -30,3 +30,4 @@ jobs:
           node tests/portfolio.mjs
           node tests/quote-tools.mjs
           node tests/markets.mjs
+          node tests/service-worker.mjs

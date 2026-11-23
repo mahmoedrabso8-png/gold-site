@@ -132,14 +132,14 @@ export function pages(ctx) {
     ? `<section class="card-section"><h2>Data source & method</h2><div class="trust-grid">
 <div class="trust-item"><strong>Spot price</strong>Gold-API.com, based on international market prices.</div>
 <div class="trust-item"><strong>USD/AED</strong>The dirham is officially pegged at 3.6725 per US dollar.</div>
-<div class="trust-item"><strong>Updates</strong>Source timestamps and freshness status are shown.</div>
+<div class="trust-item"><strong>Updates</strong>Refreshes every 5 minutes while the page is open and the source responds. Source time and freshness are shown.</div>
 <div class="trust-item"><strong>Formula</strong>(Ounce USD × 3.6725 ÷ 31.1035) × karat purity.</div>
 <div class="trust-item"><strong>Not included</strong>Making charges and VAT. For information only.</div>
 <div class="trust-item"><strong>Corrections</strong>Spotted an error? <a href="/contact/">Contact us</a>.</div></div></section>`
     : `<section class="card-section"><h2>مصدر البيانات وطريقة الحساب</h2><div class="trust-grid">
 <div class="trust-item"><strong>السعر العالمي</strong>Gold-API.com، بناءً على أسعار السوق العالمية للذهب.</div>
 <div class="trust-item"><strong>الدولار مقابل الدرهم</strong>الدرهم مربوط رسمياً بالدولار عند 3.6725.</div>
-<div class="trust-item"><strong>التحديث</strong>وقت المصدر وحالة حداثة السعر ظاهران.</div>
+<div class="trust-item"><strong>التحديث</strong>تحديث تلقائي كل5دقائق أثناء فتح الصفحة واستجابة المصدر. يظهر وقت المصدر وحالة السعر.</div>
 <div class="trust-item"><strong>المعادلة</strong>(سعر الأونصة بالدولار × 3.6725 ÷ 31.1035) × نسبة العيار.</div>
 <div class="trust-item"><strong>غير مشمول</strong>المصنعية وضريبة القيمة المضافة. الأسعار للاطلاع فقط.</div>
 <div class="trust-item"><strong>التصحيح</strong>لاحظت خطأ؟ <a href="/contact/">راسلنا</a> ونراجعه فوراً. <a href="/about/">من نحن</a></div></div></section>`;
@@ -496,7 +496,7 @@ ${links('ar', '')}` });
 <p>يدير الموقع ويراجع بياناته <strong>فريق تحرير معلوماتي</strong>.</p></div></section>
 <section class="card-section"><h2>مصادر البيانات وطريقة الحساب</h2><div class="prose">
 <p>نحصل على سعر الأونصة العالمي بالدولار من <strong>Gold-API.com</strong>، ونحوّله إلى الدرهم بسعر الربط الرسمي <strong>3.6725</strong> درهم للدولار، ثم نقسمه على 31.1035 (غرامات الأونصة) لنحصل على سعر غرام عيار 24، ونضربه في نسبة كل عيار.</p>
-<p>تُعرض أوقات مصدر السعر وحالة حداثته. الأرشيف مشاهدات محفوظة ولا يضمن تحديثاً مستمراً؛ وقد يتوقف المصدر أو يتأخر.</p></div></section>
+<p>تُحدّث الصفحة المفتوحة السعر تلقائياً كل5دقائق عند استجابة المصدر. يظهر وقت المصدر وحالة حداثة السعر؛ وقد يتأخر المصدر أو يتوقف. الأرشيف مشاهدات محفوظة، ولا تعمل الصفحة المغلقة كخدمة تحديث خلفية.</p></div></section>
 <section class="card-section"><h2>سياسة التحرير والتصحيح</h2><div class="prose">
 <ul><li>الأسعار تُحسب آلياً من المصدر دون أي تعديل يدوي.</li><li>إذا تعذّر الاتصال بالمصدر نعرض آخر سعر محفوظ مع تنبيه واضح للزائر.</li><li>نوضّح دائماً أن الأسعار للذهب الخام ولا تشمل المصنعية أو ضريبة القيمة المضافة.</li><li>المحتوى الإرشادي يُراجع دورياً، وأي خطأ يُبلَّغ عنه نصحّحه في أسرع وقت. <a href="/contact/">أبلغنا عن خطأ</a>.</li></ul>
 <p><strong>تنبيه:</strong> المعلومات في الموقع للاطلاع فقط ولا تمثّل نصيحة مالية أو استثمارية.</p></div></section>` });
@@ -526,7 +526,7 @@ ${links('ar', '')}` });
 <h3>خدمات خارجية</h3>
 <p>نجلب أسعار الذهب من Gold-API.com ونحفظ الأسعار (وليس بيانات الزوار) في قاعدة بيانات Supabase. ونستخدم خطوط Google Fonts، وتتم استضافة الموقع على Cloudflare التي قد تسجّل بيانات تقنية مثل عنوان IP لأغراض الأمان.</p>
 <h3>تنبيهات الأسعار على الجهاز</h3><p>إذا حفظت هدفاً لسعر الذهب، يُحفظ في التخزين المحلي لهذا المتصفح ولا يُرفع إلى خادمنا أو يتزامن مع أجهزة أخرى. يمكنك حذفه من صفحة التنبيهات أو بمسح بيانات الموقع. إشعارات المتصفح اختيارية وتتطلب إذنك؛ تظل التنبيهات مرتبطة بفتح الموقع ولا تعمل كمراسلات تليجرام أو بريد.</p>
-<h3>الأطفال</h3><p>الموقع غير موجّه للأطفال دون 13 عاماً ولا نجمع بياناتهم عن قصد.</p>
+<h3>محفظة الذهب المحلية</h3><p>تُحفظ عمليات الشراء التي تدخلها في محفظة الذهب داخل التخزين المحلي لهذا المتصفح، بما فيها التاريخ والوزن والعيار وسعر الشراء والمصنعية والرسوم والاسم المختصر الاختياري. لا ترسل أداة المحفظة السجل إلى خادم أو تزامنه مع أجهزة أخرى. يستطيع مستخدم ملف المتصفح نفسه رؤيته؛ التخزين ونسخة JSON المصدرة غير مشفرين. يمكنك حذف العمليات أو السجل كله من صفحة المحفظة. قد يضيع السجل عند مسح بيانات الموقع؛ احتفظ بنسخة احتياطية آمنة. لا تدخل بيانات حساسة في الاسم المختصر. لا يعني التخزين المحلي أن الخدمات الخارجية المذكورة في هذه السياسة لا تعمل في الصفحة.</p><h3>الأطفال</h3><p>الموقع غير موجّه للأطفال دون 13 عاماً ولا نجمع بياناتهم عن قصد.</p>
 <h3>التواصل</h3><p>لأي سؤال عن الخصوصية: <a href="mailto:contact@maelumatii.com">contact@maelumatii.com</a>.</p>
 </div></section>` });
 

@@ -1,10 +1,10 @@
 // Service Worker — أسعار الذهب الإمارات
 // الصفحات: الشبكة أولاً ثم آخر نسخة محفوظة (عشان الأسعار تكون جديدة)
 // الملفات الثابتة: من الكاش مع تحديث في الخلفية
-// طلبات الأسعار: الشبكة أولاً ثم آخر رد محفوظ
+// طلبات الذهب والصرف: الشبكة فقط، لا يتحول الكاش القديم إلى سعر جديد
 const V='gold-uae-v10';
 const PRECACHE=['/','/en/','/assets/style.css','/assets/app.js','/manifest.json','/icons/icon-192x192.png','/offline.html'];
-const API=['api.gold-api.com','supabase.co'];
+const API=['api.gold-api.com','supabase.co','open.er-api.com'];
 
 self.addEventListener('install',e=>{
   e.waitUntil(caches.open(V).then(c=>c.addAll(PRECACHE)).then(()=>self.skipWaiting()));

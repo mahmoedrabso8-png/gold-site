@@ -29,5 +29,15 @@ Test branch only. No production deployment implied.
 -44IANA display-zone configs, local source timestamp rendering, named-zone caveat for multi-zone markets, independent FX status, manual-invoice tax mode. Tax table additions labelled illustrations rather than universal eligibility.
 - Country mobile price tables recompose into labelled per-karat cards so gram/weight/ounce/tax illustration remain visible without horizontal scrolling. Egypt and India pixels inspected after this fix.
 - Static change baseline uses latest prior archived day, date shown. Runtime comparison names stored quote rather than asserting an exact24h window; baseline time is in title. These two histories remain distinct sources.
-- Silver badge uses XAG source time; dollar badge/provenance names daily FX instead of gold. Core AR/EN cadence promises removed, but full multilingual and article price-copy audit remains.
+- Silver badge uses XAG source time; dollar badge/provenance names daily FX instead of gold. Unconditional core AR/EN cadence promises qualified after live mechanism verification; full multilingual and article price-copy audit remains.
 -525HTML/523sitemap currently pass. Added market-time tests and reran purchase, history, alerts, resale, weight, navigation and freshness browser suites successfully.
+
+## Outage/cache/accessibility follow-up
+- Network-shaped local browser fixtures: gold HTTP500 with old saved row, row without source time, all sources unavailable, old XAG timestamp and10-day-old FX. Automatic purchase output pauses; manual remains separate; XAG/FX states do not borrow the gold badge.
+- Isolated service-worker tests: old cache cleanup, cached API success not reused on gold/DB/FX failure, POST passthrough, saved document content keeps source timestamps. FX host added to network-only API rule.
+- Portfolio storage/unencrypted export wording added to existing privacy policy.
+- Local mobile Lighthouse lab,2026-11-23:97performance/100accessibility/73best-practices/100SEO, LCP1.7s/CLS0.007/TBT140ms in one run. Not production, field data or directly comparable with the baseline live run. Best-practices issues came from AdSense third-party cookie/report-only CSP behavior; exact ad code was not altered.
+- First accessibility pass found badge/tool-number/secondary-copy contrast issues. Fixed and reran; contrast audit passes. Full real-device accessibility and production preview remain unverified.
+
+## Five-minute mechanism correction
+Production client appb54a31035b was re-read in a live browser after the user challenged the wording removal. It hasCACHE_MS=300000and an active setInterval(load/loadSilver). Initial production request successfully refreshed source/display values. The earlier removal was too broad. Gold copy now states automatic refresh every 5 minutes while the page is open and the source responds, distinct from static builds, closed-page delivery and daily FX. Stale/unavailable handling remains.
