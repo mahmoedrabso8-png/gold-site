@@ -483,7 +483,14 @@ await fs.writeFile(path.join(OUT,'assets','app.js'),'(function(){'+priceStateJs+
     for (const [q, ans] of (a.faq || [])) out.push({ t: stripH(q), d: cut(stripH(ans)), u });
     return out;
   });
-  const kbJs = 'window.__KB_AR=' + JSON.stringify(kbFrom(ARTICLES, 'ar')) + ';window.__KB_EN=' + JSON.stringify(kbFrom(ARTICLES_EN, 'en')) + ';';
+  const GUIDE_SLUGS = new Set(['us-gold-tax-reporting-guide','uk-gold-vat-cgt-hallmark-guide','germany-gold-vat-tax-cash-rules','gold-buying-rules-us-uk-germany','gold-glossary','gold-price-history-timeline','gold-premium-breakeven-calculator','gold-melt-value-calculator','gold-melt-value-calculator-uk','gold-melt-value-calculator-eur']);
+  const guideKb = lang => pages(ctx).filter(p => p.lang === lang && GUIDE_SLUGS.has(p.slug)).flatMap(p => {
+    const u = url(p.lang, p.slug), t = stripH((p.body.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i) || [])[1] || p.title);
+    const out = [{ t, d: cut(stripH(p.desc), 600), u }];
+    let hd = ''; for (const m of String(p.body).matchAll(/<(h[23]|p|dd)[^>]*>([\s\S]*?)<\/\1>/gi)) { const text = stripH(m[2]); if (m[1][0] === 'h') { hd = text; continue; } if (text.length > 80 && !/^Checked |^Not legal/i.test(text)) out.push({ t: hd ? t + ': ' + hd : t, d: cut(text, 700), u }); }
+    return out.slice(0, 40);
+  });
+  const kbJs = 'window.__KB_AR=' + JSON.stringify(kbFrom(ARTICLES, 'ar')) + ';window.__KB_EN=' + JSON.stringify(kbFrom(ARTICLES_EN, 'en').concat(guideKb('en'))) + ';';
   await fs.writeFile(path.join(OUT, 'assets', 'assistant-kb.js'), kbJs);
 }
 for (const f of ['sw.js', 'manifest.json', 'ads.txt', '_headers']) await place(f, ['static', '.'], path.join(OUT, f));

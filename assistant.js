@@ -297,7 +297,7 @@ function kbSearch(q) {
   const toks = [...new Set(tokensOf(q))];
   if (!toks.length) return null;
   let best = null, bs = 0;
-  for (const e of KB_N) { let s = 0; for (const t of toks) if (e._n.includes(t)) s += 1 + (e._title.includes(t) ? 0.7 : 0); s += toks.filter(t => tokensOf(e.d).includes(t)).length * 0.25 + Math.min(e.d.length, 400) / 2000; if (s > bs) { bs = s; best = e; } }
+  for (const e of KB_N) { let s = 0; for (const t of toks) if (e._n.includes(t)) s += (/^\d{4}$/.test(t) ? 3 : 1) + (e._title.includes(t) ? 0.7 : 0); s += toks.filter(t => tokensOf(e.d).includes(t)).length * 0.25 + Math.min(e.d.length, 400) / 2000; if (s > bs) { bs = s; best = e; } }
   if (!best || bs < 2 || (toks.length >= 4 && bs < toks.length * 0.5)) return null;
   return (AR
     ? `أقرب معلومة لسؤالك من أدلتنا:<br><strong>${best.t}</strong><br>${best.d}<div class="chat-links">${link(best.u, 'اقرأ الدليل كاملاً')}</div>`
@@ -312,7 +312,7 @@ function answer(raw) {
   if (has(q, ['سلام', 'اهلا', 'مرحبا', 'هاي', 'hello', 'hi ', 'hey']) && q.length < 30) return ansGreeting();
   const explicitUnit = findUnit(q);
   if (explicitUnit && !findCountry(q) && !findKarat(q) && has(q, ['كام', 'كم', 'يساوي', 'حول', 'how many', 'convert', 'in grams']) && !has(q, ['price', 'سعر'])) return ansUnit(explicitUnit, findNum(q));
-  if (has(q, ['why', 'what', 'how', 'difference', 'vs', 'tax', 'vat', 'gst', 'buy', 'making', 'premium', 'hallmark', 'purity', 'ليه', 'لماذا', 'ازاي', 'كيف', 'ضريب', 'مصنعي', 'ختم', 'دمغ', 'فرق', 'شراء', 'ادخار', 'استثمار'])) { const knowledge = kbSearch(q); if (knowledge) return knowledge; }
+  if (has(q, ['why', 'what', 'how', 'difference', 'vs', 'tax', 'vat', 'gst', 'buy', 'making', 'premium', 'history', 'irs', 'cgt', 'capital', 'gains', 'reporting', '1099', 'meaning', 'mean', 'glossary', 'hallmark', 'purity', 'ليه', 'لماذا', 'ازاي', 'كيف', 'ضريب', 'مصنعي', 'ختم', 'دمغ', 'فرق', 'شراء', 'ادخار', 'استثمار'])) { const knowledge = kbSearch(q); if (knowledge) return knowledge; }
   if (has(q, ['زكاه', 'الزكاه', 'zakat', 'nisab', 'نصاب'])) return ansZakat();
   if (has(q, ['فضه', 'الفضه', 'silver'])) return ansSilver();
   if (has(q, ['توقع', 'هيزيد', 'هيرتفع', 'هيزيد', 'هينزل', 'هيقل', 'هيغلي', 'forecast', 'will gold', 'go up', 'ذهب هل', 'رايك في الذهب', 'اتوقع', 'future'])) return ansForecast();
