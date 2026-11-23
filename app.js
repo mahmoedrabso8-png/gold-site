@@ -24,6 +24,11 @@ let G={g24:+(window.__G||0)||null};
 
 const $=s=>document.querySelector(s);
 const $$=s=>document.querySelectorAll(s);
+/* Native disclosure navigation, one group at a time, with outside/Escape dismissal. */
+const navGroups=[...document.querySelectorAll('.grouped-nav details')];
+navGroups.forEach(d=>d.addEventListener('toggle',()=>{if(d.open)navGroups.forEach(other=>{if(other!==d)other.open=false;});}));
+document.addEventListener('click',e=>{if(!e.target.closest('.grouped-nav'))navGroups.forEach(d=>d.open=false);});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){const open=navGroups.find(d=>d.open);if(open){open.open=false;open.querySelector('summary').focus();}}});
 const fmt=(v,d=2)=>new Intl.NumberFormat('en-US',{minimumFractionDigits:d,maximumFractionDigits:d}).format(v);
 const num=id=>{const el=document.getElementById(id);if(!el)return 0;const v=parseFloat(String(el.value).replace(',','.'));return isFinite(v)&&v>0?v:0;};
 const dubaiTime=d=>new Date(d).toLocaleString(EN?'en-AE':'ar-AE',{hour:'2-digit',minute:'2-digit',day:'numeric',month:'short',timeZone:'Asia/Dubai'});

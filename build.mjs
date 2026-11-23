@@ -237,7 +237,17 @@ function layout(p, ctx) {
       mainEntity: p.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a.replace(/<[^>]+>/g, '') } })) }] : []),
     ...(p.schema || [])
   ];
-  const nav = NAV[L].map(([s, n]) => `<li><a href="${url(L, s)}"${s === p.slug ? ' aria-current="page"' : ''}>${n}</a></li>`).join('');
+  const navLink = ([s,n]) => `<a href="${url(L,s)}"${s===p.slug?' aria-current="page"':''}>${n}</a>`;
+  const navGroups = (L==='ar'||L==='en') ? [
+    [en?'Gold':'الذهب', ['gold-21k','gold-24k','gold-22k','gold-18k','gold-bars']],
+    [en?'Tools':'الأدوات', ['gold-calculator','gold-resale-calculator','price-alerts','zakat-calculator']],
+    [en?'Markets':'الأسواق', ['gold-price-usd','silver','gcc','gold-rate-inr','gold-rate-pkr']],
+    [en?'Guides':'المحتوى', ['articles','gold-forecast','gold-price-yesterday','history','assistant']]
+  ] : null;
+  const nav = navGroups ? `<li class="nav-home">${navLink(['',en?'Home':'الرئيسية'])}</li>` + navGroups.map(([name,slugs])=>{
+    const items=slugs.map(slug=>NAV[L].find(([s])=>s===slug)).filter(Boolean);
+    return `<li class="nav-group"><details${items.some(([s])=>p.slug===s||p.slug.startsWith(s+'/'))?' class="nav-active"':''}><summary>${name}<span class="nav-chevron" aria-hidden="true"></span></summary><ul class="nav-dropdown">${items.map(item=>`<li>${navLink(item)}</li>`).join('')}</ul></details></li>`;
+  }).join('') : NAV[L].map(item=>`<li>${navLink(item)}</li>`).join('');
   // روابط التحويل لكل لغة: تحافظ على الدولة/العيار/الدولار لو فيه مقابل، وإلا لرئيسية اللغة
   const langUrlFor = lg => {
     const home = LANG_HOME[lg] || '';
@@ -369,7 +379,7 @@ function layout(p, ctx) {
   ${toggle}
   <div class="header-side"><span class="header-time" id="live-time"></span>${toggleM}<button type="button" class="theme-toggle" id="theme-toggle" aria-label="${L === 'ar' ? 'التبديل بين المظهر الداكن والفاتح' : 'Switch between dark and light theme'}">🌙</button>${langSel}${cselect}</div>
 </div></div></header>
-<nav class="site-nav" aria-label="${en ? 'Main menu' : 'القائمة الرئيسية'}"><div class="container"><ul class="nav-list">${nav}</ul></div></nav>
+<nav class="site-nav${navGroups?' grouped-nav':''}" aria-label="${en ? 'Main menu' : 'القائمة الرئيسية'}"><div class="container"><ul class="nav-list">${nav}</ul></div></nav>
 <main><div class="container">
 ${crumbHtml}
 ${body}
