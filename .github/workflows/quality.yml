@@ -33,3 +33,4 @@ jobs:
           node tests/service-worker.mjs
           node tests/theme.mjs
           node tests/silver.mjs
+          node tests/currency.mjs

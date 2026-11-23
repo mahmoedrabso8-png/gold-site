@@ -196,11 +196,11 @@ async function loadSilver(){
 }
 async function loadFX(force){
   if(G.fxLoading)return;
-  if(!force&&!$$('[data-fxd]').length&&!(!PEG[SEL]&&!FIXED&&SEL)&&![...$$('[data-cur]'),...$$('#c-cur option')].some(el=>!PEG[(el.dataset.cur||el.value||'').toUpperCase()])) return;
+  if(!force&&!$$('[data-fxd]').length&&!$('#fx-tool')&&!$$('[data-egp]').length&&!(!PEG[SEL]&&!FIXED&&SEL)&&![...$$('[data-cur]'),...$$('#c-cur option')].some(el=>!PEG[(el.dataset.cur||el.value||'').toUpperCase()])) return;
   G.fxLoading=true;
   try{
     const d=await (await fetch('https://open.er-api.com/v6/latest/USD')).json();
-    if(d.rates){if(DPG)$$('[data-upd]').forEach(el=>el.textContent=d.time_last_update_unix?dubaiTime(d.time_last_update_unix*1000):(EN?'Source time unavailable':'وقت المصدر غير متاح'));G.fx=d.rates;G.fxAt=Number(d.time_last_update_unix)*1000||0;G.fxFetchedAt=Date.now();statusPrice();if(window.GoldAlerts)window.GoldAlerts.check();paint();labels();nisab();calc();zakat();dconv('usd');silverToolsUpdate();$$('[data-fx]').forEach(el=>{const v=d.rates[el.dataset.fx];if(v) el.textContent=fmt(v/AED,4);});$$('[data-fxd]').forEach(el=>{const v=d.rates[el.dataset.fxd];if(v){const w=+(el.dataset.w||1);el.textContent=fmt(el.dataset.i?w/v:v*w,+el.dataset.d||0);}});}
+    if(d.rates){if(DPG)$$('[data-upd]').forEach(el=>el.textContent=d.time_last_update_unix?dubaiTime(d.time_last_update_unix*1000):(EN?'Source time unavailable':'وقت المصدر غير متاح'));G.fx=d.rates;G.fxAt=Number(d.time_last_update_unix)*1000||0;G.fxFetchedAt=Date.now();statusPrice();if(window.GoldAlerts)window.GoldAlerts.check();paint();labels();nisab();calc();zakat();dconv('usd');silverToolsUpdate();fxToolUpdate();$$('[data-fx]').forEach(el=>{const v=d.rates[el.dataset.fx];if(v) el.textContent=fmt(v/AED,4);});$$('[data-fxd]').forEach(el=>{const v=d.rates[el.dataset.fxd];if(v){const w=+(el.dataset.w||1);el.textContent=fmt(el.dataset.i?w/v:v*w,+el.dataset.d||0);}});}
   }catch(e){}finally{G.fxLoading=false;}
 }
 
@@ -331,6 +331,24 @@ if(silverForm){
  silverForm.addEventListener('input',()=>{$('#sc-results').textContent='';});
  silverToolsUpdate();setInterval(silverToolsUpdate,30000);
 }
+
+function fxToolUpdate(){
+ $$('[data-egp]').forEach(el=>{const r=egpReference(G,el.dataset.egp);el.textContent=r==null?'—':fmt(r*(+el.dataset.w||1),+el.dataset.d||2);});
+ const st=egpReference(G,'SAR')!=null;$$('[data-asset-state="fx"]').forEach(el=>{el.textContent=(EN?'Daily reference FX, check source time':'سعر صرف مرجعي يومي، راجع وقت المصدر')+' · '+(st?'DELAYED':'STALE');});
+ $$('[data-provenance="fxAt"]').forEach(el=>{el.textContent=G.fxAt?new Date(G.fxAt).toLocaleString(EN?'en-GB':'ar-EG',{timeZone:'Africa/Cairo',timeZoneName:'short'}):'—';});
+ const tool=$('#fx-tool');if(!tool)return;const ref=egpReference(G,tool.dataset.fxCur);$('#fx-reference').disabled=ref==null;
+}
+const fxForm=$('#fx-form');
+if(fxForm){
+ const tool=$('#fx-tool'),cur=tool.dataset.fxCur;
+ $('#fx-reference').addEventListener('click',()=>{const r=egpReference(G,cur);if(r==null){fxToolUpdate();return;}$('#fx-rate').value=r.toFixed(4);$('#fx-status').textContent=EN?'Reference copied. It is a daily reference, not your provider rate. Enter your fees.':'تم نسخ المرجع. هو مرجع يومي مش سعر جهة التحويل. أدخل الرسوم.';});
+ fxForm.addEventListener('submit',e=>{e.preventDefault();try{const val=id=>{const v=$('#fx-'+id).value.trim();return v===''?NaN:Number(v)},dir=$('#fx-dir').value,r=fxConvert({amount:val('amount'),rate:val('rate'),feePct:val('pct'),flatFee:val('flat'),direction:dir}),inC=dir==='from'?cur:'EGP',outC=dir==='from'?'EGP':cur;
+ $('#fx-results').innerHTML='<dl class="quote-result-rows">'+[['fee',EN?'Total fees':'إجمالي الرسوم',inC],['net',EN?'Amount converted after fees':'المبلغ المحوّل بعد الرسوم',inC],['result',EN?'You receive (estimate)':'المستلم (تقدير)',outC]].map(([k,l,u])=>'<dt>'+l+'</dt><dd data-fx-result="'+k+'">'+fmt(r[k],2)+' '+u+'</dd>').join('')+'</dl>';
+ }catch(err){$('#fx-results').textContent=err.message==='fees'?(EN?'Fees are as large as the amount. Check the fee fields.':'الرسوم تساوي المبلغ أو تزيد عليه. راجع خانات الرسوم.'):(EN?'Check a positive amount and rate, a fee between 0 and 100%, and a non-negative flat fee.':'راجع مبلغاً وسعراً موجبين، ونسبة بين 0 و100، ورسماً ثابتاً غير سالب.');}});
+ fxForm.addEventListener('input',()=>{$('#fx-results').textContent='';});
+ fxForm.addEventListener('change',()=>{$('#fx-results').textContent='';});
+}
+fxToolUpdate();setInterval(fxToolUpdate,30000);
 
 const rb=$('#refresh');if(rb) rb.addEventListener('click',load);
 

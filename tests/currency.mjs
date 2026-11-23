@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import {egpReference,fxConvert} from '../currency-core.mjs';
+const now=Date.parse('2026-11-23T04:00:00Z'),q={fx:{EGP:50,EUR:0.9,KWD:0.3},fxAt:now};
+assert.equal(egpReference(q,'USD',now),50);assert.equal(egpReference(q,'SAR',now),50/3.75);assert.equal(egpReference(q,'AED',now),50/3.6725);
+assert.equal(egpReference(q,'EUR',now),50/0.9);assert.equal(egpReference(q,'KWD',now),50/0.3);
+for(const patch of [{fxAt:now-5*86400000},{fxAt:now+121000},{fxAt:null},{fxAt:0},{fx:{}},{fx:{EGP:0,EUR:.9}},{fx:{EGP:50}}])assert.equal(egpReference({...q,...patch},'EUR',now),null);
+assert.equal(egpReference({...q,fx:{}},'SAR',now),null);
+assert.equal(egpReference(q,'JPY',now),null);
+const g={amount:1000,rate:13.5,feePct:1,flatFee:10,direction:'from'};
+let r=fxConvert(g);assert.equal(r.fee,20);assert.equal(r.net,980);assert.equal(r.result,980*13.5);
+r=fxConvert({...g,amount:10000,rate:50,feePct:0,flatFee:0,direction:'to'});assert.equal(r.result,200);
+for(const p of [{amount:0},{amount:-1},{rate:0},{rate:NaN},{feePct:101},{feePct:-1},{flatFee:-1},{direction:'x'},{flatFee:1000},{amount:Infinity}])assert.throws(()=>fxConvert({...g,...p}));
+console.log('PASS: EGP reference (pegs, floats, stale, future, missing), fee conversion both directions, invalid inputs');
