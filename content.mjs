@@ -1,3 +1,4 @@
+import { euroCountryNote } from './euro-country-notes.mjs';
 import { quoteToolPages } from './quote-tools-content.mjs';
 import { portfolioPages } from './portfolio-content.mjs';
 import { homeTools, homeMarkets } from './home-components.mjs';
@@ -1443,8 +1444,9 @@ ${errBox}
 <section class="card-section"><div class="table-wrap"><table class="data-table"><tbody>
 <tr><th>${en ? '1 US dollar' : '1 دولار أمريكي'}</th><td class="n">${FXD(c.code, { d: dd })} ${c.code}</td></tr>
 <tr><th>${en ? `1 ${x.cur}` : `1 ${x.cur}`}</th><td class="n">$${FXD(c.code, { i: true, d: 4 })}</td></tr>
-</tbody></table></div><p class="note">${en ? 'Updated' : 'آخر تحديث'}: ${updated(L)} ${en ? '(Dubai time)' : '(بتوقيت دبي)'} · ${en ? 'mid-market rate' : 'سعر السوق المتوسط'}</p></section>
+</tbody></table></div><p class="note">${en ? 'Updated' : 'آخر تحديث'}: ${updated(L)} ${en ? '(named market timezone)' : '(بتوقيت السوق المسمى)'} · ${en ? 'mid-market rate' : 'سعر السوق المتوسط'}</p></section>
 ${dcvConv(L, c)}
+${en ? euroCountryNote(slug) : ''}
 ${AD}
 <section class="card-section"><h2>${en ? `Convert USD to ${x.cur}` : `تحويل الدولار إلى ${x.cur}`}</h2><div class="table-wrap"><table class="data-table">
 <thead><tr><th>${en ? 'USD' : 'دولار'}</th><th>${c.code}</th></tr></thead><tbody>

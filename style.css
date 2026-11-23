@@ -339,3 +339,5 @@ form .btn{display:inline-flex;align-items:center;justify-content:center;min-heig
 .refresh-policy{max-width:680px;margin:4px auto 14px;text-align:center;color:var(--t2);font-size:.72rem;line-height:1.8}
 .update-badge[data-asset-state=silver][data-state=STALE],.update-badge[data-asset-state=silver][data-state=UNAVAILABLE]{color:#991b1b}.update-badge[data-asset-state=fx]{color:#854d0e}
 :root[data-theme=light] .update-badge[data-asset-state=fx]{color:#854d0e}
+
+.euro-country-note{scroll-margin-top:130px}
