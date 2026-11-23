@@ -1,3 +1,4 @@
+import { weightPages } from './weight-content.mjs';
 import { resalePages } from './resale-content.mjs';
 import { priceAlertPages } from './alerts-content.mjs';
 import { pilotGuide } from './local-guides.mjs';
@@ -6,7 +7,7 @@ import { ARTICLES, ARTICLES_EN } from './articles.mjs';
 
 export function pages(ctx) {
   const { P, FXD, updated, chg, daily, fmt, url, AD, TODAY } = ctx;
-  const out = [...priceAlertPages(ctx), ...resalePages(ctx)];
+  const out = [...priceAlertPages(ctx), ...resalePages(ctx), ...weightPages()];
   const px = k => ctx.g24 ? fmt(ctx.g24 * k / 24) : null;   // سعر الغرام لإدراجه في العناوين
 
   // ── معلومات العيارات ─────────────────────────────────────
@@ -15,13 +16,13 @@ export function pages(ctx) {
       ar: { label: 'ذهب خالص', use: 'السبائك والعملات الذهبية والادخار والاستثمار',
         about: `<p><strong>الذهب عيار 24</strong> هو أنقى أنواع الذهب المتداولة، بنسبة ذهب تبلغ <strong>99.9%</strong> ويحمل ختم <strong>999</strong>. لأنه طري جداً لا يُستخدم كثيراً في المجوهرات اليومية، ويُباع غالباً على شكل <strong>سبائك وعملات ذهبية</strong> لمن يريد الادخار أو الاستثمار.</p>
 <p>سعر غرام عيار 24 هو الأساس الذي تُحسب منه بقية العيارات: عيار 22 = 91.7% من سعره، وعيار 21 = 87.5%، وعيار 18 = 75%. لذلك يتابعه التجار والمستثمرون أكثر من أي عيار آخر.</p>
-<p>في الإمارات يُعامل <strong>الذهب الاستثماري</strong> (نقاء 99% فأكثر) عادةً بنسبة صفر في ضريبة القيمة المضافة، بخلاف المشغولات الذهبية التي تُفرض عليها ضريبة 5%. تأكد من الفاتورة عند الشراء.</p>`,
+<p>في الإمارات يُعامل <strong>الذهب الاستثماري</strong> (نقاء 99% فأكثر وبشكل قابل للتداول في أسواق السبائك العالمية) بنسبة صفر في ضريبة القيمة المضافة، بخلاف المشغولات الذهبية التي تُفرض عليها ضريبة 5%. تأكد من الفاتورة عند الشراء. <a href="https://tax.gov.ae/datafolder/Files/Legislation/2026/Law-No-8-of-2017-and-its-amendments--09-2026.pdf">اللائحة التنفيذية، المادة 36</a>.</p>`,
         tips: ['اشترِ السبائك من جهة معروفة واطلب شهادة تحمل الوزن والنقاء والرقم التسلسلي.', 'السبائك الصغيرة (1–5 غرام) يكون فرق سعرها عن السعر العالمي أعلى نسبياً من السبائك الكبيرة.', 'احتفظ بالتغليف الأصلي للسبيكة لأنه يسهّل إعادة بيعها بسعر جيد.'],
         faq: [['هل الذهب عيار 24 مناسب للمجوهرات؟', 'نادراً، لأنه طري ويتشوه ويُخدش بسهولة. يُفضَّل للسبائك والعملات والادخار، بينما تُصنع أغلب المجوهرات من عيار 22 أو 21 أو 18.']] },
       en: { label: 'Pure gold', use: 'bars, coins, savings and investment',
         about: `<p><strong>24 karat gold</strong> is the purest gold traded, at <strong>99.9%</strong> fineness with the hallmark <strong>999</strong>. It is too soft for everyday jewellery, so in the UAE it is mostly sold as <strong>bars and coins</strong> for saving and investing.</p>
 <p>The 24K gram price is the base for every other karat: 22K is 91.7% of it, 21K is 87.5% and 18K is 75%. That is why traders and investors follow it more than any other rate.</p>
-<p>In the UAE, <strong>investment gold</strong> (99% purity or higher) is generally zero-rated for VAT, while gold jewellery carries 5% VAT. Always check the invoice.</p>`,
+<p>In the UAE, <strong>investment gold</strong> (at least 99% pure and in a form tradeable in global bullion markets) is zero-rated for VAT, while gold jewellery carries 5% VAT. Always check the invoice. <a href="https://tax.gov.ae/datafolder/Files/Legislation/2026/Law-No-8-of-2017-and-its-amendments--09-2026.pdf">FTA Executive Regulation, Article 36</a>.</p>`,
         tips: ['Buy bars from a known dealer and ask for a certificate showing weight, purity and serial number.', 'Small bars (1–5 g) carry a higher premium over the spot price than larger bars.', 'Keep the original sealed packaging — it makes resale easier.'],
         faq: [['Is 24K gold good for jewellery?', 'Rarely. It is soft and scratches or bends easily. It is best for bars, coins and savings; most jewellery is made in 22K, 21K or 18K.']] } },
     22: { purity: '91.7%', mark: '916',
@@ -101,26 +102,26 @@ export function pages(ctx) {
       ['gold-price-usd', 'سعر الذهب عالمياً', 'الأونصة بالدولار مباشر'], ['dollar', 'سعر الدولار اليوم', 'مباشر بكل العملات'], ['silver', 'سعر الفضة اليوم', 'الغرام والأونصة والكيلو'],
       ['gcc', 'أسعار الذهب في الخليج', 'مقارنة بين 6 دول'], ['saudi', 'سعر الذهب في السعودية', 'بالريال السعودي'], ['kuwait', 'سعر الذهب في الكويت', 'بالدينار الكويتي'],
       ['qatar', 'سعر الذهب في قطر', 'بالريال القطري'], ['oman', 'سعر الذهب في عُمان', 'بالريال العُماني'], ['bahrain', 'سعر الذهب في البحرين', 'بالدينار البحريني'], ['egypt', 'سعر الذهب في مصر', 'بالجنيه المصري'], ['iraq', 'سعر الذهب في العراق', 'بالدينار العراقي'], ['jordan', 'سعر الذهب في الأردن', 'بالدينار الأردني'], ['morocco', 'سعر الذهب في المغرب', 'بالدرهم المغربي'], ['algeria', 'سعر الذهب في الجزائر', 'بالدينار الجزائري'], ['lebanon', 'سعر الذهب في لبنان', 'بالليرة والدولار'], ['tunisia', 'سعر الذهب في تونس', 'بالدينار التونسي'], ['libya', 'سعر الذهب في ليبيا', 'بالدينار الليبي'], ['yemen', 'سعر الذهب في اليمن', 'بالريال اليمني'],
-      ['gold-bars', 'أسعار السبائك', 'من 1 غرام إلى 1 كيلو'], ['gold-calculator', 'حاسبة الذهب', 'بالمصنعية والضريبة'], ['gold-resale-calculator', 'حاسبة بيع الذهب', 'قارن صافي العروض ونقطة التعادل'], ['zakat-calculator', 'حاسبة زكاة الذهب', 'النصاب وقيمة الزكاة'],
+      ['gold-bars', 'أسعار السبائك', 'من 1 غرام إلى 1 كيلو'], ['gold-calculator', 'حاسبة الذهب', 'بالمصنعية والضريبة'], ['gold-resale-calculator', 'حاسبة بيع الذهب', 'قارن صافي العروض ونقطة التعادل'], ['gold-weight-converter', 'محول الوزن والنقاء', 'غرام وأونصة وذهب خالص'], ['zakat-calculator', 'حاسبة زكاة الذهب', 'النصاب وقيمة الزكاة'],
       ['gold-price-yesterday', 'سعر الذهب أمس', 'وآخر 10 أيام'], ['gold-forecast', 'توقعات الذهب', 'الاتجاه والعوامل المؤثرة'], ['history', 'أرشيف الأسعار', 'سعر الذهب يوماً بيوم'],
       ['articles', 'مقالات وأدلة الذهب', 'شروحات الشراء والادخار والزكاة']],
     en: [['assistant', 'Gold price assistant', 'Ask any gold or currency question'], ['gold-22k', '22K gold rate', 'Popular for Indian jewellery'], ['gold-24k', '24K gold rate', 'Pure gold & bars'], ['gold-21k', '21K gold rate', 'Gulf jewellery'], ['gold-18k', '18K gold rate', 'Diamond jewellery'],
       ['gold-price-usd', 'Gold price in USD', 'Live ounce XAU/USD'], ['dollar', 'US dollar rate', 'Live vs 40 currencies'], ['silver', 'Silver price', 'Per gram, ounce & kg'],
       ['gcc', 'Gulf gold prices', 'Compare 6 countries'], ['saudi', 'Gold price in Saudi Arabia', 'In SAR'], ['kuwait', 'Gold price in Kuwait', 'In KWD'],
       ['qatar', 'Gold price in Qatar', 'In QAR'], ['oman', 'Gold price in Oman', 'In OMR'], ['bahrain', 'Gold price in Bahrain', 'In BHD'], ['egypt', 'Gold price in Egypt', 'In EGP'], ['india', 'Gold rate in India', 'In INR, 22K & 24K'], ['pakistan', 'Gold rate in Pakistan', 'In PKR, per tola'], ['bangladesh', 'Gold price in Bangladesh', 'In BDT'], ['turkey', 'Gold price in Turkey', 'Gram altın in TRY'], ['usa', 'Gold price in USA', 'In USD'], ['uk', 'Gold price in UK', 'In GBP'], ['canada', 'Gold price in Canada', 'In CAD'], ['australia', 'Gold price in Australia', 'In AUD'], ['philippines', 'Gold price in Philippines', 'In PHP'], ['malaysia', 'Gold price in Malaysia', 'Emas 916 in MYR'], ['nepal', 'Gold price in Nepal', 'In NPR, per tola'], ['southafrica', 'Gold price in South Africa', 'Krugerrand in ZAR'], ['iraq', 'Gold price in Iraq', 'In IQD'], ['jordan', 'Gold price in Jordan', 'In JOD'], ['morocco', 'Gold price in Morocco', 'In MAD'], ['algeria', 'Gold price in Algeria', 'In DZD'], ['indonesia', 'Gold price in Indonesia', 'Antam bars in IDR'], ['thailand', 'Gold price in Thailand', 'Per baht weight, THB'], ['vietnam', 'Gold price in Vietnam', 'SJC bars in VND'], ['singapore', 'Gold price in Singapore', 'GST-free IPM in SGD'], ['srilanka', 'Gold price in Sri Lanka', 'In LKR'], ['germany', 'Gold price in Germany', 'VAT-free bullion, EUR'], ['japan', 'Gold price in Japan', 'In JPY'], ['switzerland', 'Gold price in Switzerland', 'Home of PAMP, CHF'], ['nigeria', 'Gold price in Nigeria', 'In NGN'], ['ghana', 'Gold price in Ghana', 'The Gold Coast, GHS'], ['kenya', 'Gold price in Kenya', 'In KES'], ['mexico', 'Gold price in Mexico', 'Centenario in MXN'], ['brazil', 'Gold price in Brazil', 'Ouro 18K in BRL'], ['china', 'Gold price in China', '999 gold in CNY'], ['france', 'Gold price in France', 'Napoleon coins, EUR'], ['italy', 'Gold price in Italy', '18K standard, EUR'], ['spain', 'Gold price in Spain', 'Oro de ley, EUR'], ['lebanon', 'Gold price in Lebanon', 'In LBP & USD'], ['tunisia', 'Gold price in Tunisia', 'In TND'], ['libya', 'Gold price in Libya', 'In LYD'], ['yemen', 'Gold price in Yemen', 'In YER'], ['gold-rate-inr', 'Gold rate in INR', 'Dubai price in rupees'], ['gold-rate-pkr', 'Gold rate in PKR', 'Per tola in rupees'],
-      ['gold-bars', 'Gold bar prices', '1 g to 1 kg, tola bars'], ['gold-calculator', 'Gold calculator', 'With making charges & VAT'], ['gold-resale-calculator', 'Resale calculator', 'Compare net offers & break-even'], ['gold-price-yesterday', 'Last 10 days', 'Yesterday\'s gold rate'], ['zakat-calculator', 'Zakat calculator', 'Nisab and zakat due'],
+      ['gold-bars', 'Gold bar prices', '1 g to 1 kg, tola bars'], ['gold-calculator', 'Gold calculator', 'With making charges & VAT'], ['gold-resale-calculator', 'Resale calculator', 'Compare net offers & break-even'], ['gold-weight-converter', 'Weight & purity', 'Grams, troy ounces & fine gold'], ['gold-price-yesterday', 'Last 10 days', 'Yesterday\'s gold rate'], ['zakat-calculator', 'Zakat calculator', 'Nisab and zakat due'],
       ['articles', 'Gold guides & articles', 'Buying tips, karats and why prices rise']]
   };
   const links = (L, skip) => `<section class="card-section"><h2>${L === 'en' ? 'More gold prices & tools' : 'أسعار وأدوات أخرى'}</h2><div class="links-grid">${LINKS[L].filter(l => l[0] !== skip).map(([s, n, d]) => `<a class="link-card" href="${url(L, s)}">${n}<span>${d}</span></a>`).join('')}</div></section>`;
   const why = L => L === 'en'
     ? `<section class="card-section"><h2>Why is the shop price higher than this price?</h2><div class="prose">
 <p>This site shows the <strong>raw gold price</strong> calculated from the global spot price (ounce in USD × 3.6725 ÷ 31.1035 g). Dubai jewellers announce their own daily rate per karat, which closely follows the spot price with a small difference. On top of that, a shop invoice adds:</p>
-<ul><li><strong>Making charges</strong> — usually a few dirhams up to 15+ AED per gram depending on the design.</li><li><strong>5% VAT</strong> on jewellery (investment bars of 99%+ purity are generally zero-rated).</li></ul>
+<ul><li><strong>Making charges</strong> — usually a few dirhams up to 15+ AED per gram depending on the design.</li><li><strong>5% VAT</strong> on jewellery (qualifying investment metals need at least 99% purity and a form tradeable in global bullion markets for zero-rating).</li></ul>
 <p>Use the <a href="/en/gold-calculator/">gold calculator</a> to add making charges and VAT and see the final price.</p>
 <p>Related: <a href="/en/gold-24k/">24K gold rate</a> · <a href="/en/gold-22k/">22K gold rate</a> · <a href="/en/gold-18k/">18K gold rate</a> · <a href="/en/gold-bars/">gold bar prices</a> · <a href="/en/silver/">silver price</a> · <a href="/en/saudi/">gold price in Saudi Arabia</a> · <a href="/en/gcc/">Gulf gold prices</a>.</p></div></section>`
     : `<section class="card-section"><h2>لماذا يختلف سعر المحل عن السعر المعروض هنا؟</h2><div class="prose">
 <p>نعرض هنا <strong>سعر الذهب الخام</strong> محسوباً من السعر العالمي (سعر الأونصة بالدولار × 3.6725 ÷ 31.1035 غرام). محلات الذهب في دبي تعلن سعراً يومياً لكل عيار يتبع السعر العالمي مع فرق بسيط، ثم تُضاف إلى الفاتورة:</p>
-<ul><li><strong>المصنعية (أجرة الصياغة)</strong> — من بضعة دراهم حتى 15 درهماً أو أكثر للغرام حسب التصميم.</li><li><strong>ضريبة القيمة المضافة 5%</strong> على المشغولات الذهبية (السبائك الاستثمارية بنقاء 99% فأكثر معفاة عادةً).</li></ul>
+<ul><li><strong>المصنعية (أجرة الصياغة)</strong> — من بضعة دراهم حتى 15 درهماً أو أكثر للغرام حسب التصميم.</li><li><strong>ضريبة القيمة المضافة 5%</strong> على المشغولات الذهبية (نسبة الصفر للمعادن الاستثمارية تتطلب نقاء 99% فأكثر وشكلاً قابلاً للتداول في أسواق السبائك العالمية).</li></ul>
 <p>استخدم <a href="/gold-calculator/">حاسبة الذهب</a> لإضافة المصنعية والضريبة ومعرفة السعر النهائي.</p>
 <p>مواضيع ذات صلة: <a href="/gold-24k/">سعر عيار 24</a> · <a href="/gold-bars/">سبائك الذهب</a> · <a href="/silver/">سعر الفضة</a> · <a href="/gcc/">أسعار الذهب في الخليج</a> · <a href="/zakat-calculator/">حاسبة الزكاة</a> · <a href="/gold-price-yesterday/">سعر الذهب أمس</a>.</p></div></section>`;
   const sources = L => L === 'en'
@@ -394,9 +395,9 @@ ${BARS.map(([w, e, a]) => `<tr><td>${en ? e : a}</td><td class="n">${P(24, w)}</
 ${AD}
 <section class="card-section"><h2>${en ? 'Buying gold bars in the UAE' : 'شراء سبائك الذهب في الإمارات'}</h2><div class="prose">
 ${en ? `<p>Gold bars are the simplest way to invest in physical gold: you pay close to the raw gold value with little or no making charge. In the UAE they are sold by jewellers, bullion dealers and some banks, in sizes from 1 gram to 1 kilogram. The <strong>10 tola bar</strong> (116.64 g) is a local favourite.</p>
-<ul><li><strong>Premium:</strong> every bar is priced a little above the spot value. The premium per gram is highest on 1–5 g bars and lowest on 100 g and 1 kg bars.</li><li><strong>VAT:</strong> investment gold of 99% purity or higher is generally zero-rated in the UAE — check your invoice.</li><li><strong>Authenticity:</strong> buy sealed bars from recognised refiners with a serial number and assay certificate.</li><li><strong>Resale:</strong> sealed, undamaged bars sell back more easily and closer to the spot price.</li></ul>`
+<ul><li><strong>Premium:</strong> every bar is priced a little above the spot value. The premium per gram is highest on 1–5 g bars and lowest on 100 g and 1 kg bars.</li><li><strong>VAT:</strong> investment gold is zero-rated in the UAE only when it is at least 99% pure and in a form tradeable in global bullion markets — check your invoice.</li><li><strong>Authenticity:</strong> buy sealed bars from recognised refiners with a serial number and assay certificate.</li><li><strong>Resale:</strong> sealed, undamaged bars sell back more easily and closer to the spot price.</li></ul>`
         : `<p>السبائك أبسط طريقة للاستثمار في الذهب الفعلي، لأنك تدفع سعراً قريباً من قيمة الذهب الخام بمصنعية بسيطة أو بدونها. تُباع في الإمارات لدى محلات الذهب وتجار السبائك وبعض البنوك بأوزان من 1 غرام حتى 1 كيلوغرام، وتشتهر محلياً <strong>سبيكة 10 تولة</strong> (116.64 غرام).</p>
-<ul><li><strong>العلاوة:</strong> كل سبيكة تُباع أعلى قليلاً من قيمة الذهب الخام، والعلاوة للغرام أعلى في السبائك الصغيرة (1–5 غرام) وأقل في سبائك 100 غرام والكيلو.</li><li><strong>الضريبة:</strong> الذهب الاستثماري بنقاء 99% فأكثر يُعامل عادةً بنسبة صفر في الإمارات، تأكد من الفاتورة.</li><li><strong>الأصالة:</strong> اشترِ سبائك مغلّفة من مصافٍ معروفة تحمل رقماً تسلسلياً وشهادة فحص.</li><li><strong>إعادة البيع:</strong> السبيكة المغلّفة السليمة تُباع بسهولة أكبر وبسعر أقرب للسعر العالمي.</li></ul>`}</div></section>
+<ul><li><strong>العلاوة:</strong> كل سبيكة تُباع أعلى قليلاً من قيمة الذهب الخام، والعلاوة للغرام أعلى في السبائك الصغيرة (1–5 غرام) وأقل في سبائك 100 غرام والكيلو.</li><li><strong>الضريبة:</strong> الذهب الاستثماري بنقاء 99% فأكثر وبشكل قابل للتداول في أسواق السبائك العالمية يخضع لنسبة الصفر في الإمارات، تأكد من الفاتورة.</li><li><strong>الأصالة:</strong> اشترِ سبائك مغلّفة من مصافٍ معروفة تحمل رقماً تسلسلياً وشهادة فحص.</li><li><strong>إعادة البيع:</strong> السبيكة المغلّفة السليمة تُباع بسهولة أكبر وبسعر أقرب للسعر العالمي.</li></ul>`}</div></section>
 <section class="card-section"><h2>${en ? 'Popular gold bar sizes — quick prices' : 'أشهر أوزان السبائك — الأسعار باختصار'}</h2><div class="prose">
 ${en ? `<ul><li><strong>1 gram gold bar:</strong> about <bdi>${P(24, 1)} AED</bdi> raw value — the smallest bar, highest premium per gram.</li>
 <li><strong>10 gram gold bar:</strong> about <bdi>${P(24, 10)} AED</bdi>.</li>
@@ -414,14 +415,14 @@ ${links(L, 'gold-bars')}`,
       faq: en ? [
         ['What is the price of a 10 gram gold bar in the UAE today?', 'The live raw value of a 10 g 24K bar is shown in the table above. Dealers add a small premium, so the shop price is slightly higher.'],
         ['What is a 10 tola gold bar?', 'A 10 tola bar weighs about 116.64 grams of 24K gold and is one of the most traded bar sizes in the UAE.'],
-        ['Is there VAT on gold bars in the UAE?', 'Investment gold of 99% purity or higher is generally zero-rated for VAT in the UAE.'],
+        ['Is there VAT on gold bars in the UAE?', 'UAE zero-rating requires investment gold of at least 99% purity in a form tradeable in global bullion markets. Purity alone is not enough.'],
         ['How much is a 100 gram gold bar in the UAE?', 'The live raw value of a 100 g 24K bar is in the table above (100 g row) and in the quick-price list. Dealers add a premium, usually lower per gram than on small bars.'],
         ['How much is a 1 kg gold bar in the UAE?', 'The 1 kg row in the table shows the live raw value. 1 kg bars carry the lowest premium per gram.'],
         ['Where can I buy a gold bar in Dubai?', 'Licensed bullion dealers, jewellers in the Gold Souk and some banks sell gold bars. Buy sealed bars from recognised refiners with a serial number and certificate.']
       ] : [
         ['كم سعر سبيكة 10 غرام في الإمارات اليوم؟', 'تظهر قيمة سبيكة 10 غرام عيار 24 محدَّثة في الجدول أعلاه، ويضيف التاجر علاوة بسيطة فيكون سعر المحل أعلى قليلاً.'],
         ['ما هي سبيكة 10 تولة؟', 'سبيكة وزنها نحو 116.64 غرام من الذهب عيار 24، وهي من أكثر أوزان السبائك تداولاً في الإمارات.'],
-        ['هل توجد ضريبة على سبائك الذهب في الإمارات؟', 'الذهب الاستثماري بنقاء 99% فأكثر يُعامل عادةً بنسبة صفر في ضريبة القيمة المضافة.'],
+        ['هل توجد ضريبة على سبائك الذهب في الإمارات؟', 'يشترط لنسبة الصفر في الإمارات نقاء 99% فأكثر وأن يكون المعدن بشكل قابل للتداول في أسواق السبائك العالمية؛ النقاء وحده لا يكفي.'],
         ['كم سعر سبيكة الذهب 100 غرام في الإمارات اليوم؟', 'تظهر القيمة الخام لسبيكة 100 غرام عيار 24 محدَّثة في الجدول أعلاه وفي قائمة الأسعار السريعة، ويضيف التاجر علاوة تكون أقل للغرام من السبائك الصغيرة.'],
         ['كم سعر كيلو الذهب اليوم في الإمارات؟', 'يظهر سعر سبيكة الكيلو في الجدول أعلاه، وعلاوتها هي الأقل للغرام بين كل الأوزان.'],
         ['أين أشتري سبيكة ذهب في دبي؟', 'تبيعها شركات تجارة السبائك المرخصة ومحلات سوق الذهب وبعض البنوك. اشترِ سبائك مغلّفة من مصافٍ معروفة برقم تسلسلي وشهادة.']
@@ -497,7 +498,7 @@ ${links('ar', '')}` });
 <section class="card-section"><div class="prose">
 <p>يسعدنا تواصلك للاستفسارات أو الاقتراحات أو الإبلاغ عن خطأ في الأسعار أو المحتوى.</p>
 <p><strong>البريد الإلكتروني:</strong> <a href="mailto:contact@maelumatii.com">contact@maelumatii.com</a></p>
-<p>نردّ عادةً خلال يومي عمل. عند الإبلاغ عن خطأ في السعر يُرجى ذكر الصفحة والوقت بتوقيت دبي.</p>
+<p>عند الإبلاغ عن خطأ، أرسل رابط الصفحة والدولة والعملة والعيار والوقت الذي شاهدت فيه الرقم، واذكر المنطقة الزمنية. تساعد لقطة شاشة واضحة على فهم المشكلة؛ لا ترسل بيانات دفع أو كلمات مرور أو مستندات شخصية.</p><p>السعر المرجعي للذهب الخام لا يشمل المصنعية أو ضريبة الفاتورة أو هامش المحل. إذا كان استفسارك عن فرق بين الموقع وعرض شراء أو بيع، وضّح أساس المقارنة دون إرسال بيانات حساسة.</p><p>الموقع يقدم معلومات وأدوات حسابية، ولا يشتري الذهب أو يبيعه ولا يفحص نقاء القطع. راجع مختصاً محلياً عند الحاجة لتقييم قطعة أو تفسير التزام ضريبي.</p>
 <p>For enquiries in English, email <a href="mailto:contact@maelumatii.com">contact@maelumatii.com</a>.</p></div></section>` });
 
   out.push({ lang: 'ar', fixed: true, slug: 'privacy', crumbs: [['سياسة الخصوصية', '/privacy/']],
@@ -993,10 +994,10 @@ ${links('ar', '')}`,
       ar: { n: 'سنغافورة', in: 'في سنغافورة', cur: 'دولار', curS: 'دولار', cities: '' },
       en: { n: 'Singapore', adj: 'Singaporean', cur: 'Singapore dollar', cities: 'Little India, Chinatown and the city centre' },
       noteAr: '',
-      noteEn: 'The Singapore dollar is managed against a trade-weighted basket of currencies, so the gold price in SGD moves with both the global price and the exchange rate. Singapore is a major gold-trading hub: investment precious metals (qualifying bars and coins) are exempt from GST, while jewellery carries 9% GST in the shop price. Jewellery in Singapore is most often 22K (916) or 18K.',
+      noteEn: 'The Singapore dollar is managed against a trade-weighted basket of currencies, so the gold price in SGD moves with both the global price and the exchange rate. Singapore is a major gold-trading hub: qualifying investment precious metals are exempt from GST. Gold bars need at least 99.5% purity plus recognised refiner/marking, international tradability and non-decorative form; eligible coins must meet the prescribed-list and legal-tender criteria. Jewellery does not qualify for this IPM exemption. Check the supplier’s tax invoice and current IRAS rules. Jewellery in Singapore is most often 22K (916) or 18K.',
       faqEn: [
         ['What is the gold price in Singapore today?', 'The live price per gram in Singapore dollars is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw gold rate without GST or making charges.'],
-        ['Is gold taxed in Singapore?', 'Investment precious metals (qualifying bars and coins) are exempt from GST in Singapore. Gold jewellery carries 9% GST, included in the shop price.'],
+        ['Is gold taxed in Singapore?', 'Only qualifying investment precious metals receive the IPM exemption. Gold purity of 99.5% alone is not sufficient: form, accreditation/marking and tradability criteria also apply, with prescribed criteria for coins. Jewellery is not IPM.'],
         ['Which karat is most common in Singapore?', 'Most jewellery in Singapore is 22K (marked 916) or 18K, while 24K is bought as bars and coins for investment.']
       ] },
     srilanka: { code: 'LKR', d: 0, vat: 0, peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,

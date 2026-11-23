@@ -1,8 +1,9 @@
+import { WEIGHT_ARTICLE_AR, WEIGHT_ARTICLE_EN } from './weight-articles.mjs';
 import { RESALE_AR, RESALE_EN } from './resale-articles.mjs';
 // مقالات الموقع التعليمية (عربي) — محتوى دائم بدون أسعار مباشرة
 // كل مقال: slug, title (عنوان SEO), h1, desc, teaser, intro, body (HTML جوه .prose), faq
 export const ARTICLES = [
-  ...RESALE_AR,
+  ...RESALE_AR, WEIGHT_ARTICLE_AR,
   {
     slug: 'how-gold-price-is-calculated',
     title: 'كيف يُحسب سعر الذهب؟ من الأونصة العالمية إلى سعر الغرام في الخليج',
@@ -128,7 +129,7 @@ export const ARTICLES = [
 <thead><tr><th></th><th>السبائك (عيار 24)</th><th>المشغولات (عيار 21/22)</th></tr></thead>
 <tbody>
 <tr><td>المصنعية</td><td class="n">ضئيلة جدًا</td><td class="n">مرتفعة نسبيًا</td></tr>
-<tr><td>الضريبة</td><td class="n">معفاة غالبًا (نقاء 99%+)</td><td class="n">تُطبق (مثل 5% في الإمارات)</td></tr>
+<tr><td>الضريبة</td><td class="n">تختلف حسب البلد وشروط المنتج، لا النقاء وحده</td><td class="n">تُطبق (مثل 5% في الإمارات)</td></tr>
 <tr><td>الفرق عند البيع</td><td class="n">صغير جدًا عن السعر العالمي</td><td class="n">تخسر المصنعية والضريبة</td></tr>
 <tr><td>الاستخدام</td><td class="n">ادخار واستثمار فقط</td><td class="n">زينة + قيمة</td></tr>
 <tr><td>سهولة البيع</td><td class="n">عالية مع الشهادة والتغليف</td><td class="n">عالية لكن بسعر الخام</td></tr>
@@ -420,7 +421,7 @@ export const ARTICLES = [
 <h3>العيارات والضريبة</h3>
 <ul>
 <li><strong>عيار 22 و21</strong>: الأكثر طلبًا في المجوهرات العربية والهندية.</li>
-<li><strong>عيار 24</strong>: السبائك والعملات للادخار، ويُعامل الذهب الاستثماري بنقاء 99% فأكثر عادةً <strong>بنسبة صفر ضريبة</strong>.</li>
+<li><strong>عيار 24</strong>: السبائك والعملات للادخار. يشترط لنسبة الصفر في الإمارات نقاء 99% فأكثر وأن يكون المعدن بشكل قابل للتداول في أسواق السبائك العالمية؛ العيار وحده لا يكفي.</li>
 <li><strong>ضريبة 5%</strong> تُطبق على المشغولات الذهبية، ويمكن <strong>للسائح استردادها</strong> عند المغادرة عبر نظام استرداد الضريبة في المطارات والمنافذ، فاحتفظ بالفواتير.</li>
 </ul>
 <h3>نصائح الشراء في الإمارات</h3>
@@ -817,7 +818,7 @@ export const ARTICLES = [
 
 // English country articles — one localized SEO guide per major market
 export const ARTICLES_EN = [
-  ...RESALE_EN,
+  ...RESALE_EN, WEIGHT_ARTICLE_EN,
   {
     slug: 'why-gold-rises-india',
     title: 'Why Is the Gold Price Rising in India? Rupee, Duty and Demand',
@@ -1176,26 +1177,22 @@ ARTICLES_EN.push(
     ]
   },
   {
-    slug: 'buying-gold-singapore-gst-free',
-    title: 'Buying Gold in Singapore: GST-Free Investment Gold Explained',
-    h1: 'Buying gold in Singapore: GST-free investment gold explained',
-    desc: 'Why Singapore is a global gold hub: no GST on investment precious metals, tight dealer spreads, and how to buy bars and coins in SGD.',
-    teaser: 'The GST rule that made Singapore a gold hub',
-    intro: 'Singapore built itself into Asia\'s gold vault — on purpose',
-    body: `
-<p>Singapore deliberately made itself one of the best places on earth to buy gold. One policy did most of the work.</p>
-<h3>No GST on investment gold</h3>
-<p>Since 2012, <strong>Investment Precious Metals (IPM)</strong> — gold of 99.5%+ purity in bar, wafer or coin form — is <strong>exempt from GST</strong> in Singapore. Jewellery still carries 9% GST, but bullion trades tax-free, which keeps dealer prices among the tightest in Asia.</p>
-<h3>What you can buy</h3>
-<p>Bars from PAMP and local refiners, Maples, Kangaroos and the Singapore Mint's own pieces — all priced off the live <a href="/en/gold-price-usd/">USD spot</a> converted at USD/SGD, plus a premium of roughly 1–3% for larger bars. Dealers like BullionStar, GoldSilver Central and bank channels compete hard on spreads.</p>
-<h3>Storage is part of the plan</h3>
-<p>Singapore's real specialty is vaulted storage: allocated, insured vaulting from dealers, plus the purpose-built Silver Bullion vault. Many regional investors buy and store in Singapore without ever taking delivery.</p>
-<h3>What moves the SGD price</h3>
-<p>World price × USD/SGD. The Singapore dollar is managed against a trade basket and is relatively stable, so local gold mostly follows the global cycle. See today's <a href="/en/singapore/">gold price in Singapore</a>. This guide is educational, not investment advice.</p>`,
+    slug: 'buying-gold-singapore-gst-free',dateModified:'2026-11-23',
+    title: 'Buying Gold in Singapore: GST Exemption Criteria Explained',
+    h1: 'Buying gold in Singapore: when does the GST exemption apply?',
+    desc: 'Singapore investment gold GST exemption: purity is only one condition. Check approved form, refiner, markings and qualifying coins before buying.',
+    teaser: '99.5% purity alone does not establish an IPM exemption.',
+    intro: 'Check the product criteria and invoice, not only the karat label.',
+    body: `<p>Singapore exempts qualifying Investment Precious Metals (IPM) from GST. This does not make every gold product GST-free. Jewellery and products that fail the IPM conditions are not covered by that exemption. Before paying, ask the supplier to identify the exact product and explain the tax treatment on the invoice.</p>
+<h3>Gold bars, ingots and wafers</h3><p>According to IRAS, gold must have at least 99.5% purity and meet all the other criteria. It must be capable of trading on the international bullion market, carry an internationally accepted quality mark and not be a decorative or collector’s product. Refiner accreditation or endorsement is part of the qualification framework. A pendant-style bar, for example, is not automatically exempt simply because its gold content is high.</p>
+<h3>Coins have their own conditions</h3><p>Gold coins require at least 99.5% purity and must be or have been legal tender in their country of origin. IRAS also prescribes a qualifying coin list. Do not assume that every coin from a recognised mint qualifies, or that a proof or collectible version receives the same treatment as an eligible bullion product.</p>
+<h3>Compare the total cost, not a tax label</h3><p>Get a written price including any product premium, delivery, storage and applicable tax. Premiums vary by product, size, supplier and time; this guide does not assume a standard percentage. Ask what the dealer would pay to buy the same product back and compare the resulting spread. The <a href="/en/gold-resale-calculator/">resale calculator</a> compares net buyback offers without guessing local fees.</p>
+<h3>Keep records</h3><p>An exempt IPM invoice should identify the product clearly. IRAS lists information including weight, purity, refiner and serial number where applicable for bars, and the coin name and weight for coins. Keep the invoice with product records. Check the current guidance if the product, location of supply or transaction changes, because an export and a local supply can have different tax treatment.</p>
+<p>For a raw reference in SGD see <a href="/en/singapore/">Singapore gold prices</a>. That reference does not establish a shop’s final price or tax classification. This guide is educational and is not personal tax advice.</p><h3>Official sources</h3><ul><li><a href="https://www.iras.gov.sg/taxes/goods-services-tax-(gst)/charging-gst-(output-tax)/when-is-gst-not-charged/supplies-exempt-from-gst">IRAS: supplies exempt from GST and IPM criteria</a></li><li><a href="https://ask.gov.sg/customs/questions/clz9bs3vp01gqf9666642dcz6">Singapore Customs: qualifying IPM criteria</a></li></ul>`,
     faq: [
-      ['Is gold tax-free in Singapore?', 'Investment-grade gold (99.5%+ purity bars, wafers and coins) is GST-exempt. Jewellery is not — it carries the standard 9% GST.'],
-      ['Why is Singapore popular for buying gold?', 'No GST on investment gold, tight dealer spreads, strong property rights and world-class vaulting make it a regional bullion hub.'],
-      ['What premium do gold bars carry in Singapore?', 'Typically around 1–3% over spot for larger bars from competitive dealers; small bars and coins cost more per gram.']
+      ['Is all 99.5% gold GST-free in Singapore?', 'No. Gold purity is only one condition. Bars, ingots and wafers also need the required form, tradability and recognised quality/refiner criteria; coins have prescribed eligibility conditions.'],
+      ['Is gold jewellery covered by the IPM exemption?', 'No. Jewellery is not IPM under the exemption criteria. Check the supplier’s current tax invoice.'],
+      ['What premium should I assume?', 'Do not assume a fixed percentage. Ask for the total written price and compare the same product and buyback terms across suppliers.']
     ]
   },
   {
