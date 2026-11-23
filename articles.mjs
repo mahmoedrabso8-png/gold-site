@@ -826,18 +826,19 @@ export const ARTICLES_EN = [
     h1: 'Why is the gold price rising in India?',
     desc: 'The real reasons gold keeps rising in India: global spot price, weaker rupee, import duty and GST, and wedding demand — plus what it means for 22K buyers.',
     teaser: 'Rupee, import duty and wedding demand, explained simply',
-    intro: 'Every record high has the same three engines behind it — here is how they work',
+    intro: 'Separate the world gold quote, the exchange rate and local product costs; prices can rise or fall.',
+    dateModified: '2026-11-23',
     body: `
-<p>Gold in India has set record after record, and the reason is never one thing. The price you pay at the jeweller is built in three layers: the <strong>global spot price</strong>, the <strong>rupee exchange rate</strong>, and <strong>Indian taxes and demand</strong>. When all three push the same way, prices jump fast.</p>
-<h3>1. The global price keeps climbing</h3>
-<p>Gold is priced worldwide in US dollars per troy ounce (31.1035 g). Central banks buying gold, investors hedging inflation, and expectations of lower interest rates have pushed the spot price to historic highs. Every Indian price starts from this number — see the live <a href="/en/gold-price-usd/">gold price in USD</a>.</p>
+<p>Gold prices in India can rise or fall, and no single factor explains every move. The price you pay at the jeweller is built in three layers: the <strong>global spot price</strong>, the <strong>rupee exchange rate</strong>, and <strong>Indian taxes and demand</strong>. When all three push the same way, prices jump fast.</p>
+<h3>1. The global price can move either way</h3>
+<p>Gold is priced worldwide in US dollars per troy ounce (31.1035 g). Central-bank activity, investment demand, interest rates, currencies and risk expectations can move the spot price in either direction. Every Indian price starts from this number — see the live <a href="/en/gold-price-usd/">gold price in USD</a>.</p>
 <h3>2. The rupee multiplies the move</h3>
 <p>Because gold is bought in dollars, a weaker rupee raises the Indian price even when the global price is flat. The rule: <strong>local price = global price × USD/INR ÷ 31.1035</strong>. If gold rises 5% globally and the rupee slips 3%, Indian buyers feel roughly 8%. Check today's rate on the <a href="/en/india/">gold rate in India</a> page.</p>
 <h3>3. Duty, GST and demand</h3>
 <p>India imports nearly all its gold, so taxes land directly in the retail price: import duty (cut to 6% in the 2024 budget) plus <strong>3% GST</strong> on the gold value and 5% GST on making charges. On top of that, wedding and festival seasons (Diwali, Akshaya Tritiya) create waves of physical demand that widen local premiums.</p>
 <h3>What it means for buyers</h3>
 <p>Nobody can time the exact top or bottom. What you can control: buy <strong>BIS-hallmarked 22K</strong> (the <a href="/en/gold-22k/">22K rate</a> is what jewellers quote for jewellery), compare making charges between shops, and consider buying in parts rather than waiting for a crash that may not come. For savings, coins and bars in <a href="/en/gold-24k/">24K</a> track the raw price most closely.</p>
-<p>This guide is educational, not investment advice.</p>`,
+<p>This guide is educational, not investment advice.</p><h3>Market-direction note</h3><p>This evergreen guide does not establish that today&#39;s price is a record high or explain a particular day&#39;s move. <a href="https://www.gold.org/goldhub/tools/gold-return-attribution-model">World Gold Council research</a> groups drivers into economic expansion, risk and uncertainty, opportunity costs and momentum. Prices can move in either direction. Other product, unit and tax details need their own current checks.</p>`,
     faq: [
       ['Why does the gold price increase in India?', 'Three combined drivers: the global dollar price of gold, the USD/INR exchange rate (a weaker rupee raises local prices), and Indian import duty plus 3% GST. Wedding-season demand adds local premiums on top.'],
       ['Does a weak rupee make gold costlier in India?', 'Yes. Gold is imported and priced in US dollars, so when the rupee falls against the dollar, the Indian price rises even if the global price is unchanged.'],
@@ -950,18 +951,19 @@ ARTICLES_EN.push(
     title: 'Why Is the Gold Price Rising in Pakistan? Rupee and Tola',
     h1: 'Why is the gold price rising in Pakistan?',
     desc: 'Why gold keeps climbing in Pakistan: the global spot price, the falling rupee, and wedding-season demand — plus how the tola rate is calculated and what buyers can do.',
-    teaser: 'The rupee effect behind every record tola price',
-    intro: 'Every record tola rate has the same engines behind it — here is how they work',
+    teaser: 'The global-price, rupee and local-market layers',
+    intro: 'Separate the world gold quote, the exchange rate and local product costs; prices can rise or fall.',
+    dateModified: '2026-11-23',
     body: `
-<p>Gold in Pakistan is quoted per <strong>tola (11.664 g)</strong>, and the tola rate has broken record after record. Three forces drive it: the global price, the rupee, and local demand.</p>
+<p>Gold in Pakistan is quoted per <strong>tola (11.664 g)</strong>. Three factors affect the quoted price: the global price, the rupee, and local demand.</p>
 <h3>1. The global price</h3>
-<p>Everything starts with the world <a href="/en/gold-price-usd/">gold price in USD</a> per ounce (31.1035 g). Central-bank buying, inflation hedging and expectations of lower interest rates have pushed it to historic highs, and Pakistan's prices follow mechanically.</p>
+<p>Everything starts with the world <a href="/en/gold-price-usd/">gold price in USD</a> per ounce (31.1035 g). The global quote can rise or fall; local currency conversion and dealer conditions then affect the price paid in Pakistan.</p>
 <h3>2. The rupee multiplies every move</h3>
 <p>The formula is <strong>tola price = USD per ounce × USD/PKR × 11.664 ÷ 31.1035</strong>. Because the rupee has depreciated sharply over the years, Pakistani gold rises even when the world price is flat. A 5% global rally with a 5% weaker rupee feels like a 10% jump at the jeweller. Watch the <a href="/en/dollar-pakistan/">dollar rate in Pakistan</a> alongside gold.</p>
 <h3>3. Local demand and the sarafa market</h3>
 <p>Pakistan's sarafa bazaars (Karachi, Lahore, Rawalpindi) announce daily rates that follow the formula plus a small local premium. Wedding seasons bring waves of buying in <strong>22K jewellery</strong> — the local standard — which widens premiums further.</p>
 <h3>What buyers can do</h3>
-<p>You cannot time the market, but you can control how you buy: always ask for the day's per-tola rate and the making charges separately, buy hallmarked 22K from a known shop, and consider building savings in small coins or bars rather than waiting for a crash. Track the live <a href="/en/pakistan/">gold rate in Pakistan</a> per tola and gram. This guide is educational, not investment advice.</p>`,
+<p>You cannot time the market, but you can control how you buy: always ask for the day's per-tola rate and the making charges separately, buy hallmarked 22K from a known shop, and consider building savings in small coins or bars rather than waiting for a crash. Track the live <a href="/en/pakistan/">gold rate in Pakistan</a> per tola and gram. This guide is educational, not investment advice.</p><h3>Market-direction note</h3><p>This evergreen guide does not establish that today&#39;s price is a record high or explain a particular day&#39;s move. <a href="https://www.gold.org/goldhub/tools/gold-return-attribution-model">World Gold Council research</a> groups drivers into economic expansion, risk and uncertainty, opportunity costs and momentum. Prices can move in either direction. Other product, unit and tax details need their own current checks.</p>`,
     faq: [
       ['Why does gold keep getting expensive in Pakistan?', 'The global dollar price is rising and the rupee has weakened over time, so the rupee price of gold rises on both fronts. Wedding-season demand adds local premiums.'],
       ['How is the per-tola gold rate calculated in Pakistan?', 'Tola rate = world ounce price in USD × USD/PKR rate × 11.664 ÷ 31.1035. Sarafa markets then add a small local premium.'],
@@ -974,19 +976,20 @@ ARTICLES_EN.push(
     h1: 'Why is the gold price rising in Bangladesh?',
     desc: 'Why gold keeps climbing in Bangladesh: the global price, the weaker taka, and BAJUS rate-setting — plus how the bhori (11.664 g) price works and what buyers can do.',
     teaser: 'Taka, BAJUS rates and the bhori, explained simply',
-    intro: 'The bhori keeps setting records — the reasons are the same every time',
+    intro: 'Separate the world gold quote, the exchange rate and local product costs; prices can rise or fall.',
+    dateModified: '2026-11-23',
     body: `
-<p>In Bangladesh gold is priced per <strong>bhori (also called vori, 11.664 g)</strong>, and the Bangladesh Jewellers' Association (BAJUS) announces official rates that keep setting records. Here is why.</p>
+<p>In Bangladesh gold is priced per <strong>bhori (also called vori, 11.664 g)</strong>, and the Bangladesh Jewellers' Association (BAJUS) publishes market rates. Global gold, the exchange rate and local conditions affect the retail quote.</p>
 <h3>1. The world price leads</h3>
-<p>Bangladesh imports almost all its gold, so the local price starts from the global <a href="/en/gold-price-usd/">spot price in dollars</a>. Record global prices translate directly into record bhori rates.</p>
+<p>Bangladesh imports almost all its gold, so the local price starts from the global <a href="/en/gold-price-usd/">spot price in dollars</a>. A change in the global quote changes the metal-value reference; the exchange rate and local costs also matter.</p>
 <h3>2. The taka decides the size of the jump</h3>
 <p>The math: <strong>bhori price = USD ounce price × USD/BDT × 11.664 ÷ 31.1035</strong>. The taka has weakened steadily against the dollar, so Bangladeshi buyers feel global rallies amplified. Follow the <a href="/en/dollar-bangladesh/">dollar rate in Bangladesh</a> to understand the gold move.</p>
 <h3>3. How BAJUS sets the daily rate</h3>
 <p>BAJUS publishes per-bhori rates for 22K, 21K, 18K and traditional (sanatan) gold, adjusted for import costs and local supply. Jewellers then add making charges — often 8–15% for ornaments — on top of the metal value.</p>
 <h3>What buyers can do</h3>
-<p>Compare the BAJUS rate with what the shop quotes, negotiate making charges, and always take a detailed invoice showing weight, purity and charges. For savings, 22K coins and bars track the metal value most closely. Check today's <a href="/en/bangladesh/">gold price in Bangladesh</a> per bhori and gram. This guide is educational, not investment advice.</p>`,
+<p>Compare the BAJUS rate with what the shop quotes, negotiate making charges, and always take a detailed invoice showing weight, purity and charges. For savings, 22K coins and bars track the metal value most closely. Check today's <a href="/en/bangladesh/">gold price in Bangladesh</a> per bhori and gram. This guide is educational, not investment advice.</p><h3>Market-direction note</h3><p>This evergreen guide does not establish that today&#39;s price is a record high or explain a particular day&#39;s move. <a href="https://www.gold.org/goldhub/tools/gold-return-attribution-model">World Gold Council research</a> groups drivers into economic expansion, risk and uncertainty, opportunity costs and momentum. Prices can move in either direction. Other product, unit and tax details need their own current checks.</p>`,
     faq: [
-      ['Why is gold so expensive in Bangladesh now?', 'Global gold is at record highs and the taka has weakened, so the bhori price rises on both fronts. BAJUS adjusts official rates as import costs change.'],
+      ['Why is gold so expensive in Bangladesh now?', 'A higher global gold quote or a weaker taka can raise the converted metal value. The opposite changes can lower it; compare the current market and shop quotes.'],
       ['What is a bhori of gold?', 'A bhori (vori) is the traditional South Asian gold weight used in Bangladesh, equal to 11.664 grams — the same as a tola.'],
       ['Who sets gold prices in Bangladesh?', 'BAJUS (the Bangladesh Jewellers\' Association) announces daily per-bhori rates by karat, based on the international price, the exchange rate and import costs.']
     ]
@@ -997,19 +1000,20 @@ ARTICLES_EN.push(
     h1: 'Why is the gold price rising in Nepal?',
     desc: 'Why gold keeps climbing in Nepal: the global price, the rupee peg to the Indian currency, and festival demand — plus how the per-tola rate in NPR is formed.',
     teaser: 'How the Indian-rupee peg shapes Nepal\'s gold price',
-    intro: 'Nepali gold follows two markets at once — the world and India',
+    intro: 'Separate the world gold quote, the exchange rate and local product costs; prices can rise or fall.',
+    dateModified: '2026-11-23',
     body: `
-<p>Nepal prices gold per <strong>tola (11.664 g)</strong>, and the Federation of Nepal Gold and Silver Dealers announces daily rates that keep climbing. The drivers are global and regional at once.</p>
+<p>Nepal prices gold per <strong>tola (11.664 g)</strong>, and the Federation of Nepal Gold and Silver Dealers publishes market rates that can change in either direction. The drivers are global and regional at once.</p>
 <h3>1. The world price in dollars</h3>
-<p>Like everywhere, the base is the global <a href="/en/gold-price-usd/">gold price in USD</a> — at record highs on central-bank buying and rate-cut expectations.</p>
+<p>Like everywhere, the base is the global <a href="/en/gold-price-usd/">gold price in USD</a>. Global demand, interest rates, currencies and risk expectations can move this price in either direction.</p>
 <h3>2. The INR peg passes India's gold inflation through</h3>
 <p>The Nepali rupee is <strong>pegged to the Indian rupee</strong> at 1.6 NPR per INR. India imports gold in dollars, so when the Indian price rises — global price plus rupee weakness — Nepal's price follows through the peg, plus local import duty and taxes.</p>
 <h3>3. Festival and wedding demand</h3>
 <p>Dashain, Tihar and the wedding season bring surges of physical buying in 22K and 24K jewellery, and demand from Nepali households treats gold as the family reserve. Local premiums widen in peak season.</p>
 <h3>What buyers can do</h3>
-<p>Check the federation's daily rate before shopping, ask for making charges separately, and buy hallmark-certified pieces. For savings, small 24K bars and coins track the metal value best. See today's <a href="/en/nepal/">gold price in Nepal</a> per tola and gram. This guide is educational, not investment advice.</p>`,
+<p>Check the federation's daily rate before shopping, ask for making charges separately, and buy hallmark-certified pieces. For savings, small 24K bars and coins track the metal value best. See today's <a href="/en/nepal/">gold price in Nepal</a> per tola and gram. This guide is educational, not investment advice.</p><h3>Market-direction note</h3><p>This evergreen guide does not establish that today&#39;s price is a record high or explain a particular day&#39;s move. <a href="https://www.gold.org/goldhub/tools/gold-return-attribution-model">World Gold Council research</a> groups drivers into economic expansion, risk and uncertainty, opportunity costs and momentum. Prices can move in either direction. Other product, unit and tax details need their own current checks.</p>`,
     faq: [
-      ['Why is the gold price increasing in Nepal?', 'The global price is at record highs, and because the Nepali rupee is pegged to the Indian rupee, rises in India\'s gold price pass straight through, plus local duty.'],
+      ['Why is the gold price increasing in Nepal?', 'The global gold quote, the exchange rate and local charges affect the Nepal price. Check current dated quotes rather than assuming a continuing rise.'],
       ['Who announces gold prices in Nepal?', 'The Federation of Nepal Gold and Silver Dealers publishes daily per-tola rates for fine (24K) and standard gold, which shops across the country follow.'],
       ['How many grams are in one tola?', 'One tola equals 11.664 grams. Gold in Nepal is traditionally quoted per tola, with gram prices derived from it.']
     ]
@@ -1020,19 +1024,20 @@ ARTICLES_EN.push(
     h1: 'Why is the gold price rising in Sri Lanka?',
     desc: 'Why gold keeps climbing in Sri Lanka: the global price, the rupee\'s collapse and recovery, and what it means for 22K jewellery buyers and savers.',
     teaser: 'What the currency crisis did to Sri Lankan gold',
-    intro: 'Sri Lankan gold tells the story of the rupee itself',
+    intro: 'Separate the world gold quote, the exchange rate and local product costs; prices can rise or fall.',
+    dateModified: '2026-11-23',
     body: `
-<p>Few countries show the link between currency and gold as clearly as Sri Lanka. The <a href="/en/srilanka/">gold price in Sri Lanka</a> has multiplied over recent years — and most of that move is the rupee.</p>
+<p>Few countries show the link between currency and gold as clearly as Sri Lanka. The <a href="/en/srilanka/">gold price in Sri Lanka</a> reflects both the world metal quote and the rupee exchange rate.</p>
 <h3>1. The global price</h3>
-<p>The base layer is the world <a href="/en/gold-price-usd/">spot price in USD</a>, at record highs on central-bank buying and rate-cut expectations.</p>
+<p>The base layer is the world <a href="/en/gold-price-usd/">spot price in USD</a>. Global demand, interest rates, currencies and risk expectations can move this price in either direction.</p>
 <h3>2. The rupee's collapse — and what it taught savers</h3>
 <p>During the 2022 crisis the Sri Lankan rupee lost nearly half its value against the dollar, and gold prices in LKR roughly doubled even where the world price moved little. The lesson stuck: many households now treat gold as their hedge against currency risk. Track the <a href="/en/dollar-srilanka/">dollar rate in Sri Lanka</a> next to gold.</p>
 <h3>3. Local market habits</h3>
 <p>Sri Lankan jewellers work mostly in <strong>22K</strong>, quoting per gram and per pound (8 sovereigns = 1 pound in local usage for coins). Making charges vary widely between Colombo's Sea Street shops and smaller towns, and sovereign coins remain a popular savings form.</p>
 <h3>What buyers can do</h3>
-<p>Ask for the day's rate and making charges separately, compare Sea Street quotes, and keep invoices with weight and purity. For savings, sovereigns and small bars are the most liquid. This guide is educational, not investment advice.</p>`,
+<p>Ask for the day's rate and making charges separately, compare Sea Street quotes, and keep invoices with weight and purity. For savings, sovereigns and small bars are the most liquid. This guide is educational, not investment advice.</p><h3>Market-direction note</h3><p>This evergreen guide does not establish that today&#39;s price is a record high or explain a particular day&#39;s move. <a href="https://www.gold.org/goldhub/tools/gold-return-attribution-model">World Gold Council research</a> groups drivers into economic expansion, risk and uncertainty, opportunity costs and momentum. Prices can move in either direction. Other product, unit and tax details need their own current checks.</p>`,
     faq: [
-      ['Why did gold prices jump so much in Sri Lanka?', 'The 2022 currency crisis cut the rupee\'s value sharply, and since gold is priced in dollars, the LKR price roughly doubled. Global record prices have added more since.'],
+      ['Why did gold prices jump so much in Sri Lanka?', 'A weaker rupee can lift the LKR value of an unchanged USD gold quote; a stronger rupee can lower it. Compare the same metal unit, fineness and dates before attributing a historical move.'],
       ['Is gold a good hedge in Sri Lanka?', 'It protected savers through the currency collapse, which is why demand stays strong. It is still volatile short-term, so gradual buying is the common approach.'],
       ['What karat do Sri Lankan jewellers use?', 'Mostly 22K (91.6% pure) for jewellery, with 24K for coins and bars. Sovereign coins are a traditional savings unit.']
     ]
@@ -1041,21 +1046,22 @@ ARTICLES_EN.push(
     slug: 'why-gold-rises-turkey',
     title: 'Why Is the Gold Price Rising in Turkey? Lira and Inflation',
     h1: 'Why is the gold price rising in Turkey?',
-    desc: 'Why gram altın keeps breaking records in Turkey: the global price, lira depreciation, high inflation, and how Turks use çeyrek and gram gold to protect savings.',
+    desc: 'How gram altın prices change in Turkey: the global price, lira depreciation, high inflation, and how Turks use çeyrek and gram gold to protect savings.',
     teaser: 'Gram altın, çeyrek and the lira story',
-    intro: 'In Turkey, gold is not a luxury — it is the household savings account',
+    intro: 'Separate the world gold quote, the exchange rate and local product costs; prices can rise or fall.',
+    dateModified: '2026-11-23',
     body: `
-<p>Turkey is one of the world's most gold-loving countries, and the <a href="/en/turkey/">gold price in Turkey</a> has risen relentlessly in lira terms. The drivers are global and domestic at once.</p>
+<p>Turkey is one of the world's most gold-loving countries, and the <a href="/en/turkey/">gold price in Turkey</a> can move differently from the USD gold quote. The drivers are global and domestic at once.</p>
 <h3>1. The world price</h3>
-<p>The base is the global <a href="/en/gold-price-usd/">spot price in USD</a>, at record highs. Turkish prices convert it at the day's USD/TRY rate.</p>
+<p>The base is the global <a href="/en/gold-price-usd/">spot price in USD</a>. Turkish prices convert it at the day's USD/TRY rate.</p>
 <h3>2. Lira depreciation and inflation</h3>
 <p>The lira has depreciated for years while inflation ran high, so gold in TRY rises on both the global price and the exchange rate. For Turkish savers, <strong>gram altın</strong> has outpaced bank deposits for a generation — which is exactly why demand never fades. Watch the <a href="/en/dollar-turkey/">dollar rate in Turkey</a> beside gold.</p>
 <h3>3. How Turks buy: gram and çeyrek</h3>
 <p>Retail gold comes in familiar units: <strong>gram altın</strong> (24K), <strong>çeyrek</strong> (quarter, 1.6 g), yarım (half) and tam (full, ~7 g) coins, plus 22K bracelets and 18K jewellery. The çeyrek is the standard wedding gift — millions change hands every season, creating steady physical demand.</p>
 <h3>What buyers can do</h3>
-<p>Buy from jewelers or banks with transparent buy-sell spreads, prefer 24K gram or coins for savings, and compare the spread, not just the price. Grand Bazaar rates set the national tone. This guide is educational, not investment advice.</p>`,
+<p>Buy from jewelers or banks with transparent buy-sell spreads, prefer 24K gram or coins for savings, and compare the spread, not just the price. Grand Bazaar rates set the national tone. This guide is educational, not investment advice.</p><h3>Market-direction note</h3><p>This evergreen guide does not establish that today&#39;s price is a record high or explain a particular day&#39;s move. <a href="https://www.gold.org/goldhub/tools/gold-return-attribution-model">World Gold Council research</a> groups drivers into economic expansion, risk and uncertainty, opportunity costs and momentum. Prices can move in either direction. Other product, unit and tax details need their own current checks.</p>`,
     faq: [
-      ['Why does gram altın keep rising in Turkey?', 'The global price is at record highs and the lira keeps depreciating with high inflation, so the lira price of gold rises on both fronts year after year.'],
+      ['Why does gram altın keep rising in Turkey?', 'A higher USD gold quote or a weaker lira can raise the TRY reference price. Neither direction is guaranteed; check both inputs and the dealer spread.'],
       ['What is a çeyrek coin?', 'A çeyrek is a 22K gold quarter coin weighing about 1.6 grams — Turkey\'s most popular small gold unit and the traditional wedding gift.'],
       ['Is gold a good savings tool in Turkey?', 'It has protected purchasing power through lira depreciation for decades, which is why Turkish households hold so much of it. Spreads between buy and sell prices matter, so compare sellers.']
     ]
@@ -1090,21 +1096,22 @@ ARTICLES_EN.push(
     slug: 'why-gold-rises-indonesia',
     title: 'Why Is the Gold Price Rising in Indonesia? Antam and Rupiah',
     h1: 'Why is the gold price rising in Indonesia?',
-    desc: 'Why Antam gold keeps breaking records in Indonesia: the world price, the rupiah, and steady retail demand — plus how Antam pricing and buyback work.',
+    desc: 'How Antam gold prices change in Indonesia: the world price, the rupiah, and steady retail demand — plus how Antam pricing and buyback work.',
     teaser: 'Antam, the rupiah and Indonesia\'s gold habit',
-    intro: 'When Antam raises its price, the whole country notices — here is what moves it',
+    intro: 'Separate the world gold quote, the exchange rate and local product costs; prices can rise or fall.',
+    dateModified: '2026-11-23',
     body: `
-<p>In Indonesia, one company sets the national mood on gold: <strong>Antam</strong>. Its daily price list is the reference for millions of savers, and it has kept climbing.</p>
+<p>In Indonesia, one company sets the national mood on gold: <strong>Antam</strong>. Its daily price list is the reference for millions of savers, and it can change in either direction.</p>
 <h3>1. The world price</h3>
-<p>Antam's list starts from the global <a href="/en/gold-price-usd/">gold price in USD</a>, which is at record highs on central-bank buying and rate-cut expectations.</p>
+<p>Antam's list starts from the global <a href="/en/gold-price-usd/">gold price in USD</a>, which can rise or fall as investment demand, interest rates and market risks change.</p>
 <h3>2. The rupiah layer</h3>
 <p>The formula is <strong>IDR price = USD price × USD/IDR</strong>. The rupiah has weakened gradually for years, so Indonesian gold rises even in flat global markets. Follow the <a href="/en/dollar-indonesia/">dollar rate in Indonesia</a> next to gold prices.</p>
 <h3>3. How Antam pricing works</h3>
 <p>Antam sells 99.99% bars from 0.5 g to 1 kg. Smaller bars carry much higher premiums per gram — a 1 g bar can cost 8–10% over the metal value while 100 g bars sit close to spot. Antam also publishes a <strong>buyback price</strong> daily, lower than the selling price; the spread between them is the real cost of owning gold. Pegadaian and e-commerce gold accounts follow the same pattern.</p>
 <h3>What buyers can do</h3>
-<p>Buy sizes that keep premiums low (25 g and up where possible), buy from Antam's official channels or Pegadaian, and hold for years rather than trading the spread. See today's <a href="/en/indonesia/">gold price in Indonesia</a>. This guide is educational, not investment advice.</p>`,
+<p>Buy sizes that keep premiums low (25 g and up where possible), buy from Antam's official channels or Pegadaian, and hold for years rather than trading the spread. See today's <a href="/en/indonesia/">gold price in Indonesia</a>. This guide is educational, not investment advice.</p><h3>Market-direction note</h3><p>This evergreen guide does not establish that today&#39;s price is a record high or explain a particular day&#39;s move. <a href="https://www.gold.org/goldhub/tools/gold-return-attribution-model">World Gold Council research</a> groups drivers into economic expansion, risk and uncertainty, opportunity costs and momentum. Prices can move in either direction. Other product, unit and tax details need their own current checks.</p>`,
     faq: [
-      ['Why does Antam gold keep getting more expensive?', 'The world gold price is at record highs and the rupiah has weakened over time, so the rupiah price rises on both fronts.'],
+      ['Why does Antam gold keep getting more expensive?', 'A higher global gold quote or a weaker rupiah can lift the IDR reference value. The opposite changes can lower it. Compare current product and buyback quotes.'],
       ['What is the Antam buyback price?', 'The price Antam pays to buy its bars back, published daily. It is lower than the selling price, and the spread is the effective cost of owning the gold.'],
       ['Are small Antam bars worth it?', 'They are convenient, but premiums per gram are much higher on 0.5–5 g bars. Larger bars (25–100 g) track the metal price far more closely.']
     ]
@@ -1115,7 +1122,8 @@ ARTICLES_EN.push(
     h1: 'Thai gold explained: baht weight, 96.5% purity and prices',
     desc: 'How gold works in Thailand: the baht weight (15.244 g), 96.5% purity, gold-bar versus jewellery prices, and how Thai shops quote the daily rate.',
     teaser: 'One baht of gold is not one baht of money',
-    intro: 'Thailand has its own gold system — weight, purity and pricing all unique',
+    intro: 'Separate the world gold quote, the exchange rate and local product costs; prices can rise or fall.',
+    dateModified: '2026-11-23',
     body: `
 <p>Thailand's gold market confuses every newcomer because it uses its own unit and its own purity. Once you know both, the system is beautifully simple.</p>
 <h3>The baht weight</h3>
@@ -1125,7 +1133,7 @@ ARTICLES_EN.push(
 <h3>Two prices: bar and jewellery</h3>
 <p>The Gold Traders Association announces two daily prices: <strong>gold bar</strong> (the investment benchmark, bought back with a tiny spread) and <strong>gold ornament</strong> (jewellery, which includes workmanship and sells at a discount when you resell). Smart savers buy bars; buyers who want wearable value accept the ornament spread.</p>
 <h3>What moves the price</h3>
-<p>The global <a href="/en/gold-price-usd/">USD gold price</a> times USD/THB — so both record world prices and a weaker baht push Thai prices up. See today's <a href="/en/thailand/">gold price in Thailand</a>. This guide is educational, not investment advice.</p>`,
+<p>The global <a href="/en/gold-price-usd/">USD gold price</a> times USD/THB — so a higher world quote or a weaker baht can lift the converted metal value, while the opposite changes can lower it. See today's <a href="/en/thailand/">gold price in Thailand</a>. This guide is educational, not investment advice.</p><h3>Market-direction note</h3><p>This evergreen guide does not establish that today&#39;s price is a record high or explain a particular day&#39;s move. <a href="https://www.gold.org/goldhub/tools/gold-return-attribution-model">World Gold Council research</a> groups drivers into economic expansion, risk and uncertainty, opportunity costs and momentum. Prices can move in either direction. Other product, unit and tax details need their own current checks.</p>`,
     faq: [
       ['How many grams is one baht of gold?', 'One baht of gold equals 15.244 grams — a traditional Thai weight unit, separate from the Thai currency of the same name.'],
       ['Why is Thai gold 96.5% pure?', 'It is the national standard set by the Gold Traders Association — a deep-yellow alloy slightly above 23 karat, traditional for both jewellery and bars.'],
@@ -1178,21 +1186,22 @@ ARTICLES_EN.push(
     slug: 'why-gold-rises-japan',
     title: 'Why Is the Gold Price Rising in Japan? The Weak Yen Effect',
     h1: 'Why is the gold price rising in Japan?',
-    desc: 'Why gold keeps hitting records in Japan: the global price, the historically weak yen, and safe-haven demand — plus how Tanaka and retail bars are priced.',
+    desc: 'What affects gold prices in Japan: the global price, the historically weak yen, and safe-haven demand — plus how Tanaka and retail bars are priced.',
     teaser: 'The yen turned a gold rally into a gold boom',
-    intro: 'In yen terms, gold has never looked stronger — currency is the reason',
+    intro: 'Separate the world gold quote, the exchange rate and local product costs; prices can rise or fall.',
+    dateModified: '2026-11-23',
     body: `
-<p>Japanese gold prices have set record after record — and the biggest driver is not gold itself but the yen.</p>
+<p>Japanese gold prices reflect both the global US-dollar gold quote and the yen exchange rate. Either input can raise or lower the converted value.</p>
 <h3>1. The world price</h3>
-<p>The base is the global <a href="/en/gold-price-usd/">USD spot price</a>, at record highs on central-bank buying and rate-cut expectations.</p>
-<h3>2. The historically weak yen</h3>
-<p>The formula is <strong>JPY price = USD price × USD/JPY</strong>. The yen weakened to multi-decade lows, so Japanese gold rose much faster than the world price. For Japanese savers, gold became the clearest hedge against their own currency. Watch the <a href="/en/dollar-japan/">dollar rate in Japan</a> beside gold.</p>
+<p>The base is the global <a href="/en/gold-price-usd/">USD spot price</a>. Global demand, interest rates, currencies and risk expectations can move this price in either direction.</p>
+<h3>2. The yen exchange rate</h3>
+<p>The formula is <strong>JPY price = USD price × USD/JPY</strong>. A weaker yen raises the converted JPY price when the USD quote is unchanged; a stronger yen lowers it. Gold is not a guaranteed currency hedge over every holding period. Watch the <a href="/en/dollar-japan/">dollar rate in Japan</a> beside gold.</p>
 <h3>3. How Japan buys gold</h3>
 <p>Retail gold flows through <strong>Tanaka Kikinzoku</strong> and other refiners: bars from 5 g up, coins like the Maple Leaf, and accumulation plans (monthly gold savings). Department-store and jewelry-counter sales of 18K pieces follow the same daily rate plus workmanship.</p>
 <h3>What buyers can do</h3>
-<p>Compare dealer premiums (they widen on small bars), consider accumulation plans for gradual buying, and remember the yen risk cuts both ways: a stronger yen would pull yen-gold prices down even if world gold is flat. See today's <a href="/en/japan/">gold price in Japan</a>. This guide is educational, not investment advice.</p>`,
+<p>Compare dealer premiums (they widen on small bars), consider accumulation plans for gradual buying, and remember the yen risk cuts both ways: a stronger yen would pull yen-gold prices down even if world gold is flat. See today's <a href="/en/japan/">gold price in Japan</a>. This guide is educational, not investment advice.</p><h3>Market-direction note</h3><p>This evergreen guide does not establish that today&#39;s price is a record high or explain a particular day&#39;s move. <a href="https://www.gold.org/goldhub/tools/gold-return-attribution-model">World Gold Council research</a> groups drivers into economic expansion, risk and uncertainty, opportunity costs and momentum. Prices can move in either direction. Other product, unit and tax details need their own current checks.</p>`,
     faq: [
-      ['Why is gold at record highs in Japan?', 'Record global prices plus a historically weak yen: the yen price equals the dollar price times USD/JPY, and both have risen.'],
+      ['Why can Japanese gold prices differ from the USD trend?', 'The JPY reference equals the USD quote multiplied by JPY per USD. A weaker yen raises the converted value when the USD quote is unchanged; a stronger yen lowers it.'],
       ['Does the yen exchange rate change Japanese gold prices?', 'Directly. A weaker yen raises the yen price of gold even when the world price is unchanged — and a stronger yen lowers it.'],
       ['How do people buy gold in Japan?', 'Through refiners like Tanaka Kikinzoku: bars, coins and monthly accumulation plans, plus 18K jewellery at department stores.']
     ]
@@ -1257,19 +1266,20 @@ ARTICLES_EN.push(
     h1: 'Why is the gold price rising in Nigeria?',
     desc: 'Why gold keeps climbing in Nigeria: the global price, naira devaluation, and inflation hedging — plus how Nigerians buy gold in grams, coins and jewellery.',
     teaser: 'What naira devaluation does to gold prices',
-    intro: 'In Nigeria, gold is a dollar asset — and the naira keeps proving it',
+    intro: 'Separate the world gold quote, the exchange rate and local product costs; prices can rise or fall.',
+    dateModified: '2026-11-23',
     body: `
-<p>Gold in Nigeria has become dramatically more expensive in naira terms. The story is mostly the currency.</p>
+<p>Gold in Nigeria reflects both the USD metal quote and the naira exchange rate. Neither input should be assumed to keep moving in one direction.</p>
 <h3>1. The world price</h3>
-<p>The base is the global <a href="/en/gold-price-usd/">USD spot price</a> — at record highs on central-bank buying and rate-cut expectations.</p>
+<p>The base is the global <a href="/en/gold-price-usd/">USD spot price</a>. Global demand, interest rates, currencies and risk expectations can move this price in either direction.</p>
 <h3>2. Naira devaluation multiplies it</h3>
 <p>The formula: <strong>NGN price = USD price × USD/NGN</strong>. Repeated naira devaluations — including the sharp 2023–2024 slide — multiplied local gold prices even where the world market moved little. For Nigerian savers, gold is effectively a way to hold dollars. Watch the <a href="/en/dollar-nigeria/">dollar rate in Nigeria</a> beside gold.</p>
 <h3>3. How Nigerians buy gold</h3>
 <p>Through jewellery (18K and 22K, priced per gram with workmanship), gold coins and bars from dealers in Lagos and Abuja, and increasingly digital gold platforms. Nigeria is also a gold producer — artisanal and industrial mining in states like Osun and Zamfara — but most refined gold still follows import pricing.</p>
 <h3>What buyers can do</h3>
-<p>Verify purity (ask for 18K/22K stamps), buy from registered dealers with receipts, and compare per-gram prices across sellers — spreads are wide. See today's <a href="/en/nigeria/">gold price in Nigeria</a>. This guide is educational, not investment advice.</p>`,
+<p>Verify purity (ask for 18K/22K stamps), buy from registered dealers with receipts, and compare per-gram prices across sellers — spreads are wide. See today's <a href="/en/nigeria/">gold price in Nigeria</a>. This guide is educational, not investment advice.</p><h3>Market-direction note</h3><p>This evergreen guide does not establish that today&#39;s price is a record high or explain a particular day&#39;s move. <a href="https://www.gold.org/goldhub/tools/gold-return-attribution-model">World Gold Council research</a> groups drivers into economic expansion, risk and uncertainty, opportunity costs and momentum. Prices can move in either direction. Other product, unit and tax details need their own current checks.</p>`,
     faq: [
-      ['Why is gold so expensive in Nigeria now?', 'Record global prices plus repeated naira devaluation: gold is priced in dollars, so each naira slide raises the local price even in flat world markets.'],
+      ['Why is gold so expensive in Nigeria now?', 'The world gold quote and naira exchange rate both affect the NGN reference. A weaker naira raises the converted value when the USD quote is unchanged; dealer costs also matter.'],
       ['Is gold a good hedge in Nigeria?', 'It has protected savings against naira depreciation, which is why demand keeps growing. Prices remain volatile, so gradual buying is the common approach.'],
       ['What karat gold is sold in Nigeria?', 'Mostly 18K and 22K jewellery priced per gram, plus investment coins and bars from registered dealers.']
     ]
@@ -1284,7 +1294,8 @@ ARTICLES_EN.push(
     h1: 'Gold in Ghana: prices, the cedi and the Gold Coast legacy',
     desc: 'How gold works in Ghana: Africa\'s top producer, prices in cedis, the dollar link, and how Ghanaians buy jewellery, coins and small bars.',
     teaser: 'Africa\'s biggest producer buys gold in cedis',
-    intro: 'The Gold Coast still lives up to its name',
+    intro: 'Separate the world gold quote, the exchange rate and local product costs; prices can rise or fall.',
+    dateModified: '2026-11-23',
     body: `
 <p>Ghana — the historic Gold Coast — is Africa's largest gold producer. Yet local buyers pay the world price like everyone else, in cedis.</p>
 <h3>Producer country, import pricing</h3>
@@ -1294,9 +1305,9 @@ ARTICLES_EN.push(
 <h3>Mining money</h3>
 <p>Gold is Ghana's top export earner, and the Bank of Ghana has run a gold-for-reserves programme to strengthen the cedi — an unusual case of a central bank buying its own mine output to stabilize the currency.</p>
 <h3>What buyers can do</h3>
-<p>Buy hallmarked pieces from licensed goldsmiths, ask for the per-gram rate and workmanship separately, and keep receipts. For savings, coins and small bars from licensed dealers track the metal value best. This guide is educational, not investment advice.</p>`,
+<p>Buy hallmarked pieces from licensed goldsmiths, ask for the per-gram rate and workmanship separately, and keep receipts. For savings, coins and small bars from licensed dealers track the metal value best. This guide is educational, not investment advice.</p><h3>Market-direction note</h3><p>This evergreen guide does not establish that today&#39;s price is a record high or explain a particular day&#39;s move. <a href="https://www.gold.org/goldhub/tools/gold-return-attribution-model">World Gold Council research</a> groups drivers into economic expansion, risk and uncertainty, opportunity costs and momentum. Prices can move in either direction. Other product, unit and tax details need their own current checks.</p>`,
     faq: [
-      ['Why are gold prices rising in Ghana?', 'World prices are at record highs and the cedi has depreciated for years, so the cedi price of gold rises on both fronts.'],
+      ['Why are gold prices rising in Ghana?', 'A higher USD gold quote or a weaker cedi can raise the GHS reference value. Neither input is guaranteed to keep moving that way; use current dated quotes.'],
       ['Is gold cheap in Ghana because it is mined there?', 'No — local prices follow the world price converted at USD/GHS. Mining does not create a local discount for buyers.'],
       ['How do people buy gold in Ghana?', 'Mostly 22K and 18K jewellery from goldsmiths in Accra and Kumasi, plus coins and small bars from licensed dealers and banks.']
     ]
@@ -1307,19 +1318,20 @@ ARTICLES_EN.push(
     h1: 'Why is the gold price rising in Kenya?',
     desc: 'Why gold keeps climbing in Kenya: the world price, the shilling\'s moves, and rising middle-class demand — plus how Kenyans buy gold in Nairobi.',
     teaser: 'The shilling, the dollar and Nairobi\'s gold shops',
-    intro: 'Kenyan gold follows the dollar — and the shilling decides the rest',
+    intro: 'Separate the world gold quote, the exchange rate and local product costs; prices can rise or fall.',
+    dateModified: '2026-11-23',
     body: `
-<p>Kenya's gold market is small but growing fast, and its prices have climbed steeply in shilling terms.</p>
+<p>Gold prices in Kenya reflect the global metal quote, the shilling exchange rate and the terms of the actual product offer.</p>
 <h3>1. The world price</h3>
-<p>Kenyan dealers price off the global <a href="/en/gold-price-usd/">USD spot price</a>, at record highs on central-bank buying and rate-cut expectations.</p>
+<p>Kenyan dealers price off the global <a href="/en/gold-price-usd/">USD spot price</a>. Global demand, interest rates, currencies and risk expectations can move this price in either direction.</p>
 <h3>2. The shilling sets the local number</h3>
 <p>The formula: <strong>KES price = USD price × USD/KES</strong>. The shilling's swings — sharp weakness in 2022–2023, then a strong rebound — passed straight into gold prices. Follow the <a href="/en/dollar-kenya/">dollar rate in Kenya</a> next to gold.</p>
 <h3>3. How Kenyans buy</h3>
 <p>Through Nairobi's jewellers (mostly 18K and 22K, per gram plus workmanship), a growing number of bullion dealers selling coins and small bars, and M-Pesa-era digital gold products. Gold is increasingly seen as a hedge alongside dollars and land.</p>
 <h3>What buyers can do</h3>
-<p>Buy hallmarked pieces, compare per-gram rates between shops, and prefer coins or bars for savings — jewellery workmanship is not recoverable on resale. See today's <a href="/en/kenya/">gold price in Kenya</a>. This guide is educational, not investment advice.</p>`,
+<p>Buy hallmarked pieces, compare per-gram rates between shops, and prefer coins or bars for savings — jewellery workmanship is not recoverable on resale. See today's <a href="/en/kenya/">gold price in Kenya</a>. This guide is educational, not investment advice.</p><h3>Market-direction note</h3><p>This evergreen guide does not establish that today&#39;s price is a record high or explain a particular day&#39;s move. <a href="https://www.gold.org/goldhub/tools/gold-return-attribution-model">World Gold Council research</a> groups drivers into economic expansion, risk and uncertainty, opportunity costs and momentum. Prices can move in either direction. Other product, unit and tax details need their own current checks.</p>`,
     faq: [
-      ['Why is gold getting expensive in Kenya?', 'Record world prices plus shilling moves: gold is priced in dollars, so a weaker shilling raises the local price directly.'],
+      ['Why is gold getting expensive in Kenya?', 'The global gold quote and shilling exchange rate affect the KES reference. A weaker shilling raises the converted value when the USD quote is unchanged; dealer charges can differ.'],
       ['Where do Kenyans buy gold?', 'Nairobi jewellers for 18K and 22K pieces, licensed bullion dealers for coins and bars, and digital gold platforms for small savings.'],
       ['Is gold a good investment in Kenya?', 'It has hedged shilling weakness over time. For savings, coins and bars beat jewellery because workmanship costs are lost on resale.']
     ]
@@ -1491,19 +1503,20 @@ ARTICLES_EN.push(
     h1: 'Why is the gold price rising in Egypt?',
     desc: 'Why gold keeps climbing in Egypt: the global price, the pound\'s devaluations, and how the 21K gram price is formed — plus what Egyptian buyers watch.',
     teaser: 'The pound, the dollar and the 21K gram',
-    intro: 'Egyptian gold is a currency story before anything else',
+    intro: 'Separate the world gold quote, the exchange rate and local product costs; prices can rise or fall.',
+    dateModified: '2026-11-23',
     body: `
 <p>Few people watch gold as closely as Egyptians — and few currencies explain it as clearly as the pound.</p>
 <h3>1. The world price</h3>
-<p>The base is the global <a href="/en/gold-price-usd/">USD spot price</a>, at record highs on central-bank buying and rate-cut expectations.</p>
+<p>The base is the global <a href="/en/gold-price-usd/">USD spot price</a>. Global demand, interest rates, currencies and risk expectations can move this price in either direction.</p>
 <h3>2. The pound's devaluations multiply it</h3>
 <p>The formula: <strong>EGP price = USD price × USD/EGP</strong>. Successive devaluations (2022, 2023, March 2024) sent the pound from ~15 to ~50 per dollar — tripling the local gold price even where the world market moved modestly. Egyptians use gold as the household hedge, which keeps demand strong. Track the <a href="/en/dollar-egypt/">dollar rate in Egypt</a> beside gold.</p>
 <h3>3. The 21K standard and local premiums</h3>
 <p>Egyptian jewellery is <strong>21K (875)</strong> — the karat of the shabka and every family occasion. The iifra (souq) announces daily gram rates; in shortage periods, local prices have traded at premiums over the dollar-implied price when import supply tightened.</p>
 <h3>What buyers can do</h3>
-<p>Watch the dollar rate alongside gold, ask for the gram rate and workmanship (المصنعية) separately, and prefer 24K coins and bars for pure savings. See today's <a href="/en/egypt/">gold price in Egypt</a>. This guide is educational, not investment advice.</p>`,
+<p>Watch the dollar rate alongside gold, ask for the gram rate and workmanship (المصنعية) separately, and prefer 24K coins and bars for pure savings. See today's <a href="/en/egypt/">gold price in Egypt</a>. This guide is educational, not investment advice.</p><h3>Market-direction note</h3><p>This evergreen guide does not establish that today&#39;s price is a record high or explain a particular day&#39;s move. <a href="https://www.gold.org/goldhub/tools/gold-return-attribution-model">World Gold Council research</a> groups drivers into economic expansion, risk and uncertainty, opportunity costs and momentum. Prices can move in either direction. Other product, unit and tax details need their own current checks.</p>`,
     faq: [
-      ['Why does gold keep rising in Egypt?', 'Record world prices plus repeated pound devaluations: gold is priced in dollars, so each fall in the pound raises the EGP price directly.'],
+      ['Why does gold keep rising in Egypt?', 'The USD gold quote, the pound exchange rate and local supply and charges affect the EGP quote. A weaker pound raises the converted metal value if the USD quote is unchanged.'],
       ['What karat is Egyptian gold jewellery?', 'Overwhelmingly 21K (87.5% pure) — the standard for the shabka and family gold, with 18K for modern pieces and 24K for coins and bars.'],
       ['Why do Egyptian gold prices sometimes exceed the dollar-implied price?', 'When import supply tightens, local demand creates a premium over the world-price-converted rate. It usually narrows as supply normalizes.']
     ]
@@ -1586,7 +1599,8 @@ ARTICLES_EN.push(
     h1: 'Gold in Algeria: 18K jewellery, prices and the dinar',
     desc: 'How gold works in Algeria: 18K as the jewellery standard, per-gram pricing in dinars, traditional Kabyle pieces, and the euro-dollar link.',
     teaser: 'Kabyle gold and the 750 standard',
-    intro: 'Algerian gold is family savings cast in 18K',
+    intro: 'Separate the world gold quote, the exchange rate and local product costs; prices can rise or fall.',
+    dateModified: '2026-11-23',
     body: `
 <p>In Algeria, gold is the family's reserve — worn at weddings, saved for hard times — and it is almost all <strong>18K</strong>.</p>
 <h3>The 750 standard</h3>
@@ -1595,10 +1609,10 @@ ARTICLES_EN.push(
 <p>Prices come from the world <a href="/en/gold-price-usd/">USD price</a> × USD/DZD. The dinar has depreciated gradually, so Algerian gold has climbed on both the world cycle and the exchange rate. Track the <a href="/en/dollar-algeria/">dollar rate in Algeria</a> beside today's <a href="/en/algeria/">gold price in Algeria</a>.</p>
 <h3>Buying well</h3>
 <p>Buy from licensed jewellers in Algiers, Oran and Constantine; ask for the gram rate and workmanship separately; and insist on the hallmark and an itemized invoice. For savings, 24K coins and bars avoid workmanship entirely.</p>
-<p>This guide is educational, not investment advice.</p>`,
+<p>This guide is educational, not investment advice.</p><h3>Market-direction note</h3><p>This evergreen guide does not establish that today&#39;s price is a record high or explain a particular day&#39;s move. <a href="https://www.gold.org/goldhub/tools/gold-return-attribution-model">World Gold Council research</a> groups drivers into economic expansion, risk and uncertainty, opportunity costs and momentum. Prices can move in either direction. Other product, unit and tax details need their own current checks.</p>`,
     faq: [
       ['What karat is Algerian gold jewellery?', 'Almost all 18K (750), hallmarked and priced per gram — including the famous traditional Kabyle pieces.'],
-      ['Why does gold keep rising in Algeria?', 'Record world prices plus gradual dinar depreciation: local prices equal the dollar price times USD/DZD.'],
+      ['Why does gold keep rising in Algeria?', 'The USD gold quote and DZD per USD affect the converted metal reference. Local product quotes also include dealer conditions and charges.'],
       ['How do Algerians buy gold?', 'Through licensed jewellers in the big cities, priced per gram plus workmanship; coins and bars for pure savings.']
     ]
   },
@@ -1653,7 +1667,8 @@ ARTICLES_EN.push(
     h1: 'Gold in Libya: 21K jewellery and prices in dinars',
     desc: 'How gold works in Libya: 21K as the standard, per-gram pricing in dinars, the dollar link, and gold\'s role as family savings.',
     teaser: '21K and the family reserve',
-    intro: 'Libyan gold is 21K family savings, priced per gram',
+    intro: 'Separate the world gold quote, the exchange rate and local product costs; prices can rise or fall.',
+    dateModified: '2026-11-23',
     body: `
 <p>Libya's gold tradition mirrors Egypt's: <strong>21K</strong> family gold, worn at weddings and kept as the household reserve.</p>
 <h3>21K is the standard</h3>
@@ -1663,10 +1678,10 @@ ARTICLES_EN.push(
 <h3>Gold as the family reserve</h3>
 <p>Through years of instability, gold kept its role as the safe store of Libyan household wealth — portable, divisible, and dollar-linked. Demand for coins and small bars grows whenever confidence in banks shakes.</p>
 <h3>What buyers can do</h3>
-<p>Buy from known jewellers in Tripoli and Benghazi, check the day's gram rate, negotiate workmanship separately, and keep itemized invoices. This guide is educational, not investment advice.</p>`,
+<p>Buy from known jewellers in Tripoli and Benghazi, check the day's gram rate, negotiate workmanship separately, and keep itemized invoices. This guide is educational, not investment advice.</p><h3>Market-direction note</h3><p>This evergreen guide does not establish that today&#39;s price is a record high or explain a particular day&#39;s move. <a href="https://www.gold.org/goldhub/tools/gold-return-attribution-model">World Gold Council research</a> groups drivers into economic expansion, risk and uncertainty, opportunity costs and momentum. Prices can move in either direction. Other product, unit and tax details need their own current checks.</p>`,
     faq: [
       ['What karat is Libyan gold jewellery?', 'Mostly 21K (87.5% pure), with 18K for modern pieces and 24K coins and bars for savings.'],
-      ['Why did gold prices jump in Libya?', 'The 2021 dinar devaluation raised local prices sharply, and world record prices added more since. Local prices equal the dollar price times USD/LYD.'],
+      ['Why did gold prices jump in Libya?', 'A change in the USD gold quote or LYD per USD changes the converted metal reference. Compare matching dates and verify the actual dealer quote rather than assuming a continuing rise.'],
       ['Is gold popular as savings in Libya?', 'Very — it is the traditional household reserve, dollar-linked and portable, and demand rises whenever banking confidence weakens.']
     ]
   },
