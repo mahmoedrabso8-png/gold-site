@@ -36,12 +36,13 @@ async function loadPrice() {
     if (!(d.price > 500)) throw new Error('bad price');
     const g24 = d.price * AED / TROY;
     if (process.env.WRITE_DB === '1') {
-      await fetch(SB_URL + '/rest/v1/gold_prices', {
+      const saved=await fetch(SB_URL + '/rest/v1/gold_prices', {
         method: 'POST', headers: { ...sbHeaders, Prefer: 'return=minimal' },
         body: JSON.stringify({ currency: 'AED', price_24k: +g24.toFixed(4), price_22k: +(g24 * 22 / 24).toFixed(4),
           price_21k: +(g24 * 21 / 24).toFixed(4), price_18k: +(g24 * 18 / 24).toFixed(4), price_troy: +(g24 * TROY).toFixed(4),
           raw_json: { priceUSD: d.price, usdToAed: AED, source: 'build', sourceAt: d.updatedAt || null } })
-      }).catch(() => {});
+      }).catch(e=>{console.warn('Price history write failed:',e.message);return null;});
+      if(saved&&!saved.ok)console.warn('Price history write returned HTTP',saved.status);
     }
     return { g24, at: d.updatedAt || null, sourceAt: d.updatedAt || null, fetchedAt: new Date().toISOString(), storedAt: null };
   } catch (e) {
