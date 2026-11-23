@@ -347,3 +347,5 @@ select{color-scheme:dark}
 select option,select optgroup{background-color:var(--bc2);color:var(--t1)}
 :root[data-theme=light] select{color-scheme:light}
 select:focus-visible{outline:2px solid var(--g5);outline-offset:2px}
+.silver-country-links{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}.silver-country-links a{padding:8px 14px;border:1px solid var(--bb);border-radius:8px;text-decoration:none;background:var(--bc);font-size:.84rem}.silver-country-links [aria-current=page]{border-color:var(--g5);color:var(--t1)}.silver-actions{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0}#sc-status{color:var(--t2);padding:8px 0}
+:root[data-theme=light] .update-badge[data-asset-state=silver][data-state=LIVE]{color:#166534}

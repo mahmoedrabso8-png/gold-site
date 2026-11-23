@@ -1,3 +1,4 @@
+import { silverCountryPages } from './silver-content.mjs';
 import { euroCountryNote } from './euro-country-notes.mjs';
 import { quoteToolPages } from './quote-tools-content.mjs';
 import { portfolioPages } from './portfolio-content.mjs';
@@ -12,7 +13,7 @@ import { ARTICLES, ARTICLES_EN } from './articles.mjs';
 
 export function pages(ctx) {
   const { P, FXD, updated, chg, daily, fmt, url, AD, TODAY } = ctx;
-  const out = [...quoteToolPages(ctx), ...portfolioPages(ctx), ...priceAlertPages(ctx), ...resalePages(ctx), ...weightPages()];
+  const out = [...silverCountryPages(ctx), ...quoteToolPages(ctx), ...portfolioPages(ctx), ...priceAlertPages(ctx), ...resalePages(ctx), ...weightPages()];
   const px = k => ctx.g24 ? fmt(ctx.g24 * k / 24) : null;   // سعر الغرام لإدراجه في العناوين
 
   // ── معلومات العيارات ─────────────────────────────────────
@@ -574,6 +575,7 @@ ${en ? `<p>Searching for the <strong>silver bullion price</strong> or <strong>si
  : `<p>تبحث عن <strong>سعر سبائك الفضة</strong> أو <strong>عملات الفضة</strong> في دبي؟ تُسعَّر السبائك والعملات من القيمة الخام أعلاه مع علاوة للتاجر، وهي أعلى في العملات الصغيرة وأقل في السبائك الكبيرة.</p>
 <ul><li><strong>أونصة فضة (عملة أو سبيكة):</strong> القيمة الخام نحو <bdi>${S(1, ctx.TROY)} درهم</bdi>.</li><li><strong>سبيكة فضة 100 غرام:</strong> نحو <bdi>${S(1, 100)} درهم</bdi>.</li><li><strong>سبيكة فضة كيلو:</strong> نحو <bdi>${S(1, 1000)} درهم</bdi>.</li></ul>
 <p>للمقارنة مع الذهب: <a href="/gold-bars/">أسعار سبائك الذهب</a> و<a href="/gold-price-usd/">سعر الذهب عالمياً بالدولار</a>.</p>`}</div></section>
+<nav class="silver-country-links" aria-label="${en?'Silver markets':'أسواق الفضة'}"><a href="${url(L,'silver-egypt')}">${en?'Silver in Egypt':'الفضة في مصر'}</a><a href="${url(L,'silver-saudi')}">${en?'Silver in Saudi Arabia':'الفضة في السعودية'}</a></nav>
 ${links(L, 'silver')}`,
       faq: en ? [
         ['What is the silver price per gram in the UAE today?', 'The live price of fine (999) silver per gram is shown at the top of this page in AED and USD, along with 925 sterling silver.'],

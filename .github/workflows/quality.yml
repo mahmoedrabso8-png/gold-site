@@ -32,3 +32,4 @@ jobs:
           node tests/markets.mjs
           node tests/service-worker.mjs
           node tests/theme.mjs
+          node tests/silver.mjs

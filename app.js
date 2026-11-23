@@ -114,14 +114,14 @@ const BD=document.body.dataset;
 // دول بتشارك نفس العملة (اليورو): القائمة فيها ألمانيا لكن الصفحات دي عملتها يورو برضه
 const EXTRA_SLUGS={france:'EUR',italy:'EUR',spain:'EUR'};
 // صفحة خاصة بدولة (الرئيسية وعيار 21 و24 لكل دولة): عملتها ثابتة
-const PAGE_CUR=BD.ctry?(BD.ctry==='uae'?'AED':(Object.keys(CTRY).find(k=>CTRY[k]===BD.ctry)||EXTRA_SLUGS[BD.ctry])):null;
+const PAGE_CUR=BD.silverCountry?(BD.silverCountry==='egypt'?'EGP':'SAR'):BD.ctry?(BD.ctry==='uae'?'AED':(Object.keys(CTRY).find(k=>CTRY[k]===BD.ctry)||EXTRA_SLUGS[BD.ctry])):null;
 // صفحات عملتها ثابتة: صفحات الدول + صفحات فيها أرقام ثابتة (الأرشيف، المقارنة، الروبية...)
 const FIXED=!!PAGE_CUR||BD.fixed==='1';
 // صفحات الدولار: تغيير الدولة ينقل لصفحة دولار الدولة الجديدة بدل صفحة الذهب
 const DPG=BD.dollar==='1';
 let SAVED=null;try{SAVED=localStorage.getItem('cur');}catch(e){}
 let SEL=PAGE_CUR||(CTRY.hasOwnProperty(SAVED)?SAVED:'AED');
-const pageFor=c=>((EN||EN_ONLY[c])?'/en/':'/')+(DPG?'dollar-'+(c==='AED'?'uae':CTRY[c])+'/':(CTRY[c]?CTRY[c]+'/':''))+(DPG?'':BD.sub?BD.sub+'/':'');
+const pageFor=c=>BD.silverCountry&&['EGP','SAR','AED'].includes(c)?(EN?'/en/':'/')+(c==='AED'?'silver/':'silver-'+(c==='EGP'?'egypt':'saudi')+'/'):((EN||EN_ONLY[c])?'/en/':'/')+(DPG?'dollar-'+(c==='AED'?'uae':CTRY[c])+'/':(CTRY[c]?CTRY[c]+'/':''))+(DPG?'':BD.sub?BD.sub+'/':'');
 // صفحة إماراتية ليها نسخة لكل دولة، والزائر اختار دولة تانية قبل كده: نوديه لصفحة دولته
 if(BD.ctry==='uae'&&SAVED&&SAVED!=='AED'&&CTRY[SAVED]) location.replace(pageFor(SAVED));
 // معامل التحويل من الدرهم للعملة المختارة (null لو سعر الصرف لسه ما وصلش)
@@ -177,6 +177,7 @@ function paint(){
     const d=el.dataset.d!=null?+el.dataset.d:(v>=100000?0:(auto&&ok?DEC[SEL]:2));
     el.textContent=fmt(v,d);
   });
+  silverToolsUpdate();
 }
 function render(p){
   Object.assign(G,p);G.at=epoch(p.sourceAt);G.displayedAt=new Date().toISOString();statusPrice();
@@ -190,7 +191,7 @@ async function loadSilver(){
   try{
     const r=await fetch('https://api.gold-api.com/price/XAG',{cache:'no-store'});
     if(!r.ok)throw Error('silver '+r.status);const d=await r.json();
-    if(d.price>1){G.ag=d.price*AED/TROY;G.agAt=epoch(d.updatedAt);statusPrice();paint();$$('[data-upd-ag]').forEach(el=>el.textContent=dubaiTime(d.updatedAt||Date.now()));}
+    if(d.price>1){G.ag=d.price*AED/TROY;G.agAt=epoch(d.updatedAt);statusPrice();paint();silverToolsUpdate();$$('[data-upd-ag]').forEach(el=>el.textContent=d.updatedAt?dubaiTime(d.updatedAt):(EN?'Source time unavailable':'وقت المصدر غير متاح'));}
   }catch(e){}
 }
 async function loadFX(force){
@@ -199,7 +200,7 @@ async function loadFX(force){
   G.fxLoading=true;
   try{
     const d=await (await fetch('https://open.er-api.com/v6/latest/USD')).json();
-    if(d.rates){if(DPG)$$('[data-upd]').forEach(el=>el.textContent=d.time_last_update_unix?dubaiTime(d.time_last_update_unix*1000):(EN?'Source time unavailable':'وقت المصدر غير متاح'));G.fx=d.rates;G.fxAt=Number(d.time_last_update_unix)*1000||0;G.fxFetchedAt=Date.now();statusPrice();if(window.GoldAlerts)window.GoldAlerts.check();paint();labels();nisab();calc();zakat();dconv('usd');$$('[data-fx]').forEach(el=>{const v=d.rates[el.dataset.fx];if(v) el.textContent=fmt(v/AED,4);});$$('[data-fxd]').forEach(el=>{const v=d.rates[el.dataset.fxd];if(v){const w=+(el.dataset.w||1);el.textContent=fmt(el.dataset.i?w/v:v*w,+el.dataset.d||0);}});}
+    if(d.rates){if(DPG)$$('[data-upd]').forEach(el=>el.textContent=d.time_last_update_unix?dubaiTime(d.time_last_update_unix*1000):(EN?'Source time unavailable':'وقت المصدر غير متاح'));G.fx=d.rates;G.fxAt=Number(d.time_last_update_unix)*1000||0;G.fxFetchedAt=Date.now();statusPrice();if(window.GoldAlerts)window.GoldAlerts.check();paint();labels();nisab();calc();zakat();dconv('usd');silverToolsUpdate();$$('[data-fx]').forEach(el=>{const v=d.rates[el.dataset.fx];if(v) el.textContent=fmt(v/AED,4);});$$('[data-fxd]').forEach(el=>{const v=d.rates[el.dataset.fxd];if(v){const w=+(el.dataset.w||1);el.textContent=fmt(el.dataset.i?w/v:v*w,+el.dataset.d||0);}});}
   }catch(e){}finally{G.fxLoading=false;}
 }
 
@@ -312,6 +313,24 @@ function zakat(){
 }
 document.addEventListener('input',e=>{if(e.target.closest('#calc'))calc();if(e.target.closest('#zakat'))zakat();if(e.target.closest('#dcv'))dconv(e.target.id==='dcv-loc'?'loc':'usd');});
 document.addEventListener('change',e=>{if(e.target.closest('#calc'))calc();if(e.target.closest('#zakat'))zakat();if(e.target.closest('#dcv'))dconv('usd');});
+
+function silverToolsUpdate(){
+ const tool=$('#silver-tool');if(!tool)return;const currency=tool.dataset.silverCurrency,ref=silverReference(G,currency);
+ const button=$('#sc-reference');button.disabled=ref==null;
+ const ratio=$('[data-silver-ratio]');if(ratio)ratio.textContent=priceState(G).usable&&priceState({g24:G.ag,sourceAt:G.agAt}).usable?fmt(G.g24/G.ag,2):'—';
+ const note=$('[data-silver-conversion]');if(note)note.textContent=(EN?'Conversion: ':'التحويل: ')+(ref==null?(EN?'reference unavailable or stale; use a manual dealer quote.':'المرجع غير متاح أو قديم؛ استخدم عرضاً يدوياً من البائع.'):(currency==='SAR'?(EN?'SAR 3.75 per USD reference peg.':'مرجع الربط 3.75 ريال للدولار.'):(EN?'daily EGP reference, not a bank or cash-market quote.':'مرجع يومي للجنيه، ليس سعر بنك أو سوق نقدي.')));
+ const fxTime=$('[data-silver-fx-time]');if(fxTime)fxTime.textContent=currency==='SAR'?(EN?'Reference peg 3.75 SAR/USD':'مرجع الربط 3.75 ريال/دولار'):(G.fxAt?new Date(G.fxAt).toLocaleString(EN?'en-GB':'ar-EG',{timeZone:document.body.dataset.marketZone,timeZoneName:'short'}):'—');
+ if(ref==null)$$('[data-m="ag"][data-cur="'+currency.toLowerCase()+'"]').forEach(e=>e.textContent='—');
+}
+const silverForm=$('#silver-form');
+if(silverForm){
+ $('#sc-reference').addEventListener('click',()=>{const r=silverReference(G,$('#silver-tool').dataset.silverCurrency);if(r==null){silverToolsUpdate();return;}$('#sc-rate').value=r.toFixed(6);$('#sc-status').textContent=EN?'Reference copied. Check the invoice and enter making charges and actual tax.':'تم نسخ المرجع. راجع الفاتورة وأدخل المصنعية والضريبة الفعلية.';});
+ silverForm.addEventListener('submit',e=>{e.preventDefault();try{const val=id=>{const v=$('#sc-'+id).value.trim();return v===''?NaN:Number(v)},r=silverInvoice({weight:val('weight'),purity:val('purity'),rate:val('rate'),making:val('making'),tax:val('tax'),taxBase:$('#sc-tax-base').value}),cur=$('#silver-tool').dataset.silverCurrency;
+ $('#sc-results').innerHTML='<dl class="quote-result-rows">'+[['fineWeight',EN?'Fine silver weight (g)':'وزن الفضة الخالص (غرام)'],['metal',EN?'Metal value':'قيمة المعدن'],['making',EN?'Making charge':'المصنعية'],['taxAmount',EN?'Tax':'الضريبة'],['total',EN?'Total':'الإجمالي']].map(([k,label])=>'<dt>'+label+'</dt><dd data-sc-result="'+k+'">'+fmt(r[k],k==='fineWeight'?3:2)+(k==='fineWeight'?'':' '+cur)+'</dd>').join('')+'</dl>';
+ }catch{ $('#sc-results').textContent=EN?'Check positive weight/rate and valid making charges, purity and tax.':'راجع الوزن والسعر الموجبين والمصنعية والنقاء والضريبة.';}});
+ silverForm.addEventListener('input',()=>{$('#sc-results').textContent='';});
+ silverToolsUpdate();setInterval(silverToolsUpdate,30000);
+}
 
 const rb=$('#refresh');if(rb) rb.addEventListener('click',load);
 
