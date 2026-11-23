@@ -367,6 +367,18 @@ if(meltForm){
 }
 meltToolUpdate();setInterval(meltToolUpdate,30000);
 
+const pbForm=$('#pb-form');
+if(pbForm){
+ const cur=()=>$('#pb-cur').value,upd=()=>{const r=goldSpotRef(G,cur());$('#pb-reference').disabled=r==null;const n=$('[data-pb-ref]');if(n)n.textContent=r==null?'Reference spot unavailable or stale for this currency. Enter your own spot.':'Reference spot (Gold-API XAU, '+cur()+' per troy ounce): '+fmt(r,2)+' · '+priceState(G).state+'. Not a dealer price.';};
+ $('#pb-cur').addEventListener('change',upd);
+ $('#pb-reference').addEventListener('click',()=>{const r=goldSpotRef(G,cur());if(r==null){upd();return;}$('#pb-spot').value=r.toFixed(2);$('#pb-status').textContent='Reference copied. Check it against your own source.';});
+ pbForm.addEventListener('submit',e=>{e.preventDefault();try{const v=id=>{const x=$('#pb-'+id).value.trim();return x===''?NaN:Number(x)},r=premiumBreakeven({price:v('price'),weight:v('weight'),unit:$('#pb-unit').value,fineness:v('fine'),spot:v('spot'),sellPct:v('sell')}),c=cur(),sg=x=>(x>0?'+':'')+fmt(x,2)+'%';
+ $('#pb-results').innerHTML='<dl class="quote-result-rows">'+[['fineOz','Pure gold (troy oz)',fmt(r.fineOz,4)],['melt','Metal value at spot',fmt(r.melt,2)+' '+c],['premium','Premium over metal value',fmt(r.premium,2)+' '+c+' ('+fmt(r.premiumPct,2)+'%)'],['beSpot','Spot needed for metal value = your price',fmt(r.beSpot,2)+' '+c+' ('+sg(r.beMovePct)+' vs entered spot)'],['sellSpot','Spot needed after your sale percentage',fmt(r.sellSpot,2)+' '+c+' ('+sg(r.sellMovePct)+')']].map(([k,l,x])=>'<dt>'+l+'</dt><dd data-pb-result="'+k+'">'+x+'</dd>').join('')+'</dl>';
+ }catch{$('#pb-results').textContent='Check positive price, weight and spot, fineness up to 1000 and a sale percentage between 1 and 200.';}});
+ pbForm.addEventListener('input',()=>{$('#pb-results').textContent='';});
+ upd();setInterval(upd,30000);
+}
+
 const rb=$('#refresh');if(rb) rb.addEventListener('click',load);
 
 // نعرض الأسعار المكتوبة في الصفحة بعملة الدولة المختارة فوراً، قبل ما السعر المباشر يوصل

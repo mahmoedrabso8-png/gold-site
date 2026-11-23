@@ -12,3 +12,11 @@ r=meltValue({weight:20,unit:'dwt',fineness:1000,spot:2000,payoutPct:100});assert
 const g={weight:10,unit:'g',fineness:750,spot:2000,payoutPct:90};
 for(const p of [{weight:0},{weight:-1},{unit:'oz'},{fineness:0},{fineness:1001},{spot:0},{spot:NaN},{payoutPct:-1},{payoutPct:201},{weight:Infinity}])assert.throws(()=>meltValue({...g,...p}));
 console.log('PASS: gold spot reference (USD/GBP/EUR, stale/future/missing), melt value units, purity once, payout gap, invalid inputs');
+import {premiumBreakeven} from '../melt-core.mjs';
+{const r=premiumBreakeven({price:2200,weight:1,unit:'ozt',fineness:1000,spot:2000,sellPct:100});
+assert.equal(r.fineOz,1);assert.equal(r.melt,2000);assert.equal(r.premium,200);assert.equal(r.premiumPct,10);assert.equal(r.beSpot,2200);assert(Math.abs(r.beMovePct-10)<1e-9);assert.equal(r.sellSpot,2200);
+const s=premiumBreakeven({price:2200,weight:1,unit:'ozt',fineness:1000,spot:2000,sellPct:97});assert(Math.abs(s.sellSpot-2200/.97)<1e-9);assert(Math.abs(s.sellMovePct-(2200/.97/2000-1)*100)<1e-9);
+const d=premiumBreakeven({price:1500,weight:31.1034768,unit:'g',fineness:1000,spot:2000,sellPct:100});assert(d.premium<0&&d.beMovePct<0);
+const g={price:2200,weight:1,unit:'ozt',fineness:1000,spot:2000,sellPct:97};
+for(const p of [{price:0},{weight:0},{unit:'x'},{fineness:1001},{spot:0},{sellPct:0},{sellPct:201},{price:NaN}])assert.throws(()=>premiumBreakeven({...g,...p}));}
+console.log('PASS: premium over spot, break-even spot and move, sell-side percentage, invalid inputs');
