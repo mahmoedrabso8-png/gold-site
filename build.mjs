@@ -132,8 +132,8 @@ export const url = (lang, slug) => (lang === 'ar' ? '/' : `/${lang}/`) + (slug ?
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 
 const NAV = {
-  ar: [['', 'الرئيسية'], ['gold-21k', 'عيار 21'], ['gold-24k', 'عيار 24'], ['gold-22k', 'عيار 22'], ['gold-18k', 'عيار 18'], ['gcc', 'مقارنة الخليج'], ['gold-price-usd', 'السعر العالمي'], ['silver', 'الفضة'], ['gold-bars', 'السبائك'], ['gold-calculator', 'حاسبة الذهب'], ['gold-resale-calculator', 'بيع الذهب'], ['gold-weight-converter', 'الوزن والنقاء'], ['price-alerts', 'تنبيهات السعر'], ['zakat-calculator', 'زكاة الذهب'], ['gold-price-yesterday', 'سعر أمس'], ['gold-forecast', 'توقعات الذهب'], ['articles', 'مقالات'], ['assistant', 'المساعد'], ['history', 'الأرشيف']],
-  en: [['', 'Home'], ['gold-22k', '22K'], ['gold-24k', '24K'], ['gold-18k', '18K'], ['gold-21k', '21K'], ['gcc', 'Gulf compare'], ['gold-price-usd', 'Gold in USD'], ['silver', 'Silver'], ['gold-rate-inr', 'In INR'], ['gold-rate-pkr', 'In PKR'], ['gold-bars', 'Gold Bars'], ['gold-calculator', 'Calculator'], ['gold-resale-calculator', 'Resale'], ['gold-weight-converter', 'Weight & purity'], ['price-alerts', 'Price alerts'], ['gold-price-yesterday', 'Last 10 days'], ['zakat-calculator', 'Zakat'], ['articles', 'Articles'], ['assistant', 'Assistant']],
+  ar: [['', 'الرئيسية'], ['gold-21k', 'عيار 21'], ['gold-24k', 'عيار 24'], ['gold-22k', 'عيار 22'], ['gold-18k', 'عيار 18'], ['gcc', 'مقارنة الخليج'], ['gold-price-usd', 'السعر العالمي'], ['silver', 'الفضة'], ['gold-bars', 'السبائك'], ['gold-calculator', 'حاسبة الذهب'], ['gold-portfolio', 'محفظة الذهب'], ['gold-resale-calculator', 'بيع الذهب'], ['gold-weight-converter', 'الوزن والنقاء'], ['price-alerts', 'تنبيهات السعر'], ['zakat-calculator', 'زكاة الذهب'], ['gold-price-yesterday', 'سعر أمس'], ['gold-forecast', 'توقعات الذهب'], ['articles', 'مقالات'], ['assistant', 'المساعد'], ['history', 'الأرشيف']],
+  en: [['', 'Home'], ['gold-22k', '22K'], ['gold-24k', '24K'], ['gold-18k', '18K'], ['gold-21k', '21K'], ['gcc', 'Gulf compare'], ['gold-price-usd', 'Gold in USD'], ['silver', 'Silver'], ['gold-rate-inr', 'In INR'], ['gold-rate-pkr', 'In PKR'], ['gold-bars', 'Gold Bars'], ['gold-calculator', 'Calculator'], ['gold-portfolio', 'Portfolio'], ['gold-resale-calculator', 'Resale'], ['gold-weight-converter', 'Weight & purity'], ['price-alerts', 'Price alerts'], ['gold-price-yesterday', 'Last 10 days'], ['zakat-calculator', 'Zakat'], ['articles', 'Articles'], ['assistant', 'Assistant']],
   tr: [['turkiye', 'Gram Altın'], ['turkiye/24-ayar-altin', '24 Ayar'], ['turkiye/22-ayar-altin', '22 Ayar'], ['turkiye/21-ayar-altin', '21 Ayar'], ['turkiye/18-ayar-altin', '18 Ayar']],
   hi: [['sone-ka-bhav', 'सोने का भाव'], ['sone-ka-bhav/24-karat', '24 कैरेट'], ['sone-ka-bhav/22-karat', '22 कैरेट'], ['sone-ka-bhav/18-karat', '18 कैरेट'], ['sone-ka-bhav/21-karat', '21 कैरेट']],
   ur: [['sone-ka-rate', 'سونے کا ریٹ'], ['sone-ka-rate/24-karat', '24 کیرٹ'], ['sone-ka-rate/22-karat', '22 کیرٹ'], ['sone-ka-rate/18-karat', '18 کیرٹ'], ['sone-ka-rate/21-karat', '21 کیرٹ']],
@@ -243,7 +243,7 @@ function layout(p, ctx) {
   const navLink = ([s,n]) => `<a href="${url(L,s)}"${s===p.slug?' aria-current="page"':''}>${n}</a>`;
   const navGroups = (L==='ar'||L==='en') ? [
     [en?'Gold':'الذهب', ['gold-21k','gold-24k','gold-22k','gold-18k','gold-bars']],
-    [en?'Tools':'الأدوات', ['gold-calculator','gold-resale-calculator','gold-weight-converter','price-alerts','zakat-calculator']],
+    [en?'Tools':'الأدوات', ['gold-calculator','gold-portfolio','gold-resale-calculator','gold-weight-converter','price-alerts','zakat-calculator']],
     [en?'Markets':'الأسواق', ['gold-price-usd','silver','gcc','gold-rate-inr','gold-rate-pkr']],
     [en?'Guides':'المحتوى', ['articles','gold-forecast','gold-price-yesterday','history','assistant']]
   ] : null;
@@ -291,8 +291,8 @@ function layout(p, ctx) {
     const ds = ctry === 'uae' ? 'dollar-uae' : `dollar-${ctry}`;
     const du = (L === 'ar' && (ctry === 'uae' || AR_CTRIES.has(ctry))) ? url('ar', ds) : url('en', ds);
     const dLabel = L === 'ar' ? `سعر الدولار في ${CNAMES[ctry][0]}` : `Dollar price in ${CNAMES[ctry][1]}`;
-    toggle = `<div class="page-toggle"><a href="${du}">💵 ${dLabel}</a></div>`;
-    toggleM = `<a class="page-toggle-m" href="${du}" aria-label="${dLabel}">💵</a>`;
+    toggle = `<div class="page-toggle"><a href="${du}"><span aria-hidden="true">$</span> ${dLabel}</a></div>`;
+    toggleM = `<a class="page-toggle-m" href="${du}" aria-label="${dLabel}"><span aria-hidden="true">$</span></a>`;
   }
   const modeNames = {ar:['أسعار الذهب','أسعار الدولار'],en:['Gold prices','Dollar prices'],tr:['Altın fiyatları','Dolar fiyatları'],hi:['सोने की कीमत','डॉलर की कीमत'],ur:['سونے کی قیمت','ڈالر کی قیمت'],id:['Harga emas','Harga dolar'],ms:['Harga emas','Harga dolar'],bn:['সোনার দাম','ডলারের দাম'],tl:['Presyo ng ginto','Presyo ng dolyar']}[L] || ['Gold prices','Dollar prices'];
   const modeCountry = ctry && CNAMES[ctry] ? ctry : 'uae';
@@ -393,7 +393,7 @@ ${p.noAds ? '' : AD}
 <script>window.__AG_AT=${JSON.stringify(ctx.agSourceAt)};window.__FX_AT=${JSON.stringify(ctx.fxSourceAt)};window.__QUOTE=${JSON.stringify(ctx.price)};window.__G=${ctx.g24 ? ctx.g24.toFixed(4) : 'null'};window.__LANGURLS=${JSON.stringify(langUrls)};${p.usesAg ? `window.__AG=${ctx.ag ? ctx.ag.toFixed(4) : 'null'};` : ''}${p.usesFx ? `window.__FX=${JSON.stringify({ INR: ctx.fx.INR, PKR: ctx.fx.PKR, KWD: ctx.fx.KWD, EGP: ctx.fx.EGP, BDT: ctx.fx.BDT, TRY: ctx.fx.TRY, GBP: ctx.fx.GBP, CAD: ctx.fx.CAD, AUD: ctx.fx.AUD, PHP: ctx.fx.PHP, MYR: ctx.fx.MYR, NPR: ctx.fx.NPR, ZAR: ctx.fx.ZAR, IQD: ctx.fx.IQD, MAD: ctx.fx.MAD, DZD: ctx.fx.DZD, IDR: ctx.fx.IDR, THB: ctx.fx.THB, VND: ctx.fx.VND, SGD: ctx.fx.SGD, LKR: ctx.fx.LKR, EUR: ctx.fx.EUR, JPY: ctx.fx.JPY, CHF: ctx.fx.CHF, NGN: ctx.fx.NGN, GHS: ctx.fx.GHS, KES: ctx.fx.KES, MXN: ctx.fx.MXN, BRL: ctx.fx.BRL, CNY: ctx.fx.CNY, LBP: ctx.fx.LBP, TND: ctx.fx.TND, LYD: ctx.fx.LYD, YER: ctx.fx.YER })};` : ''}</script>
 <a class="tg-float" href="https://t.me/emaratijob" target="_blank" rel="noopener" aria-label="${L === 'ar' ? 'أسعار الذهب يومياً على تيليجرام' : 'Daily gold prices on Telegram'}"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M9.04 15.9l-.38 5.36c.55 0 .79-.24 1.08-.52l2.6-2.48 5.38 3.94c.99.55 1.69.26 1.96-.9l3.55-16.64c.32-1.45-.52-2.02-1.47-1.66L1.7 10.8c-1.42.55-1.4 1.34-.24 1.7l5.3 1.65L18.98 5.7c.58-.38 1.1-.17.67.21L9.04 15.9z"/></svg><span>${L === 'ar' ? 'أسعار الذهب يومياً' : 'Daily prices on Telegram'}</span></a>
 <div id="chat-widget">
-<button type="button" id="chat-fab" aria-expanded="false" aria-label="${L === 'ar' ? 'اسأل مساعد الذهب' : 'Ask the gold assistant'}">💬</button>
+<button type="button" id="chat-fab" aria-expanded="false" aria-label="${L === 'ar' ? 'اسأل مساعد الذهب' : 'Ask the gold assistant'}"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6A8.4 8.4 0 0 1 12.5 3h.5a8.5 8.5 0 0 1 8 8v.5Z"/></svg></button>
 <div id="chat-panel" class="chat-panel" hidden role="dialog" aria-label="${L === 'ar' ? 'مساعد الذهب' : 'Gold assistant'}">
   <div class="chat-panel-head"><span>🪙 ${L === 'ar' ? 'مساعد الذهب' : 'Gold assistant'}</span><a class="chat-full" href="${url(L === 'ar' ? 'ar' : 'en', 'assistant')}" aria-label="${L === 'ar' ? 'فتح صفحة المساعد' : 'Open assistant page'}">⛶</a><button type="button" class="chat-close" aria-label="${L === 'ar' ? 'إغلاق' : 'Close'}">✕</button></div>
   <div class="chat-log" aria-live="polite"></div>
@@ -402,6 +402,7 @@ ${p.noAds ? '' : AD}
 </div>
 </div>
 <script src="/assets/app.js?v=${ASSET_V.js}" defer></script>
+${body.includes('id="portfolio-tool"') ? `<script src="/assets/portfolio.js?v=${ASSET_V.portfolio}" defer></script>` : ''}
 ${body.includes('id="gold-history"') ? `<script src="/assets/history.js?v=${ASSET_V.history}" defer></script>` : ''}
 ${p.assistant ? `<script src="/assets/assistant-kb.js?v=${ASSET_V.kb}" defer></script>\n<script src="/assets/assistant.js?v=${ASSET_V.assist}" defer></script>` : ''}
 </body>
@@ -486,6 +487,9 @@ await fs.writeFile(path.join(OUT,'assets','gold-history.json'),JSON.stringify(ct
 const historyJs='(function(){'+(await fs.readFile('history-core.mjs','utf8')).replace(/^export /gm,'')+'\n'+await fs.readFile('history-client.js','utf8')+'})();';
 await fs.writeFile(path.join(OUT,'assets','history.js'),historyJs);
 ASSET_V.history=await hashOf('history.js'); ASSET_V.historydata=await hashOf('gold-history.json');
+const portfolioJs='(function(){'+priceStateJs+'\n'+(await fs.readFile('portfolio-core.mjs','utf8')).replace(/^export /gm,'')+'\n'+await fs.readFile('portfolio-client.js','utf8')+'})();';
+await fs.writeFile(path.join(OUT,'assets','portfolio.js'),portfolioJs);
+ASSET_V.portfolio=await hashOf('portfolio.js');
 const list = pages(ctx);
 const sitemap = [];
 for (const p of list) {

@@ -50,7 +50,7 @@ if(clock){const t=()=>clock.textContent=new Date().toLocaleTimeString(EN?'en-AE'
 
 /* ── Theme toggle ── */
 const themeBtn=$('#theme-toggle');
-const paintTheme=()=>{if(themeBtn)themeBtn.textContent=document.documentElement.getAttribute('data-theme')==='light'?'☀️':'🌙';};
+const paintTheme=()=>{if(themeBtn)themeBtn.textContent=document.documentElement.getAttribute('data-theme')==='light'?'☀':'◐';};
 paintTheme();
 if(themeBtn)themeBtn.addEventListener('click',()=>{const t=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';document.documentElement.setAttribute('data-theme',t);try{localStorage.setItem('mael-theme',t)}catch(e){}paintTheme();});
 
@@ -159,7 +159,7 @@ const lsel=$('#langsel');
 if(lsel) lsel.addEventListener('change',()=>{const u=(window.__LANGURLS||{})[lsel.value];if(u)location.href=u;});
 function syncCalcCur(){const cs=$('#c-cur');if(cs&&!FIXED&&cs.value!==SEL&&[...cs.options].some(o=>o.value===SEL)){cs.value=SEL;cs.dispatchEvent(new Event('change',{bubbles:true}));}}
 syncCalcCur();
-const calcSelect=$('#c-cur');if(calcSelect)calcSelect.addEventListener('change',()=>{if($('#c-rate'))$('#c-rate').value='';if($('#c-mtype').value!=='percent')$('#c-mc').value='0';$('#c-tax-rate').value='0';});
+const calcSelect=$('#c-cur');if(calcSelect)calcSelect.addEventListener('change',()=>{if($('#c-rate'))$('#c-rate').value='';if($('#c-mtype').value!=='percent')$('#c-mc').value='0';$('#c-tax-rate').value='0';if($('#c-discount'))$('#c-discount').value='0';});
 const calcCountry=new URLSearchParams(location.search).get('country');
 if(calcCountry&&$('#c-cur')){const co=[...$('#c-cur').options].find(o=>o.dataset.market===calcCountry);if(co)co.selected=true;}
 function paint(){
@@ -228,7 +228,7 @@ async function load(){
     if(err){err.hidden=false;err.textContent=EN?'Refresh failed. '+priceLabel(priceState(G).state,'en'):'تعذر التحديث. '+priceLabel(priceState(G).state,'ar');}
     if(G.g24){paint();labels();nisab();calc();zakat();}
   }finally{
-    if(btn){btn.disabled=false;btn.textContent='🔄 '+T.refresh;}
+    if(btn){btn.disabled=false;btn.textContent='↻ '+T.refresh;}
   }
 }
 
@@ -276,18 +276,20 @@ function dconv(dir){
 function setText(id,v){const el=document.getElementById(id);if(el) el.textContent=v;}
 function calc(){
   if(!$('#calc')) return;
-  if([...$('#calc').querySelectorAll('input')].some(el=>!el.validity.valid)){['c-pg','c-gold','c-make','c-tax','c-total','c-usd'].forEach(id=>setText(id,'—'));setText('c-rate-source',EN?'Check your inputs: values cannot be negative; tax must be between 0 and 100%.':'راجع المدخلات: لا تقبل القيم السالبة، والضريبة من صفر إلى 100%.');return;}
+  if([...$('#calc').querySelectorAll('input')].some(el=>!el.validity.valid)){['c-pg','c-gold','c-make','c-tax','c-total','c-usd','c-discount-total','c-final-gram'].forEach(id=>setText(id,'—'));setText('c-rate-source',EN?'Check your inputs: values cannot be negative; tax must be between 0 and 100%.':'راجع المدخلات: لا تقبل القيم السالبة، والضريبة من صفر إلى 100%.');return;}
   const sel=$('#c-cur'),opt=sel?sel.options[sel.selectedIndex]:null;
   const cur=opt?opt.value:'AED',dp=opt?+(opt.dataset.d||2):2,r=rate(cur);
   $$('.c-curl').forEach(el=>el.textContent=cur);
   const quoted=num('c-rate'),w=num('c-w'),k=+$('#c-k').value,mc=num('c-mc');
   const pg=quoted>0?quoted:(G.g24&&r?G.g24*k/24/AED*r:0);
   setText('c-rate-source',quoted>0?(EN?'Using your shop gram price for the selected karat.':'يُستخدم سعر غرام المحل للعيار المختار.'):(EN?'Using the indicative raw gold rate. Check the source status and FX timestamp.':'يُستخدم سعر الذهب الخام المرجعي. راجع حالة المصدر وتاريخ الصرف.'));
-  if(!quoted&&!priceState(G).usable){['c-pg','c-gold','c-make','c-tax','c-total','c-usd'].forEach(id=>setText(id,'—'));setText('c-rate-source',EN?'Automatic estimate paused: the gold source time is missing or older than 15 minutes. Enter a shop gram quote to calculate manually.':'توقف التقدير التلقائي: وقت المصدر مفقود أو أقدم من 15 دقيقة. أدخل سعر المحل للحساب اليدوي.');return;}
-  if(!pg){['c-pg','c-gold','c-make','c-tax','c-total','c-usd'].forEach(id=>setText(id,'—'));return;}
+  if(!quoted&&!priceState(G).usable){['c-pg','c-gold','c-make','c-tax','c-total','c-usd','c-discount-total','c-final-gram'].forEach(id=>setText(id,'—'));setText('c-rate-source',EN?'Automatic estimate paused: the gold source time is missing or older than 15 minutes. Enter a shop gram quote to calculate manually.':'توقف التقدير التلقائي: وقت المصدر مفقود أو أقدم من 15 دقيقة. أدخل سعر المحل للحساب اليدوي.');return;}
+  if(!pg){['c-pg','c-gold','c-make','c-tax','c-total','c-usd','c-discount-total','c-final-gram'].forEach(id=>setText(id,'—'));return;}
   const gold=pg*w,mode=$('#c-mtype').value,make=mode==='piece'?mc:mode==='percent'?gold*mc/100:mc*w;
   const base=$('#c-tax-base').value,taxable=base==='making'?make:base==='gold'?gold:gold+make;
-  const tax=taxable*Math.min(num('c-tax-rate'),100)/100,total=gold+make+tax;
+  const tax=taxable*Math.min(num('c-tax-rate'),100)/100,beforeDiscount=gold+make+tax;
+  const discountMode=$('#c-discount-mode')?.value||'amount',discountInput=num('c-discount'),discount=Math.min(beforeDiscount,discountMode==='percent'?beforeDiscount*discountInput/100:discountInput),total=beforeDiscount-discount;
+  setText('c-discount-total',fmt(discount,dp));setText('c-final-gram',w>0?fmt(total/w,dp):'—');
   setText('c-pg',fmt(pg,dp));setText('c-gold',fmt(gold,dp));setText('c-make',fmt(make,dp));
   setText('c-tax',fmt(tax,dp));setText('c-total',fmt(total,dp));setText('c-usd',r?fmt(total/r):'—');
 }

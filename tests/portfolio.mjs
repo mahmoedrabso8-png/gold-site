@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {validHolding,holdingCost,portfolioRead,portfolioWrite,portfolioSummary} from '../portfolio-core.mjs';
+const currencies=['AED','EGP','USD'];
+const a={id:'h-test-1',note:'شراء',date:'2026-11-01',currency:'AED',weight:10,karat:21,rate:100,making:50,fees:105};
+assert(validHolding(a,currencies));assert.equal(holdingCost(a),1155);
+const b={...a,id:'h-test-2',weight:5,karat:24,rate:110,making:0,fees:0};
+let g=portfolioSummary([a,b],{AED:120})[0];assert.equal(g.fineWeight,13.75);assert.equal(g.cost,1705);assert.equal(g.current,1650);assert.equal(g.gain,-55);assert.equal(g.averageFineGram,1705/13.75);
+assert.equal(portfolioSummary([a],{})[0].current,null);assert.equal(portfolioSummary([a],{AED:Infinity})[0].current,null);
+assert.equal(portfolioSummary([{...a,rate:0,making:0,fees:0}],{AED:120})[0].gainPct,null);
+assert.equal(portfolioSummary([a,{...b,currency:'EGP'}],{AED:120,EGP:5000}).length,2);
+assert.deepEqual(portfolioRead(portfolioWrite([a,b]),currencies),[a,b]);
+for(const patch of [{date:'2026-02-30'},{date:'wrong'},{currency:'XX'},{weight:0},{weight:Infinity},{karat:23},{rate:-1},{fees:-1},{making:NaN},{note:'x'.repeat(81)},{id:'bad'}])assert(!validHolding({...a,...patch},currencies));
+for(const raw of ['bad','null','{}',JSON.stringify({version:2,holdings:[a]}),portfolioWrite([a,a]),portfolioWrite([{...a,weight:'10'}]),portfolioWrite(Array.from({length:1001},(_,i)=>({...a,id:'h-'+i})))])assert.throws(()=>portfolioRead(raw,currencies));
+const clean=portfolioRead(JSON.stringify({version:1,holdings:[{...a,unexpected:'data'}]}),currencies);assert(!('unexpected'in clean[0]));
+console.log('PASS: portfolio cost, mixed-karat fine weight, currency separation, valuation, zero cost, persistence roundtrip, invalid/corrupt/oversize/duplicate rejection');

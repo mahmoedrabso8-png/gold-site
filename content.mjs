@@ -1,3 +1,5 @@
+import { portfolioPages } from './portfolio-content.mjs';
+import { homeTools, homeMarkets } from './home-components.mjs';
 import { articleLibrary, articleBody, relatedArticles } from './article-discovery.mjs';
 import { weightPages } from './weight-content.mjs';
 import { resalePages } from './resale-content.mjs';
@@ -8,7 +10,7 @@ import { ARTICLES, ARTICLES_EN } from './articles.mjs';
 
 export function pages(ctx) {
   const { P, FXD, updated, chg, daily, fmt, url, AD, TODAY } = ctx;
-  const out = [...priceAlertPages(ctx), ...resalePages(ctx), ...weightPages()];
+  const out = [...portfolioPages(ctx), ...priceAlertPages(ctx), ...resalePages(ctx), ...weightPages()];
   const px = k => ctx.g24 ? fmt(ctx.g24 * k / 24) : null;   // سعر الغرام لإدراجه في العناوين
 
   // ── معلومات العيارات ─────────────────────────────────────
@@ -94,7 +96,7 @@ export function pages(ctx) {
   <span>${L === 'en' ? 'Updated' : 'آخر تحديث'}: <strong>${updated(L)}</strong> ${L === 'en' ? '(Dubai)' : '(بتوقيت دبي)'}</span>
   <span>${L === 'en' ? 'Ounce' : 'الأونصة'}: <strong>${P(24, ctx.TROY)} AED</strong> · <strong>$${P(24, ctx.TROY, { cur: 'usd' })}</strong></span>
   ${chg}
-  <button class="btn-sm" id="refresh" type="button">🔄 ${L === 'en' ? 'Refresh' : 'تحديث'}</button></div>`;
+  <button class="btn-sm" id="refresh" type="button">↻ ${L === 'en' ? 'Refresh' : 'تحديث'}</button></div>`;
   const spark = L => `<section class="card-section"><div class="chart-header"><h2 style="border:0;margin:0;padding:0">${L === 'en' ? 'Price movement — last 48 hours' : 'حركة السعر — آخر 48 ساعة'}</h2>
   <div class="chart-legend">${[[24, '#fce35c'], [22, '#f9a825'], [21, '#ff8a50'], [18, '#a09880']].map(([k, c]) => `<span class="legend-item"><span class="legend-dot" style="background:${c}"></span>${k}K</span>`).join('')}</div></div>
   <canvas id="spark" aria-label="chart"></canvas></section>`;
@@ -157,7 +159,7 @@ export function pages(ctx) {
     desc: (px(21) ? `سعر الذهب اليوم في الإمارات: عيار 21 بـ ${px(21)} درهم، عيار 24 بـ ${px(24)}، عيار 22 بـ ${px(22)}، عيار 18 بـ ${px(18)} للغرام. ` : 'سعر الذهب اليوم في الإمارات ودبي بالدرهم. ') + 'تحديث كل 5 دقائق، مع سعر الأونصة والسبائك والحاسبة.',
     body: `${hero('سعر الذهب اليوم في الإمارات بالدرهم', 'سعر غرام الذهب الخام لعيار 24 و22 و21 و18 بالدرهم الإماراتي والدولار', 'ar')}
 ${errBox}${karatCards('ar')}${metaRow('ar')}
-${AD}
+${homeTools('ar',ctx)}
 <section class="card-section"><h2>جدول أسعار الذهب في الإمارات اليوم</h2><div class="table-wrap"><table class="data-table">
 <thead><tr><th>العيار</th><th>الغرام (درهم)</th><th>الغرام (دولار)</th><th>10 غرام (درهم)</th><th>التولة (درهم)</th><th>الأونصة (درهم)</th></tr></thead><tbody>
 ${KS.map(k => `<tr><td><a href="${url('ar', 'gold-' + k + 'k')}"><strong>عيار ${k}</strong></a> <span class="sub"><bdi>${K[k].purity}</bdi></span></td><td class="n">${P(k)}</td><td class="n">$${P(k, 1, { cur: 'usd' })}</td><td class="n">${P(k, 10)}</td><td class="n">${P(k, TOLA)}</td><td class="n">${P(k, ctx.TROY)}</td></tr>`).join('')}
@@ -165,8 +167,10 @@ ${KS.map(k => `<tr><td><a href="${url('ar', 'gold-' + k + 'k')}"><strong>عيا�
 <section class="card-section"><h2>سعر الذهب عيار 21 بالدولار وبالمصنعية</h2><div class="prose">
 <p><strong>سعر غرام عيار 21 بالدولار</strong> اليوم نحو <bdi>$${P(21, 1, { cur: 'usd' })}</bdi>، وسعر غرام عيار 24 نحو <bdi>$${P(24, 1, { cur: 'usd' })}</bdi>، وسعر الأونصة العالمي <bdi>$${P(24, ctx.TROY, { cur: 'usd' })}</bdi>.</p>
 <p><strong>سعر الذهب في الإمارات بالمصنعية:</strong> إذا كانت المصنعية 5 دراهم للغرام يصبح غرام عيار 21 نحو <bdi>${P(21, 1, { mc: 5 })} درهم</bdi>، وبمصنعية 10 دراهم نحو <bdi>${P(21, 1, { mc: 10 })} درهم</bdi>، وبمصنعية 15 درهماً نحو <bdi>${P(21, 1, { mc: 15 })} درهم</bdi> (قبل ضريبة 5% على المشغولات). لحساب وزنك ومصنعيتك بدقة استخدم <a href="/gold-calculator/">حاسبة الذهب بالمصنعية</a>.</p></div></section>
+${homeMarkets('ar',ctx)}
+${AD}
 ${spark('ar')}${why('ar')}${links('ar', '')}
-<section class="card-section"><h2>مقالات وأدلة عن الذهب</h2><div class="links-grid">${ARTICLES.map(a => `<a class="link-card" href="/articles/${a.slug}/">${a.h1}<span>${a.teaser}</span></a>`).join('')}</div></section>
+<section class="card-section"><h2>مقالات وأدلة عن الذهب</h2><div class="links-grid">${ARTICLES.slice().sort((a,b)=>(b.datePublished||'').localeCompare(a.datePublished||'')).slice(0,6).map(a => `<a class="link-card" href="/articles/${a.slug}/">${a.h1}<span>${a.teaser}</span></a>`).join('')}</div></section>
 ${AD}
 <section class="card-section"><h2>دليل سعر الذهب في الإمارات</h2><div class="prose">
 <p>تُعدّ <strong>الإمارات</strong> من أكبر مراكز تجارة الذهب في العالم، ويشتهر <strong>سوق الذهب في ديرة بدبي</strong> وسوق الذهب في الشارقة بتنوع المحلات وتنافس الأسعار. تتحدد <strong>أسعار الذهب في الإمارات</strong> على أساس السعر العالمي للأونصة بالدولار، ولأن الدرهم مربوط بالدولار عند 3.6725 فإن حركة السعر المحلي تتبع السوق العالمية مباشرة.</p>
@@ -189,13 +193,15 @@ ${sources('ar')}`,
     desc: 'Today\'s gold rate in the UAE and Dubai in AED, updated every 5 minutes: 24K, 22K, 21K and 18K per gram, tola and ounce, plus gold bar prices and a gold calculator.',
     body: `${hero('Gold Rate in UAE Today', '24K, 22K, 21K and 18K gold price per gram in UAE dirhams (AED) and US dollars', 'en')}
 ${errBox}${karatCards('en')}${metaRow('en')}
-${AD}
+${homeTools('en',ctx)}
 <section class="card-section"><h2>UAE gold price table today</h2><div class="table-wrap"><table class="data-table">
 <thead><tr><th>Karat</th><th>1 gram (AED)</th><th>1 gram (USD)</th><th>10 grams (AED)</th><th>1 tola (AED)</th><th>1 ounce (AED)</th></tr></thead><tbody>
 ${KS.map(k => `<tr><td><a href="${url('en', 'gold-' + k + 'k')}"><strong>${k}K</strong></a> <span class="sub"><bdi>${K[k].purity}</bdi></span></td><td class="n">${P(k)}</td><td class="n">$${P(k, 1, { cur: 'usd' })}</td><td class="n">${P(k, 10)}</td><td class="n">${P(k, TOLA)}</td><td class="n">${P(k, ctx.TROY)}</td></tr>`).join('')}
 </tbody></table></div><p class="note">Raw gold price excluding making charges and VAT. 1 tola = 11.664 g · 1 troy ounce = 31.1035 g.</p></section>
+${homeMarkets('en',ctx)}
+${AD}
 ${spark('en')}${why('en')}
-<section class="card-section"><h2>Gold guides & articles</h2><div class="links-grid">${ARTICLES_EN.map(a => `<a class="link-card" href="/en/articles/${a.slug}/">${a.h1}<span>${a.teaser}</span></a>`).join('')}</div></section>
+<section class="card-section"><h2>Gold guides & articles</h2><div class="links-grid">${ARTICLES_EN.slice().sort((a,b)=>(b.datePublished||'').localeCompare(a.datePublished||'')).slice(0,6).map(a => `<a class="link-card" href="/en/articles/${a.slug}/">${a.h1}<span>${a.teaser}</span></a>`).join('')}</div></section>
 ${links('en', '')}
 ${AD}
 <section class="card-section"><h2>Buying gold in the UAE</h2><div class="prose">
@@ -228,7 +234,7 @@ ${sources('en')}`,
       body: `${hero(en ? `${k}K Gold Rate in UAE Today` : `سعر الذهب عيار ${k} اليوم في الإمارات`, en ? `${d.label} · ${K[k].purity} purity · hallmark ${K[k].mark} — used for ${d.use}` : `${d.label} · نقاء ${K[k].purity} · ختم ${K[k].mark} — يُستخدم في ${d.use}`, L)}
 ${errBox}
 <div class="big-price"><div class="u">${en ? `${k}K — price per gram` : `سعر غرام عيار ${k}`}</div><div class="v">${P(k)} <span style="font-size:.45em">AED</span></div><div class="s">≈ $${P(k, 1, { cur: 'usd' })} USD</div>${chg}
-<div class="note">${en ? 'Updated' : 'آخر تحديث'}: ${updated(L)} ${en ? '(Dubai time)' : '(بتوقيت دبي)'} · <button class="btn-sm" id="refresh" type="button">🔄 ${en ? 'Refresh' : 'تحديث'}</button></div></div>
+<div class="note">${en ? 'Updated' : 'آخر تحديث'}: ${updated(L)} ${en ? '(Dubai time)' : '(بتوقيت دبي)'} · <button class="btn-sm" id="refresh" type="button">↻ ${en ? 'Refresh' : 'تحديث'}</button></div></div>
 ${AD}
 <section class="card-section"><h2>${en ? `${k}K gold price by weight` : `سعر الذهب عيار ${k} حسب الوزن`}</h2><div class="table-wrap"><table class="data-table">${table}</table></div>
 <p class="note">${en ? 'Making-charge columns are estimates; actual charges depend on the shop and design. VAT (5% on jewellery) not included.' : 'أعمدة المصنعية تقديرية، والمصنعية الفعلية تختلف حسب المحل والتصميم. لا تشمل ضريبة القيمة المضافة (5% على المشغولات).'}</p></section>
@@ -267,13 +273,16 @@ ${links(L, `gold-${k}k`)}`,
 <div class="field"><label for="c-mc">${en?'Making charge (currency or %, as selected)':'المصنعية (بالعملة أو % حسب الاختيار)'}</label><input id="c-mc" type="number" inputmode="decimal" min="0" step="0.01" value="0" /></div>
 <div class="field"><label for="c-tax-rate">${en?'Tax rate from your invoice (%)':'نسبة الضريبة من فاتورتك (%)'}</label><input id="c-tax-rate" type="number" inputmode="decimal" min="0" max="100" step="0.01" value="0" /></div>
 <div class="field"><label for="c-tax-base">${en?'Tax applies to':'تُحسب الضريبة على'}</label><select id="c-tax-base"><option value="all">${en?'Gold + making charges':'الذهب والمصنعية'}</option><option value="making">${en?'Making charges only':'المصنعية فقط'}</option><option value="gold">${en?'Gold value only':'قيمة الذهب فقط'}</option></select></div>
+<div class="field"><label for="c-discount-mode">${en?'After-tax discount type':'نوع الخصم بعد الضريبة'}</label><select id="c-discount-mode"><option value="amount">${en?'Fixed invoice amount':'مبلغ من الفاتورة'}</option><option value="percent">${en?'Percent of tax-inclusive total':'نسبة من الإجمالي شامل الضريبة'}</option></select></div>
+<div class="field"><label for="c-discount">${en?'After-tax discount (amount or %)':'الخصم بعد الضريبة (مبلغ أو %)'}</label><input id="c-discount" type="number" inputmode="decimal" min="0" step="0.01" value="0" /></div>
 </div>
+<p class="note">${en?'The discount here is deducted after tax and does not recalculate tax. If your shop discounts before tax, enter the reduced gram/making charge and the invoice tax instead. Discount cannot exceed the invoice total.':'الخصم هنا يُطرح بعد الضريبة ولا يعيد حسابها. إذا خصم المحل قبل الضريبة، أدخل سعر الغرام أو المصنعية المخفضة والضريبة المطابقة للفاتورة. لا يتجاوز الخصم إجمالي الفاتورة.'}</p>
 <p class="note">${en?'Tax starts at 0 because rules differ by product and location. Enter the rate and tax base on the shop’s invoice. Zero here does not mean tax-exempt.':'تبدأ الضريبة بصفر لأن القواعد تختلف حسب المنتج والمكان. أدخل النسبة وأساس الحساب المكتوبين في فاتورة المحل. الصفر هنا لا يعني الإعفاء الضريبي.'}</p>
 <div class="result" aria-live="polite">
-${[['c-pg',en?'Price per gram':'سعر الغرام'],['c-gold',en?'Gold value':'قيمة الذهب'],['c-make',en?'Making charges':'المصنعية'],['c-tax',en?'Tax':'الضريبة'],['c-total',en?'Estimated total':'الإجمالي التقديري']].map(([id,label])=>`<div class="result-row${id==='c-total'?' total':''}"><span>${label}</span><strong><span id="${id}">—</span> <span class="c-curl">AED</span></strong></div>`).join('')}
+${[['c-pg',en?'Price per gram':'سعر الغرام'],['c-gold',en?'Gold value':'قيمة الذهب'],['c-make',en?'Making charges':'المصنعية'],['c-tax',en?'Tax':'الضريبة'],['c-discount-total',en?'After-tax discount':'الخصم بعد الضريبة'],['c-total',en?'Estimated total':'الإجمالي التقديري'],['c-final-gram',en?'Final cost per gram':'التكلفة النهائية للغرام']].map(([id,label])=>`<div class="result-row${id==='c-total'?' total':''}"><span>${label}</span><strong><span id="${id}">—</span> <span class="c-curl">AED</span></strong></div>`).join('')}
 <div class="result-row"><span>${en?'Estimated total in USD':'الإجمالي التقديري بالدولار'}</span><strong>$<span id="c-usd">—</span></strong></div></div>
 <p class="note" id="c-rate-source"></p></section>${AD}
-<section class="card-section"><h2>${en?'How the estimate works':'كيف تُحسب التكلفة'}</h2><div class="prose"><p>${en?'Gold value = gold weight × gram price for the selected karat. Making charges can be per gram, a fixed amount for the piece, or a percentage of the gold value. Tax is calculated on the base you choose. Total = gold + making + tax.':'قيمة الذهب = وزن الذهب × سعر غرام العيار المختار. يمكن أن تكون المصنعية لكل غرام أو مبلغاً ثابتاً للقطعة أو نسبة من قيمة الذهب. تُحسب الضريبة على الأساس الذي تختاره. الإجمالي = الذهب + المصنعية + الضريبة.'}</p><p>${en?'The automatic rate is international raw gold converted at the current exchange rate. It is not a guaranteed local retail quote. Enter the shop gram price to match an actual offer. Stones, delivery, other fees and buyback deductions are not included.':'السعر التلقائي هو الذهب الخام العالمي محوّلاً بسعر الصرف الحالي، وليس عرضاً مضموناً من محلات بلدك. أدخل سعر غرام المحل لمقارنة عرض فعلي. لا يشمل الحساب الأحجار أو التوصيل أو الرسوم الأخرى أو خصم إعادة الشراء.'}</p></div></section>${links(L,'gold-calculator')}`,
+<section class="card-section"><h2>${en?'How the estimate works':'كيف تُحسب التكلفة'}</h2><div class="prose"><p>${en?'Gold value = gold weight × gram price for the selected karat. Making charges can be per gram, a fixed amount for the piece, or a percentage of the gold value. Tax is calculated on the base you choose. Total = gold + making + tax − after-tax discount. Final gram cost = total ÷ gold weight.':'قيمة الذهب = وزن الذهب × سعر غرام العيار المختار. يمكن أن تكون المصنعية لكل غرام أو مبلغاً ثابتاً للقطعة أو نسبة من قيمة الذهب. تُحسب الضريبة على الأساس الذي تختاره. الإجمالي = الذهب + المصنعية + الضريبة − الخصم بعد الضريبة. تكلفة الغرام النهائية = الإجمالي ÷ وزن الذهب.'}</p><p>${en?'The automatic rate is international raw gold converted at the current exchange rate. It is not a guaranteed local retail quote. Enter the shop gram price to match an actual offer. Stones, delivery, other fees and buyback deductions are not included.':'السعر التلقائي هو الذهب الخام العالمي محوّلاً بسعر الصرف الحالي، وليس عرضاً مضموناً من محلات بلدك. أدخل سعر غرام المحل لمقارنة عرض فعلي. لا يشمل الحساب الأحجار أو التوصيل أو الرسوم الأخرى أو خصم إعادة الشراء.'}</p></div></section>${links(L,'gold-calculator')}`,
       faq:en?[
         ['Can I use the calculator outside the UAE?','Yes. Select any of the 44 countries to use its currency. Enter the making charge and actual invoice tax; tax rules are not assumed.'],
         ['Can I enter the shop’s own gram price?','Yes. The optional shop-price field replaces the live raw rate for the selected karat. Leave it blank to use the live rate.'],
@@ -595,7 +604,7 @@ ${last10.map(d => `<tr><td>${en ? enDate(d.day) : arDate(d.day)}</td>${[d.close,
       body: `${hero(en ? 'Gold Price in USD Today' : 'سعر الذهب عالمياً بالدولار', en ? 'Live spot price of gold per troy ounce (XAU/USD)' : 'سعر أونصة الذهب في السوق العالمية (XAU/USD) مباشر', L)}
 ${errBox}
 <div class="big-price"><div class="u">${en ? 'Gold ounce (XAU/USD)' : 'أونصة الذهب (XAU/USD)'}</div><div class="v">$${P(24, ctx.TROY, { cur: 'usd' })}</div><div class="s">= ${P(24, ctx.TROY)} AED</div>${chg}
-<div class="note">${en ? 'Updated' : 'آخر تحديث'}: ${updated(L)} · <button class="btn-sm" id="refresh" type="button">🔄 ${en ? 'Refresh' : 'تحديث'}</button></div></div>
+<div class="note">${en ? 'Updated' : 'آخر تحديث'}: ${updated(L)} · <button class="btn-sm" id="refresh" type="button">↻ ${en ? 'Refresh' : 'تحديث'}</button></div></div>
 ${AD}
 <section class="card-section"><div class="chart-header"><h2 style="border:0;margin:0;padding:0">${en ? 'Gold ounce in USD — last 48 hours' : 'أونصة الذهب بالدولار — آخر 48 ساعة'}</h2></div><canvas id="spark" data-mode="usd" aria-label="chart"></canvas></section>
 <section class="card-section"><h2>${en ? 'Gold price in US dollars' : 'أسعار الذهب بالدولار'}</h2><div class="table-wrap"><table class="data-table">
@@ -1232,7 +1241,7 @@ ${errBox}
 <div class="meta-row">
 <span>${en ? 'Updated' : 'آخر تحديث'}: <strong>${updated(L)}</strong></span>
 <span>${en ? 'Ounce' : 'الأونصة'}: <strong>${P(24, ctx.TROY, opt())} ${c.code}</strong>${c.code === 'USD' ? '' : ` · <strong>$${P(24, ctx.TROY, { cur: 'usd' })}</strong>`}</span>
-${chg}<button class="btn-sm" id="refresh" type="button">🔄 ${en ? 'Refresh' : 'تحديث'}</button></div>
+${chg}<button class="btn-sm" id="refresh" type="button">↻ ${en ? 'Refresh' : 'تحديث'}</button></div>
 ${AD}
 <section class="card-section"><h2>${en ? `Gold price table in ${x.n} today` : `جدول أسعار الذهب ${x.in} اليوم`}</h2><div class="table-wrap"><table class="data-table">
 <thead><tr><th>${en ? 'Karat' : 'العيار'}</th><th>${en ? `1 gram (${c.code})` : `الغرام (${x.curS})`}</th>${vatCol}<th>${en ? `10 grams (${c.code})` : `10 غرام (${x.curS})`}</th><th>${c.un ? `${c.un[0]} (${c.code})` : en ? `1 tola (${c.code})` : `التولة (${x.curS})`}</th><th>${en ? `1 ounce (${c.code})` : `الأونصة (${x.curS})`}</th></tr></thead><tbody>
@@ -1271,7 +1280,7 @@ ${other(L)}`,
         body: `${hero(`سعر الذهب عيار ${k} اليوم ${x.in}`, `${K[k].ar.label} · نقاء <bdi>${K[k].purity}</bdi> · ختم ${K[k].mark}`, 'ar')}
 ${errBox}
 <div class="big-price"><div class="u">سعر غرام عيار ${k} بال${x.cur}</div><div class="v">${P(k, 1, opt())} <span style="font-size:.45em">${c.code}</span></div><div class="s"><bdi>≈ $${P(k, 1, { cur: 'usd' })}</bdi>${c.vat ? ` · شامل الضريبة ${c.vat}%: <bdi>${P(k, 1 + c.vat / 100, opt())} ${c.code}</bdi>` : ''}</div>${chg}
-<div class="note">آخر تحديث: ${updated('ar')} · <button class="btn-sm" id="refresh" type="button">🔄 تحديث</button></div></div>
+<div class="note">آخر تحديث: ${updated('ar')} · <button class="btn-sm" id="refresh" type="button">↻ تحديث</button></div></div>
 ${AD}
 <section class="card-section"><h2>سعر الذهب عيار ${k} حسب الوزن ${x.in}</h2><div class="table-wrap"><table class="data-table">
 <thead><tr><th>الوزن</th><th>السعر (${x.curS})</th>${c.vat ? `<th>شامل الضريبة ${c.vat}%</th>` : ''}<th>السعر (دولار)</th></tr></thead><tbody>
@@ -1308,7 +1317,7 @@ ${KS.filter(o => o !== k).map(o => `<a class="link-card" href="${url('ar', `${sl
         body: `${hero(`${k}K Gold Rate in ${x.n} Today`, `${ko.label} · ${K[k].purity} purity · hallmark ${K[k].mark}`, 'en')}
 ${errBox}
 <div class="big-price"><div class="u">${k}K — price per gram in ${x.cur}</div><div class="v">${P(k, 1, opt())} <span style="font-size:.45em">${c.code}</span></div>${c.code === 'USD' ? '' : `<div class="s"><bdi>≈ $${P(k, 1, { cur: 'usd' })} USD</bdi></div>`}
-<div class="note">Updated: ${updated('en')} · <button class="btn-sm" id="refresh" type="button">🔄 Refresh</button></div></div>
+<div class="note">Updated: ${updated('en')} · <button class="btn-sm" id="refresh" type="button">↻ Refresh</button></div></div>
 ${AD}
 <section class="card-section"><h2>${k}K gold price by weight in ${x.n}</h2><div class="table-wrap"><table class="data-table">
 <thead><tr><th>Weight</th><th>Price (${c.code})</th>${c.vat ? `<th>+ ${c.vat}% ${TN}</th>` : ''}${c.code === 'USD' ? '' : '<th>Price (USD)</th>'}</tr></thead><tbody>
@@ -1478,7 +1487,7 @@ ${errBox}
 <div class="k-price">${trP(k)}</div>
 <div class="k-usd">$${P(k, 1, { cur: 'usd', d: 2 })}</div>
 <div class="k-unit">TL / gram</div></a>`).join('')}</div>
-<div class="meta-row"><span>Güncelleme: <strong>${updated('en')}</strong> (Dubai)</span><span>Ons: <strong>${trP(24, ctx.TROY)} TL</strong> · <strong>$${P(24, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">🔄 Yenile</button></div>
+<div class="meta-row"><span>Güncelleme: <strong>${updated('en')}</strong> (Dubai)</span><span>Ons: <strong>${trP(24, ctx.TROY)} TL</strong> · <strong>$${P(24, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">↻ Yenile</button></div>
 <section class="card-section"><h2>Bugün altın fiyatları — gram, 10 gram ve ons</h2><div class="table-wrap"><table class="data-table">
 <thead><tr><th>Ayar</th><th>1 gram (TL)</th><th>10 gram (TL)</th><th>1 ons (TL)</th></tr></thead><tbody>
 ${TRK.map(([k, n]) => `<tr><td><strong>${n}</strong></td><td class="n">${trP(k)}</td><td class="n">${trP(k, 10)}</td><td class="n">${trP(k, ctx.TROY)}</td></tr>`).join('')}
@@ -1503,7 +1512,7 @@ ${AD}
         desc: `Canlı ${n.toLowerCase()} altın fiyatı: gram, 10 gram ve ons bazında Türk lirası ve dolar, her 5 dakikada güncellenir. İşçilik ve KDV hariç ham fiyat.`,
         body: `${hero(`${n} Altın Fiyatı Bugün`, `Gram başına ${kt} TL — canlı`, 'tr')}
 ${errBox}
-<div class="meta-row"><span>Güncelleme: <strong>${updated('en')}</strong> (Dubai)</span><span>Ons: <strong>${trP(k, ctx.TROY)} TL</strong> · <strong>$${P(k, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">🔄 Yenile</button></div>
+<div class="meta-row"><span>Güncelleme: <strong>${updated('en')}</strong> (Dubai)</span><span>Ons: <strong>${trP(k, ctx.TROY)} TL</strong> · <strong>$${P(k, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">↻ Yenile</button></div>
 <section class="card-section"><h2>${n} altın — ağırlığa göre fiyatlar</h2><div class="table-wrap"><table class="data-table">
 <thead><tr><th>Ağırlık</th><th>Fiyat (TL)</th><th>Fiyat (USD)</th></tr></thead><tbody>
 ${[1, 2, 4, 5, 8, 10, 20, 50, 100].map(w => `<tr><td class="n">${w} g</td><td class="n">${trP(k, w)}</td><td class="n">$${P(k, w, { cur: 'usd', d: 2 })}</td></tr>`).join('')}
@@ -1546,7 +1555,7 @@ ${errBox}
 <div class="k-price">${hiP(k)}</div>
 <div class="k-usd">$${P(k, 1, { cur: 'usd', d: 2 })}</div>
 <div class="k-unit">रुपये / ग्राम</div></a>`).join('')}</div>
-<div class="meta-row"><span>अपडेट: <strong>${updated('en')}</strong> (दुबई)</span><span>औंस: <strong>${hiP(24, ctx.TROY)} रु.</strong> · <strong>$${P(24, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">🔄 रीफ्रेश</button></div>
+<div class="meta-row"><span>अपडेट: <strong>${updated('en')}</strong> (दुबई)</span><span>औंस: <strong>${hiP(24, ctx.TROY)} रु.</strong> · <strong>$${P(24, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">↻ रीफ्रेश</button></div>
 <section class="card-section"><h2>आज सोने का भाव — ग्राम, 10 ग्राम, तोला और औंस</h2><div class="table-wrap"><table class="data-table">
 <thead><tr><th>कैरेट</th><th>1 ग्राम (रु.)</th><th>10 ग्राम (रु.)</th><th>1 तोला (रु.)</th><th>1 औंस (रु.)</th></tr></thead><tbody>
 ${HIK.map(([k, n]) => `<tr><td><strong>${n}</strong></td><td class="n">${hiP(k)}</td><td class="n">${hiP(k, 10)}</td><td class="n">${hiP(k, TOLA2)}</td><td class="n">${hiP(k, ctx.TROY)}</td></tr>`).join('')}
@@ -1571,7 +1580,7 @@ ${AD}
         desc: `${n} सोने का ताजा भाव: ग्राम, 10 ग्राम, तोला और औंस में रुपये और डॉलर, हर 5 मिनट में अपडेट। मेकिंग चार्ज और GST के बिना कच्चा भाव।`,
         body: `${hero(`${n} सोने का भाव आज`, `प्रति ग्राम ${kt} रुपये — लाइव`, 'hi')}
 ${errBox}
-<div class="meta-row"><span>अपडेट: <strong>${updated('en')}</strong> (दुबई)</span><span>औंस: <strong>${hiP(k, ctx.TROY)} रु.</strong> · <strong>$${P(k, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">🔄 रीफ्रेश</button></div>
+<div class="meta-row"><span>अपडेट: <strong>${updated('en')}</strong> (दुबई)</span><span>औंस: <strong>${hiP(k, ctx.TROY)} रु.</strong> · <strong>$${P(k, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">↻ रीफ्रेश</button></div>
 <section class="card-section"><h2>${n} सोना — वजन के हिसाब से भाव</h2><div class="table-wrap"><table class="data-table">
 <thead><tr><th>वजन</th><th>भाव (रु.)</th><th>भाव (USD)</th></tr></thead><tbody>
 ${[1, 2, 4, 5, 8, 10, 20, 50, 100].map(w => `<tr><td class="n">${w} ग्राम</td><td class="n">${hiP(k, w)}</td><td class="n">$${P(k, w, { cur: 'usd', d: 2 })}</td></tr>`).join('')}
@@ -1614,7 +1623,7 @@ ${errBox}
 <div class="k-price">${urP(k)}</div>
 <div class="k-usd">$${P(k, 1, { cur: 'usd', d: 2 })}</div>
 <div class="k-unit">روپے / گرام</div></a>`).join('')}</div>
-<div class="meta-row"><span>تازہ کاری: <strong>${updated('en')}</strong> (دبئی)</span><span>اونس: <strong>${urP(24, ctx.TROY)} روپے</strong> · <strong>$${P(24, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">🔄 تازہ کریں</button></div>
+<div class="meta-row"><span>تازہ کاری: <strong>${updated('en')}</strong> (دبئی)</span><span>اونس: <strong>${urP(24, ctx.TROY)} روپے</strong> · <strong>$${P(24, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">↻ تازہ کریں</button></div>
 <section class="card-section"><h2>آج سونے کا ریٹ — گرام، 10 گرام، تولہ اور اونس</h2><div class="table-wrap"><table class="data-table">
 <thead><tr><th>کیرٹ</th><th>1 گرام (روپے)</th><th>10 گرام (روپے)</th><th>1 تولہ (روپے)</th><th>1 اونس (روپے)</th></tr></thead><tbody>
 ${URK.map(([k, n]) => `<tr><td><strong>${n}</strong></td><td class="n">${urP(k)}</td><td class="n">${urP(k, 10)}</td><td class="n">${urP(k, TOLA3)}</td><td class="n">${urP(k, ctx.TROY)}</td></tr>`).join('')}
@@ -1639,7 +1648,7 @@ ${AD}
         desc: `${n} سونے کا تازہ ریٹ: گرام، 10 گرام، تولہ اور اونس میں روپے اور ڈالر، ہر 5 منٹ میں تازہ کاری۔ مزدوری کے بغیر خام ریٹ۔`,
         body: `${hero(`${n} سونے کا ریٹ آج`, `فی گرام ${kt} روپے — لائیو`, 'ur')}
 ${errBox}
-<div class="meta-row"><span>تازہ کاری: <strong>${updated('en')}</strong> (دبئی)</span><span>اونس: <strong>${urP(k, ctx.TROY)} روپے</strong> · <strong>$${P(k, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">🔄 تازہ کریں</button></div>
+<div class="meta-row"><span>تازہ کاری: <strong>${updated('en')}</strong> (دبئی)</span><span>اونس: <strong>${urP(k, ctx.TROY)} روپے</strong> · <strong>$${P(k, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">↻ تازہ کریں</button></div>
 <section class="card-section"><h2>${n} سونا — وزن کے حساب سے ریٹ</h2><div class="table-wrap"><table class="data-table">
 <thead><tr><th>وزن</th><th>ریٹ (روپے)</th><th>ریٹ (USD)</th></tr></thead><tbody>
 ${[1, 2, 4, 5, 8, 10, 20, 50, 100].map(w => `<tr><td class="n">${w} گرام</td><td class="n">${urP(k, w)}</td><td class="n">$${P(k, w, { cur: 'usd', d: 2 })}</td></tr>`).join('')}
@@ -1682,7 +1691,7 @@ ${errBox}
 <div class="k-price">${idP(k)}</div>
 <div class="k-usd">$${P(k, 1, { cur: 'usd', d: 2 })}</div>
 <div class="k-unit">IDR / gram</div></a>`).join('')}</div>
-<div class="meta-row"><span>Diperbarui: <strong>${updated('en')}</strong> (Dubai)</span><span>Troy ounce: <strong>${idP(24, ctx.TROY)} IDR</strong> · <strong>$${P(24, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">🔄 Muat ulang</button></div>
+<div class="meta-row"><span>Diperbarui: <strong>${updated('en')}</strong> (Dubai)</span><span>Troy ounce: <strong>${idP(24, ctx.TROY)} IDR</strong> · <strong>$${P(24, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">↻ Muat ulang</button></div>
 <section class="card-section"><h2>Harga emas hari ini — gram, 10 gram dan troy ounce</h2><div class="table-wrap"><table class="data-table">
 <thead><tr><th>Karat</th><th>1 gram (IDR)</th><th>10 gram (IDR)</th><th>1 troy ounce (IDR)</th></tr></thead><tbody>
 ${IDK.map(([k, n]) => `<tr><td><strong>${n}</strong></td><td class="n">${idP(k)}</td><td class="n">${idP(k, 10)}</td><td class="n">${idP(k, ctx.TROY)}</td></tr>`).join('')}
@@ -1707,7 +1716,7 @@ ${AD}
         desc: `Harga emas ${n.toLowerCase()} terkini: per gram, 10 gram dan troy ounce dalam rupiah dan dolar, diperbarui setiap 5 menit. Harga murni tanpa ongkos pembuatan.`,
         body: `${hero(`Harga Emas ${n} Hari Ini`, `${kt} rupiah per gram — langsung`, 'id')}
 ${errBox}
-<div class="meta-row"><span>Diperbarui: <strong>${updated('en')}</strong> (Dubai)</span><span>Troy ounce: <strong>${idP(k, ctx.TROY)} IDR</strong> · <strong>$${P(k, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">🔄 Muat ulang</button></div>
+<div class="meta-row"><span>Diperbarui: <strong>${updated('en')}</strong> (Dubai)</span><span>Troy ounce: <strong>${idP(k, ctx.TROY)} IDR</strong> · <strong>$${P(k, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">↻ Muat ulang</button></div>
 <section class="card-section"><h2>Emas ${n.toLowerCase()} — harga menurut berat</h2><div class="table-wrap"><table class="data-table">
 <thead><tr><th>Berat</th><th>Harga (IDR)</th><th>Harga (USD)</th></tr></thead><tbody>
 ${[1, 2, 4, 5, 8, 10, 20, 50, 100].map(w => `<tr><td class="n">${w} gram</td><td class="n">${idP(k, w)}</td><td class="n">$${P(k, w, { cur: 'usd', d: 2 })}</td></tr>`).join('')}
@@ -1749,7 +1758,7 @@ ${errBox}
 <div class="k-price">${bnP(k)}</div>
 <div class="k-usd">$${P(k, 1, { cur: 'usd', d: 2 })}</div>
 <div class="k-unit">টাকা / গ্রাম</div></a>`).join('')}</div>
-<div class="meta-row"><span>হালনাগাদ: <strong>${updated('en')}</strong> (দুবাই)</span><span>আউন্স: <strong>${bnP(24, ctx.TROY)} টাকা</strong> · <strong>$${P(24, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">🔄 রিফ্রেশ</button></div>
+<div class="meta-row"><span>হালনাগাদ: <strong>${updated('en')}</strong> (দুবাই)</span><span>আউন্স: <strong>${bnP(24, ctx.TROY)} টাকা</strong> · <strong>$${P(24, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">↻ রিফ্রেশ</button></div>
 <section class="card-section"><h2>আজ সোনার দাম — গ্রাম, ১০ গ্রাম, ভরি ও আউন্স</h2><div class="table-wrap"><table class="data-table">
 <thead><tr><th>ক্যারেট</th><th>১ গ্রাম (টাকা)</th><th>১০ গ্রাম (টাকা)</th><th>১ ভরি (টাকা)</th><th>১ আউন্স (টাকা)</th></tr></thead><tbody>
 ${BNK.map(([k, n]) => `<tr><td><strong>${n}</strong></td><td class="n">${bnP(k)}</td><td class="n">${bnP(k, 10)}</td><td class="n">${bnP(k, BHORI)}</td><td class="n">${bnP(k, ctx.TROY)}</td></tr>`).join('')}
@@ -1774,7 +1783,7 @@ ${AD}
         desc: `${n} সোনার সর্বশেষ দাম: গ্রাম, ১০ গ্রাম, ভরি ও আউন্সে টাকা ও ডলার, প্রতি ৫ মিনিটে হালনাগাদ। মজুরি ছাড়া খাঁটি দাম।`,
         body: `${hero(`${n} সোনার দাম আজ`, `প্রতি গ্রাম ${kt} টাকা — লাইভ`, 'bn')}
 ${errBox}
-<div class="meta-row"><span>হালনাগাদ: <strong>${updated('en')}</strong> (দুবাই)</span><span>আউন্স: <strong>${bnP(k, ctx.TROY)} টাকা</strong> · <strong>$${P(k, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">🔄 রিফ্রেশ</button></div>
+<div class="meta-row"><span>হালনাগাদ: <strong>${updated('en')}</strong> (দুবাই)</span><span>আউন্স: <strong>${bnP(k, ctx.TROY)} টাকা</strong> · <strong>$${P(k, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">↻ রিফ্রেশ</button></div>
 <section class="card-section"><h2>${n} সোনা — ওজন অনুযায়ী দাম</h2><div class="table-wrap"><table class="data-table">
 <thead><tr><th>ওজন</th><th>দাম (টাকা)</th><th>দাম (USD)</th></tr></thead><tbody>
 ${[1, 2, 4, 5, 8, 10, 20, 50, 100].map(w => `<tr><td class="n">${w} গ্রাম</td><td class="n">${bnP(k, w)}</td><td class="n">$${P(k, w, { cur: 'usd', d: 2 })}</td></tr>`).join('')}
@@ -1817,7 +1826,7 @@ ${errBox}
 <div class="k-price">${tlP(k)}</div>
 <div class="k-usd">$${P(k, 1, { cur: 'usd', d: 2 })}</div>
 <div class="k-unit">piso / gramo</div></a>`).join('')}</div>
-<div class="meta-row"><span>Na-update: <strong>${updated('en')}</strong> (Dubai)</span><span>Onsa: <strong>₱${tlP(24, ctx.TROY)}</strong> · <strong>$${P(24, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">🔄 I-refresh</button></div>
+<div class="meta-row"><span>Na-update: <strong>${updated('en')}</strong> (Dubai)</span><span>Onsa: <strong>₱${tlP(24, ctx.TROY)}</strong> · <strong>$${P(24, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">↻ I-refresh</button></div>
 <section class="card-section"><h2>Presyo ng ginto ngayon — gramo, 10 gramo at onsa</h2><div class="table-wrap"><table class="data-table">
 <thead><tr><th>Karat</th><th>1 gramo (₱)</th><th>10 gramo (₱)</th><th>1 onsa (₱)</th></tr></thead><tbody>
 ${TLK.map(([k, n]) => `<tr><td><strong>${n}</strong></td><td class="n">${tlP(k)}</td><td class="n">${tlP(k, 10)}</td><td class="n">${tlP(k, ctx.TROY)}</td></tr>`).join('')}
@@ -1842,7 +1851,7 @@ ${AD}
         desc: `Pinakabagong presyo ng ${n} na ginto: kada gramo, 10 gramo at onsa, sa piso at dolyar, ina-update kada 5 minuto. Purong presyo, walang making charge.`,
         body: `${hero(`Presyo ng ${n} na Ginto Ngayon`, `₱${kt} kada gramo — live`, 'tl')}
 ${errBox}
-<div class="meta-row"><span>Na-update: <strong>${updated('en')}</strong> (Dubai)</span><span>Onsa: <strong>₱${tlP(k, ctx.TROY)}</strong> · <strong>$${P(k, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">🔄 I-refresh</button></div>
+<div class="meta-row"><span>Na-update: <strong>${updated('en')}</strong> (Dubai)</span><span>Onsa: <strong>₱${tlP(k, ctx.TROY)}</strong> · <strong>$${P(k, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">↻ I-refresh</button></div>
 <section class="card-section"><h2>${n} na ginto — presyo ayon sa timbang</h2><div class="table-wrap"><table class="data-table">
 <thead><tr><th>Timbang</th><th>Presyo (₱)</th><th>Presyo (USD)</th></tr></thead><tbody>
 ${[1, 2, 4, 5, 8, 10, 20, 50, 100].map(w => `<tr><td class="n">${w} gramo</td><td class="n">${tlP(k, w)}</td><td class="n">$${P(k, w, { cur: 'usd', d: 2 })}</td></tr>`).join('')}
@@ -1884,7 +1893,7 @@ ${errBox}
 <div class="k-price">${msP(k)}</div>
 <div class="k-usd">$${P(k, 1, { cur: 'usd', d: 2 })}</div>
 <div class="k-unit">RM / gram</div></a>`).join('')}</div>
-<div class="meta-row"><span>Dikemas kini: <strong>${updated('en')}</strong> (Dubai)</span><span>Auns: <strong>RM${msP(24, ctx.TROY)}</strong> · <strong>$${P(24, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">🔄 Muat semula</button></div>
+<div class="meta-row"><span>Dikemas kini: <strong>${updated('en')}</strong> (Dubai)</span><span>Auns: <strong>RM${msP(24, ctx.TROY)}</strong> · <strong>$${P(24, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">↻ Muat semula</button></div>
 <section class="card-section"><h2>Harga emas hari ini — gram, 10 gram dan auns</h2><div class="table-wrap"><table class="data-table">
 <thead><tr><th>Karat</th><th>1 gram (RM)</th><th>10 gram (RM)</th><th>1 auns (RM)</th></tr></thead><tbody>
 ${MSK.map(([k, n]) => `<tr><td><strong>${n}</strong></td><td class="n">${msP(k)}</td><td class="n">${msP(k, 10)}</td><td class="n">${msP(k, ctx.TROY)}</td></tr>`).join('')}
@@ -1909,7 +1918,7 @@ ${AD}
         desc: `Harga emas ${n} terkini: segram, 10 gram dan auns, dalam ringgit dan dolar, dikemas kini setiap 5 minit. Harga tulen tanpa upah.`,
         body: `${hero(`Harga Emas ${n} Hari Ini`, `RM${kt} segram — langsung`, 'ms')}
 ${errBox}
-<div class="meta-row"><span>Dikemas kini: <strong>${updated('en')}</strong> (Dubai)</span><span>Auns: <strong>RM${msP(k, ctx.TROY)}</strong> · <strong>$${P(k, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">🔄 Muat semula</button></div>
+<div class="meta-row"><span>Dikemas kini: <strong>${updated('en')}</strong> (Dubai)</span><span>Auns: <strong>RM${msP(k, ctx.TROY)}</strong> · <strong>$${P(k, ctx.TROY, { cur: 'usd', d: 2 })}</strong></span><button class="btn-sm" id="refresh" type="button">↻ Muat semula</button></div>
 <section class="card-section"><h2>Emas ${n} — harga mengikut berat</h2><div class="table-wrap"><table class="data-table">
 <thead><tr><th>Berat</th><th>Harga (RM)</th><th>Harga (USD)</th></tr></thead><tbody>
 ${[1, 2, 4, 5, 8, 10, 20, 50, 100].map(w => `<tr><td class="n">${w} gram</td><td class="n">${msP(k, w)}</td><td class="n">$${P(k, w, { cur: 'usd', d: 2 })}</td></tr>`).join('')}

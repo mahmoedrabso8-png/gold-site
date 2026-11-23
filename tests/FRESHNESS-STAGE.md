@@ -15,7 +15,7 @@ Test-branch work only. This stage is not accepted for production yet.
 ## Remaining before this stage can ship
 
 - Visitor upstream requests and public write attempts still exist. A trusted background producer/read-only endpoint needs implementation and admin verification, not a claim that the data layer is finished.
-- Build writes still need explicit response/error handling, deduplication, final source/store timing and retry policy.
+- Build writes now check HTTP response status and log failures. Deduplication, final source/store timing and retry policy remain.
 - Complete FX/silver source status display and all dollar conversion paths. Some original copy still says live; audit every occurrence rather than relying on the new badge alone.
 - Country-local timestamp presentation and previous-close/24h semantic alignment remain. The provenance panel currently uses the viewer device timezone and identifies it.
 - Add production-shaped database/source/cache outage browser fixtures, missing FX cases, multi-tab/service-worker update tests, and actual preview deployment checks.

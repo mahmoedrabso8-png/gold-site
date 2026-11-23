@@ -9,7 +9,7 @@ const app=await fs.readFile(new URL('../app.js',import.meta.url),'utf8');
 const calc=app.slice(app.indexOf('function calc(){'),app.indexOf('/* ── Zakat calculator'));
 assert(calc.includes('function calc(){')&&calc.includes('c-total'));
 const nodes=new Map();
-for(const id of ['calc','c-cur','c-rate','c-w','c-k','c-mc','c-mtype','c-tax-base','c-tax-rate','c-pg','c-gold','c-make','c-tax','c-total','c-usd','c-rate-source'])nodes.set(id,{value:'',textContent:'',validity:{valid:true}});
+for(const id of ['calc','c-cur','c-rate','c-w','c-k','c-mc','c-mtype','c-tax-base','c-tax-rate','c-pg','c-gold','c-make','c-tax','c-total','c-usd','c-discount','c-discount-mode','c-discount-total','c-final-gram','c-rate-source'])nodes.set(id,{value:'',textContent:'',validity:{valid:true}});
 nodes.get('calc').querySelectorAll=()=>['c-rate','c-w','c-mc','c-tax-rate'].map(id=>nodes.get(id));
 const moneyLabels=Array.from({length:6},()=>({textContent:''}));
 const rates={USD:1,AED:3.6725,EGP:50,INR:90,EUR:.9};
@@ -29,6 +29,7 @@ console.log(`PASS: ${cases} purchase combinations, 44 country options, five kara
 nodes.get('c-rate').validity.valid=false;context.calc();assert.equal(nodes.get('c-total').textContent,'—');nodes.get('c-rate').validity.valid=true;console.log('PASS: invalid purchase input clears results');
 Object.assign(nodes.get('c-cur'),{options:[{value:'USD',dataset:{d:'2'}}],selectedIndex:0});set('c-rate','');set('c-k',18);set('c-w',10);set('c-mc',0);set('c-tax-rate',0);context.calc();assert.equal(Number(nodes.get('c-total').textContent),750);console.log('PASS: automatic 18K rate uses USD/AED conversion correctly');
 
+for(const [amount,mode,w,expected] of [[100,'amount',10,900],[10,'percent',10,900],[5000,'amount',10,0],[100,'amount',0,0]]){set('c-rate',100);set('c-w',w);set('c-mc',0);set('c-tax-rate',0);set('c-discount',amount);set('c-discount-mode',mode);context.calc();assert.equal(Number(nodes.get('c-total').textContent),expected);assert.equal(nodes.get('c-final-gram').textContent,w?(expected/w).toFixed(2):'—');}set('c-discount',0);console.log('PASS: amount/percent after-tax discounts, cap, per-gram total and zero-weight behavior');
 const rows=[{day:'2026-01-01',usdGram:100,fx:{EGP:50}},{day:'2026-01-03',usdGram:110,fx:{EGP:60}}];
 const points=historySeries({rows},'EGP',18,'30','2026-01-03');assert.deepEqual(points.map(p=>p.value),[3750,4950]);assert.equal((historyGraph(points,'en','EGP',18).match(/M\d/g)||[]).length,2);console.log('PASS: history uses same-day FX/karat and preserves missing-day gap');
 
