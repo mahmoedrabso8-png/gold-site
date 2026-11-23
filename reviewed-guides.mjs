@@ -98,3 +98,36 @@ export const SWISS_GUIDE = {
     ['What does Swiss gold storage cost?','There is no universal quote. Request custody, insurance, transaction, withdrawal, transport and closure costs for the exact contract.']
   ]
 };
+
+export const SPAIN_GUIDE = {
+  slug:'gold-spain-oro-18k',
+  title:'Gold in Spain: Oro de Ley, Purity Marks and Investment VAT Checks',
+  h1:'Gold in Spain: purity marks, investment gold and dealer quotes',
+  desc:'Understand oro de primera and segunda ley, Spain’s accepted gold finenesses, investment-gold VAT conditions and how to compare purchase and resale quotes.',
+  teaser:'Legal finenesses, investment-gold criteria and practical invoice checks',
+  intro:'Read the exact fineness and product description, not just the word “oro”.',
+  datePublished:'2026-11-22',dateModified:'2026-11-23',
+  body:`
+<p>A Spanish gold offer is easier to compare when you separate the metal from the product. A gram of 18K jewellery is not a gram of fine gold, and the shop price may include design, workmanship, stones and other charges. The words “oro de ley” should prompt you to ask for the actual fineness, not assume that every item has the same gold content.</p>
+<h3>Primera ley and segunda ley</h3>
+<p>The precious-metals regulation describes <strong>oro de primera ley as 750 per thousand</strong> and <strong>oro de segunda ley as 585 per thousand</strong>. These correspond to 18K and approximately 14K. Separately, Article 9 of Spain's precious-metals law lists accepted gold finenesses of <strong>999, 916, 750, 585 and 375 per thousand</strong>. It is therefore misleading to equate every legal gold article with 18K.</p>
+<p>Fineness is the mass proportion of pure precious metal in the alloy. For example, a hypothetical 10-gram item at 750 fineness contains 7.5 grams of gold only if the 10 grams is all that alloy: stones and other components must not be silently counted as gold. Use the <a href="/en/gold-weight-converter/">weight and purity converter</a> for arithmetic, not authentication.</p>
+<h3>Check the marks and invoice together</h3>
+<p>The law describes origin identification and guarantee marks, with exceptions and special arrangements for items that cannot carry the marks normally. Ask the seller to explain unclear marks and identify the actual fineness on your invoice. A number stamped into metal is not enough on its own to establish that an unknown seller or item is genuine.</p>
+<p>Request the weight used for pricing, how stones are treated, the metal amount, workmanship and any other charge. Keep the product description, payment evidence and any identifying documents. Those details make later comparison easier than a receipt showing only a total and the word “gold”.</p>
+<h3>Investment-gold VAT: more than purity</h3>
+<p>Spain's 2026 VAT manual defines investment bars or wafers as at least 995 per-thousand fineness <strong>and a weight meeting the statutory annex</strong>. Do not assume every bar qualifies solely because it says 999.9.</p>
+<p>Coins must meet all the stated criteria: at least 900 per-thousand fineness; minted after 1800; current or former legal tender in their country of origin; and normally sold for a price no more than 80% above the market value of their gold content. The tax authority also explains how the published European qualifying-coin list applies. The 80% figure is a legal eligibility ceiling, not a recommended premium to pay.</p>
+<p>The investment-gold regime generally exempts covered transactions from VAT, but the tax authority notes a possibility of opting out for individual transactions. Ask for the treatment of your exact purchase on the invoice. Jewellery, collector items, associated services and a later sale need their own checks. This guide does not decide your personal tax position.</p>
+<h3>Compare prices and the cost of selling</h3>
+<p>Get dated quotes for the same item and compare the total payable, including delivery and any stated fees. Avoid treating a “few percent” premium as a fixed market rule. Ask what the same dealer would pay to buy that item back, what deductions apply and when you would be paid.</p>
+<p>The <a href="/en/gold-resale-calculator/">resale comparison calculator</a> helps compare actual net offers. See <a href="/en/spain/">reference gold prices in Spain</a> and the <a href="/en/dollar-spain/">USD/EUR reference rate</a> for context, not shop offers. A change in reference metal value does not guarantee a profit after the spread and other costs.</p>
+<h3>Sources and review</h3>
+<ul><li><a href="https://www.boe.es/buscar/act.php?id=BOE-A-1985-12768">Law 17/1985, Articles 3, 9 and 10</a>: fineness and marks.</li><li><a href="https://www.boe.es/buscar/act.php?id=BOE-A-1988-6186">Royal Decree 197/1988, Article 8</a>: primera and segunda ley terms.</li><li><a href="https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/manual-iva-2026/capitulo-06-regimenes-especiales-iva/regimen-especial-oro-inversion/concepto-oro-inversion.html">Spanish Tax Agency 2026 VAT manual</a>: investment-gold definition.</li><li><a href="https://sede.agenciatributaria.gob.es/Sede/iva/regimenes-tributacion-iva/regimen-especial-oro-inversion.html">Spanish Tax Agency: investment-gold regime</a>.</li></ul>
+<p>Reviewed 23 November 2026. Educational information, not personal financial, legal or tax advice.</p>`,
+  faq:[
+    ['Does oro de ley always mean 18K?','No. Primera ley is 750 per thousand and segunda ley is 585. The precious-metals law separately lists accepted gold finenesses of 999, 916, 750, 585 and 375. Ask for the exact fineness.'],
+    ['Does every 999.9 bar qualify as investment gold?','Do not assume so. The Spanish tax manual requires qualifying form, fineness and statutory weight conditions; verify the particular product.'],
+    ['Can I use the reference price as a dealer buyback quote?','No. A buyer’s actual offer can include deductions and a spread. Request a dated quote and compare net proceeds.']
+  ]
+};

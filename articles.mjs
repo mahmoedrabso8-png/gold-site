@@ -1,4 +1,4 @@
-import { GERMANY_GUIDE, FRANCE_GUIDE, SWISS_GUIDE } from './reviewed-guides.mjs';
+import { GERMANY_GUIDE, FRANCE_GUIDE, SWISS_GUIDE, SPAIN_GUIDE } from './reviewed-guides.mjs';
 import { WEIGHT_ARTICLE_AR, WEIGHT_ARTICLE_EN } from './weight-articles.mjs';
 import { RESALE_AR, RESALE_EN } from './resale-articles.mjs';
 // مقالات الموقع التعليمية (عربي) — محتوى دائم بدون أسعار مباشرة
@@ -1271,29 +1271,7 @@ ARTICLES_EN.push(
       ['What is the Marengo coin?', 'The Italian 20-lira gold coin (about 6.45 g, 90% pure) — the classic Italian savings coin, comparable to the French Napoleon.']
     ]
   },
-  {
-    slug: 'gold-spain-oro-18k',
-    title: 'Gold in Spain: Oro de 18 Kilates, Prices and Taxes',
-    h1: 'Gold in Spain: oro de 18 kilates, prices and taxes',
-    desc: 'How gold works in Spain: 18K (750) as the jewellery standard, contraste hallmarks, VAT-free investment gold, and how the daily price in euros is formed.',
-    teaser: 'Oro de ley and the contraste stamp',
-    intro: 'Spanish gold runs on 18K jewellery and VAT-free bullion',
-    body: `
-<p>In Spain, "oro de primera ley" means one thing: <strong>18 karat</strong>. The system is simple once you know the stamps.</p>
-<h3>18K is the standard</h3>
-<p>Spanish jewellery is traditionally <strong>18K (750)</strong> — "oro de ley" — hallmarked with the piece's purity and the official contraste (assay) mark. Lower-karat pieces exist (9K in fashion chains) but 18K keeps the resale value. Check the live <a href="/en/gold-18k/">18K rate</a>.</p>
-<h3>Investment gold is VAT-free</h3>
-<p>Bars of 99.5%+ and qualifying coins trade <strong>without IVA</strong> in Spain, making bullion far more efficient than jewellery for savings. Spreads at Madrid dealers run a few percent on 1 oz coins, less on larger bars.</p>
-<h3>How prices are formed</h3>
-<p>Everything derives from the world <a href="/en/gold-price-usd/">USD price</a> × USD/EUR. Jewellers quote the day's 18K gram price and add workmanship per piece; "compro oro" shops buy back at metal value minus a margin. Follow the <a href="/en/dollar-spain/">dollar rate in Spain</a> beside today's <a href="/en/spain/">gold price in Spain</a>.</p>
-<h3>What buyers can do</h3>
-<p>Check the contraste hallmark, ask for the gram price and workmanship separately, and keep invoices — reselling documented pieces is far easier. This guide is educational, not investment advice.</p>`,
-    faq: [
-      ['What is oro de ley in Spain?', '"Oro de ley" is 18-karat gold (75% pure) — Spain\'s traditional standard for quality jewellery, hallmarked with the purity and contraste marks.'],
-      ['Is gold taxed in Spain?', 'Investment gold (99.5%+ bars and listed coins) is exempt from IVA; jewellery carries the standard 21% IVA, so savers prefer bullion.'],
-      ['What is the contraste mark?', 'The official Spanish assay hallmark guaranteeing the stated purity — always check it when buying or selling gold in Spain.']
-    ]
-  },
+  SPAIN_GUIDE,
   SWISS_GUIDE,
   {
     slug: 'why-gold-rises-nigeria',
