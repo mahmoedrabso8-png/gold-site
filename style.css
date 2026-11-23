@@ -338,3 +338,4 @@ form .btn{display:inline-flex;align-items:center;justify-content:center;min-heig
 :root[data-theme=light]{--t3:#53657d}:root[data-theme=light] .tool-number,:root[data-theme=light] .page-toggle a{color:#795c22}:root[data-theme=light] .update-badge[data-price-state=LIVE]{color:#166534}
 .refresh-policy{max-width:680px;margin:4px auto 14px;text-align:center;color:var(--t2);font-size:.72rem;line-height:1.8}
 .update-badge[data-asset-state=silver][data-state=STALE],.update-badge[data-asset-state=silver][data-state=UNAVAILABLE]{color:#991b1b}.update-badge[data-asset-state=fx]{color:#854d0e}
+:root[data-theme=light] .update-badge[data-asset-state=fx]{color:#854d0e}
