@@ -34,3 +34,4 @@ jobs:
           node tests/theme.mjs
           node tests/silver.mjs
           node tests/currency.mjs
+          node tests/melt.mjs

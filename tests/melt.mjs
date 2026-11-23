@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import {goldSpotRef,meltValue} from '../melt-core.mjs';
+const now=Date.parse('2026-11-23T04:00:00Z'),q={g24:2000/31.1035*3.6725,sourceAt:now-60000,fx:{GBP:0.8,EUR:0.9},fxAt:now};
+assert(Math.abs(goldSpotRef(q,'USD',now)-2000)<1e-6);assert(Math.abs(goldSpotRef(q,'GBP',now)-1600)<1e-6);assert(Math.abs(goldSpotRef(q,'EUR',now)-1800)<1e-6);
+for(const patch of [{sourceAt:now-16*60000},{sourceAt:null},{sourceAt:now+200000},{g24:0},{g24:NaN}])assert.equal(goldSpotRef({...q,...patch},'USD',now),null);
+for(const patch of [{fxAt:now-5*86400000},{fxAt:now+200000},{fxAt:null},{fx:{}}])assert.equal(goldSpotRef({...q,...patch},'GBP',now),null);
+assert.equal(goldSpotRef({...q,fxAt:null},'USD',now)>0,true);assert.equal(goldSpotRef(q,'JPY',now),null);
+let r=meltValue({weight:10,unit:'g',fineness:750,spot:2000,payoutPct:90});
+assert(Math.abs(r.fineG-7.5)<1e-12);assert(Math.abs(r.melt-7.5/31.1034768*2000)<1e-9);assert(Math.abs(r.payout-r.melt*.9)<1e-9);assert(Math.abs(r.gap-r.melt*.1)<1e-9);
+r=meltValue({weight:1,unit:'ozt',fineness:1000,spot:2000,payoutPct:100});assert(Math.abs(r.melt-2000)<1e-9);
+r=meltValue({weight:20,unit:'dwt',fineness:1000,spot:2000,payoutPct:100});assert(Math.abs(r.melt-2000)<1e-9);
+const g={weight:10,unit:'g',fineness:750,spot:2000,payoutPct:90};
+for(const p of [{weight:0},{weight:-1},{unit:'oz'},{fineness:0},{fineness:1001},{spot:0},{spot:NaN},{payoutPct:-1},{payoutPct:201},{weight:Infinity}])assert.throws(()=>meltValue({...g,...p}));
+console.log('PASS: gold spot reference (USD/GBP/EUR, stale/future/missing), melt value units, purity once, payout gap, invalid inputs');

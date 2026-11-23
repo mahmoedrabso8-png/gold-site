@@ -200,7 +200,7 @@ async function loadFX(force){
   G.fxLoading=true;
   try{
     const d=await (await fetch('https://open.er-api.com/v6/latest/USD')).json();
-    if(d.rates){if(DPG)$$('[data-upd]').forEach(el=>el.textContent=d.time_last_update_unix?dubaiTime(d.time_last_update_unix*1000):(EN?'Source time unavailable':'وقت المصدر غير متاح'));G.fx=d.rates;G.fxAt=Number(d.time_last_update_unix)*1000||0;G.fxFetchedAt=Date.now();statusPrice();if(window.GoldAlerts)window.GoldAlerts.check();paint();labels();nisab();calc();zakat();dconv('usd');silverToolsUpdate();fxToolUpdate();$$('[data-fx]').forEach(el=>{const v=d.rates[el.dataset.fx];if(v) el.textContent=fmt(v/AED,4);});$$('[data-fxd]').forEach(el=>{const v=d.rates[el.dataset.fxd];if(v){const w=+(el.dataset.w||1);el.textContent=fmt(el.dataset.i?w/v:v*w,+el.dataset.d||0);}});}
+    if(d.rates){if(DPG)$$('[data-upd]').forEach(el=>el.textContent=d.time_last_update_unix?dubaiTime(d.time_last_update_unix*1000):(EN?'Source time unavailable':'وقت المصدر غير متاح'));G.fx=d.rates;G.fxAt=Number(d.time_last_update_unix)*1000||0;G.fxFetchedAt=Date.now();statusPrice();if(window.GoldAlerts)window.GoldAlerts.check();paint();labels();nisab();calc();zakat();dconv('usd');silverToolsUpdate();fxToolUpdate();meltToolUpdate();$$('[data-fx]').forEach(el=>{const v=d.rates[el.dataset.fx];if(v) el.textContent=fmt(v/AED,4);});$$('[data-fxd]').forEach(el=>{const v=d.rates[el.dataset.fxd];if(v){const w=+(el.dataset.w||1);el.textContent=fmt(el.dataset.i?w/v:v*w,+el.dataset.d||0);}});}
   }catch(e){}finally{G.fxLoading=false;}
 }
 
@@ -349,6 +349,23 @@ if(fxForm){
  fxForm.addEventListener('change',()=>{$('#fx-results').textContent='';});
 }
 fxToolUpdate();setInterval(fxToolUpdate,30000);
+
+function meltToolUpdate(){
+ const tool=$('#melt-tool');if(!tool)return;const cur=tool.dataset.meltCur,ref=goldSpotRef(G,cur);$('#mv-reference').disabled=ref==null;
+ const n=$('[data-melt-ref]');if(n)n.textContent=ref==null?(EN?'Reference spot unavailable or stale. Enter a spot price from your own source.':'Reference unavailable.'):('Reference spot (Gold-API XAU, '+cur+' per troy ounce): '+fmt(ref,2)+' · '+(priceState(G).state)+'. Not a dealer price.');
+}
+const meltForm=$('#melt-form');
+if(meltForm){
+ const cur=$('#melt-tool').dataset.meltCur;
+ $('#mv-preset').addEventListener('change',()=>{if($('#mv-preset').value!=='custom')$('#mv-fine').value=$('#mv-preset').value;});
+ $('#mv-fine').addEventListener('input',()=>{$('#mv-preset').value='custom';});
+ $('#mv-reference').addEventListener('click',()=>{const r=goldSpotRef(G,cur);if(r==null){meltToolUpdate();return;}$('#mv-spot').value=r.toFixed(2);$('#mv-status').textContent='Reference copied. It is a reference quote, not a buyer offer. Enter your buyer payout percentage.';});
+ meltForm.addEventListener('submit',e=>{e.preventDefault();try{const v=id=>{const x=$('#mv-'+id).value.trim();return x===''?NaN:Number(x)},r=meltValue({weight:v('weight'),unit:$('#mv-unit').value,fineness:v('fine'),spot:v('spot'),payoutPct:v('payout')});
+ $('#mv-results').innerHTML='<dl class="quote-result-rows">'+[['grams','Item weight (g)',fmt(r.grams,3)],['fineG','Pure gold (g)',fmt(r.fineG,3)],['fineOz','Pure gold (troy oz)',fmt(r.fineOz,4)],['melt','Melt value',fmt(r.melt,2)+' '+cur],['payout','Estimated payout at your %',fmt(r.payout,2)+' '+cur],['gap','Gap to melt',fmt(r.gap,2)+' '+cur]].map(([k,l,x])=>'<dt>'+l+'</dt><dd data-mv-result="'+k+'">'+x+'</dd>').join('')+'</dl>';
+ }catch{$('#mv-results').textContent='Check a positive weight, fineness up to 1000, a positive spot price and a payout between 0 and 200%.';}});
+ meltForm.addEventListener('input',()=>{$('#mv-results').textContent='';});
+}
+meltToolUpdate();setInterval(meltToolUpdate,30000);
 
 const rb=$('#refresh');if(rb) rb.addEventListener('click',load);
 

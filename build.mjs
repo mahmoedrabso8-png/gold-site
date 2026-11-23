@@ -136,7 +136,7 @@ const esc = s => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replac
 
 const NAV = {
   ar: [['', 'الرئيسية'], ['gold-21k', 'عيار 21'], ['gold-24k', 'عيار 24'], ['gold-22k', 'عيار 22'], ['gold-18k', 'عيار 18'], ['gcc', 'مقارنة الخليج'], ['gold-price-usd', 'السعر العالمي'], ['silver', 'الفضة'], ['silver-egypt','الفضة في مصر'], ['silver-saudi','الفضة في السعودية'], ['egp-exchange-rates','العملات مقابل الجنيه'], ['gold-bars', 'السبائك'], ['gold-calculator', 'حاسبة الذهب'], ['gold-bar-calculator', 'حاسبة السبائك'], ['gold-shop-comparison', 'مقارنة العروض'], ['gold-portfolio', 'محفظة الذهب'], ['gold-resale-calculator', 'بيع الذهب'], ['gold-weight-converter', 'الوزن والنقاء'], ['price-alerts', 'تنبيهات السعر'], ['zakat-calculator', 'زكاة الذهب'], ['gold-price-yesterday', 'سعر أمس'], ['gold-forecast', 'توقعات الذهب'], ['articles', 'مقالات'], ['assistant', 'المساعد'], ['history', 'الأرشيف']],
-  en: [['', 'Home'], ['gold-22k', '22K'], ['gold-24k', '24K'], ['gold-18k', '18K'], ['gold-21k', '21K'], ['gcc', 'Gulf compare'], ['gold-price-usd', 'Gold in USD'], ['silver', 'Silver'], ['silver-egypt','Silver in Egypt'], ['silver-saudi','Silver in Saudi Arabia'], ['egp-exchange-rates','Currencies vs EGP'], ['gold-rate-inr', 'In INR'], ['gold-rate-pkr', 'In PKR'], ['gold-bars', 'Gold Bars'], ['gold-calculator', 'Calculator'], ['gold-bar-calculator', 'Bar calculator'], ['gold-shop-comparison', 'Shop quotes'], ['gold-portfolio', 'Portfolio'], ['gold-resale-calculator', 'Resale'], ['gold-weight-converter', 'Weight & purity'], ['price-alerts', 'Price alerts'], ['gold-price-yesterday', 'Last 10 days'], ['zakat-calculator', 'Zakat'], ['articles', 'Articles'], ['assistant', 'Assistant']],
+  en: [['', 'Home'], ['gold-22k', '22K'], ['gold-24k', '24K'], ['gold-18k', '18K'], ['gold-21k', '21K'], ['gcc', 'Gulf compare'], ['gold-price-usd', 'Gold in USD'], ['silver', 'Silver'], ['silver-egypt','Silver in Egypt'], ['silver-saudi','Silver in Saudi Arabia'], ['egp-exchange-rates','Currencies vs EGP'], ['gold-melt-value-calculator','Melt value'], ['gold-rate-inr', 'In INR'], ['gold-rate-pkr', 'In PKR'], ['gold-bars', 'Gold Bars'], ['gold-calculator', 'Calculator'], ['gold-bar-calculator', 'Bar calculator'], ['gold-shop-comparison', 'Shop quotes'], ['gold-portfolio', 'Portfolio'], ['gold-resale-calculator', 'Resale'], ['gold-weight-converter', 'Weight & purity'], ['price-alerts', 'Price alerts'], ['gold-price-yesterday', 'Last 10 days'], ['zakat-calculator', 'Zakat'], ['articles', 'Articles'], ['assistant', 'Assistant']],
   tr: [['turkiye', 'Gram Altın'], ['turkiye/24-ayar-altin', '24 Ayar'], ['turkiye/22-ayar-altin', '22 Ayar'], ['turkiye/21-ayar-altin', '21 Ayar'], ['turkiye/18-ayar-altin', '18 Ayar']],
   hi: [['sone-ka-bhav', 'सोने का भाव'], ['sone-ka-bhav/24-karat', '24 कैरेट'], ['sone-ka-bhav/22-karat', '22 कैरेट'], ['sone-ka-bhav/18-karat', '18 कैरेट'], ['sone-ka-bhav/21-karat', '21 कैरेट']],
   ur: [['sone-ka-rate', 'سونے کا ریٹ'], ['sone-ka-rate/24-karat', '24 کیرٹ'], ['sone-ka-rate/22-karat', '22 کیرٹ'], ['sone-ka-rate/18-karat', '18 کیرٹ'], ['sone-ka-rate/21-karat', '21 کیرٹ']],
@@ -254,7 +254,7 @@ function layout(p, ctx) {
   const navLink = ([s,n]) => `<a href="${url(L,s)}"${s===p.slug?' aria-current="page"':''}>${n}</a>`;
   const navGroups = (L==='ar'||L==='en') ? [
     [en?'Gold':'الذهب', ['gold-21k','gold-24k','gold-22k','gold-18k','gold-bars']],
-    [en?'Tools':'الأدوات', ['gold-calculator','gold-bar-calculator','gold-shop-comparison','gold-portfolio','gold-resale-calculator','gold-weight-converter','price-alerts','zakat-calculator']],
+    [en?'Tools':'الأدوات', ['gold-calculator','gold-bar-calculator','gold-shop-comparison','gold-portfolio','gold-resale-calculator','gold-weight-converter','gold-melt-value-calculator','price-alerts','zakat-calculator']],
     [en?'Markets':'الأسواق', ['gold-price-usd','silver','silver-egypt','silver-saudi','egp-exchange-rates','gcc','gold-rate-inr','gold-rate-pkr']],
     [en?'Guides':'المحتوى', ['articles','gold-forecast','gold-price-yesterday','history','assistant']]
   ] : null;
@@ -467,7 +467,7 @@ async function place(name, dirs, dest) {
 }
 for (const f of ['style.css', 'app.js', 'assistant.js', 'alerts.js', 'resale.js', 'weight.js']) await place(f, ['assets', '.'], path.join(OUT, 'assets', f));
 
-const priceStateJs=(await fs.readFile('price-state.mjs','utf8')).replace(/^export /gm,'')+'\n'+(await fs.readFile('silver-core.mjs','utf8')).replace(/^export /gm,'')+'\n'+(await fs.readFile('currency-core.mjs','utf8')).replace(/^export /gm,'');
+const priceStateJs=(await fs.readFile('price-state.mjs','utf8')).replace(/^export /gm,'')+'\n'+(await fs.readFile('silver-core.mjs','utf8')).replace(/^export /gm,'')+'\n'+(await fs.readFile('currency-core.mjs','utf8')).replace(/^export /gm,'')+'\n'+(await fs.readFile('melt-core.mjs','utf8')).replace(/^import .*$/gm,'').replace(/^export /gm,'');
 const browserApp=await fs.readFile(path.join(OUT,'assets','app.js'),'utf8');
 await fs.writeFile(path.join(OUT,'assets','app.js'),'(function(){'+priceStateJs+'\n'+browserApp+'})();');
 
