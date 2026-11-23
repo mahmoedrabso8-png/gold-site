@@ -131,3 +131,38 @@ export const SPAIN_GUIDE = {
     ['Can I use the reference price as a dealer buyback quote?','No. A buyer’s actual offer can include deductions and a spread. Request a dated quote and compare net proceeds.']
   ]
 };
+
+export const AUSTRALIA_GUIDE = {
+  slug:'why-gold-rises-australia',
+  title:'Why Australian Gold Prices Move: The Correct AUD/USD Formula',
+  h1:'Why gold prices change in Australia: gold, AUD/USD and dealer spreads',
+  desc:'Convert a US-dollar gold price into Australian dollars correctly, see how a stronger or weaker AUD changes the result, and compare dealer bid and ask prices.',
+  teaser:'The right exchange-rate direction, with worked examples',
+  intro:'Divide by USD per AUD, or multiply by AUD per USD. The quote direction matters.',
+  datePublished:'2026-11-22',dateModified:'2026-11-23',
+  body:`
+<p>The <a href="/en/australia/">reference gold price in Australia</a> reflects both the global gold market and the Australian dollar. Those two inputs can move in opposite directions. A rise in the Australian-dollar price does not necessarily mean gold rose by the same percentage in US dollars, and neither currency's price is guaranteed to keep rising.</p>
+<h3>The correct AUD/USD conversion</h3>
+<p>The Reserve Bank of Australia's exchange-rate table quotes <strong>units of foreign currency per Australian dollar</strong>. Its US-dollar row therefore tells you how many US dollars buy one Australian dollar. If that rate is called AUD/USD, the conversion is:</p>
+<p><strong>AUD per troy ounce = USD per troy ounce ÷ USD per AUD.</strong></p>
+<p>If you instead have the reciprocal quote, Australian dollars per US dollar, multiply by it. The equivalent formula is <strong>AUD per troy ounce = USD per troy ounce × AUD per USD</strong>. Mixing the two quote directions gives the wrong result. Check the units on the data source rather than relying only on a currency-pair label.</p>
+<h3>A fictional worked example</h3>
+<p>Suppose gold is US$3,000 per troy ounce and one Australian dollar buys US$0.75. Then the reference metal price is A$4,000 per troy ounce: 3,000 ÷ 0.75. Multiplying 3,000 by 0.75 would give 2,250, which is not the Australian-dollar conversion.</p>
+<p>If the global price stays at US$3,000 but the Australian dollar weakens to US$0.60, the converted price becomes A$5,000. If the currency strengthens instead to US$0.80, it becomes A$3,750. These are hypothetical examples to explain the arithmetic, not current quotes or forecasts. Use matching timestamps when comparing real prices.</p>
+<h3>From a troy ounce to the item you are buying</h3>
+<p>Keep the metal unit consistent before applying the exchange rate. One troy ounce is 31.1034768 grams, not an ordinary 28.349523125-gram ounce. Divide the troy-ounce reference by the troy conversion factor to get a fine-gold gram reference. A piece with lower fineness contains less gold for the same gross weight.</p>
+<p>The <a href="/en/gold-weight-converter/">weight and purity converter</a> separates total mass from fine-gold mass. A jeweller's product price may also include stones, workmanship, distribution and other charges. The <a href="/en/gold-calculator/">gold purchase calculator</a> can use your quoted charges in AUD; it is not a shop offer.</p>
+<h3>What moves the world price?</h3>
+<p>World Gold Council research groups gold drivers into economic expansion, risk and uncertainty, opportunity costs associated with currencies and interest rates, and momentum. These interact rather than providing a simple promise that a rate cut or inflation report must lift gold. Gold can fall as well as rise. This evergreen guide does not assert that today's price is a record high.</p>
+<h3>Bid, ask and the cost of exiting</h3>
+<p>The Perth Mint displays separate buy and sell information and warns that indicative prices can differ from the price available when a transaction is completed. Compare the precise product, currency, weight and price timestamp. A dealer's ask is not what it will pay you to buy back the same item.</p>
+<p>Ask for an actual net buyback quote, including any assessment or other stated deduction. The <a href="/en/gold-resale-calculator/">resale calculator</a> compares those proceeds with your original total cost. A rising metal chart does not automatically cover the spread, delivery, storage or other costs.</p>
+<h3>Sources and review</h3>
+<ul><li><a href="https://www.rba.gov.au/statistics/frequency/exchange-rates.html">Reserve Bank of Australia: exchange rates</a>, quote convention and reference-rate limitations.</li><li><a href="https://www.perthmint.com/invest/information-for-investors/metal-prices/">The Perth Mint: metal prices</a>, indicative-price and transaction-price cautions.</li><li><a href="https://www.gold.org/goldhub/tools/gold-return-attribution-model">World Gold Council: gold return drivers</a>.</li><li><a href="https://www.nist.gov/system/files/documents/2017/05/09/Precious-Metals-Conversion-Information-march2015.pdf">NIST: precious-metals conversions</a>.</li></ul>
+<p>Reviewed 23 November 2026. Educational information, not investment advice.</p>`,
+  faq:[
+    ['Do I multiply gold by AUD/USD?','If AUD/USD means US dollars per Australian dollar, divide the USD gold price by that rate. Multiply only when your exchange rate is quoted as Australian dollars per US dollar.'],
+    ['Can Australian gold rise while US-dollar gold is unchanged?','Yes. A weaker Australian dollar raises the converted AUD metal price when the USD price is unchanged. A stronger AUD has the opposite effect.'],
+    ['Does a higher reference price guarantee a profit?','No. Compare actual buyback proceeds with purchase, spread and other costs. Reference prices are not executable dealer offers.']
+  ]
+};

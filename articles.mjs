@@ -1,4 +1,4 @@
-import { GERMANY_GUIDE, FRANCE_GUIDE, SWISS_GUIDE, SPAIN_GUIDE } from './reviewed-guides.mjs';
+import { GERMANY_GUIDE, FRANCE_GUIDE, SWISS_GUIDE, SPAIN_GUIDE, AUSTRALIA_GUIDE } from './reviewed-guides.mjs';
 import { WEIGHT_ARTICLE_AR, WEIGHT_ARTICLE_EN } from './weight-articles.mjs';
 import { RESALE_AR, RESALE_EN } from './resale-articles.mjs';
 // مقالات الموقع التعليمية (عربي) — محتوى دائم بدون أسعار مباشرة
@@ -892,29 +892,7 @@ export const ARTICLES_EN = [
       ['Are Maple Leaf coins a good way to buy gold in Canada?', 'They are 99.99% pure, globally recognized and usually carry modest premiums in Canada, which makes them a popular bullion choice. Premiums vary by dealer, so compare.']
     ]
   },
-  {
-    slug: 'why-gold-rises-australia',
-    title: 'Why Is Gold Rising in Australia? AUD and Global Demand',
-    h1: 'Why is the gold price rising in Australia?',
-    desc: 'Why gold sets records in Australian dollars: the global spot cycle, the AUD/USD rate, RBA expectations, and what it means for Perth Mint and jewellery buyers.',
-    teaser: 'AUD gold has outrun USD gold — here is why',
-    intro: 'Australia digs the metal up — and still pays the world price for it, in AUD',
-    body: `
-<p>Australia is the world's third-biggest gold producer, yet the <a href="/en/australia/">gold price in Australia</a> is set by the same global auction as everywhere else — translated into AUD.</p>
-<h3>The AUD amplifier</h3>
-<p>The local formula is <strong>AUD price = USD spot × AUD/USD</strong>. The Australian dollar has spent long stretches weaker against the US dollar, so AUD gold has repeatedly hit record highs even in periods when the USD price was only steady. For Australian savers, gold has been both a global asset and a currency hedge.</p>
-<h3>Global cycle, local rates</h3>
-<p>Worldwide demand — central-bank buying, ETF inflows, inflation hedging — drives the spot price. Locally, Reserve Bank of Australia rate expectations matter too: lower expected rates reduce the appeal of cash and term deposits relative to gold.</p>
-<h3>The Perth Mint channel</h3>
-<p>Most Australian retail buyers meet gold through <strong>Perth Mint</strong> products: Kangaroo coins (99.99%), minted bars, and depository accounts. Prices are the live AUD spot plus a premium that shrinks as size grows — a 1 oz coin carries a noticeably lower percentage premium than a 1 g bar.</p>
-<h3>What it means for buyers</h3>
-<p>For bullion, compare premiums over the live AUD price and buy sizes that keep the percentage premium low. For jewellery — mostly 9K and <a href="/en/gold-18k/">18K</a> in Australia — the metal value follows the karat rate, with workmanship on top. The <a href="/en/gold-calculator/">gold calculator</a> works with AUD. This guide is educational, not investment advice.</p>`,
-    faq: [
-      ['Why is gold at record highs in Australia?', 'The global price has climbed on rate-cut expectations and central-bank demand, and a softer Australian dollar has amplified the move in AUD terms.'],
-      ['Does the AUD/USD rate change the local gold price?', 'Yes — the Australian price is the US-dollar spot price converted at AUD/USD. A weaker AUD means a higher local price for the same global market.'],
-      ['Is Perth Mint gold a good buy?', 'Perth Mint coins and bars are government-backed, 99.99% pure and easy to resell in Australia. Compare dealer premiums over the live spot price before buying.']
-    ]
-  },
+  AUSTRALIA_GUIDE,
   {
     slug: 'gold-karats-uk',
     title: 'Gold Karats in the UK: 9K, 18K, 22K and 24K Explained',
