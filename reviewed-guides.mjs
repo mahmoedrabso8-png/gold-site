@@ -64,3 +64,37 @@ export const FRANCE_GUIDE = {
     ['Does an invoice automatically qualify me for the capital-gains option?','No. Official guidance also requires adequate identification and proof, and the relevant election/declaration. Confirm your position with the tax authority or a qualified adviser.']
   ]
 };
+
+export const SWISS_GUIDE = {
+  slug:'buying-gold-switzerland-pamp',
+  title:'Buying Gold in Switzerland: Bar Checks, Vreneli Weight and Storage Costs',
+  h1:'Buying gold in Switzerland: bars, Vreneli coins and storage',
+  desc:'Check a Swiss gold bar’s fine weight and marks, distinguish Vreneli gross mass from gold content, and compare documented purchase, storage and resale costs.',
+  teaser:'Fine weight, product checks and the full cost of storage',
+  intro:'A Swiss address or a familiar brand is not a substitute for checking the product and contract.',
+  datePublished:'2026-11-22',dateModified:'2026-11-23',
+  body:`
+<p>When comparing a gold purchase in Switzerland, start with the item and the legal seller rather than the reputation of the country. A refinery name, a photograph of a sealed bar or an attractive storage description does not establish that the offer is genuine or suitable for you. Ask who takes your payment, what exactly you receive and what it will cost to sell or withdraw the metal later.</p>
+<h3>Read the bar specification</h3>
+<p>Separate <strong>gross weight</strong> from <strong>fine-gold content</strong>. For example, a hypothetical 10-gram bar marked 999.9 contains 9.999 grams of fine gold, before measurement tolerances. That is arithmetic, not a test of authenticity. Check the stated fineness, maker's or responsibility mark, weight and any serial number against the invoice and product documents.</p>
+<p>Do not assume that packaging or a certificate makes further checks unnecessary. Buy through a seller whose identity, contact details and terms you can independently verify. Ask how it checks authenticity and how a later buyer will assess the same product. The <a href="/en/gold-weight-converter/">weight and purity converter</a> can help with units, but cannot authenticate a bar.</p>
+<h3>The 20-franc Goldvreneli: which weight?</h3>
+<p>Swissmint's technical sheet lists the 20-franc Goldvreneli at <strong>6.452 grams gross weight and 0.900 gold fineness</strong>. Multiplying those values gives approximately <strong>5.807 grams of fine gold</strong>. It would be wrong to describe 5.81 grams as the coin's total mass and then deduct 10% again.</p>
+<p>Swissmint distinguishes this20-franc issue from 10-franc and 100-franc Vreneli coins, which have different weights, and from the earlier Libertas design. Identify the denomination and issue before comparing offers. Collector value, condition and the buyer's assessment can produce a price different from a simple fine-gold calculation. Do not use the displayed face value as the metal value.</p>
+<h3>VAT depends on the product, not a brand name</h3>
+<p>Article 44 of the Swiss VAT Ordinance describes exempt-with-credit transactions in specified gold coins and fine gold. Its investment-bar category includes at least 995 per-thousand fineness and particular marking requirements for cast or pressed bars. The official English translation is supplied for information and has no legal force; use the official-language legislation or professional advice for a legal decision.</p>
+<p>This is not a blanket statement that all gold products or all associated services are tax-free. Ask the seller to state the VAT treatment for the exact item and any storage, delivery or other service. Imports and exports require separate checks in both jurisdictions. A Swiss invoice does not determine the rules in the country where you live or take delivery.</p>
+<h3>Ask what storage actually includes</h3>
+<p>Do not compare vault services using an unsupported “typical” annual percentage. Get a written quote that identifies account or custody charges, minimum fees, insurance terms, buying and selling commissions, physical withdrawal, transport and closure costs. Ask whether charges are based on value or weight and how the valuation is determined.</p>
+<p>Check how ownership is recorded, whether specific bars are identified for you, whether metal can be lent or substituted, and what the contract says if the provider fails. Labels such as “allocated” should be checked against the agreement rather than treated as a promise covering every risk. Ask how quickly you can sell or take delivery and what proof you receive.</p>
+<h3>Compare the exit price as well as the entry price</h3>
+<p>Request buyback terms for the same product before buying. Add transaction and storage costs when comparing your original outlay with net proceeds. The <a href="/en/gold-resale-calculator/">resale calculator</a> helps compare actual offers, while <a href="/en/switzerland/">Swiss reference gold prices</a> and the <a href="/en/dollar-switzerland/">USD/CHF reference rate</a> provide context, not executable dealer quotes.</p>
+<h3>Sources and review</h3>
+<ul><li><a href="https://www.swissmint.ch/dam/en/sd-web/DZKkcZ1APYG4/3-goldvreneli-d.pdf">Swissmint: Das Goldvreneli</a>, technical specifications for the denominations and historical designs.</li><li><a href="https://www.estv.admin.ch/dam/en/sd-web/FRi2nAPvZT4n/mwst-publ-vat-ordinance-en.pdf">Swiss Federal Tax Administration, VAT Ordinance English information translation</a>, Article 44; document status 1 January 2025.</li></ul>
+<p>Reviewed 23 November 2026. This guide does not verify a particular dealer or storage provider and is not personal financial, legal or tax advice.</p>`,
+  faq:[
+    ['Does a 20-franc Goldvreneli weigh 5.81 grams?','No. Swissmint lists 6.452 grams gross at 900 per-thousand fineness, or about 5.807 grams of fine gold. Identify the exact denomination and issue.'],
+    ['Is every high-purity Swiss gold product VAT-free?','No blanket assumption is safe. Article 44 sets product and marking conditions; services and cross-border obligations need separate checks.'],
+    ['What does Swiss gold storage cost?','There is no universal quote. Request custody, insurance, transaction, withdrawal, transport and closure costs for the exact contract.']
+  ]
+};

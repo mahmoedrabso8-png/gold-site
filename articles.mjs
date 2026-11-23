@@ -1,4 +1,4 @@
-import { GERMANY_GUIDE, FRANCE_GUIDE } from './reviewed-guides.mjs';
+import { GERMANY_GUIDE, FRANCE_GUIDE, SWISS_GUIDE } from './reviewed-guides.mjs';
 import { WEIGHT_ARTICLE_AR, WEIGHT_ARTICLE_EN } from './weight-articles.mjs';
 import { RESALE_AR, RESALE_EN } from './resale-articles.mjs';
 // مقالات الموقع التعليمية (عربي) — محتوى دائم بدون أسعار مباشرة
@@ -1294,29 +1294,7 @@ ARTICLES_EN.push(
       ['What is the contraste mark?', 'The official Spanish assay hallmark guaranteeing the stated purity — always check it when buying or selling gold in Spain.']
     ]
   },
-  {
-    slug: 'buying-gold-switzerland-pamp',
-    title: 'Buying Gold in Switzerland: PAMP Bars, Vaults and Prices',
-    h1: 'Buying gold in Switzerland: PAMP bars, vaults and prices',
-    desc: 'Why Switzerland is the world\'s gold refinery: PAMP and Valcambi bars, VAT-free investment gold, bank vaults, and how prices in francs are formed.',
-    teaser: 'Where most of the world\'s gold gets refined',
-    intro: 'Switzerland refines most of the world\'s gold — buying there is a craft',
-    body: `
-<p>Switzerland refines the majority of the world's mined gold. If you buy a 999.9 bar anywhere on earth, odds are it passed through Ticino.</p>
-<h3>The refinery capital</h3>
-<p><strong>PAMP</strong>, <strong>Valcambi</strong>, Argor-Heraeus and Metalor — four of the world's great refiners — are Swiss. Their 999.9 bars, especially the PAMP Lady Fortuna, are global benchmarks and buyable in Switzerland at tight premiums.</p>
-<h3>Taxes and the Vreneli</h3>
-<p>Investment gold is <strong>VAT-free</strong> in Switzerland (one reason the trade concentrates there); jewellery carries 8.1% VAT. The national coin is the 20-franc <strong>Goldvreneli</strong> (5.81 g, 90%) — the Swiss answer to the Napoleon.</p>
-<h3>Vaulting culture</h3>
-<p>Swiss banks and private vaults (including alpine facilities outside the banking system) store gold for clients worldwide. Allocated storage typically costs 0.5–1% per year; some buyers combine purchase and vaulting in one contract.</p>
-<h3>What moves the CHF price</h3>
-<p>World <a href="/en/gold-price-usd/">USD price</a> × USD/CHF. The strong franc historically dampened local gold moves — see the <a href="/en/dollar-switzerland/">dollar rate in Switzerland</a> and today's <a href="/en/switzerland/">gold price in Switzerland</a>. This guide is educational, not investment advice.</p>`,
-    faq: [
-      ['Why is Switzerland famous for gold?', 'It refines most of the world\'s mined gold (PAMP, Valcambi, Argor-Heraeus, Metalor) and combines VAT-free investment gold with world-class vaulting.'],
-      ['What is a PAMP bar?', 'A 999.9 fine gold bar made by PAMP in Ticino — the Lady Fortuna design is the world\'s best-known retail gold bar.'],
-      ['What is the Goldvreneli?', 'The Swiss 20-franc gold coin (5.81 g, 90% pure) — the classic Swiss savings coin, traded by every dealer.']
-    ]
-  },
+  SWISS_GUIDE,
   {
     slug: 'why-gold-rises-nigeria',
     title: 'Why Is the Gold Price Rising in Nigeria? Naira and Inflation',
