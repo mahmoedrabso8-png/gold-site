@@ -216,6 +216,7 @@ async function load(){
   const btn=$('#refresh');
   if(btn){btn.disabled=true;btn.textContent=T.refreshing;}
   const err=$('#price-error');
+  if(err)err.hidden=true;
   try{
     const p=await getPrice();
     render(p);
@@ -263,8 +264,8 @@ function dconv(dir){
   const sel=$('#dcv-cur');
   const o=sel?sel.selectedOptions[0]:null;
   const code=o?o.value:box.dataset.code;
-  const r=(G.fx&&G.fx[code])||+(o?o.dataset.rate:box.dataset.rate);
-  if(!r)return;
+  const r=rate(code);
+  if(!r){const other=$(dir==='loc'?'#dcv-usd':'#dcv-loc');if(other)other.value='';return;}
   const d=+(o?o.dataset.d:box.dataset.d)||0;
   const usd=$('#dcv-usd'),loc=$('#dcv-loc');if(!usd||!loc)return;
   const lbl=$('#dcv-locl');if(lbl&&o)lbl.textContent=o.textContent;
