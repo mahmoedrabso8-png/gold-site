@@ -296,6 +296,9 @@ paint();labels();nisab();
 load();spark();loadSilver();loadFX();
 setInterval(()=>{load();loadSilver();if(window.GoldAlerts?.hasActive()&&Date.now()-(G.fxFetchedAt||0)>6*3600000)loadFX(true);},CACHE_MS);
 
+/* Resale arithmetic loads only on its own pages. */
+if(document.getElementById('resale-tool')){const s=document.createElement('script');s.src='/assets/resale.js?v='+(document.body.dataset.avResale||'');document.head.appendChild(s);}
+
 /* ── Device-only gold targets ── */
 window.getGoldAlertSnapshot=()=>({g24:G.g24,at:G.at||0,stale:!!G.stale,fx:G.fx||{},fxAt:G.fxAt||0});
 window.ensureGoldAlertRates=()=>loadFX(true);

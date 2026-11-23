@@ -1,3 +1,4 @@
+import { resalePages } from './resale-content.mjs';
 import { priceAlertPages } from './alerts-content.mjs';
 import { pilotGuide } from './local-guides.mjs';
 // محتوى صفحات الموقع (عربي + إنجليزي)
@@ -5,7 +6,7 @@ import { ARTICLES, ARTICLES_EN } from './articles.mjs';
 
 export function pages(ctx) {
   const { P, FXD, updated, chg, daily, fmt, url, AD, TODAY } = ctx;
-  const out = priceAlertPages(ctx);
+  const out = [...priceAlertPages(ctx), ...resalePages(ctx)];
   const px = k => ctx.g24 ? fmt(ctx.g24 * k / 24) : null;   // سعر الغرام لإدراجه في العناوين
 
   // ── معلومات العيارات ─────────────────────────────────────
@@ -100,14 +101,14 @@ export function pages(ctx) {
       ['gold-price-usd', 'سعر الذهب عالمياً', 'الأونصة بالدولار مباشر'], ['dollar', 'سعر الدولار اليوم', 'مباشر بكل العملات'], ['silver', 'سعر الفضة اليوم', 'الغرام والأونصة والكيلو'],
       ['gcc', 'أسعار الذهب في الخليج', 'مقارنة بين 6 دول'], ['saudi', 'سعر الذهب في السعودية', 'بالريال السعودي'], ['kuwait', 'سعر الذهب في الكويت', 'بالدينار الكويتي'],
       ['qatar', 'سعر الذهب في قطر', 'بالريال القطري'], ['oman', 'سعر الذهب في عُمان', 'بالريال العُماني'], ['bahrain', 'سعر الذهب في البحرين', 'بالدينار البحريني'], ['egypt', 'سعر الذهب في مصر', 'بالجنيه المصري'], ['iraq', 'سعر الذهب في العراق', 'بالدينار العراقي'], ['jordan', 'سعر الذهب في الأردن', 'بالدينار الأردني'], ['morocco', 'سعر الذهب في المغرب', 'بالدرهم المغربي'], ['algeria', 'سعر الذهب في الجزائر', 'بالدينار الجزائري'], ['lebanon', 'سعر الذهب في لبنان', 'بالليرة والدولار'], ['tunisia', 'سعر الذهب في تونس', 'بالدينار التونسي'], ['libya', 'سعر الذهب في ليبيا', 'بالدينار الليبي'], ['yemen', 'سعر الذهب في اليمن', 'بالريال اليمني'],
-      ['gold-bars', 'أسعار السبائك', 'من 1 غرام إلى 1 كيلو'], ['gold-calculator', 'حاسبة الذهب', 'بالمصنعية والضريبة'], ['zakat-calculator', 'حاسبة زكاة الذهب', 'النصاب وقيمة الزكاة'],
+      ['gold-bars', 'أسعار السبائك', 'من 1 غرام إلى 1 كيلو'], ['gold-calculator', 'حاسبة الذهب', 'بالمصنعية والضريبة'], ['gold-resale-calculator', 'حاسبة بيع الذهب', 'قارن صافي العروض ونقطة التعادل'], ['zakat-calculator', 'حاسبة زكاة الذهب', 'النصاب وقيمة الزكاة'],
       ['gold-price-yesterday', 'سعر الذهب أمس', 'وآخر 10 أيام'], ['gold-forecast', 'توقعات الذهب', 'الاتجاه والعوامل المؤثرة'], ['history', 'أرشيف الأسعار', 'سعر الذهب يوماً بيوم'],
       ['articles', 'مقالات وأدلة الذهب', 'شروحات الشراء والادخار والزكاة']],
     en: [['assistant', 'Gold price assistant', 'Ask any gold or currency question'], ['gold-22k', '22K gold rate', 'Popular for Indian jewellery'], ['gold-24k', '24K gold rate', 'Pure gold & bars'], ['gold-21k', '21K gold rate', 'Gulf jewellery'], ['gold-18k', '18K gold rate', 'Diamond jewellery'],
       ['gold-price-usd', 'Gold price in USD', 'Live ounce XAU/USD'], ['dollar', 'US dollar rate', 'Live vs 40 currencies'], ['silver', 'Silver price', 'Per gram, ounce & kg'],
       ['gcc', 'Gulf gold prices', 'Compare 6 countries'], ['saudi', 'Gold price in Saudi Arabia', 'In SAR'], ['kuwait', 'Gold price in Kuwait', 'In KWD'],
       ['qatar', 'Gold price in Qatar', 'In QAR'], ['oman', 'Gold price in Oman', 'In OMR'], ['bahrain', 'Gold price in Bahrain', 'In BHD'], ['egypt', 'Gold price in Egypt', 'In EGP'], ['india', 'Gold rate in India', 'In INR, 22K & 24K'], ['pakistan', 'Gold rate in Pakistan', 'In PKR, per tola'], ['bangladesh', 'Gold price in Bangladesh', 'In BDT'], ['turkey', 'Gold price in Turkey', 'Gram altın in TRY'], ['usa', 'Gold price in USA', 'In USD'], ['uk', 'Gold price in UK', 'In GBP'], ['canada', 'Gold price in Canada', 'In CAD'], ['australia', 'Gold price in Australia', 'In AUD'], ['philippines', 'Gold price in Philippines', 'In PHP'], ['malaysia', 'Gold price in Malaysia', 'Emas 916 in MYR'], ['nepal', 'Gold price in Nepal', 'In NPR, per tola'], ['southafrica', 'Gold price in South Africa', 'Krugerrand in ZAR'], ['iraq', 'Gold price in Iraq', 'In IQD'], ['jordan', 'Gold price in Jordan', 'In JOD'], ['morocco', 'Gold price in Morocco', 'In MAD'], ['algeria', 'Gold price in Algeria', 'In DZD'], ['indonesia', 'Gold price in Indonesia', 'Antam bars in IDR'], ['thailand', 'Gold price in Thailand', 'Per baht weight, THB'], ['vietnam', 'Gold price in Vietnam', 'SJC bars in VND'], ['singapore', 'Gold price in Singapore', 'GST-free IPM in SGD'], ['srilanka', 'Gold price in Sri Lanka', 'In LKR'], ['germany', 'Gold price in Germany', 'VAT-free bullion, EUR'], ['japan', 'Gold price in Japan', 'In JPY'], ['switzerland', 'Gold price in Switzerland', 'Home of PAMP, CHF'], ['nigeria', 'Gold price in Nigeria', 'In NGN'], ['ghana', 'Gold price in Ghana', 'The Gold Coast, GHS'], ['kenya', 'Gold price in Kenya', 'In KES'], ['mexico', 'Gold price in Mexico', 'Centenario in MXN'], ['brazil', 'Gold price in Brazil', 'Ouro 18K in BRL'], ['china', 'Gold price in China', '999 gold in CNY'], ['france', 'Gold price in France', 'Napoleon coins, EUR'], ['italy', 'Gold price in Italy', '18K standard, EUR'], ['spain', 'Gold price in Spain', 'Oro de ley, EUR'], ['lebanon', 'Gold price in Lebanon', 'In LBP & USD'], ['tunisia', 'Gold price in Tunisia', 'In TND'], ['libya', 'Gold price in Libya', 'In LYD'], ['yemen', 'Gold price in Yemen', 'In YER'], ['gold-rate-inr', 'Gold rate in INR', 'Dubai price in rupees'], ['gold-rate-pkr', 'Gold rate in PKR', 'Per tola in rupees'],
-      ['gold-bars', 'Gold bar prices', '1 g to 1 kg, tola bars'], ['gold-calculator', 'Gold calculator', 'With making charges & VAT'], ['gold-price-yesterday', 'Last 10 days', 'Yesterday\'s gold rate'], ['zakat-calculator', 'Zakat calculator', 'Nisab and zakat due'],
+      ['gold-bars', 'Gold bar prices', '1 g to 1 kg, tola bars'], ['gold-calculator', 'Gold calculator', 'With making charges & VAT'], ['gold-resale-calculator', 'Resale calculator', 'Compare net offers & break-even'], ['gold-price-yesterday', 'Last 10 days', 'Yesterday\'s gold rate'], ['zakat-calculator', 'Zakat calculator', 'Nisab and zakat due'],
       ['articles', 'Gold guides & articles', 'Buying tips, karats and why prices rise']]
   };
   const links = (L, skip) => `<section class="card-section"><h2>${L === 'en' ? 'More gold prices & tools' : 'أسعار وأدوات أخرى'}</h2><div class="links-grid">${LINKS[L].filter(l => l[0] !== skip).map(([s, n, d]) => `<a class="link-card" href="${url(L, s)}">${n}<span>${d}</span></a>`).join('')}</div></section>`;
@@ -1939,7 +1940,7 @@ ${MSK.filter(([k2]) => k2 !== k).map(([, n2, s2]) => `<a class="link-card" href=
 <section class="card-section"><h2>كل المقالات</h2><div class="links-grid">${ARTICLES.map(artCard).join('')}</div></section>
 ${links('ar', 'articles')}` });
   for (const a of ARTICLES) {
-    out.push({ lang: 'ar', fixed: true, slug: `articles/${a.slug}`,
+    out.push({ lang: 'ar', fixed: true, ...(a.paired?{alt:true}:{}), slug: `articles/${a.slug}`,
       title: a.title, desc: a.desc, lastmod: a.dateModified || a.datePublished || '2026-11-22',
       crumbs: [['مقالات الذهب', '/articles/'], [a.h1, `/articles/${a.slug}/`]],
       body: `<div class="hero"><h1>${a.h1}</h1><p class="hero-sub">${a.intro}</p></div>
@@ -1964,7 +1965,7 @@ ${share('ar', `articles/${a.slug}`, a.h1)}`,
 <section class="card-section"><h2>All articles</h2><div class="links-grid">${ARTICLES_EN.map(artCardEn).join('')}</div></section>
 ${links('en', 'articles')}` });
   for (const a of ARTICLES_EN) {
-    out.push({ lang: 'en', fixed: true, slug: `articles/${a.slug}`,
+    out.push({ lang: 'en', fixed: true, ...(a.paired?{alt:true}:{}), slug: `articles/${a.slug}`,
       title: a.title, desc: a.desc, lastmod: a.dateModified || a.datePublished || '2026-11-22',
       crumbs: [['Gold articles', '/en/articles/'], [a.h1, `/en/articles/${a.slug}/`]],
       body: `<div class="hero"><h1>${a.h1}</h1><p class="hero-sub">${a.intro}</p></div>

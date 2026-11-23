@@ -1,6 +1,8 @@
+import { RESALE_AR, RESALE_EN } from './resale-articles.mjs';
 // مقالات الموقع التعليمية (عربي) — محتوى دائم بدون أسعار مباشرة
 // كل مقال: slug, title (عنوان SEO), h1, desc, teaser, intro, body (HTML جوه .prose), faq
 export const ARTICLES = [
+  ...RESALE_AR,
   {
     slug: 'how-gold-price-is-calculated',
     title: 'كيف يُحسب سعر الذهب؟ من الأونصة العالمية إلى سعر الغرام في الخليج',
@@ -815,6 +817,7 @@ export const ARTICLES = [
 
 // English country articles — one localized SEO guide per major market
 export const ARTICLES_EN = [
+  ...RESALE_EN,
   {
     slug: 'why-gold-rises-india',
     title: 'Why Is the Gold Price Rising in India? Rupee, Duty and Demand',
