@@ -1,3 +1,4 @@
+import { articleLibrary, articleBody, relatedArticles } from './article-discovery.mjs';
 import { weightPages } from './weight-content.mjs';
 import { resalePages } from './resale-content.mjs';
 import { priceAlertPages } from './alerts-content.mjs';
@@ -1932,21 +1933,22 @@ ${MSK.filter(([k2]) => k2 !== k).map(([, n2, s2]) => `<a class="link-card" href=
 
   // ── صفحات خاصة (خارج الـ sitemap) ─────────────────────
   // ── المقالات التعليمية ─────────────────────────────────
-  const artCard = a => `<a class="link-card" href="/articles/${a.slug}/">${a.h1}<span>${a.teaser}</span></a>`;
   out.push({ lang: 'ar', fixed: true, slug: 'articles',
     title: 'مقالات الذهب: أدلة الشراء والادخار والزكاة | معلوماتي',
     desc: 'مقالات تعليمية مبسطة عن الذهب: كيف يُحسب السعر، الفرق بين العيارات، المصنعية، السبائك أم المشغولات، زكاة الذهب، ومتى تشتري.',
     crumbs: [['مقالات الذهب', '/articles/']],
     body: `<div class="hero"><h1>مقالات وأدلة الذهب</h1><p class="hero-sub">شروحات مبسطة تساعدك تشتري وتدخر في الذهب بفهم</p></div>
-<section class="card-section"><h2>كل المقالات</h2><div class="links-grid">${ARTICLES.map(artCard).join('')}</div></section>
+${articleLibrary(ARTICLES,'ar')}
 ${links('ar', 'articles')}` });
   for (const a of ARTICLES) {
+    const reading = articleBody(a,'ar');
     out.push({ lang: 'ar', fixed: true, ...(a.paired?{alt:true}:{}), slug: `articles/${a.slug}`,
       title: a.title, desc: a.desc, lastmod: a.dateModified || a.datePublished || '2026-11-22',
       crumbs: [['مقالات الذهب', '/articles/'], [a.h1, `/articles/${a.slug}/`]],
       body: `<div class="hero"><h1>${a.h1}</h1><p class="hero-sub">${a.intro}</p></div>
-<article class="card-section"><div class="prose">${a.body}</div></article>
-<section class="card-section"><h2>مقالات أخرى</h2><div class="links-grid">${ARTICLES.filter(x => x.slug !== a.slug).map(artCard).join('')}</div></section>
+<article class="card-section">${reading.date}${reading.toc}<div class="prose">${reading.body}</div></article>
+<section class="card-section"><h2>مقالات أخرى</h2><div class="links-grid related-articles">${relatedArticles(a,ARTICLES,'ar')}</div></section>
+<p class="all-guides"><a href="/articles/">تصفح كل الأدلة</a></p>
 ${share('ar', `articles/${a.slug}`, a.h1)}`,
       faq: a.faq,
       schema: [{ '@context': 'https://schema.org', '@type': 'Article', headline: a.h1, description: a.desc,
@@ -1957,21 +1959,22 @@ ${share('ar', `articles/${a.slug}`, a.h1)}`,
   }
 
   // ── المقالات الإنجليزية (دليل لكل سوق كبير) ──────────────
-  const artCardEn = a => `<a class="link-card" href="/en/articles/${a.slug}/">${a.h1}<span>${a.teaser}</span></a>`;
   out.push({ lang: 'en', fixed: true, slug: 'articles',
     title: 'Gold Guides: Karats, Prices and Buying Tips | Maelumatii',
     desc: 'Plain-English gold guides for 40 markets: why prices rise, karats and local units explained, and how to buy well in your country.',
     crumbs: [['Gold articles', '/en/articles/']],
     body: `<div class="hero"><h1>Gold Guides & Articles</h1><p class="hero-sub">Plain-English guides to help you buy and save in gold with confidence</p></div>
-<section class="card-section"><h2>All articles</h2><div class="links-grid">${ARTICLES_EN.map(artCardEn).join('')}</div></section>
+${articleLibrary(ARTICLES_EN,'en')}
 ${links('en', 'articles')}` });
   for (const a of ARTICLES_EN) {
+    const reading = articleBody(a,'en');
     out.push({ lang: 'en', fixed: true, ...(a.paired?{alt:true}:{}), slug: `articles/${a.slug}`,
       title: a.title, desc: a.desc, lastmod: a.dateModified || a.datePublished || '2026-11-22',
       crumbs: [['Gold articles', '/en/articles/'], [a.h1, `/en/articles/${a.slug}/`]],
       body: `<div class="hero"><h1>${a.h1}</h1><p class="hero-sub">${a.intro}</p></div>
-<article class="card-section"><div class="prose">${a.body}</div></article>
-<section class="card-section"><h2>More articles</h2><div class="links-grid">${ARTICLES_EN.filter(x => x.slug !== a.slug).map(artCardEn).join('')}</div></section>
+<article class="card-section">${reading.date}${reading.toc}<div class="prose">${reading.body}</div></article>
+<section class="card-section"><h2>More articles</h2><div class="links-grid related-articles">${relatedArticles(a,ARTICLES_EN,'en')}</div></section>
+<p class="all-guides"><a href="/en/articles/">Browse all guides</a></p>
 ${share('en', `articles/${a.slug}`, a.h1)}`,
       faq: a.faq,
       schema: [{ '@context': 'https://schema.org', '@type': 'Article', headline: a.h1, description: a.desc,

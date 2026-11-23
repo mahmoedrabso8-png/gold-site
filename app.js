@@ -29,6 +29,14 @@ const navGroups=[...document.querySelectorAll('.grouped-nav details')];
 navGroups.forEach(d=>d.addEventListener('toggle',()=>{if(d.open)navGroups.forEach(other=>{if(other!==d)other.open=false;});}));
 document.addEventListener('click',e=>{if(!e.target.closest('.grouped-nav'))navGroups.forEach(d=>d.open=false);});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){const open=navGroups.find(d=>d.open);if(open){open.open=false;open.querySelector('summary').focus();}}});
+/* Article library: progressive enhancement, with all links available without JS. */
+const library=document.querySelector('[data-article-library]');
+if(library){
+  const controls=library.querySelector('.article-controls'),input=library.querySelector('#article-search'),cards=[...library.querySelectorAll('[data-article-card]')],status=library.querySelector('.article-count'),empty=library.querySelector('.article-empty');
+  const normalize=s=>s.toLocaleLowerCase().normalize('NFKD').replace(/[\u064B-\u065F\u0670\u0640]/g,'').replace(/[أإآٱ]/g,'ا').replace(/ى/g,'ي');
+  const filter=()=>{const q=normalize(input.value.trim()),topic=library.querySelector('[name="article-topic"]:checked').value;let shown=0;cards.forEach(c=>{const show=(topic==='all'||c.dataset.topic===topic)&&normalize(c.textContent).includes(q);c.hidden=!show;if(show)shown++;});status.textContent=EN?`${shown} of ${cards.length} guides`:`${shown} من ${cards.length} دليل`;empty.hidden=shown>0;};
+  controls.hidden=false;input.addEventListener('input',filter);library.querySelectorAll('[name="article-topic"]').forEach(r=>r.addEventListener('change',filter));library.querySelector('.article-reset').addEventListener('click',()=>{input.value='';library.querySelector('[value="all"]').checked=true;filter();input.focus();});filter();
+}
 const fmt=(v,d=2)=>new Intl.NumberFormat('en-US',{minimumFractionDigits:d,maximumFractionDigits:d}).format(v);
 const num=id=>{const el=document.getElementById(id);if(!el)return 0;const v=parseFloat(String(el.value).replace(',','.'));return isFinite(v)&&v>0?v:0;};
 const dubaiTime=d=>new Date(d).toLocaleString(EN?'en-AE':'ar-AE',{hour:'2-digit',minute:'2-digit',day:'numeric',month:'short',timeZone:'Asia/Dubai'});
