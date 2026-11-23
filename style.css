@@ -303,3 +303,7 @@ body.ib .tg-float{bottom:100px}
 :root[data-theme=light] .chg.dn{color:#991b1b}
 :root[data-theme=light] .update-badge[data-price-state=DELAYED]{color:#854d0e}
 :root[data-theme=light] .update-badge[data-price-state=STALE],:root[data-theme=light] .update-badge[data-price-state=UNAVAILABLE]{color:#991b1b}
+.quote-provenance{max-width:680px;margin:12px auto;text-align:start;font-size:.78rem;line-height:1.8;color:var(--t2)}
+.quote-provenance summary{cursor:pointer;padding:8px;min-height:44px;text-align:center}
+.quote-provenance p{margin:10px 0}.quote-provenance dl{display:grid;grid-template-columns:minmax(100px,1fr) minmax(0,2fr);gap:7px 12px;padding:12px;border:1px solid var(--bb);border-radius:8px}
+.quote-provenance dd{margin:0;overflow-wrap:anywhere}.quote-provenance dt{font-weight:700}

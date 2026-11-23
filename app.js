@@ -22,7 +22,7 @@ const T=EN?{
 
 let G={g24:+(window.__G||0)||null,...(window.__QUOTE||{})};
 G.at=epoch(G.sourceAt);G.stale=!priceState(G).usable;
-function statusPrice(){const status=priceState(G);G.stale=!status.usable;document.querySelectorAll('[data-price-state]').forEach(el=>{el.dataset.priceState=status.state;el.textContent=priceLabel(status.state,document.documentElement.lang);});return status;}
+function statusPrice(){const status=priceState(G);G.stale=!status.usable;document.querySelectorAll('[data-price-state]').forEach(el=>{el.dataset.priceState=status.state;el.textContent=priceLabel(status.state,document.documentElement.lang);});document.querySelectorAll('[data-provenance]').forEach(el=>{const t=epoch(G[el.dataset.provenance]);el.textContent=t?new Date(t).toLocaleString(EN?'en-GB':'ar-EG',{timeZoneName:'short'}):'—';});return status;}
 statusPrice();G.displayedAt=new Date().toISOString();setInterval(()=>{statusPrice();calc();zakat();if(window.GoldAlerts)window.GoldAlerts.check();},30000);
 
 const $=s=>document.querySelector(s);
@@ -199,7 +199,7 @@ async function loadFX(force){
   G.fxLoading=true;
   try{
     const d=await (await fetch('https://open.er-api.com/v6/latest/USD')).json();
-    if(d.rates){G.fx=d.rates;G.fxAt=Number(d.time_last_update_unix)*1000||0;G.fxFetchedAt=Date.now();if(window.GoldAlerts)window.GoldAlerts.check();paint();labels();nisab();calc();zakat();dconv('usd');$$('[data-fx]').forEach(el=>{const v=d.rates[el.dataset.fx];if(v) el.textContent=fmt(v/AED,4);});$$('[data-fxd]').forEach(el=>{const v=d.rates[el.dataset.fxd];if(v){const w=+(el.dataset.w||1);el.textContent=fmt(el.dataset.i?w/v:v*w,+el.dataset.d||0);}});}
+    if(d.rates){G.fx=d.rates;G.fxAt=Number(d.time_last_update_unix)*1000||0;G.fxFetchedAt=Date.now();statusPrice();if(window.GoldAlerts)window.GoldAlerts.check();paint();labels();nisab();calc();zakat();dconv('usd');$$('[data-fx]').forEach(el=>{const v=d.rates[el.dataset.fx];if(v) el.textContent=fmt(v/AED,4);});$$('[data-fxd]').forEach(el=>{const v=d.rates[el.dataset.fxd];if(v){const w=+(el.dataset.w||1);el.textContent=fmt(el.dataset.i?w/v:v*w,+el.dataset.d||0);}});}
   }catch(e){}finally{G.fxLoading=false;}
 }
 
