@@ -28,3 +28,5 @@ jobs:
           node tests/finance.mjs
           node tests/price-state.mjs
           node tests/portfolio.mjs
+          node tests/quote-tools.mjs
+          node tests/markets.mjs

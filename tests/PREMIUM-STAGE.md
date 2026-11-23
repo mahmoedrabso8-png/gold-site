@@ -21,3 +21,13 @@ Test branch only. No production deployment implied.
 - Backend remains blocked. Earlier partial freshness commits must not be described as completed data architecture.
 - Country timezone/tax metadata, complete price-copy sweep, manual shop purchase comparison, dedicated bullion calculator, Search Console and final performance checks remain.
 - Local storage is not encrypted. Export is an unencrypted file. No recovery if browser data and backup are both lost. Browser quota/private mode can prevent persistence.
+
+## Extended calculators and market templates
+- Dedicated manual bullion calculator: gross weight, fineness per1,000, pure gram rate, fixed/gram/percent premium and explicit tax base. Fine-weight output retains up to6decimals.
+- Manual two-shop purchase comparison: invoice and fine-gram cost ranked separately, with no quality/buyback guarantee, no implicit FX and no inferred tax.
+-432comparison matrix cases and bullion premium/tax-base tests pass. AR390/EN1365 browser checks pass.
+-44IANA display-zone configs, local source timestamp rendering, named-zone caveat for multi-zone markets, independent FX status, manual-invoice tax mode. Tax table additions labelled illustrations rather than universal eligibility.
+- Country mobile price tables recompose into labelled per-karat cards so gram/weight/ounce/tax illustration remain visible without horizontal scrolling. Egypt and India pixels inspected after this fix.
+- Static change baseline uses latest prior archived day, date shown. Runtime comparison names stored quote rather than asserting an exact24h window; baseline time is in title. These two histories remain distinct sources.
+- Silver badge uses XAG source time; dollar badge/provenance names daily FX instead of gold. Core AR/EN cadence promises removed, but full multilingual and article price-copy audit remains.
+-525HTML/523sitemap currently pass. Added market-time tests and reran purchase, history, alerts, resale, weight, navigation and freshness browser suites successfully.

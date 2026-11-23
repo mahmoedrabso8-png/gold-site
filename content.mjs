@@ -1,3 +1,4 @@
+import { quoteToolPages } from './quote-tools-content.mjs';
 import { portfolioPages } from './portfolio-content.mjs';
 import { homeTools, homeMarkets } from './home-components.mjs';
 import { articleLibrary, articleBody, relatedArticles } from './article-discovery.mjs';
@@ -10,7 +11,7 @@ import { ARTICLES, ARTICLES_EN } from './articles.mjs';
 
 export function pages(ctx) {
   const { P, FXD, updated, chg, daily, fmt, url, AD, TODAY } = ctx;
-  const out = [...portfolioPages(ctx), ...priceAlertPages(ctx), ...resalePages(ctx), ...weightPages()];
+  const out = [...quoteToolPages(ctx), ...portfolioPages(ctx), ...priceAlertPages(ctx), ...resalePages(ctx), ...weightPages()];
   const px = k => ctx.g24 ? fmt(ctx.g24 * k / 24) : null;   // سعر الغرام لإدراجه في العناوين
 
   // ── معلومات العيارات ─────────────────────────────────────
@@ -131,18 +132,18 @@ export function pages(ctx) {
     ? `<section class="card-section"><h2>Data source & method</h2><div class="trust-grid">
 <div class="trust-item"><strong>Spot price</strong>Gold-API.com, based on international market prices.</div>
 <div class="trust-item"><strong>USD/AED</strong>The dirham is officially pegged at 3.6725 per US dollar.</div>
-<div class="trust-item"><strong>Updates</strong>Every 5 minutes, times shown in Dubai time (GST).</div>
+<div class="trust-item"><strong>Updates</strong>Source timestamps and freshness status are shown.</div>
 <div class="trust-item"><strong>Formula</strong>(Ounce USD × 3.6725 ÷ 31.1035) × karat purity.</div>
 <div class="trust-item"><strong>Not included</strong>Making charges and VAT. For information only.</div>
 <div class="trust-item"><strong>Corrections</strong>Spotted an error? <a href="/contact/">Contact us</a>.</div></div></section>`
     : `<section class="card-section"><h2>مصدر البيانات وطريقة الحساب</h2><div class="trust-grid">
 <div class="trust-item"><strong>السعر العالمي</strong>Gold-API.com، بناءً على أسعار السوق العالمية للذهب.</div>
 <div class="trust-item"><strong>الدولار مقابل الدرهم</strong>الدرهم مربوط رسمياً بالدولار عند 3.6725.</div>
-<div class="trust-item"><strong>التحديث</strong>كل 5 دقائق، والأوقات بتوقيت دبي.</div>
+<div class="trust-item"><strong>التحديث</strong>وقت المصدر وحالة حداثة السعر ظاهران.</div>
 <div class="trust-item"><strong>المعادلة</strong>(سعر الأونصة بالدولار × 3.6725 ÷ 31.1035) × نسبة العيار.</div>
 <div class="trust-item"><strong>غير مشمول</strong>المصنعية وضريبة القيمة المضافة. الأسعار للاطلاع فقط.</div>
 <div class="trust-item"><strong>التصحيح</strong>لاحظت خطأ؟ <a href="/contact/">راسلنا</a> ونراجعه فوراً. <a href="/about/">من نحن</a></div></div></section>`;
-  const hero = (h1, sub, L) => `<div class="hero"><h1>${h1}</h1><p class="hero-sub">${sub}</p><div class="update-badge"><span class="update-dot"></span>${L === 'en' ? 'Live — updated every 5 minutes' : L === 'tr' ? 'Canlı — her 5 dakikada güncellenir' : L === 'hi' ? 'लाइव — हर 5 मिनट में अपडेट' : L === 'ur' ? 'لائیو — ہر 5 منٹ میں تازہ کاری' : L === 'id' ? 'Langsung — diperbarui setiap 5 menit' : L === 'bn' ? 'লাইভ — প্রতি ৫ মিনিটে হালনাগাদ' : L === 'tl' ? 'Live — ina-update kada 5 minuto' : L === 'ms' ? 'Langsung — dikemas kini setiap 5 minit' : 'مباشر — يُحدَّث كل 5 دقائق'}</div></div>`;
+  const hero = (h1, sub, L) => `<div class="hero"><h1>${h1}</h1><p class="hero-sub">${sub}</p><div class="update-badge"><span class="update-dot"></span>${L === 'en' ? 'Live — with source time and freshness status' : L === 'tr' ? 'Canlı — her 5 dakikada güncellenir' : L === 'hi' ? 'लाइव — हर 5 मिनट में अपडेट' : L === 'ur' ? 'لائیو — ہر 5 منٹ میں تازہ کاری' : L === 'id' ? 'Langsung — diperbarui setiap 5 menit' : L === 'bn' ? 'লাইভ — প্রতি ৫ মিনিটে হালনাগাদ' : L === 'tl' ? 'Live — ina-update kada 5 minuto' : L === 'ms' ? 'Langsung — dikemas kini setiap 5 minit' : 'مباشر — يُحدَّث كل 5 دقائق'}</div></div>`;
   const TG_CHANNEL = 'https://t.me/emaratijob';
   const share = (L, slug, title) => {
     const en = L === 'en', u = encodeURIComponent(ctx.SITE + url(L, slug)), t = encodeURIComponent(title);
@@ -156,7 +157,7 @@ export function pages(ctx) {
   // ── الصفحة الرئيسية ────────────────────────────────────
   out.push({ lang: 'ar', slug: '', alt: true,
     title: px(21) ? `سعر الذهب اليوم في الإمارات | عيار 21: ${px(21)} درهم` : 'سعر الذهب اليوم في الإمارات بالدرهم | عيار 24 و22 و21 و18',
-    desc: (px(21) ? `سعر الذهب اليوم في الإمارات: عيار 21 بـ ${px(21)} درهم، عيار 24 بـ ${px(24)}، عيار 22 بـ ${px(22)}، عيار 18 بـ ${px(18)} للغرام. ` : 'سعر الذهب اليوم في الإمارات ودبي بالدرهم. ') + 'تحديث كل 5 دقائق، مع سعر الأونصة والسبائك والحاسبة.',
+    desc: (px(21) ? `سعر الذهب اليوم في الإمارات: عيار 21 بـ ${px(21)} درهم، عيار 24 بـ ${px(24)}، عيار 22 بـ ${px(22)}، عيار 18 بـ ${px(18)} للغرام. ` : 'سعر الذهب اليوم في الإمارات ودبي بالدرهم. ') + 'وقت المصدر وحالة السعر، مع الأونصة والسبائك والحاسبة.',
     body: `${hero('سعر الذهب اليوم في الإمارات بالدرهم', 'سعر غرام الذهب الخام لعيار 24 و22 و21 و18 بالدرهم الإماراتي والدولار', 'ar')}
 ${errBox}${karatCards('ar')}${metaRow('ar')}
 ${homeTools('ar',ctx)}
@@ -178,7 +179,7 @@ ${AD}
 <p>قبل الشراء احسب السعر النهائي بالمصنعية والضريبة من <a href="/gold-calculator/">حاسبة الذهب</a>، وإذا كنت تملك ذهباً بلغ النصاب فاحسب زكاته من <a href="/zakat-calculator/">حاسبة زكاة الذهب</a>. ويمكنك متابعة تغيّر السعر يوماً بيوم في <a href="/history/">أرشيف أسعار الذهب</a>.</p></div></section>
 ${sources('ar')}`,
     faq: [
-      ['كم سعر غرام الذهب عيار 21 في الإمارات اليوم؟', 'يظهر سعر غرام عيار 21 محدَّثاً في أعلى الصفحة بالدرهم والدولار، ويُحدَّث كل 5 دقائق تقريباً. وهو سعر الذهب الخام بدون مصنعية أو ضريبة.'],
+      ['كم سعر غرام الذهب عيار 21 في الإمارات اليوم؟', 'يظهر سعر غرام عيار 21 محدَّثاً في أعلى الصفحة بالدرهم والدولار، وتظهر حالة حداثته ووقت مصدره. وهو سعر الذهب الخام بدون مصنعية أو ضريبة.'],
       ['كم سعر الذهب عيار 21 بالدولار اليوم؟', 'سعر غرام عيار 21 بالدولار = (سعر الأونصة بالدولار ÷ 31.1035) × 0.875، ويظهر محدَّثاً بالدولار في جدول الأسعار أعلاه وفي قسم "سعر الذهب عيار 21 بالدولار وبالمصنعية".'],
       ['كم سعر الذهب في الإمارات بالمصنعية؟', 'أضف المصنعية للغرام إلى سعر الغرام ثم اضرب في الوزن، وأضف ضريبة 5% على المشغولات. المصنعية تبدأ من بضعة دراهم وتصل إلى 15 درهماً أو أكثر حسب التصميم، ويمكنك الحساب بدقة من حاسبة الذهب.'],
       ['كيف يُحسب سعر غرام الذهب بالدرهم؟', 'سعر غرام عيار 24 = سعر الأونصة بالدولار × 3.6725 ÷ 31.1035. ثم يُضرب في نسبة العيار: 0.917 لعيار 22، و0.875 لعيار 21، و0.75 لعيار 18.'],
@@ -190,7 +191,7 @@ ${sources('ar')}`,
 
   out.push({ lang: 'en', slug: '', alt: true,
     title: px(24) ? `Gold Rate in UAE Today: 24K ${px(24)} AED, 22K ${px(22)} AED` : 'Gold Rate in UAE Today (AED) — 24K, 22K, 21K, 18K Live Price',
-    desc: 'Today\'s gold rate in the UAE and Dubai in AED, updated every 5 minutes: 24K, 22K, 21K and 18K per gram, tola and ounce, plus gold bar prices and a gold calculator.',
+    desc: 'Today\'s gold rate in the UAE and Dubai in AED, with source time and freshness status: 24K, 22K, 21K and 18K per gram, tola and ounce, plus gold bar prices and a gold calculator.',
     body: `${hero('Gold Rate in UAE Today', '24K, 22K, 21K and 18K gold price per gram in UAE dirhams (AED) and US dollars', 'en')}
 ${errBox}${karatCards('en')}${metaRow('en')}
 ${homeTools('en',ctx)}
@@ -210,7 +211,7 @@ ${AD}
 <p>Before you buy, work out the final price including making charges and VAT with the <a href="/en/gold-calculator/">gold calculator</a>, and compare <a href="/en/gold-bars/">gold bar prices</a> if you are buying for investment.</p></div></section>
 ${sources('en')}`,
     faq: [
-      ['What is the 22K gold rate in Dubai today?', 'The live 22K price per gram is shown at the top of this page in AED and USD and refreshes about every 5 minutes. It is the raw gold price without making charges or VAT.'],
+      ['What is the 22K gold rate in Dubai today?', 'The live 22K price per gram is shown at the top of this page in AED and USD and shows its source time and freshness status. It is the raw gold price without making charges or VAT.'],
       ['How is the gold price per gram in AED calculated?', '24K price per gram = ounce price in USD × 3.6725 ÷ 31.1035. Multiply by the karat purity: 0.917 for 22K, 0.875 for 21K and 0.75 for 18K.'],
       ['Does the price include making charges and VAT?', 'No. It is the raw gold price only. Shops add making charges per piece and 5% VAT on jewellery.'],
       ['Is the gold rate the same in Dubai, Abu Dhabi and Sharjah?', 'The base gold rate is practically the same across the UAE because it follows the global price; differences come from making charges and shop offers.'],
@@ -229,8 +230,8 @@ ${sources('en')}`,
     out.push({ lang: L, slug: `gold-${k}k`, alt: true,
       crumbs: [[en ? `${k}K gold rate` : `سعر عيار ${k}`, url(L, `gold-${k}k`)]],
       title,
-      desc: en ? `Live ${k}K gold price per gram in the UAE and Dubai in AED and USD, updated every 5 minutes, with prices for 1 g to 100 g, tola and ounce${k === 24 ? '' : ' and making-charge estimates'}.`
-        : `سعر غرام الذهب عيار ${k} اليوم في الإمارات ودبي بالدرهم والدولار، محدَّث كل 5 دقائق، مع جدول أسعار من 1 إلى 100 غرام والتولة والأونصة${k === 24 ? '' : ' وتقدير السعر بالمصنعية'}.`,
+      desc: en ? `Live ${k}K gold price per gram in the UAE and Dubai in AED and USD, with source time and freshness status, with prices for 1 g to 100 g, tola and ounce${k === 24 ? '' : ' and making-charge estimates'}.`
+        : `سعر غرام الذهب عيار ${k} اليوم في الإمارات ودبي بالدرهم والدولار، مع وقت المصدر وحالة حداثة السعر، مع جدول أسعار من 1 إلى 100 غرام والتولة والأونصة${k === 24 ? '' : ' وتقدير السعر بالمصنعية'}.`,
       body: `${hero(en ? `${k}K Gold Rate in UAE Today` : `سعر الذهب عيار ${k} اليوم في الإمارات`, en ? `${d.label} · ${K[k].purity} purity · hallmark ${K[k].mark} — used for ${d.use}` : `${d.label} · نقاء ${K[k].purity} · ختم ${K[k].mark} — يُستخدم في ${d.use}`, L)}
 ${errBox}
 <div class="big-price"><div class="u">${en ? `${k}K — price per gram` : `سعر غرام عيار ${k}`}</div><div class="v">${P(k)} <span style="font-size:.45em">AED</span></div><div class="s">≈ $${P(k, 1, { cur: 'usd' })} USD</div>${chg}
@@ -246,7 +247,7 @@ ${share(L, `gold-${k}k`, en ? `${k}K gold rate in UAE today` : `سعر الذه�
 ${links(L, `gold-${k}k`)}`,
       faq: [
         [en ? `What is the ${k}K gold price per gram in the UAE today?` : `كم سعر غرام الذهب عيار ${k} في الإمارات اليوم؟`,
-          en ? `The live ${k}K price per gram is shown at the top of this page and refreshes about every 5 minutes. It is the raw gold price without making charges or VAT.` : `يظهر سعر غرام عيار ${k} محدَّثاً في أعلى هذه الصفحة ويُحدَّث كل 5 دقائق تقريباً، وهو سعر الذهب الخام بدون مصنعية أو ضريبة.`],
+          en ? `The live ${k}K price per gram is shown at the top of this page and shows its source time and freshness status. It is the raw gold price without making charges or VAT.` : `يظهر سعر غرام عيار ${k} محدَّثاً في أعلى هذه الصفحة وتظهر حالة حداثته ووقت مصدره، وهو سعر الذهب الخام بدون مصنعية أو ضريبة.`],
         [en ? `How much gold is in ${k}K?` : `كم نسبة الذهب في عيار ${k}؟`,
           en ? `${k}K gold contains ${K[k].purity} pure gold and carries the hallmark ${K[k].mark}.` : `يحتوي عيار ${k} على ${K[k].purity} ذهب خالص ويحمل ختم ${K[k].mark}.`],
         ...d.faq
@@ -394,8 +395,8 @@ ${links(L, 'zakat-calculator')}`,
     out.push({ lang: L, slug: 'gold-bars', alt: true,
       crumbs: [[en ? 'Gold bar prices' : 'أسعار السبائك', url(L, 'gold-bars')]],
       title: en ? `Gold Bar Price in UAE Today: 100g${px(24) ? ' = ' + fmt(ctx.g24 * 100) + ' AED' : ''}, 1kg, 10 Tola` : `سعر سبيكة الذهب اليوم في الإمارات${px(24) ? ': 100 غرام = ' + fmt(ctx.g24 * 100) + ' درهم' : ''}`,
-      desc: en ? 'Today\'s 24K gold bar prices in the UAE in AED and USD: 1 g, 5 g, 10 g, 1 ounce, 100 g, 10 tola and 1 kg, updated every 5 minutes, with tips on premiums and VAT.'
-        : 'أسعار سبائك الذهب عيار 24 اليوم في الإمارات بالدرهم والدولار: 1 و5 و10 غرام، الأونصة، 100 غرام، 10 تولة، والكيلو، محدَّثة كل 5 دقائق مع نصائح الشراء.',
+      desc: en ? 'Today\'s 24K gold bar prices in the UAE in AED and USD: 1 g, 5 g, 10 g, 1 ounce, 100 g, 10 tola and 1 kg, with source time and freshness status, with tips on premiums and VAT.'
+        : 'أسعار سبائك الذهب عيار 24 اليوم في الإمارات بالدرهم والدولار: 1 و5 و10 غرام، الأونصة، 100 غرام، 10 تولة، والكيلو، مع وقت المصدر وحالة حداثة السعر مع نصائح الشراء.',
       body: `${hero(en ? 'Gold Bar Prices in UAE Today' : 'أسعار سبائك الذهب اليوم في الإمارات', en ? '24K (999.9) bars by weight — raw gold value' : 'سبائك عيار 24 حسب الوزن — قيمة الذهب الخام', L)}
 ${errBox}
 <section class="card-section"><h2>${en ? 'Gold bar prices by weight' : 'سعر السبيكة حسب الوزن'}</h2><div class="table-wrap"><table class="data-table">
@@ -495,7 +496,7 @@ ${links('ar', '')}` });
 <p>يدير الموقع ويراجع بياناته <strong>فريق تحرير معلوماتي</strong>.</p></div></section>
 <section class="card-section"><h2>مصادر البيانات وطريقة الحساب</h2><div class="prose">
 <p>نحصل على سعر الأونصة العالمي بالدولار من <strong>Gold-API.com</strong>، ونحوّله إلى الدرهم بسعر الربط الرسمي <strong>3.6725</strong> درهم للدولار، ثم نقسمه على 31.1035 (غرامات الأونصة) لنحصل على سعر غرام عيار 24، ونضربه في نسبة كل عيار.</p>
-<p>يُحدَّث السعر كل 5 دقائق تقريباً، ويُحفظ في قاعدة بيانات لبناء الرسم البياني والأرشيف اليومي. جميع الأوقات بتوقيت دبي.</p></div></section>
+<p>تُعرض أوقات مصدر السعر وحالة حداثته. الأرشيف مشاهدات محفوظة ولا يضمن تحديثاً مستمراً؛ وقد يتوقف المصدر أو يتأخر.</p></div></section>
 <section class="card-section"><h2>سياسة التحرير والتصحيح</h2><div class="prose">
 <ul><li>الأسعار تُحسب آلياً من المصدر دون أي تعديل يدوي.</li><li>إذا تعذّر الاتصال بالمصدر نعرض آخر سعر محفوظ مع تنبيه واضح للزائر.</li><li>نوضّح دائماً أن الأسعار للذهب الخام ولا تشمل المصنعية أو ضريبة القيمة المضافة.</li><li>المحتوى الإرشادي يُراجع دورياً، وأي خطأ يُبلَّغ عنه نصحّحه في أسرع وقت. <a href="/contact/">أبلغنا عن خطأ</a>.</li></ul>
 <p><strong>تنبيه:</strong> المعلومات في الموقع للاطلاع فقط ولا تمثّل نصيحة مالية أو استثمارية.</p></div></section>` });
@@ -543,8 +544,8 @@ ${links('ar', '')}` });
     out.push({ lang: L, slug: 'silver', alt: true, usesAg: true,
       crumbs: [[en ? 'Silver price' : 'سعر الفضة', url(L, 'silver')]],
       title: en ? `Silver Price in Dubai & UAE Today${ctx.ag ? ': ' + fmt(ctx.ag, 2) + ' AED per Gram' : ''}` : `سعر الفضة اليوم في دبي والإمارات${ctx.ag ? ': ' + fmt(ctx.ag, 2) + ' درهم للغرام' : ''}`,
-      desc: en ? 'Live silver price in the UAE and Dubai in AED and USD: price per gram for 999 and 925 sterling silver, per ounce, per tola and per kilo, updated every 5 minutes.'
-        : 'سعر الفضة اليوم في الإمارات ودبي بالدرهم والدولار: سعر غرام الفضة عيار 999 و925، وسعر الأونصة والتولة والكيلو، محدَّث كل 5 دقائق.',
+      desc: en ? 'Live silver price in the UAE and Dubai in AED and USD: price per gram for 999 and 925 sterling silver, per ounce, per tola and per kilo, with source time and freshness status.'
+        : 'سعر الفضة اليوم في الإمارات ودبي بالدرهم والدولار: سعر غرام الفضة عيار 999 و925، وسعر الأونصة والتولة والكيلو، مع وقت المصدر وحالة حداثة السعر.',
       body: `${hero(en ? 'Silver Price in UAE Today' : 'سعر الفضة اليوم في الإمارات', en ? 'Price per gram, ounce and kilo in UAE dirhams and US dollars' : 'سعر الغرام والأونصة والكيلو بالدرهم الإماراتي والدولار', L)}
 <div class="big-price"><div class="u">${en ? 'Fine silver (999) — per gram' : 'غرام الفضة الخالصة (999)'}</div><div class="v">${S(1)} <span style="font-size:.45em">AED</span></div>
 <div class="s">${en ? 'Ounce' : 'الأونصة'}: <bdi>$${S(1, ctx.TROY, { cur: 'usd' })}</bdi> · <bdi>${S(1, ctx.TROY)} AED</bdi></div>
@@ -599,8 +600,8 @@ ${last10.map(d => `<tr><td>${en ? enDate(d.day) : arDate(d.day)}</td>${[d.close,
     out.push({ lang: L, slug: 'gold-price-usd', alt: true,
       crumbs: [[en ? 'Gold price in USD' : 'سعر الذهب عالمياً', url(L, 'gold-price-usd')]],
       title: en ? 'Gold Price in USD Today — Live Ounce Price (XAU/USD)' : 'سعر الذهب عالمياً بالدولار اليوم | سعر أونصة الذهب مباشر',
-      desc: en ? 'Live gold price in US dollars: ounce (XAU/USD), gram for 24K, 22K, 21K and 18K, and kilo, with a 48-hour chart and recent daily prices. Updated every 5 minutes.'
-        : 'سعر الذهب عالمياً بالدولار مباشر: سعر أونصة الذهب (XAU/USD)، وسعر الغرام لعيار 24 و22 و21 و18، وسعر الكيلو، مع رسم بياني لآخر 48 ساعة. تحديث كل 5 دقائق.',
+      desc: en ? 'Live gold price in US dollars: ounce (XAU/USD), gram for 24K, 22K, 21K and 18K, and kilo, with a 48-hour chart and recent daily prices. See source timestamp and freshness status.'
+        : 'سعر الذهب عالمياً بالدولار مباشر: سعر أونصة الذهب (XAU/USD)، وسعر الغرام لعيار 24 و22 و21 و18، وسعر الكيلو، مع رسم بياني لآخر 48 ساعة. راجع وقت المصدر وحالة السعر.',
       body: `${hero(en ? 'Gold Price in USD Today' : 'سعر الذهب عالمياً بالدولار', en ? 'Live spot price of gold per troy ounce (XAU/USD)' : 'سعر أونصة الذهب في السوق العالمية (XAU/USD) مباشر', L)}
 ${errBox}
 <div class="big-price"><div class="u">${en ? 'Gold ounce (XAU/USD)' : 'أونصة الذهب (XAU/USD)'}</div><div class="v">$${P(24, ctx.TROY, { cur: 'usd' })}</div><div class="s">= ${P(24, ctx.TROY)} AED</div>${chg}
@@ -684,7 +685,7 @@ ${links('en', '')}`,
       body: `${hero(en ? 'Gold Rate Yesterday in UAE' : 'سعر الذهب أمس في الإمارات', yday ? (en ? `Closing prices for ${dd(yday.day)} and the last 10 days` : `أسعار الإغلاق يوم ${dd(yday.day)} وآخر 10 أيام`) : '', L)}
 ${errBox}
 ${yday ? `<section class="card-section"><h2>${en ? `Yesterday (${dd(yday.day)}) vs today` : `أمس (${dd(yday.day)}) مقارنة باليوم`}</h2><div class="table-wrap"><table class="data-table">
-<thead><tr><th>${en ? 'Karat' : 'العيار'}</th><th>${en ? 'Yesterday close' : 'إغلاق أمس'}</th><th>${en ? 'Today (live)' : 'اليوم (مباشر)'}</th></tr></thead><tbody>
+<thead><tr><th>${en ? 'Karat' : 'العيار'}</th><th>${en ? 'Yesterday close' : 'إغلاق أمس'}</th><th>${en ? 'Today (reference)' : 'اليوم (مرجعي)'}</th></tr></thead><tbody>
 ${KS.map(k => `<tr><td><a href="${url(L, 'gold-' + k + 'k')}"><strong>${en ? k + 'K' : 'عيار ' + k}</strong></a></td><td class="n">${fmt(yday.close * k / 24)}</td><td class="n">${P(k)}</td></tr>`).join('')}
 </tbody></table></div><p class="note">${en ? 'AED per gram. Yesterday vs the day before' : 'بالدرهم للغرام. تغيّر أمس عن اليوم السابق'}: ${chgTxt(pc)}</p></section>
 ${AD}
@@ -765,36 +766,36 @@ ${links('ar', '')}`,
       noteAr: 'الجنيه المصري غير مربوط بالدولار، لذلك يتحرك سعر الذهب بالجنيه مع السعر العالمي ومع سعر الصرف معاً، وقد يتغير حتى لو ثبت سعر الأونصة عالمياً. عيار 21 هو الأكثر تداولاً في محلات الصاغة المصرية، يليه عيار 18. وفي مصر تُطبَّق ضريبة القيمة المضافة 14% على المصنعية وأجور التصنيع فقط وليس على قيمة الذهب نفسها، إضافة إلى رسوم الدمغة، لذلك لا نعرض عمود ضريبة على قيمة الذهب. وقد يزيد السعر في السوق المحلية عن السعر المحسوب هنا بعلاوة تختلف حسب العرض والطلب وتوافر الذهب.',
       noteEn: 'The Egyptian pound is not pegged to the dollar, so the gold price in EGP moves with both the global price and the exchange rate, and can change even when the global ounce price is flat. 21K is the most traded karat in Egyptian jewellery shops, followed by 18K. In Egypt, 14% VAT applies to making charges and workmanship only, not to the gold value itself, plus hallmarking (damgha) fees — so we show no VAT column on the gold value. Local market prices can run above the calculated price here by a premium that varies with supply and demand.',
       faqAr: [
-        ['كم سعر غرام الذهب عيار 21 في مصر اليوم؟', 'يظهر سعر غرام عيار 21 بالجنيه المصري محدَّثاً في أعلى الصفحة ويُحدَّث كل 5 دقائق تقريباً، وهو سعر الذهب الخام المحسوب من السعر العالمي وسعر الصرف، بدون مصنعية أو رسوم دمغة.'],
+        ['كم سعر غرام الذهب عيار 21 في مصر اليوم؟', 'يظهر سعر غرام عيار 21 بالجنيه المصري محدَّثاً في أعلى الصفحة وتظهر حالة حداثته ووقت مصدره، وهو سعر الذهب الخام المحسوب من السعر العالمي وسعر الصرف، بدون مصنعية أو رسوم دمغة.'],
         ['هل توجد ضريبة على الذهب في مصر؟', 'تُطبَّق ضريبة القيمة المضافة 14% على المصنعية وأجور التصنيع ورسوم الدمغة فقط، وليس على قيمة الذهب الخام نفسها.'],
         ['لماذا يختلف السعر في محلات الصاغة عن السعر المعروض هنا؟', 'السعر هنا محسوب من السعر العالمي وسعر صرف الجنيه لحظياً. في السوق المحلية تُضاف المصنعية ورسوم الدمغة، وقد تُضاف علاوة حسب العرض والطلب وتوافر الذهب، فيكون سعر المحل أعلى.']
       ],
       faqEn: [
-        ['What is the 21K gold price in Egypt today?', 'The live 21K price per gram in Egyptian pounds is shown at the top of this page and refreshes about every 5 minutes. It is the raw gold price calculated from the global spot price and the EGP exchange rate, without making charges or hallmarking fees.'],
+        ['What is the 21K gold price in Egypt today?', 'The live 21K price per gram in Egyptian pounds is shown at the top of this page and shows its source time and freshness status. It is the raw gold price calculated from the global spot price and the EGP exchange rate, without making charges or hallmarking fees.'],
         ['Is there VAT on gold in Egypt?', 'Egypt applies 14% VAT on making charges and workmanship only, not on the gold value itself, plus hallmarking (damgha) fees.'],
         ['Why do Egyptian shop prices differ from this page?', 'The price here is calculated live from the global spot price and the EGP exchange rate. Local shops add making charges and hallmarking fees, and may add a market premium depending on supply and demand.']
       ] },
     india: { code: 'INR', d: 0, vat: 3, taxName: 'GST', peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,
       tEn: 'Gold Rate in India Today (INR) — 22K & 24K per Gram',
-      dEn: 'Live gold rate in India today in rupees (INR) and dollars: 22K and 24K gold price per gram, 10 grams, tola and ounce with 3% GST column, updated every 5 minutes.',
+      dEn: 'Live gold rate in India today in rupees (INR) and dollars: 22K and 24K gold price per gram, 10 grams, tola and ounce with 3% GST column, with source time and freshness status.',
       ar: { n: 'الهند', in: 'في الهند', cur: 'روبية', curS: 'روبية', cities: '' },
       en: { n: 'India', adj: 'Indian', cur: 'Indian rupee', cities: 'Mumbai, Delhi, Chennai, Kolkata and Hyderabad' },
       noteAr: '',
       noteEn: 'The Indian rupee is not pegged to the dollar, so the gold rate in INR moves with both the global price and the exchange rate. 22K is the most traded karat in India, while 24K is bought mainly as coins and bars. The official retail-jewellery FAQ applies 3% GST to the total transaction value, including making charges even when shown separately. Its separate 5% job-work example is not the same retail sale. The GST column here adds 3% to the reference metal value only and is not a complete jewellery invoice. Local product prices can differ from the reference metal value because of import costs, dealer premiums and workmanship. <a href="https://www.gstcouncil.gov.in/sites/default/files/2024-02/sectoral-fq-gems-jewellery.pdf">Official jewellery GST FAQ, questions 7 and 8</a>. Confirm the treatment of your exact supply on the invoice.',
       faqEn: [
-        ['What is the 22K gold rate in India today?', 'The live 22K price per gram in Indian rupees is shown at the top of this page and refreshes about every 5 minutes. It is the raw gold rate calculated from the global spot price and the INR exchange rate, without making charges or GST.'],
+        ['What is the 22K gold rate in India today?', 'The live 22K price per gram in Indian rupees is shown at the top of this page and shows its source time and freshness status. It is the raw gold rate calculated from the global spot price and the INR exchange rate, without making charges or GST.'],
         ['Is there GST on gold in India?', 'The official FAQ applies 3% GST to the total retail-jewellery transaction value including making charges. A separate job-work supply is different. This page only adds 3% to its reference metal value, not to an unknown shop invoice.'],
         ['Why do Indian shop prices differ from this page?', 'The rate here is calculated live from the global spot price and the INR exchange rate. Local jewellers quote per-city rates that add making charges, GST, and often a premium caused by import duties and local demand.']
       ] },
     pakistan: { code: 'PKR', d: 0, vat: 0, peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,
       tEn: 'Gold Rate in Pakistan Today (PKR) — Per Tola & Gram',
-      dEn: 'Live gold rate in Pakistan today in rupees (PKR) and dollars: 24K, 22K, 21K and 18K per tola, per gram and per ounce, updated every 5 minutes.',
+      dEn: 'Live gold rate in Pakistan today in rupees (PKR) and dollars: 24K, 22K, 21K and 18K per tola, per gram and per ounce, with source time and freshness status.',
       ar: { n: 'باكستان', in: 'في باكستان', cur: 'روبية', curS: 'روبية', cities: '' },
       en: { n: 'Pakistan', adj: 'Pakistani', cur: 'Pakistani rupee', cities: 'Karachi, Lahore, Islamabad and Peshawar' },
       noteAr: '',
       noteEn: 'The Pakistani rupee is not pegged to the dollar, so the gold rate in PKR moves with both the global price and the exchange rate. Jewellery in Pakistan is mostly 22K and 21K, while 24K is bought as bars and coins. Gold in Pakistan is commonly quoted per tola (11.664 g), and the table above includes the tola column. City sarafa associations announce daily rates that can include a premium over international parity, and shops add making charges per piece.',
       faqEn: [
-        ['What is the gold rate per tola in Pakistan today?', 'The live 24K rate per tola (11.664 g) in Pakistani rupees is shown in the price table above and refreshes about every 5 minutes. Per-gram rates for 22K, 21K and 18K are shown on their own pages.'],
+        ['What is the gold rate per tola in Pakistan today?', 'The live 24K rate per tola (11.664 g) in Pakistani rupees is shown in the price table above and shows its source time and freshness status. Per-gram rates for 22K, 21K and 18K are shown on their own pages.'],
         ['Which karat is most common in Pakistan?', 'Most jewellery in Pakistan is made in 22K and 21K gold, while 24K is used for bars and coins bought for saving and investment.'],
         ['Why do Pakistani shop rates differ from this page?', 'The rate here is calculated live from the global spot price and the PKR exchange rate. City sarafa associations announce daily rates that can include a premium, and shops add making charges per piece.']
       ] },
@@ -804,31 +805,31 @@ ${links('ar', '')}`,
       noteAr: '',
       noteEn: 'The Bangladeshi taka is not pegged to the dollar, so the gold price in BDT moves with both the global price and the exchange rate. Most jewellery in Bangladesh is 22K, with 21K also common. The national jewellers association announces reference prices that can sit above international parity, and shops add making charges per piece — so expect shop prices to be higher than the raw rate shown here.',
       faqEn: [
-        ['What is the gold price in Bangladesh today?', 'The live price per gram in Bangladeshi taka is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw gold rate without making charges.'],
+        ['What is the gold price in Bangladesh today?', 'The live price per gram in Bangladeshi taka is shown at the top of this page for 24K, 22K, 21K and 18K, with visible source time and freshness status. It is the raw gold rate without making charges.'],
         ['Which karat is most common in Bangladesh?', 'Most jewellery in Bangladesh is made in 22K gold, with 21K also widely available. 24K is used mainly for bars and coins.'],
         ['Why do shop prices in Bangladesh differ from this page?', 'The rate here is calculated live from the global spot price and the BDT exchange rate. The jewellers association announces reference rates that include a premium, and shops add making charges per piece.']
       ] },
     turkey: { code: 'TRY', d: 0, vat: 0, peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,
       tEn: 'Gold Price in Turkey Today (TRY) — Gram Altın Rates',
-      dEn: 'Live gram altın price in Turkey today in lira (TRY) and dollars: 24K gram gold, 22K, 21K and 18K per gram and per ounce, updated every 5 minutes.',
+      dEn: 'Live gram altın price in Turkey today in lira (TRY) and dollars: 24K gram gold, 22K, 21K and 18K per gram and per ounce, with source time and freshness status.',
       ar: { n: 'تركيا', in: 'في تركيا', cur: 'ليرة', curS: 'ليرة', cities: '' },
       en: { n: 'Turkey', adj: 'Turkish', cur: 'Turkish lira', cities: 'Istanbul, Ankara, Izmir and Bursa' },
       noteAr: '',
       noteEn: 'The Turkish lira floats freely, so the gold price in TRY moves with both the global price and the exchange rate, and can change even when the global ounce price is flat. Turkey has a strong gram-gold culture: 24K is bought as gram gold (gram altin) and coins for saving, while jewellery is usually 22K (bilezik) or 18K. Investment gold is generally exempt from VAT (KDV); jewellery carries KDV on the workmanship portion. The famous quarter coin (ceyrek altin) weighs about 1.75 g of 22K gold.',
       faqEn: [
-        ['What is the gram gold (gram altin) price in Turkey today?', 'The live 24K price per gram in Turkish lira is shown at the top of this page and refreshes about every 5 minutes. It is the raw gold rate calculated from the global spot price and the TRY exchange rate.'],
+        ['What is the gram gold (gram altin) price in Turkey today?', 'The live 24K price per gram in Turkish lira is shown at the top of this page and shows its source time and freshness status. It is the raw gold rate calculated from the global spot price and the TRY exchange rate.'],
         ['What is ceyrek altin (quarter gold coin)?', 'A small Turkish gold coin weighing about 1.75 g of 22K gold, traditionally given as a gift and used for saving. Its value tracks the 22K rate per gram.'],
         ['Is there VAT on gold in Turkey?', 'Investment gold (bars and coins) is generally exempt from VAT (KDV) in Turkey, while jewellery carries KDV on the workmanship portion.']
       ] },
     usa: { code: 'USD', d: 2, vat: 0, peg: '', pegEn: 'the base currency of the global gold market, so the US price follows the global spot price directly', fx: false, enOnly: true,
       tEn: 'Gold Price Today in USA (USD) — Per Gram & Ounce',
-      dEn: 'Live gold price in the USA today in US dollars: 24K, 22K, 21K and 18K per gram, per ounce and per kilo, updated every 5 minutes from the global spot price.',
+      dEn: 'Live gold price in the USA today in US dollars: 24K, 22K, 21K and 18K per gram, per ounce and per kilo, with source time and freshness status from the global spot price.',
       ar: { n: 'أمريكا', in: 'في أمريكا', cur: 'دولار', curS: 'دولار', cities: '' },
       en: { n: 'USA', adj: 'American', cur: 'US dollar', cities: 'New York, Los Angeles, Chicago and Houston' },
       noteAr: '',
       noteEn: 'The US dollar is the base currency of the global gold market, so the gold price in the USA tracks the spot price directly with no exchange-rate step. Everyday jewellery in the US is most often 14K or 10K, while 18K is the standard for fine jewellery and 24K is bought as bars and coins. Investment-grade bullion is exempt from sales tax in many states, while jewellery is usually taxed at the local rate; tax rules differ by state, so this page shows the raw gold value only.',
       faqEn: [
-        ['What is the gold price in the USA today?', 'The live price per gram in US dollars is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw gold rate calculated directly from the global spot price, without tax or making charges.'],
+        ['What is the gold price in the USA today?', 'The live price per gram in US dollars is shown at the top of this page for 24K, 22K, 21K and 18K, with visible source time and freshness status. It is the raw gold rate calculated directly from the global spot price, without tax or making charges.'],
         ['Which karat is most common in the USA?', 'Most everyday jewellery in the US is 14K or 10K, with 18K used for fine jewellery. 24K is bought mainly as bars and coins for investment.'],
         ['Is gold taxed in the USA?', 'Tax rules differ by state: many states exempt investment-grade bullion from sales tax, while jewellery is usually taxed at the local rate. This page shows the raw gold value only.']
       ] },
@@ -838,7 +839,7 @@ ${links('ar', '')}`,
       noteAr: '',
       noteEn: 'The pound sterling floats freely, so the gold price in GBP moves with both the global price and the exchange rate. Jewellery in the UK is most often 9K or 18K, and all gold sold is hallmarked by an official assay office. Investment gold (qualifying bars and coins) is exempt from VAT in the UK, while jewellery carries 20% VAT included in the shop price — so this page shows the raw gold value only.',
       faqEn: [
-        ['What is the gold price in the UK today?', 'The live price per gram in British pounds is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw gold rate without VAT or making charges.'],
+        ['What is the gold price in the UK today?', 'The live price per gram in British pounds is shown at the top of this page for 24K, 22K, 21K and 18K, with visible source time and freshness status. It is the raw gold rate without VAT or making charges.'],
         ['Is there VAT on gold in the UK?', 'Investment gold (qualifying bars and coins) is VAT-exempt in the UK. Gold jewellery carries 20% VAT, which shops include in the final price.'],
         ['Which karat is most common in the UK?', 'Most British jewellery is 9K or 18K, and every piece over one gram must carry a hallmark from an official assay office. 22K is popular in South Asian communities, and 24K is bought as bars and coins.']
       ] },
@@ -848,7 +849,7 @@ ${links('ar', '')}`,
       noteAr: '',
       noteEn: 'The Canadian dollar floats freely, so the gold price in CAD moves with both the global price and the exchange rate. Canada is a major gold producer, and bars and coins of 99.5% purity or higher are exempt from GST/HST as investment precious metals, while jewellery is taxed at the local rate. Everyday jewellery is most often 10K or 14K, with 18K for fine pieces.',
       faqEn: [
-        ['What is the gold price in Canada today?', 'The live price per gram in Canadian dollars is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw gold rate without tax or making charges.'],
+        ['What is the gold price in Canada today?', 'The live price per gram in Canadian dollars is shown at the top of this page for 24K, 22K, 21K and 18K, with visible source time and freshness status. It is the raw gold rate without tax or making charges.'],
         ['Is gold taxed in Canada?', 'Bars and coins of at least 99.5% purity are exempt from GST/HST as investment precious metals. Gold jewellery is taxed at the local GST/HST/PST rate, included in the shop price.'],
         ['Which karat is most common in Canada?', 'Most everyday jewellery in Canada is 10K or 14K, with 18K used for fine jewellery. 24K is bought as bars and coins, including the Maple Leaf coin.']
       ] },
@@ -858,7 +859,7 @@ ${links('ar', '')}`,
       noteAr: '',
       noteEn: 'The Australian dollar floats freely, so the gold price in AUD moves with both the global price and the exchange rate. Australia is one of the world\'s largest gold producers, and investment-grade gold (bars and coins of 99.5% purity or higher) is GST-free, while jewellery carries 10% GST in the shop price. Everyday jewellery is most often 9K or 18K.',
       faqEn: [
-        ['What is the gold price in Australia today?', 'The live price per gram in Australian dollars is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw gold rate without GST or making charges.'],
+        ['What is the gold price in Australia today?', 'The live price per gram in Australian dollars is shown at the top of this page for 24K, 22K, 21K and 18K, with visible source time and freshness status. It is the raw gold rate without GST or making charges.'],
         ['Is there GST on gold in Australia?', 'Investment-grade gold (bars and coins of at least 99.5% purity) is GST-free in Australia. Gold jewellery carries 10% GST, included in the shop price.'],
         ['Which karat is most common in Australia?', 'Most everyday jewellery in Australia is 9K or 18K. 24K is bought as bars and coins, including Perth Mint products.']
       ] },
@@ -868,31 +869,31 @@ ${links('ar', '')}`,
       noteAr: '',
       noteEn: 'The Philippine peso floats freely, so the gold price in PHP moves with both the global price and the exchange rate. Jewellery in the Philippines is most often 18K or 14K, and pieces sold as Saudi gold (18K and 21K) are especially popular with overseas Filipino workers. Jewellery carries 12% VAT in the shop price, and pawnshops and dealers add their own margins — so this page shows the raw gold value only.',
       faqEn: [
-        ['What is the gold price in the Philippines today?', 'The live price per gram in Philippine pesos is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw gold rate without VAT or making charges.'],
+        ['What is the gold price in the Philippines today?', 'The live price per gram in Philippine pesos is shown at the top of this page for 24K, 22K, 21K and 18K, with visible source time and freshness status. It is the raw gold rate without VAT or making charges.'],
         ['Which karat is most common in the Philippines?', 'Most jewellery in the Philippines is 18K or 14K. Saudi gold pieces in 18K and 21K are widely bought, especially by overseas Filipino workers.'],
         ['Is gold taxed in the Philippines?', 'Gold jewellery carries 12% VAT in the Philippines, included in the shop price. Dealers and pawnshops also add their own margins over the raw gold value shown here.']
       ] },
     malaysia: { code: 'MYR', d: 2, vat: 0, peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,
       tEn: 'Gold Price in Malaysia Today (MYR) — Emas 916 & 999',
-      dEn: 'Live gold price in Malaysia today in ringgit (MYR) and dollars: emas 916 (22K), 999 (24K) and 18K per gram and per ounce, updated every 5 minutes.',
+      dEn: 'Live gold price in Malaysia today in ringgit (MYR) and dollars: emas 916 (22K), 999 (24K) and 18K per gram and per ounce, with source time and freshness status.',
       ar: { n: 'ماليزيا', in: 'في ماليزيا', cur: 'رينغيت', curS: 'رينغيت', cities: '' },
       en: { n: 'Malaysia', adj: 'Malaysian', cur: 'Malaysian ringgit', cities: 'Kuala Lumpur, Penang, Johor Bahru and Ipoh' },
       noteAr: '',
       noteEn: 'The Malaysian ringgit floats freely, so the gold price in MYR moves with both the global price and the exchange rate. Malaysia has a strong 22K culture: emas 916 (91.6% gold) is the standard for jewellery and saving, while 999 gold is bought as bars and dinar coins. Investment precious metals are exempt from sales and service tax in Malaysia, and jewellers quote daily rates that add workmanship per piece.',
       faqEn: [
-        ['What is the gold price in Malaysia today?', 'The live price per gram in Malaysian ringgit is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw gold rate without workmanship charges.'],
+        ['What is the gold price in Malaysia today?', 'The live price per gram in Malaysian ringgit is shown at the top of this page for 24K, 22K, 21K and 18K, with visible source time and freshness status. It is the raw gold rate without workmanship charges.'],
         ['What is emas 916?', 'Emas 916 is 22K gold (91.6% purity), the standard karat for jewellery and saving in Malaysia. Its price per gram tracks the 22K rate shown on this page.'],
         ['Is gold taxed in Malaysia?', 'Investment precious metals are exempt from sales and service tax (SST) in Malaysia. Jewellery prices add workmanship charges per piece over the raw gold value.']
       ] },
     nepal: { code: 'NPR', d: 0, vat: 0, peg: '', pegEn: 'pegged to the Indian rupee, which itself floats against the US dollar', fx: true, enOnly: true,
       tEn: 'Gold Price in Nepal Today (NPR) — Per Tola & Gram',
-      dEn: 'Live gold price in Nepal today in rupees (NPR) and dollars: 24K, 22K, 21K and 18K per tola, per gram and per ounce, updated every 5 minutes.',
+      dEn: 'Live gold price in Nepal today in rupees (NPR) and dollars: 24K, 22K, 21K and 18K per tola, per gram and per ounce, with source time and freshness status.',
       ar: { n: 'نيبال', in: 'في نيبال', cur: 'روبية', curS: 'روبية', cities: '' },
       en: { n: 'Nepal', adj: 'Nepali', cur: 'Nepalese rupee', cities: 'Kathmandu, Pokhara, Lalitpur and Biratnagar' },
       noteAr: '',
       noteEn: 'The Nepalese rupee is pegged to the Indian rupee (NPR 1.6 = INR 1), which floats against the US dollar, so the gold price in NPR moves with both the global price and the exchange rate. Gold in Nepal is traditionally quoted per tola (11.664 g), and the table above includes the tola column. The national gold and silver dealers association announces daily reference rates, and hallmark-certified (chhapawal) gold commands a premium over the raw rate shown here.',
       faqEn: [
-        ['What is the gold price per tola in Nepal today?', 'The live 24K rate per tola (11.664 g) in Nepalese rupees is shown in the price table above and refreshes about every 5 minutes. Per-gram rates for 22K, 21K and 18K are on their own pages.'],
+        ['What is the gold price per tola in Nepal today?', 'The live 24K rate per tola (11.664 g) in Nepalese rupees is shown in the price table above and shows its source time and freshness status. Per-gram rates for 22K, 21K and 18K are on their own pages.'],
         ['What is chhapawal gold?', 'Chhapawal is hallmark-certified gold in Nepal, tested and stamped for purity. It trades at a premium over non-certified (tejabi) gold, and both track the international rate shown here.'],
         ['Which karat is most common in Nepal?', 'Traditional jewellery in Nepal is mostly 24K and 22K, bought per tola. 18K is used for diamond and modern designs.']
       ] },
@@ -902,7 +903,7 @@ ${links('ar', '')}`,
       noteAr: '',
       noteEn: 'The South African rand floats freely, so the gold price in ZAR moves with both the global price and the exchange rate. South Africa is one of the historic giants of gold mining and the home of the Krugerrand, the 22K investment coin that contains exactly one ounce of pure gold. Krugerrands are zero-rated for VAT, while jewellery carries 15% VAT in the shop price. Everyday jewellery is most often 9K or 18K.',
       faqEn: [
-        ['What is the gold price in South Africa today?', 'The live price per gram in South African rand is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw gold rate without VAT or making charges.'],
+        ['What is the gold price in South Africa today?', 'The live price per gram in South African rand is shown at the top of this page for 24K, 22K, 21K and 18K, with visible source time and freshness status. It is the raw gold rate without VAT or making charges.'],
         ['What is a Krugerrand?', 'A South African investment coin minted since 1967, made of 22K gold and containing exactly one troy ounce of pure gold. Its value tracks the gold price per ounce shown on this page, plus a small minting premium.'],
         ['Is there VAT on gold in South Africa?', 'Krugerrands and qualifying investment coins are zero-rated for VAT in South Africa. Gold jewellery carries 15% VAT, included in the shop price.']
       ] },
@@ -912,12 +913,12 @@ ${links('ar', '')}`,
       noteAr: 'يعتمد هذا الموقع سعر الصرف اليومي للسوق للدينار العراقي، وقد يختلف عن السعر الرسمي للبنك المركزي (1,310 دينار للدولار)، لذلك قد تجد فرقاً عن نشرات الصاغة المحلية. عيار 21 هو الأكثر انتشاراً في المجوهرات العراقية، بينما يُشترى عيار 24 كسبائك وليرات ذهبية للادخار، وتُضاف المصنعية على كل قطعة حسب الصياغ.',
       noteEn: 'This page uses the daily market exchange rate of the Iraqi dinar; the official Central Bank rate (1,310 IQD per USD) can differ, so local gold dealer bulletins may show different figures. 21K is the standard karat for Iraqi jewellery, while 24K is bought as bars and gold coins for saving, and making charges are added per piece.',
       faqAr: [
-        ['كم سعر غرام الذهب عيار 21 في العراق اليوم؟', 'يظهر سعر غرام عيار 21 بالدينار محدَّثاً في أعلى الصفحة ويُحدَّث كل 5 دقائق تقريباً، وهو سعر الذهب الخام بدون مصنعية.'],
+        ['كم سعر غرام الذهب عيار 21 في العراق اليوم؟', 'يظهر سعر غرام عيار 21 بالدينار محدَّثاً في أعلى الصفحة وتظهر حالة حداثته ووقت مصدره، وهو سعر الذهب الخام بدون مصنعية.'],
         ['لماذا يختلف السعر هنا عن نشرة الصاغة في العراق؟', 'نحسب السعر من السعر العالمي وسعر صرف السوق اليومي للدينار، وقد يختلف سعر الصرف عن السعر الرسمي للبنك المركزي، كما تضيف المحلات مصنعية وهامشاً محلياً.'],
         ['ما العيار الأكثر انتشاراً في العراق؟', 'عيار 21 هو الأكثر انتشاراً في المجوهرات العراقية، ويُستخدم عيار 24 للسبائك والليرات الذهبية.']
       ],
       faqEn: [
-        ['What is the 21K gold price in Iraq today?', 'The live 21K price per gram in Iraqi dinars is shown at the top of this page and refreshes about every 5 minutes. It is the raw gold price without making charges.'],
+        ['What is the 21K gold price in Iraq today?', 'The live 21K price per gram in Iraqi dinars is shown at the top of this page and shows its source time and freshness status. It is the raw gold price without making charges.'],
         ['Why does this rate differ from Iraqi dealer bulletins?', 'This page uses the daily market exchange rate of the dinar, which can differ from the official Central Bank rate (1,310 IQD per USD). Local shops also add making charges and a market premium.'],
         ['Which karat is most common in Iraq?', '21K is the standard karat for Iraqi jewellery, while 24K is bought as bars and gold coins for saving.']
       ] },
@@ -927,12 +928,12 @@ ${links('ar', '')}`,
       noteAr: 'الدينار الأردني مربوط بالدولار بسعر ثابت 0.709 منذ عام 1995، لذلك يتحرك سعر الذهب بالدينار مع السعر العالمي بشكل شبه مباشر. عيار 21 هو الأكثر انتشاراً في المجوهرات الأردنية، بينما يُشترى عيار 24 كسبائك وعملات للادخار، وتضيف المحلات المصنعية على كل قطعة.',
       noteEn: 'The Jordanian dinar has been pegged to the US dollar at 0.709 since 1995, so the gold price in JOD follows the global price almost one-to-one. 21K is the standard karat for jewellery in Jordan, while 24K is bought as bars and coins, and shops add making charges per piece.',
       faqAr: [
-        ['كم سعر غرام الذهب عيار 21 في الأردن اليوم؟', 'يظهر سعر غرام عيار 21 بالدينار محدَّثاً في أعلى الصفحة ويُحدَّث كل 5 دقائق تقريباً، وهو سعر الذهب الخام بدون مصنعية.'],
+        ['كم سعر غرام الذهب عيار 21 في الأردن اليوم؟', 'يظهر سعر غرام عيار 21 بالدينار محدَّثاً في أعلى الصفحة وتظهر حالة حداثته ووقت مصدره، وهو سعر الذهب الخام بدون مصنعية.'],
         ['هل الدينار الأردني مربوط بالدولار؟', 'نعم، الدينار الأردني مربوط بالدولار بسعر ثابت 0.709 منذ عام 1995، لذلك يتحرك سعر الذهب بالدينار مع السعر العالمي مباشرة تقريباً.'],
         ['ما العيار الأكثر انتشاراً في الأردن؟', 'عيار 21 هو الأكثر انتشاراً في المجوهرات الأردنية، بينما يُشترى عيار 24 كسبائك وعملات للادخار.']
       ],
       faqEn: [
-        ['What is the 21K gold price in Jordan today?', 'The live 21K price per gram in Jordanian dinars is shown at the top of this page and refreshes about every 5 minutes. It is the raw gold price without making charges.'],
+        ['What is the 21K gold price in Jordan today?', 'The live 21K price per gram in Jordanian dinars is shown at the top of this page and shows its source time and freshness status. It is the raw gold price without making charges.'],
         ['Is the Jordanian dinar pegged to the dollar?', 'Yes. The Jordanian dinar has been pegged at 0.709 JOD per USD since 1995, so the gold price in JOD follows the global price almost directly.'],
         ['Which karat is most common in Jordan?', '21K is the standard karat for Jordanian jewellery, while 24K is bought as bars and coins for saving.']
       ] },
@@ -942,12 +943,12 @@ ${links('ar', '')}`,
       noteAr: 'الدرهم المغربي يُدار بسعر مرن مقابل سلة من اليورو والدولار، لذلك يتحرك سعر الذهب بالدرهم مع السعر العالمي وسعر الصرف معاً. عيار 18 هو الأكثر انتشاراً في المجوهرات المغربية التقليدية والعصرية، بينما يُقتنى عيار 24 كسبائك وعملات، وتُضاف المصنعية على كل قطعة.',
       noteEn: 'The Moroccan dirham is managed against a basket of the euro and the US dollar, so the gold price in MAD moves with both the global price and the exchange rate. 18K is the standard karat for Moroccan jewellery, both traditional and modern, while 24K is bought as bars and coins, and making charges are added per piece.',
       faqAr: [
-        ['كم سعر غرام الذهب عيار 18 في المغرب اليوم؟', 'يظهر سعر غرام عيار 18 بالدرهم في جدول الأسعار أعلى الصفحة ويُحدَّث كل 5 دقائق تقريباً، وهو سعر الذهب الخام بدون مصنعية.'],
+        ['كم سعر غرام الذهب عيار 18 في المغرب اليوم؟', 'يظهر سعر غرام عيار 18 بالدرهم في جدول الأسعار أعلى الصفحة وتظهر حالة حداثته ووقت مصدره، وهو سعر الذهب الخام بدون مصنعية.'],
         ['ما العيار الأكثر انتشاراً في المغرب؟', 'عيار 18 هو الأكثر انتشاراً في المجوهرات المغربية، ويُقتنى عيار 24 كسبائك وعملات للادخار.'],
         ['لماذا يختلف سعر المحل عن هذه الصفحة؟', 'السعر هنا خام محسوب من السعر العالمي وسعر صرف الدرهم، والمحلات تضيف المصنعية والضرائب وهامش الربح على كل قطعة.']
       ],
       faqEn: [
-        ['What is the 18K gold price in Morocco today?', 'The live 18K price per gram in Moroccan dirhams is shown in the price table above and refreshes about every 5 minutes. It is the raw gold price without making charges.'],
+        ['What is the 18K gold price in Morocco today?', 'The live 18K price per gram in Moroccan dirhams is shown in the price table above and shows its source time and freshness status. It is the raw gold price without making charges.'],
         ['Which karat is most common in Morocco?', '18K is the standard karat for Moroccan jewellery, both traditional and modern, while 24K is bought as bars and coins.'],
         ['Why do Moroccan shop prices differ from this page?', 'The rate here is the raw gold value calculated from the global price and the dirham exchange rate. Shops add making charges, taxes and their margin per piece.']
       ] },
@@ -957,12 +958,12 @@ ${links('ar', '')}`,
       noteAr: 'الدينار الجزائري يُدار بسعر مرن مقابل الدولار، لذلك يتحرك سعر الذهب بالدينار مع السعر العالمي وسعر الصرف معاً. عيار 18 هو الأكثر انتشاراً في المجوهرات الجزائرية، بينما يُقتنى عيار 24 كسبائك وعملات للادخار، وتُضاف المصنعية على كل قطعة.',
       noteEn: 'The Algerian dinar is managed against the US dollar, so the gold price in DZD moves with both the global price and the exchange rate. 18K is the standard karat for Algerian jewellery, while 24K is bought as bars and coins for saving, and making charges are added per piece.',
       faqAr: [
-        ['كم سعر غرام الذهب عيار 18 في الجزائر اليوم؟', 'يظهر سعر غرام عيار 18 بالدينار في جدول الأسعار أعلى الصفحة ويُحدَّث كل 5 دقائق تقريباً، وهو سعر الذهب الخام بدون مصنعية.'],
+        ['كم سعر غرام الذهب عيار 18 في الجزائر اليوم؟', 'يظهر سعر غرام عيار 18 بالدينار في جدول الأسعار أعلى الصفحة وتظهر حالة حداثته ووقت مصدره، وهو سعر الذهب الخام بدون مصنعية.'],
         ['ما العيار الأكثر انتشاراً في الجزائر؟', 'عيار 18 هو الأكثر انتشاراً في المجوهرات الجزائرية، ويُقتنى عيار 24 كسبائك وعملات للادخار.'],
         ['لماذا يختلف سعر المحل عن هذه الصفحة؟', 'السعر هنا خام محسوب من السعر العالمي وسعر صرف الدينار، والمحلات تضيف المصنعية وهامش الربح على كل قطعة.']
       ],
       faqEn: [
-        ['What is the 18K gold price in Algeria today?', 'The live 18K price per gram in Algerian dinars is shown in the price table above and refreshes about every 5 minutes. It is the raw gold price without making charges.'],
+        ['What is the 18K gold price in Algeria today?', 'The live 18K price per gram in Algerian dinars is shown in the price table above and shows its source time and freshness status. It is the raw gold price without making charges.'],
         ['Which karat is most common in Algeria?', '18K is the standard karat for Algerian jewellery, while 24K is bought as bars and coins for saving.'],
         ['Why do Algerian shop prices differ from this page?', 'The rate here is the raw gold value calculated from the global price and the dinar exchange rate. Shops add making charges and their margin per piece.']
       ] },
@@ -972,31 +973,31 @@ ${links('ar', '')}`,
       noteAr: '',
       noteEn: 'The Indonesian rupiah floats freely, so the gold price in IDR moves with both the global price and the exchange rate. Indonesia has a strong 24K saving culture: Antam bars (Logam Mulia, the state refiner) are the standard investment product and trade at a premium over the raw rate shown here, while everyday jewellery is often made in lower local purities. Gold bars in Indonesia are priced per gram with buyback spreads at official boutiques.',
       faqEn: [
-        ['What is the gold price in Indonesia today?', 'The live price per gram in Indonesian rupiah is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw gold rate without premiums or making charges.'],
+        ['What is the gold price in Indonesia today?', 'The live price per gram in Indonesian rupiah is shown at the top of this page for 24K, 22K, 21K and 18K, with visible source time and freshness status. It is the raw gold rate without premiums or making charges.'],
         ['What is an Antam gold bar?', 'A bar produced by Logam Mulia, the precious-metal refinery of the Indonesian state miner Antam. It is the standard gold investment product in Indonesia and trades at a premium over the international rate shown here.'],
         ['Which karat is most common in Indonesia?', 'For saving, Indonesians prefer 24K bars and coins. Jewellery is often made in lower local purities as well as 18K and 22K.']
       ] },
     thailand: { code: 'THB', d: 2, vat: 0, peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true, un: ['1 baht (15.244 g)', 15.244],
       tEn: 'Gold Price in Thailand Today (THB) — Baht & Gram',
-      dEn: 'Live gold price in Thailand today in baht (THB) and dollars: 24K, 22K, 21K and 18K per gram, per baht weight (15.244 g) and per ounce, updated every 5 minutes.',
+      dEn: 'Live gold price in Thailand today in baht (THB) and dollars: 24K, 22K, 21K and 18K per gram, per baht weight (15.244 g) and per ounce, with source time and freshness status.',
       ar: { n: 'تايلاند', in: 'في تايلاند', cur: 'باهت', curS: 'باهت', cities: '' },
       en: { n: 'Thailand', adj: 'Thai', cur: 'Thai baht', cities: 'Bangkok, Chiang Mai, Phuket and Hat Yai' },
       noteAr: '',
       noteEn: 'The Thai baht floats freely, so the gold price in THB moves with both the global price and the exchange rate. Thailand has its own gold standard: jewellery and bars are 96.5% pure (roughly 23K) and are traded per baht of weight, where one baht of gold equals 15.244 grams. The Gold Traders Association announces reference prices several times a day in Bangkok, and those rates track the international price shown here plus a small local premium.',
       faqEn: [
-        ['What is the gold price in Thailand today?', 'The live price per gram in Thai baht is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw international rate without the local premium.'],
+        ['What is the gold price in Thailand today?', 'The live price per gram in Thai baht is shown at the top of this page for 24K, 22K, 21K and 18K, with visible source time and freshness status. It is the raw international rate without the local premium.'],
         ['How much is one baht of gold in grams?', 'In Thailand, gold is traded per baht of weight: one baht of gold equals 15.244 grams. A one-baht 24K gold bar is worth about 15.244 times the per-gram price shown on this page.'],
         ['What purity is Thai gold?', 'Standard Thai gold, both bars and jewellery, is 96.5% pure, which is roughly 23 karat. International-standard 24K and 18K pieces are also sold.']
       ] },
     vietnam: { code: 'VND', d: 0, vat: 0, peg: '', pegEn: 'managed against the US dollar, so its rate moves daily', fx: true, enOnly: true, un: ['1 tael (37.5 g)', 37.5],
       tEn: 'Gold Price in Vietnam Today (VND) — Per Tael & Gram',
-      dEn: 'Live gold price in Vietnam today in dong (VND) and dollars: 24K, 22K, 21K and 18K per gram, per tael (lượng, 37.5 g) and per ounce, updated every 5 minutes.',
+      dEn: 'Live gold price in Vietnam today in dong (VND) and dollars: 24K, 22K, 21K and 18K per gram, per tael (lượng, 37.5 g) and per ounce, with source time and freshness status.',
       ar: { n: 'فيتنام', in: 'في فيتنام', cur: 'دونغ', curS: 'دونغ', cities: '' },
       en: { n: 'Vietnam', adj: 'Vietnamese', cur: 'Vietnamese dong', cities: 'Hanoi, Ho Chi Minh City, Da Nang and Hai Phong' },
       noteAr: '',
       noteEn: 'The Vietnamese dong is managed against the US dollar, so the gold price in VND moves with both the global price and the exchange rate. Vietnam has one of the strongest gold-saving cultures in Asia: 24K SJC bars are the national standard and are traded per tael (luong), where one tael equals 37.5 grams. SJC bars often carry a large premium over the international rate shown here because of tight supply controls, while jewellery rings (nhan) trade closer to the international price.',
       faqEn: [
-        ['What is the gold price in Vietnam today?', 'The live price per gram in Vietnamese dong is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw international rate without the local premium.'],
+        ['What is the gold price in Vietnam today?', 'The live price per gram in Vietnamese dong is shown at the top of this page for 24K, 22K, 21K and 18K, with visible source time and freshness status. It is the raw international rate without the local premium.'],
         ['How much is one tael of gold in grams?', 'In Vietnam, gold is traded per tael (luong or cay): one tael equals 37.5 grams. A one-tael 24K bar is worth about 37.5 times the per-gram price shown on this page.'],
         ['What is an SJC gold bar?', 'A 24K bar produced by the state-licensed Saigon Jewelry Company, the standard gold investment product in Vietnam. SJC bars often trade at a significant premium over the international rate because of supply controls.']
       ] },
@@ -1006,19 +1007,19 @@ ${links('ar', '')}`,
       noteAr: '',
       noteEn: 'The Singapore dollar is managed against a trade-weighted basket of currencies, so the gold price in SGD moves with both the global price and the exchange rate. Singapore is a major gold-trading hub: qualifying investment precious metals are exempt from GST. Gold bars need at least 99.5% purity plus recognised refiner/marking, international tradability and non-decorative form; eligible coins must meet the prescribed-list and legal-tender criteria. Jewellery does not qualify for this IPM exemption. Check the supplier’s tax invoice and current IRAS rules. Jewellery in Singapore is most often 22K (916) or 18K.',
       faqEn: [
-        ['What is the gold price in Singapore today?', 'The live price per gram in Singapore dollars is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw gold rate without GST or making charges.'],
+        ['What is the gold price in Singapore today?', 'The live price per gram in Singapore dollars is shown at the top of this page for 24K, 22K, 21K and 18K, with visible source time and freshness status. It is the raw gold rate without GST or making charges.'],
         ['Is gold taxed in Singapore?', 'Only qualifying investment precious metals receive the IPM exemption. Gold purity of 99.5% alone is not sufficient: form, accreditation/marking and tradability criteria also apply, with prescribed criteria for coins. Jewellery is not IPM.'],
         ['Which karat is most common in Singapore?', 'Most jewellery in Singapore is 22K (marked 916) or 18K, while 24K is bought as bars and coins for investment.']
       ] },
     srilanka: { code: 'LKR', d: 0, vat: 0, peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,
       tEn: 'Gold Rate in Sri Lanka Today (LKR) — 22K & 24K',
-      dEn: 'Live gold rate in Sri Lanka today in rupees (LKR) and dollars: 22K and 24K gold price per gram, 10 grams, tola and ounce, updated every 5 minutes.',
+      dEn: 'Live gold rate in Sri Lanka today in rupees (LKR) and dollars: 22K and 24K gold price per gram, 10 grams, tola and ounce, with source time and freshness status.',
       ar: { n: 'سريلانكا', in: 'في سريلانكا', cur: 'روبية', curS: 'روبية', cities: '' },
       en: { n: 'Sri Lanka', adj: 'Sri Lankan', cur: 'Sri Lankan rupee', cities: 'Colombo, Kandy, Galle and Jaffna' },
       noteAr: '',
       noteEn: 'The Sri Lankan rupee floats freely, so the gold price in LKR moves with both the global price and the exchange rate. Jewellery in Sri Lanka is traditionally 22K, and gold is also widely used for pawning and savings. Local dealers quote daily rates that follow the international price shown here, then add making charges per piece, and import duties can put a premium on the local market.',
       faqEn: [
-        ['What is the gold price in Sri Lanka today?', 'The live price per gram in Sri Lankan rupees is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw international rate without making charges.'],
+        ['What is the gold price in Sri Lanka today?', 'The live price per gram in Sri Lankan rupees is shown at the top of this page for 24K, 22K, 21K and 18K, with visible source time and freshness status. It is the raw international rate without making charges.'],
         ['Which karat is most common in Sri Lanka?', 'Most traditional jewellery in Sri Lanka is 22K, while 24K is bought as coins and bars for saving.'],
         ['Why do Sri Lankan shop prices differ from this page?', 'The rate here is calculated live from the global spot price and the LKR exchange rate. Shops add making charges, and import duties and local demand can add a premium.']
       ] },
@@ -1028,7 +1029,7 @@ ${links('ar', '')}`,
       noteAr: '',
       noteEn: 'The euro floats freely, so the gold price in EUR moves with both the global price and the exchange rate. Germany is one of the largest private gold markets in the world: investment gold (qualifying bars and coins) is exempt from VAT across the EU, while jewellery carries 19% VAT in the shop price. German jewellery is most often 8K (333), 14K (585) or 18K (750), while 24K is bought as bars and coins for saving.',
       faqEn: [
-        ['What is the gold price in Germany today?', 'The live price per gram in euros is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw gold rate without VAT or dealer premiums.'],
+        ['What is the gold price in Germany today?', 'The live price per gram in euros is shown at the top of this page for 24K, 22K, 21K and 18K, with visible source time and freshness status. It is the raw gold rate without VAT or dealer premiums.'],
         ['Is gold taxed in Germany?', 'Investment gold (qualifying bars and coins) is exempt from VAT in Germany and across the EU. Gold jewellery carries 19% VAT, included in the shop price.'],
         ['Which karat is most common in Germany?', 'German jewellery is most often 8K (333), 14K (585) or 18K (750). 24K is bought mainly as bars and coins for investment.']
       ] },
@@ -1038,7 +1039,7 @@ ${links('ar', '')}`,
       noteAr: '',
       noteEn: 'The Japanese yen floats freely, so the gold price in JPY moves with both the global price and the exchange rate. Japan is unusual among major markets in charging 10% consumption tax on gold bars as well as jewellery, so dealer prices include the tax on top of the rate shown here, while the tax is recovered on resale through dealers. Retailers such as Tanaka quote daily per-gram rates that follow the international price, and 18K is the most common jewellery karat.',
       faqEn: [
-        ['What is the gold price in Japan today?', 'The live price per gram in Japanese yen is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw international rate before consumption tax.'],
+        ['What is the gold price in Japan today?', 'The live price per gram in Japanese yen is shown at the top of this page for 24K, 22K, 21K and 18K, with visible source time and freshness status. It is the raw international rate before consumption tax.'],
         ['Is gold taxed in Japan?', 'Yes. Japan charges 10% consumption tax on gold purchases, including bars, which dealer prices include on top of the international rate shown here.'],
         ['Which karat is most common in Japan?', 'Most jewellery in Japan is 18K (marked K18), while 24K is bought as bars and coins for saving.']
       ] },
@@ -1048,7 +1049,7 @@ ${links('ar', '')}`,
       noteAr: '',
       noteEn: 'The Swiss franc floats freely, so the gold price in CHF moves with both the global price and the exchange rate. Switzerland is the refining capital of the world: most of the world\'s gold bars are refined there, and investment gold is exempt from Swiss VAT, while jewellery carries 8.1% VAT in the shop price. Swiss buyers favour 24K bars from refiners such as PAMP and Valcambi, and jewellery is most often 18K.',
       faqEn: [
-        ['What is the gold price in Switzerland today?', 'The live price per gram in Swiss francs is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw gold rate without VAT or dealer premiums.'],
+        ['What is the gold price in Switzerland today?', 'The live price per gram in Swiss francs is shown at the top of this page for 24K, 22K, 21K and 18K, with visible source time and freshness status. It is the raw gold rate without VAT or dealer premiums.'],
         ['Is gold taxed in Switzerland?', 'Investment gold is exempt from VAT in Switzerland. Gold jewellery carries 8.1% VAT, included in the shop price.'],
         ['Why is Switzerland important for gold?', 'Switzerland refines the majority of the world\'s gold bars through refiners such as PAMP, Valcambi and Argor-Heraeus, and Zurich is one of the historic centres of the global gold trade.']
       ] },
@@ -1058,7 +1059,7 @@ ${links('ar', '')}`,
       noteAr: '',
       noteEn: 'The Nigerian naira is managed against the US dollar, so the gold price in NGN moves with both the global price and the exchange rate, and the gap between official and market exchange rates can widen local prices. Jewellery in Nigeria is most often 18K or 22K for weddings and celebrations, and local dealers quote per gram with wide spreads over the international rate shown here.',
       faqEn: [
-        ['What is the gold price in Nigeria today?', 'The live price per gram in Nigerian naira is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw international rate without dealer spreads.'],
+        ['What is the gold price in Nigeria today?', 'The live price per gram in Nigerian naira is shown at the top of this page for 24K, 22K, 21K and 18K, with visible source time and freshness status. It is the raw international rate without dealer spreads.'],
         ['Which karat is most common in Nigeria?', 'Most jewellery in Nigeria is 18K or 22K, bought for weddings and celebrations, while 24K is bought as coins and bars by savers.'],
         ['Why do Nigerian dealer prices differ from this page?', 'The rate here is calculated from the global spot price and the market exchange rate. Dealers add wide spreads, making charges, and sometimes price off a different dollar rate.']
       ] },
@@ -1068,7 +1069,7 @@ ${links('ar', '')}`,
       noteAr: '',
       noteEn: 'The Ghanaian cedi floats freely, so the gold price in GHS moves with both the global price and the exchange rate. Ghana is the Gold Coast: one of the largest gold producers in Africa, with a deep gold culture from the Ashanti kingdom to modern mining. Jewellery is most often 22K or 18K, and licensed gold dealers in Accra and Kumasi quote daily rates that follow the international price shown here.',
       faqEn: [
-        ['What is the gold price in Ghana today?', 'The live price per gram in Ghanaian cedis is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw international rate without dealer margins.'],
+        ['What is the gold price in Ghana today?', 'The live price per gram in Ghanaian cedis is shown at the top of this page for 24K, 22K, 21K and 18K, with visible source time and freshness status. It is the raw international rate without dealer margins.'],
         ['Why is Ghana called the Gold Coast?', 'Ghana was named the Gold Coast by European traders for its rich gold deposits, and it remains one of the largest gold producers in Africa, with mining centred on the Ashanti region.'],
         ['Which karat is most common in Ghana?', 'Most traditional jewellery in Ghana is 22K or 18K, while 24K is held as bars and coins.']
       ] },
@@ -1078,7 +1079,7 @@ ${links('ar', '')}`,
       noteAr: '',
       noteEn: 'The Kenyan shilling is managed against the US dollar, so the gold price in KES moves with both the global price and the exchange rate. Kenya is East Africa\'s trading hub, and gold dealing is licensed and concentrated in Nairobi. Jewellery is most often 18K or 22K, and dealers quote per gram over the international rate shown here with a local premium.',
       faqEn: [
-        ['What is the gold price in Kenya today?', 'The live price per gram in Kenyan shillings is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw international rate without dealer premiums.'],
+        ['What is the gold price in Kenya today?', 'The live price per gram in Kenyan shillings is shown at the top of this page for 24K, 22K, 21K and 18K, with visible source time and freshness status. It is the raw international rate without dealer premiums.'],
         ['Which karat is most common in Kenya?', 'Most jewellery in Kenya is 18K or 22K, while 24K is bought as coins and small bars for saving.'],
         ['Where is gold traded in Kenya?', 'Licensed gold dealing is concentrated in Nairobi, with prices that track the international rate plus a local premium.']
       ] },
@@ -1088,7 +1089,7 @@ ${links('ar', '')}`,
       noteAr: '',
       noteEn: 'The Mexican peso floats freely, so the gold price in MXN moves with both the global price and the exchange rate. Mexico has a proud coinage tradition: the Centenario, first minted in 1921, contains 37.5 grams of pure gold and remains the classic Mexican investment coin. Everyday jewellery is most often 14K or 10K, and investment gold coins are exempt from VAT in Mexico, while jewellery is taxed at 16%.',
       faqEn: [
-        ['What is the gold price in Mexico today?', 'The live price per gram in Mexican pesos is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw international rate without dealer premiums.'],
+        ['What is the gold price in Mexico today?', 'The live price per gram in Mexican pesos is shown at the top of this page for 24K, 22K, 21K and 18K, with visible source time and freshness status. It is the raw international rate without dealer premiums.'],
         ['What is a Centenario coin?', 'Mexico\'s classic gold coin, first minted in 1921, containing 37.5 grams of pure gold. Its value tracks the gold price shown on this page plus a collector and dealer premium.'],
         ['Which karat is most common in Mexico?', 'Most everyday jewellery in Mexico is 14K or 10K, while the Centenario and Libertad coins are bought for investment.']
       ] },
@@ -1098,7 +1099,7 @@ ${links('ar', '')}`,
       noteAr: '',
       noteEn: 'The Brazilian real floats freely, so the gold price in BRL moves with both the global price and the exchange rate. Brazil is one of the largest jewellery markets in the world, and its standard is unmistakable: ouro 18K (750) dominates Brazilian jewellery, while investment gold is traded on the B3 exchange and through banks in bars of certified purity.',
       faqEn: [
-        ['What is the gold price in Brazil today?', 'The live price per gram in Brazilian reais is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw international rate without dealer premiums.'],
+        ['What is the gold price in Brazil today?', 'The live price per gram in Brazilian reais is shown at the top of this page for 24K, 22K, 21K and 18K, with visible source time and freshness status. It is the raw international rate without dealer premiums.'],
         ['Which karat is most common in Brazil?', '18K gold (marked 750) is the Brazilian standard for jewellery, dominating the market. 24K is traded as bars on the B3 exchange and through banks.'],
         ['Why do Brazilian shop prices differ from this page?', 'The rate here is calculated live from the global spot price and the BRL exchange rate. Shops add making charges and their margin per piece.']
       ] },
@@ -1108,7 +1109,7 @@ ${links('ar', '')}`,
       noteAr: '',
       noteEn: 'The Chinese yuan is managed against the US dollar, so the gold price in CNY moves with both the global price and the exchange rate. China is the world\'s largest gold consumer and producer: 24K gold (marked 999 or 9999) is the national standard for both saving and traditional jewellery, and prices are anchored by the Shanghai Gold Exchange, which can trade at a premium over the international rate shown here.',
       faqEn: [
-        ['What is the gold price in China today?', 'The live price per gram in Chinese yuan is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw international rate; Shanghai Gold Exchange prices can carry a premium.'],
+        ['What is the gold price in China today?', 'The live price per gram in Chinese yuan is shown at the top of this page for 24K, 22K, 21K and 18K, with visible source time and freshness status. It is the raw international rate; Shanghai Gold Exchange prices can carry a premium.'],
         ['Which karat is most common in China?', '24K gold (marked 999 or 9999) is the Chinese standard for both saving and traditional jewellery, unlike most Western markets.'],
         ['Why do Chinese retail prices differ from this page?', 'Chinese retail gold follows the Shanghai Gold Exchange, which can trade at a premium over the international rate, and brands add making charges per gram.']
       ] },
@@ -1118,7 +1119,7 @@ ${links('ar', '')}`,
       noteAr: '',
       noteEn: 'The euro floats freely, so the gold price in EUR moves with both the global price and the exchange rate. France has a deep gold tradition: the Napoleon 20-franc coin is still traded daily by savers, investment gold is exempt from VAT, and jewellery is almost exclusively 18K (750), guaranteed by the eagle-head hallmark, with 20% VAT included in the shop price.',
       faqEn: [
-        ['What is the gold price in France today?', 'The live price per gram in euros is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw gold rate without VAT or dealer premiums.'],
+        ['What is the gold price in France today?', 'The live price per gram in euros is shown at the top of this page for 24K, 22K, 21K and 18K, with visible source time and freshness status. It is the raw gold rate without VAT or dealer premiums.'],
         ['Is gold taxed in France?', 'Investment gold (qualifying bars and coins) is exempt from VAT in France, as across the EU. Gold jewellery carries 20% VAT, included in the shop price.'],
         ['Which karat is most common in France?', 'French jewellery is almost exclusively 18K (750), guaranteed by the eagle-head hallmark. The Napoleon 20-franc coin remains the classic French investment gold piece.']
       ] },
@@ -1128,7 +1129,7 @@ ${links('ar', '')}`,
       noteAr: '',
       noteEn: 'The euro floats freely, so the gold price in EUR moves with both the global price and the exchange rate. Italy is one of the great goldsmith nations: the districts of Vicenza, Arezzo and Valenza produce jewellery exported worldwide, and the Italian standard is 18K (750), marked with the star-and-number maker hallmark. Investment gold is exempt from VAT in Italy, while jewellery carries 22% VAT in the shop price.',
       faqEn: [
-        ['What is the gold price in Italy today?', 'The live price per gram in euros is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw gold rate without VAT or making charges.'],
+        ['What is the gold price in Italy today?', 'The live price per gram in euros is shown at the top of this page for 24K, 22K, 21K and 18K, with visible source time and freshness status. It is the raw gold rate without VAT or making charges.'],
         ['Is gold taxed in Italy?', 'Investment gold (qualifying bars and coins) is exempt from VAT in Italy, as across the EU. Gold jewellery carries 22% VAT, included in the shop price.'],
         ['Which karat is most common in Italy?', 'The Italian jewellery standard is 18K (750), marked with the star-and-number maker hallmark. Vicenza, Arezzo and Valenza are the historic goldsmith districts.']
       ] },
@@ -1138,7 +1139,7 @@ ${links('ar', '')}`,
       noteAr: '',
       noteEn: 'The euro floats freely, so the gold price in EUR moves with both the global price and the exchange rate. In Spain, jewellery is traditionally oro de ley, 18K (750), stamped with an official hallmark, while investment gold in qualifying bars and coins is exempt from VAT and jewellery carries 21% VAT in the shop price.',
       faqEn: [
-        ['What is the gold price in Spain today?', 'The live price per gram in euros is shown at the top of this page for 24K, 22K, 21K and 18K, refreshing about every 5 minutes. It is the raw gold rate without VAT or making charges.'],
+        ['What is the gold price in Spain today?', 'The live price per gram in euros is shown at the top of this page for 24K, 22K, 21K and 18K, with visible source time and freshness status. It is the raw gold rate without VAT or making charges.'],
         ['Is gold taxed in Spain?', 'Investment gold (qualifying bars and coins) is exempt from VAT in Spain, as across the EU. Gold jewellery carries 21% VAT, included in the shop price.'],
         ['Which karat is most common in Spain?', 'Spanish jewellery is traditionally oro de ley, 18K (750), stamped with an official hallmark. 24K is bought as bars and coins for investment.']
       ] },
@@ -1148,12 +1149,12 @@ ${links('ar', '')}`,
       noteAr: 'يعتمد هذا الموقع سعر الصرف اليومي للسوق، وقد يختلف كثيراً عن السعر الرسمي للمصرف المركزي، لذلك يُفضَّل متابعة السعر بالدولار أيضاً. كثير من الصاغة في لبنان يُسعِّرون بالدولار الأمريكي مباشرة. عيار 18 و21 هما الأكثر انتشاراً في المجوهرات اللبنانية، وتُضاف المصنعية على كل قطعة.',
       noteEn: 'This page uses the daily market exchange rate, which can differ widely from the official central bank rate, so following the US dollar price alongside is recommended. Many Lebanese jewellers price directly in US dollars. 18K and 21K are the most common jewellery karats in Lebanon, and making charges are added per piece.',
       faqAr: [
-        ['كم سعر غرام الذهب عيار 21 في لبنان اليوم؟', 'يظهر سعر غرام عيار 21 بالليرة محدَّثاً في أعلى الصفحة ويُحدَّث كل 5 دقائق تقريباً، وهو سعر الذهب الخام بدون مصنعية.'],
+        ['كم سعر غرام الذهب عيار 21 في لبنان اليوم؟', 'يظهر سعر غرام عيار 21 بالليرة محدَّثاً في أعلى الصفحة وتظهر حالة حداثته ووقت مصدره، وهو سعر الذهب الخام بدون مصنعية.'],
         ['لماذا يُسعِّر الصاغة في لبنان بالدولار؟', 'بسبب فرق سعر الصرف الرسمي عن سعر السوق، يعتمد كثير من الصاغة التسعير بالدولار مباشرة. يظهر السعر بالدولار بجانب السعر بالليرة في أعلى الصفحة.'],
         ['ما العيار الأكثر انتشاراً في لبنان؟', 'عيار 18 و21 هما الأكثر انتشاراً في المجوهرات اللبنانية، بينما يُقتنى عيار 24 كسبائك وعملات للادخار.']
       ],
       faqEn: [
-        ['What is the 21K gold price in Lebanon today?', 'The live 21K price per gram in Lebanese pounds is shown at the top of this page and refreshes about every 5 minutes. It is the raw gold price without making charges.'],
+        ['What is the 21K gold price in Lebanon today?', 'The live 21K price per gram in Lebanese pounds is shown at the top of this page and shows its source time and freshness status. It is the raw gold price without making charges.'],
         ['Why do Lebanese jewellers price in dollars?', 'Because the market exchange rate differs widely from the official rate, many jewellers price directly in US dollars. The dollar price is shown next to the pound price at the top of this page.'],
         ['Which karat is most common in Lebanon?', '18K and 21K are the most common jewellery karats in Lebanon, while 24K is bought as bars and coins for saving.']
       ] },
@@ -1163,12 +1164,12 @@ ${links('ar', '')}`,
       noteAr: 'الدينار التونسي يُدار بسعر مرن مقابل الدولار، لذلك يتحرك سعر الذهب بالدينار مع السعر العالمي وسعر الصرف معاً. عيار 18 هو الأكثر انتشاراً في المجوهرات التونسية، وتُباع السبائك الصغيرة والعملات للادخار، وتُضاف المصنعية على كل قطعة.',
       noteEn: 'The Tunisian dinar is managed against the US dollar, so the gold price in TND moves with both the global price and the exchange rate. 18K is the most common karat in Tunisian jewellery, while small bars and coins are bought for saving, and making charges are added per piece.',
       faqAr: [
-        ['كم سعر غرام الذهب عيار 18 في تونس اليوم؟', 'يظهر سعر غرام عيار 18 بالدينار في جدول الأسعار أعلى الصفحة ويُحدَّث كل 5 دقائق تقريباً، وهو سعر الذهب الخام بدون مصنعية.'],
+        ['كم سعر غرام الذهب عيار 18 في تونس اليوم؟', 'يظهر سعر غرام عيار 18 بالدينار في جدول الأسعار أعلى الصفحة وتظهر حالة حداثته ووقت مصدره، وهو سعر الذهب الخام بدون مصنعية.'],
         ['ما العيار الأكثر انتشاراً في تونس؟', 'عيار 18 هو الأكثر انتشاراً في المجوهرات التونسية، بينما تُقتنى السبائك الصغيرة والعملات للادخار.'],
         ['لماذا يختلف سعر المحل عن هذه الصفحة؟', 'السعر هنا خام محسوب من السعر العالمي وسعر صرف الدينار، والمحلات تضيف المصنعية وهامش الربح على كل قطعة.']
       ],
       faqEn: [
-        ['What is the 18K gold price in Tunisia today?', 'The live 18K price per gram in Tunisian dinars is shown in the price table above and refreshes about every 5 minutes. It is the raw gold price without making charges.'],
+        ['What is the 18K gold price in Tunisia today?', 'The live 18K price per gram in Tunisian dinars is shown in the price table above and shows its source time and freshness status. It is the raw gold price without making charges.'],
         ['Which karat is most common in Tunisia?', '18K is the most common karat in Tunisian jewellery, while small bars and coins are bought for saving.'],
         ['Why do Tunisian shop prices differ from this page?', 'The rate here is the raw gold value calculated from the global price and the dinar exchange rate. Shops add making charges and their margin per piece.']
       ] },
@@ -1178,12 +1179,12 @@ ${links('ar', '')}`,
       noteAr: 'الدينار الليبي مُدار بسعر شبه ثابت مقابل الدولار مع سعر سوق موازٍ قد يختلف، ويعتمد هذا الموقع سعر الصرف اليومي المتاح. عيار 21 و18 هما الأكثر انتشاراً في المجوهرات الليبية، وتُضاف المصنعية على كل قطعة.',
       noteEn: 'The Libyan dinar is managed at a near-fixed rate against the US dollar with a parallel market rate that can differ, and this page uses the daily available exchange rate. 21K and 18K are the most common jewellery karats in Libya, and making charges are added per piece.',
       faqAr: [
-        ['كم سعر غرام الذهب عيار 21 في ليبيا اليوم؟', 'يظهر سعر غرام عيار 21 بالدينار محدَّثاً في أعلى الصفحة ويُحدَّث كل 5 دقائق تقريباً، وهو سعر الذهب الخام بدون مصنعية.'],
+        ['كم سعر غرام الذهب عيار 21 في ليبيا اليوم؟', 'يظهر سعر غرام عيار 21 بالدينار محدَّثاً في أعلى الصفحة وتظهر حالة حداثته ووقت مصدره، وهو سعر الذهب الخام بدون مصنعية.'],
         ['ما العيار الأكثر انتشاراً في ليبيا؟', 'عيار 21 و18 هما الأكثر انتشاراً في المجوهرات الليبية، بينما يُقتنى عيار 24 كسبائك وعملات للادخار.'],
         ['لماذا يختلف سعر المحل عن هذه الصفحة؟', 'السعر هنا خام محسوب من السعر العالمي وسعر صرف الدينار، والمحلات تضيف المصنعية وهامش الربح على كل قطعة.']
       ],
       faqEn: [
-        ['What is the 21K gold price in Libya today?', 'The live 21K price per gram in Libyan dinars is shown at the top of this page and refreshes about every 5 minutes. It is the raw gold price without making charges.'],
+        ['What is the 21K gold price in Libya today?', 'The live 21K price per gram in Libyan dinars is shown at the top of this page and shows its source time and freshness status. It is the raw gold price without making charges.'],
         ['Which karat is most common in Libya?', '21K and 18K are the most common jewellery karats in Libya, while 24K is bought as bars and coins for saving.'],
         ['Why do Libyan shop prices differ from this page?', 'The rate here is the raw gold value calculated from the global price and the dinar exchange rate. Shops add making charges and their margin per piece.']
       ] },
@@ -1193,12 +1194,12 @@ ${links('ar', '')}`,
       noteAr: 'يتعدد سعر صرف الريال اليمني بين المناطق، ويعتمد هذا الموقع سعر الصرف اليومي المتاح، لذلك قد يختلف السعر الفعلي في السوق المحلية عن المعروض هنا. عيار 21 هو الأكثر انتشاراً في المجوهرات اليمنية، وتُضاف المصنعية على كل قطعة.',
       noteEn: 'The Yemeni rial trades at different rates in different regions, and this page uses the daily available exchange rate, so the actual local market price may differ from what is shown here. 21K is the most common jewellery karat in Yemen, and making charges are added per piece.',
       faqAr: [
-        ['كم سعر غرام الذهب عيار 21 في اليمن اليوم؟', 'يظهر سعر غرام عيار 21 بالريال محدَّثاً في أعلى الصفحة ويُحدَّث كل 5 دقائق تقريباً، وهو سعر الذهب الخام بدون مصنعية.'],
+        ['كم سعر غرام الذهب عيار 21 في اليمن اليوم؟', 'يظهر سعر غرام عيار 21 بالريال محدَّثاً في أعلى الصفحة وتظهر حالة حداثته ووقت مصدره، وهو سعر الذهب الخام بدون مصنعية.'],
         ['لماذا يختلف سعر الذهب بين المناطق في اليمن؟', 'لأن سعر صرف الريال يختلف بين المناطق، ويُحسب السعر هنا بسعر الصرف اليومي المتاح، فقد تجد فرقاً عن السوق المحلية في منطقتك.'],
         ['ما العيار الأكثر انتشاراً في اليمن؟', 'عيار 21 هو الأكثر انتشاراً في المجوهرات اليمنية، ويُستخدم عيار 18 في بعض التصاميم الحديثة.']
       ],
       faqEn: [
-        ['What is the 21K gold price in Yemen today?', 'The live 21K price per gram in Yemeni rials is shown at the top of this page and refreshes about every 5 minutes. It is the raw gold price without making charges.'],
+        ['What is the 21K gold price in Yemen today?', 'The live 21K price per gram in Yemeni rials is shown at the top of this page and shows its source time and freshness status. It is the raw gold price without making charges.'],
         ['Why does the gold price differ between regions in Yemen?', 'The rial trades at different rates in different regions. This page uses the daily available rate, so your local market price may differ.'],
         ['Which karat is most common in Yemen?', '21K is the most common jewellery karat in Yemen, with 18K used in some modern designs.']
       ] }
@@ -1228,12 +1229,12 @@ ${c.code !== 'USD' ? `<a class="link-card" href="${url(L, 'dollar-' + slug)}">${
 
     for (const L of c.enOnly ? ['en'] : ['ar', 'en']) {
       const en = L === 'en', x = c[L];
-      const vatCol = c.vat ? `<th>${en ? `+ ${TN} ${c.vat}%` : `شامل الضريبة ${c.vat}%`}</th>` : '';
+      const vatCol = c.vat ? `<th>${en ? `Illustration +${c.vat}% ${TN}` : `مثال إضافة ضريبة ${c.vat}%`}</th>` : '';
       out.push({ lang: L, slug, alt: !c.enOnly, usesFx: !!c.fx,
         crumbs: [[en ? `Gold price in ${x.n}` : `سعر الذهب ${x.in}`, url(L, slug)]],
         title: en ? (c.tEn || `Gold Price in ${x.n} Today (${c.code}) — 24K, 22K, 21K, 18K`) : `سعر الذهب اليوم ${x.in} بال${x.cur} | عيار 24 و22 و21 و18`,
-        desc: en ? (c.dEn || `Live gold price in ${x.n} today in ${x.cur} (${c.code}) and US dollars: 24K, 22K, 21K and 18K per gram, tola and ounce, updated every 5 minutes${c.vat ? `, incl. ${c.vat}% ${TN}` : ''}.`)
-          : `سعر الذهب اليوم ${x.in} بال${x.cur} والدولار، محدَّث كل 5 دقائق: سعر غرام عيار 24 و22 و21 و18، وسعر الأونصة والتولة${c.vat ? `، والسعر شامل ضريبة ${c.vat}%` : ''}.`,
+        desc: en ? (c.dEn || `Live gold price in ${x.n} today in ${x.cur} (${c.code}) and US dollars: 24K, 22K, 21K and 18K per gram, tola and ounce, with source time and freshness status${c.vat ? `, incl. ${c.vat}% ${TN}` : ''}.`)
+          : `سعر الذهب اليوم ${x.in} بال${x.cur} والدولار، مع وقت المصدر وحالة حداثة السعر: سعر غرام عيار 24 و22 و21 و18، وسعر الأونصة والتولة${c.vat ? `، والسعر شامل ضريبة ${c.vat}%` : ''}.`,
         body: `${hero(en ? `Gold Price in ${x.n} Today` : `سعر الذهب اليوم ${x.in}`, en ? `Raw gold price per gram in ${x.cur} (${c.code}) and US dollars` : `سعر غرام الذهب الخام بال${x.cur} (${c.code}) والدولار`, L)}
 ${errBox}
 <div class="karat-grid">${KS.map(k => { const link = true; const tag = `a class="karat-card" href="${url(L, `${slug}/gold-${k}k`)}"`;
@@ -1246,7 +1247,7 @@ ${AD}
 <section class="card-section"><h2>${en ? `Gold price table in ${x.n} today` : `جدول أسعار الذهب ${x.in} اليوم`}</h2><div class="table-wrap"><table class="data-table">
 <thead><tr><th>${en ? 'Karat' : 'العيار'}</th><th>${en ? `1 gram (${c.code})` : `الغرام (${x.curS})`}</th>${vatCol}<th>${en ? `10 grams (${c.code})` : `10 غرام (${x.curS})`}</th><th>${c.un ? `${c.un[0]} (${c.code})` : en ? `1 tola (${c.code})` : `التولة (${x.curS})`}</th><th>${en ? `1 ounce (${c.code})` : `الأونصة (${x.curS})`}</th></tr></thead><tbody>
 ${KS.map(k => `<tr><td><strong>${en ? k + 'K' : 'عيار ' + k}</strong> <span class="sub"><bdi>${K[k].purity}</bdi></span></td><td class="n">${P(k, 1, opt())}</td>${c.vat ? `<td class="n">${P(k, 1 + c.vat / 100, opt())}</td>` : ''}<td class="n">${P(k, 10, opt())}</td><td class="n">${P(k, c.un ? c.un[1] : TOLA, opt())}</td><td class="n">${P(k, ctx.TROY, opt())}</td></tr>`).join('')}
-</tbody></table></div><p class="note">${en ? `Raw gold price without making charges${c.vat ? `; the VAT column adds ${c.vat}% to the gold value only` : ''}. ${c.un ? c.un[0] : '1 tola = 11.664 g'} · 1 ounce = 31.1035 g.` : `سعر الذهب الخام بدون مصنعية${c.vat ? `، وعمود الضريبة يضيف ${c.vat}% على قيمة الذهب فقط` : ''}. التولة = 11.664 غرام · الأونصة = 31.1035 غرام.`}</p></section>
+</tbody></table></div><p class="note">${en ? `Raw gold price without making charges${c.vat ? `; the illustration column adds ${c.vat}% to metal value only, not a tax determination or final invoice; eligibility and tax base depend on the product and transaction` : ''}. ${c.un ? c.un[0] : '1 tola = 11.664 g'} · 1 ounce = 31.1035 g.` : `سعر الذهب الخام بدون مصنعية${c.vat ? `، وعمود المثال يضيف ${c.vat}% على قيمة الذهب فقط، وليس حكماً ضريبياً أو فاتورة نهائية؛ الأهلية والأساس يعتمدان على المنتج والمعاملة` : ''}. التولة = 11.664 غرام · الأونصة = 31.1035 غرام.`}</p></section>
 <section class="card-section"><h2>${en ? `Gold price by weight in ${x.n} (21K and 24K)` : `سعر الذهب حسب الوزن ${x.in} (عيار 21 و24)`}</h2><div class="table-wrap"><table class="data-table">
 <thead><tr><th>${en ? 'Weight' : 'الوزن'}</th><th>${en ? '21K' : 'عيار 21'}</th><th>${en ? '24K' : 'عيار 24'}</th></tr></thead><tbody>
 ${GW.map(w => `<tr><td>${en ? w + ' g' : w + ' غرام'}</td><td class="n">${P(21, w, opt())}</td><td class="n">${P(24, w, opt())}</td></tr>`).join('')}
@@ -1259,11 +1260,11 @@ ${!en && ART_BY_SLUG_AR[AR_CTRY_ART[slug]] ? `<section class="card-section"><h2>
 ${share(L, slug, en ? `Gold price in ${x.n} today` : `سعر الذهب اليوم ${x.in}`)}
 ${other(L)}`,
         faq: en ? (c.faqEn || [
-          [`What is the 21K gold price in ${x.n} today?`, `The live 21K price per gram in ${x.cur} is shown at the top of this page and refreshes about every 5 minutes. It is the raw gold price without making charges${c.vat ? ' or VAT' : ''}.`],
+          [`What is the 21K gold price in ${x.n} today?`, `The live 21K price per gram in ${x.cur} is shown at the top of this page and shows its source time and freshness status. It is the raw gold price without making charges${c.vat ? ' or VAT' : ''}.`],
           [`Is there VAT on gold in ${x.n}?`, c.vat ? `Yes. ${x.n} applies ${c.vat}% VAT on gold jewellery; investment gold is usually treated differently.` : `${x.n} does not currently apply VAT, so the shop price is the gold price plus making charges.`],
           [`Is gold cheaper in ${x.n} or in the UAE?`, `The raw gold price is practically the same across the Gulf because it follows the global price. Differences come from VAT, making charges and shop premiums.`]
         ]) : (c.faqAr || [
-          [`كم سعر غرام الذهب عيار 21 ${x.in} اليوم؟`, `يظهر سعر غرام عيار 21 بال${x.cur} محدَّثاً في أعلى الصفحة ويُحدَّث كل 5 دقائق تقريباً، وهو سعر الذهب الخام بدون مصنعية${c.vat ? ' أو ضريبة' : ''}.`],
+          [`كم سعر غرام الذهب عيار 21 ${x.in} اليوم؟`, `يظهر سعر غرام عيار 21 بال${x.cur} محدَّثاً في أعلى الصفحة وتظهر حالة حداثته ووقت مصدره، وهو سعر الذهب الخام بدون مصنعية${c.vat ? ' أو ضريبة' : ''}.`],
           [`هل توجد ضريبة على الذهب ${x.in}؟`, c.vat ? `نعم، تُطبَّق ضريبة القيمة المضافة بنسبة ${c.vat}% على المشغولات الذهبية ${x.in}، ويُعامل الذهب الاستثماري عادةً معاملة مختلفة.` : `لا تُطبَّق ضريبة القيمة المضافة ${x.in} حتى الآن، فيتكون سعر المحل من سعر الذهب والمصنعية.`],
           [`هل الذهب أرخص ${x.in} أم في الإمارات؟`, 'سعر الذهب الخام متقارب جداً في كل دول الخليج لأنه يتبع السعر العالمي، والفرق الحقيقي يكون في الضريبة والمصنعية وهامش المحل.']
         ]) });
@@ -1276,7 +1277,7 @@ ${other(L)}`,
       out.push({ lang: 'ar', slug: `${slug}/gold-${k}k`, alt: true, usesFx: !!c.fx,
         crumbs: [[`سعر الذهب ${x.in}`, url('ar', slug)], [`عيار ${k}`, url('ar', `${slug}/gold-${k}k`)]],
         title: `سعر الذهب عيار ${k} اليوم ${x.in} بال${x.cur}`,
-        desc: `سعر غرام الذهب عيار ${k} اليوم ${x.in} بال${x.cur} والدولار، محدَّث كل 5 دقائق، مع جدول الأسعار من 1 إلى 100 غرام والتولة والأونصة${c.vat ? ` والسعر شامل ضريبة ${c.vat}%` : ''}.`,
+        desc: `سعر غرام الذهب عيار ${k} اليوم ${x.in} بال${x.cur} والدولار، مع وقت المصدر وحالة حداثة السعر، مع جدول الأسعار من 1 إلى 100 غرام والتولة والأونصة${c.vat ? ` والسعر شامل ضريبة ${c.vat}%` : ''}.`,
         body: `${hero(`سعر الذهب عيار ${k} اليوم ${x.in}`, `${K[k].ar.label} · نقاء <bdi>${K[k].purity}</bdi> · ختم ${K[k].mark}`, 'ar')}
 ${errBox}
 <div class="big-price"><div class="u">سعر غرام عيار ${k} بال${x.cur}</div><div class="v">${P(k, 1, opt())} <span style="font-size:.45em">${c.code}</span></div><div class="s"><bdi>≈ $${P(k, 1, { cur: 'usd' })}</bdi>${c.vat ? ` · شامل الضريبة ${c.vat}%: <bdi>${P(k, 1 + c.vat / 100, opt())} ${c.code}</bdi>` : ''}</div>${chg}
@@ -1302,7 +1303,7 @@ ${KS.filter(o => o !== k).map(o => `<a class="link-card" href="${url('ar', `${sl
 <a class="link-card" href="/gcc/">مقارنة أسعار الخليج</a>
 <a class="link-card" href="/gold-${k}k/">سعر عيار ${k} في الإمارات</a></div></section>`,
         faq: [
-          [`كم سعر غرام الذهب عيار ${k} ${x.in} اليوم؟`, `يظهر سعر غرام عيار ${k} بال${x.cur} محدَّثاً في أعلى الصفحة ويُحدَّث كل 5 دقائق تقريباً، وهو سعر الذهب الخام بدون مصنعية${c.vat ? ' أو ضريبة' : ''}.`],
+          [`كم سعر غرام الذهب عيار ${k} ${x.in} اليوم؟`, `يظهر سعر غرام عيار ${k} بال${x.cur} محدَّثاً في أعلى الصفحة وتظهر حالة حداثته ووقت مصدره، وهو سعر الذهب الخام بدون مصنعية${c.vat ? ' أو ضريبة' : ''}.`],
           [`كم نسبة الذهب في عيار ${k}؟`, `يحتوي عيار ${k} على ${K[k].purity} ذهب خالص ويحمل ختم ${K[k].mark}.`]
         ] });
     }
@@ -1313,7 +1314,7 @@ ${KS.filter(o => o !== k).map(o => `<a class="link-card" href="${url('ar', `${sl
       out.push({ lang: 'en', slug: `${slug}/gold-${k}k`, alt: !c.enOnly, usesFx: !!c.fx,
         crumbs: [[`Gold price in ${x.n}`, url('en', slug)], [`${k}K`, url('en', `${slug}/gold-${k}k`)]],
         title: `${k}K Gold Rate in ${x.n} Today (${c.code}) — Price per Gram`,
-        desc: `Live ${k}K gold rate in ${x.n} today in ${x.cur} (${c.code}) and US dollars: price per gram, 10 grams, tola and ounce, updated every 5 minutes${c.vat ? `, including ${c.vat}% ${TN}` : ''}.`,
+        desc: `Live ${k}K gold rate in ${x.n} today in ${x.cur} (${c.code}) and US dollars: price per gram, 10 grams, tola and ounce, with source time and freshness status${c.vat ? `, including ${c.vat}% ${TN}` : ''}.`,
         body: `${hero(`${k}K Gold Rate in ${x.n} Today`, `${ko.label} · ${K[k].purity} purity · hallmark ${K[k].mark}`, 'en')}
 ${errBox}
 <div class="big-price"><div class="u">${k}K — price per gram in ${x.cur}</div><div class="v">${P(k, 1, opt())} <span style="font-size:.45em">${c.code}</span></div>${c.code === 'USD' ? '' : `<div class="s"><bdi>≈ $${P(k, 1, { cur: 'usd' })} USD</bdi></div>`}
@@ -1335,7 +1336,7 @@ ${KS.filter(o => o !== k).map(o => `<a class="link-card" href="${url('en', `${sl
 <a class="link-card" href="/en/gcc/">Compare Gulf gold prices</a>
 <a class="link-card" href="/en/gold-${k}k/">${k}K gold rate in the UAE</a></div></section>`,
         faq: [
-          [`What is the ${k}K gold rate in ${x.n} today?`, `The live ${k}K price per gram in ${x.cur} is shown at the top of this page and refreshes about every 5 minutes. It is the raw gold price without making charges${c.vat ? ` or ${c.vat}% ${TN}` : ''}.`],
+          [`What is the ${k}K gold rate in ${x.n} today?`, `The live ${k}K price per gram in ${x.cur} is shown at the top of this page and shows its source time and freshness status. It is the raw gold price without making charges${c.vat ? ` or ${c.vat}% ${TN}` : ''}.`],
           [`What is ${k}K gold?`, `${k}K gold contains ${K[k].purity} pure gold and carries the hallmark ${K[k].mark}.`]
         ] });
     }
@@ -1379,7 +1380,7 @@ ${AD}
   // محول دولار تفاعلي (من وإلى): c = عملة صفحة دولة، وبدونه = نسخة المركز مع اختيار عملة
   const dcvConv = (L, c) => {
     const en = L === 'en';
-    const note = en ? 'Type in either field — the other side updates instantly at the live mid-market rate.' : 'اكتب في أي خانة والثانية تتحدث تلقائياً بسعر السوق المتوسط المباشر.';
+    const note = en ? 'Type in either field — the other side updates instantly at the dated reference rate.' : 'اكتب في أي خانة والثانية تتحدث تلقائياً بسعر الصرف المرجعي المؤرخ.';
     if (c) {
       const rate = ctx.fx[c.code];
       return `<section class="card-section" id="dcv" data-code="${c.code}" data-rate="${rate || ''}" data-d="${c.d}"><h2>${en ? 'Convert USD both ways' : 'حوّل من وإلى الدولار'}</h2>
@@ -1403,8 +1404,8 @@ ${AD}
     out.push({ lang: L, fixed: true, dollar: true, slug: 'dollar', alt: true, usesFx: true,
       crumbs: [[en ? 'US dollar rate today' : 'سعر الدولار اليوم', url(L, 'dollar')]],
       title: en ? 'US Dollar Rate Today — Live Exchange Rates for 40 Currencies' : 'سعر الدولار اليوم | سعر الصرف مباشر مقابل 40 عملة',
-      desc: en ? 'Live US dollar rate today against 40 currencies: Egyptian pound, Saudi riyal, UAE dirham, Indian rupee, Turkish lira and more, updated every 5 minutes.'
-        : 'سعر الدولار اليوم مباشر مقابل 40 عملة: الجنيه المصري والريال السعودي والدرهم الإماراتي والروبية الهندية والليرة التركية وغيرها — محدَّث كل 5 دقائق.',
+      desc: en ? 'Live US dollar rate today against 40 currencies: Egyptian pound, Saudi riyal, UAE dirham, Indian rupee, Turkish lira and more, with source time and freshness status.'
+        : 'سعر الدولار اليوم مباشر مقابل 40 عملة: الجنيه المصري والريال السعودي والدرهم الإماراتي والروبية الهندية والليرة التركية وغيرها — مع وقت المصدر وحالة حداثة السعر.',
       body: `${hero(en ? 'US Dollar Rate Today' : 'سعر الدولار اليوم', en ? 'Live exchange rate against every currency we cover' : 'سعر الصرف مباشر مقابل كل العملات التي نغطيها', L)}
 ${errBox}
 <section class="card-section"><h2>${en ? '1 US dollar in every currency' : 'سعر الدولار بجميع العملات'}</h2><div class="table-wrap"><table class="data-table">
@@ -1418,10 +1419,10 @@ ${AD}
 <p>${en ? 'For currencies not pegged to the dollar — like the Egyptian pound, Indian rupee and Turkish lira — the rate moves daily, and the local gold price moves with it. Pegged currencies stay fixed by official policy.' : 'العملات غير المربوطة بالدولار — مثل الجنيه المصري والروبية الهندية والليرة التركية — يتغير سعرها يومياً، ويتغير معها سعر الذهب المحلي. أما العملات المربوطة فتظل ثابتة بقرار رسمي.'}</p>
 <p>${en ? `Related: <a href="${url(L, 'gold-price-usd')}">gold price in USD</a> · <a href="${url(L, 'gold-calculator')}">gold calculator</a> · <a href="${url(L, 'gcc')}">Gulf gold prices</a>.` : `مواضيع ذات صلة: <a href="${url(L, 'gold-price-usd')}">سعر الذهب بالدولار</a> · <a href="${url(L, 'gold-calculator')}">حاسبة الذهب</a> · <a href="${url(L, 'gcc')}">أسعار الذهب في الخليج</a>.`}</p></div></section>${en ? '' : DART}`,
       faq: en ? [
-        ['What is the US dollar rate today?', 'The live mid-market rate for 1 USD against each currency appears in the table above and refreshes about every 5 minutes.'],
+        ['What is the US dollar rate today?', 'The live mid-market rate for 1 USD against each currency appears in the table above and shows its source time and freshness status.'],
         ['Why is my bank\'s dollar rate different from this rate?', 'Banks and exchange offices add a margin to the mid-market rate, and cash rates differ from transfer rates. The rate here is the mid-market reference.']
       ] : [
-        ['كم سعر الدولار اليوم؟', 'يظهر السعر المباشر للدولار مقابل كل عملة في الجدول أعلاه ويُحدَّث كل 5 دقائق تقريباً.'],
+        ['كم سعر الدولار اليوم؟', 'يظهر السعر المباشر للدولار مقابل كل عملة في الجدول أعلاه وتظهر حالة حداثته ووقت مصدره.'],
         ['لماذا يختلف سعر الدولار في البنك عن المعروض هنا؟', 'البنوك ومكاتب الصرافة تضيف هامشاً على سعر السوق المتوسط، وسعر الكاش يختلف عن سعر التحويل. السعر هنا هو سعر السوق المتوسط المرجعي.']
       ] });
   }
@@ -1435,8 +1436,8 @@ ${AD}
       out.push({ lang: L, fixed: true, dollar: true, slug: `dollar-${slug}`, alt: !c.enOnly, usesFx: true,
         crumbs: [[en ? `Dollar rate in ${x.n}` : `سعر الدولار ${x.in}`, url(L, `dollar-${slug}`)]],
         title: en ? `US Dollar Rate in ${x.n} Today: 1 USD = ${rTxt} ${c.code}` : `سعر الدولار اليوم ${x.in}: 1 دولار = ${rTxt} ${x.cur}`,
-        desc: en ? `Live US dollar rate in ${x.n} today: 1 USD = ${rTxt} ${c.code}. Conversion tables from 1 to 1,000 dollars and back, updated every 5 minutes.`
-          : `سعر الدولار اليوم ${x.in} بال${x.cur}: 1 دولار = ${rTxt} ${x.cur}. جداول تحويل من 1 حتى 1000 دولار والعكس، محدَّث كل 5 دقائق.`,
+        desc: en ? `Live US dollar rate in ${x.n} today: 1 USD = ${rTxt} ${c.code}. Conversion tables from 1 to 1,000 dollars and back, with source time and freshness status.`
+          : `سعر الدولار اليوم ${x.in} بال${x.cur}: 1 دولار = ${rTxt} ${x.cur}. جداول تحويل من 1 حتى 1000 دولار والعكس، مع وقت المصدر وحالة حداثة السعر.`,
         body: `${hero(en ? `US Dollar Rate in ${x.n} Today` : `سعر الدولار اليوم ${x.in}`, en ? `1 US dollar = ${rTxt} ${x.cur}` : `1 دولار = ${rTxt} ${x.cur}`, L)}
 ${errBox}
 <section class="card-section"><div class="table-wrap"><table class="data-table"><tbody>
@@ -1458,10 +1459,10 @@ ${DAMTS_L.map(w => `<tr><td class="n">${w.toLocaleString('en-US')}</td><td class
 <p>${en ? 'The rate shown is the mid-market rate from the daily open.er-api.com feed. Banks and exchange offices include a margin, and where a parallel market exists the street rate can differ.' : 'السعر المعروض هو سعر السوق المتوسط من مصدر open.er-api.com اليومي. أسعار البنوك والصرافة تشمل هامشاً، وحيث توجد سوق موازية قد يختلف سعرها.'}</p>
 <p>${en ? `Related: <a href="${url(L, slug === 'uae' ? '' : slug)}">gold price in ${x.n}</a> · <a href="${url(L, 'dollar')}">dollar rate in all currencies</a> · <a href="${url(L, 'gold-calculator')}">gold calculator</a>.` : `مواضيع ذات صلة: <a href="${url(L, slug === 'uae' ? '' : slug)}">سعر الذهب ${x.in}</a> · <a href="${url(L, 'dollar')}">سعر الدولار بجميع العملات</a> · <a href="${url(L, 'gold-calculator')}">حاسبة الذهب</a>.`}</p></div></section>${en ? '' : DART}`,
         faq: en ? [
-          [`What is 1 USD in ${x.cur} today?`, `1 US dollar = ${rTxt} ${c.code} at the live mid-market rate shown above, refreshed every 5 minutes.`],
-          [`How much is 100 US dollars in ${x.cur}?`, `100 USD = ${rate ? fmt(rate * 100, dd) : ''} ${c.code} at the current rate. The full conversion table above updates live every 5 minutes.`]
+          [`What is 1 USD in ${x.cur} today?`, `1 US dollar = ${rTxt} ${c.code} at the dated reference rate shown above, with visible FX source time.`],
+          [`How much is 100 US dollars in ${x.cur}?`, `100 USD = ${rate ? fmt(rate * 100, dd) : ''} ${c.code} at the latest available reference rate. The full conversion table above shows the latest available source snapshot.`]
         ] : [
-          [`كم سعر الدولار اليوم ${x.in}؟`, `1 دولار = ${rTxt} ${x.cur} بسعر السوق المتوسط المباشر أعلى الصفحة، ويُحدَّث كل 5 دقائق تقريباً.`],
+          [`كم سعر الدولار اليوم ${x.in}؟`, `1 دولار = ${rTxt} ${x.cur} بسعر الصرف المرجعي المؤرخ أعلى الصفحة، وتظهر حالة حداثته ووقت مصدره.`],
           [`كيف أحوّل الدولار إلى ${x.cur}؟`, `اضرب المبلغ بالدولار في سعر الصرف (${rTxt})، أو استخدم جدول التحويل أعلاه الذي يعرض القيم من 1 حتى 1000 دولار.`]
         ] });
     }
