@@ -380,7 +380,7 @@ function layout(p, ctx) {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://api.gold-api.com" />
   <link rel="preconnect" href="https://kmvadxkjehxfxpeveekg.supabase.co" />
-  <script>try{if(localStorage.getItem('mael-theme')!=='dark')document.documentElement.setAttribute('data-theme','light')}catch(e){document.documentElement.setAttribute('data-theme','light')}</script>
+  <script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('mael-theme')==='light'?'light':'dark')}catch(e){document.documentElement.setAttribute('data-theme','dark')}</script>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=optional" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/style.css?v=${ASSET_V.css}" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1982414703735990" crossorigin="anonymous"></script>

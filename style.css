@@ -80,7 +80,7 @@ a.karat-card:hover{transform:translateY(-3px);border-color:rgba(233,184,0,.5);bo
 .share-btn.join:hover{border-color:var(--g4)}
 
 /* Floating Telegram button */
-.tg-float{position:fixed;bottom:18px;inset-inline-end:18px;z-index:90;display:inline-flex;align-items:center;gap:8px;background:#229ed9;color:#fff;font-size:.82rem;font-weight:700;text-decoration:none;padding:10px 16px;border-radius:30px;box-shadow:0 4px 18px rgba(34,158,217,.4);transition:transform .18s,box-shadow .18s}
+.tg-float{position:fixed;bottom:18px;inset-inline-end:18px;z-index:90;display:inline-flex;align-items:center;gap:8px;background:#087cb1;color:#fff;font-size:.82rem;font-weight:700;text-decoration:none;padding:10px 16px;border-radius:30px;box-shadow:0 4px 18px rgba(34,158,217,.4);transition:transform .18s,box-shadow .18s}
 .tg-float:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(34,158,217,.5);color:#fff}
 .tg-float svg{flex:none}
 @media(max-width:520px){.tg-float span{display:none}.tg-float{padding:12px;border-radius:50%}}
@@ -307,7 +307,7 @@ body.ib .tg-float{bottom:100px}
 .quote-provenance summary{cursor:pointer;padding:8px;min-height:44px;text-align:center}
 .quote-provenance p{margin:10px 0}.quote-provenance dl{display:grid;grid-template-columns:minmax(100px,1fr) minmax(0,2fr);gap:7px 12px;padding:12px;border:1px solid var(--bb);border-radius:8px}
 .quote-provenance dd{margin:0;overflow-wrap:anywhere}.quote-provenance dt{font-weight:700}
-/* Premium financial shell. Saved theme choice still wins; light remains default. */
+/* Premium financial shell. Saved theme choice still wins; dark is the new-visitor default. */
 :root{--bg:#0c1526;--bc:#111f35;--bc2:#18283f;--bb:#2b3d55;--t1:#edf2f8;--t2:#b3c0d1;--t3:#9caec5;--g3:#e6c77b;--g4:#e2c276;--g5:#b89244;--grn:#4ade80;--red:#fca5a5;--rmd:16px;--rlg:20px}
 :root[data-theme=light]{--bg:#f5f7fb;--bc:#fff;--bc2:#eef2f7;--bb:#dde4ed;--t1:#14243d;--t2:#4d607a;--t3:#5f7189;--g3:#142e50;--g4:#223f64;--g5:#ac853b;--grn:#166534;--red:#991b1b}
 body{font-variant-numeric:tabular-nums}.container{max-width:1140px;padding-inline:24px}
