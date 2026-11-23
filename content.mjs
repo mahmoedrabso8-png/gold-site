@@ -1,3 +1,4 @@
+import { dePages } from './de-content.mjs';
 import { ukPages } from './uk-content.mjs';
 import { usPages } from './us-content.mjs';
 import { egpPages } from './currency-content.mjs';
@@ -16,7 +17,7 @@ import { ARTICLES, ARTICLES_EN } from './articles.mjs';
 
 export function pages(ctx) {
   const { P, FXD, updated, chg, daily, fmt, url, AD, TODAY } = ctx;
-  const out = [...egpPages(ctx), ...usPages(ctx), ...ukPages(ctx), ...silverCountryPages(ctx), ...quoteToolPages(ctx), ...portfolioPages(ctx), ...priceAlertPages(ctx), ...resalePages(ctx), ...weightPages()];
+  const out = [...egpPages(ctx), ...usPages(ctx), ...ukPages(ctx), ...dePages(ctx), ...silverCountryPages(ctx), ...quoteToolPages(ctx), ...portfolioPages(ctx), ...priceAlertPages(ctx), ...resalePages(ctx), ...weightPages()];
   const px = k => ctx.g24 ? fmt(ctx.g24 * k / 24) : null;   // سعر الغرام لإدراجه في العناوين
 
   // ── معلومات العيارات ─────────────────────────────────────
