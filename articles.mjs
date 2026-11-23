@@ -1,3 +1,4 @@
+import { GERMANY_GUIDE, FRANCE_GUIDE } from './reviewed-guides.mjs';
 import { WEIGHT_ARTICLE_AR, WEIGHT_ARTICLE_EN } from './weight-articles.mjs';
 import { RESALE_AR, RESALE_EN } from './resale-articles.mjs';
 // مقالات الموقع التعليمية (عربي) — محتوى دائم بدون أسعار مباشرة
@@ -1245,52 +1246,8 @@ ARTICLES_EN.push(
 
 // ── Wave 2 batch C: Europe + Nigeria ──
 ARTICLES_EN.push(
-  {
-    slug: 'buying-gold-germany-vat-free',
-    title: 'Buying Gold in Germany: VAT-Free Bullion and 999 Bars',
-    h1: 'Buying gold in Germany: VAT-free bullion and 999 bars',
-    desc: 'How to buy gold in Germany: VAT-exempt investment gold, popular coins like the Krugerrand and Philharmoniker, dealer premiums, and the 999 purity standard.',
-    teaser: 'VAT rules, coins and German buying habits',
-    intro: 'Germans are Europe\'s biggest private gold buyers — the rules favour them',
-    body: `
-<p>Germans hold more private gold than the Bundesbank — and the tax rules are a big reason why.</p>
-<h3>Investment gold is VAT-free</h3>
-<p>Under EU rules, <strong>investment gold</strong> — bars and wafers of 99.5%+ purity and a list of qualifying coins — is <strong>exempt from VAT</strong> in Germany. Jewellery carries the normal 19% VAT, so serious buyers stick to bullion. Even better: private gains on gold held longer than one year are tax-free in Germany.</p>
-<h3>What Germans buy</h3>
-<p>The classics: <strong>Krugerrand</strong> (1 oz, 22K but priced as bullion), <strong>Philharmoniker</strong>, <strong>Maple Leaf</strong>, and 999.9 bars from 1 g to 1 kg from refiners like Heraeus and Degussa. Banks, dealers (pro aurum, ESG) and online shops all quote off the live <a href="/en/gold-price-usd/">USD price</a> converted to EUR.</p>
-<h3>Premiums and spreads</h3>
-<p>1 oz coins typically carry 2–4% over spot; bars over 100 g get close to 1%. Tiny 1 g bars cost 10%+ — fine as gifts, poor as savings. Compare the dealer's buyback spread, not just the selling price.</p>
-<h3>What moves the EUR price</h3>
-<p>World price × USD/EUR. A weaker euro lifts German gold even in flat world markets — see the <a href="/en/dollar-germany/">dollar rate in Germany</a> and today's <a href="/en/germany/">gold price in Germany</a>. This guide is educational, not investment advice.</p>`,
-    faq: [
-      ['Is gold taxed in Germany?', 'Investment gold (99.5%+ bars and qualifying coins) is VAT-exempt, and private gains are tax-free after a one-year holding period. Jewellery carries 19% VAT.'],
-      ['Which gold coin is most popular in Germany?', 'The Krugerrand is the historical favourite; the Philharmoniker and Maple Leaf are close behind. All trade at small premiums over spot.'],
-      ['What purity is German investment gold?', 'Bars are 999.9 (99.99%); classic coins like the Krugerrand are 22K but contain a full ounce of pure gold and trade as bullion.']
-    ]
-  },
-  {
-    slug: 'gold-france-napoleon-18k',
-    title: 'Gold in France: Napoleon Coins, 18K Jewellery and Prices',
-    h1: 'Gold in France: Napoleon coins, 18K jewellery and prices',
-    desc: 'How gold works in France: the beloved 20-franc Napoleon, 18K (750) jewellery as the legal standard, premiums, and how the daily price in euros is formed.',
-    teaser: 'The coin French families pass down generations',
-    intro: 'France saves in Napoleons and wears 18K — here is the system',
-    body: `
-<p>France has a gold tradition like no other: millions of families keep <strong>Napoleon coins</strong> at home, and French jewellery is legally anchored to 18K.</p>
-<h3>The 20-franc Napoleon</h3>
-<p>The 20-franc gold Napoleon (5.81 g of 90% pure gold) is France's savings coin, minted since 1803 and still traded daily. Dealers quote its price off the live <a href="/en/gold-price-usd/">USD spot</a> in EUR plus a small premium that widens whenever savers rush in — the premium itself is a French fear gauge.</p>
-<h3>18K by law and by taste</h3>
-<p>French jewellery is overwhelmingly <strong>18 karat (750)</strong> — the traditional legal standard for "or" in France, stamped with the eagle's head hallmark. Anything below 750 cannot be marketed simply as gold. See the live <a href="/en/gold-18k/">18K rate</a>.</p>
-<h3>Taxes</h3>
-<p>Investment gold (bars 995+, listed coins) is VAT-free; sales of bullion carry a flat precious-metals tax (around 11.5%) unless you document the purchase and opt for the capital-gains regime. Keep every invoice.</p>
-<h3>What moves the EUR price</h3>
-<p>World price × USD/EUR. Follow the <a href="/en/dollar-france/">dollar rate in France</a> and today's <a href="/en/france/">gold price in France</a>. This guide is educational, not investment advice.</p>`,
-    faq: [
-      ['What is a Napoleon gold coin?', 'A French 20-franc gold coin (5.81 g, 90% pure) first minted under Napoleon Bonaparte — still the standard savings coin traded by French dealers.'],
-      ['Why is French jewellery 18K?', '18K (750) is the traditional legal standard for gold jewellery in France, marked with the eagle\'s head hallmark — a balance of colour, value and durability.'],
-      ['Is gold taxed in France?', 'Investment gold is VAT-free when bought. On resale there is a flat precious-metals tax (about 11.5%) or, with proof of purchase, the capital-gains regime.']
-    ]
-  },
+  GERMANY_GUIDE,
+  FRANCE_GUIDE,
   {
     slug: 'gold-italy-18k-standard',
     title: 'Gold in Italy: Why 18K (750) Is the National Standard',
