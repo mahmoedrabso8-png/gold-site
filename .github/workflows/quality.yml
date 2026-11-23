@@ -1,0 +1,27 @@
+name: Site quality checks
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Check JavaScript syntax
+        run: |
+          for file in *.mjs *.js tests/*.mjs; do node --check "$file"; done
+      - name: Build without database writes
+        run: node build.mjs
+      - name: Validate pages and discovery
+        run: node tests/site-quality.mjs
+      - name: Test quality checker failure detection
+        run: node tests/quality-selftest.mjs
+      - name: Test isolated financial calculations and alerts
+        run: node tests/finance.mjs
