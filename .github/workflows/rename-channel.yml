@@ -1,0 +1,17 @@
+name: Telegram channel logo (one-off)
+on:
+  push:
+    paths:
+      - '.github/logo.flag'
+jobs:
+  logo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set logo
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          api="https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}"
+          curl -s "$api/setChatPhoto" --form-string "chat_id=${TELEGRAM_CHAT_ID}" -F "photo=@.github/new-logo.png" | python3 -c "import json,sys;d=json.load(sys.stdin);print('logo',d.get('ok'),d.get('description'))"
