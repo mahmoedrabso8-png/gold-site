@@ -1,20 +1,27 @@
-name: Rename Telegram channel (one-off)
+name: Telegram channel profile and post (one-off)
 on:
   push:
     paths:
       - '.github/rename-channel.flag'
 jobs:
-  rename:
+  profile:
     runs-on: ubuntu-latest
     steps:
-      - name: Check rights and rename
+      - uses: actions/checkout@v4
+      - name: Update description, logo and post
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           api="https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}"
-          echo "before:"; curl -s "$api/getChat?chat_id=${TELEGRAM_CHAT_ID}" | python3 -c "import json,sys;d=json.load(sys.stdin);r=d.get('result',{});print(d.get('ok'),r.get('type'),r.get('title'),r.get('username'),d.get('description'))"
-          me=$(curl -s "$api/getMe" | python3 -c "import json,sys;print(json.load(sys.stdin)['result']['id'])")
-          echo "rights:"; curl -s "$api/getChatMember?chat_id=${TELEGRAM_CHAT_ID}&user_id=${me}" | python3 -c "import json,sys;d=json.load(sys.stdin);r=d.get('result',{});print(d.get('ok'),r.get('status'),'can_change_info=',r.get('can_change_info'),d.get('description'))"
-          echo "rename:"; curl -s "$api/setChatTitle" --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" --data-urlencode "title=Maelumatii | معلومتي: Gold & Money | الذهب والمال" | python3 -c "import json,sys;d=json.load(sys.stdin);print(d.get('ok'),d.get('description'))"
-          echo "after:"; curl -s "$api/getChat?chat_id=${TELEGRAM_CHAT_ID}" | python3 -c "import json,sys;d=json.load(sys.stdin);print(d.get('result',{}).get('title'))"
+          show() { python3 -c "import json,sys;d=json.load(sys.stdin);print(d.get('ok'),d.get('description'))"; }
+          echo "description:"; curl -s "$api/setChatDescription" --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" --data-urlencode "description=Maelumatii | معلومتي: free guides and reference prices for gold, silver and currencies. maelumatii.com
+معلومتي: أدلة مجانية وأسعار مرجعية للذهب والفضة والعملات. maelumatii.com" | show
+          echo "photo:"; curl -s "$api/setChatPhoto" -F "chat_id=${TELEGRAM_CHAT_ID}" -F "photo=@icon-512x512.png" | show
+          echo "post:"; curl -s "$api/sendMessage" --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" --data-urlencode "disable_web_page_preview=false" --data-urlencode "text=📘 New guide: Traveling Internationally With Gold and USD Cash
+How much you can carry, what to declare and how customs treat gold and cash. Built from official pages.
+https://www.maelumatii.com/en/traveling-internationally-with-gold-and-cash/
+
+📘 دليل جديد: السفر بالذهب والدولار النقدي. الحدود والإقرار الجمركي، من مصادر رسمية.
+https://www.maelumatii.com/en/traveling-internationally-with-gold-and-cash/" | python3 -c "import json,sys;d=json.load(sys.stdin);print(d.get('ok'),d.get('description'),d.get('result',{}).get('message_id'))"
+          echo "after:"; curl -s "$api/getChat?chat_id=${TELEGRAM_CHAT_ID}" | python3 -c "import json,sys;r=json.load(sys.stdin).get('result',{});print(r.get('title'),'|',r.get('description'),'| photo:',bool(r.get('photo')))"
