@@ -1,0 +1,20 @@
+name: Rename Telegram channel (one-off)
+on:
+  push:
+    paths:
+      - '.github/rename-channel.flag'
+jobs:
+  rename:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check rights and rename
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          api="https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}"
+          echo "before:"; curl -s "$api/getChat?chat_id=${TELEGRAM_CHAT_ID}" | python3 -c "import json,sys;d=json.load(sys.stdin);r=d.get('result',{});print(d.get('ok'),r.get('type'),r.get('title'),r.get('username'),d.get('description'))"
+          me=$(curl -s "$api/getMe" | python3 -c "import json,sys;print(json.load(sys.stdin)['result']['id'])")
+          echo "rights:"; curl -s "$api/getChatMember?chat_id=${TELEGRAM_CHAT_ID}&user_id=${me}" | python3 -c "import json,sys;d=json.load(sys.stdin);r=d.get('result',{});print(d.get('ok'),r.get('status'),'can_change_info=',r.get('can_change_info'),d.get('description'))"
+          echo "rename:"; curl -s "$api/setChatTitle" --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" --data-urlencode "title=Maelumatii | معلومتي: Gold & Money | الذهب والمال" | python3 -c "import json,sys;d=json.load(sys.stdin);print(d.get('ok'),d.get('description'))"
+          echo "after:"; curl -s "$api/getChat?chat_id=${TELEGRAM_CHAT_ID}" | python3 -c "import json,sys;d=json.load(sys.stdin);print(d.get('result',{}).get('title'))"
