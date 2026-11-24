@@ -36,3 +36,4 @@ jobs:
           node tests/currency.mjs
           node tests/melt.mjs
           node tests/travel.mjs
+          node tests/seo-articles.mjs
