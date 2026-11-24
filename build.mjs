@@ -366,13 +366,13 @@ function layout(p, ctx) {
   <meta property="og:url" content="${self}" />
   <meta property="og:title" content="${esc(p.title)}" />
   <meta property="og:description" content="${esc(p.desc)}" />
-  <meta property="og:image" content="${SITE}/icons/og-image.png" />
+  <meta property="og:image" content="${SITE}/icons/og-image-v2.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:locale" content="${tr ? 'tr_TR' : L === 'hi' ? 'hi_IN' : L === 'ur' ? 'ur_PK' : L === 'id' ? 'id_ID' : L === 'bn' ? 'bn_BD' : L === 'tl' ? 'tl_PH' : L === 'ms' ? 'ms_MY' : en ? 'en_AE' : 'ar_AE'}" />
   <meta property="og:site_name" content="${tr ? 'Maelumatii — Altın Fiyatları' : en ? 'Maelumatii — Gold Prices Today' : 'معلوماتي — أسعار الذهب في الخليج'}" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="${SITE}/icons/og-image.png" />
+  <meta name="twitter:image" content="${SITE}/icons/og-image-v2.png" />
   <link rel="manifest" href="/manifest.json" />
   <meta name="theme-color" content="#e8b800" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -500,7 +500,7 @@ for (const s of [72, 96, 128, 144, 152, 192, 384, 512]) {
   const f = `icon-${s}x${s}.png`;
   await place(f, ['static/icons', 'icons', '.'], path.join(OUT, 'icons', f));
 }
-await place('og-image.png', ['static/icons', 'icons', '.'], path.join(OUT, 'icons', 'og-image.png'));
+await place('og-image-v2.png', ['static/icons', 'icons', '.'], path.join(OUT, 'icons', 'og-image-v2.png'));
 
 // رقم نسخة من محتوى الملف نفسه: أي تعديل في السكريبت أو التصميم يغيّر الرابط، فالمتصفح يجيب النسخة الجديدة فوراً
 const hashOf = async f => crypto.createHash('md5').update(await fs.readFile(path.join(OUT, 'assets', f))).digest('hex').slice(0, 10);
