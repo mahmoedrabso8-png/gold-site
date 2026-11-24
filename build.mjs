@@ -5,6 +5,7 @@
 //  ويبني أرشيف الأسعار اليومي من قاعدة البيانات.
 // ══════════════════════════════════════════════════════════════
 import fs from 'node:fs/promises';
+import { TRAVEL_SLUGS } from './travel-content.mjs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { MARKET_CONFIG, marketTime } from './market-config.mjs';
@@ -483,7 +484,7 @@ await fs.writeFile(path.join(OUT,'assets','app.js'),'(function(){'+priceStateJs+
     for (const [q, ans] of (a.faq || [])) out.push({ t: stripH(q), d: cut(stripH(ans)), u });
     return out;
   });
-  const GUIDE_SLUGS = new Set(['us-gold-tax-reporting-guide','uk-gold-vat-cgt-hallmark-guide','germany-gold-vat-tax-cash-rules','gold-buying-rules-us-uk-germany','gold-glossary','gold-price-history-timeline','gold-premium-breakeven-calculator','gold-melt-value-calculator','gold-melt-value-calculator-uk','gold-melt-value-calculator-eur']);
+  const GUIDE_SLUGS = new Set(['us-gold-tax-reporting-guide','uk-gold-vat-cgt-hallmark-guide','germany-gold-vat-tax-cash-rules','gold-buying-rules-us-uk-germany','gold-glossary','gold-price-history-timeline','gold-premium-breakeven-calculator','gold-melt-value-calculator','gold-melt-value-calculator-uk','gold-melt-value-calculator-eur'].concat(Object.values(TRAVEL_SLUGS)));
   const guideKb = lang => pages(ctx).filter(p => p.lang === lang && GUIDE_SLUGS.has(p.slug)).flatMap(p => {
     const u = url(p.lang, p.slug), t = stripH((p.body.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i) || [])[1] || p.title);
     const out = [{ t, d: cut(stripH(p.desc), 600), u }];
