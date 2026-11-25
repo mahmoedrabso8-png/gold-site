@@ -165,7 +165,7 @@ export function pages(ctx) {
 
   // ── الصفحة الرئيسية ────────────────────────────────────
   out.push({ lang: 'ar', slug: '', alt: true,
-    title: px(21) ? `سعر الذهب اليوم في الإمارات | عيار 21: ${px(21)} درهم` : 'سعر الذهب اليوم في الإمارات بالدرهم | عيار 24 و22 و21 و18',
+    title: px(21) ? `سعر الذهب في الإمارات اليوم عيار 21: ${px(21)} درهم` : 'سعر الذهب اليوم في الإمارات بالدرهم | عيار 24 و22 و21 و18',
     desc: (px(21) ? `سعر الذهب اليوم في الإمارات: عيار 21 بـ ${px(21)} درهم، عيار 24 بـ ${px(24)}، عيار 22 بـ ${px(22)}، عيار 18 بـ ${px(18)} للغرام. ` : 'سعر الذهب اليوم في الإمارات ودبي بالدرهم. ') + 'وقت المصدر وحالة السعر، مع الأونصة والسبائك والحاسبة.',
     body: `${hero('سعر الذهب اليوم في الإمارات بالدرهم', 'سعر غرام الذهب الخام لعيار 24 و22 و21 و18 بالدرهم الإماراتي والدولار', 'ar')}
 ${errBox}${karatCards('ar')}${metaRow('ar')}
@@ -177,6 +177,9 @@ ${KS.map(k => `<tr><td><a href="${url('ar', 'gold-' + k + 'k')}"><strong>عيا�
 <section class="card-section"><h2>سعر الذهب عيار 21 بالدولار وبالمصنعية</h2><div class="prose">
 <p><strong>سعر غرام عيار 21 بالدولار</strong> اليوم نحو <bdi>$${P(21, 1, { cur: 'usd' })}</bdi>، وسعر غرام عيار 24 نحو <bdi>$${P(24, 1, { cur: 'usd' })}</bdi>، وسعر الأونصة العالمي <bdi>$${P(24, ctx.TROY, { cur: 'usd' })}</bdi>.</p>
 <p><strong>سعر الذهب في الإمارات بالمصنعية:</strong> إذا كانت المصنعية 5 دراهم للغرام يصبح غرام عيار 21 نحو <bdi>${P(21, 1, { mc: 5 })} درهم</bdi>، وبمصنعية 10 دراهم نحو <bdi>${P(21, 1, { mc: 10 })} درهم</bdi>، وبمصنعية 15 درهماً نحو <bdi>${P(21, 1, { mc: 15 })} درهم</bdi> (قبل ضريبة 5% على المشغولات). لحساب وزنك ومصنعيتك بدقة استخدم <a href="/gold-calculator/">حاسبة الذهب بالمصنعية</a>.</p></div></section>
+<section class="card-section"><h2>سعر الذهب في الإمارات اليوم عيار 18 و22 و24</h2><div class="prose">
+<p><strong>سعر غرام الذهب عيار 18</strong> اليوم في الإمارات نحو <bdi>${P(18)} درهم</bdi>، وعيار 22 نحو <bdi>${P(22)} درهم</bdi>، وعيار 24 نحو <bdi>${P(24)} درهم</bdi>، وعيار 21 نحو <bdi>${P(21)} درهم</bdi>. هذه أسعار الذهب الخام قبل المصنعية وضريبة 5%.</p>
+<p>تفاصيل كل عيار: <a href="/gold-18k/">سعر الذهب عيار 18</a> · <a href="/gold-21k/">عيار 21</a> · <a href="/gold-22k/">عيار 22</a> · <a href="/gold-24k/">عيار 24</a>.</p></div></section>
 ${homeMarkets('ar',ctx)}
 ${AD}
 ${spark('ar')}${why('ar')}${links('ar', '')}
@@ -189,6 +192,7 @@ ${AD}
 ${sources('ar')}`,
     faq: [
       ['كم سعر غرام الذهب عيار 21 في الإمارات اليوم؟', 'يظهر سعر غرام عيار 21 محدَّثاً في أعلى الصفحة بالدرهم والدولار، وتظهر حالة حداثته ووقت مصدره. وهو سعر الذهب الخام بدون مصنعية أو ضريبة.'],
+      ['كم سعر الذهب عيار 18 في الإمارات اليوم؟', 'يظهر سعر غرام عيار 18 محدَّثاً في جدول الأسعار وفي قسم سعر الذهب عيار 18 أعلاه، بالدرهم والدولار. وهو سعر الذهب الخام قبل المصنعية وضريبة 5%، ويُستخدم عيار 18 غالباً في مجوهرات الألماس.'],
       ['كم سعر الذهب عيار 21 بالدولار اليوم؟', 'سعر غرام عيار 21 بالدولار = (سعر الأونصة بالدولار ÷ 31.1035) × 0.875، ويظهر محدَّثاً بالدولار في جدول الأسعار أعلاه وفي قسم "سعر الذهب عيار 21 بالدولار وبالمصنعية".'],
       ['كم سعر الذهب في الإمارات بالمصنعية؟', 'أضف المصنعية للغرام إلى سعر الغرام ثم اضرب في الوزن، وأضف ضريبة 5% على المشغولات. المصنعية تبدأ من بضعة دراهم وتصل إلى 15 درهماً أو أكثر حسب التصميم، ويمكنك الحساب بدقة من حاسبة الذهب.'],
       ['كيف يُحسب سعر غرام الذهب بالدرهم؟', 'سعر غرام عيار 24 = سعر الأونصة بالدولار × 3.6725 ÷ 31.1035. ثم يُضرب في نسبة العيار: 0.917 لعيار 22، و0.875 لعيار 21، و0.75 لعيار 18.'],
@@ -208,6 +212,9 @@ ${homeTools('en',ctx)}
 <thead><tr><th>Karat</th><th>1 gram (AED)</th><th>1 gram (USD)</th><th>10 grams (AED)</th><th>1 tola (AED)</th><th>1 ounce (AED)</th></tr></thead><tbody>
 ${KS.map(k => `<tr><td><a href="${url('en', 'gold-' + k + 'k')}"><strong>${k}K</strong></a> <span class="sub"><bdi>${K[k].purity}</bdi></span></td><td class="n">${P(k)}</td><td class="n">$${P(k, 1, { cur: 'usd' })}</td><td class="n">${P(k, 10)}</td><td class="n">${P(k, TOLA)}</td><td class="n">${P(k, ctx.TROY)}</td></tr>`).join('')}
 </tbody></table></div><p class="note">Raw gold price excluding making charges and VAT. 1 tola = 11.664 g · 1 troy ounce = 31.1035 g.</p></section>
+<section class="card-section"><h2>Gold rate today in UAE: 18K, 21K, 22K and 24K</h2><div class="prose">
+<p>The gold price for today in the UAE is about <bdi>${P(24)} AED</bdi> per gram for 24K, <bdi>${P(22)} AED</bdi> for 22K, <bdi>${P(21)} AED</bdi> for 21K and <bdi>${P(18)} AED</bdi> for 18K. These are raw gold rates before making charges and 5% VAT. The shop rate you are quoted can differ slightly.</p>
+<p>Open the page for your karat: <a href="/en/gold-24k/">24K gold rate</a> · <a href="/en/gold-22k/">22K gold rate</a> · <a href="/en/gold-21k/">21K gold rate</a> · <a href="/en/gold-18k/">18K gold rate</a>. Use the <a href="/en/gold-calculator/">gold calculator</a> to add making charges.</p></div></section>
 ${homeMarkets('en',ctx)}
 ${AD}
 ${spark('en')}${why('en')}
@@ -220,6 +227,7 @@ ${AD}
 <p>Before you buy, work out the final price including making charges and VAT with the <a href="/en/gold-calculator/">gold calculator</a>, and compare <a href="/en/gold-bars/">gold bar prices</a> if you are buying for investment.</p></div></section>
 ${sources('en')}`,
     faq: [
+      ['What is the gold rate today in the UAE?', 'The live gold rate per gram in AED is at the top of this page for 24K, 22K, 21K and 18K, with its source time and freshness status. It is the raw gold price before making charges and 5% VAT.'],
       ['What is the 22K gold rate in Dubai today?', 'The live 22K price per gram is shown at the top of this page in AED and USD and shows its source time and freshness status. It is the raw gold price without making charges or VAT.'],
       ['How is the gold price per gram in AED calculated?', '24K price per gram = ounce price in USD × 3.6725 ÷ 31.1035. Multiply by the karat purity: 0.917 for 22K, 0.875 for 21K and 0.75 for 18K.'],
       ['Does the price include making charges and VAT?', 'No. It is the raw gold price only. Shops add making charges per piece and 5% VAT on jewellery.'],
@@ -292,12 +300,14 @@ ${links(L, `gold-${k}k`)}`,
 ${[['c-pg',en?'Price per gram':'سعر الغرام'],['c-gold',en?'Gold value':'قيمة الذهب'],['c-make',en?'Making charges':'المصنعية'],['c-tax',en?'Tax':'الضريبة'],['c-discount-total',en?'After-tax discount':'الخصم بعد الضريبة'],['c-total',en?'Estimated total':'الإجمالي التقديري'],['c-final-gram',en?'Final cost per gram':'التكلفة النهائية للغرام']].map(([id,label])=>`<div class="result-row${id==='c-total'?' total':''}"><span>${label}</span><strong><span id="${id}">—</span> <span class="c-curl">AED</span></strong></div>`).join('')}
 <div class="result-row"><span>${en?'Estimated total in USD':'الإجمالي التقديري بالدولار'}</span><strong>$<span id="c-usd">—</span></strong></div></div>
 <p class="note" id="c-rate-source"></p></section>${AD}
-<section class="card-section"><h2>${en?'How the estimate works':'كيف تُحسب التكلفة'}</h2><div class="prose"><p>${en?'Gold value = gold weight × gram price for the selected karat. Making charges can be per gram, a fixed amount for the piece, or a percentage of the gold value. Tax is calculated on the base you choose. Total = gold + making + tax − after-tax discount. Final gram cost = total ÷ gold weight.':'قيمة الذهب = وزن الذهب × سعر غرام العيار المختار. يمكن أن تكون المصنعية لكل غرام أو مبلغاً ثابتاً للقطعة أو نسبة من قيمة الذهب. تُحسب الضريبة على الأساس الذي تختاره. الإجمالي = الذهب + المصنعية + الضريبة − الخصم بعد الضريبة. تكلفة الغرام النهائية = الإجمالي ÷ وزن الذهب.'}</p><p>${en?'The automatic rate is international raw gold converted at the current exchange rate. It is not a guaranteed local retail quote. Enter the shop gram price to match an actual offer. Stones, delivery, other fees and buyback deductions are not included.':'السعر التلقائي هو الذهب الخام العالمي محوّلاً بسعر الصرف الحالي، وليس عرضاً مضموناً من محلات بلدك. أدخل سعر غرام المحل لمقارنة عرض فعلي. لا يشمل الحساب الأحجار أو التوصيل أو الرسوم الأخرى أو خصم إعادة الشراء.'}</p></div></section>${links(L,'gold-calculator')}`,
+<section class="card-section"><h2>${en?'How the estimate works':'كيف تُحسب التكلفة'}</h2><div class="prose"><p>${en?'Gold value = gold weight × gram price for the selected karat. Making charges can be per gram, a fixed amount for the piece, or a percentage of the gold value. Tax is calculated on the base you choose. Total = gold + making + tax − after-tax discount. Final gram cost = total ÷ gold weight.':'قيمة الذهب = وزن الذهب × سعر غرام العيار المختار. يمكن أن تكون المصنعية لكل غرام أو مبلغاً ثابتاً للقطعة أو نسبة من قيمة الذهب. تُحسب الضريبة على الأساس الذي تختاره. الإجمالي = الذهب + المصنعية + الضريبة − الخصم بعد الضريبة. تكلفة الغرام النهائية = الإجمالي ÷ وزن الذهب.'}</p><p>${en?'The automatic rate is international raw gold converted at the current exchange rate. It is not a guaranteed local retail quote. Enter the shop gram price to match an actual offer. Stones, delivery, other fees and buyback deductions are not included.':'السعر التلقائي هو الذهب الخام العالمي محوّلاً بسعر الصرف الحالي، وليس عرضاً مضموناً من محلات بلدك. أدخل سعر غرام المحل لمقارنة عرض فعلي. لا يشمل الحساب الأحجار أو التوصيل أو الرسوم الأخرى أو خصم إعادة الشراء.'}</p></div></section><section class="card-section"><h2>${en?'How to calculate making charges on gold':'كيف تحسب مصنعية الذهب'}</h2><div class="prose"><p>${en?'Making charge per gram = the shop\'s charge for each gram. Making total = making per gram × weight. If the shop quotes a percentage, making total = gold value × that percentage. Add tax on the base your invoice states.':'المصنعية الإجمالية = مصنعية الغرام × الوزن. وإذا كان المحل يحسبها كنسبة فهي قيمة الذهب × النسبة. ثم أضف الضريبة على الأساس المكتوب في الفاتورة.'}</p><p>${en?'Example with made-up numbers: 10 g at 400 per gram = 4,000. Making at 10 per gram = 100. Subtotal 4,100. Tax at 5% on gold and making = 205. Total = 4,305, or 430.5 per gram. Replace these numbers with your shop\'s quote.':'مثال بأرقام افتراضية: 10 غرام بسعر 400 للغرام = 4,000. المصنعية 10 للغرام = 100. المجموع 4,100. الضريبة 5% على الذهب والمصنعية = 205. الإجمالي 4,305، أي 430.5 للغرام. استبدل الأرقام بعرض محلك.'}</p></div></section>${links(L,'gold-calculator')}`,
       faq:en?[
+        ['How do I calculate making charges on gold?','Making total = making per gram × weight, or gold value × the percentage if the shop quotes a percent. Then add tax on the base your invoice states. The worked example on this page shows the steps with made-up numbers.'],
         ['Can I use the calculator outside the UAE?','Yes. Select any of the 44 countries to use its currency. Enter the making charge and actual invoice tax; tax rules are not assumed.'],
         ['Can I enter the shop’s own gram price?','Yes. The optional shop-price field replaces the live raw rate for the selected karat. Leave it blank to use the live rate.'],
         ['Does zero tax mean gold is exempt?','No. Zero is an initial input, not tax advice. Use the rate and taxable base quoted by your retailer.']
       ]:[
+        ['كيف تحسب مصنعية الذهب؟','المصنعية الإجمالية = مصنعية الغرام × الوزن، أو قيمة الذهب × النسبة إذا حسبها المحل كنسبة. ثم تُضاف الضريبة على الأساس المكتوب في الفاتورة. المثال في الصفحة يوضح الخطوات بأرقام افتراضية.'],
         ['هل تعمل الحاسبة خارج الإمارات؟','نعم، اختر أياً من 44 دولة لاستخدام عملتها، ثم أدخل المصنعية والضريبة الفعلية من الفاتورة. لا تفترض الحاسبة قواعد ضريبية.'],
         ['هل يمكن إدخال سعر غرام المحل؟','نعم، الحقل الاختياري يستبدل السعر المباشر بسعر غرام المحل للعيار المختار. اتركه فارغاً لاستخدام السعر المباشر.'],
         ['هل الضريبة صفر تعني إعفاء الذهب؟','لا. الصفر قيمة ابتدائية وليس نصيحة ضريبية. استخدم النسبة وأساس الحساب اللذين يحددهما البائع.']
