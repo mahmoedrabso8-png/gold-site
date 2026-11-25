@@ -1,11 +1,51 @@
 [
  {
+  "id": "x01-az-groceries",
+  "store": "amazon",
+  "template": "T1x",
+  "link": "https://www.amazon.sa/whitefriday",
+  "text": "🟠 أمازون السعودية | البقالة والمستلزمات اليومية\n🔥 خصومات حتى 30% على القهوة والمشروبات والفيتامينات والعناية الشخصية ومنتجات الغسيل (في الجمعة البيضاء)\n🔗 https://www.amazon.sa/whitefriday\nℹ️ الأسعار والعروض بتتغير، تأكد من صفحة المتجر.",
+  "send_at": "2026-11-25T11:00:00+03:00",
+  "expire_at": "2026-11-30T23:59:00+03:00",
+  "status": "queued"
+ },
+ {
+  "id": "x02-az-electronics",
+  "store": "amazon",
+  "template": "T1x",
+  "link": "https://www.amazon.sa/whitefriday",
+  "text": "🟠 أمازون السعودية | إلكترونيات وألعاب\n🔥 خصومات حتى 35% على التلفزيونات والتابلت والسماعات وملحقات الألعاب وغيرها\n📱 وأجهزة أمازون (Echo وKindle وRing) حتى 50%\n🔗 https://www.amazon.sa/whitefriday\nℹ️ الأسعار والعروض بتتغير، تأكد من صفحة المتجر.",
+  "send_at": "2026-11-25T14:00:00+03:00",
+  "expire_at": "2026-11-30T23:59:00+03:00",
+  "status": "queued"
+ },
+ {
+  "id": "x15-noon-cats",
+  "store": "noon",
+  "template": "T1x",
+  "link": "https://www.noon.com/saudi-ar/yellow-friday-sale-offers/",
+  "text": "🟡 نون | الجمعة الصفراء\nعروض في الجوالات والأزياء والإلكترونيات والجمال والبقالة ومستلزمات المطبخ\n🔥 خصومات حتى 80%\n🔗 https://www.noon.com/saudi-ar/yellow-friday-sale-offers/\nℹ️ الأسعار والعروض بتتغير، تأكد من صفحة المتجر.",
+  "send_at": "2026-11-25T17:00:00+03:00",
+  "expire_at": "2026-11-30T23:59:00+03:00",
+  "status": "queued"
+ },
+ {
   "id": "01-amazon-wf",
   "store": "amazon",
   "template": "T1",
   "text": "🛍️ 🟠 أمازون السعودية: الجمعة البيضاء\n📅 من 19 إلى 30 نوفمبر\n🔥 ملايين العروض في أكثر من 30 قسم\n🔗 https://www.amazon.sa/whitefriday\nℹ️ الأسعار والعروض بتتغير، تأكد من صفحة المتجر.",
   "link": "https://www.amazon.sa/whitefriday",
   "send_at": "2026-11-25T20:00:00+03:00",
+  "expire_at": "2026-11-30T23:59:00+03:00",
+  "status": "queued"
+ },
+ {
+  "id": "x03-az-beauty",
+  "store": "amazon",
+  "template": "T1x",
+  "link": "https://www.amazon.sa/whitefriday",
+  "text": "🟠 أمازون السعودية | الجمال والعطور\n🔥 خصومات حتى 30% على العطور ومنتجات الجمال من علامات مختلفة\n🔗 https://www.amazon.sa/whitefriday\nℹ️ الأسعار والعروض بتتغير، تأكد من صفحة المتجر.",
+  "send_at": "2026-11-25T21:00:00+03:00",
   "expire_at": "2026-11-30T23:59:00+03:00",
   "status": "queued"
  },
@@ -20,6 +60,16 @@
   "status": "queued"
  },
  {
+  "id": "x04-az-beautybox",
+  "store": "amazon",
+  "template": "T1x",
+  "link": "https://www.amazon.sa/whitefriday",
+  "text": "🟠 أمازون السعودية | بوكس جمال هدية\n🎁 بوكس جمال محدود من الفنانة السعودية راما تركي مجاني مع مشتريات الجمال الفاخرة بقيمة 150 ريال أو أكثر\n(العرض حسب شروط أمازون)\n🔗 https://www.amazon.sa/whitefriday\n📌 تطبق الشروط والأحكام.\nℹ️ الأسعار والعروض بتتغير، تأكد من صفحة المتجر.",
+  "send_at": "2026-11-26T11:00:00+03:00",
+  "expire_at": "2026-11-30T23:59:00+03:00",
+  "status": "queued"
+ },
+ {
   "id": "03-trendyol-lf",
   "store": "trendyol",
   "template": "T1",
@@ -30,12 +80,32 @@
   "status": "queued"
  },
  {
+  "id": "x16-noon-reminder",
+  "store": "noon",
+  "template": "T1x",
+  "link": "https://www.noon.com/saudi-ar/yellow-friday-sale-offers/",
+  "text": "🟡 نون | تذكير\nالجمعة الصفراء شغالة لحد 30 نوفمبر، وأكبر يوم فيها الجمعة 27 نوفمبر\n🔥 خصومات حتى 80%\n🔗 https://www.noon.com/saudi-ar/yellow-friday-sale-offers/\nℹ️ الأسعار والعروض بتتغير، تأكد من صفحة المتجر.",
+  "send_at": "2026-11-26T15:00:00+03:00",
+  "expire_at": "2026-11-30T23:59:00+03:00",
+  "status": "queued"
+ },
+ {
   "id": "04-tip-real-discount",
   "store": "tip",
   "template": "T4",
   "text": "💡 ازاي تتأكد إن الخصم حقيقي؟\n1) قارن السعر في أكثر من متجر\n2) شوف تاريخ سعر المنتج لو متاح\n3) اقرأ تقييم البائع والمنتج\n4) راجع سياسة الإرجاع وموعد التوصيل\nℹ️ الأسعار والعروض بتتغير، تأكد من صفحة المتجر.",
   "link": null,
   "send_at": "2026-11-26T16:00:00+03:00",
+  "expire_at": "2026-11-30T23:59:00+03:00",
+  "status": "queued"
+ },
+ {
+  "id": "x05-az-fashion",
+  "store": "amazon",
+  "template": "T1x",
+  "link": "https://www.amazon.sa/whitefriday",
+  "text": "🟠 أمازون السعودية | الأزياء والإكسسوارات\n🔥 خصومات حتى 35% على الحقائب والساعات والمجوهرات والنظارات والأحذية وملابس الرياضة\n🔗 https://www.amazon.sa/whitefriday\nℹ️ الأسعار والعروض بتتغير، تأكد من صفحة المتجر.",
+  "send_at": "2026-11-26T19:00:00+03:00",
   "expire_at": "2026-11-30T23:59:00+03:00",
   "status": "queued"
  },
@@ -61,12 +131,32 @@
   "status": "queued"
  },
  {
+  "id": "x06-az-home",
+  "store": "amazon",
+  "template": "T1x",
+  "link": "https://www.amazon.sa/whitefriday",
+  "text": "🟠 أمازون السعودية | المنزل والمطبخ\n🔥 خصومات حتى 40% على المكانس الذكية وأجهزة تنقية الهواء وماكينات القهوة والقلايات الهوائية والخلاطات\n🔗 https://www.amazon.sa/whitefriday\nℹ️ الأسعار والعروض بتتغير، تأكد من صفحة المتجر.",
+  "send_at": "2026-11-27T11:00:00+03:00",
+  "expire_at": "2026-11-30T23:59:00+03:00",
+  "status": "queued"
+ },
+ {
   "id": "07-noon-peak",
   "store": "noon",
   "template": "T1",
   "text": "🛍️ 🟡 نون: اليوم أكبر يوم في الجمعة الصفراء\n📅 لحد 30 نوفمبر\n🔥 خصومات حتى 80%\n🔗 https://www.noon.com/saudi-ar/yellow-friday-sale-offers/\nℹ️ الأسعار والعروض بتتغير، تأكد من صفحة المتجر.",
   "link": "https://www.noon.com/saudi-ar/yellow-friday-sale-offers/",
   "send_at": "2026-11-27T14:00:00+03:00",
+  "expire_at": "2026-11-30T23:59:00+03:00",
+  "status": "queued"
+ },
+ {
+  "id": "x17-trendyol-cats",
+  "store": "trendyol",
+  "template": "T1x",
+  "link": "https://www.trendyol.sa/",
+  "text": "🟣 ترينديول | الجمعة الأسطورية\nأزياء وجمال وإلكترونيات ومنزل وستايل، من أكثر من 15,500 بائع في المنطقة\n🔥 خصومات حتى 90%\n🔗 https://www.trendyol.sa/\nℹ️ الأسعار والعروض بتتغير، تأكد من صفحة المتجر.",
+  "send_at": "2026-11-27T15:00:00+03:00",
   "expire_at": "2026-11-30T23:59:00+03:00",
   "status": "queued"
  },
@@ -82,12 +172,52 @@
   "note": "confirm Trendyol fashion campaign/category URL"
  },
  {
+  "id": "x07-az-baby-sports",
+  "store": "amazon",
+  "template": "T1x",
+  "link": "https://www.amazon.sa/whitefriday",
+  "text": "🟠 أمازون السعودية | الأطفال والرياضة\n👶 مستلزمات الأطفال حتى 25%\n🏋️ معدات الرياضة وأجهزة اللياقة حتى 20%\n🔗 https://www.amazon.sa/whitefriday\nℹ️ الأسعار والعروض بتتغير، تأكد من صفحة المتجر.",
+  "send_at": "2026-11-27T19:00:00+03:00",
+  "expire_at": "2026-11-30T23:59:00+03:00",
+  "status": "queued"
+ },
+ {
   "id": "09-tip-compare",
   "store": "tip",
   "template": "T4",
   "text": "💡 قارن بين المتاجر التلاتة قبل ما تشتري\nنفس المنتج ممكن يختلف سعره بين أمازون ونون وترينديول.\nافتح الصفحات التلاتة، قارن السعر الإجمالي مع الشحن، وبعدين قرر.\nℹ️ الأسعار والعروض بتتغير، تأكد من صفحة المتجر.",
   "link": null,
   "send_at": "2026-11-27T22:00:00+03:00",
+  "expire_at": "2026-11-30T23:59:00+03:00",
+  "status": "queued"
+ },
+ {
+  "id": "x08-az-global",
+  "store": "amazon",
+  "template": "T1x",
+  "link": "https://www.amazon.sa/whitefriday",
+  "text": "🟠 أمازون السعودية | المتجر العالمي\n🌍 عروض الجمعة البيضاء كمان على منتجات تُشحن من أمازون العالمية، مع شحن دولي مجاني على الطلبات المؤهلة\n🔗 https://www.amazon.sa/whitefriday\n📌 تطبق الشروط والأحكام.\nℹ️ الأسعار والعروض بتتغير، تأكد من صفحة المتجر.",
+  "send_at": "2026-11-27T23:00:00+03:00",
+  "expire_at": "2026-11-30T23:59:00+03:00",
+  "status": "queued"
+ },
+ {
+  "id": "x18-trendyol-reminder",
+  "store": "trendyol",
+  "template": "T1x",
+  "link": "https://www.trendyol.sa/",
+  "text": "🟣 ترينديول | تذكير\nالجمعة الأسطورية لحد 30 نوفمبر\n🔥 خصومات حتى 90%\n🔗 https://www.trendyol.sa/\nℹ️ الأسعار والعروض بتتغير، تأكد من صفحة المتجر.",
+  "send_at": "2026-11-28T12:00:00+03:00",
+  "expire_at": "2026-11-30T23:59:00+03:00",
+  "status": "queued"
+ },
+ {
+  "id": "x09-az-bazaar",
+  "store": "amazon",
+  "template": "T1x",
+  "link": "https://www.amazon.sa/whitefriday",
+  "text": "🟠 أمازون السعودية | أمازون بازار\n🛒 حتى 25% على موضة ومنزل وستايل لما تشتري 7 قطع أو أكثر بكود WFBZ15\n🔗 amazon.sa/bazaar\n🔗 https://www.amazon.sa/whitefriday\n📌 تطبق الشروط والأحكام.\nℹ️ الأسعار والعروض بتتغير، تأكد من صفحة المتجر.",
+  "send_at": "2026-11-28T15:00:00+03:00",
   "expire_at": "2026-11-30T23:59:00+03:00",
   "status": "queued"
  },
@@ -103,6 +233,56 @@
   "note": "confirm noon mobiles/electronics category URL"
  },
  {
+  "id": "x10-az-bank",
+  "store": "amazon",
+  "template": "T1x",
+  "link": "https://www.amazon.sa/whitefriday",
+  "text": "🟠 أمازون السعودية | عرض البنوك\n💳 خصم فوري إضافي حتى 30% مع بطاقات بنك الراجحي والبنك السعودي الأول (ساب) الائتمانية على الطلبات المؤهلة\n🔗 https://www.amazon.sa/whitefriday\n📌 تطبق الشروط والأحكام.\nℹ️ الأسعار والعروض بتتغير، تأكد من صفحة المتجر.",
+  "send_at": "2026-11-28T19:00:00+03:00",
+  "expire_at": "2026-11-30T23:59:00+03:00",
+  "status": "queued"
+ },
+ {
+  "id": "x19-tip-license",
+  "store": "tip",
+  "template": "T4",
+  "link": null,
+  "text": "💡 تأكد إن الخصم مرخص\nحسب تقارير صحفية، وزارة التجارة السعودية تشترط ترخيصًا لأي خصم أو تخفيضات. اسأل عن الترخيص وراجعه قبل ما تشتري.\nℹ️ الأسعار والعروض بتتغير، تأكد من صفحة المتجر.",
+  "send_at": "2026-11-28T23:00:00+03:00",
+  "expire_at": "2026-11-30T23:59:00+03:00",
+  "status": "queued"
+ },
+ {
+  "id": "x11-az-pay",
+  "store": "amazon",
+  "template": "T1x",
+  "link": "https://www.amazon.sa/whitefriday",
+  "text": "🟠 أمازون السعودية | الدفع بالتقسيط\n💸 قسّم مشترياتك على 4 دفعات بدون فوائد مع تابي وتمارا، أو خطط تقسيط 0% مع بنوك شريكة عند الدفع\n🔗 https://www.amazon.sa/whitefriday\n📌 تطبق الشروط والأحكام.\nℹ️ الأسعار والعروض بتتغير، تأكد من صفحة المتجر.",
+  "send_at": "2026-11-29T12:00:00+03:00",
+  "expire_at": "2026-11-30T23:59:00+03:00",
+  "status": "queued"
+ },
+ {
+  "id": "x12-az-egift",
+  "store": "amazon",
+  "template": "T1x",
+  "link": "https://www.amazon.sa/whitefriday",
+  "text": "🟠 أمازون السعودية | بطاقة هدية\n🎁 اشتري بطاقة هدية إلكترونية من أمازون بقيمة 500 ريال أو أكثر وخذ 50 ريال رصيد ترويجي، لحد 30 نوفمبر\n🔗 https://www.amazon.sa/whitefriday\n📌 تطبق الشروط والأحكام.\nℹ️ الأسعار والعروض بتتغير، تأكد من صفحة المتجر.",
+  "send_at": "2026-11-29T15:00:00+03:00",
+  "expire_at": "2026-11-30T23:59:00+03:00",
+  "status": "queued"
+ },
+ {
+  "id": "x20-tip-return",
+  "store": "tip",
+  "template": "T4",
+  "link": null,
+  "text": "💡 قبل ما تدفع\nراجع سياسة الإرجاع وموعد التوصيل، واقرأ تقييم البائع. الخصم الكبير مع إرجاع صعب مش دايمًا صفقة.\nℹ️ الأسعار والعروض بتتغير، تأكد من صفحة المتجر.",
+  "send_at": "2026-11-29T18:00:00+03:00",
+  "expire_at": "2026-11-30T23:59:00+03:00",
+  "status": "queued"
+ },
+ {
   "id": "11-amazon-home",
   "store": "amazon",
   "template": "T2",
@@ -112,6 +292,16 @@
   "expire_at": "2026-11-30T23:59:00+03:00",
   "status": "pending-link",
   "note": "confirm Amazon home and kitchen category URL"
+ },
+ {
+  "id": "x13-az-prime",
+  "store": "amazon",
+  "template": "T1x",
+  "link": "https://www.amazon.sa/whitefriday",
+  "text": "🟠 أمازون السعودية | برايم\n⚡ اشتراك برايم 16 ريال شهريًا أو 140 ريال سنويًا، توصيل سريع مجاني ومزايا للأعضاء\n🔗 amazon.sa/prime\n🔗 https://www.amazon.sa/whitefriday\nℹ️ الأسعار والعروض بتتغير، تأكد من صفحة المتجر.",
+  "send_at": "2026-11-29T22:00:00+03:00",
+  "expire_at": "2026-11-30T23:59:00+03:00",
+  "status": "queued"
  },
  {
   "id": "12a-amazon-last",
@@ -124,12 +314,32 @@
   "status": "queued"
  },
  {
+  "id": "x14-az-delivery",
+  "store": "amazon",
+  "template": "T1x",
+  "link": "https://www.amazon.sa/whitefriday",
+  "text": "🟠 أمازون السعودية | التوصيل\n🚚 توصيل في نفس اليوم أو اليوم التالي على المنتجات المؤهلة في الجمعة البيضاء\n🔗 https://www.amazon.sa/whitefriday\nℹ️ الأسعار والعروض بتتغير، تأكد من صفحة المتجر.",
+  "send_at": "2026-11-30T12:00:00+03:00",
+  "expire_at": "2026-11-30T23:59:00+03:00",
+  "status": "queued"
+ },
+ {
   "id": "12b-noon-last",
   "store": "noon",
   "template": "T3",
   "text": "⏰ آخر يوم! الجمعة الصفراء في نون بتنتهي اليوم 30 نوفمبر\n🔗 https://www.noon.com/saudi-ar/yellow-friday-sale-offers/",
   "link": "https://www.noon.com/saudi-ar/yellow-friday-sale-offers/",
   "send_at": "2026-11-30T15:00:00+03:00",
+  "expire_at": "2026-11-30T23:59:00+03:00",
+  "status": "queued"
+ },
+ {
+  "id": "x21-tip-cart",
+  "store": "tip",
+  "template": "T4",
+  "link": null,
+  "text": "💡 نصيحة الجمعة البيضاء\nحدد اللي محتاجه قبل ما تفتح المتاجر، وحط حد لميزانيتك. العروض كتير والمشتريات الزايدة بتضيع الخصم.\nℹ️ الأسعار والعروض بتتغير، تأكد من صفحة المتجر.",
+  "send_at": "2026-11-30T16:00:00+03:00",
   "expire_at": "2026-11-30T23:59:00+03:00",
   "status": "queued"
  },
