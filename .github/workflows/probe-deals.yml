@@ -1,0 +1,20 @@
+name: Probe deals channel (one-off)
+on:
+  push:
+    paths:
+      - '.github/probe.flag'
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Probe
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: |
+          api="https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}"
+          ME=$(curl -s "$api/getMe" | python3 -c "import json,sys;d=json.load(sys.stdin);print(d['result']['id'])")
+          echo "--- getChat"
+          curl -s "$api/getChat" --form-string "chat_id=@uaejobsss" | python3 -c "import json,sys;d=json.load(sys.stdin);r=d.get('result',{});print(d.get('ok'),d.get('description'),r.get('id'),r.get('type'),r.get('title'),r.get('username'))"
+          echo "--- getChatMember"
+          curl -s "$api/getChatMember" --form-string "chat_id=@uaejobsss" --form-string "user_id=${ME}" | python3 -c "import json,sys;d=json.load(sys.stdin);print(json.dumps(d))"
