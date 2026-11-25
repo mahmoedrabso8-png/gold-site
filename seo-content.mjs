@@ -1,6 +1,7 @@
 import { seoA1 } from './seo-a1.mjs';
 import { seoA2 } from './seo-a2.mjs';
-const all=()=>[...seoA1(),...seoA2()];
+import { seoA3 } from './seo-a3.mjs';
+const all=()=>[...seoA1(),...seoA2(),...seoA3()];
 export const SEO_SLUGS=all().map(d=>d.slug);
 export const SEO_DATE='24 November 2026';
 export function seoLinksHtml(){return all().map(d=>`<a href="/en/${d.slug}/">${d.crumb||d.h1}</a>`).join(' · ');}
