@@ -14,9 +14,9 @@ jobs:
           api="https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}"
           ME=$(curl -s "$api/getMe" | python3 -c "import json,sys;print(json.load(sys.stdin)['result']['id'])")
           curl -s "$api/getChatMember" --form-string "chat_id=@uaejobsss" --form-string "user_id=$ME" | python3 -c "import json,sys;d=json.load(sys.stdin)['result'];print('MEMBER',{k:v for k,v in d.items() if k!='user'})"
-          echo "title:";  curl -s "$api/setChatTitle" --form-string "chat_id=@uaejobsss" --form-string "title=عروض السعودية | KSA Deals"; echo
-          echo "desc:";   curl -s "$api/setChatDescription" --form-string "chat_id=@uaejobsss" --data-urlencode "description@.github/ksa-desc.txt" --form-string "chat_id=@uaejobsss"; echo
+          echo "title:"; true || curl -s "$api/setChatTitle" --form-string "chat_id=@uaejobsss" --form-string "title=عروض السعودية | KSA Deals"; echo
+          echo "desc:";   curl -s "$api/setChatDescription" --data-urlencode "chat_id=@uaejobsss" --data-urlencode "description@.github/ksa-desc.txt"; echo
           echo "photo:";  curl -s "$api/setChatPhoto" --form-string "chat_id=@uaejobsss" -F "photo=@.github/ksa-logo.png"; echo
-          echo "pinpost:"; R=$(curl -s "$api/sendMessage" --form-string "chat_id=@uaejobsss" --data-urlencode "text@.github/ksa-desc.txt"); echo "$R" | cut -c1-120
+          echo "pinpost:"; R=$(curl -s "$api/sendMessage" --data-urlencode "chat_id=@uaejobsss" --data-urlencode "text@.github/ksa-desc.txt"); echo "$R" | cut -c1-120
           MID=$(echo "$R" | python3 -c "import json,sys;print(json.load(sys.stdin).get('result',{}).get('message_id',''))")
           [ -n "$MID" ] && curl -s "$api/pinChatMessage" --form-string "chat_id=@uaejobsss" --form-string "message_id=$MID"; echo
