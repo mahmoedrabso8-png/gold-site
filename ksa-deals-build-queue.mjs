@@ -1,0 +1,28 @@
+// One-off generator for data/ksa-deals-queue.json (Phase 1 spec, no affiliate links). Run: node ksa-deals-build-queue.mjs
+import fs from 'node:fs';
+const NOTE='ℹ️ الأسعار والعروض بتتغير، تأكد من صفحة المتجر.';
+const L={amazon:'https://www.amazon.sa/whitefriday',noon:'https://www.noon.com/saudi-ar/yellow-friday-sale-offers/',trendyol:'https://www.trendyol.sa/'};
+const E={amazon:'🟠',noon:'🟡',trendyol:'🟣'};
+const t1=(s,name,camp,dates,claim,link)=>`🛍️ ${E[s]} ${name}: ${camp}\n📅 ${dates}\n🔥 ${claim}\n🔗 ${link}\n${NOTE}`;
+const t2=(s,name,cat,camp,link)=>`${E[s]} ${name} | ${cat} في ${camp}\nشوف عروض ${cat} اللي في الحملة 👇\n🔗 ${link}\n${NOTE}`;
+const t3=(s,name,camp,link)=>`⏰ آخر يوم! ${camp} في ${name} بتنتهي اليوم 30 نوفمبر\n🔗 ${link}`;
+const END='2026-11-30T23:59:00+03:00';
+const q=[];
+const add=(id,store,tpl,day,time,text,link,extra={})=>q.push({id,store,template:tpl,text,link,send_at:`2026-11-${day}T${time}:00+03:00`,expire_at:END,status:'queued',...extra});
+add('01-amazon-wf','amazon','T1','25','20:00',t1('amazon','أمازون السعودية','الجمعة البيضاء','من 19 إلى 30 نوفمبر','ملايين العروض في أكثر من 30 قسم',L.amazon),L.amazon);
+add('02-noon-yf','noon','T1','25','22:00',t1('noon','نون','الجمعة الصفراء','لحد 30 نوفمبر','خصومات حتى 80%',L.noon),L.noon);
+add('03-trendyol-lf','trendyol','T1','26','12:00',t1('trendyol','ترينديول','الجمعة الأسطورية','من 24 إلى 30 نوفمبر','خصومات حتى 90% في الأزياء والجمال والإلكترونيات والمنزل',L.trendyol),L.trendyol);
+add('04-tip-real-discount','tip','T4','26','16:00',`💡 ازاي تتأكد إن الخصم حقيقي؟\n1) قارن السعر في أكثر من متجر\n2) شوف تاريخ سعر المنتج لو متاح\n3) اقرأ تقييم البائع والمنتج\n4) راجع سياسة الإرجاع وموعد التوصيل\n${NOTE}`,null);
+add('05-amazon-electronics','amazon','T2','26','21:00',null,null,{status:'pending-link',note:'confirm Amazon electronics category page under whitefriday, then set link and text via t2'});
+add('06-amazon-peak','amazon','T1','27','10:00',t1('amazon','أمازون السعودية','اليوم الجمعة البيضاء، أقوى يوم في الموسم','من 19 إلى 30 نوفمبر','ملايين العروض في أكثر من 30 قسم',L.amazon),L.amazon);
+add('07-noon-peak','noon','T1','27','14:00',t1('noon','نون','اليوم أكبر يوم في الجمعة الصفراء','لحد 30 نوفمبر','خصومات حتى 80%',L.noon),L.noon);
+add('08-trendyol-fashion','trendyol','T2','27','18:00',null,null,{status:'pending-link',note:'confirm Trendyol fashion campaign/category URL'});
+add('09-tip-compare','tip','T4','27','22:00',`💡 قارن بين المتاجر التلاتة قبل ما تشتري\nنفس المنتج ممكن يختلف سعره بين أمازون ونون وترينديول.\nافتح الصفحات التلاتة، قارن السعر الإجمالي مع الشحن، وبعدين قرر.\n${NOTE}`,null);
+add('10-noon-mobiles','noon','T2','28','17:00',null,null,{status:'pending-link',note:'confirm noon mobiles/electronics category URL'});
+add('11-amazon-home','amazon','T2','29','20:00',null,null,{status:'pending-link',note:'confirm Amazon home and kitchen category URL'});
+add('12a-amazon-last','amazon','T3','30','10:00',t3('amazon','أمازون السعودية','الجمعة البيضاء',L.amazon),L.amazon);
+add('12b-noon-last','noon','T3','30','15:00',t3('noon','نون','الجمعة الصفراء',L.noon),L.noon);
+add('12c-trendyol-last','trendyol','T3','30','20:00',t3('trendyol','ترينديول','الجمعة الأسطورية',L.trendyol),L.trendyol);
+fs.mkdirSync('data',{recursive:true});
+fs.writeFileSync('data/ksa-deals-queue.json',JSON.stringify(q,null,1)+'\n');
+console.log(q.length,'posts');

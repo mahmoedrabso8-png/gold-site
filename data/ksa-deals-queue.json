@@ -1,0 +1,146 @@
+[
+ {
+  "id": "01-amazon-wf",
+  "store": "amazon",
+  "template": "T1",
+  "text": "🛍️ 🟠 أمازون السعودية: الجمعة البيضاء\n📅 من 19 إلى 30 نوفمبر\n🔥 ملايين العروض في أكثر من 30 قسم\n🔗 https://www.amazon.sa/whitefriday\nℹ️ الأسعار والعروض بتتغير، تأكد من صفحة المتجر.",
+  "link": "https://www.amazon.sa/whitefriday",
+  "send_at": "2026-11-25T20:00:00+03:00",
+  "expire_at": "2026-11-30T23:59:00+03:00",
+  "status": "queued"
+ },
+ {
+  "id": "02-noon-yf",
+  "store": "noon",
+  "template": "T1",
+  "text": "🛍️ 🟡 نون: الجمعة الصفراء\n📅 لحد 30 نوفمبر\n🔥 خصومات حتى 80%\n🔗 https://www.noon.com/saudi-ar/yellow-friday-sale-offers/\nℹ️ الأسعار والعروض بتتغير، تأكد من صفحة المتجر.",
+  "link": "https://www.noon.com/saudi-ar/yellow-friday-sale-offers/",
+  "send_at": "2026-11-25T22:00:00+03:00",
+  "expire_at": "2026-11-30T23:59:00+03:00",
+  "status": "queued"
+ },
+ {
+  "id": "03-trendyol-lf",
+  "store": "trendyol",
+  "template": "T1",
+  "text": "🛍️ 🟣 ترينديول: الجمعة الأسطورية\n📅 من 24 إلى 30 نوفمبر\n🔥 خصومات حتى 90% في الأزياء والجمال والإلكترونيات والمنزل\n🔗 https://www.trendyol.sa/\nℹ️ الأسعار والعروض بتتغير، تأكد من صفحة المتجر.",
+  "link": "https://www.trendyol.sa/",
+  "send_at": "2026-11-26T12:00:00+03:00",
+  "expire_at": "2026-11-30T23:59:00+03:00",
+  "status": "queued"
+ },
+ {
+  "id": "04-tip-real-discount",
+  "store": "tip",
+  "template": "T4",
+  "text": "💡 ازاي تتأكد إن الخصم حقيقي؟\n1) قارن السعر في أكثر من متجر\n2) شوف تاريخ سعر المنتج لو متاح\n3) اقرأ تقييم البائع والمنتج\n4) راجع سياسة الإرجاع وموعد التوصيل\nℹ️ الأسعار والعروض بتتغير، تأكد من صفحة المتجر.",
+  "link": null,
+  "send_at": "2026-11-26T16:00:00+03:00",
+  "expire_at": "2026-11-30T23:59:00+03:00",
+  "status": "queued"
+ },
+ {
+  "id": "05-amazon-electronics",
+  "store": "amazon",
+  "template": "T2",
+  "text": null,
+  "link": null,
+  "send_at": "2026-11-26T21:00:00+03:00",
+  "expire_at": "2026-11-30T23:59:00+03:00",
+  "status": "pending-link",
+  "note": "confirm Amazon electronics category page under whitefriday, then set link and text via t2"
+ },
+ {
+  "id": "06-amazon-peak",
+  "store": "amazon",
+  "template": "T1",
+  "text": "🛍️ 🟠 أمازون السعودية: اليوم الجمعة البيضاء، أقوى يوم في الموسم\n📅 من 19 إلى 30 نوفمبر\n🔥 ملايين العروض في أكثر من 30 قسم\n🔗 https://www.amazon.sa/whitefriday\nℹ️ الأسعار والعروض بتتغير، تأكد من صفحة المتجر.",
+  "link": "https://www.amazon.sa/whitefriday",
+  "send_at": "2026-11-27T10:00:00+03:00",
+  "expire_at": "2026-11-30T23:59:00+03:00",
+  "status": "queued"
+ },
+ {
+  "id": "07-noon-peak",
+  "store": "noon",
+  "template": "T1",
+  "text": "🛍️ 🟡 نون: اليوم أكبر يوم في الجمعة الصفراء\n📅 لحد 30 نوفمبر\n🔥 خصومات حتى 80%\n🔗 https://www.noon.com/saudi-ar/yellow-friday-sale-offers/\nℹ️ الأسعار والعروض بتتغير، تأكد من صفحة المتجر.",
+  "link": "https://www.noon.com/saudi-ar/yellow-friday-sale-offers/",
+  "send_at": "2026-11-27T14:00:00+03:00",
+  "expire_at": "2026-11-30T23:59:00+03:00",
+  "status": "queued"
+ },
+ {
+  "id": "08-trendyol-fashion",
+  "store": "trendyol",
+  "template": "T2",
+  "text": null,
+  "link": null,
+  "send_at": "2026-11-27T18:00:00+03:00",
+  "expire_at": "2026-11-30T23:59:00+03:00",
+  "status": "pending-link",
+  "note": "confirm Trendyol fashion campaign/category URL"
+ },
+ {
+  "id": "09-tip-compare",
+  "store": "tip",
+  "template": "T4",
+  "text": "💡 قارن بين المتاجر التلاتة قبل ما تشتري\nنفس المنتج ممكن يختلف سعره بين أمازون ونون وترينديول.\nافتح الصفحات التلاتة، قارن السعر الإجمالي مع الشحن، وبعدين قرر.\nℹ️ الأسعار والعروض بتتغير، تأكد من صفحة المتجر.",
+  "link": null,
+  "send_at": "2026-11-27T22:00:00+03:00",
+  "expire_at": "2026-11-30T23:59:00+03:00",
+  "status": "queued"
+ },
+ {
+  "id": "10-noon-mobiles",
+  "store": "noon",
+  "template": "T2",
+  "text": null,
+  "link": null,
+  "send_at": "2026-11-28T17:00:00+03:00",
+  "expire_at": "2026-11-30T23:59:00+03:00",
+  "status": "pending-link",
+  "note": "confirm noon mobiles/electronics category URL"
+ },
+ {
+  "id": "11-amazon-home",
+  "store": "amazon",
+  "template": "T2",
+  "text": null,
+  "link": null,
+  "send_at": "2026-11-29T20:00:00+03:00",
+  "expire_at": "2026-11-30T23:59:00+03:00",
+  "status": "pending-link",
+  "note": "confirm Amazon home and kitchen category URL"
+ },
+ {
+  "id": "12a-amazon-last",
+  "store": "amazon",
+  "template": "T3",
+  "text": "⏰ آخر يوم! الجمعة البيضاء في أمازون السعودية بتنتهي اليوم 30 نوفمبر\n🔗 https://www.amazon.sa/whitefriday",
+  "link": "https://www.amazon.sa/whitefriday",
+  "send_at": "2026-11-30T10:00:00+03:00",
+  "expire_at": "2026-11-30T23:59:00+03:00",
+  "status": "queued"
+ },
+ {
+  "id": "12b-noon-last",
+  "store": "noon",
+  "template": "T3",
+  "text": "⏰ آخر يوم! الجمعة الصفراء في نون بتنتهي اليوم 30 نوفمبر\n🔗 https://www.noon.com/saudi-ar/yellow-friday-sale-offers/",
+  "link": "https://www.noon.com/saudi-ar/yellow-friday-sale-offers/",
+  "send_at": "2026-11-30T15:00:00+03:00",
+  "expire_at": "2026-11-30T23:59:00+03:00",
+  "status": "queued"
+ },
+ {
+  "id": "12c-trendyol-last",
+  "store": "trendyol",
+  "template": "T3",
+  "text": "⏰ آخر يوم! الجمعة الأسطورية في ترينديول بتنتهي اليوم 30 نوفمبر\n🔗 https://www.trendyol.sa/",
+  "link": "https://www.trendyol.sa/",
+  "send_at": "2026-11-30T20:00:00+03:00",
+  "expire_at": "2026-11-30T23:59:00+03:00",
+  "status": "queued"
+ }
+]
