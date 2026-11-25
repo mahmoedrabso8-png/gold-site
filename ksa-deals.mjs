@@ -4,7 +4,7 @@ import fs from 'node:fs';
 const TOKEN=process.env.KSA_DEALS_BOT_TOKEN||process.env.TELEGRAM_BOT_TOKEN;
 const CHAT=process.env.KSA_DEALS_CHAT||'@uaejobsss';
 const FILE='data/ksa-deals-queue.json';
-const MIN_GAP_MIN=90, MAX_LATE_H=12;
+const MIN_GAP_MIN=50, MAX_LATE_H=12;
 if(!TOKEN)throw new Error('bot token missing');
 const api=(m,b)=>fetch(`https://api.telegram.org/bot${TOKEN}/${m}`,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b||{})}).then(r=>r.json());
 const me=await api('getMe');
