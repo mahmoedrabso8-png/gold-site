@@ -43,7 +43,9 @@
   "link": "https://www.amazon.sa/whitefriday",
   "send_at": "2026-11-25T20:00:00+03:00",
   "expire_at": "2026-11-30T23:59:00+03:00",
-  "status": "queued"
+  "status": "sent",
+  "sent_at": "2026-11-25T17:07:27.841Z",
+  "message_id": 497
  },
  {
   "id": "x03-az-beauty",
