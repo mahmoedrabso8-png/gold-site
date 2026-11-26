@@ -4,7 +4,8 @@ import { seoA3 } from './seo-a3.mjs';
 import { seoA4 } from './seo-a4.mjs';
 import { seoA5 } from './seo-a5.mjs';
 import { seoA6 } from './seo-a6.mjs';
-const all=()=>[...seoA1(),...seoA2(),...seoA3(),...seoA4(),...seoA5(),...seoA6()];
+import { seoA7 } from './seo-a7.mjs';
+const all=()=>[...seoA1(),...seoA2(),...seoA3(),...seoA4(),...seoA5(),...seoA6(),...seoA7()];
 export const SEO_SLUGS=all().map(d=>d.slug);
 export const SEO_DATE='24 November 2026';
 export function seoLinksHtml(){return all().map(d=>`<a href="/en/${d.slug}/">${d.crumb||d.h1}</a>`).join(' · ');}
