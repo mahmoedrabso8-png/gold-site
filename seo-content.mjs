@@ -17,7 +17,8 @@ import { seoA16 } from "./seo-a16.mjs";
 import { seoA17 } from "./seo-a17.mjs";
 import { seoA18 } from "./seo-a18.mjs";
 import { seoA19 } from "./seo-a19.mjs";
-const all=()=>[...seoA1(),...seoA2(),...seoA3(),...seoA4(),...seoA5(),...seoA6(),...seoA7(),...seoA8(),...seoA9(),...seoA10(),...seoA11(),...seoA12(),...seoA13(),...seoA14(),...seoA15(),...seoA16(),...seoA17(),...seoA18(),...seoA19()];
+import { seoA20 } from "./seo-a20.mjs";
+const all=()=>[...seoA1(),...seoA2(),...seoA3(),...seoA4(),...seoA5(),...seoA6(),...seoA7(),...seoA8(),...seoA9(),...seoA10(),...seoA11(),...seoA12(),...seoA13(),...seoA14(),...seoA15(),...seoA16(),...seoA17(),...seoA18(),...seoA19(),...seoA20()];
 export const SEO_SLUGS=all().map(d=>d.slug);
 export const SEO_DATE='24 November 2026';
 export function seoLinksHtml(){return all().map(d=>`<a href="/en/${d.slug}/">${d.crumb||d.h1}</a>`).join(' · ');}
