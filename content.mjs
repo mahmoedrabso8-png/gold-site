@@ -486,7 +486,7 @@ ${spark('ar')}${histBody}${links('ar', 'history')}` });
 
   days.forEach((d, i) => {
     if (d.n < 3) return;
-    const prev = days[i - 1], next = days[i + 1];
+    const prev = days[i - 1]?.n >= 3 ? days[i - 1] : null, next = days[i + 1]?.n >= 3 ? days[i + 1] : null;
     const c21 = d.close * 21 / 24, p = prev ? pct(d.close, prev.close) : null;
     const word = p == null ? '' : p > 0.005 ? `بارتفاع ${p.toFixed(2)}%` : p < -0.005 ? `بانخفاض ${Math.abs(p).toFixed(2)}%` : 'دون تغيّر يُذكر';
     out.push({ lang: 'ar', fixed: true, slug: `history/${d.day}`, lastmod: d.day, noAds: false,
