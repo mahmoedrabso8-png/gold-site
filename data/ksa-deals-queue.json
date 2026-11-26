@@ -103,7 +103,9 @@
   "text": "🟡 نون | تذكير\nالجمعة الصفراء شغالة لحد 30 نوفمبر، وأكبر يوم فيها الجمعة 27 نوفمبر\n🔥 خصومات حتى 80%\n🔗 https://www.noon.com/saudi-ar/yellow-friday-sale-offers/\nℹ️ الأسعار والعروض بتتغير، تأكد من صفحة المتجر.",
   "send_at": "2026-11-26T15:00:00+03:00",
   "expire_at": "2026-11-30T23:59:00+03:00",
-  "status": "queued"
+  "status": "sent",
+  "sent_at": "2026-11-26T12:02:41.250Z",
+  "message_id": 502
  },
  {
   "id": "04-tip-real-discount",
