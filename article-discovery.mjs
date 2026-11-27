@@ -5,7 +5,7 @@ const terms = {
   planning: /zakat|when-to-buy|bars-vs|making-charges|calculated/,
   currency: /dollar|parallel/
 };
-const hubBuy=/(^|-)buy(-|$)|invest|(^|-)ira(-|$)|futures|etf|gld|bars?\b|bar-|coin|sell|worth|own|store|fake|purity|karat|tax|premium|sovereign|eagle|krugerrand|maple|nugget|allocated|cost-averag|trad|cfd|mining|risks|per-gram|troy|vs-stocks|vs-bitcoin|vs-real-estate|bonds|platinum|vs-silver|spread|weight|baht|mithqal|tael|916|999|21k|zakat|making-charges|calculated/;
+const hubBuy=/(^|-)buy(-|$)|invest|(^|-)ira(-|$)|futures|buying-gold|etf|gld|bars?\b|bar-|coin|sell|worth|own|store|fake|purity|karat|tax|premium|sovereign|eagle|krugerrand|maple|nugget|allocated|cost-averag|trad|cfd|mining|risks|per-gram|troy|vs-stocks|vs-bitcoin|vs-real-estate|bonds|platinum|vs-silver|spread|weight|baht|mithqal|tael|916|999|21k|zakat|making-charges|calculated/;
 export function hubGroup(a) {
   if(a.group) return a.group;
   return hubBuy.test(a.slug)?'buy':'market';
