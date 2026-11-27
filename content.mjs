@@ -1,5 +1,5 @@
-import { travelPages } from './travel-content.mjs';
-import { seoPages } from './seo-content.mjs';
+import { travelPages, TRAVEL_CATALOG } from './travel-content.mjs';
+import { seoPages, SEO_CATALOG } from './seo-content.mjs';
 import { historyPages } from './history-content.mjs';
 import { dePages } from './de-content.mjs';
 import { ukPages } from './uk-content.mjs';
@@ -1992,10 +1992,10 @@ ${share('ar', `articles/${a.slug}`, a.h1)}`,
   // ── المقالات الإنجليزية (دليل لكل سوق كبير) ──────────────
   out.push({ lang: 'en', fixed: true, slug: 'articles',
     title: 'Gold Guides: Karats, Prices and Buying Tips | Maelumatii',
-    desc: 'Plain-English gold guides for 40 markets: why prices rise, karats and local units explained, and how to buy well in your country.',
+    desc: 'Plain-English gold guides: travel and customs rules, buying and investing, markets and history, plus 40 country guides.',
     crumbs: [['Gold articles', '/en/articles/']],
     body: `<div class="hero"><h1>Gold Guides & Articles</h1><p class="hero-sub">Plain-English guides to help you buy and save in gold with confidence</p></div>
-${articleLibrary(ARTICLES_EN,'en')}
+${articleLibrary([...TRAVEL_CATALOG(),...SEO_CATALOG(),...ARTICLES_EN.map(a=>({...a,href:'/en/articles/'+a.slug+'/'}))].map(a=>({...a,hub:true})),'en')}
 ${links('en', 'articles')}` });
   for (const a of ARTICLES_EN) {
     const reading = articleBody(a,'en');

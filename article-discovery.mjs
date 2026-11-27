@@ -5,16 +5,23 @@ const terms = {
   planning: /zakat|when-to-buy|bars-vs|making-charges|calculated/,
   currency: /dollar|parallel/
 };
+const hubBuy=/(^|-)buy(-|$)|invest|(^|-)ira(-|$)|futures|etf|gld|bars?\b|bar-|coin|sell|worth|own|store|fake|purity|karat|tax|premium|sovereign|eagle|krugerrand|maple|nugget|allocated|cost-averag|trad|cfd|mining|risks|per-gram|troy|vs-stocks|vs-bitcoin|vs-real-estate|bonds|platinum|vs-silver|spread|weight|baht|mithqal|tael|916|999|21k|zakat|making-charges|calculated/;
+export function hubGroup(a) {
+  if(a.group) return a.group;
+  return hubBuy.test(a.slug)?'buy':'market';
+}
 export function articleTopic(a) {
+  if(a.hub) return hubGroup(a);
   for(const [k,re] of Object.entries(terms)) if(re.test(a.slug)) return k;
   return 'markets';
 }
 export function articleCard(a,lang) {
-  return `<a class="link-card" data-article-card data-topic="${articleTopic(a)}" href="${lang==='en'?'/en':''}/articles/${a.slug}/">${a.h1}<span>${a.teaser}</span></a>`;
+  return `<a class="link-card" data-article-card data-topic="${articleTopic(a)}" href="${a.href||((lang==='en'?'/en':'')+'/articles/'+a.slug+'/')}">${a.h1}<span>${a.teaser}</span></a>`;
 }
 export function articleLibrary(list,lang) {
   const en=lang==='en';
-  const labels=en?{all:'All guides',selling:'Selling gold',weight:'Weight & purity',planning:'Buying & planning',currency:'Currencies',markets:'Country guides'}:{all:'كل الأدلة',selling:'بيع الذهب',weight:'الوزن والعيارات',planning:'الشراء والتخطيط',currency:'العملات',markets:'أدلة الدول'};
+  const hub=list.some(a=>a.hub);
+  const labels=hub?{all:'All guides',travel:'Travel & Customs',buy:'Gold Buying & Investing',market:'Markets & History'}:en?{all:'All guides',selling:'Selling gold',weight:'Weight & purity',planning:'Buying & planning',currency:'Currencies',markets:'Country guides'}:{all:'كل الأدلة',selling:'بيع الذهب',weight:'الوزن والعيارات',planning:'الشراء والتخطيط',currency:'العملات',markets:'أدلة الدول'};
   return `<section class="card-section article-library" data-article-library data-total="${list.length}" aria-labelledby="library-title"><h2 id="library-title">${en?'Find a guide':'اختار دليلك'}</h2><p>${en?'Search titles and summaries, or choose a topic. Prices and tax rules can change; check the source and your invoice before a purchase.':'ابحث في العناوين والملخصات أو اختار الموضوع. الأسعار والقواعد الضريبية قد تتغير؛ راجع المصدر والفاتورة قبل الشراء.'}</p><div class="article-controls" hidden><label for="article-search">${en?'Search guides':'البحث في الأدلة'}</label><input id="article-search" type="search" placeholder="${en?'Try: Singapore, purity, selling…':'مثال: مصر، العيارات، بيع الذهب…'}" autocomplete="off"><fieldset class="article-topics"><legend>${en?'Topic':'الموضوع'}</legend>${Object.entries(labels).map(([k,v],i)=>`<label><input type="radio" name="article-topic" value="${k}" ${i===0?'checked':''}><span>${v}</span></label>`).join('')}</fieldset><p class="article-count" role="status" aria-live="polite" aria-atomic="true"></p></div><div class="links-grid article-grid">${list.map(a=>articleCard(a,lang)).join('')}</div><p class="article-empty" hidden>${en?'No guides match. Try another word or topic.':'لا توجد أدلة مطابقة. جرّب كلمة أو موضوع تاني.'} <button type="button" class="article-reset">${en?'Clear filters':'مسح البحث'}</button></p></section>`;
 }
 export function relatedArticles(a,list,lang) {
