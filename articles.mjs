@@ -1,6 +1,7 @@
 import { GERMANY_GUIDE, FRANCE_GUIDE, SWISS_GUIDE, SPAIN_GUIDE, AUSTRALIA_GUIDE } from './reviewed-guides.mjs';
 import { WEIGHT_ARTICLE_AR, WEIGHT_ARTICLE_EN } from './weight-articles.mjs';
 import { RESALE_AR, RESALE_EN } from './resale-articles.mjs';
+import { ARTICLES_AR2 } from './articles-ar2.mjs';
 // مقالات الموقع التعليمية (عربي) — محتوى دائم بدون أسعار مباشرة
 // كل مقال: slug, title (عنوان SEO), h1, desc, teaser, intro, body (HTML جوه .prose), faq
 export const ARTICLES = [
@@ -818,6 +819,8 @@ export const ARTICLES = [
 ];
 
 // English country articles — one localized SEO guide per major market
+ARTICLES.push(...ARTICLES_AR2);
+
 export const ARTICLES_EN = [
   ...RESALE_EN, WEIGHT_ARTICLE_EN,
   {
