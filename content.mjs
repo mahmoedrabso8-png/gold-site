@@ -505,14 +505,14 @@ ${links('ar', '')}` });
   });
 
   // ── من نحن / اتصل بنا / الخصوصية ───────────────────────
-  out.push({ lang: 'ar', fixed: true, slug: 'about', lastmod: '2026-11-01', crumbs: [['من نحن', '/about/']],
+  out.push({ lang: 'ar', fixed: true, noAds: true, slug: 'about', lastmod: '2026-11-01', crumbs: [['من نحن', '/about/']],
     title: 'من نحن | معلوماتي — أسعار الذهب في الإمارات',
     desc: 'تعرّف على موقع معلوماتي لأسعار الذهب في الإمارات: مصادر البيانات، طريقة حساب الأسعار، سياسة التحرير والتصحيح.',
     schema: [{ '@context': 'https://schema.org', '@type': 'AboutPage', name: 'من نحن', url: ctx.SITE + '/about/' }],
     body: `<div class="hero"><h1>من نحن</h1></div>
 <section class="card-section"><h2>عن الموقع</h2><div class="prose">
-<p><strong>معلوماتي (maelumatii.com)</strong> موقع عربي مستقل متخصص في <strong>أسعار الذهب في الإمارات</strong> والأدوات المالية المرتبطة بها، مثل حاسبة الذهب بالمصنعية والضريبة وحاسبة زكاة الذهب وأسعار السبائك وأرشيف الأسعار اليومي. هدفنا أن يجد الزائر سعراً واضحاً ومحدَّثاً وطريقة حساب مفهومة قبل أن يشتري أو يبيع.</p>
-<p>يدير الموقع ويراجع بياناته <strong>فريق تحرير معلوماتي</strong>.</p></div></section>
+<p><strong>معلوماتي (maelumatii.com)</strong> موقع عربي مستقل متخصص في <strong>أسعار الذهب في الإمارات ودول الخليج</strong> وأسعار صرف الدولار في عدد من الدول، مع الأدوات المالية المرتبطة بها، مثل حاسبة الذهب بالمصنعية والضريبة وحاسبة زكاة الذهب وأسعار السبائك وأرشيف الأسعار اليومي. هدفنا أن يجد الزائر سعراً واضحاً ومحدَّثاً وطريقة حساب مفهومة قبل أن يشتري أو يبيع.</p>
+<p>يدير الموقع ويراجع بياناته <strong>فريق تحرير معلوماتي</strong>. الموقع لا يشتري الذهب ولا يبيعه ولا يفحص نقاء القطع، ولسنا بنكاً أو وسيطاً أو مستشاراً مالياً. نقدّم أيضاً أدلة بالإنجليزية عن السفر بالذهب والنقد، وشراء الذهب والاستثمار فيه، والأسواق والتاريخ؛ والبيانات القانونية والضريبية فيها من صفحات رسمية مذكورة مع تاريخ مراجعتها. تمويل الموقع من الإعلانات عبر Google AdSense. راجع <a href="/terms/">الشروط والأحكام</a> و<a href="/privacy/">سياسة الخصوصية</a>.</p></div></section>
 <section class="card-section"><h2>مصادر البيانات وطريقة الحساب</h2><div class="prose">
 <p>نحصل على سعر الأونصة العالمي بالدولار من <strong>Gold-API.com</strong>، ونحوّله إلى الدرهم بسعر الربط الرسمي <strong>3.6725</strong> درهم للدولار، ثم نقسمه على 31.1035 (غرامات الأونصة) لنحصل على سعر غرام عيار 24، ونضربه في نسبة كل عيار.</p>
 <p>تُحدّث الصفحة المفتوحة السعر تلقائياً كل5دقائق عند استجابة المصدر. يظهر وقت المصدر وحالة حداثة السعر؛ وقد يتأخر المصدر أو يتوقف. الأرشيف مشاهدات محفوظة، ولا تعمل الصفحة المغلقة كخدمة تحديث خلفية.</p></div></section>
@@ -520,7 +520,7 @@ ${links('ar', '')}` });
 <ul><li>الأسعار تُحسب آلياً من المصدر دون أي تعديل يدوي.</li><li>إذا تعذّر الاتصال بالمصدر نعرض آخر سعر محفوظ مع تنبيه واضح للزائر.</li><li>نوضّح دائماً أن الأسعار للذهب الخام ولا تشمل المصنعية أو ضريبة القيمة المضافة.</li><li>المحتوى الإرشادي يُراجع دورياً، وأي خطأ يُبلَّغ عنه نصحّحه في أسرع وقت. <a href="/contact/">أبلغنا عن خطأ</a>.</li></ul>
 <p><strong>تنبيه:</strong> المعلومات في الموقع للاطلاع فقط ولا تمثّل نصيحة مالية أو استثمارية.</p></div></section>` });
 
-  out.push({ lang: 'ar', fixed: true, slug: 'contact', lastmod: '2026-11-01', crumbs: [['اتصل بنا', '/contact/']],
+  out.push({ lang: 'ar', fixed: true, noAds: true, slug: 'contact', lastmod: '2026-11-01', crumbs: [['اتصل بنا', '/contact/']],
     title: 'اتصل بنا | معلوماتي — أسعار الذهب في الإمارات',
     desc: 'تواصل مع فريق موقع معلوماتي لأسعار الذهب في الإمارات للاستفسارات والاقتراحات والإبلاغ عن الأخطاء.',
     schema: [{ '@context': 'https://schema.org', '@type': 'ContactPage', name: 'اتصل بنا', url: ctx.SITE + '/contact/' }],
@@ -531,7 +531,7 @@ ${links('ar', '')}` });
 <p>عند الإبلاغ عن خطأ، أرسل رابط الصفحة والدولة والعملة والعيار والوقت الذي شاهدت فيه الرقم، واذكر المنطقة الزمنية. تساعد لقطة شاشة واضحة على فهم المشكلة؛ لا ترسل بيانات دفع أو كلمات مرور أو مستندات شخصية.</p><p>السعر المرجعي للذهب الخام لا يشمل المصنعية أو ضريبة الفاتورة أو هامش المحل. إذا كان استفسارك عن فرق بين الموقع وعرض شراء أو بيع، وضّح أساس المقارنة دون إرسال بيانات حساسة.</p><p>الموقع يقدم معلومات وأدوات حسابية، ولا يشتري الذهب أو يبيعه ولا يفحص نقاء القطع. راجع مختصاً محلياً عند الحاجة لتقييم قطعة أو تفسير التزام ضريبي.</p>
 <p>For enquiries in English, email <a href="mailto:contact@maelumatii.com">contact@maelumatii.com</a>.</p></div></section>` });
 
-  out.push({ lang: 'ar', fixed: true, slug: 'privacy', lastmod: '2026-11-23', crumbs: [['سياسة الخصوصية', '/privacy/']],
+  out.push({ lang: 'ar', fixed: true, noAds: true, slug: 'privacy', lastmod: '2026-11-23', crumbs: [['سياسة الخصوصية', '/privacy/']],
     title: 'سياسة الخصوصية | معلوماتي',
     desc: 'سياسة الخصوصية لموقع معلوماتي: البيانات التي نجمعها، ملفات تعريف الارتباط، إعلانات Google AdSense، وحقوقك.',
     body: `<div class="hero"><h1>سياسة الخصوصية</h1><p class="hero-sub">آخر تحديث: ${arDate(TODAY)}</p></div>
@@ -548,6 +548,91 @@ ${links('ar', '')}` });
 <h2>محفظة الذهب المحلية</h2><p>تُحفظ عمليات الشراء التي تدخلها في محفظة الذهب داخل التخزين المحلي لهذا المتصفح، بما فيها التاريخ والوزن والعيار وسعر الشراء والمصنعية والرسوم والاسم المختصر الاختياري. لا ترسل أداة المحفظة السجل إلى خادم أو تزامنه مع أجهزة أخرى. يستطيع مستخدم ملف المتصفح نفسه رؤيته؛ التخزين ونسخة JSON المصدرة غير مشفرين. يمكنك حذف العمليات أو السجل كله من صفحة المحفظة. قد يضيع السجل عند مسح بيانات الموقع؛ احتفظ بنسخة احتياطية آمنة. لا تدخل بيانات حساسة في الاسم المختصر. لا يعني التخزين المحلي أن الخدمات الخارجية المذكورة في هذه السياسة لا تعمل في الصفحة.</p><h2>الأطفال</h2><p>الموقع غير موجّه للأطفال دون 13 عاماً ولا نجمع بياناتهم عن قصد.</p>
 <h2>التواصل</h2><p>لأي سؤال عن الخصوصية: <a href="mailto:contact@maelumatii.com">contact@maelumatii.com</a>.</p>
 </div></section>` });
+
+  // ── Trust pages for review: English about/contact/privacy/terms + Arabic terms (no ad units on these) ──
+  const POLICY_EMAIL = '<a href="mailto:contact@maelumatii.com">contact@maelumatii.com</a>';
+  out.push({ lang: 'en', fixed: true, noAds: true, slug: 'about', lastmod: TODAY, crumbs: [['About us', '/en/about/']],
+    title: 'About Maelumatii | Gold Prices, Tools and Guides',
+    desc: 'Who runs Maelumatii, where the gold and exchange-rate data comes from, how prices are calculated, and how guides are sourced and corrected.',
+    schema: [{ '@context': 'https://schema.org', '@type': 'AboutPage', name: 'About Maelumatii', url: ctx.SITE + '/en/about/' }],
+    body: `<div class="hero"><h1>About Maelumatii</h1><p class="hero-sub">An independent site for gold prices, calculators and plain-English guides</p></div>
+<section class="card-section"><h2>What the site does</h2><div class="prose">
+<p><strong>Maelumatii (maelumatii.com)</strong> is an independent website, run by the Maelumatii editorial team. It shows gold prices per gram by karat for the UAE and other Gulf markets, dollar exchange rates for a range of countries, calculators for making charges, VAT, zakat and gold bars, and an archive of daily prices. The Arabic site is the main edition. The English site adds guides on travelling with gold and cash, buying and investing in gold, and gold markets and history.</p>
+<p>We do not buy, sell or store gold, we do not test the purity of jewellery, and we are not a bank, broker or financial adviser.</p></div></section>
+<section class="card-section"><h2>Where the numbers come from</h2><div class="prose">
+<p>The world gold price in US dollars per ounce comes from Gold-API.com. For UAE prices we convert it to dirhams at the official peg of 3.6725 AED per US dollar, divide by 31.1035 (grams per troy ounce) to get the 24k gram price, and multiply by each karat's purity share. Exchange-rate pages use open.er-api.com. Each page shows the source time and whether the price is fresh or stale. Prices are for raw gold. They do not include making charges, VAT or a shop's margin, so a shop quote will differ.</p></div></section>
+<section class="card-section"><h2>How guides are written</h2><div class="prose">
+<ul><li>Legal, tax and customs statements are taken from official government or regulator pages. The sources are listed at the end of each guide with the date we checked them.</li><li>Figures that change over time are stated with their date and source, not as live prices.</li><li>Where we could not find an official source for a point, the guide says it is not covered.</li><li>Guides explain how things work. They do not predict prices or promise returns.</li></ul></div></section>
+<section class="card-section"><h2>Corrections</h2><div class="prose">
+<p>If you find a wrong figure or an out-of-date rule, tell us through the <a href="/en/contact/">contact page</a> with the page link. We check it against the source and fix confirmed errors. Please also read our <a href="/en/privacy/">privacy policy</a> and <a href="/en/terms/">terms of use</a>. The site is funded by advertising shown through Google AdSense.</p></div></section>` });
+
+  out.push({ lang: 'en', fixed: true, noAds: true, slug: 'contact', lastmod: TODAY, crumbs: [['Contact', '/en/contact/']],
+    title: 'Contact Maelumatii | Questions and Corrections',
+    desc: 'Contact the Maelumatii team to report a wrong price or an out-of-date rule, ask a question about a calculator, or make a suggestion.',
+    schema: [{ '@context': 'https://schema.org', '@type': 'ContactPage', name: 'Contact Maelumatii', url: ctx.SITE + '/en/contact/' }],
+    body: `<div class="hero"><h1>Contact us</h1><p class="hero-sub">Questions, suggestions and corrections are welcome</p></div>
+<section class="card-section"><div class="prose">
+<p><strong>Email:</strong> ${POLICY_EMAIL}</p>
+<p>To report an error, send the page link, the country, currency and karat, and the time you saw the figure with your time zone. A clear screenshot helps. Do not send payment details, passwords or personal documents.</p>
+<p>The site shows reference prices for raw gold. If your question is about the gap between our price and a shop's offer, say what you compared. We cannot value a piece of jewellery, test purity or give tax advice. For that, ask a local professional.</p>
+<p>See also: <a href="/en/about/">About us</a> · <a href="/en/privacy/">Privacy policy</a> · <a href="/en/terms/">Terms of use</a>.</p></div></section>` });
+
+  out.push({ lang: 'en', fixed: true, noAds: true, slug: 'privacy', lastmod: TODAY, crumbs: [['Privacy policy', '/en/privacy/']],
+    title: 'Privacy Policy | Maelumatii',
+    desc: 'How maelumatii.com handles visitor data: what we collect, cookies and Google AdSense advertising, third-party services and your choices.',
+    body: `<div class="hero"><h1>Privacy policy</h1><p class="hero-sub">Last updated: ${TODAY}</p></div>
+<section class="card-section"><div class="prose">
+<p>This policy explains how <strong>maelumatii.com</strong> handles visitor data. It matches the Arabic <a href="/privacy/">privacy policy</a>.</p>
+<h2>Data we collect</h2>
+<p>We do not ask you to register and we do not collect names or phone numbers. Calculator values (weight, karat, making charge) are worked out in your browser and are not sent to us. Pages may save simple preferences in your browser, such as hiding the app install prompt.</p>
+<h2>Advertising and cookies</h2>
+<p>We use <strong>Google AdSense</strong> to show ads. Google and its partners use cookies to show ads based on your earlier visits to this and other sites. You can turn off personalised ads in <a href="https://www.google.com/settings/ads" rel="nofollow noopener" target="_blank">Google Ads Settings</a>, read <a href="https://policies.google.com/technologies/partner-sites" rel="nofollow noopener" target="_blank">how Google uses data from partner sites</a>, or block cookies in your browser settings.</p>
+<h2>Third-party services</h2>
+<p>We fetch gold prices from Gold-API.com and exchange rates from open.er-api.com. We store prices, not visitor data, in a Supabase database. We use Google Fonts. The site is hosted on Cloudflare, which may log technical data such as your IP address for security.</p>
+<h2>Price alerts, notifications and the local portfolio</h2>
+<p>If you save a price target, it is stored in this browser's local storage and is not uploaded or synced. Browser notifications are optional and need your permission. Purchases you enter in the gold portfolio tool stay in this browser's local storage. They are not encrypted, and the exported JSON copy is not encrypted either. You can delete entries from the tool or clear the site data. Do not enter sensitive details in the short name field.</p>
+<h2>Children</h2>
+<p>The site is not aimed at children under 13 and we do not knowingly collect their data.</p>
+<h2>Contact</h2>
+<p>For privacy questions write to ${POLICY_EMAIL}.</p></div></section>` });
+
+  out.push({ lang: 'en', fixed: true, noAds: true, slug: 'terms', lastmod: TODAY, crumbs: [['Terms of use', '/en/terms/']],
+    title: 'Terms of Use | Maelumatii',
+    desc: 'Terms for using maelumatii.com: information only, no financial advice, accuracy of prices and guides, advertising, links and copyright.',
+    body: `<div class="hero"><h1>Terms of use</h1><p class="hero-sub">Last updated: ${TODAY}</p></div>
+<section class="card-section"><div class="prose">
+<p>By using <strong>maelumatii.com</strong> you accept these terms. If you do not agree, please do not use the site.</p>
+<h2>Information only</h2>
+<p>Everything on the site, including prices, calculators and guides, is general information. It is not financial, investment, tax or legal advice. Check a current official source and, where needed, a qualified professional before you buy, sell, invest or travel with gold or cash.</p>
+<h2>Prices and accuracy</h2>
+<p>Prices are reference prices for raw gold, calculated from third-party data, and may be delayed, stale or wrong. They exclude making charges, VAT and dealer margins. A shop or dealer quote is the price that counts. Customs, tax and exchange rules change; each guide shows the date we checked its sources. We try to keep the site accurate but give no warranty that it is complete or error-free.</p>
+<h2>Advertising and third-party links</h2>
+<p>The site shows ads through Google AdSense and links to other sites, including official sources. We do not control those sites and are not responsible for their content or practices. An ad on this site is not an endorsement.</p>
+<h2>Copyright</h2>
+<p>The text, design and calculators on this site belong to Maelumatii. You may quote short extracts with a link back to the page. Please do not copy whole pages or republish the site's content in bulk.</p>
+<h2>Limit of liability</h2>
+<p>To the extent the law allows, Maelumatii is not liable for any loss that results from using or relying on the site.</p>
+<h2>Changes and contact</h2>
+<p>We may update these terms and will change the date above when we do. Questions: ${POLICY_EMAIL}. See also the <a href="/en/privacy/">privacy policy</a>.</p></div></section>` });
+
+  out.push({ lang: 'ar', fixed: true, noAds: true, slug: 'terms', lastmod: TODAY, crumbs: [['الشروط والأحكام', '/terms/']],
+    title: 'الشروط والأحكام | معلوماتي',
+    desc: 'شروط استخدام موقع معلوماتي: المعلومات للاطلاع فقط، دقة الأسعار والأدلة، الإعلانات والروابط الخارجية وحقوق النشر.',
+    body: `<div class="hero"><h1>الشروط والأحكام</h1><p class="hero-sub">آخر تحديث: ${arDate(TODAY)}</p></div>
+<section class="card-section"><div class="prose">
+<p>باستخدامك موقع <strong>maelumatii.com</strong> فأنت توافق على هذه الشروط. إذا لم توافق عليها فلا تستخدم الموقع.</p>
+<h2>للاطلاع فقط</h2>
+<p>كل ما في الموقع، من أسعار وحاسبات وأدلة، معلومات عامة وليس نصيحة مالية أو استثمارية أو ضريبية أو قانونية. راجع مصدراً رسمياً حديثاً، ومختصاً عند الحاجة، قبل أن تشتري أو تبيع أو تستثمر أو تسافر بالذهب أو النقد.</p>
+<h2>الأسعار والدقة</h2>
+<p>الأسعار مرجعية للذهب الخام، وتُحسب من بيانات جهات خارجية، وقد تتأخر أو تتوقف أو تحتوي على خطأ. لا تشمل المصنعية ولا ضريبة القيمة المضافة ولا هامش التاجر، وعرض المحل أو التاجر هو السعر المعتمد. قواعد الجمارك والضرائب والصرف تتغير، ويذكر كل دليل تاريخ مراجعة مصادره. نجتهد أن يكون الموقع دقيقاً لكننا لا نضمن اكتماله أو خلوه من الأخطاء.</p>
+<h2>الإعلانات والروابط الخارجية</h2>
+<p>يعرض الموقع إعلانات عبر Google AdSense ويرتبط بمواقع أخرى منها مصادر رسمية. لا نتحكم في تلك المواقع ولا نتحمل مسؤولية محتواها أو ممارساتها، ووجود إعلان على الموقع لا يعني تزكيته.</p>
+<h2>حقوق النشر</h2>
+<p>نصوص الموقع وتصميمه وحاسباته ملك لمعلوماتي. يجوز اقتباس مقتطفات قصيرة مع رابط للصفحة الأصلية، ولا يجوز نسخ صفحات كاملة أو إعادة نشر محتوى الموقع بشكل جماعي.</p>
+<h2>حدود المسؤولية</h2>
+<p>بالقدر الذي يسمح به القانون، لا تتحمل معلوماتي أي خسارة تنتج عن استخدام الموقع أو الاعتماد عليه.</p>
+<h2>التعديل والتواصل</h2>
+<p>قد نحدّث هذه الشروط ونغيّر التاريخ أعلاه عند ذلك. للاستفسار: ${POLICY_EMAIL}. راجع أيضاً <a href="/privacy/">سياسة الخصوصية</a>.</p></div></section>` });
 
   // ══════════════ الصفحات الجديدة (من بيانات Keyword Planner) ══════════════
   const { S, FX } = ctx;
@@ -2015,7 +2100,7 @@ ${share('en', `articles/${a.slug}`, a.h1)}`,
     });
   }
 
-  out.push({ lang: 'ar', fixed: true, slug: '404', file: '404.html', noindex: true,
+  out.push({ lang: 'ar', fixed: true, slug: '404', file: '404.html', noindex: true, noAds: true,
     title: 'الصفحة غير موجودة | Page not found', desc: 'الصفحة غير موجودة',
     body: `<div class="hero"><h1>الصفحة غير موجودة</h1><p class="hero-sub">Page not found — <a href="/en/">go to the English site</a></p></div>
 <section class="card-section"><p class="prose">ربما نُقلت الصفحة أو حُذفت. يمكنك متابعة <a href="/">سعر الذهب اليوم في الإمارات</a> أو استخدام الروابط التالية.</p></section>${links('ar', '')}` });
