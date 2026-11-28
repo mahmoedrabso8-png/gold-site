@@ -3,6 +3,10 @@ on:
   schedule:
     - cron: '0 5 * * *'
   workflow_dispatch:
+    inputs:
+      delete_message_id:
+        description: 'Optional: delete this message id from the channel instead of posting'
+        required: false
 permissions:
   contents: read
 concurrency:
@@ -20,3 +24,4 @@ jobs:
         run: node jobs-digest.mjs
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          DELETE_MESSAGE_ID: ${{ github.event.inputs.delete_message_id }}

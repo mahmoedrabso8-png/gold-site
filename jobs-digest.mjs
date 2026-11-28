@@ -10,6 +10,7 @@ const MAXITEMS=+(process.env.JOBS_DIGEST_MAX||40);
 const today=new Date().toLocaleDateString('en-CA',{timeZone:'Africa/Cairo'});
 if(!TOKEN&&!DRY)throw new Error('TELEGRAM_BOT_TOKEN missing');
 const api=async(m,b)=>{const r=await fetch(`https://api.telegram.org/bot${TOKEN}/${m}`,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)});const j=await r.json();if(!j.ok)throw new Error(m+': '+JSON.stringify(j));return j;};
+if(process.env.DELETE_MESSAGE_ID){const j=await api('deleteMessage',{chat_id:CHAT,message_id:+process.env.DELETE_MESSAGE_ID});console.log('deleted message_id',process.env.DELETE_MESSAGE_ID,j.result);process.exit(0);}
 let d;
 if(process.env.JOBS_DIGEST_FILE)d=JSON.parse(fs.readFileSync(process.env.JOBS_DIGEST_FILE,'utf8'));
 else{const r=await fetch(URL_+'?t='+Date.now(),{headers:{'cache-control':'no-cache'}});if(!r.ok)throw new Error('digest fetch '+r.status);d=await r.json();}
