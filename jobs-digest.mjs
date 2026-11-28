@@ -15,8 +15,9 @@ if(process.env.JOBS_DIGEST_FILE)d=JSON.parse(fs.readFileSync(process.env.JOBS_DI
 else{const r=await fetch(URL_+'?t='+Date.now(),{headers:{'cache-control':'no-cache'}});if(!r.ok)throw new Error('digest fetch '+r.status);d=await r.json();}
 const date=String(d.date||'').slice(0,10);
 if(date!==today&&process.env.JOBS_DIGEST_FORCE!=='1'){console.log(`digest dated ${date||'none'}, today is ${today}: not posting`);process.exit(0);}
+const SITE=/^https?:\/\//.test(d.site||'')?d.site:'https://gulf-jobs.pages.dev/';
 const raw=d.items||d.jobs||[];
-const items=raw.map(x=>({title:String(x.title||'').replace(/\s+/g,' ').trim(),link:x.link||x.url,country:String(x.country||'').toLowerCase()})).filter(x=>x.title&&/^https?:\/\//.test(x.link||''));
+const items=raw.map(x=>({title:String(x.title||'').replace(/\s+/g,' ').trim(),en:String(x.title_en||'').replace(/\s+/g,' ').trim(),link:x.link||x.url,country:String(x.country||'').toLowerCase()})).filter(x=>x.title&&/^https?:\/\//.test(x.link||''));
 if(!items.length){console.log('digest has no usable items: not posting');process.exit(0);}
 const CN={uae:'🇦🇪 الإمارات',ae:'🇦🇪 الإمارات',saudi:'🇸🇦 السعودية','saudi arabia':'🇸🇦 السعودية',sa:'🇸🇦 السعودية',ksa:'🇸🇦 السعودية',qatar:'🇶🇦 قطر',qa:'🇶🇦 قطر',bahrain:'🇧🇭 البحرين',bh:'🇧🇭 البحرين',kuwait:'🇰🇼 الكويت',kw:'🇰🇼 الكويت',oman:'🇴🇲 عُمان',om:'🇴🇲 عُمان'};
 const order=['🇦🇪 الإمارات','🇸🇦 السعودية','🇶🇦 قطر','🇧🇭 البحرين','🇰🇼 الكويت','🇴🇲 عُمان'];
@@ -24,9 +25,9 @@ const groups=new Map();
 for(const it of items.slice(0,MAXITEMS)){const k=CN[it.country]||'🌍 دول الخليج';(groups.get(k)||groups.set(k,[]).get(k)).push(it);}
 const keys=[...groups.keys()].sort((a,b)=>(order.indexOf(a)+99)%99-(order.indexOf(b)+99)%99);
 const blocks=[`📋 نشرة وظائف اليوم · ${date}\n`+(+d.total_new>items.length?`${d.total_new} وظيفة جديدة، وهذه أبرز ${items.length}`:`${items.length} وظيفة جديدة`)];
-for(const k of keys){const g=groups.get(k);blocks.push(`${k} (${g.length})\n`+g.map(x=>`▫️ ${x.title}\n${x.link}`).join('\n\n'));}
-if(items.length>MAXITEMS)blocks.push(`+${items.length-MAXITEMS} وظيفة أخرى على الموقع:\nhttps://gulf-jobs.pages.dev/`);
-else blocks.push('كل الوظائف على الموقع:\nhttps://gulf-jobs.pages.dev/');
+for(const k of keys){const g=groups.get(k);blocks.push(`${k} (${g.length})\n`+g.map(x=>`▫️ ${x.title}${x.en&&x.en!==x.title?` (${x.en})`:''}\n${x.link}`).join('\n\n'));}
+if(items.length>MAXITEMS)blocks.push(`+${items.length-MAXITEMS} وظيفة أخرى على الموقع:\n${SITE}`);
+else blocks.push(`كل الوظائف على الموقع:\n${SITE}`);
 const msgs=[];let cur='';
 for(const b of blocks){if(cur&&(cur+'\n\n'+b).length>3800){msgs.push(cur);cur=b;}else cur=cur?cur+'\n\n'+b:b;}
 if(cur)msgs.push(cur);
