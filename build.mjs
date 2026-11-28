@@ -137,7 +137,7 @@ export const url = (lang, slug) => (lang === 'ar' ? '/' : `/${lang}/`) + (slug ?
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 
 const NAV = {
-  ar: [['', 'الرئيسية'], ['gold-21k', 'عيار 21'], ['gold-24k', 'عيار 24'], ['gold-22k', 'عيار 22'], ['gold-18k', 'عيار 18'], ['gcc', 'مقارنة الخليج'], ['gold-price-usd', 'السعر العالمي'], ['silver', 'الفضة'], ['silver-egypt','الفضة في مصر'], ['silver-saudi','الفضة في السعودية'], ['egp-exchange-rates','العملات مقابل الجنيه'], ['gold-bars', 'السبائك'], ['gold-calculator', 'حاسبة الذهب'], ['gold-bar-calculator', 'حاسبة السبائك'], ['gold-shop-comparison', 'مقارنة العروض'], ['gold-portfolio', 'محفظة الذهب'], ['gold-resale-calculator', 'بيع الذهب'], ['gold-weight-converter', 'الوزن والنقاء'], ['price-alerts', 'تنبيهات السعر'], ['zakat-calculator', 'زكاة الذهب'], ['gold-price-yesterday', 'سعر أمس'], ['gold-forecast', 'توقعات الذهب'], ['articles', 'مقالات'], ['assistant', 'المساعد'], ['history', 'الأرشيف']],
+  ar: [['', 'الرئيسية'], ['gold-21k', 'عيار 21'], ['gold-24k', 'عيار 24'], ['gold-22k', 'عيار 22'], ['gold-18k', 'عيار 18'], ['gcc', 'مقارنة الخليج'], ['gold-price-usd', 'السعر العالمي'], ['tahweel-folous', 'تحويل فلوس لمصر'], ['silver', 'الفضة'], ['silver-egypt','الفضة في مصر'], ['silver-saudi','الفضة في السعودية'], ['egp-exchange-rates','العملات مقابل الجنيه'], ['gold-bars', 'السبائك'], ['gold-calculator', 'حاسبة الذهب'], ['gold-bar-calculator', 'حاسبة السبائك'], ['gold-shop-comparison', 'مقارنة العروض'], ['gold-portfolio', 'محفظة الذهب'], ['gold-resale-calculator', 'بيع الذهب'], ['gold-weight-converter', 'الوزن والنقاء'], ['price-alerts', 'تنبيهات السعر'], ['zakat-calculator', 'زكاة الذهب'], ['gold-price-yesterday', 'سعر أمس'], ['gold-forecast', 'توقعات الذهب'], ['articles', 'مقالات'], ['assistant', 'المساعد'], ['history', 'الأرشيف']],
   en: [['', 'Home'], ['gold-22k', '22K'], ['gold-24k', '24K'], ['gold-18k', '18K'], ['gold-21k', '21K'], ['gcc', 'Gulf compare'], ['gold-price-usd', 'Gold in USD'], ['silver', 'Silver'], ['silver-egypt','Silver in Egypt'], ['silver-saudi','Silver in Saudi Arabia'], ['egp-exchange-rates','Currencies vs EGP'], ['gold-melt-value-calculator','Melt value'], ['gold-rate-inr', 'In INR'], ['gold-rate-pkr', 'In PKR'], ['gold-bars', 'Gold Bars'], ['gold-calculator', 'Calculator'], ['gold-bar-calculator', 'Bar calculator'], ['gold-shop-comparison', 'Shop quotes'], ['gold-portfolio', 'Portfolio'], ['gold-resale-calculator', 'Resale'], ['gold-weight-converter', 'Weight & purity'], ['price-alerts', 'Price alerts'], ['gold-price-yesterday', 'Last 10 days'], ['zakat-calculator', 'Zakat'], ['articles', 'Articles'], ['assistant', 'Assistant']],
   tr: [['turkiye', 'Gram Altın'], ['turkiye/24-ayar-altin', '24 Ayar'], ['turkiye/22-ayar-altin', '22 Ayar'], ['turkiye/21-ayar-altin', '21 Ayar'], ['turkiye/18-ayar-altin', '18 Ayar']],
   hi: [['sone-ka-bhav', 'सोने का भाव'], ['sone-ka-bhav/24-karat', '24 कैरेट'], ['sone-ka-bhav/22-karat', '22 कैरेट'], ['sone-ka-bhav/18-karat', '18 कैरेट'], ['sone-ka-bhav/21-karat', '21 कैरेट']],
@@ -260,7 +260,7 @@ function layout(p, ctx) {
   const navGroups = (L==='ar'||L==='en') ? [
     [en?'Gold':'الذهب', ['gold-21k','gold-24k','gold-22k','gold-18k','gold-bars']],
     [en?'Tools':'الأدوات', ['gold-calculator','gold-bar-calculator','gold-shop-comparison','gold-portfolio','gold-resale-calculator','gold-weight-converter','gold-melt-value-calculator','price-alerts','zakat-calculator']],
-    [en?'Markets':'الأسواق', ['gold-price-usd','silver','silver-egypt','silver-saudi','egp-exchange-rates','gcc','gold-rate-inr','gold-rate-pkr']],
+    [en?'Markets':'الأسواق', ['gold-price-usd','silver','silver-egypt','silver-saudi','egp-exchange-rates','tahweel-folous','gcc','gold-rate-inr','gold-rate-pkr']],
     [en?'Guides':'المحتوى', ['articles','gold-forecast','gold-price-yesterday','history','assistant']]
   ] : null;
   const nav = navGroups ? `<li class="nav-home">${navLink(['',en?'Home':'الرئيسية'])}</li>` + navGroups.map(([name,slugs])=>{
@@ -418,6 +418,7 @@ ${p.noAds ? '' : AD}
 </div>
 </div>
 <script src="/assets/app.js?v=${ASSET_V.js}" defer></script>
+${body.includes('id="transfer-tool"') ? `<script src="/assets/transfer.js?v=${ASSET_V.transfer}" defer></script>` : ''}
 ${body.includes('id="quote-comparison-tool"')||body.includes('id="bar-calculator-tool"') ? `<script src="/assets/quote-tools.js?v=${ASSET_V.quoteTools}" defer></script>` : ''}
 ${body.includes('id="portfolio-tool"') ? `<script src="/assets/portfolio.js?v=${ASSET_V.portfolio}" defer></script>` : ''}
 ${body.includes('id="gold-history"') ? `<script src="/assets/history.js?v=${ASSET_V.history}" defer></script>` : ''}
@@ -517,6 +518,8 @@ ASSET_V.portfolio=await hashOf('portfolio.js');
 const quoteToolsJs='(function(){'+(await fs.readFile('quote-tools-core.mjs','utf8')).replace(/^export /gm,'')+'\n'+await fs.readFile('quote-tools-client.js','utf8')+'})();';
 await fs.writeFile(path.join(OUT,'assets','quote-tools.js'),quoteToolsJs);
 ASSET_V.quoteTools=await hashOf('quote-tools.js');
+await fs.writeFile(path.join(OUT,'assets','transfer.js'),await fs.readFile('transfer-client.js','utf8'));
+ASSET_V.transfer=await hashOf('transfer.js');
 const list = pages(ctx);
 const sitemap = [];
 for (const p of list) {
