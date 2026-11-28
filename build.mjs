@@ -358,6 +358,7 @@ function layout(p, ctx) {
 <html lang="${L}" dir="${L === 'ar' || L === 'ur' ? 'rtl' : 'ltr'}">
 <head>
   <meta charset="UTF-8" />
+  ${L==='ar'&&p.slug===''&&!p.file?`<meta name='mitgo-verification' content='ab65209b-62b2-4ab3-9ed1-893664678212' />`:''}
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${esc(p.title)}</title>
   <meta name="description" content="${esc(trimDesc(p.desc))}" />
