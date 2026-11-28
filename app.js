@@ -49,6 +49,7 @@ const clock=$('#live-time');
 if(clock){const t=()=>clock.textContent=new Date().toLocaleTimeString(EN?'en-AE':'ar-AE',{hour:'2-digit',minute:'2-digit',timeZone:document.body.dataset.marketZone||'Asia/Dubai'})+' '+(document.body.dataset.marketZone||'Asia/Dubai');t();setInterval(t,30000);}
 
 /* ── Theme toggle ── */
+const hdrMore=$('#hdr-more');if(hdrMore)hdrMore.addEventListener('click',()=>{const h=hdrMore.closest('.site-header'),o=h.classList.toggle('hdr-open');hdrMore.setAttribute('aria-expanded',o?'true':'false');});
 const themeBtn=$('#theme-toggle');
 const paintTheme=()=>{if(themeBtn)themeBtn.textContent=document.documentElement.getAttribute('data-theme')==='light'?'☀':'◐';};
 paintTheme();

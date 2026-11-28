@@ -397,7 +397,7 @@ function layout(p, ctx) {
 <header class="site-header"><div class="container"><div class="header-inner">
   <a href="${url(L, langHome)}" class="logo" aria-label="${L === 'ar' ? 'أسعار الذهب اليوم، الرئيسية' : 'Gold Prices Today, home'}"><img src="/icons/icon-72x72.png" alt="" width="28" height="28" /><span>${tr ? 'Altın Fiyatları' : L === 'hi' ? 'सोने का भाव' : L === 'ur' ? 'سونے کا ریٹ' : L === 'id' ? 'Harga Emas' : L === 'bn' ? 'সোনার দাম' : L === 'tl' ? 'Presyo ng Ginto' : L === 'ms' ? 'Harga Emas' : en ? 'Gold Prices Today' : 'أسعار الذهب اليوم'}</span></a>
   ${toggle}
-  <div class="header-side"><span class="header-time" id="live-time"></span>${toggleM}<button type="button" class="theme-toggle" id="theme-toggle" aria-label="${L === 'ar' ? 'التبديل بين المظهر الداكن والفاتح' : 'Switch between dark and light theme'}">🌙</button>${langSel}${cselect}</div>
+  <div class="header-side"><span class="header-time" id="live-time"></span>${toggleM}<button type="button" class="hdr-more" id="hdr-more" aria-expanded="false" aria-label="${L === 'ar' ? 'اللغة والدولة ونوع السعر' : 'Language, country and price type'}">⚙</button><button type="button" class="theme-toggle" id="theme-toggle" aria-label="${L === 'ar' ? 'التبديل بين المظهر الداكن والفاتح' : 'Switch between dark and light theme'}">🌙</button>${langSel}${cselect}</div>
 </div></div></header>
 <nav class="site-nav${navGroups?' grouped-nav':''}" aria-label="${en ? 'Main menu' : 'القائمة الرئيسية'}"><div class="container"><ul class="nav-list">${nav}</ul></div></nav>
 <main><div class="container">
