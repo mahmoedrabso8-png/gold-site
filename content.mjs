@@ -26,15 +26,15 @@ export function pages(ctx) {
 
   // ── معلومات العيارات ─────────────────────────────────────
   const K = {
-    24: { purity: '99.9%', mark: '999',
+    24: { purity: '99.99%', mark: '999.9',
       ar: { label: 'ذهب خالص', use: 'السبائك والعملات الذهبية والادخار والاستثمار',
-        about: `<p><strong>الذهب عيار 24</strong> هو أنقى أنواع الذهب المتداولة، بنسبة ذهب تبلغ <strong>99.9%</strong> ويحمل ختم <strong>999</strong>. لأنه طري جداً لا يُستخدم كثيراً في المجوهرات اليومية، ويُباع غالباً على شكل <strong>سبائك وعملات ذهبية</strong> لمن يريد الادخار أو الاستثمار.</p>
+        about: `<p><strong>الذهب عيار 24</strong> هو أنقى أنواع الذهب المتداولة، بنسبة ذهب تبلغ <strong>99.99%</strong> ويحمل ختم <strong>999.9</strong>. لأنه طري جداً لا يُستخدم كثيراً في المجوهرات اليومية، ويُباع غالباً على شكل <strong>سبائك وعملات ذهبية</strong> لمن يريد الادخار أو الاستثمار.</p>
 <p>سعر غرام عيار 24 هو الأساس الذي تُحسب منه بقية العيارات: عيار 22 = 91.7% من سعره، وعيار 21 = 87.5%، وعيار 18 = 75%. لذلك يتابعه التجار والمستثمرون أكثر من أي عيار آخر.</p>
 <p>في الإمارات يُعامل <strong>الذهب الاستثماري</strong> (نقاء 99% فأكثر وبشكل قابل للتداول في أسواق السبائك العالمية) بنسبة صفر في ضريبة القيمة المضافة، بخلاف المشغولات الذهبية التي تُفرض عليها ضريبة 5%. تأكد من الفاتورة عند الشراء. <a href="https://tax.gov.ae/datafolder/Files/Legislation/2026/Law-No-8-of-2017-and-its-amendments--09-2026.pdf">اللائحة التنفيذية، المادة 36</a>.</p>`,
         tips: ['اشترِ السبائك من جهة معروفة واطلب شهادة تحمل الوزن والنقاء والرقم التسلسلي.', 'السبائك الصغيرة (1–5 غرام) يكون فرق سعرها عن السعر العالمي أعلى نسبياً من السبائك الكبيرة.', 'احتفظ بالتغليف الأصلي للسبيكة لأنه يسهّل إعادة بيعها بسعر جيد.'],
         faq: [['هل الذهب عيار 24 مناسب للمجوهرات؟', 'نادراً، لأنه طري ويتشوه ويُخدش بسهولة. يُفضَّل للسبائك والعملات والادخار، بينما تُصنع أغلب المجوهرات من عيار 22 أو 21 أو 18.']] },
       en: { label: 'Pure gold', use: 'bars, coins, savings and investment',
-        about: `<p><strong>24 karat gold</strong> is the purest gold traded, at <strong>99.9%</strong> fineness with the hallmark <strong>999</strong>. It is too soft for everyday jewellery, so in the UAE it is mostly sold as <strong>bars and coins</strong> for saving and investing.</p>
+        about: `<p><strong>24 karat gold</strong> is the purest gold traded, at <strong>99.99%</strong> fineness with the hallmark <strong>999.9</strong>. It is too soft for everyday jewellery, so in the UAE it is mostly sold as <strong>bars and coins</strong> for saving and investing.</p>
 <p>The 24K gram price is the base for every other karat: 22K is 91.7% of it, 21K is 87.5% and 18K is 75%. That is why traders and investors follow it more than any other rate.</p>
 <p>In the UAE, <strong>investment gold</strong> (at least 99% pure and in a form tradeable in global bullion markets) is zero-rated for VAT, while gold jewellery carries 5% VAT. Always check the invoice. <a href="https://tax.gov.ae/datafolder/Files/Legislation/2026/Law-No-8-of-2017-and-its-amendments--09-2026.pdf">FTA Executive Regulation, Article 36</a>.</p>`,
         tips: ['Buy bars from a known dealer and ask for a certificate showing weight, purity and serial number.', 'Small bars (1–5 g) carry a higher premium over the spot price than larger bars.', 'Keep the original sealed packaging — it makes resale easier.'],
@@ -198,7 +198,7 @@ ${sources('ar')}`,
       ['كم سعر الذهب في الإمارات بالمصنعية؟', 'أضف المصنعية للغرام إلى سعر الغرام ثم اضرب في الوزن، وأضف ضريبة 5% على المشغولات. المصنعية تبدأ من بضعة دراهم وتصل إلى 15 درهماً أو أكثر حسب التصميم، ويمكنك الحساب بدقة من حاسبة الذهب.'],
       ['كيف يُحسب سعر غرام الذهب بالدرهم؟', 'سعر غرام عيار 24 = سعر الأونصة بالدولار × 3.6725 ÷ 31.1035. ثم يُضرب في نسبة العيار: 0.917 لعيار 22، و0.875 لعيار 21، و0.75 لعيار 18.'],
       ['هل السعر المعروض يشمل المصنعية والضريبة؟', 'لا. السعر المعروض للذهب الخام فقط. في المحل تُضاف المصنعية حسب القطعة، وضريبة القيمة المضافة 5% على المشغولات الذهبية.'],
-      ['ما الفرق بين عيار 24 و22 و21 و18؟', 'نسبة الذهب الخالص: عيار 24 = 99.9%، عيار 22 = 91.7%، عيار 21 = 87.5%، عيار 18 = 75%. كلما زاد العيار زاد السعر وقلّت صلابة الذهب.'],
+      ['ما الفرق بين عيار 24 و22 و21 و18؟', 'نسبة الذهب الخالص: عيار 24 = 99.99%، عيار 22 = 91.7%، عيار 21 = 87.5%، عيار 18 = 75%. كلما زاد العيار زاد السعر وقلّت صلابة الذهب.'],
       ['هل سعر الذهب في دبي مختلف عن أبوظبي والشارقة؟', 'السعر الأساسي للذهب واحد تقريباً في كل الإمارات لأنه يتبع السعر العالمي، والفرق يكون في المصنعية والعروض بين المحلات.'],
       ['ما هي التولة وكم وزنها؟', 'التولة وحدة وزن شائعة في أسواق الذهب بالإمارات والهند، وتساوي 11.664 غرام تقريباً. والسبيكة الشائعة "10 تولة" تزن نحو 116.64 غرام.']
     ] });
@@ -252,7 +252,7 @@ ${sources('en')}`,
         : `سعر غرام الذهب عيار ${k} اليوم في الإمارات ودبي بالدرهم والدولار، مع وقت المصدر وحالة حداثة السعر، مع جدول أسعار من 1 إلى 100 غرام والتولة والأونصة${k === 24 ? '' : ' وتقدير السعر بالمصنعية'}.`,
       body: `${hero(en ? `${k}K Gold Rate in UAE Today` : `سعر الذهب عيار ${k} اليوم في الإمارات`, en ? `${d.label} · ${K[k].purity} purity · hallmark ${K[k].mark} — used for ${d.use}` : `${d.label} · نقاء ${K[k].purity} · ختم ${K[k].mark} — يُستخدم في ${d.use}`, L)}
 ${errBox}
-<div class="big-price"><div class="u">${en ? `${k}K — price per gram` : `سعر غرام عيار ${k}`}</div><div class="v">${P(k)} <span style="font-size:.45em">AED</span></div><div class="s">≈ $${P(k, 1, { cur: 'usd' })} USD</div>${chg}
+<div class="big-price"><div class="u">${en ? `${k}K — price per gram` : `سعر غرام عيار ${k}`}</div><div class="v">${P(k)} <span style="font-size:.45em">AED</span></div><div class="s">≈ $${P(k, 1, { cur: 'usd' })} USD</div><div class="s">${en ? 'Global gold price converted to AED, not a shop price' : 'سعر الذهب العالمي محوّلًا للدرهم، وليس سعر المحل'}</div>${chg}
 <div class="note">${en ? 'Updated' : 'آخر تحديث'}: ${updated(L)} ${en ? '(Dubai time)' : '(بتوقيت دبي)'} · <button class="btn-sm" id="refresh" type="button">↻ ${en ? 'Refresh' : 'تحديث'}</button></div></div>
 ${AD}
 <section class="card-section"><h2>${en ? `${k}K gold price by weight` : `سعر الذهب عيار ${k} حسب الوزن`}</h2><div class="table-wrap"><table class="data-table">${table}</table></div>
@@ -1386,7 +1386,7 @@ ${other(L)}`,
         desc: `سعر غرام الذهب عيار ${k} اليوم ${x.in} بال${x.cur} والدولار، ووقت المصدر، مع جدول الأسعار من 1 إلى 100 غرام والتولة والأونصة${c.vat ? ` والسعر شامل ضريبة ${c.vat}%` : ''}.`,
         body: `${hero(`سعر الذهب عيار ${k} اليوم ${x.in}`, `${K[k].ar.label} · نقاء <bdi>${K[k].purity}</bdi> · ختم ${K[k].mark}`, 'ar')}
 ${errBox}
-<div class="big-price"><div class="u">سعر غرام عيار ${k} بال${x.cur}</div><div class="v">${P(k, 1, opt())} <span style="font-size:.45em">${c.code}</span></div><div class="s"><bdi>≈ $${P(k, 1, { cur: 'usd' })}</bdi>${c.vat ? ` · شامل الضريبة ${c.vat}%: <bdi>${P(k, 1 + c.vat / 100, opt())} ${c.code}</bdi>` : ''}</div>${chg}
+<div class="big-price"><div class="u">سعر غرام عيار ${k} بال${x.cur}</div><div class="v">${P(k, 1, opt())} <span style="font-size:.45em">${c.code}</span></div><div class="s">سعر الذهب العالمي محوّلًا لل${x.cur}، وليس سعر المحل</div><div class="s"><bdi>≈ $${P(k, 1, { cur: 'usd' })}</bdi>${c.vat ? ` · شامل الضريبة ${c.vat}%: <bdi>${P(k, 1 + c.vat / 100, opt())} ${c.code}</bdi>` : ''}</div>${chg}
 <div class="note">آخر تحديث: ${updated('ar')} · <button class="btn-sm" id="refresh" type="button">↻ تحديث</button></div></div>
 ${AD}
 <section class="card-section"><h2>سعر الذهب عيار ${k} حسب الوزن ${x.in}</h2><div class="table-wrap"><table class="data-table">
@@ -1394,10 +1394,10 @@ ${AD}
 ${rows.map(([n, w]) => `<tr><td>${n}</td><td class="n">${P(k, w, opt())}</td>${c.vat ? `<td class="n">${P(k, w * (1 + c.vat / 100), opt())}</td>` : ''}<td class="n">$${P(k, w, { cur: 'usd' })}</td></tr>`).join('')}
 </tbody></table></div><p class="note">سعر الذهب الخام بدون مصنعية. ${k === 24 ? 'أسعار السبائك عند التجار تكون أعلى قليلاً بسبب العلاوة.' : 'تُضاف المصنعية حسب القطعة والمحل.'}</p></section>
 <section class="card-section"><h2>عن الذهب عيار ${k} ${x.in}</h2><div class="prose">
-<p>${k === 21 ? `<strong>عيار 21</strong> هو الأكثر انتشاراً في المجوهرات الخليجية، ويحتوي على <strong>87.5%</strong> ذهب خالص ويُختم برقم <strong>875</strong>. يجمع بين نسبة ذهب عالية تحفظ القيمة وصلابة مناسبة للاستخدام اليومي${c.noK21 ? '، وهو الأشهر في مصر والعراق والخليج، بينما عيار 18 هو الغالب على المجوهرات ' + x.in + '.' : '، لذلك هو الخيار الأشهر في الشبكة والأطقم ' + x.in + '.'}`
+<p>${k === 21 ? `<strong>عيار 21</strong> ${slug === 'egypt' ? 'هو العيار اللي بيتداوله المصريون كل يوم في محلات الصاغة (الشبكة والدبل والأطقم)' : 'هو الأكثر انتشاراً في المجوهرات الخليجية'}، ويحتوي على <strong>87.5%</strong> ذهب خالص ويُختم برقم <strong>875</strong>. يجمع بين نسبة ذهب عالية تحفظ القيمة وصلابة مناسبة للاستخدام اليومي${c.noK21 ? '، وهو الأشهر في مصر والعراق والخليج، بينما عيار 18 هو الغالب على المجوهرات ' + x.in + '.' : '، لذلك هو الخيار الأشهر في الشبكة والأطقم ' + x.in + '.'}`
           : k === 22 ? `<strong>عيار 22</strong> يحتوي على <strong>91.7%</strong> ذهب خالص ويُختم برقم <strong>916</strong>. وهو العيار المفضل في المجوهرات الهندية والأساور والقلائد، ويجمع بين لون قريب من الذهب الخالص وصلابة أفضل من عيار 24.`
           : k === 18 ? `<strong>عيار 18</strong> يحتوي على <strong>75%</strong> ذهب خالص ويُختم برقم <strong>750</strong>. يُستخدم كثيراً في مجوهرات الألماس والتصاميم الأوروبية، ويتوفر بألوان أصفر وأبيض وروز، وهو أصلب العيارات المتداولة.`
-          : `<strong>عيار 24</strong> هو الذهب الخالص بنسبة <strong>99.9%</strong> ويُختم برقم <strong>999</strong>. يُستخدم أساساً في السبائك والعملات الذهبية للادخار والاستثمار، لأنه طري لا يناسب المجوهرات اليومية.`}</p>
+          : `<strong>عيار 24</strong> هو الذهب الخالص بنسبة <strong>99.99%</strong> ويُختم برقم <strong>999.9</strong>. يُستخدم أساساً في السبائك والعملات الذهبية للادخار والاستثمار، لأنه طري لا يناسب المجوهرات اليومية.`}</p>
 <p>المعادلة: سعر غرام عيار ${k} = (سعر الأونصة بالدولار × سعر صرف الدولار بال${x.cur} ÷ 31.1035) × ${(k / 24).toFixed(3)}.</p>
 <p>${c.noteAr}</p></div></section>
 ${share('ar', `${slug}/gold-${k}k`, `سعر الذهب عيار ${k} اليوم ${x.in}`)}
@@ -1423,7 +1423,7 @@ ${KS.filter(o => o !== k).map(o => `<a class="link-card" href="${url('ar', `${sl
         desc: `Live ${k}K gold rate in ${x.n} today in ${x.cur} (${c.code}) and US dollars: price per gram, 10 grams, tola and ounce, with source time${c.vat ? `, including ${c.vat}% ${TN}` : ''}.`,
         body: `${hero(`${k}K Gold Rate in ${x.n} Today`, `${ko.label} · ${K[k].purity} purity · hallmark ${K[k].mark}`, 'en')}
 ${errBox}
-<div class="big-price"><div class="u">${k}K — price per gram in ${x.cur}</div><div class="v">${P(k, 1, opt())} <span style="font-size:.45em">${c.code}</span></div>${c.code === 'USD' ? '' : `<div class="s"><bdi>≈ $${P(k, 1, { cur: 'usd' })} USD</bdi></div>`}
+<div class="big-price"><div class="u">${k}K — price per gram in ${x.cur}</div><div class="v">${P(k, 1, opt())} <span style="font-size:.45em">${c.code}</span></div><div class="s">Global gold price converted to ${c.code}, not a shop price</div>${c.code === 'USD' ? '' : `<div class="s"><bdi>≈ $${P(k, 1, { cur: 'usd' })} USD</bdi></div>`}
 <div class="note">Updated: ${updated('en')} · <button class="btn-sm" id="refresh" type="button">↻ Refresh</button></div></div>
 ${AD}
 <section class="card-section"><h2>${k}K gold price by weight in ${x.n}</h2><div class="table-wrap"><table class="data-table">
@@ -2063,7 +2063,7 @@ ${links('ar', 'articles')}` });
       title: a.title, desc: a.desc, lastmod: a.dateModified || a.datePublished || '2026-11-22',
       crumbs: [['مقالات الذهب', '/articles/'], [a.h1, `/articles/${a.slug}/`]],
       body: `<div class="hero"><h1>${a.h1}</h1><p class="hero-sub">${a.intro}</p></div>
-<article class="card-section">${reading.date}${reading.toc}<div class="prose">${reading.body}</div></article>
+<article class="card-section">${reading.date}<p class="note">راجعه فريق تحرير معلوماتي بتاريخ ${a.dateModified || a.datePublished || '2026-11-22'}. الأرقام المؤرخة منسوبة لمصادرها، وليست أسعارًا مباشرة.</p>${reading.toc}<div class="prose">${reading.body}</div></article>
 <section class="card-section"><h2>مقالات أخرى</h2><div class="links-grid related-articles">${relatedArticles(a,ARTICLES,'ar')}</div></section>
 <p class="all-guides"><a href="/articles/">تصفح كل الأدلة</a></p>
 ${share('ar', `articles/${a.slug}`, a.h1)}`,
@@ -2089,7 +2089,7 @@ ${links('en', 'articles')}` });
       title: a.title, desc: a.desc, lastmod: a.dateModified || a.datePublished || '2026-11-22',
       crumbs: [['Gold articles', '/en/articles/'], [a.h1, `/en/articles/${a.slug}/`]],
       body: `<div class="hero"><h1>${a.h1}</h1><p class="hero-sub">${a.intro}</p></div>
-<article class="card-section">${reading.date}${reading.toc}<div class="prose">${reading.body}</div></article>
+<article class="card-section">${reading.date}<p class="note">Reviewed by the Maelumatii editorial team on ${a.dateModified || a.datePublished || '2026-11-22'}. Dated figures are attributed to their sources and are not live prices.</p>${reading.toc}<div class="prose">${reading.body}</div></article>
 <section class="card-section"><h2>More articles</h2><div class="links-grid related-articles">${relatedArticles(a,ARTICLES_EN,'en')}</div></section>
 <p class="all-guides"><a href="/en/articles/">Browse all guides</a></p>
 ${share('en', `articles/${a.slug}`, a.h1)}`,

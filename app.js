@@ -22,7 +22,7 @@ const T=EN?{
 
 let G={g24:+(window.__G||0)||null,...(window.__QUOTE||{})};
 G.at=epoch(G.sourceAt);G.stale=!priceState(G).usable;
-function statusPrice(){const status=priceState(G);G.stale=!status.usable;document.querySelectorAll('[data-price-state]').forEach(el=>{el.dataset.priceState=status.state;el.textContent=priceLabel(status.state,document.documentElement.lang);});document.querySelectorAll('[data-provenance]').forEach(el=>{const t=epoch(G[el.dataset.provenance]);el.textContent=t?new Date(t).toLocaleString(EN?'en-GB':'ar-EG',{timeZoneName:'short'}):'—';});document.querySelectorAll('[data-fx-state]').forEach(el=>{const c=el.dataset.fxState,pegged=['AED','USD','SAR','QAR','OMR','BHD','JOD'].includes(c),ok=pegged||G.fxAt&&Date.now()-G.fxAt<=4*86400000&&G.fxAt-Date.now()<=120000&&G.fx?.[c]>0;el.textContent=pegged?(document.documentElement.lang==='ar'?'التحويل المرجعي المربوط':'Pegged reference conversion'):(document.documentElement.lang==='ar'?(ok?'الصرف المؤرخ متاح':'الصرف قديم أو غير متاح، التحويل غير موثوق'):(ok?'Dated FX available':'FX stale or unavailable; conversion not usable'));});document.querySelectorAll('[data-asset-state]').forEach(el=>{if(el.dataset.assetState==='silver'){const s=priceState({g24:G.ag,sourceAt:G.agAt});el.textContent=(EN?'Silver: ':'الفضة: ')+priceLabel(s.state,EN?'en':'ar');el.dataset.state=s.state;}else{const ok=G.fxAt&&Date.now()-G.fxAt<=4*86400000&&G.fxAt-Date.now()<=120000;el.textContent=(EN?'Daily reference FX, not a bank/cash quote. ':'صرف مرجعي يومي، ليس سعر بنك أو سوق نقدي. ')+(ok?'DELAYED':'STALE');el.dataset.state=ok?'DELAYED':'STALE';}});return status;}
+function statusPrice(){const status=priceState(G);G.stale=!status.usable;document.querySelectorAll('[data-price-state]').forEach(el=>{el.dataset.priceState=status.state;el.textContent=priceLabel(status.state,document.documentElement.lang,status.sourceAt);});document.querySelectorAll('[data-provenance]').forEach(el=>{const t=epoch(G[el.dataset.provenance]);el.textContent=t?new Date(t).toLocaleString(EN?'en-GB':'ar-EG',{timeZoneName:'short'}):'—';});document.querySelectorAll('[data-fx-state]').forEach(el=>{const c=el.dataset.fxState,pegged=['AED','USD','SAR','QAR','OMR','BHD','JOD'].includes(c),ok=pegged||G.fxAt&&Date.now()-G.fxAt<=4*86400000&&G.fxAt-Date.now()<=120000&&G.fx?.[c]>0;el.textContent=pegged?(document.documentElement.lang==='ar'?'التحويل بسعر الربط الرسمي':'Pegged reference conversion'):(document.documentElement.lang==='ar'?(ok?'سعر الصرف المؤرخ متاح':'سعر الصرف قديم أو غير متاح، فلا نعتمد التحويل'):(ok?'Dated FX available':'FX stale or unavailable; conversion not usable'));});document.querySelectorAll('[data-asset-state]').forEach(el=>{if(el.dataset.assetState==='silver'){const s=priceState({g24:G.ag,sourceAt:G.agAt});el.textContent=(EN?'Silver: ':'الفضة: ')+priceLabel(s.state,EN?'en':'ar',s.sourceAt);el.dataset.state=s.state;}else{const ok=G.fxAt&&Date.now()-G.fxAt<=4*86400000&&G.fxAt-Date.now()<=120000;el.textContent=(EN?'Daily reference FX, not a bank/cash quote. ':'صرف مرجعي يومي، ليس سعر بنك أو سوق نقدي. ')+(ok?'DELAYED':'STALE');el.dataset.state=ok?'DELAYED':'STALE';}});return status;}
 statusPrice();G.displayedAt=new Date().toISOString();setInterval(()=>{statusPrice();calc();zakat();if(window.GoldAlerts)window.GoldAlerts.check();},30000);
 
 const $=s=>document.querySelector(s);
@@ -85,7 +85,7 @@ async function getPrice(){
   let cached=null;
   try{cached=await latestRow();}catch(e){}
   const stored=cached?{g24:+cached.price_24k,at:cached.raw_json?.sourceAt||cached.fetched_at,sourceAt:cached.raw_json?.sourceAt||null,storedAt:cached.fetched_at,fetchedAt:new Date().toISOString()}:null;
-  if(stored&&priceState(stored).state==='LIVE')return stored;
+  if(stored&&['LIVE','CLOSED'].includes(priceState(stored).state))return stored;
   try{
     const live=await fetchLive();
     saveRow(live.g24,live.usd,live.sourceAt).catch(()=>{});
@@ -208,7 +208,7 @@ function renderChange(pct,baselineAt){
   $$('[data-chg]').forEach(el=>{
     const dir=pct>0.005?'up':pct<-0.005?'dn':'fl';
     el.className='chg '+dir;
-    el.textContent=(dir==='up'?'▲ ':dir==='dn'?'▼ ':'● ')+Math.abs(pct).toFixed(2)+'%'+(EN?' vs stored quote':' مقارنة بسعر محفوظ');
+    el.textContent=(dir==='up'?'▲ ':dir==='dn'?'▼ ':'● ')+Math.abs(pct).toFixed(2)+'%'+(EN?' vs stored quote':' مقارنة بآخر سعر مسجّل');
     el.title=(EN?'Stored baseline: ':'المرجع المحفوظ: ')+(baselineAt?dubaiTime(baselineAt):'—');el.hidden=false;
   });
 }
@@ -223,7 +223,7 @@ async function load(){
     const p=await getPrice();
     render(p);
     const status=priceState(G);
-    if(err){err.hidden=status.state==='LIVE';if(!err.hidden)err.textContent=priceLabel(status.state,EN?'en':'ar');}
+    if(err){err.hidden=status.state==='LIVE'||status.state==='CLOSED';if(!err.hidden)err.textContent=priceLabel(status.state,EN?'en':'ar');}
     try{const old=await rowBefore(24*3600*1000);if(old) renderChange((p.g24-old.price_24k)/old.price_24k*100,old.fetched_at);}catch(e){}
   }catch(e){
     G.stale=!priceState(G).usable;statusPrice();if(window.GoldAlerts)window.GoldAlerts.check();

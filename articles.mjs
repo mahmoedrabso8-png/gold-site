@@ -25,7 +25,7 @@ export const ARTICLES = [
 <h3>الخطوة 3: حساب العيارات المختلفة</h3>
 <p>العيار يعبر عن نسبة الذهب الخالص في القطعة، ويُحسب سعره بضرب سعر عيار 24 في نسبة النقاء:</p>
 <ul>
-<li><a href="/gold-24k/"><strong>عيار 24</strong></a> = 99.9% — السعر الكامل</li>
+<li><a href="/gold-24k/"><strong>عيار 24</strong></a> = 99.99% — السعر الكامل</li>
 <li><a href="/gold-22k/"><strong>عيار 22</strong></a> = 91.7% — سعر عيار 24 × 0.917</li>
 <li><a href="/gold-21k/"><strong>عيار 21</strong></a> = 87.5% — سعر عيار 24 × 0.875</li>
 <li><a href="/gold-18k/"><strong>عيار 18</strong></a> = 75% — سعر عيار 24 × 0.75</li>
@@ -51,7 +51,7 @@ export const ARTICLES = [
 <div class="table-wrap"><table class="data-table">
 <thead><tr><th>العيار</th><th>نسبة الذهب</th><th>الختم</th><th>الاستخدام الأشهر</th></tr></thead>
 <tbody>
-<tr><td><a href="/gold-24k/"><strong>عيار 24</strong></a></td><td class="n">99.9%</td><td class="n"><bdi>999</bdi></td><td>السبائك والعملات الذهبية والادخار</td></tr>
+<tr><td><a href="/gold-24k/"><strong>عيار 24</strong></a></td><td class="n">99.99%</td><td class="n"><bdi>999</bdi></td><td>السبائك والعملات الذهبية والادخار</td></tr>
 <tr><td><a href="/gold-22k/"><strong>عيار 22</strong></a></td><td class="n">91.7%</td><td class="n"><bdi>916</bdi></td><td>المجوهرات الهندية والأساور والأطقم</td></tr>
 <tr><td><a href="/gold-21k/"><strong>عيار 21</strong></a></td><td class="n">87.5%</td><td class="n"><bdi>875</bdi></td><td>المجوهرات الخليجية والعربية والشبكة</td></tr>
 <tr><td><a href="/gold-18k/"><strong>عيار 18</strong></a></td><td class="n">75%</td><td class="n"><bdi>750</bdi></td><td>مجوهرات الألماس والتصاميم الأوروبية</td></tr>
@@ -352,7 +352,7 @@ export const ARTICLES = [
 <h3>العيارات الشائعة في مصر</h3>
 <ul>
 <li><strong>عيار 21</strong> (87.5%): الأكثر انتشارًا بلا منازع في المجوهرات والشبكة والأطقم.</li>
-<li><strong>عيار 24</strong> (99.9%): السبائك والعملات الاستثمارية.</li>
+<li><strong>عيار 24</strong> (99.99%): السبائك والعملات الاستثمارية.</li>
 <li><strong>عيار 18</strong> (75%): التصاميم الحديثة ومجوهرات الألماس، وسعر الغرام فيه أقل.</li>
 </ul>
 <h3>الجنيه الذهب: وحدة الادخار المصرية</h3>
@@ -390,7 +390,7 @@ export const ARTICLES = [
 <ul>
 <li><strong>عيار 21</strong> (87.5%): الأكثر طلبًا في المجوهرات والأطقم والشبكة.</li>
 <li><strong>عيار 22</strong> (91.7%): منتشر أيضًا خاصة في القطع التقليدية.</li>
-<li><strong>عيار 24</strong> (99.9%): السبائك والعملات للادخار والاستثمار.</li>
+<li><strong>عيار 24</strong> (99.99%): السبائك والعملات للادخار والاستثمار.</li>
 <li><strong>عيار 18</strong> (75%): مجوهرات الألماس والتصاميم العصرية.</li>
 </ul>
 <h3>ضريبة القيمة المضافة 15%</h3>
