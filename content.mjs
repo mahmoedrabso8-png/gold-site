@@ -204,7 +204,7 @@ ${sources('ar')}`,
 
   out.push({ lang: 'en', slug: '', alt: true,
     title: px(24) ? `Gold Rate in UAE Today: 24K ${px(24)} AED, 22K ${px(22)} AED` : 'Gold Rate in UAE Today (AED) — 24K, 22K, 21K, 18K Live Price',
-    desc: 'Today\'s gold rate in the UAE and Dubai in AED, with source time and freshness status: 24K, 22K, 21K and 18K per gram, tola and ounce, plus gold bar prices and a gold calculator.',
+    desc: 'Today\'s gold rate in the UAE and Dubai in AED, with source time: 24K, 22K, 21K and 18K per gram, tola and ounce, plus gold bar prices and a gold calculator.',
     body: `${hero('Gold Rate in UAE Today', '24K, 22K, 21K and 18K gold price per gram in UAE dirhams (AED) and US dollars', 'en')}
 ${errBox}${karatCards('en')}${metaRow('en')}
 ${homeTools('en',ctx)}
@@ -247,7 +247,7 @@ ${sources('en')}`,
     out.push({ lang: L, slug: `gold-${k}k`, alt: true,
       crumbs: [[en ? `${k}K gold rate` : `سعر عيار ${k}`, url(L, `gold-${k}k`)]],
       title,
-      desc: en ? `Live ${k}K gold price per gram in the UAE and Dubai in AED and USD, with source time and freshness status, with prices for 1 g to 100 g, tola and ounce${k === 24 ? '' : ' and making-charge estimates'}.`
+      desc: en ? `Live ${k}K gold price per gram in the UAE and Dubai in AED and USD, with source time, with prices for 1 g to 100 g, tola and ounce${k === 24 ? '' : ' and making-charge estimates'}.`
         : `سعر غرام الذهب عيار ${k} اليوم في الإمارات ودبي بالدرهم والدولار، مع وقت المصدر وحالة حداثة السعر، مع جدول أسعار من 1 إلى 100 غرام والتولة والأونصة${k === 24 ? '' : ' وتقدير السعر بالمصنعية'}.`,
       body: `${hero(en ? `${k}K Gold Rate in UAE Today` : `سعر الذهب عيار ${k} اليوم في الإمارات`, en ? `${d.label} · ${K[k].purity} purity · hallmark ${K[k].mark} — used for ${d.use}` : `${d.label} · نقاء ${K[k].purity} · ختم ${K[k].mark} — يُستخدم في ${d.use}`, L)}
 ${errBox}
@@ -414,7 +414,7 @@ ${links(L, 'zakat-calculator')}`,
     out.push({ lang: L, slug: 'gold-bars', alt: true,
       crumbs: [[en ? 'Gold bar prices' : 'أسعار السبائك', url(L, 'gold-bars')]],
       title: en ? `Gold Bar Price in UAE Today: 100g${px(24) ? ' = ' + fmt(ctx.g24 * 100) + ' AED' : ''}, 1kg, 10 Tola` : `سعر سبيكة الذهب اليوم في الإمارات${px(24) ? ': 100 غرام = ' + fmt(ctx.g24 * 100) + ' درهم' : ''}`,
-      desc: en ? 'Today\'s 24K gold bar prices in the UAE in AED and USD: 1 g, 5 g, 10 g, 1 ounce, 100 g, 10 tola and 1 kg, with source time and freshness status, with tips on premiums and VAT.'
+      desc: en ? 'Today\'s 24K gold bar prices in the UAE in AED and USD: 1 g, 5 g, 10 g, 1 ounce, 100 g, 10 tola and 1 kg, with source time, with tips on premiums and VAT.'
         : 'أسعار سبائك الذهب عيار 24 اليوم في الإمارات بالدرهم والدولار: 1 و5 و10 غرام، الأونصة، 100 غرام، 10 تولة، والكيلو، مع وقت المصدر وحالة حداثة السعر مع نصائح الشراء.',
       body: `${hero(en ? 'Gold Bar Prices in UAE Today' : 'أسعار سبائك الذهب اليوم في الإمارات', en ? '24K (999.9) bars by weight — raw gold value' : 'سبائك عيار 24 حسب الوزن — قيمة الذهب الخام', L)}
 ${errBox}
@@ -648,7 +648,7 @@ ${links('ar', '')}` });
     out.push({ lang: L, slug: 'silver', alt: true, usesAg: true,
       crumbs: [[en ? 'Silver price' : 'سعر الفضة', url(L, 'silver')]],
       title: en ? `Silver Price in Dubai & UAE Today${ctx.ag ? ': ' + fmt(ctx.ag, 2) + ' AED per Gram' : ''}` : `سعر الفضة اليوم في دبي والإمارات${ctx.ag ? ': ' + fmt(ctx.ag, 2) + ' درهم للغرام' : ''}`,
-      desc: en ? 'Live silver price in the UAE and Dubai in AED and USD: price per gram for 999 and 925 sterling silver, per ounce, per tola and per kilo, with source time and freshness status.'
+      desc: en ? 'Live silver price in the UAE and Dubai in AED and USD: price per gram for 999 and 925 sterling silver, per ounce, per tola and per kilo, with source time.'
         : 'سعر الفضة اليوم في الإمارات ودبي بالدرهم والدولار: سعر غرام الفضة عيار 999 و925، وسعر الأونصة والتولة والكيلو، مع وقت المصدر وحالة حداثة السعر.',
       body: `${hero(en ? 'Silver Price in UAE Today' : 'سعر الفضة اليوم في الإمارات', en ? 'Price per gram, ounce and kilo in UAE dirhams and US dollars' : 'سعر الغرام والأونصة والكيلو بالدرهم الإماراتي والدولار', L)}
 <div class="big-price"><div class="u">${en ? 'Fine silver (999) — per gram' : 'غرام الفضة الخالصة (999)'}</div><div class="v">${S(1)} <span style="font-size:.45em">AED</span></div>
@@ -882,7 +882,7 @@ ${links('ar', '')}`,
       ] },
     india: { code: 'INR', d: 0, vat: 3, taxName: 'GST', peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,
       tEn: 'Gold Rate in India Today (INR) — 22K & 24K per Gram',
-      dEn: 'Live gold rate in India today in rupees (INR) and dollars: 22K and 24K gold price per gram, 10 grams, tola and ounce with 3% GST column, with source time and freshness status.',
+      dEn: 'Live gold rate in India today in rupees (INR) and dollars: 22K and 24K gold price per gram, 10 grams, tola and ounce with 3% GST column, with source time.',
       ar: { n: 'الهند', in: 'في الهند', cur: 'روبية', curS: 'روبية', cities: '' },
       en: { n: 'India', adj: 'Indian', cur: 'Indian rupee', cities: 'Mumbai, Delhi, Chennai, Kolkata and Hyderabad' },
       noteAr: '',
@@ -894,7 +894,7 @@ ${links('ar', '')}`,
       ] },
     pakistan: { code: 'PKR', d: 0, vat: 0, peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,
       tEn: 'Gold Rate in Pakistan Today (PKR) — Per Tola & Gram',
-      dEn: 'Live gold rate in Pakistan today in rupees (PKR) and dollars: 24K, 22K, 21K and 18K per tola, per gram and per ounce, with source time and freshness status.',
+      dEn: 'Live gold rate in Pakistan today in rupees (PKR) and dollars: 24K, 22K, 21K and 18K per tola, per gram and per ounce, with source time.',
       ar: { n: 'باكستان', in: 'في باكستان', cur: 'روبية', curS: 'روبية', cities: '' },
       en: { n: 'Pakistan', adj: 'Pakistani', cur: 'Pakistani rupee', cities: 'Karachi, Lahore, Islamabad and Peshawar' },
       noteAr: '',
@@ -916,7 +916,7 @@ ${links('ar', '')}`,
       ] },
     turkey: { code: 'TRY', d: 0, vat: 0, peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,
       tEn: 'Gold Price in Turkey Today (TRY) — Gram Altın Rates',
-      dEn: 'Live gram altın price in Turkey today in lira (TRY) and dollars: 24K gram gold, 22K, 21K and 18K per gram and per ounce, with source time and freshness status.',
+      dEn: 'Live gram altın price in Turkey today in lira (TRY) and dollars: 24K gram gold, 22K, 21K and 18K per gram and per ounce, with source time.',
       ar: { n: 'تركيا', in: 'في تركيا', cur: 'ليرة', curS: 'ليرة', cities: '' },
       en: { n: 'Turkey', adj: 'Turkish', cur: 'Turkish lira', cities: 'Istanbul, Ankara, Izmir and Bursa' },
       noteAr: '',
@@ -928,7 +928,7 @@ ${links('ar', '')}`,
       ] },
     usa: { code: 'USD', d: 2, vat: 0, peg: '', pegEn: 'the base currency of the global gold market, so the US price follows the global spot price directly', fx: false, enOnly: true,
       tEn: 'Gold Price Today in USA (USD) — Per Gram & Ounce',
-      dEn: 'Live gold price in the USA today in US dollars: 24K, 22K, 21K and 18K per gram, per ounce and per kilo, with source time and freshness status from the global spot price.',
+      dEn: 'Live gold price in the USA today in US dollars: 24K, 22K, 21K and 18K per gram, per ounce and per kilo, with source time from the global spot price.',
       ar: { n: 'أمريكا', in: 'في أمريكا', cur: 'دولار', curS: 'دولار', cities: '' },
       en: { n: 'USA', adj: 'American', cur: 'US dollar', cities: 'New York, Los Angeles, Chicago and Houston' },
       noteAr: '',
@@ -980,7 +980,7 @@ ${links('ar', '')}`,
       ] },
     malaysia: { code: 'MYR', d: 2, vat: 0, peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,
       tEn: 'Gold Price in Malaysia Today (MYR) — Emas 916 & 999',
-      dEn: 'Live gold price in Malaysia today in ringgit (MYR) and dollars: emas 916 (22K), 999 (24K) and 18K per gram and per ounce, with source time and freshness status.',
+      dEn: 'Live gold price in Malaysia today in ringgit (MYR) and dollars: emas 916 (22K), 999 (24K) and 18K per gram and per ounce, with source time.',
       ar: { n: 'ماليزيا', in: 'في ماليزيا', cur: 'رينغيت', curS: 'رينغيت', cities: '' },
       en: { n: 'Malaysia', adj: 'Malaysian', cur: 'Malaysian ringgit', cities: 'Kuala Lumpur, Penang, Johor Bahru and Ipoh' },
       noteAr: '',
@@ -992,7 +992,7 @@ ${links('ar', '')}`,
       ] },
     nepal: { code: 'NPR', d: 0, vat: 0, peg: '', pegEn: 'pegged to the Indian rupee, which itself floats against the US dollar', fx: true, enOnly: true,
       tEn: 'Gold Price in Nepal Today (NPR) — Per Tola & Gram',
-      dEn: 'Live gold price in Nepal today in rupees (NPR) and dollars: 24K, 22K, 21K and 18K per tola, per gram and per ounce, with source time and freshness status.',
+      dEn: 'Live gold price in Nepal today in rupees (NPR) and dollars: 24K, 22K, 21K and 18K per tola, per gram and per ounce, with source time.',
       ar: { n: 'نيبال', in: 'في نيبال', cur: 'روبية', curS: 'روبية', cities: '' },
       en: { n: 'Nepal', adj: 'Nepali', cur: 'Nepalese rupee', cities: 'Kathmandu, Pokhara, Lalitpur and Biratnagar' },
       noteAr: '',
@@ -1084,7 +1084,7 @@ ${links('ar', '')}`,
       ] },
     thailand: { code: 'THB', d: 2, vat: 0, peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true, un: ['1 baht (15.244 g)', 15.244],
       tEn: 'Gold Price in Thailand Today (THB) — Baht & Gram',
-      dEn: 'Live gold price in Thailand today in baht (THB) and dollars: 24K, 22K, 21K and 18K per gram, per baht weight (15.244 g) and per ounce, with source time and freshness status.',
+      dEn: 'Live gold price in Thailand today in baht (THB) and dollars: 24K, 22K, 21K and 18K per gram, per baht weight (15.244 g) and per ounce, with source time.',
       ar: { n: 'تايلاند', in: 'في تايلاند', cur: 'باهت', curS: 'باهت', cities: '' },
       en: { n: 'Thailand', adj: 'Thai', cur: 'Thai baht', cities: 'Bangkok, Chiang Mai, Phuket and Hat Yai' },
       noteAr: '',
@@ -1096,7 +1096,7 @@ ${links('ar', '')}`,
       ] },
     vietnam: { code: 'VND', d: 0, vat: 0, peg: '', pegEn: 'managed against the US dollar, so its rate moves daily', fx: true, enOnly: true, un: ['1 tael (37.5 g)', 37.5],
       tEn: 'Gold Price in Vietnam Today (VND) — Per Tael & Gram',
-      dEn: 'Live gold price in Vietnam today in dong (VND) and dollars: 24K, 22K, 21K and 18K per gram, per tael (lượng, 37.5 g) and per ounce, with source time and freshness status.',
+      dEn: 'Live gold price in Vietnam today in dong (VND) and dollars: 24K, 22K, 21K and 18K per gram, per tael (lượng, 37.5 g) and per ounce, with source time.',
       ar: { n: 'فيتنام', in: 'في فيتنام', cur: 'دونغ', curS: 'دونغ', cities: '' },
       en: { n: 'Vietnam', adj: 'Vietnamese', cur: 'Vietnamese dong', cities: 'Hanoi, Ho Chi Minh City, Da Nang and Hai Phong' },
       noteAr: '',
@@ -1118,7 +1118,7 @@ ${links('ar', '')}`,
       ] },
     srilanka: { code: 'LKR', d: 0, vat: 0, peg: '', pegEn: 'not pegged to the US dollar; its exchange rate moves daily', fx: true, enOnly: true,
       tEn: 'Gold Rate in Sri Lanka Today (LKR) — 22K & 24K',
-      dEn: 'Live gold rate in Sri Lanka today in rupees (LKR) and dollars: 22K and 24K gold price per gram, 10 grams, tola and ounce, with source time and freshness status.',
+      dEn: 'Live gold rate in Sri Lanka today in rupees (LKR) and dollars: 22K and 24K gold price per gram, 10 grams, tola and ounce, with source time.',
       ar: { n: 'سريلانكا', in: 'في سريلانكا', cur: 'روبية', curS: 'روبية', cities: '' },
       en: { n: 'Sri Lanka', adj: 'Sri Lankan', cur: 'Sri Lankan rupee', cities: 'Colombo, Kandy, Galle and Jaffna' },
       noteAr: '',
@@ -1338,7 +1338,7 @@ ${c.code !== 'USD' ? `<a class="link-card" href="${url(L, 'dollar-' + slug)}">${
       out.push({ lang: L, slug, alt: !c.enOnly, usesFx: !!c.fx,
         crumbs: [[en ? `Gold price in ${x.n}` : `سعر الذهب ${x.in}`, url(L, slug)]],
         title: en ? (c.tEn || `Gold Price in ${x.n} Today (${c.code}) — 24K, 22K, 21K, 18K`) : `سعر الذهب اليوم ${x.in} بال${x.cur} | عيار 24 و22 و21 و18`,
-        desc: en ? (c.dEn || `Live gold price in ${x.n} today in ${x.cur} (${c.code}) and US dollars: 24K, 22K, 21K and 18K per gram, tola and ounce, with source time and freshness status${c.vat ? `, incl. ${c.vat}% ${TN}` : ''}.`)
+        desc: en ? (c.dEn || `Live gold price in ${x.n} today in ${x.cur} (${c.code}) and US dollars: 24K, 22K, 21K and 18K per gram, tola and ounce, with source time${c.vat ? `, incl. ${c.vat}% ${TN}` : ''}.`)
           : `سعر الذهب اليوم ${x.in} بال${x.cur} والدولار، مع وقت المصدر وحالة حداثة السعر: سعر غرام عيار 24 و22 و21 و18، وسعر الأونصة والتولة${c.vat ? `، والسعر شامل ضريبة ${c.vat}%` : ''}.`,
         body: `${hero(en ? `Gold Price in ${x.n} Today` : `سعر الذهب اليوم ${x.in}`, en ? `Raw gold price per gram in ${x.cur} (${c.code}) and US dollars` : `سعر غرام الذهب الخام بال${x.cur} (${c.code}) والدولار`, L)}
 ${errBox}
@@ -1382,7 +1382,7 @@ ${other(L)}`,
       out.push({ lang: 'ar', slug: `${slug}/gold-${k}k`, alt: true, usesFx: !!c.fx,
         crumbs: [[`سعر الذهب ${x.in}`, url('ar', slug)], [`عيار ${k}`, url('ar', `${slug}/gold-${k}k`)]],
         title: `سعر الذهب عيار ${k} اليوم ${x.in} بال${x.cur}`,
-        desc: `سعر غرام الذهب عيار ${k} اليوم ${x.in} بال${x.cur} والدولار، مع وقت المصدر وحالة حداثة السعر، مع جدول الأسعار من 1 إلى 100 غرام والتولة والأونصة${c.vat ? ` والسعر شامل ضريبة ${c.vat}%` : ''}.`,
+        desc: `سعر غرام الذهب عيار ${k} اليوم ${x.in} بال${x.cur} والدولار، ووقت المصدر، مع جدول الأسعار من 1 إلى 100 غرام والتولة والأونصة${c.vat ? ` والسعر شامل ضريبة ${c.vat}%` : ''}.`,
         body: `${hero(`سعر الذهب عيار ${k} اليوم ${x.in}`, `${K[k].ar.label} · نقاء <bdi>${K[k].purity}</bdi> · ختم ${K[k].mark}`, 'ar')}
 ${errBox}
 <div class="big-price"><div class="u">سعر غرام عيار ${k} بال${x.cur}</div><div class="v">${P(k, 1, opt())} <span style="font-size:.45em">${c.code}</span></div><div class="s"><bdi>≈ $${P(k, 1, { cur: 'usd' })}</bdi>${c.vat ? ` · شامل الضريبة ${c.vat}%: <bdi>${P(k, 1 + c.vat / 100, opt())} ${c.code}</bdi>` : ''}</div>${chg}
@@ -1419,7 +1419,7 @@ ${KS.filter(o => o !== k).map(o => `<a class="link-card" href="${url('ar', `${sl
       out.push({ lang: 'en', slug: `${slug}/gold-${k}k`, alt: !c.enOnly, usesFx: !!c.fx,
         crumbs: [[`Gold price in ${x.n}`, url('en', slug)], [`${k}K`, url('en', `${slug}/gold-${k}k`)]],
         title: `${k}K Gold Rate in ${x.n} Today (${c.code}) — Price per Gram`,
-        desc: `Live ${k}K gold rate in ${x.n} today in ${x.cur} (${c.code}) and US dollars: price per gram, 10 grams, tola and ounce, with source time and freshness status${c.vat ? `, including ${c.vat}% ${TN}` : ''}.`,
+        desc: `Live ${k}K gold rate in ${x.n} today in ${x.cur} (${c.code}) and US dollars: price per gram, 10 grams, tola and ounce, with source time${c.vat ? `, including ${c.vat}% ${TN}` : ''}.`,
         body: `${hero(`${k}K Gold Rate in ${x.n} Today`, `${ko.label} · ${K[k].purity} purity · hallmark ${K[k].mark}`, 'en')}
 ${errBox}
 <div class="big-price"><div class="u">${k}K — price per gram in ${x.cur}</div><div class="v">${P(k, 1, opt())} <span style="font-size:.45em">${c.code}</span></div>${c.code === 'USD' ? '' : `<div class="s"><bdi>≈ $${P(k, 1, { cur: 'usd' })} USD</bdi></div>`}
@@ -1509,7 +1509,7 @@ ${AD}
     out.push({ lang: L, fixed: true, dollar: true, slug: 'dollar', alt: true, usesFx: true,
       crumbs: [[en ? 'US dollar rate today' : 'سعر الدولار اليوم', url(L, 'dollar')]],
       title: en ? 'US Dollar Rate Today — Live Exchange Rates for 40 Currencies' : 'سعر الدولار اليوم | سعر الصرف مباشر مقابل 40 عملة',
-      desc: en ? 'Live US dollar rate today against 40 currencies: Egyptian pound, Saudi riyal, UAE dirham, Indian rupee, Turkish lira and more, with source time and freshness status.'
+      desc: en ? 'Live US dollar rate today against 40 currencies: Egyptian pound, Saudi riyal, UAE dirham, Indian rupee, Turkish lira and more, with source time.'
         : 'سعر الدولار اليوم مباشر مقابل 40 عملة: الجنيه المصري والريال السعودي والدرهم الإماراتي والروبية الهندية والليرة التركية وغيرها — مع وقت المصدر وحالة حداثة السعر.',
       body: `${hero(en ? 'US Dollar Rate Today' : 'سعر الدولار اليوم', en ? 'Live exchange rate against every currency we cover' : 'سعر الصرف مباشر مقابل كل العملات التي نغطيها', L)}
 ${errBox}
@@ -1541,7 +1541,7 @@ ${AD}
       out.push({ lang: L, fixed: true, dollar: true, slug: `dollar-${slug}`, alt: !c.enOnly, usesFx: true,
         crumbs: [[en ? `Dollar rate in ${x.n}` : `سعر الدولار ${x.in}`, url(L, `dollar-${slug}`)]],
         title: en ? `US Dollar Rate in ${x.n} Today: 1 USD = ${rTxt} ${c.code}` : `سعر الدولار اليوم ${x.in}: 1 دولار = ${rTxt} ${x.cur}`,
-        desc: en ? `Live US dollar rate in ${x.n} today: 1 USD = ${rTxt} ${c.code}. Conversion tables from 1 to 1,000 dollars and back, with source time and freshness status.`
+        desc: en ? `Live US dollar rate in ${x.n} today: 1 USD = ${rTxt} ${c.code}. Conversion tables from 1 to 1,000 dollars and back, with source time.`
           : `سعر الدولار اليوم ${x.in} بال${x.cur}: 1 دولار = ${rTxt} ${x.cur}. جداول تحويل من 1 حتى 1000 دولار والعكس، مع وقت المصدر وحالة حداثة السعر.`,
         body: `${hero(en ? `US Dollar Rate in ${x.n} Today` : `سعر الدولار اليوم ${x.in}`, en ? `1 US dollar = ${rTxt} ${x.cur}` : `1 دولار = ${rTxt} ${x.cur}`, L)}
 ${errBox}

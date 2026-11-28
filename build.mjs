@@ -157,6 +157,8 @@ const AR_CTRIES = new Set(['saudi', 'kuwait', 'qatar', 'oman', 'bahrain', 'egypt
 const PILOT_CTRY = { tr: ['turkey', 'turkiye'], hi: ['india', 'sone-ka-bhav'], ur: ['pakistan', 'sone-ka-rate'], id: ['indonesia', 'harga-emas'], bn: ['bangladesh', 'sonar-dam'], tl: ['philippines', 'presyo-ng-ginto'], ms: ['malaysia', 'harga-emas'] };
 const CNAMES = { uae: ['الإمارات', 'UAE'], saudi: ['السعودية', 'Saudi Arabia'], kuwait: ['الكويت', 'Kuwait'], qatar: ['قطر', 'Qatar'], oman: ['عُمان', 'Oman'], bahrain: ['البحرين', 'Bahrain'], egypt: ['مصر', 'Egypt'], india: ['الهند', 'India'], pakistan: ['باكستان', 'Pakistan'], bangladesh: ['بنجلاديش', 'Bangladesh'], turkey: ['تركيا', 'Turkey'], usa: ['أمريكا', 'USA'], uk: ['بريطانيا', 'UK'], canada: ['كندا', 'Canada'], australia: ['أستراليا', 'Australia'], philippines: ['الفلبين', 'Philippines'], malaysia: ['ماليزيا', 'Malaysia'], nepal: ['نيبال', 'Nepal'], southafrica: ['جنوب أفريقيا', 'South Africa'], iraq: ['العراق', 'Iraq'], jordan: ['الأردن', 'Jordan'], morocco: ['المغرب', 'Morocco'], algeria: ['الجزائر', 'Algeria'], indonesia: ['إندونيسيا', 'Indonesia'], thailand: ['تايلاند', 'Thailand'], vietnam: ['فيتنام', 'Vietnam'], singapore: ['سنغافورة', 'Singapore'], srilanka: ['سريلانكا', 'Sri Lanka'], germany: ['ألمانيا', 'Germany'], japan: ['اليابان', 'Japan'], switzerland: ['سويسرا', 'Switzerland'], nigeria: ['نيجيريا', 'Nigeria'], ghana: ['غانا', 'Ghana'], kenya: ['كينيا', 'Kenya'], mexico: ['المكسيك', 'Mexico'], brazil: ['البرازيل', 'Brazil'], china: ['الصين', 'China'], france: ['فرنسا', 'France'], italy: ['إيطاليا', 'Italy'], spain: ['إسبانيا', 'Spain'], lebanon: ['لبنان', 'Lebanon'], tunisia: ['تونس', 'Tunisia'], libya: ['ليبيا', 'Libya'], yemen: ['اليمن', 'Yemen'] };
 
+// Keep meta descriptions inside what search results show (about 155 characters), cut at a clause boundary.
+function trimDesc(d){d=String(d||'');if(d.length<=158)return d;let c=d.slice(0,158);const i=Math.max(c.lastIndexOf('،'),c.lastIndexOf(','),c.lastIndexOf(':'),c.lastIndexOf(' —'),c.lastIndexOf('. '));c=(i>90?c.slice(0,i):c.slice(0,c.lastIndexOf(' '))).replace(/[\s،,:—-]+$/,'');return c+'.';}
 // كود الإعلان كما أرسله صاحب الموقع (بدون تعديل)
 export const AD = `<div class="ad-slot">
 <!-- HIJUN -->
@@ -358,14 +360,14 @@ function layout(p, ctx) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${esc(p.title)}</title>
-  <meta name="description" content="${esc(p.desc)}" />
+  <meta name="description" content="${esc(trimDesc(p.desc))}" />
   <meta name="robots" content="${p.noindex ? 'noindex, follow' : 'index, follow, max-snippet:-1, max-image-preview:large'}" />
   <link rel="canonical" href="${self}" />
   ${altLinks}
   <meta property="og:type" content="website" />
   <meta property="og:url" content="${self}" />
   <meta property="og:title" content="${esc(p.title)}" />
-  <meta property="og:description" content="${esc(p.desc)}" />
+  <meta property="og:description" content="${esc(trimDesc(p.desc))}" />
   <meta property="og:image" content="${SITE}/icons/og-image-v2.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
