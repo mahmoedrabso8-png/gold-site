@@ -126,7 +126,8 @@ export function pages(ctx) {
       ['gold-bars', 'Gold bar prices', '1 g to 1 kg, tola bars'], ['gold-calculator', 'Gold calculator', 'With making charges & VAT'], ['gold-resale-calculator', 'Resale calculator', 'Compare net offers & break-even'], ['gold-weight-converter', 'Weight & purity', 'Grams, troy ounces & fine gold'], ['gold-price-yesterday', 'Last 10 days', 'Yesterday\'s gold rate'], ['zakat-calculator', 'Zakat calculator', 'Nisab and zakat due'],
       ['articles', 'Gold guides & articles', 'Buying tips, karats and why prices rise']]
   };
-  const links = (L, skip) => `<section class="card-section"><h2>${L === 'en' ? 'More gold prices & tools' : 'أسعار وأدوات أخرى'}</h2><div class="links-grid">${LINKS[L].filter(l => l[0] !== skip).map(([s, n, d]) => `<a class="link-card" href="${url(L, s)}">${n}<span>${d}</span></a>`).join('')}</div></section>`;
+  const COUNTRY_SLUGS = ['saudi','kuwait','qatar','oman','bahrain','egypt','iraq','jordan','morocco','algeria','lebanon','tunisia','libya','yemen','india','pakistan','bangladesh','turkey','usa','uk','canada','australia','philippines','malaysia','nepal','southafrica','indonesia','thailand','vietnam','singapore','srilanka','germany','japan','switzerland','nigeria','ghana','kenya','mexico','brazil','china','france','italy','spain'];
+  const links = (L, skip) => `<section class="card-section"><h2>${L === 'en' ? 'More gold prices & tools' : 'أسعار وأدوات أخرى'}</h2><div class="links-grid">${LINKS[L].filter(l => l[0] !== skip && (!COUNTRY_SLUGS.includes(l[0]) || (L === 'en' ? ['saudi','kuwait','egypt','india','pakistan'] : ['saudi','kuwait','qatar','egypt']).includes(l[0]))).filter((l, i, a) => a.findIndex(m => m[0] === l[0]) === i).map(([s, n, d]) => `<a class="link-card" href="${url(L, s)}">${n}<span>${d}</span></a>`).join('')}<a class="link-card" href="${url(L, 'countries')}">${L === 'en' ? 'All countries' : 'كل الدول'}<span>${L === 'en' ? 'Gold price by country' : 'سعر الذهب حسب الدولة'}</span></a></div></section>`;
   const why = L => L === 'en'
     ? `<section class="card-section"><h2>Why is the shop price higher than this price?</h2><div class="prose">
 <p>This site shows the <strong>raw gold price</strong> calculated from the global spot price (ounce in USD × 3.6725 ÷ 31.1035 g). Dubai jewellers announce their own daily rate per karat, which closely follows the spot price with a small difference. On top of that, a shop invoice adds:</p>
@@ -517,6 +518,7 @@ ${links('ar', '')}` });
 <section class="card-section"><h2>مصادر البيانات وطريقة الحساب</h2><div class="prose">
 <p>نحصل على سعر الأونصة العالمي بالدولار من <strong>Gold-API.com</strong>، ونحوّله إلى الدرهم بسعر الربط الرسمي <strong>3.6725</strong> درهم للدولار، ثم نقسمه على 31.1035 (غرامات الأونصة) لنحصل على سعر غرام عيار 24، ونضربه في نسبة كل عيار.</p>
 <p>تُحدّث الصفحة المفتوحة السعر تلقائياً كل 5 دقائق عند استجابة المصدر. يظهر وقت المصدر وحالة حداثة السعر؛ وقد يتأخر المصدر أو يتوقف. الأرشيف أسعار يومية محفوظة، ولا تعمل الصفحة المغلقة كخدمة تحديث خلفية.</p></div></section>
+<section class="card-section"><h2>مواقعنا الأخرى</h2><div class="prose"><p>إلى جانب أسعار الذهب نشغّل ثلاثة مواقع مستقلة على نطاقنا: <a href="https://jobs.maelumatii.com/">وظائف الخليج</a> لإعلانات الوظائف في دول الخليج، و<a href="https://mobiles.maelumatii.com/">أسعار الموبايلات</a> لمقارنة أسعار الهواتف بين المتاجر، و<a href="https://tools.maelumatii.com/">تجاه</a> لمواقيت الصلاة ومحولات العملات وحاسبات الخليج.</p></div></section>
 <section class="card-section"><h2>سياسة التحرير والتصحيح</h2><div class="prose">
 <ul><li>الأسعار تُحسب آلياً من المصدر دون أي تعديل يدوي.</li><li>إذا تعذّر الاتصال بالمصدر نعرض آخر سعر محفوظ مع تنبيه واضح للزائر.</li><li>نوضّح دائماً أن الأسعار للذهب الخام ولا تشمل المصنعية أو ضريبة القيمة المضافة.</li><li>المحتوى الإرشادي يُراجع دورياً، وأي خطأ يُبلَّغ عنه نصحّحه في أسرع وقت. <a href="/contact/">أبلغنا عن خطأ</a>.</li></ul>
 <p><strong>تنبيه:</strong> المعلومات في الموقع للاطلاع فقط ولا تمثّل نصيحة مالية أو استثمارية.</p></div></section>` });
@@ -564,6 +566,7 @@ ${links('ar', '')}` });
 <p>The world gold price in US dollars per ounce comes from Gold-API.com. For UAE prices we convert it to dirhams at the official peg of 3.6725 AED per US dollar, divide by 31.1035 (grams per troy ounce) to get the 24k gram price, and multiply by each karat's purity share. Exchange-rate pages use open.er-api.com. Each page shows the source time and whether the price is fresh or stale. Prices are for raw gold. They do not include making charges, VAT or a shop's margin, so a shop quote will differ.</p></div></section>
 <section class="card-section"><h2>How guides are written</h2><div class="prose">
 <ul><li>Legal, tax and customs statements are taken from official government or regulator pages. The sources are listed at the end of each guide with the date we checked them.</li><li>Figures that change over time are stated with their date and source, not as live prices.</li><li>Where we could not find an official source for a point, the guide says it is not covered.</li><li>Guides explain how things work. They do not predict prices or promise returns.</li></ul></div></section>
+<section class="card-section"><h2>Our other sites</h2><div class="prose"><p>Besides gold prices we run three independent sites on our domain: <a href="https://jobs.maelumatii.com/">Gulf jobs</a> for job listings in the Gulf, <a href="https://mobiles.maelumatii.com/">phone prices</a> (Arabic) comparing handset prices across shops, and <a href="https://tools.maelumatii.com/">Tijah</a> (Arabic) for prayer times, currency converters and Gulf calculators.</p></div></section>
 <section class="card-section"><h2>Corrections</h2><div class="prose">
 <p>If you find a wrong figure or an out-of-date rule, tell us through the <a href="/en/contact/">contact page</a> with the page link. We check it against the source and fix confirmed errors. Please also read our <a href="/en/privacy/">privacy policy</a> and <a href="/en/terms/">terms of use</a>. The site is funded by advertising shown through Google AdSense.</p></div></section>` });
 
@@ -1399,9 +1402,9 @@ ${links('ar', '')}`,
     const TN = c.taxName || 'VAT';
     const opt = (o = {}) => ({ cur, d: o.d ?? d, ...o });
     const other = L => `<section class="card-section"><h2>${L === 'en' ? 'Gold prices in other countries' : 'سعر الذهب في دول أخرى'}</h2><div class="links-grid">
-${[['', L === 'en' ? 'UAE' : 'الإمارات'], ...Object.entries(COUNTRY_PAGES).filter(([s, o]) => s !== slug && (L === 'en' || !o.enOnly)).map(([s, o]) => [s, o[L].n])].map(([s, n]) => `<a class="link-card" href="${url(L, s)}">${L === 'en' ? `Gold price in ${n}` : `سعر الذهب في ${n}`}</a>`).join('')}
+${[['', L === 'en' ? 'UAE' : 'الإمارات'], ...Object.entries(COUNTRY_PAGES).filter(([s, o]) => s !== slug && (L === 'en' || !o.enOnly) && ['saudi','kuwait','qatar','oman','bahrain','egypt','india','pakistan'].includes(s)).map(([s, o]) => [s, o[L].n])].slice(0, 8).map(([s, n]) => `<a class="link-card" href="${url(L, s)}">${L === 'en' ? `Gold price in ${n}` : `سعر الذهب في ${n}`}</a>`).join('')}
 ${c.code !== 'USD' ? `<a class="link-card" href="${url(L, 'dollar-' + slug)}">${L === 'en' ? `Dollar rate in ${c.en.n}` : `سعر الدولار ${c.ar.in}`}</a>` : ''}
-<a class="link-card" href="${url(L, 'gcc')}">${L === 'en' ? 'Compare Gulf gold prices' : 'مقارنة أسعار الذهب في الخليج'}</a>
+<a class="link-card" href="${url(L, 'gcc')}">${L === 'en' ? 'Compare Gulf gold prices' : 'مقارنة أسعار الذهب في الخليج'}</a><a class="link-card" href="${url(L, 'countries')}">${L === 'en' ? 'All countries' : 'كل الدول'}</a>
 <a class="link-card" href="${url(L, 'gold-calculator')}">${L === 'en' ? 'Gold calculator' : 'حاسبة الذهب'}<span>${c.code}</span></a>${slug === 'saudi' && L === 'ar' ? '<a class="link-card" href="https://tools.maelumatii.com/convert/">محول الريال السعودي وأسعار الصرف<span>موقعنا «تجاه» للأدوات اليومية</span></a>' : ''}</div></section>`;
 
     for (const L of c.enOnly ? ['en'] : ['ar', 'en']) {
@@ -1517,6 +1520,18 @@ ${KS.filter(o => o !== k).map(o => `<a class="link-card" href="${url('en', `${sl
           [`What is ${k}K gold?`, `${k}K gold contains ${K[k].purity} pure gold and carries the hallmark ${K[k].mark}.`]
         ] });
     }
+  }
+
+  // ── Countries index (one hub instead of 40+ links on every page) ──
+  for (const L of ['ar', 'en']) {
+    const en = L === 'en';
+    const items = [['', en ? 'UAE' : 'الإمارات'], ...Object.entries(COUNTRY_PAGES).filter(([s, o]) => en || !o.enOnly).map(([s, o]) => [s, o[L].n])];
+    out.push({ lang: L, fixed: true, slug: 'countries', alt: true, noAds: true,
+      crumbs: [[en ? 'All countries' : 'كل الدول', url(L, 'countries')]],
+      title: en ? 'Gold Price by Country: All Markets We Cover' : 'سعر الذهب حسب الدولة: كل الأسواق التي نغطيها',
+      desc: en ? 'Index of the country pages: gold price per gram by karat in each local currency, with source time and price status.' : 'فهرس صفحات الدول: سعر غرام الذهب حسب العيار بالعملة المحلية، مع وقت المصدر وحالة السعر.',
+      body: `<div class="hero"><h1>${en ? 'Gold price by country' : 'سعر الذهب حسب الدولة'}</h1><p class="hero-sub">${en ? 'Pick a market to see its price in the local currency' : 'اختر الدولة لترى السعر بعملتها المحلية'}</p></div>
+<section class="card-section"><div class="links-grid">${items.map(([s, n]) => `<a class="link-card" href="${url(L, s)}">${en ? `Gold price in ${n}` : `سعر الذهب في ${n}`}</a>`).join('')}</div></section>`, faq: [] });
   }
 
   // ── صفحة مقارنة أسعار الخليج ──────────────────────────
