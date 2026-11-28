@@ -21,8 +21,19 @@ for(const p of q){
   if(now-Date.parse(p.send_at)>MAX_LATE_H*3600e3){p.status='missed';changed=true;console.log('Missed',p.id);continue;}
 }
 const due=q.filter(p=>p.status==='queued'&&p.text&&(p.link||p.template==='T4')&&Date.parse(p.send_at)<=now).sort((a,b)=>Date.parse(a.send_at)-Date.parse(b.send_at))[0];
+// Affiliate: Amazon.sa links get the Associates tag plus a disclosure line. Other stores stay plain until real affiliate links exist.
+const AZ_TAG=process.env.AMAZON_SA_TAG||'zezo0b8-21';
+const DISCLOSE='\n🔔 إفصاح: الرابط تابع (أفيليت)، وقد نكسب عمولة من مشترياتك المؤهلة دون أي تكلفة إضافية عليك.';
+export function affiliate(text){
+  let used=false;
+  const out=text.replace(/https:\/\/(www\.)?amazon\.sa[^\s]*/g,u=>{
+    used=true;
+    try{const x=new URL(u);x.searchParams.set('tag',AZ_TAG);return x.toString();}catch(e){return u;}
+  });
+  return used&&!out.includes('إفصاح')?out+DISCLOSE:out;
+}
 if(due){
-  const j=await api('sendMessage',{chat_id:CHAT,text:due.text,disable_web_page_preview:false});
+  const j=await api('sendMessage',{chat_id:CHAT,text:affiliate(due.text),disable_web_page_preview:false});
   if(!j.ok)throw new Error('Telegram error: '+j.description);
   due.status='sent';due.sent_at=new Date().toISOString();due.message_id=j.result.message_id;changed=true;
   console.log('Posted',due.id,'message',j.result.message_id);
