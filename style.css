@@ -80,7 +80,7 @@ a.karat-card:hover{transform:translateY(-3px);border-color:rgba(233,184,0,.5);bo
 .share-btn.join:hover{border-color:var(--g4)}
 
 /* Floating Telegram button */
-.tg-float{position:fixed;bottom:82px;inset-inline-end:18px;z-index:90;display:inline-flex;align-items:center;gap:8px;background:#087cb1;color:#fff;font-size:.82rem;font-weight:700;text-decoration:none;padding:10px 16px;border-radius:30px;box-shadow:0 4px 18px rgba(34,158,217,.4);transition:transform .18s,box-shadow .18s}
+.tg-float{position:fixed;bottom:18px;inset-inline-end:18px;z-index:90;display:inline-flex;align-items:center;gap:8px;background:#087cb1;color:#fff;font-size:.82rem;font-weight:700;text-decoration:none;padding:10px 16px;border-radius:30px;box-shadow:0 4px 18px rgba(34,158,217,.4);transition:transform .18s,box-shadow .18s}
 .tg-float:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(34,158,217,.5);color:#fff}
 .tg-float svg{flex:none}
 @media(max-width:520px){.tg-float span{display:none}.tg-float{padding:12px;border-radius:50%}}
@@ -228,7 +228,7 @@ body.ib #chat-widget{bottom:98px}
 .chat-form input{min-width:0}
 .chat-panel .chat-chip{flex-shrink:0}
 body.ib .chat-panel{bottom:160px;height:min(58vh,480px)}
-body.ib .tg-float{bottom:150px}
+body.ib .tg-float{bottom:100px}
 .price-mode{display:none}
 @media(max-width:720px){
  .site-header .container{padding-inline:12px}
