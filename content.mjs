@@ -528,9 +528,9 @@ ${links('ar', '')}` });
     body: `<div class="hero"><h1>اتصل بنا</h1><p class="hero-sub">Contact us</p></div>
 <section class="card-section"><div class="prose">
 <p>يسعدنا تواصلك للاستفسارات أو الاقتراحات أو الإبلاغ عن خطأ في الأسعار أو المحتوى.</p>
-<p><strong>البريد الإلكتروني:</strong> <a href="mailto:contact@maelumatii.com">contact@maelumatii.com</a></p>
+<p><strong>البريد الإلكتروني:</strong> <a class="em-obf" data-u="zza570310" data-d="gmail.com" href="/contact/">zza570310 [at] gmail [dot] com</a></p>
 <p>عند الإبلاغ عن خطأ، أرسل رابط الصفحة والدولة والعملة والعيار والوقت الذي شاهدت فيه الرقم، واذكر المنطقة الزمنية. تساعد لقطة شاشة واضحة على فهم المشكلة؛ لا ترسل بيانات دفع أو كلمات مرور أو مستندات شخصية.</p><p>السعر المرجعي للذهب الخام لا يشمل المصنعية أو ضريبة الفاتورة أو هامش المحل. إذا كان استفسارك عن فرق بين الموقع وعرض شراء أو بيع، وضّح أساس المقارنة دون إرسال بيانات حساسة.</p><p>الموقع يقدم معلومات وأدوات حسابية، ولا يشتري الذهب أو يبيعه ولا يفحص نقاء القطع. راجع مختصاً محلياً عند الحاجة لتقييم قطعة أو تفسير التزام ضريبي.</p>
-<p>For enquiries in English, email <a href="mailto:contact@maelumatii.com">contact@maelumatii.com</a>.</p></div></section>` });
+<p>For enquiries in English, email <a class="em-obf" data-u="zza570310" data-d="gmail.com" href="/contact/">zza570310 [at] gmail [dot] com</a>.</p></div></section>` });
 
   out.push({ lang: 'ar', fixed: true, noAds: true, slug: 'privacy', lastmod: '2026-11-23', crumbs: [['سياسة الخصوصية', '/privacy/']],
     title: 'سياسة الخصوصية | معلوماتي',
@@ -547,11 +547,11 @@ ${links('ar', '')}` });
 <p>نجلب أسعار الذهب من Gold-API.com ونحفظ الأسعار (وليس بيانات الزوار) في قاعدة بيانات Supabase. ونستخدم خطوط Google Fonts، وتتم استضافة الموقع على Cloudflare التي قد تسجّل بيانات تقنية مثل عنوان IP لأغراض الأمان.</p>
 <h2>تنبيهات الأسعار على الجهاز</h2><p>إذا حفظت هدفاً لسعر الذهب، يُحفظ في التخزين المحلي لهذا المتصفح ولا يُرفع إلى خادمنا أو يتزامن مع أجهزة أخرى. يمكنك حذفه من صفحة التنبيهات أو بمسح بيانات الموقع. إشعارات المتصفح اختيارية وتتطلب إذنك؛ تظل التنبيهات مرتبطة بفتح الموقع ولا تعمل كمراسلات تليجرام أو بريد.</p>
 <h2>محفظة الذهب المحلية</h2><p>تُحفظ عمليات الشراء التي تدخلها في محفظة الذهب داخل التخزين المحلي لهذا المتصفح، بما فيها التاريخ والوزن والعيار وسعر الشراء والمصنعية والرسوم والاسم المختصر الاختياري. لا ترسل أداة المحفظة السجل إلى خادم أو تزامنه مع أجهزة أخرى. يستطيع مستخدم ملف المتصفح نفسه رؤيته؛ التخزين ونسخة JSON المصدرة غير مشفرين. يمكنك حذف العمليات أو السجل كله من صفحة المحفظة. قد يضيع السجل عند مسح بيانات الموقع؛ احتفظ بنسخة احتياطية آمنة. لا تدخل بيانات حساسة في الاسم المختصر. لا يعني التخزين المحلي أن الخدمات الخارجية المذكورة في هذه السياسة لا تعمل في الصفحة.</p><h2>الأطفال</h2><p>الموقع غير موجّه للأطفال دون 13 عاماً ولا نجمع بياناتهم عن قصد.</p>
-<h2>التواصل</h2><p>لأي سؤال عن الخصوصية: <a href="mailto:contact@maelumatii.com">contact@maelumatii.com</a>.</p>
+<h2>التواصل</h2><p>لأي سؤال عن الخصوصية: <a class="em-obf" data-u="zza570310" data-d="gmail.com" href="/contact/">zza570310 [at] gmail [dot] com</a>.</p>
 </div></section>` });
 
   // ── Trust pages for review: English about/contact/privacy/terms + Arabic terms (no ad units on these) ──
-  const POLICY_EMAIL = '<a href="mailto:contact@maelumatii.com">contact@maelumatii.com</a>';
+  const POLICY_EMAIL = '<a class="em-obf" data-u="zza570310" data-d="gmail.com" href="/contact/">zza570310 [at] gmail [dot] com</a>';
   out.push({ lang: 'en', fixed: true, noAds: true, slug: 'about', lastmod: TODAY, crumbs: [['About us', '/en/about/']],
     title: 'About Maelumatii | Gold Prices, Tools and Guides',
     desc: 'Who runs Maelumatii, where the gold and exchange-rate data comes from, how prices are calculated, and how guides are sourced and corrected.',
@@ -566,6 +566,77 @@ ${links('ar', '')}` });
 <ul><li>Legal, tax and customs statements are taken from official government or regulator pages. The sources are listed at the end of each guide with the date we checked them.</li><li>Figures that change over time are stated with their date and source, not as live prices.</li><li>Where we could not find an official source for a point, the guide says it is not covered.</li><li>Guides explain how things work. They do not predict prices or promise returns.</li></ul></div></section>
 <section class="card-section"><h2>Corrections</h2><div class="prose">
 <p>If you find a wrong figure or an out-of-date rule, tell us through the <a href="/en/contact/">contact page</a> with the page link. We check it against the source and fix confirmed errors. Please also read our <a href="/en/privacy/">privacy policy</a> and <a href="/en/terms/">terms of use</a>. The site is funded by advertising shown through Google AdSense.</p></div></section>` });
+
+  // ── Methodology and corrections pages (linked from footer) ──
+  out.push({ lang: 'ar', fixed: true, noAds: true, slug: 'methodology', lastmod: TODAY, crumbs: [['المنهجية والمصادر', '/methodology/']],
+    title: 'المنهجية والمصادر | كيف نحسب أسعار الذهب في معلوماتي',
+    desc: 'مصدر سعر الذهب العالمي، طريقة تحويله إلى العملات المحلية والعيارات، حدود الدقة، وكيف نتعامل مع المعلومات القانونية والضريبية في الأدلة.',
+    schema: [{ '@context': 'https://schema.org', '@type': 'WebPage', name: 'المنهجية والمصادر', url: ctx.SITE + '/methodology/' }],
+    body: `<div class="hero"><h1>المنهجية والمصادر</h1><p class="hero-sub">كيف تُحسب الأرقام، ومن أين تأتي، وما الذي لا تعنيه</p></div>
+<section class="card-section"><h2>سعر الذهب</h2><div class="prose">
+<p>نأخذ سعر الأونصة العالمي بالدولار من <strong>Gold-API.com</strong>. لحساب غرام عيار 24 نقسم سعر الأونصة على <strong>31.1035</strong> (عدد غرامات الأونصة التروية). ثم نضرب الناتج في نسبة كل عيار: 22/24 و21/24 و18/24 وهكذا.</p>
+<p>في الإمارات نحوّل الدولار إلى الدرهم بسعر الربط الرسمي <strong>3.6725</strong>. في الدول الأخرى نستخدم سعر صرف مرجعياً من <strong>open.er-api.com</strong> ونعرض وقته. هذا سعر مرجعي وليس سعر البنك أو شركة الصرافة.</p></div></section>
+<section class="card-section"><h2>ما الذي لا يشمله السعر</h2><div class="prose">
+<ul><li>السعر للذهب الخام حسابياً. لا يشمل المصنعية ولا ضريبة القيمة المضافة ولا رسوم الدمغ.</li><li>سعر المحل أو الصائغ قد يختلف عن السعر المحسوب هنا، ولا نعرض أسعار تجار بعينهم.</li><li>الأرقام للاطلاع فقط وليست نصيحة استثمارية.</li></ul></div></section>
+<section class="card-section"><h2>التحديث وحالة السعر</h2><div class="prose">
+<p>تطلب الصفحة المفتوحة السعر كل 5 دقائق عندما يستجيب المصدر. تظهر على كل صفحة <strong>حالة السعر</strong> ووقت المصدر: مباشر، أو سوق مغلق (عطلة نهاية الأسبوع)، أو متأخر، أو قديم، أو غير متاح. إذا انقطع المصدر نعرض آخر سعر محفوظ مع تنبيه، ولا نعرض سعراً تجريبياً على أنه حقيقي.</p>
+<p>مؤشر التغيّر على الصفحات يقارن السعر الحالي بإغلاق آخر يوم مسجّل في أرشيفنا (بتوقيت دبي)، وليس بآخر 24 ساعة متحركة. تاريخ ذلك الإغلاق مكتوب بجانب النسبة.</p></div></section>
+<section class="card-section"><h2>الأدلة والمعلومات القانونية والضريبية</h2><div class="prose">
+<ul><li>أي حكم قانوني أو ضريبي أو جمركي نأخذه من صفحة رسمية (جهة حكومية أو منظِّم)، ونكتب رابطها وتاريخ مراجعتنا لها.</li><li>الأرقام التي تتغير بمرور الوقت تُكتب مع تاريخها ومصدرها، وليست كأنها سعر حي.</li><li>الحسابات التي نجريها بأنفسنا تُوسَم بأنها حسابنا.</li><li>إذا لم نجد مصدراً رسمياً لنقطة ما نكتب أنها غير مغطاة هنا ولا نخمّن.</li></ul></div></section>
+<section class="card-section"><h2>صفحات الدول واللغات</h2><div class="prose">
+<p>صفحات الدول تحسب السعر بالطريقة نفسها وبعملة كل بلد. الصفحات بلغات أخرى أدوات ومعلومات مساندة للقراء من هذه الجاليات، والنسخة العربية هي النسخة الرئيسية.</p>
+<p>الإعلانات عبر Google AdSense تموّل الموقع ولا تؤثر في السعر المعروض. راجع أيضاً <a href="/about/">من نحن</a> و<a href="/corrections/">سياسة التصحيح</a>. للأسئلة عن المنهجية: <a class="em-obf" data-u="zza570310" data-d="gmail.com" href="/contact/">zza570310 [at] gmail [dot] com</a>.</p></div></section>` });
+
+  out.push({ lang: 'ar', fixed: true, noAds: true, slug: 'corrections', lastmod: TODAY, crumbs: [['سياسة التصحيح', '/corrections/']],
+    title: 'سياسة التصحيح وسجل التعديلات | معلوماتي',
+    desc: 'كيف نصحح الأخطاء في الأسعار والأدلة، وكيف تبلغنا عن خطأ، وسجل بأهم التصحيحات المنشورة.',
+    schema: [{ '@context': 'https://schema.org', '@type': 'WebPage', name: 'سياسة التصحيح', url: ctx.SITE + '/corrections/' }],
+    body: `<div class="hero"><h1>سياسة التصحيح</h1><p class="hero-sub">يراجع المحتوى فريق تحرير معلوماتي</p></div>
+<section class="card-section"><h2>كيف نصحح</h2><div class="prose">
+<ul><li>نقارن البلاغ بالمصدر الأصلي (صفحة رسمية أو مصدر السعر) قبل أي تعديل.</li><li>نصحح الخطأ المؤكد في الصفحة نفسها، ونحدّث تاريخ المراجعة.</li><li>الأخطاء المهمة نسجلها في السجل أدناه مع التاريخ.</li><li>إذا لم نستطع التأكد من معلومة نحذفها أو نكتب أنها غير مغطاة.</li></ul>
+<p>للإبلاغ عن خطأ راسلنا على <a class="em-obf" data-u="zza570310" data-d="gmail.com" href="/contact/">zza570310 [at] gmail [dot] com</a> (أو من <a href="/contact/">صفحة التواصل</a>) مع رابط الصفحة والعيار والوقت.</p></div></section>
+<section class="card-section"><h2>سجل التصحيحات</h2><div class="prose">
+<ul>
+<li><strong>28 نوفمبر 2026:</strong> أُزيلت الأسعار الحية من عناوين الصفحات ووصف البحث حتى لا يختلف رقم نتيجة البحث عن رقم الصفحة. تبقى الأسعار في متن الصفحة مع وقت المصدر.</li>
+<li><strong>28 نوفمبر 2026:</strong> صُحح وصف الليرة اللبنانية: لم تعد مربوطة بالسعر الرسمي القديم، وأضفنا المصدرين.</li>
+<li><strong>28 نوفمبر 2026:</strong> صُحح ما كتبناه عن ضريبة القيمة المضافة على المشغولات الذهبية في مصر، وأضفنا روابط مصلحة الضرائب المصرية. رسوم الدمغ بند غير مغطى هنا.</li>
+<li><strong>28 نوفمبر 2026:</strong> نقاء عيار 24 صار 99.99% وعلامة الدمغ 999.9 في الصفحات والأدلة.</li>
+<li><strong>28 نوفمبر 2026:</strong> توحيد أساس مؤشر التغيّر على كل الصفحات (إغلاق آخر يوم مسجّل).</li></ul></div></section>` });
+
+  out.push({ lang: 'en', fixed: true, noAds: true, slug: 'methodology', lastmod: TODAY, crumbs: [['Methodology and sources', '/en/methodology/']],
+    title: 'Methodology and Sources | How Maelumatii Calculates Gold Prices',
+    desc: 'Where the world gold price comes from, how it becomes local-currency karat prices, the limits of accuracy, and how legal and tax claims in guides are sourced.',
+    schema: [{ '@context': 'https://schema.org', '@type': 'WebPage', name: 'Methodology and sources', url: ctx.SITE + '/en/methodology/' }],
+    body: `<div class="hero"><h1>Methodology and sources</h1><p class="hero-sub">How the numbers are calculated, where they come from, and what they do not mean</p></div>
+<section class="card-section"><h2>Gold price</h2><div class="prose">
+<p>The world gold price in US dollars per ounce comes from <strong>Gold-API.com</strong>. We divide it by <strong>31.1035</strong> (grams in a troy ounce) for the 24k gram price, then multiply by each karat's share: 22/24, 21/24, 18/24 and so on.</p>
+<p>For the UAE we convert dollars to dirhams at the official peg of <strong>3.6725</strong>. For other countries we use a reference exchange rate from <strong>open.er-api.com</strong> and show its time. It is a reference rate, not a bank or exchange-house rate.</p></div></section>
+<section class="card-section"><h2>What the price does not include</h2><div class="prose">
+<ul><li>It is the calculated raw-gold price. It excludes making charges, VAT and hallmarking fees.</li><li>A jeweller's price can differ from the calculated price. We do not show prices from named dealers.</li><li>The figures are for information only, not investment advice.</li></ul></div></section>
+<section class="card-section"><h2>Refresh and price status</h2><div class="prose">
+<p>An open page asks for the price every 5 minutes when the source responds. Each page shows a <strong>price status</strong> and the source time: live, market closed (weekend), delayed, stale or unavailable. If the source fails we show the last stored price with a notice. We never show a demo price as real.</p>
+<p>The change indicator compares the current price with the last recorded daily close in our archive (Dubai time), not a rolling 24 hours. The date of that close is shown next to the percentage.</p></div></section>
+<section class="card-section"><h2>Guides, legal and tax claims</h2><div class="prose">
+<ul><li>Legal, tax and customs statements come from official government or regulator pages. We link them and give the date we checked.</li><li>Figures that change over time are stated with their date and source, not as live prices.</li><li>Calculations we make ourselves are labelled as ours.</li><li>If we cannot find an official source for a point, the page says it is not covered here.</li></ul></div></section>
+<section class="card-section"><h2>Country and language pages</h2><div class="prose">
+<p>Country pages use the same calculation in each local currency. Pages in other languages are supporting tools for readers in those communities. The Arabic site is the main edition.</p>
+<p>Google AdSense funds the site and does not affect the price shown. See also <a href="/en/about/">About us</a> and the <a href="/en/corrections/">corrections policy</a>. Questions about methodology: <a class="em-obf" data-u="zza570310" data-d="gmail.com" href="/contact/">zza570310 [at] gmail [dot] com</a>.</p></div></section>` });
+
+  out.push({ lang: 'en', fixed: true, noAds: true, slug: 'corrections', lastmod: TODAY, crumbs: [['Corrections policy', '/en/corrections/']],
+    title: 'Corrections Policy and Change Log | Maelumatii',
+    desc: 'How Maelumatii corrects errors in prices and guides, how to report one, and a log of notable corrections.',
+    schema: [{ '@context': 'https://schema.org', '@type': 'WebPage', name: 'Corrections policy', url: ctx.SITE + '/en/corrections/' }],
+    body: `<div class="hero"><h1>Corrections policy</h1><p class="hero-sub">Content is reviewed by the Maelumatii editorial team</p></div>
+<section class="card-section"><h2>How we correct</h2><div class="prose">
+<ul><li>We check a report against the original source (an official page or the price source) before changing anything.</li><li>Confirmed errors are fixed on the page and the review date is updated.</li><li>Significant corrections are logged below with the date.</li><li>If we cannot verify a point, we remove it or say it is not covered.</li></ul>
+<p>To report an error, email <a class="em-obf" data-u="zza570310" data-d="gmail.com" href="/contact/">zza570310 [at] gmail [dot] com</a> (or use the <a href="/en/contact/">contact page</a>) and include the page link, karat and time.</p></div></section>
+<section class="card-section"><h2>Correction log</h2><div class="prose">
+<ul>
+<li><strong>28 Nov 2026:</strong> Removed live prices from page titles and search descriptions so a search result cannot disagree with the page. Prices remain in the page body with the source time.</li>
+<li><strong>28 Nov 2026:</strong> Corrected the Lebanese pound description: it is no longer tied to the old official peg. Two sources added.</li>
+<li><strong>28 Nov 2026:</strong> Corrected the Egypt VAT-on-jewellery statement and linked the Egyptian Tax Authority sources. Hallmarking fees are not covered.</li>
+<li><strong>28 Nov 2026:</strong> 24k purity now stated as 99.99% (hallmark 999.9).</li>
+<li><strong>28 Nov 2026:</strong> The change indicator now uses the same basis everywhere (last recorded daily close).</li></ul></div></section>` });
 
   out.push({ lang: 'en', fixed: true, noAds: true, slug: 'contact', lastmod: TODAY, crumbs: [['Contact', '/en/contact/']],
     title: 'Contact Maelumatii | Questions and Corrections',

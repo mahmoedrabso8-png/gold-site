@@ -447,3 +447,5 @@ if(chatFab&&chatPanel){
 })();
 
 try{const tgf=document.querySelector('.tg-float'),rb=document.getElementById('refresh');if(tgf&&rb&&'IntersectionObserver'in window){new IntersectionObserver(es=>{tgf.classList.toggle('tg-away',es[0].isIntersecting);},{threshold:0}).observe(rb);}}catch(e){}
+
+try{document.querySelectorAll('a.em-obf').forEach(a=>{const m=a.dataset.u+'@'+a.dataset.d;a.href='mailto:'+m;a.textContent=m;});}catch(e){}
