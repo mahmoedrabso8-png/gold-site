@@ -449,3 +449,5 @@ if(chatFab&&chatPanel){
 try{const tgf=document.querySelector('.tg-float'),rb=document.getElementById('refresh');if(tgf&&rb&&'IntersectionObserver'in window){new IntersectionObserver(es=>{tgf.classList.toggle('tg-away',es[0].isIntersecting);},{threshold:0}).observe(rb);}}catch(e){}
 
 try{document.querySelectorAll('a.em-obf').forEach(a=>{const m=a.dataset.u+'@'+a.dataset.d;a.href='mailto:'+m;a.textContent=m;});}catch(e){}
+
+try{if(matchMedia('(max-width:720px)').matches){let ly=scrollY,tk=false;addEventListener('scroll',()=>{if(tk)return;tk=true;requestAnimationFrame(()=>{const y=scrollY,d=y-ly;if(Math.abs(d)>8){document.body.classList.toggle('fab-away',d>0&&y>160);ly=y;}tk=false;});},{passive:true});}}catch(e){}

@@ -364,3 +364,4 @@ select:focus-visible{outline:2px solid var(--g5);outline-offset:2px}
  .site-header.hdr-open .header-side .ctry,.site-header.hdr-open .header-side #langsel,.site-header.hdr-open .header-side .price-mode{display:block;flex:1 1 100%;max-width:none;width:100%;font-size:.85rem;padding:8px 10px;margin-top:4px}
 }
 .tg-float{transition:opacity .2s,transform .2s}.tg-float.tg-away{opacity:0;pointer-events:none;transform:translateY(8px)}
+@media(max-width:720px){#chat-widget{bottom:12px;inset-inline-start:12px}#chat-fab{width:44px;height:44px;font-size:1.15rem}.tg-float{bottom:12px;inset-inline-end:12px}#chat-widget,.tg-float{transition:opacity .2s,transform .2s}body.fab-away #chat-widget,body.fab-away .tg-float{opacity:0;pointer-events:none;transform:translateY(14px)}body.fab-away #chat-widget.open{opacity:1;pointer-events:auto;transform:none}}
