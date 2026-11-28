@@ -348,9 +348,11 @@ function layout(p, ctx) {
 <p>Fiyatlara işçilik ve KDV dahil değildir. Bilgi amaçlıdır; yatırım tavsiyesi değildir. © ${TODAY.slice(0, 4)} maelumatii.com</p>`
     : en
     ? `<div class="footer-links"><a href="/en/">Gold price UAE</a><a href="/en/gold-calculator/">Gold calculator</a><a href="/en/gold-bars/">Gold bars</a><a href="/en/articles/">Guides</a><a href="/en/about/">About us</a><a href="/en/methodology/">Methodology</a><a href="/en/corrections/">Corrections</a><a href="/en/contact/">Contact</a><a href="/en/privacy/">Privacy policy</a><a href="/en/terms/">Terms of use</a></div>
+<div class="footer-links footer-sites"><strong>Our sites:</strong><a href="https://jobs.maelumatii.com/">Gulf jobs</a><a href="https://mobiles.maelumatii.com/">Phone prices (Arabic)</a><a href="https://tools.maelumatii.com/">Gulf tools (prayer times, converters)</a></div>
 <p>${p.dollar?'FX reference: open.er-api.com · Daily source snapshot; see source time and status.':'Spot price data: Gold-API.com · USD/AED fixed peg 3.6725 · Automatic refresh every 5 minutes while the page is open and the source responds; see source time and status.'}</p>
 <p>Prices exclude making charges and VAT. For information only — not investment advice. © ${TODAY.slice(0, 4)} maelumatii.com</p>`
     : `<div class="footer-links"><a href="/">سعر الذهب اليوم</a><a href="/history/">أرشيف الأسعار</a><a href="/gcc/">أسعار الذهب في الخليج</a><a href="/about/">من نحن</a><a href="/methodology/">المنهجية والمصادر</a><a href="/corrections/">سياسة التصحيح</a><a href="/contact/">تواصل معنا</a><a href="/privacy/">سياسة الخصوصية</a><a href="/terms/">الشروط والأحكام</a><a href="/en/">English</a></div>
+<div class="footer-links footer-sites"><strong>مواقعنا:</strong><a href="https://jobs.maelumatii.com/">وظائف الخليج</a><a href="https://mobiles.maelumatii.com/">أسعار الموبايلات</a><a href="https://tools.maelumatii.com/">أدوات الخليج (مواقيت الصلاة والمحولات)</a></div>
 <p>${p.dollar?'مرجع الصرف: open.er-api.com · سعر يومي مؤرخ؛ راجع وقت المصدر والحالة.':'مصدر السعر العالمي: Gold-API.com · ربط الدولار بالدرهم&nbsp;3.6725 · تحديث تلقائي كل&nbsp;5&nbsp;دقائق أثناء فتح الصفحة واستجابة المصدر؛ راجع وقت المصدر والحالة.'}</p>
 <p>الأسعار لا تشمل المصنعية أو ضريبة القيمة المضافة، وهي للاطلاع فقط ولا تمثّل نصيحة استثمارية. © ${TODAY.slice(0, 4)} maelumatii.com</p>`;
 
