@@ -166,8 +166,8 @@ export function pages(ctx) {
 
   // ── الصفحة الرئيسية ────────────────────────────────────
   out.push({ lang: 'ar', slug: '', alt: true,
-    title: px(21) ? `سعر الذهب في الإمارات اليوم عيار 21: ${px(21)} درهم` : 'سعر الذهب اليوم في الإمارات بالدرهم | عيار 24 و22 و21 و18',
-    desc: (px(21) ? `سعر الذهب اليوم في الإمارات: عيار 21 بـ ${px(21)} درهم، عيار 24 بـ ${px(24)}، عيار 22 بـ ${px(22)}، عيار 18 بـ ${px(18)} للغرام. ` : 'سعر الذهب اليوم في الإمارات ودبي بالدرهم. ') + 'وقت المصدر وحالة السعر، مع الأونصة والسبائك والحاسبة.',
+    title: 'سعر الذهب اليوم في الإمارات بالدرهم | عيار 24 و22 و21 و18',
+    desc: 'سعر الذهب اليوم في الإمارات ودبي بالدرهم لعيار 24 و22 و21 و18 للغرام. ' + 'وقت المصدر وحالة السعر، مع الأونصة والسبائك والحاسبة.',
     body: `${hero('سعر الذهب اليوم في الإمارات بالدرهم', 'سعر غرام الذهب الخام لعيار 24 و22 و21 و18 بالدرهم الإماراتي والدولار', 'ar')}
 ${errBox}${karatCards('ar')}${metaRow('ar')}
 ${homeTools('ar',ctx)}
@@ -204,7 +204,7 @@ ${sources('ar')}`,
     ] });
 
   out.push({ lang: 'en', slug: '', alt: true,
-    title: px(24) ? `Gold Rate in UAE Today: 24K ${px(24)} AED, 22K ${px(22)} AED` : 'Gold Rate in UAE Today (AED) — 24K, 22K, 21K, 18K Live Price',
+    title: 'Gold Rate in UAE Today (AED): 24K, 22K, 21K, 18K per Gram',
     desc: 'Today\'s gold rate in the UAE and Dubai in AED, with source time: 24K, 22K, 21K and 18K per gram, tola and ounce, plus gold bar prices and a gold calculator.',
     body: `${hero('Gold Rate in UAE Today', '24K, 22K, 21K and 18K gold price per gram in UAE dirhams (AED) and US dollars', 'en')}
 ${errBox}${karatCards('en')}${metaRow('en')}
@@ -244,7 +244,7 @@ ${sources('en')}`,
     const table = k === 24
       ? `<thead><tr><th>${en ? 'Weight' : 'الوزن'}</th><th>${en ? 'Price (AED)' : 'السعر (درهم)'}</th><th>${en ? 'Price (USD)' : 'السعر (دولار)'}</th></tr></thead><tbody>${rows.map(([n, w]) => `<tr><td>${n}</td><td class="n">${P(k, w)}</td><td class="n">$${P(k, w, { cur: 'usd' })}</td></tr>`).join('')}</tbody>`
       : `<thead><tr><th>${en ? 'Weight' : 'الوزن'}</th><th>${en ? 'Gold price (AED)' : 'سعر الذهب (درهم)'}</th><th>${en ? '+ making 3 AED/g' : '+ مصنعية 3 د/غ'}</th><th>${en ? '+ making 15 AED/g' : '+ مصنعية 15 د/غ'}</th></tr></thead><tbody>${rows.map(([n, w]) => `<tr><td>${n}</td><td class="n">${P(k, w)}</td><td class="n">${P(k, w, { mc: 3 })}</td><td class="n">${P(k, w, { mc: 15 })}</td></tr>`).join('')}</tbody>`;
-    const title = px(k) ? (en ? `${k}K Gold Rate in UAE Today: ${px(k)} AED per Gram` : `سعر الذهب عيار ${k} اليوم في الإمارات: ${px(k)} درهم للغرام`) : (en ? `${k}K Gold Rate in UAE Today — Price per Gram in AED` : `سعر الذهب عيار ${k} اليوم في الإمارات بالدرهم`);
+    const title = (en ? `${k}K Gold Rate in UAE Today — Price per Gram in AED` : `سعر الذهب عيار ${k} اليوم في الإمارات بالدرهم`);
     out.push({ lang: L, slug: `gold-${k}k`, alt: true,
       crumbs: [[en ? `${k}K gold rate` : `سعر عيار ${k}`, url(L, `gold-${k}k`)]],
       title,
@@ -414,7 +414,7 @@ ${links(L, 'zakat-calculator')}`,
     const en = L === 'en';
     out.push({ lang: L, slug: 'gold-bars', alt: true,
       crumbs: [[en ? 'Gold bar prices' : 'أسعار السبائك', url(L, 'gold-bars')]],
-      title: en ? `Gold Bar Price in UAE Today: 100g${px(24) ? ' = ' + fmt(ctx.g24 * 100) + ' AED' : ''}, 1kg, 10 Tola` : `سعر سبيكة الذهب اليوم في الإمارات${px(24) ? ': 100 غرام = ' + fmt(ctx.g24 * 100) + ' درهم' : ''}`,
+      title: en ? 'Gold Bar Price in UAE Today: 100g, 1kg, 10 Tola in AED' : 'سعر سبيكة الذهب اليوم في الإمارات: 100 غرام والكيلو و10 تولة',
       desc: en ? 'Today\'s 24K gold bar prices in the UAE in AED and USD: 1 g, 5 g, 10 g, 1 ounce, 100 g, 10 tola and 1 kg, with source time, with tips on premiums and VAT.'
         : 'أسعار سبائك الذهب عيار 24 اليوم في الإمارات بالدرهم والدولار: 1 و5 و10 غرام، الأونصة، 100 غرام، 10 تولة، والكيلو، مع وقت المصدر وحالة حداثة السعر مع نصائح الشراء.',
       body: `${hero(en ? 'Gold Bar Prices in UAE Today' : 'أسعار سبائك الذهب اليوم في الإمارات', en ? '24K (999.9) bars by weight — raw gold value' : 'سبائك عيار 24 حسب الوزن — قيمة الذهب الخام', L)}
@@ -648,7 +648,7 @@ ${links('ar', '')}` });
     const en = L === 'en';
     out.push({ lang: L, slug: 'silver', alt: true, usesAg: true,
       crumbs: [[en ? 'Silver price' : 'سعر الفضة', url(L, 'silver')]],
-      title: en ? `Silver Price in Dubai & UAE Today${ctx.ag ? ': ' + fmt(ctx.ag, 2) + ' AED per Gram' : ''}` : `سعر الفضة اليوم في دبي والإمارات${ctx.ag ? ': ' + fmt(ctx.ag, 2) + ' درهم للغرام' : ''}`,
+      title: en ? 'Silver Price in Dubai & UAE Today (AED per Gram)' : 'سعر الفضة اليوم في دبي والإمارات بالدرهم للغرام',
       desc: en ? 'Live silver price in the UAE and Dubai in AED and USD: price per gram for 999 and 925 sterling silver, per ounce, per tola and per kilo, with source time.'
         : 'سعر الفضة اليوم في الإمارات ودبي بالدرهم والدولار: سعر غرام الفضة عيار 999 و925، وسعر الأونصة والتولة والكيلو، مع وقت المصدر وحالة حداثة السعر.',
       body: `${hero(en ? 'Silver Price in UAE Today' : 'سعر الفضة اليوم في الإمارات', en ? 'Price per gram, ounce and kilo in UAE dirhams and US dollars' : 'سعر الغرام والأونصة والكيلو بالدرهم الإماراتي والدولار', L)}
@@ -1541,9 +1541,9 @@ ${AD}
       const en = L === 'en', x = c[L];
       out.push({ lang: L, fixed: true, dollar: true, slug: `dollar-${slug}`, alt: !c.enOnly, usesFx: true,
         crumbs: [[en ? `Dollar rate in ${x.n}` : `سعر الدولار ${x.in}`, url(L, `dollar-${slug}`)]],
-        title: en ? `US Dollar Rate in ${x.n} Today: 1 USD = ${rTxt} ${c.code}` : `سعر الدولار اليوم ${x.in}: 1 دولار = ${rTxt} ${x.cur}`,
-        desc: en ? `Live US dollar rate in ${x.n} today: 1 USD = ${rTxt} ${c.code}. Conversion tables from 1 to 1,000 dollars and back, with source time.`
-          : `سعر الدولار اليوم ${x.in} بال${x.cur}: 1 دولار = ${rTxt} ${x.cur}. جداول تحويل من 1 حتى 1000 دولار والعكس، مع وقت المصدر وحالة حداثة السعر.`,
+        title: en ? `US Dollar Rate in ${x.n} Today (USD to ${c.code})` : `سعر الدولار اليوم ${x.in} بال${x.cur}`,
+        desc: en ? `US dollar reference rate in ${x.n} today (USD to ${c.code}). Conversion tables from 1 to 1,000 dollars and back, with source time.`
+          : `سعر الدولار اليوم ${x.in} بال${x.cur}. جداول تحويل من 1 حتى 1000 دولار والعكس، مع وقت المصدر وحالة حداثة السعر.`,
         body: `${hero(en ? `US Dollar Rate in ${x.n} Today` : `سعر الدولار اليوم ${x.in}`, en ? `1 US dollar = ${rTxt} ${x.cur}` : `1 دولار = ${rTxt} ${x.cur}`, L)}
 ${errBox}
 <section class="card-section"><div class="table-wrap"><table class="data-table"><tbody>
@@ -1586,7 +1586,7 @@ ${DAMTS_L.map(w => `<tr><td class="n">${w.toLocaleString('en-US')}</td><td class
     out.push({ lang: 'tr', fixed: true, slug: 'turkiye', usesFx: true, trEn: 'turkey',
       alts: TR_ALTS('turkiye'),
       crumbs: [['Gram altın fiyatı', url('tr', 'turkiye')]],
-      title: `Gram Altın Fiyatı Bugün: ${g24t} TL — Canlı Altın Fiyatları`,
+      title: 'Gram Altın Fiyatı Bugün (TL): 24, 22, 18 ve 14 Ayar',
       desc: 'Canlı gram altın fiyatı: 24, 22, 21 ve 18 ayar altının gram ve ons fiyatı Türk lirası ve dolar olarak her 5 dakikada güncellenir.',
       body: `${hero('Gram Altın Fiyatı Bugün', 'Gram başına Türk lirası (TL) ve ABD doları canlı fiyat', 'tr')}
 ${errBox}
@@ -1616,7 +1616,7 @@ ${AD}
       out.push({ lang: 'tr', fixed: true, slug: ts, usesFx: true, trEn: TR_EN[ts],
         alts: TR_ALTS(ts),
         crumbs: [['Gram altın', url('tr', 'turkiye')], [`${n} fiyatı`, url('tr', ts)]],
-        title: `${n} Altın Fiyatı Bugün: Gram = ${kt} TL`,
+        title: `${n} Altın Fiyatı Bugün: Gram Fiyatı (TL)`,
         desc: `Canlı ${n.toLowerCase()} altın fiyatı: gram, 10 gram ve ons bazında Türk lirası ve dolar, her 5 dakikada güncellenir. İşçilik ve KDV hariç ham fiyat.`,
         body: `${hero(`${n} Altın Fiyatı Bugün`, `Gram başına ${kt} TL — canlı`, 'tr')}
 ${errBox}
@@ -1654,7 +1654,7 @@ ${TRK.filter(([k2]) => k2 !== k).map(([, n2, s2]) => `<a class="link-card" href=
     out.push({ lang: 'hi', fixed: true, slug: 'sone-ka-bhav', usesFx: true, trEn: 'india',
       alts: HI_ALTS('sone-ka-bhav'),
       crumbs: [['आज का सोने का भाव', url('hi', 'sone-ka-bhav')]],
-      title: `आज का सोने का भाव: ${g24h} रुपये/ग्राम — 22 और 24 कैरेट`,
+      title: 'आज का सोने का भाव: रुपये प्रति ग्राम — 22 और 24 कैरेट',
       desc: 'आज का सोने का ताजा भाव: 24, 22, 21 और 18 कैरेट सोने की ग्राम, 10 ग्राम, तोला और औंस कीमत रुपये और डॉलर में, हर 5 मिनट में अपडेट।',
       body: `${hero('आज का सोने का भाव', 'प्रति ग्राम रुपये (INR) और अमेरिकी डॉलर में लाइव भाव', 'hi')}
 ${errBox}
@@ -1684,7 +1684,7 @@ ${AD}
       out.push({ lang: 'hi', fixed: true, slug: hs, usesFx: true, trEn: HI_EN[hs],
         alts: HI_ALTS(hs),
         crumbs: [['सोने का भाव', url('hi', 'sone-ka-bhav')], [`${n} भाव`, url('hi', hs)]],
-        title: `${n} सोने का भाव आज: 1 ग्राम = ${kt} रुपये`,
+        title: `${n} सोने का भाव आज: रुपये प्रति ग्राम`,
         desc: `${n} सोने का ताजा भाव: ग्राम, 10 ग्राम, तोला और औंस में रुपये और डॉलर, हर 5 मिनट में अपडेट। मेकिंग चार्ज और GST के बिना कच्चा भाव।`,
         body: `${hero(`${n} सोने का भाव आज`, `प्रति ग्राम ${kt} रुपये — लाइव`, 'hi')}
 ${errBox}
@@ -1722,7 +1722,7 @@ ${HIK.filter(([k2]) => k2 !== k).map(([, n2, s2]) => `<a class="link-card" href=
     out.push({ lang: 'ur', fixed: true, slug: 'sone-ka-rate', usesFx: true, trEn: 'pakistan',
       alts: UR_ALTS('sone-ka-rate'),
       crumbs: [['آج کا سونے کا ریٹ', url('ur', 'sone-ka-rate')]],
-      title: `آج کا سونے کا ریٹ: ${g24u} روپے فی گرام — 22 اور 24 کیرٹ`,
+      title: 'آج کا سونے کا ریٹ: روپے فی گرام — 22 اور 24 کیرٹ',
       desc: 'آج کا تازہ سونے کا ریٹ: 24، 22، 21 اور 18 کیرٹ سونے کی گرام، 10 گرام، تولہ اور اونس قیمت روپے اور ڈالر میں، ہر 5 منٹ میں تازہ کاری۔',
       body: `${hero('آج کا سونے کا ریٹ', 'فی گرام روپے (PKR) اور امریکی ڈالر میں لائیو ریٹ', 'ur')}
 ${errBox}
@@ -1752,7 +1752,7 @@ ${AD}
       out.push({ lang: 'ur', fixed: true, slug: us, usesFx: true, trEn: UR_EN[us],
         alts: UR_ALTS(us),
         crumbs: [['سونے کا ریٹ', url('ur', 'sone-ka-rate')], [`${n} ریٹ`, url('ur', us)]],
-        title: `${n} سونے کا ریٹ آج: 1 گرام = ${kt} روپے`,
+        title: `${n} سونے کا ریٹ آج: روپے فی گرام`,
         desc: `${n} سونے کا تازہ ریٹ: گرام، 10 گرام، تولہ اور اونس میں روپے اور ڈالر، ہر 5 منٹ میں تازہ کاری۔ مزدوری کے بغیر خام ریٹ۔`,
         body: `${hero(`${n} سونے کا ریٹ آج`, `فی گرام ${kt} روپے — لائیو`, 'ur')}
 ${errBox}
@@ -1790,7 +1790,7 @@ ${URK.filter(([k2]) => k2 !== k).map(([, n2, s2]) => `<a class="link-card" href=
     out.push({ lang: 'id', fixed: true, slug: 'harga-emas', usesFx: true, trEn: 'indonesia',
       alts: ID_ALTS('harga-emas'),
       crumbs: [['Harga emas hari ini', url('id', 'harga-emas')]],
-      title: `Harga Emas Hari Ini: ${g24i} Rupiah per Gram — 22 & 24 Karat`,
+      title: 'Harga Emas Hari Ini: Rupiah per Gram — 22 & 24 Karat',
       desc: 'Harga emas terkini hari ini: 24, 22, 21 dan 18 karat per gram, 10 gram dan troy ounce dalam rupiah dan dolar, diperbarui setiap 5 menit.',
       body: `${hero('Harga Emas Hari Ini', 'Harga langsung per gram dalam rupiah (IDR) dan dolar AS', 'id')}
 ${errBox}
@@ -1820,7 +1820,7 @@ ${AD}
       out.push({ lang: 'id', fixed: true, slug: is2, usesFx: true, trEn: ID_EN[is2],
         alts: ID_ALTS(is2),
         crumbs: [['Harga emas', url('id', 'harga-emas')], [`Harga ${n.toLowerCase()}`, url('id', is2)]],
-        title: `Harga Emas ${n} Hari Ini: 1 Gram = ${kt} Rupiah`,
+        title: `Harga Emas ${n} Hari Ini: Per Gram dalam Rupiah`,
         desc: `Harga emas ${n.toLowerCase()} terkini: per gram, 10 gram dan troy ounce dalam rupiah dan dolar, diperbarui setiap 5 menit. Harga murni tanpa ongkos pembuatan.`,
         body: `${hero(`Harga Emas ${n} Hari Ini`, `${kt} rupiah per gram — langsung`, 'id')}
 ${errBox}
@@ -1857,7 +1857,7 @@ ${IDK.filter(([k2]) => k2 !== k).map(([, n2, s2]) => `<a class="link-card" href=
     out.push({ lang: 'bn', fixed: true, slug: 'sonar-dam', usesFx: true, trEn: 'bangladesh',
       alts: BN_ALTS('sonar-dam'),
       crumbs: [['আজকের সোনার দাম', url('bn', 'sonar-dam')]],
-      title: `আজকের সোনার দাম: ${g24b} টাকা প্রতি গ্রাম — ২২ ও ২৪ ক্যারেট`,
+      title: 'আজকের সোনার দাম: টাকা প্রতি গ্রাম — ২২ ও ২৪ ক্যারেট',
       desc: 'আজকের সোনার সর্বশেষ দাম: ২৪, ২২, ২১ ও ১৮ ক্যারেট সোনার গ্রাম, ১০ গ্রাম, ভরি এবং আউন্সের দাম টাকা ও ডলারে, প্রতি ৫ মিনিটে হালনাগাদ।',
       body: `${hero('আজকের সোনার দাম', 'প্রতি গ্রামে টাকা (BDT) ও আমেরিকান ডলারে লাইভ দাম', 'bn')}
 ${errBox}
@@ -1887,7 +1887,7 @@ ${AD}
       out.push({ lang: 'bn', fixed: true, slug: bs, usesFx: true, trEn: BN_EN[bs],
         alts: BN_ALTS(bs),
         crumbs: [['সোনার দাম', url('bn', 'sonar-dam')], [`${n} দাম`, url('bn', bs)]],
-        title: `${n} সোনার দাম আজ: ১ গ্রাম = ${kt} টাকা`,
+        title: `${n} সোনার দাম আজ: টাকা প্রতি গ্রাম`,
         desc: `${n} সোনার সর্বশেষ দাম: গ্রাম, ১০ গ্রাম, ভরি ও আউন্সে টাকা ও ডলার, প্রতি ৫ মিনিটে হালনাগাদ। মজুরি ছাড়া খাঁটি দাম।`,
         body: `${hero(`${n} সোনার দাম আজ`, `প্রতি গ্রাম ${kt} টাকা — লাইভ`, 'bn')}
 ${errBox}
@@ -1925,7 +1925,7 @@ ${BNK.filter(([k2]) => k2 !== k).map(([, n2, s2]) => `<a class="link-card" href=
     out.push({ lang: 'tl', fixed: true, slug: 'presyo-ng-ginto', usesFx: true, trEn: 'philippines',
       alts: TL_ALTS('presyo-ng-ginto'),
       crumbs: [['Presyo ng ginto', url('tl', 'presyo-ng-ginto')]],
-      title: `Presyo ng Ginto Ngayon: ₱${g24t} kada Gramo — 22 at 24 Karat`,
+      title: 'Presyo ng Ginto Ngayon: kada Gramo sa Piso — 22 at 24 Karat',
       desc: 'Pinakabagong presyo ng ginto: 24, 22, 21 at 18 karat na ginto kada gramo, 10 gramo at onsa, sa piso at dolyar, ina-update kada 5 minuto.',
       body: `${hero('Presyo ng Ginto Ngayon', 'Live na presyo kada gramo sa piso (PHP) at dolyar ng Amerika', 'tl')}
 ${errBox}
@@ -1955,7 +1955,7 @@ ${AD}
       out.push({ lang: 'tl', fixed: true, slug: ts, usesFx: true, trEn: TL_EN[ts],
         alts: TL_ALTS(ts),
         crumbs: [['Presyo ng ginto', url('tl', 'presyo-ng-ginto')], [`${n} na ginto`, url('tl', ts)]],
-        title: `Presyo ng ${n} na Ginto Ngayon: 1 Gramo = ₱${kt}`,
+        title: `Presyo ng ${n} na Ginto Ngayon: kada Gramo sa Piso`,
         desc: `Pinakabagong presyo ng ${n} na ginto: kada gramo, 10 gramo at onsa, sa piso at dolyar, ina-update kada 5 minuto. Purong presyo, walang making charge.`,
         body: `${hero(`Presyo ng ${n} na Ginto Ngayon`, `₱${kt} kada gramo — live`, 'tl')}
 ${errBox}
@@ -1992,7 +1992,7 @@ ${TLK.filter(([k2]) => k2 !== k).map(([, n2, s2]) => `<a class="link-card" href=
     out.push({ lang: 'ms', fixed: true, slug: 'harga-emas', usesFx: true, trEn: 'malaysia',
       alts: MS_ALTS('harga-emas'),
       crumbs: [['Harga emas', url('ms', 'harga-emas')]],
-      title: `Harga Emas Hari Ini: RM${g24m} Segram — Emas 916 & 999`,
+      title: 'Harga Emas Hari Ini: Segram dalam Ringgit — Emas 916 & 999',
       desc: 'Harga emas terkini: emas 999, 916, 875 dan 750 segram, 10 gram dan auns, dalam ringgit dan dolar, dikemas kini setiap 5 minit.',
       body: `${hero('Harga Emas Hari Ini', 'Harga langsung segram dalam ringgit (MYR) dan dolar Amerika', 'ms')}
 ${errBox}
@@ -2022,7 +2022,7 @@ ${AD}
       out.push({ lang: 'ms', fixed: true, slug: ms2, usesFx: true, trEn: MS_EN[ms2],
         alts: MS_ALTS(ms2),
         crumbs: [['Harga emas', url('ms', 'harga-emas')], [`Harga emas ${n}`, url('ms', ms2)]],
-        title: `Harga Emas ${n} Hari Ini: 1 Gram = RM${kt}`,
+        title: `Harga Emas ${n} Hari Ini: Segram dalam Ringgit`,
         desc: `Harga emas ${n} terkini: segram, 10 gram dan auns, dalam ringgit dan dolar, dikemas kini setiap 5 minit. Harga tulen tanpa upah.`,
         body: `${hero(`Harga Emas ${n} Hari Ini`, `RM${kt} segram — langsung`, 'ms')}
 ${errBox}
