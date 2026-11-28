@@ -205,12 +205,12 @@ async function loadFX(force){
   }catch(e){}finally{G.fxLoading=false;}
 }
 
-function renderChange(pct,baselineAt){
+function renderChange(pct,baselineAt,baseDay){
   $$('[data-chg]').forEach(el=>{
     const dir=pct>0.005?'up':pct<-0.005?'dn':'fl';
     el.className='chg '+dir;
-    el.textContent=(dir==='up'?'▲ ':dir==='dn'?'▼ ':'● ')+Math.abs(pct).toFixed(2)+'%'+(EN?' vs stored quote':' مقارنة بآخر سعر مسجّل');
-    el.title=(EN?'Stored baseline: ':'المرجع المحفوظ: ')+(baselineAt?dubaiTime(baselineAt):'—');el.hidden=false;
+    el.textContent=(dir==='up'?'▲ ':dir==='dn'?'▼ ':'● ')+Math.abs(pct).toFixed(2)+'%'+(EN?(baseDay?(EN?' vs close of ':' مقارنة بإغلاق ')+baseDay:(EN?' vs stored quote':' مقارنة بآخر سعر مسجّل')));
+    el.title=baseDay?(EN?'Stored daily close (Dubai archive), not rolling 24h: ':'إغلاق يومي محفوظ (أرشيف دبي) وليس 24 ساعة متحركة: ')+baseDay:(EN?'Stored baseline: ':'المرجع المحفوظ: ')+(baselineAt?dubaiTime(baselineAt):'—');el.hidden=false;
   });
 }
 
@@ -225,7 +225,7 @@ async function load(){
     render(p);
     const status=priceState(G);
     if(err){err.hidden=status.state==='LIVE'||status.state==='CLOSED';if(!err.hidden)err.textContent=priceLabel(status.state,EN?'en':'ar');}
-    try{const old=await rowBefore(24*3600*1000);if(old) renderChange((p.g24-old.price_24k)/old.price_24k*100,old.fetched_at);}catch(e){}
+    try{const bs=$('[data-chg][data-base]');const bv=bs?Number(bs.dataset.base):0;if(bv>0){renderChange((p.g24-bv)/bv*100,0,bs.dataset.baseDay);}else{const old=await rowBefore(24*3600*1000);if(old) renderChange((p.g24-old.price_24k)/old.price_24k*100,old.fetched_at);}}catch(e){}
   }catch(e){
     G.stale=!priceState(G).usable;statusPrice();if(window.GoldAlerts)window.GoldAlerts.check();
     if(err){err.hidden=false;err.textContent=EN?'Refresh failed. '+priceLabel(priceState(G).state,'en'):'تعذر التحديث. '+priceLabel(priceState(G).state,'ar');}
@@ -445,3 +445,5 @@ if(chatFab&&chatPanel){
   new MutationObserver(()=>document.body.classList.toggle('ib',!!document.getElementById('install-banner'))).observe(document.body,{childList:true});
 }
 })();
+
+try{const tgf=document.querySelector('.tg-float'),rb=document.getElementById('refresh');if(tgf&&rb&&'IntersectionObserver'in window){new IntersectionObserver(es=>{tgf.classList.toggle('tg-away',es[0].isIntersecting);},{threshold:0}).observe(rb);}}catch(e){}

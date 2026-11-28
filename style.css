@@ -363,3 +363,4 @@ select:focus-visible{outline:2px solid var(--g5);outline-offset:2px}
  .header-side .ctry,.header-side #langsel,.header-side .price-mode{display:none}
  .site-header.hdr-open .header-side .ctry,.site-header.hdr-open .header-side #langsel,.site-header.hdr-open .header-side .price-mode{display:block;flex:1 1 100%;max-width:none;width:100%;font-size:.85rem;padding:8px 10px;margin-top:4px}
 }
+.tg-float{transition:opacity .2s,transform .2s}.tg-float.tg-away{opacity:0;pointer-events:none;transform:translateY(8px)}

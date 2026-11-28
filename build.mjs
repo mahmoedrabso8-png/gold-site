@@ -126,7 +126,7 @@ function makeCtx(price, daily, extra = {}) {
 
     const pct = (g - prev) / prev * 100;
     const dir = pct > 0.005 ? 'up' : pct < -0.005 ? 'dn' : 'fl';
-    chg = `<span class="chg ${dir}" data-chg title="Stored daily baseline: ${baseline?.day||'unknown'} (Dubai archive), not rolling 24h">${dir === 'up' ? '▲' : dir === 'dn' ? '▼' : '●'} ${Number.isFinite(pct)?Math.abs(pct).toFixed(2):'—'}% · ${baseline?.day||'—'}</span>`;
+    chg = `<span class="chg ${dir}" data-chg data-base="${prev}" data-base-day="${baseline?.day||''}" title="Stored daily baseline: ${baseline?.day||'unknown'} (Dubai archive), not rolling 24h">${dir === 'up' ? '▲' : dir === 'dn' ? '▼' : '●'} ${Number.isFinite(pct)?Math.abs(pct).toFixed(2):'—'}% · ${baseline?.day||'—'}</span>`;
   } else chg = '<span class="chg fl" data-chg hidden></span>';
   const markets = Object.entries(CNAMES).map(([slug, [ar, en]]) => ({slug, ar, en, currency: (COUNTRIES.find(c => c[2] === en || c[1] === ar) || ['EUR'])[0]}));
   return { markets, price, priceState:priceState(price), priceLabel, g24: g, ag, fx, PEG, rateOf, P, S, FX, FXD, updated, chg, daily, fmt, AED, TROY, SITE, TODAY, url, AD };
