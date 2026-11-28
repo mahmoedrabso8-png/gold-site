@@ -23,7 +23,7 @@ const order=['🇦🇪 الإمارات','🇸🇦 السعودية','🇶🇦 �
 const groups=new Map();
 for(const it of items.slice(0,MAXITEMS)){const k=CN[it.country]||'🌍 دول الخليج';(groups.get(k)||groups.set(k,[]).get(k)).push(it);}
 const keys=[...groups.keys()].sort((a,b)=>(order.indexOf(a)+99)%99-(order.indexOf(b)+99)%99);
-const blocks=[`📋 نشرة وظائف اليوم · ${date}\n${items.length} وظيفة جديدة آخر 24 ساعة`];
+const blocks=[`📋 نشرة وظائف اليوم · ${date}\n`+(+d.total_new>items.length?`${d.total_new} وظيفة جديدة، وهذه أبرز ${items.length}`:`${items.length} وظيفة جديدة`)];
 for(const k of keys){const g=groups.get(k);blocks.push(`${k} (${g.length})\n`+g.map(x=>`▫️ ${x.title}\n${x.link}`).join('\n\n'));}
 if(items.length>MAXITEMS)blocks.push(`+${items.length-MAXITEMS} وظيفة أخرى على الموقع:\nhttps://gulf-jobs.pages.dev/`);
 else blocks.push('كل الوظائف على الموقع:\nhttps://gulf-jobs.pages.dev/');
