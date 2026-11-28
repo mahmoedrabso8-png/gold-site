@@ -1402,7 +1402,7 @@ ${links('ar', '')}`,
 ${[['', L === 'en' ? 'UAE' : 'الإمارات'], ...Object.entries(COUNTRY_PAGES).filter(([s, o]) => s !== slug && (L === 'en' || !o.enOnly)).map(([s, o]) => [s, o[L].n])].map(([s, n]) => `<a class="link-card" href="${url(L, s)}">${L === 'en' ? `Gold price in ${n}` : `سعر الذهب في ${n}`}</a>`).join('')}
 ${c.code !== 'USD' ? `<a class="link-card" href="${url(L, 'dollar-' + slug)}">${L === 'en' ? `Dollar rate in ${c.en.n}` : `سعر الدولار ${c.ar.in}`}</a>` : ''}
 <a class="link-card" href="${url(L, 'gcc')}">${L === 'en' ? 'Compare Gulf gold prices' : 'مقارنة أسعار الذهب في الخليج'}</a>
-<a class="link-card" href="${url(L, 'gold-calculator')}">${L === 'en' ? 'Gold calculator' : 'حاسبة الذهب'}<span>${c.code}</span></a></div></section>`;
+<a class="link-card" href="${url(L, 'gold-calculator')}">${L === 'en' ? 'Gold calculator' : 'حاسبة الذهب'}<span>${c.code}</span></a>${slug === 'saudi' && L === 'ar' ? '<a class="link-card" href="https://tools.maelumatii.com/convert/">محول الريال السعودي وأسعار الصرف<span>موقعنا «تجاه» للأدوات اليومية</span></a>' : ''}</div></section>`;
 
     for (const L of c.enOnly ? ['en'] : ['ar', 'en']) {
       const en = L === 'en', x = c[L];
